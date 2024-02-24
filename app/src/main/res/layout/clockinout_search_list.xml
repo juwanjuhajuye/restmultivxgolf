@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <TextView
+        android:id="@+id/clockInOutSearchListCountTv"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.7"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
+        android:textColor="#6c6c6c"
+        android:gravity="center"/>
+    <TextView
+        android:id="@+id/clockInOutSearchListEmpNameTv"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2.5"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
+        android:textColor="#6c6c6c"
+        android:gravity="center_vertical|left"/>
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/clockInOutSearchListInDateTv"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:textColor="#6c6c6c"
+            android:textSize="12dp"
+            android:gravity="center"/>
+        <TextView
+            android:id="@+id/clockInOutSearchListOutDateTv"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:textColor="#9a2965"
+            android:textSize="12dp"
+            android:gravity="center"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/clockInOutSearchListTimeAmountTv"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
+        android:textColor="#6c6c6c"
+        android:gravity="center"/>
+    <Button
+        android:id="@+id/clockInOutSearchListEditBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        android:background="@drawable/button_selector_clockinout_edit"
+        android:gravity="center"
+        android:textColor="#595959"
+        android:textSize="12dp"
+        android:text="EDIT"/>
+
+</LinearLayout>

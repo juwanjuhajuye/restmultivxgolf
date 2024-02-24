@@ -1,0 +1,567 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp"
+    android:background="@android:color/transparent" >
+
+    <LinearLayout
+        android:id="@+id/realtimewebordersLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/emptyLinearLayout"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.6"
+            android:orientation="horizontal">
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.03"
+            android:orientation="horizontal">
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:padding="10dp" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:orientation="vertical"
+                android:gravity="center">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="6"
+                android:orientation="vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="20dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:gravity="center"
+                android:background="@drawable/roundlayout_background_paymentcashpad">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:textColor="#ffffff"
+                        android:textStyle="bold"
+                        android:textSize="20dp"
+                        android:text="Enter Cash Amount" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="8"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.5"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp">
+
+                            <TextView
+                                android:id="@+id/cashAmountEv"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2"
+                                android:textSize="24dp"
+                                android:textStyle="bold"
+                                android:textColor="#ffffff"
+                                android:inputType="number"
+                                android:maxLength="16"
+                                android:gravity="center_horizontal|center_vertical" />
+
+                            <Button
+                                android:id="@+id/clearBtn"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/button_selector_cashinout_button_cashin"
+                                android:layout_marginLeft="10dp"
+                                android:text="CLEAR"
+                                android:textSize="16dp"
+                                android:textColor="#ffffff"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="9"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:id="@+id/giftCardBalanceCheckKeypadLn"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center_horizontal"
+                                android:visibility="visible" >
+
+                                <TableLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_margin="7dp"
+                                    android:stretchColumns="*">
+
+                                    <TableRow
+                                        android:layout_width="match_parent"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="1" >
+                                        <Button
+                                            android:id="@+id/cashEnter_suButton7"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:background="@drawable/button_selector_numberbutton_qty"
+                                            android:layout_margin="3dp"
+                                            android:text="7"
+                                            android:textSize="20dp"
+                                            android:textStyle="bold"
+                                            android:textColor="#ffffff"/>
+                                        <Button
+                                            android:id="@+id/cashEnter_suButton8"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:background="@drawable/button_selector_numberbutton_qty"
+                                            android:layout_margin="3dp"
+                                            android:text="8"
+                                            android:textSize="20dp"
+                                            android:textStyle="bold"
+                                            android:textColor="#ffffff"/>
+                                        <Button
+                                            android:id="@+id/cashEnter_suButton9"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:background="@drawable/button_selector_numberbutton_qty"
+                                            android:layout_margin="3dp"
+                                            android:text="9"
+                                            android:textSize="20dp"
+                                            android:textStyle="bold"
+                                            android:textColor="#ffffff"/>
+                                    </TableRow>
+                                    <TableRow
+                                        android:layout_width="match_parent"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="1" >
+                                        <Button
+                                            android:id="@+id/cashEnter_suButton4"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:background="@drawable/button_selector_numberbutton_qty"
+                                            android:layout_margin="3dp"
+                                            android:text="4"
+                                            android:textSize="20dp"
+                                            android:textStyle="bold"
+                                            android:textColor="#ffffff"/>
+                                        <Button
+                                            android:id="@+id/cashEnter_suButton5"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:background="@drawable/button_selector_numberbutton_qty"
+                                            android:layout_margin="3dp"
+                                            android:text="5"
+                                            android:textSize="20dp"
+                                            android:textStyle="bold"
+                                            android:textColor="#ffffff"/>
+                                        <Button
+                                            android:id="@+id/cashEnter_suButton6"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:background="@drawable/button_selector_numberbutton_qty"
+                                            android:layout_margin="3dp"
+                                            android:text="6"
+                                            android:textSize="20dp"
+                                            android:textStyle="bold"
+                                            android:textColor="#ffffff"/>
+                                    </TableRow>
+                                    <TableRow
+                                        android:layout_width="match_parent"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="1" >
+                                        <Button
+                                            android:id="@+id/cashEnter_suButton1"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:background="@drawable/button_selector_numberbutton_qty"
+                                            android:layout_margin="3dp"
+                                            android:text="1"
+                                            android:textSize="20dp"
+                                            android:textStyle="bold"
+                                            android:textColor="#ffffff"/>
+                                        <Button
+                                            android:id="@+id/cashEnter_suButton2"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:background="@drawable/button_selector_numberbutton_qty"
+                                            android:layout_margin="3dp"
+                                            android:text="2"
+                                            android:textSize="20dp"
+                                            android:textStyle="bold"
+                                            android:textColor="#ffffff"/>
+                                        <Button
+                                            android:id="@+id/cashEnter_suButton3"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:background="@drawable/button_selector_numberbutton_qty"
+                                            android:layout_margin="3dp"
+                                            android:text="3"
+                                            android:textSize="20dp"
+                                            android:textStyle="bold"
+                                            android:textColor="#ffffff"/>
+                                    </TableRow>
+                                    <TableRow
+                                        android:layout_width="match_parent"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="1" >
+                                        <Button
+                                            android:id="@+id/cashEnter_suButton0"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:background="@drawable/button_selector_numberbutton_qty"
+                                            android:layout_margin="3dp"
+                                            android:text="0"
+                                            android:textSize="20dp"
+                                            android:textStyle="bold"
+                                            android:textColor="#ffffff"/>
+                                        <Button
+                                            android:id="@+id/cashEnter_suButton00"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:background="@drawable/button_selector_numberbutton_qty"
+                                            android:layout_margin="3dp"
+                                            android:text="00"
+                                            android:textSize="20dp"
+                                            android:textStyle="bold"
+                                            android:textColor="#ffffff"/>
+                                        <Button
+                                            android:id="@+id/cashEnter_suButtonBack"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:background="@drawable/button_selector_numberbutton_qty"
+                                            android:layout_margin="3dp"
+                                            android:text="←"
+                                            android:textSize="20dp"
+                                            android:textStyle="bold"
+                                            android:textColor="#ffffff"/>
+                                    </TableRow>
+
+                                    <TableRow
+                                        android:layout_width="match_parent"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="1" >
+                                        <Button
+                                            android:id="@+id/cashEnter_suButtonV"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="2"
+                                            android:background="@drawable/button_selector_numberbutton_qty_v"
+                                            android:layout_margin="3dp"
+                                            android:text="V"
+                                            android:textSize="22dp"
+                                            android:textStyle="bold"
+                                            android:textColor="#83444D"
+                                            android:layout_span="2" />
+                                        <Button
+                                            android:id="@+id/cashEnter_suButtonX"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:background="@drawable/button_selector_numberbutton"
+                                            android:layout_margin="3dp"
+                                            android:text="CLOSE"
+                                            android:textSize="16dp"
+                                            android:textColor="#5b5b5b"/>
+
+                                    </TableRow>
+
+                                </TableLayout>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:paddingLeft="5dp"
+                        android:layout_marginBottom="10dp" >
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <Button
+                                android:id="@+id/cashEnterLeftBtn1"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="2"
+                                android:background="@drawable/button_selector_cashpad_button1"
+                                android:text="$0.00"
+                                android:textSize="18dp"
+                                android:textStyle="bold"
+                                android:textColor="#ffffff"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="0.1"/>
+
+                            <Button
+                                android:id="@+id/cashEnterLeftBtn2"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/button_selector_cashpad_button2"
+                                android:text="$0.00"
+                                android:textSize="18dp"
+                                android:textStyle="bold"
+                                android:textColor="#000000"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="0.1"/>
+
+                            <Button
+                                android:id="@+id/cashEnterLeftBtn3"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/button_selector_cashpad_button2"
+                                android:text="$0.00"
+                                android:textSize="18dp"
+                                android:textStyle="bold"
+                                android:textColor="#000000"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="0.1"/>
+
+                            <Button
+                                android:id="@+id/cashEnterLeftBtn4"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/button_selector_cashpad_button2"
+                                android:text="$0.00"
+                                android:textSize="18dp"
+                                android:textStyle="bold"
+                                android:textColor="#000000"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="0.1"/>
+
+                            <Button
+                                android:id="@+id/cashEnterLeftBtn5"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/button_selector_cashpad_button2"
+                                android:text="$0.00"
+                                android:textSize="18dp"
+                                android:textStyle="bold"
+                                android:textColor="#000000"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.1"
+                            android:orientation="vertical"></LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="2"
+                                android:orientation="vertical">
+
+                                <Button
+                                    android:id="@+id/cashEnterRightBtn1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/button_selector_cashpad_button2"
+                                    android:text="$5.00"
+                                    android:textSize="18dp"
+                                    android:textStyle="bold"
+                                    android:textColor="#000000"/>
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="0.1"/>
+
+                                <Button
+                                    android:id="@+id/cashEnterRightBtn2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/button_selector_cashpad_button2"
+                                    android:text="$10.00"
+                                    android:textSize="18dp"
+                                    android:textStyle="bold"
+                                    android:textColor="#000000"/>
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="0.1"/>
+
+                            <Button
+                                android:id="@+id/cashEnterRightBtn3"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/button_selector_cashpad_button2"
+                                android:text="$20.00"
+                                android:textSize="18dp"
+                                android:textStyle="bold"
+                                android:textColor="#000000"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="0.1"/>
+
+                            <Button
+                                android:id="@+id/cashEnterRightBtn4"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/button_selector_cashpad_button2"
+                                android:text="$40.00"
+                                android:textSize="18dp"
+                                android:textStyle="bold"
+                                android:textColor="#000000"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="0.1"/>
+
+                            <Button
+                                android:id="@+id/cashEnterRightBtn5"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/button_selector_cashpad_button2"
+                                android:text="$50.00"
+                                android:textSize="18dp"
+                                android:textStyle="bold"
+                                android:textColor="#000000"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="0.1"/>
+
+                            <Button
+                                android:id="@+id/cashEnterRightBtn6"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/button_selector_cashpad_button2"
+                                android:text="$100.00"
+                                android:textSize="18dp"
+                                android:textStyle="bold"
+                                android:textColor="#000000"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.3"
+                android:orientation="vertical"
+                android:gravity="center">
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.015"
+            android:orientation="horizontal">
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

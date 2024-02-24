@@ -1,0 +1,165 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/signpadLn"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp"
+        android:visibility="invisible" >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="3"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:background="@drawable/roundlayout_background_signature_bg">
+
+                    <LinearLayout
+                        android:id="@+id/mainLn"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.2"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/cardDescTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text=""
+                    android:textColor="#625c4a"
+                    android:textSize="14dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/cardCompanyIv"
+                    android:layout_width="67dp"
+                    android:layout_height="35dp"
+                    android:scaleType="fitXY"/>
+
+                <TextView
+                    android:id="@+id/cardFourDigitsTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:text="**** **** **** ****"
+                    android:textColor="#625c4a"
+                    android:textSize="18dp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:padding="10dp"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/signPadOKBtn"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="3"
+                android:textColor="#ffffff"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:background="@drawable/button_selector_jjjsignpad_ok"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.2" />
+
+            <Button
+                android:visibility="gone"
+
+                android:id="@+id/signPadEraseBtn"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="Clear"
+                android:textColor="#3e3d42"
+                android:textSize="16dp"
+                android:background="@drawable/button_selector_jjjsignpad_clear"/>
+
+            <TextView
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2" />
+
+            <Button
+                android:visibility="gone"
+                android:id="@+id/signPadPaperSignBtn"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="Sign On Receipt"
+                android:textColor="#3e3d42"
+                android:textSize="16dp"
+                android:background="@drawable/button_selector_jjjsignpad_clear"/>
+
+
+
+            <Button
+                android:id="@+id/signPadCancelBtn"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text=""
+                android:textColor="#e86297"
+                android:textSize="16dp"
+                android:background="@drawable/button_selector_jjjsignpad_cancel_void"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

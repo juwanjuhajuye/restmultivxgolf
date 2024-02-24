@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_jjj__sign_pad"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/roundbackground_jjjsignpadbg">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.2"
+        android:orientation="horizontal">
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="8"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="14"
+            android:orientation="vertical"
+            android:paddingTop="10dp"
+            android:background="@drawable/roundbackground_jjjsignpad" >
+
+            <LinearLayout
+                android:id="@+id/tipLn"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2.0" >
+
+                    <!-- Tip Selection 시작 -->
+
+                    <LinearLayout
+                        android:id="@+id/tipSelectionLn"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:visibility="visible"
+                        android:padding="5dp" >
+
+                        <LinearLayout
+                            android:id="@+id/tipSuggestLn1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:background="@drawable/button_selector_tipselect">
+
+                            <TextView
+                                android:id="@+id/tipSuggest1_1"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:gravity="bottom|center_horizontal"
+                                android:text="No Tip"
+                                android:textSize="16dp"
+                                android:textColor="#ffffff"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tipSuggest1_2"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text=""
+                                android:textSize="16dp"
+                                android:textColor="#ffffff" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.05"
+                            android:orientation="vertical">
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/tipSuggestLn2"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:background="@drawable/button_selector_tipselect">
+
+                            <TextView
+                                android:id="@+id/tipSuggest2_1"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:gravity="bottom|center_horizontal"
+                                android:text="5%"
+                                android:textSize="16dp"
+                                android:textColor="#ffffff"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tipSuggest2_2"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:gravity="top|center_horizontal"
+                                android:text="($0.77)"
+                                android:textSize="16dp"
+                                android:textColor="#ffffff" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.05"
+                            android:orientation="vertical">
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/tipSuggestLn3"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:background="@drawable/button_selector_tipselect">
+
+                            <TextView
+                                android:id="@+id/tipSuggest3_1"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:gravity="bottom|center_horizontal"
+                                android:text="10%"
+                                android:textSize="16dp"
+                                android:textColor="#ffffff"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tipSuggest3_2"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:gravity="top|center_horizontal"
+                                android:text="($0.77)"
+                                android:textSize="16dp"
+                                android:textColor="#ffffff" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.05"
+                            android:orientation="vertical">
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/tipSuggestLn4"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:background="@drawable/button_selector_tipselect">
+
+                            <TextView
+                                android:id="@+id/tipSuggest4_1"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:gravity="bottom|center_horizontal"
+                                android:text="15%"
+                                android:textSize="16dp"
+                                android:textColor="#ffffff"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tipSuggest4_2"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:gravity="top|center_horizontal"
+                                android:text="($0.77)"
+                                android:textSize="16dp"
+                                android:textColor="#ffffff" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.05"
+                            android:orientation="vertical">
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/tipSuggestLn5"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:background="@drawable/button_selector_tipselect">
+
+                            <TextView
+                                android:id="@+id/tipSuggest5_1"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:gravity="bottom|center_horizontal"
+                                android:text="20%"
+                                android:textSize="16dp"
+                                android:textColor="#ffffff"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tipSuggest5_2"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:gravity="top|center_horizontal"
+                                android:text="($0.77)"
+                                android:textSize="16dp"
+                                android:textColor="#ffffff" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.05"
+                            android:orientation="vertical">
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/tipSuggestLn6"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:background="@drawable/button_selector_tipselect2">
+
+                            <TextView
+                                android:id="@+id/tipSuggest6_1"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:gravity="bottom|center_horizontal"
+                                android:text="Custom"
+                                android:textSize="16dp"
+                                android:textColor="#ffffff"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tipSuggest6_2"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:gravity="top|center_horizontal"
+                                android:text=""
+                                android:textSize="16dp"
+                                android:textColor="#ffffff" />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <!-- Tip Selection 끝 -->
+
+                    <!-- Tip Selection 사용안할 때 보여지는 부분 시작 -->
+                    <LinearLayout
+                        android:id="@+id/tipSelectionLn2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="right"
+                        android:orientation="horizontal"
+                        android:padding="10dp"
+                        android:visibility="invisible">
+
+                        <TextView
+                            android:id="@+id/salonNameTv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/roundlayout_button_tip_normal"
+                            android:gravity="center"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="20dp"
+                            android:text="JJJ Salon"
+                            android:textColor="#757575"
+                            android:textSize="20dp"
+                            android:textStyle="italic|bold" />
+
+                    </LinearLayout>
+                    <!-- Tip Selection 사용안할 때 보여지는 부분 끝 -->
+
+                </FrameLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/cardAmountTv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="$105.80"
+                        android:paddingLeft="20dp"
+                        android:textColor="#000000"
+                        android:textStyle="bold"
+                        android:textSize="36dp"/>
+
+                    <TextView
+                        android:id="@+id/tipAmountTv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:paddingLeft="10dp"
+                        android:text="($35.00 + $5.58)"
+                        android:textColor="#3e3d42"
+                        android:textSize="24dp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="10" >
+
+                <!-- Tip 메인 시작 -->
+                <include
+                    android:id="@+id/tipKeypadFrame"
+                    layout="@layout/activity_tipmain2" />
+                <!-- Tip 메인 끝 -->
+
+                <!-- 싸인패드 시작 -->
+                <include
+                    android:id="@+id/signpadFrame"
+                    layout="@layout/activity_signpad2" />
+                <!-- 싸인패드 끝 -->
+
+                <!-- Tip 입력폼 시작 -->
+                <include
+                    android:id="@+id/tipKeypadFrame"
+                    layout="@layout/activity_tipinsert2" />
+                <!-- Tip 입력폼 끝 -->
+
+
+            </FrameLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.2"
+        android:orientation="horizontal">
+    </LinearLayout>
+
+</LinearLayout>

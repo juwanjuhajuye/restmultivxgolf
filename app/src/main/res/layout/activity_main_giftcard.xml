@@ -1,0 +1,978 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/frameLayout_giftCard"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="10dp"
+        android:background="@drawable/roundlayout_line"
+        android:visibility="invisible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.9"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="left|center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/giftcardTitleEditText"
+                    android:tag="giftcardTitleEditTextTag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2.5"/>
+            <Button
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0.5"
+                android:textColor="#ffffff"
+                android:text="BALANCE CHECK"
+                android:background="@drawable/button_selector_main_side_bot"
+                android:id="@+id/giftCardBalanceBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.4"
+                android:gravity="right|center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="15dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp">
+
+                <Button
+                    android:id="@+id/giftCardCloseBtn"
+                    android:tag="giftCardCloseBtnTag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:orientation="horizontal"
+            android:background="#bbbbc8"></LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.3"
+            android:orientation="horizontal"></LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="9"
+            android:padding="20dp"
+            android:orientation="horizontal">
+
+            <ScrollView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TableLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" >
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" >
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="100dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_margin="3dp" >
+                                <TextView
+                                    android:id="@+id/giftCardMenuTextView_reload"
+                                    android:tag="giftCardMenuTextViewTag_reload"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="0.7"
+                                    android:background="#cdc5ca" />
+                                <Button
+                                    android:id="@+id/giftCardMenuButton_reload"
+                                    android:tag="giftCardMenuButtonTag_reload"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="9"
+                                    android:background="#fff8e8"
+                                    android:text=""
+                                    android:gravity="center" />
+                            </LinearLayout>
+                        </TableRow>
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" >
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="100dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_margin="3dp" >
+                                <TextView
+                                    android:id="@+id/giftCardMenuTextView1"
+                                    android:tag="giftCardMenuTextViewTag1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="0.7"
+                                    android:background="#cdc5ca" />
+                                <Button
+                                    android:id="@+id/giftCardMenuButton1"
+                                    android:tag="giftCardMenuButtonTag1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="9"
+                                    android:background="#fff8e8"
+                                    android:text=""
+                                    android:gravity="center" />
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="100dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_margin="3dp" >
+                                <TextView
+                                    android:id="@+id/giftCardMenuTextView2"
+                                    android:tag="giftCardMenuTextViewTag2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="0.7"
+                                    android:background="#cdc5ca" />
+                                <Button
+                                    android:id="@+id/giftCardMenuButton2"
+                                    android:tag="giftCardMenuButtonTag2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="9"
+                                    android:background="#fff8e8"
+                                    android:text=""
+                                    android:gravity="center" />
+                            </LinearLayout>
+                        </TableRow>
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" >
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="100dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_margin="3dp" >
+                                <TextView
+                                    android:id="@+id/giftCardMenuTextView3"
+                                    android:tag="giftCardMenuTextViewTag3"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="0.7"
+                                    android:background="#cdc5ca" />
+                                <Button
+                                    android:id="@+id/giftCardMenuButton3"
+                                    android:tag="giftCardMenuButtonTag3"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="9"
+                                    android:background="#fff8e8"
+                                    android:text=""
+                                    android:gravity="center" />
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="100dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_margin="3dp" >
+                                <TextView
+                                    android:id="@+id/giftCardMenuTextView4"
+                                    android:tag="giftCardMenuTextViewTag4"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="0.7"
+                                    android:background="#cdc5ca" />
+                                <Button
+                                    android:id="@+id/giftCardMenuButton4"
+                                    android:tag="giftCardMenuButtonTag4"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="9"
+                                    android:background="#fff8e8"
+                                    android:text=""
+                                    android:gravity="center" />
+                            </LinearLayout>
+                        </TableRow>
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" >
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="100dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_margin="3dp" >
+                                <TextView
+                                    android:id="@+id/giftCardMenuTextView5"
+                                    android:tag="giftCardMenuTextViewTag5"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="0.7"
+                                    android:background="#cdc5ca" />
+                                <Button
+                                    android:id="@+id/giftCardMenuButton5"
+                                    android:tag="giftCardMenuButtonTag5"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="9"
+                                    android:background="#fff8e8"
+                                    android:text=""
+                                    android:gravity="center" />
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="100dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_margin="3dp" >
+                                <TextView
+                                    android:id="@+id/giftCardMenuTextView6"
+                                    android:tag="giftCardMenuTextViewTag6"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="0.7"
+                                    android:background="#cdc5ca" />
+                                <Button
+                                    android:id="@+id/giftCardMenuButton6"
+                                    android:tag="giftCardMenuButtonTag6"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="9"
+                                    android:background="#fff8e8"
+                                    android:text=""
+                                    android:gravity="center" />
+                            </LinearLayout>
+                        </TableRow>
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" >
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="100dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_margin="3dp" >
+                                <TextView
+                                    android:id="@+id/giftCardMenuTextView7"
+                                    android:tag="giftCardMenuTextViewTag7"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="0.7"
+                                    android:background="#cdc5ca" />
+                                <Button
+                                    android:id="@+id/giftCardMenuButton7"
+                                    android:tag="giftCardMenuButtonTag7"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="9"
+                                    android:background="#fff8e8"
+                                    android:text=""
+                                    android:gravity="center" />
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="100dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_margin="3dp" >
+                                <TextView
+                                    android:id="@+id/giftCardMenuTextView8"
+                                    android:tag="giftCardMenuTextViewTag8"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="0.7"
+                                    android:background="#cdc5ca" />
+                                <Button
+                                    android:id="@+id/giftCardMenuButton8"
+                                    android:tag="giftCardMenuButtonTag8"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="9"
+                                    android:background="#fff8e8"
+                                    android:text=""
+                                    android:gravity="center" />
+                            </LinearLayout>
+                        </TableRow>
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" >
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="100dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_margin="3dp" >
+                                <TextView
+                                    android:id="@+id/giftCardMenuTextView9"
+                                    android:tag="giftCardMenuTextViewTag9"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="0.7"
+                                    android:background="#cdc5ca" />
+                                <Button
+                                    android:id="@+id/giftCardMenuButton9"
+                                    android:tag="giftCardMenuButtonTag9"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="9"
+                                    android:background="#fff8e8"
+                                    android:text=""
+                                    android:gravity="center" />
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="100dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_margin="3dp" >
+                                <TextView
+                                    android:id="@+id/giftCardMenuTextView10"
+                                    android:tag="giftCardMenuTextViewTag10"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="0.7"
+                                    android:background="#cdc5ca" />
+                                <Button
+                                    android:id="@+id/giftCardMenuButton10"
+                                    android:tag="giftCardMenuButtonTag10"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="9"
+                                    android:background="#fff8e8"
+                                    android:text=""
+                                    android:gravity="center" />
+                            </LinearLayout>
+                        </TableRow>
+
+
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" >
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="100dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_margin="3dp" >
+                                <TextView
+                                    android:id="@+id/giftCardMenuTextView11"
+                                    android:tag="giftCardMenuTextViewTag11"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="0.7"
+                                    android:background="#cdc5ca" />
+                                <Button
+                                    android:id="@+id/giftCardMenuButton11"
+                                    android:tag="giftCardMenuButtonTag11"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="9"
+                                    android:background="#fff8e8"
+                                    android:text=""
+                                    android:gravity="center" />
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="100dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_margin="3dp" >
+                                <TextView
+                                    android:id="@+id/giftCardMenuTextView12"
+                                    android:tag="giftCardMenuTextViewTag12"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="0.7"
+                                    android:background="#cdc5ca" />
+                                <Button
+                                    android:id="@+id/giftCardMenuButton12"
+                                    android:tag="giftCardMenuButtonTag12"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="9"
+                                    android:background="#fff8e8"
+                                    android:text=""
+                                    android:gravity="center" />
+                            </LinearLayout>
+                        </TableRow>
+
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" >
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="100dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_margin="3dp" >
+                                <TextView
+                                    android:id="@+id/giftCardMenuTextView13"
+                                    android:tag="giftCardMenuTextViewTag13"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="0.7"
+                                    android:background="#cdc5ca" />
+                                <Button
+                                    android:id="@+id/giftCardMenuButton13"
+                                    android:tag="giftCardMenuButtonTag13"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="9"
+                                    android:background="#fff8e8"
+                                    android:text=""
+                                    android:gravity="center" />
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="100dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_margin="3dp" >
+                                <TextView
+                                    android:id="@+id/giftCardMenuTextView14"
+                                    android:tag="giftCardMenuTextViewTag14"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="0.7"
+                                    android:background="#cdc5ca" />
+                                <Button
+                                    android:id="@+id/giftCardMenuButton14"
+                                    android:tag="giftCardMenuButtonTag14"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="9"
+                                    android:background="#fff8e8"
+                                    android:text=""
+                                    android:gravity="center" />
+                            </LinearLayout>
+                        </TableRow>
+
+
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" >
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="100dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_margin="3dp" >
+                                <TextView
+                                    android:id="@+id/giftCardMenuTextView15"
+                                    android:tag="giftCardMenuTextViewTag15"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="0.7"
+                                    android:background="#cdc5ca" />
+                                <Button
+                                    android:id="@+id/giftCardMenuButton15"
+                                    android:tag="giftCardMenuButtonTag15"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="9"
+                                    android:background="#fff8e8"
+                                    android:text=""
+                                    android:gravity="center" />
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="100dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_margin="3dp" >
+                                <TextView
+                                    android:id="@+id/giftCardMenuTextView16"
+                                    android:tag="giftCardMenuTextViewTag16"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="0.7"
+                                    android:background="#cdc5ca" />
+                                <Button
+                                    android:id="@+id/giftCardMenuButton16"
+                                    android:tag="giftCardMenuButtonTag16"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="9"
+                                    android:background="#fff8e8"
+                                    android:text=""
+                                    android:gravity="center" />
+                            </LinearLayout>
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" >
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="100dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_margin="3dp" >
+                                <TextView
+                                    android:id="@+id/giftCardMenuTextView17"
+                                    android:tag="giftCardMenuTextViewTag17"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="0.7"
+                                    android:background="#cdc5ca" />
+                                <Button
+                                    android:id="@+id/giftCardMenuButton17"
+                                    android:tag="giftCardMenuButtonTag17"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="9"
+                                    android:background="#fff8e8"
+                                    android:text=""
+                                    android:gravity="center" />
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="100dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_margin="3dp" >
+                                <TextView
+                                    android:id="@+id/giftCardMenuTextView18"
+                                    android:tag="giftCardMenuTextViewTag18"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="0.7"
+                                    android:background="#cdc5ca" />
+                                <Button
+                                    android:id="@+id/giftCardMenuButton18"
+                                    android:tag="giftCardMenuButtonTag18"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="9"
+                                    android:background="#fff8e8"
+                                    android:text=""
+                                    android:gravity="center" />
+                            </LinearLayout>
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" >
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="100dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_margin="3dp" >
+                                <TextView
+                                    android:id="@+id/giftCardMenuTextView19"
+                                    android:tag="giftCardMenuTextViewTag19"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="0.7"
+                                    android:background="#cdc5ca" />
+                                <Button
+                                    android:id="@+id/giftCardMenuButton19"
+                                    android:tag="giftCardMenuButtonTag19"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="9"
+                                    android:background="#fff8e8"
+                                    android:text=""
+                                    android:gravity="center" />
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="100dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_margin="3dp" >
+                                <TextView
+                                    android:id="@+id/giftCardMenuTextView20"
+                                    android:tag="giftCardMenuTextViewTag20"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="0.7"
+                                    android:background="#cdc5ca" />
+                                <Button
+                                    android:id="@+id/giftCardMenuButton20"
+                                    android:tag="giftCardMenuButtonTag20"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="9"
+                                    android:background="#fff8e8"
+                                    android:text=""
+                                    android:gravity="center" />
+                            </LinearLayout>
+                        </TableRow>
+
+                    </TableLayout>
+
+                </LinearLayout>
+            </ScrollView>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:orientation="vertical"
+                android:layout_marginLeft="15dp"
+                android:padding="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/giftcardNumberTitleTextView"
+                        android:tag="giftcardNumberTitleTextViewTag"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.7"
+                        android:gravity="left|center_vertical"
+                        android:textColor="#3e3d42"
+                        android:textSize="14dp"
+                        android:text="Card #"/>
+                    <EditText
+                        android:id="@+id/giftcardNumberEditText"
+                        android:tag="giftcardNumberEditTextTag"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.3"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:background="#f0f0f0"
+                        android:textColor="#3e3d42"
+                        android:textSize="14dp" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5"
+                        android:gravity="right|center_vertical"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/giftcardNumberButton"
+                            android:tag="giftcardNumberButtonTag"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.2"
+                    android:orientation="horizontal"></LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/giftcardPriceTitleTextView"
+                        android:tag="giftcardPriceTitleTextViewTag"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.7"
+                        android:gravity="left|center_vertical"
+                        android:textColor="#3e3d42"
+                        android:textSize="12dp"
+                        android:text="Price"/>
+                    <EditText
+                        android:id="@+id/giftcardPriceEditText"
+                        android:tag="giftcardPriceEditTextTag"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.8"
+                        android:gravity="center"
+                        android:background="#f0f0f0"
+                        android:textColor="#3e3d42"
+                        android:textSize="14dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.2"
+                    android:orientation="horizontal"></LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/giftcardRemainingTitleTextView"
+                        android:tag="giftcardRemainingTitleTextViewTag"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.7"
+                        android:gravity="left|center_vertical"
+                        android:textColor="#3e3d42"
+                        android:textSize="12dp"
+                        android:text="Remaining"/>
+                    <EditText
+                        android:id="@+id/giftcardRemainingEditText"
+                        android:tag="giftcardRemainingEditTextTag"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.8"
+                        android:background="#f0f0f0"
+                        android:gravity="center"
+                        android:textColor="#3e3d42"
+                        android:textStyle="bold"
+                        android:textSize="14dp"
+                        android:cursorVisible="false"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.5"
+                    android:orientation="horizontal"></LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="7"
+                    android:orientation="horizontal">
+
+                    <TableLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:stretchColumns="*">
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" >
+                            <Button
+                                android:id="@+id/giftCardSuButton7"
+                                android:tag="giftCardSuButtonTag7"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/button_selector_numberbutton_giftcard"
+                                android:layout_margin="3dp"
+                                android:text="7"
+                                android:textSize="16dp"
+                                android:textStyle="bold"
+                                android:textColor="#0054d5"/>
+                            <Button
+                                android:id="@+id/giftCardSuButton8"
+                                android:tag="giftCardSuButtonTag8"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/button_selector_numberbutton_giftcard"
+                                android:layout_margin="3dp"
+                                android:text="8"
+                                android:textSize="16dp"
+                                android:textStyle="bold"
+                                android:textColor="#0054d5"/>
+                            <Button
+                                android:id="@+id/giftCardSuButton9"
+                                android:tag="giftCardSuButtonTag9"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/button_selector_numberbutton_giftcard"
+                                android:layout_margin="3dp"
+                                android:text="9"
+                                android:textSize="16dp"
+                                android:textStyle="bold"
+                                android:textColor="#0054d5"/>
+                        </TableRow>
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" >
+                            <Button
+                                android:id="@+id/giftCardSuButton4"
+                                android:tag="giftCardSuButtonTag4"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/button_selector_numberbutton_giftcard"
+                                android:layout_margin="3dp"
+                                android:text="4"
+                                android:textSize="16dp"
+                                android:textStyle="bold"
+                                android:textColor="#0054d5"/>
+                            <Button
+                                android:id="@+id/giftCardSuButton5"
+                                android:tag="giftCardSuButtonTag5"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/button_selector_numberbutton_giftcard"
+                                android:layout_margin="3dp"
+                                android:text="5"
+                                android:textSize="16dp"
+                                android:textStyle="bold"
+                                android:textColor="#0054d5"/>
+                            <Button
+                                android:id="@+id/giftCardSuButton6"
+                                android:tag="giftCardSuButtonTag6"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/button_selector_numberbutton_giftcard"
+                                android:layout_margin="3dp"
+                                android:text="6"
+                                android:textSize="16dp"
+                                android:textStyle="bold"
+                                android:textColor="#0054d5"/>
+                        </TableRow>
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" >
+                            <Button
+                                android:id="@+id/giftCardSuButton1"
+                                android:tag="giftCardSuButtonTag1"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/button_selector_numberbutton_giftcard"
+                                android:layout_margin="3dp"
+                                android:text="1"
+                                android:textSize="16dp"
+                                android:textStyle="bold"
+                                android:textColor="#0054d5"/>
+                            <Button
+                                android:id="@+id/giftCardSuButton2"
+                                android:tag="giftCardSuButtonTag2"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/button_selector_numberbutton_giftcard"
+                                android:layout_margin="3dp"
+                                android:text="2"
+                                android:textSize="16dp"
+                                android:textStyle="bold"
+                                android:textColor="#0054d5"/>
+                            <Button
+                                android:id="@+id/giftCardSuButton3"
+                                android:tag="giftCardSuButtonTag3"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/button_selector_numberbutton_giftcard"
+                                android:layout_margin="3dp"
+                                android:text="3"
+                                android:textSize="16dp"
+                                android:textStyle="bold"
+                                android:textColor="#0054d5"/>
+                        </TableRow>
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" >
+                            <Button
+                                android:id="@+id/giftCardSuButton0"
+                                android:tag="giftCardSuButtonTag0"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/button_selector_numberbutton_giftcard"
+                                android:layout_margin="3dp"
+                                android:text="0"
+                                android:textSize="16dp"
+                                android:textStyle="bold"
+                                android:textColor="#0054d5"/>
+                            <Button
+                                android:id="@+id/giftCardSuButton00"
+                                android:tag="giftCardSuButtonTag00"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/button_selector_numberbutton_giftcard"
+                                android:layout_margin="3dp"
+                                android:text="00"
+                                android:textSize="16dp"
+                                android:textStyle="bold"
+                                android:textColor="#0054d5"/>
+                            <Button
+                                android:id="@+id/giftCardSuButtonBack"
+                                android:tag="giftCardSuButtonTagBack"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/button_selector_numberbutton_giftcard"
+                                android:layout_margin="3dp"
+                                android:text="←"
+                                android:textSize="16dp"
+                                android:textStyle="bold"
+                                android:textColor="#0054d5"/>
+                        </TableRow>
+                    </TableLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1.8"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+                    <Button
+                        android:id="@+id/giftCardSuButtonV"
+                        android:tag="giftCardSuButtonTagV"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

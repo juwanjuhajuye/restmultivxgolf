@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp">
+
+    <LinearLayout
+        android:id="@+id/paymnetReviewLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/roundlayout_selectreceipt" >
+
+        <LinearLayout
+            android:id="@+id/reprint_receipt_bg"
+            android:background="@drawable/reprint_bg"
+            android:layout_weight="10"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical">
+            <ScrollView
+                android:fillViewport="true"
+                android:layout_gravity="center"
+                android:id="@+id/reprint_receipt_scroll"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+            </ScrollView>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#bbbbc8"
+            android:orientation="horizontal">
+        </LinearLayout>
+        <LinearLayout
+            android:layout_weight="0.5"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="7"
+                android:id="@+id/customerselectmenuprint"
+                android:tag="customerselectreceiptCloseBtnTag"
+                android:text="ORDER SHEETS ONLY"
+                android:textColor="#ff0000"
+                android:textAlignment="viewStart"
+                android:layout_marginLeft="20dp"
+                android:textSize="30dp"
+                android:background="@drawable/layout_shape_round"
+                android:gravity="center"
+                tools:ignore="RtlCompat" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.0"
+
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/receiptLn2"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/customerreceiptButton"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="4"
+                            android:text=""
+                            android:gravity="center"
+                            android:background="@drawable/ab_imagebutton_customerreprint"/>
+
+
+                        <Button
+                            android:id="@+id/merchantreceiptButton"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="4"
+                            android:text=""
+                            android:gravity="center"
+                            android:background="@drawable/ab_imagebutton_merchantreprint" />
+                        <Button
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:id="@+id/customerselectreceiptCloseBtn"
+                            android:tag="customerselectreceiptCloseBtnTag"
+                            android:background="@drawable/ab_imagebutton_reprintclose"
+                            android:gravity="center"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

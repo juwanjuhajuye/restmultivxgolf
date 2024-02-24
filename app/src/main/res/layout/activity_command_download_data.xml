@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp">
+
+    <LinearLayout
+        android:id="@+id/commanddownloaddataLn"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:background="@drawable/roundlayout" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:orientation="vertical"></LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="5"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:orientation="horizontal"></LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="12"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
+                        <Button
+                            android:id="@+id/alldatabtn"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:text="ALL DATA"
+                            android:textSize="24dp"
+                            android:textColor="#034dd3"
+                            android:textStyle="bold"
+                            android:background="@drawable/button_selector_download1"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.1"/>
+
+                        <Button
+                            android:id="@+id/storebtn"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:text="STORE"
+                            android:textSize="24dp"
+                            android:textColor="#034dd3"
+                            android:textStyle="bold"
+                            android:background="@drawable/button_selector_download1"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.1"/>
+
+                        <Button
+                            android:id="@+id/employeebtn"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:text="EMPLOYEE"
+                            android:textSize="24dp"
+                            android:textColor="#034dd3"
+                            android:textStyle="bold"
+                            android:background="@drawable/button_selector_download1"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.1"/>
+
+                        <Button
+                            android:id="@+id/productbtn"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:text="PRODUCT"
+                            android:textSize="24dp"
+                            android:textColor="#034dd3"
+                            android:textStyle="bold"
+                            android:background="@drawable/button_selector_download1"
+                            android:gravity="center"/>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
+                        <Button
+                            android:id="@+id/giftcardbtn"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:text="GIFT CARD"
+                            android:textSize="24dp"
+                            android:textColor="#034dd3"
+                            android:textStyle="bold"
+                            android:background="@drawable/button_selector_download1"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.1"/>
+
+                        <Button
+                            android:id="@+id/memberbtn"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:text="CUSTOMER"
+                            android:textSize="24dp"
+                            android:textColor="#034dd3"
+                            android:textStyle="bold"
+                            android:background="@drawable/button_selector_download1"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.1"/>
+
+                        <Button
+                            android:id="@+id/couponbtn"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:text="COUPON"
+                            android:textSize="24dp"
+                            android:textColor="#034dd3"
+                            android:textStyle="bold"
+                            android:background="@drawable/button_selector_download1"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.1"/>
+
+                        <Button
+                            android:id="@+id/foodbtn"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:text="MENU /\nCATEGORY"
+                            android:textSize="24dp"
+                            android:textColor="#034dd3"
+                            android:textStyle="bold"
+                            android:background="@drawable/button_selector_download1"
+                            android:gravity="center"/>
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/categoryLn"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.5"
+                    android:layout_marginLeft="20dp"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.8"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:id="@+id/allcategorybtn"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:text="ALL CATEGORIES"
+                            android:textSize="24dp"
+                            android:textColor="#034dd3"
+                            android:textStyle="bold"
+                            android:background="@drawable/button_selector_download_category1"
+                            android:gravity="center"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.1"
+                        android:orientation="vertical">
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/topCategoryLinearLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="3"
+                        android:orientation="horizontal" >
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" >
+
+                            <include
+                                android:id="@+id/servicecategory"
+                                layout="@layout/activity_category" />
+
+                        </FrameLayout>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:orientation="horizontal"></LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.3"
+            android:orientation="vertical"></LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.7"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:orientation="horizontal"></LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="12"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp">
+
+                    <Button
+                        android:id="@+id/uploadDatabtn"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.8"
+                        android:layout_marginRight="10dp"
+                        android:text="SALES DATA UPLOAD"
+                        android:textSize="24dp"
+                        android:textColor="#034dd3"
+                        android:textStyle="bold"
+                        android:background="@drawable/button_selector_download1"
+                        android:gravity="center"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"></LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.5"
+                    android:orientation="horizontal"
+                    android:paddingRight="10dp">
+
+                    <Button
+                        android:id="@+id/submitbtn"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/ab_imagebutton_payment_enter"
+                        android:gravity="center"/>
+
+                    <Button
+                        android:id="@+id/closebtn"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.2"
+                        android:background="@drawable/ab_imagebutton_close_common"
+                        android:gravity="center"/>
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:orientation="horizontal"></LinearLayout>
+        </LinearLayout>
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.3"
+            android:orientation="vertical"></LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,572 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fillViewport="true"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp">
+
+    <LinearLayout
+        android:id="@+id/clockinoutWebPageLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:background="@drawable/roundlayout" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.8"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.7"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="10dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_marginLeft="10dp"
+                    android:textAlignment="center"
+                    android:fontFamily="@font/poppins_bold"
+                    android:textSize="28dp"
+                    android:textStyle="bold"
+                    android:text="CLOCK IN OUT"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <ImageView
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|center_vertical"
+                    android:src="@drawable/ab_imagebutton_clockinout_title"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/clockinoutWebPageTopBarLinearLayout1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="10dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:textColor="#000000"
+                    android:textSize="20dp"
+                    android:text="00:00:00"
+                    android:id="@+id/clock_in_out_top_nowdate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:textColor="#000000"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="30dp"
+                    android:text="00:00:00"
+                    android:id="@+id/clock_in_out_top_nowtime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/clockinoutWebPageTopBarLinearLayout2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.7"
+                android:gravity="right|center_vertical"
+                android:paddingLeft="10dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/clockinoutWebPageCloseBtn"
+                    android:tag="clockinoutWebPageCloseBtnTag"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center"
+                    android:background="@drawable/roundlayout_button_white"
+                    android:text=" X "/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:orientation="horizontal"
+            android:background="#bbbbc8"></LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="8.5"
+            android:weightSum="10"
+            android:orientation="horizontal">
+
+            <!-- In / Out 관련 시작 -->
+            <LinearLayout
+                android:id="@+id/inoutLn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2.5"
+                android:orientation="vertical"
+                android:padding="12dp"
+
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.2"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1.5"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/titleTv1"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical|left"
+                        android:paddingLeft="10dp"
+                        android:text="Employee"
+                        android:textColor="#777777"
+                        android:fontFamily="@font/poppins_bold"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:layout_marginTop="5dp"
+                        android:id="@+id/empTv"
+                        android:tag="empTvTag"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1.9"
+                        android:gravity="center"
+                        android:background="@drawable/roundlayout_clockinout_tv"
+                        android:padding="4dp"
+                        android:textSize="20dp"
+                        android:textColor="#3f3e3a"
+                        android:text=""/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.2"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1.5"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/titleTv2"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical|left"
+                        android:fontFamily="@font/poppins_bold"
+                        android:paddingLeft="10dp"
+                        android:text="Password"
+                        android:textColor="#777777"
+                        android:textSize="16dp" />
+
+                    <EditText
+                        android:layout_marginTop="5dp"
+                        android:id="@+id/pwdEv"
+                        android:tag="pwdEvTv"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1.9"
+                        android:gravity="center"
+                        android:background="@drawable/roundlayout_clockinout_tv"
+                        android:padding="4dp"
+                        android:inputType="textPassword"
+                        android:textSize="20dp"
+                        android:textColor="#3f3e3a"
+                        android:text=""/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.2"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:fontFamily="@font/poppins_bold"
+                        android:id="@+id/titleTv3"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical|left"
+                        android:paddingLeft="10dp"
+                        android:text="Memo"
+                        android:textColor="#777777"
+                        android:textSize="16dp" />
+
+                    <EditText
+                        android:id="@+id/memoEv"
+                        android:tag="memoEvTag"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1.9"
+                        android:gravity="left|top"
+                        android:background="@drawable/roundlayout_clockinout_tv"
+                        android:padding="4dp"
+                        android:lines="5"
+                        android:textSize="20dp"
+                        android:textColor="#3f3e3a"
+                        android:text=""/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.5"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:orientation="horizontal">
+
+
+
+                    <Button
+                        android:id="@+id/clockinbtn"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.9"
+                        android:text="Clock In"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:textColor="#ffffff"
+                        android:background="@drawable/button_selector_clockin" />
+
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.1"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:orientation="horizontal">
+
+
+
+                    <Button
+                        android:id="@+id/clockoutbtn"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.9"
+                        android:text="Clock Out"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:textColor="#ffffff"
+                        android:background="@drawable/button_selector_clockout" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:orientation="horizontal">
+
+
+                    <Button
+                        android:id="@+id/breakinbtn"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.9"
+                        android:text="Break In"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:textColor="#0070c0"
+                        android:background="@drawable/button_selector_clockin_break_in" />
+
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.1"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:orientation="horizontal">
+
+
+
+                    <Button
+                        android:id="@+id/breakoutbtn"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.9"
+                        android:text="Break Out"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:textColor="#7030a0"
+                        android:background="@drawable/button_selector_clockin_break_out" />
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+            <!-- In / Out 관련 끝 -->
+
+            <!-- 수정 관련 시작 -->
+            <LinearLayout
+                android:id="@+id/editLn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2.5"
+                android:orientation="vertical"
+                android:padding="12dp"
+                android:visibility="visible">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.5"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/titleTv4"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical|left"
+                        android:paddingLeft="10dp"
+                        android:text="Date In"
+                        android:textSize="18dp" />
+
+                    <TextView
+                        android:id="@+id/indateTv"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="#3e3d42"
+                        android:textStyle="bold"
+                        android:textSize="16dp"
+                        android:hint="Touch Here"
+                        android:textColorHint="#cfcfcf"
+                        android:background="#f0f0f0"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.1"/>
+
+                    <TextView
+                        android:id="@+id/intimeTv"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.8"
+                        android:gravity="center"
+                        android:textColor="#3e3d42"
+                        android:textStyle="bold"
+                        android:textSize="16dp"
+                        android:background="#f0f0f0"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.5"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/titleTv5"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical|left"
+                        android:paddingLeft="10dp"
+                        android:text="Date Out"
+                        android:textSize="18dp" />
+
+                    <TextView
+                        android:id="@+id/outdateTv"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="#3e3d42"
+                        android:textStyle="bold"
+                        android:textSize="16dp"
+                        android:background="#f0f0f0"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.1"/>
+
+                    <TextView
+                        android:id="@+id/outtimeTv"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.8"
+                        android:gravity="center"
+                        android:textColor="#3e3d42"
+                        android:textStyle="bold"
+                        android:textSize="16dp"
+                        android:background="#f0f0f0"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.5"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1.5"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/titleTv6"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical|left"
+                        android:paddingLeft="10dp"
+                        android:text="Memo"
+                        android:textSize="18dp" />
+
+                    <EditText
+                        android:id="@+id/memoEv2"
+                        android:tag="memoEv2Tag"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.9"
+                        android:gravity="left|top"
+                        android:background="@drawable/roundlayout_clockinout_tv"
+                        android:padding="8dp"
+                        android:lines="5"
+                        android:textSize="20dp"
+                        android:textColor="#3f3e3a"
+                        android:text=""/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.5"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"/>
+
+                    <Button
+                        android:id="@+id/savebtn"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.9"
+                        android:text="Save"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:textColor="#3e8ee0"
+                        android:background="@drawable/button_selector_clockin" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.1"/>
+
+                    <Button
+                        android:id="@+id/deletebtn"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.9"
+                        android:text="Delete"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:textColor="#a83de6"
+                        android:background="@drawable/button_selector_clockout" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="4.5"/>
+
+            </LinearLayout>
+            <!-- 수정 관련 끝 -->
+
+            <WebView
+                android:id="@+id/clockinoutWebPageWebView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="7.5"
+                android:padding="3dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

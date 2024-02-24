@@ -1,0 +1,760 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp">
+
+    <LinearLayout
+        android:id="@+id/optionaddPopupLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/roundlayout_pushpopup_reservation"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="15"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2.5"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="3"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:background="#f2f2f2"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1.5"
+                            android:gravity="left|center_vertical"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:scaleType="center"
+                                android:visibility="visible"
+                                android:id="@+id/optionaddPopupServiceImageView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="10dp"
+                                />
+
+                            <TextView
+                                android:id="@+id/optionaddPopupServiceNameTextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="left|center_vertical"
+                                android:paddingLeft="5dp"
+                                android:text="Luxury Manicure"
+                                android:textColor="#3e3d42"
+                                android:textSize="28dp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:visibility="gone"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="right|center_vertical"
+                            android:orientation="horizontal">
+
+                            <Button
+                                android:id="@+id/viewallbtn"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="10dp"
+                                android:background="@drawable/ab_imagebutton_viewall" />
+
+                            <Button
+                                android:id="@+id/hideallbtn"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/ab_imagebutton_hideall" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="15"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="25"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="10"
+                            android:orientation="horizontal">
+
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2.5"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:id="@+id/combineLn1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="0.7"
+                                    android:orientation="horizontal"
+                                    android:visibility="gone">
+
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="5"
+                                        android:background="@drawable/button_selector_optionbutton"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:id="@+id/modifierValueTv"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="10"
+                                            android:gravity="center"
+                                            android:paddingRight="10dp"
+                                            android:text="Add Onion"
+                                            android:textColor="#3e3d42"
+                                            android:textSize="18dp"
+                                            android:textStyle="bold" />
+
+                                        <TextView
+                                            android:id="@+id/modifierclearbtn"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:gravity="right|center_vertical"
+                                            android:text="X  "
+                                            android:textColor="#bbbbbb"
+                                            android:textSize="24dp" />
+
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="0.08" />
+
+                                    <Button
+                                        android:id="@+id/saveOptionAddBtn"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="0.7"
+                                        android:background="@drawable/ab_imagebutton_modifieradd_ok"
+                                        android:gravity="center_vertical|right"
+                                        android:paddingRight="10dp"
+                                        android:textColor="#000"
+                                        android:textSize="20dp"
+                                        android:textStyle="bold" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/combineLn2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="0.15"
+                                    android:orientation="horizontal"
+                                    android:visibility="gone"></LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="9"
+                                    android:orientation="horizontal">
+
+                                    <LinearLayout
+                                        android:id="@+id/modifierButtonLayout1"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/roundlayout_optiontitle3"
+                                        android:visibility="gone">
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:background="@drawable/roundlayout_optiontitle3"
+                                            android:orientation="horizontal">
+
+                                            <FrameLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent" >
+
+                                                <ScrollView
+                                                    android:id="@+id/optionBtnListScrollView"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:padding="10dp">
+
+                                                    <LinearLayout
+                                                        android:id="@+id/optionBtnListLinearLayout"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:orientation="vertical"
+                                                        android:tag="optionBtnListLinearLayoutTag">
+
+
+                                                    </LinearLayout>
+                                                </ScrollView>
+
+                                            </FrameLayout>
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/modifierButtonLayout2"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="0.05"
+                                        android:orientation="horizontal"
+                                        android:visibility="gone"></LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="3"
+                                        android:background="@drawable/roundlayout_optiontitle3"
+                                        android:orientation="vertical">
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="0dp"
+                                            android:layout_weight="10"
+                                            android:orientation="vertical">
+
+                                            <ExpandableListView
+                                                android:layout_marginRight="10dp"
+                                                android:id="@+id/expandablelistview"
+                                                android:groupIndicator="@android:color/transparent"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent" />
+
+
+                                            <ScrollView
+
+                                                android:id="@+id/optionaddPopupOAListScrollView"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content">
+
+                                                <LinearLayout
+                                                    android:id="@+id/optionaddPopupOAListLinearLayout"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:orientation="vertical"
+                                                    android:tag="optionaddPopupOAListLinearLayoutTag">
+
+
+                                                </LinearLayout>
+                                            </ScrollView>
+
+                                        </LinearLayout>
+
+
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.2"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/roundlayout_white"
+                    android:orientation="horizontal"
+                    android:padding="2dp"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/memotokitchentitleTv"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical|right"
+                        android:paddingRight="10dp"
+                        android:text="MEMO"
+                        android:textColor="#a4a2a9"
+                        android:textSize="20dp" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="4"
+                        android:background="@drawable/roundlayout_button_option_kitchenmemo"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/memotokitchenEv"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="10"
+                            android:background="@drawable/roundlayout_button_option_kitchenmemo"
+                            android:gravity="center_vertical|left"
+                            android:padding="10dp"
+                            android:textColor="#3e3d42"
+                            android:textSize="18dp" />
+
+                        <TextView
+                            android:id="@+id/memotokitchenclearbtn"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="right|center_vertical"
+                            android:text="X  "
+                            android:textColor="#bbbbbb"
+                            android:textSize="24dp" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="10"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#bbbbc8"
+                        android:orientation="horizontal"
+                        android:visibility="gone"></LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.5"
+                        android:background="@drawable/roundlayout_giftcardcheckbalance"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/modifierListTitleTv1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="3"
+                            android:gravity="center"
+                            android:text="MODIFIER"
+                            android:textColor="#a4a2a9"
+                            android:textSize="20dp" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.05"
+                            android:gravity="center"
+                            android:text=""
+                            android:textColor="#2c5267"
+                            android:textSize="14dp" />
+
+                        <TextView
+                            android:id="@+id/modifierListTitleTv2"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical|right"
+                            android:text="PRICE"
+                            android:textColor="#a4a2a9"
+                            android:textSize="20dp" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.05"
+                            android:gravity="center"
+                            android:text=""
+                            android:textColor="#2c5267"
+                            android:textSize="14dp" />
+
+                        <TextView
+                            android:id="@+id/modifierListTitleTv3"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.5"
+                            android:gravity="center"
+                            android:text=""
+                            android:textColor="#2c5267"
+                            android:textSize="12dp" />
+
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="3">
+                        <ImageView
+                            android:scaleType="center"
+                            android:src="@drawable/aa_images_splashscreen"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <Button
+                                android:visibility="gone"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Home" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="2GO2GO"
+                                android:textColor="#ffffff"
+                                android:textSize="20dp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#bbbbc8"
+                        android:orientation="horizontal"
+                        android:visibility="gone"></LinearLayout>
+
+                    <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="0dp"-->
+                    <!--android:layout_weight="9"-->
+                    <!--android:orientation="vertical">-->
+                    <!--<ListView-->
+
+                    <!--android:background="@color/colorPrimary"-->
+                    <!--android:id="@+id/optionAddCartListLinearLayout_list"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content">-->
+
+                    <!--</ListView>-->
+
+                    <!--&lt;!&ndash;<ScrollView&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:visibility="gone"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:id="@+id/optionAddCartListScrollView"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_height="wrap_content">&ndash;&gt;-->
+
+                    <!--&lt;!&ndash;<LinearLayout&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:id="@+id/optionAddCartListLinearLayout"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:orientation="vertical"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:tag="optionAddCartListLinearLayoutTag">&ndash;&gt;-->
+
+
+                    <!--&lt;!&ndash;</LinearLayout>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</ScrollView>&ndash;&gt;-->
+
+                    <!--</LinearLayout>-->
+                    <ListView
+                        android:id="@+id/optionAddCartListLinearLayout_list"
+                        android:layout_weight="7"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp">
+
+                    </ListView>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.2"
+                        android:orientation="horizontal">
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/roundlayout_white_gray"
+                        android:orientation="horizontal"
+                        android:padding="5dp" >
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <Button
+                                android:id="@+id/qtyupbtn"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/ab_imagebutton_qtyup"/>
+
+                            <TextView
+                                android:id="@+id/qtyTv"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2"
+                                android:layout_marginRight="10dp"
+                                android:layout_marginLeft="10dp"
+                                android:gravity="center"
+                                android:text="1"
+                                android:textSize="24dp"
+                                android:textStyle="bold"
+                                android:textColor="#585557"
+                                android:background="#deddde"/>
+
+                            <Button
+                                android:id="@+id/qtydownbtn"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/ab_imagebutton_qtydown"/>
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.3"
+                            android:orientation="horizontal">
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1.5"
+                            android:orientation="horizontal">
+
+                            <Button
+                                android:id="@+id/modifierinitbtn"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="DEL ALL MODIFIER"
+                                android:textSize="30dp"
+                                android:textStyle="bold"
+                                android:textColor="#ffffff"
+                                android:background="@drawable/button_selector_modifierinit" />
+
+                        </LinearLayout>
+
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/viewbottomLn1"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.2"
+                        android:orientation="horizontal">
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="2"
+                        android:orientation="horizontal">
+                        <LinearLayout
+                            android:id="@+id/viewbottomLn2"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:paddingLeft="10dp"
+                                android:background="@drawable/roundlayout_optiontitle5"
+                                android:id="@+id/bottomtv1"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1.5"
+                                android:gravity="left|center_vertical"
+                                android:text="Item Price  "
+                                android:textColor="#000000"
+                                android:textSize="18dp" />
+
+
+                            <TextView
+                                android:paddingLeft="10dp"
+                                android:background="@drawable/roundlayout_optiontitle5"
+                                android:id="@+id/bottomtv2"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1.5"
+                                android:gravity="left|center_vertical"
+                                android:text="Add Option Price "
+                                android:textStyle="bold"
+                                android:textColor="#000000"
+                                android:textSize="20dp" />
+
+
+
+                            <TextView
+                                android:paddingLeft="10dp"
+                                android:background="@drawable/roundlayout_optiontitle5"
+                                android:id="@+id/bottomtv3"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="2"
+                                android:gravity="left|center_vertical"
+                                android:text="TOTAL  "
+                                android:textColor="#000000"
+                                android:textSize="18dp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/viewbottomLn3"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+
+                            <TextView
+                                android:id="@+id/optionaddPopupPriceTextView"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1.5"
+                                android:background="@drawable/roundlayout_optiontitle5"
+                                android:gravity="center_vertical|right"
+                                android:paddingRight="10dp"
+                                android:text="0.00"
+                                android:textColor="#000000"
+                                android:textSize="18dp" />
+
+                            <TextView
+                                android:id="@+id/optionaddPopupAddPriceTextView"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1.5"
+                                android:background="@drawable/roundlayout_optiontitle5"
+                                android:gravity="center_vertical|right"
+                                android:paddingRight="10dp"
+                                android:text="0.0"
+                                android:textColor="#000000"
+                                android:textStyle="bold"
+                                android:textSize="20dp" />
+
+
+
+                            <TextView
+                                android:id="@+id/optionaddPopupAmountTextView"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="2"
+                                android:background="@drawable/roundlayout_optiontitle5"
+                                android:gravity="center_vertical|right"
+                                android:paddingRight="10dp"
+                                android:text="$0.00"
+                                android:textColor="#1565ff"
+                                android:textSize="22dp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1.2"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/optionaddPopupCloseButton"
+                            android:background="@drawable/button_selector_customer_main_cancel"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:tag="optionaddPopupCloseButtonTag"
+                            android:text="BACK"
+                            android:textColor="#ffffff"
+                            android:textSize="20dp" />
+
+                        <Button
+                            android:id="@+id/optionaddPopupVButton"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/button_selector_customer_my_order"
+                            android:gravity="center"
+                            android:tag="optionaddPopupVButtonTag"
+                            android:text="ADD"
+                            android:textColor="#ffffff"
+                            android:textSize="20dp" />
+
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

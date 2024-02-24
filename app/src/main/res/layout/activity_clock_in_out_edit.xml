@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp">
+
+    <LinearLayout
+        android:id="@+id/clockInOutEditLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:background="@drawable/roundlayout_salehistory"  >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:background="#eef7f7">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.4"
+                android:layout_marginBottom="10dp">
+                <TextView
+                    android:id="@+id/clockInOutEditTitleTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="left|center_vertical"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="Clock In/OuT Edit"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    android:textColor="#c01b30" />
+
+                <Button
+                    android:id="@+id/clockInOutEditCloseBtn"
+                    android:tag="clockInOutEditCloseBtnTag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:background="@drawable/button_selector_gray"
+                    android:textColor="#ffffff"
+                    android:text="X"/>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="8.5"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:padding="10dp"
+                    android:background="#efefef">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:paddingBottom="2dp"
+                        android:paddingTop="2dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/clockInOutEditSubTitleTextView1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical|left"
+                            android:textSize="16dp"
+                            android:textColor="#696969"
+                            android:text="Name"/>
+                        <TextView
+                            android:id="@+id/clockInOutEditEmployeeNameEditText"
+                            android:tag="clockInOutEditEmployeeNameEditTextTag"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2.5"
+                            android:gravity="center"
+                            android:textSize="20dp"
+                            android:textStyle="bold"
+                            android:textColor="#313131" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:paddingBottom="2dp"
+                        android:paddingTop="2dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/clockInOutEditSubTitleTextView2"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical|left"
+                            android:textSize="16dp"
+                            android:textColor="#696969"
+                            android:text="Date - In"/>
+                        <TextView
+                            android:id="@+id/clockInOutEditDateInEditText"
+                            android:tag="clockInOutEditDateInEditTextTag"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:gravity="center"
+                            android:background="@drawable/roundlayout_button_white"
+                            android:textSize="20dp"
+                            android:textStyle="bold"
+                            android:textColor="#313131" />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.1"/>
+                        <TextView
+                            android:id="@+id/clockInOutEditTimeInEditText"
+                            android:tag="clockInOutEditTimeInEditTextTag"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:background="@drawable/roundlayout_button_white"
+                            android:textSize="20dp"
+                            android:textStyle="bold"
+                            android:textColor="#313131" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:paddingBottom="2dp"
+                        android:paddingTop="2dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/clockInOutEditSubTitleTextView3"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical|left"
+                            android:textSize="16dp"
+                            android:textColor="#696969"
+                            android:text="Date - Out"/>
+                        <TextView
+                            android:id="@+id/clockInOutEditDateOutEditText"
+                            android:tag="clockInOutEditDateOutEditTextTag"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:gravity="center"
+                            android:background="@drawable/roundlayout_button_white"
+                            android:textSize="20dp"
+                            android:textStyle="bold"
+                            android:textColor="#313131" />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.1"/>
+                        <TextView
+                            android:id="@+id/clockInOutEditTimeOutEditText"
+                            android:tag="clockInOutEditTimeOutEditTextTag"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:background="@drawable/roundlayout_button_white"
+                            android:textSize="20dp"
+                            android:textStyle="bold"
+                            android:textColor="#313131"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1.3"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="3.1"
+                            android:paddingTop="5dp"
+                            android:orientation="horizontal">
+                            <Button
+                                android:id="@+id/clockInOutEditSaveButton"
+                                android:tag="clockInOutEditSaveButtonTag"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:textSize="20dp"
+                                android:textStyle="bold"
+                                android:textColor="#ffffff"
+                                android:text="SAVE"
+                                android:background="@drawable/button_selector_clockinout_clockin"/>
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"/>
+                            <Button
+                                android:id="@+id/clockInOutEditDeleteButton"
+                                android:tag="clockInOutEditDeleteButtonTag"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:textSize="20dp"
+                                android:textStyle="bold"
+                                android:textColor="#ffffff"
+                                android:text="DELETE"
+                                android:background="@drawable/button_selector_clockinout_clockout"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+
+
+                </LinearLayout>
+
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

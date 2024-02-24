@@ -1,0 +1,303 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/frameLayout_customerSearch"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="10dp"
+        android:background="@drawable/roundlayout_line"
+        android:visibility="invisible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.9"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp" >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="left|center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/customerTitleEditText"
+                    android:tag="customerTitleEditTextTag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:padding="14dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/customerListDonwloadButton"
+                    android:tag="customerListDonwloadButtonTag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ab_imagebutton_customer_download"/>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.4"
+                android:gravity="right|center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="15dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp">
+
+                <Button
+                    android:id="@+id/customerSearchCloseBtn"
+                    android:tag="customerSearchCloseBtnTag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:orientation="horizontal"
+            android:background="#bbbbc8"></LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.3"
+            android:orientation="horizontal"></LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/onlineLn"
+            android:tag="onlineLnTag"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="9.4"
+            android:orientation="vertical"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:visibility="gone">
+
+            <WebView
+                android:id="@+id/customerSearchWv"
+                android:tag="customerSearchWvTag"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="3dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/offlineLn"
+            android:tag="offlineLnTag"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="9.4"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <LinearLayout
+                android:id="@+id/linearLayoutCustomerList1"
+                android:tag="linearLayoutCustomerListTag1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.8"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+
+                <Spinner
+                    android:id="@+id/customerSearchSpinner"
+                    android:tag="customerSearchSpinnerTag"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.5"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp">
+
+                    <EditText
+                        android:id="@+id/customerSearchEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#f0f0f0"
+                        android:baselineAligned="false"
+                        android:gravity="center"
+                        android:tag="customerSearchEditTextTag"
+                        android:textColor="#3e3d42" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/customerSearchSHButton"
+                    android:tag="customerSearchSHButtonTag"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.7"
+                    android:layout_margin="5dp"
+                    android:text="SH"
+                    android:textColor="#ffffff"
+                    android:background="#1d1d1d"/>
+
+                <Button
+                    android:id="@+id/customerSearchAddButton"
+                    android:tag="customerSearchAddButtonTag"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.9"
+                    android:text="ADD"
+                    android:textColor="#ffffff"
+                    android:background="#1d1d1d"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.1"
+                android:orientation="vertical">
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayoutCustomerList2"
+                android:tag="linearLayoutCustomerListTag2"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="8.5"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:orientation="horizontal"
+                    android:background="#bbbbc8"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"></LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.7"
+                    android:orientation="horizontal" >
+                    <TextView
+                        android:id="@+id/customerSearchListViewItemUid"
+                        android:tag="customerSearchListViewItemUidTag"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textSize="14dp"
+                        android:textColor="#a4a2a9"
+                        android:text="ID" />
+                    <TextView
+                        android:id="@+id/customerSearchListViewItemName"
+                        android:tag="customerSearchListViewItemNameTag"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textSize="14dp"
+                        android:textColor="#a4a2a9"
+                        android:text="Name" />
+
+                    <TextView
+                        android:id="@+id/customerSearchListViewItemPhone"
+                        android:tag="customerSearchListViewItemPhoneTag"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.7"
+                        android:gravity="center"
+                        android:textSize="14dp"
+                        android:textColor="#a4a2a9"
+                        android:text="Phone"/>
+
+                    <TextView
+                        android:id="@+id/customerSearchListViewItemAddr"
+                        android:tag="customerSearchListViewItemAddrTag"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.5"
+                        android:gravity="center"
+                        android:textSize="14dp"
+                        android:textColor="#a4a2a9"
+                        android:text="Email" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:orientation="horizontal"
+                    android:background="#bbbbc8"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"></LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="9"
+                    android:orientation="horizontal"
+                    android:paddingRight="10dp"
+                    android:paddingLeft="10dp">
+                    <ListView
+                        android:id="@+id/customerSearchListView"
+                        android:tag="customerSearchListViewTag"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                    </ListView>
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1"
+    android:orientation="horizontal">
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="5">
+    </LinearLayout>
+    <Button
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:layout_marginTop="10dp"
+        android:text="V"
+        android:textSize="25dp"
+        android:textColor="#ffffff"
+        android:background="#d12770"
+        android:gravity="center"/>
+</LinearLayout>
+-->
+
+    </LinearLayout>
+</LinearLayout>

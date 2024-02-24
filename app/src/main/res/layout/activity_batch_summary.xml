@@ -1,0 +1,1146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp">
+
+    <!-- 중앙 컨텐츠 시작 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:padding="0dp"
+        android:background="@drawable/roundlayout_batchsummary_bg" >
+
+        <LinearLayout
+            android:id="@+id/batchSummaryLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="0dp"
+            android:padding="10dp"
+            android:visibility="visible">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:layout_marginBottom="10dp">
+                <TextView
+                    android:id="@+id/batchSummaryTitleTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="left|center_vertical"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="Batch \u0026 Summary"
+                    android:textSize="16dp"
+                    android:textColor="#3e3d42" />
+
+                <Button
+                    android:id="@+id/batchSummaryCloseBtn"
+                    android:tag="batchSummaryCloseBtnTag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginBottom="5dp"
+                    android:paddingRight="20dp"
+                    android:paddingLeft="20dp"
+                    android:gravity="center" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:orientation="horizontal"
+                android:background="#bbbbc8"></LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="8.5"
+                android:orientation="horizontal">
+
+                <ScrollView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2.3"
+                    android:padding="10dp">
+
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" >
+
+                        <LinearLayout
+                            android:id="@+id/batchSummaryClosingReportLinearLayout"
+                            android:tag="batchSummaryClosingReportLinearLayoutTag"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="20dp"
+                            android:orientation="vertical"
+                            android:visibility="visible">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1.5"
+                                android:orientation="vertical"
+                                android:layout_marginBottom="10dp"
+                                android:padding="5dp">
+                                <TextView
+                                    android:id="@+id/reportTitleTv"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:textSize="14dp"
+                                    android:textStyle="bold"
+                                    android:textColor="#0054d5"
+                                    android:text="[CLOSING REPORT]"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:padding="5dp">
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center_vertical|left"
+                                    android:textSize="12dp"
+                                    android:textColor="#5e6264"
+                                    android:text="Sale Date"/>
+                                <TextView
+                                    android:id="@+id/batchSummarySaleDateTextView"
+                                    android:tag="batchSummarySaleDateTextViewTag"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="3"
+                                    android:gravity="center_vertical|left"
+                                    android:textSize="12dp"
+                                    android:textColor="#5e6264"
+                                    android:text="01-07-2016"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="0.3"
+                                android:orientation="vertical"
+                                android:padding="0dp">
+                                <ImageView
+                                    android:src="@drawable/line_dash_one"
+                                    android:layerType="software"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"/>
+                                <ImageView
+                                    android:src="@drawable/line_dash_one"
+                                    android:layerType="software"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:padding="0dp">
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="3.5"
+                                    android:gravity="center"
+                                    android:textSize="12dp"
+                                    android:textColor="#5e6264"
+                                    android:text="Emp. Name"/>
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:textSize="12dp"
+                                    android:textColor="#5e6264"
+                                    android:text="Tip"/>
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1.4"
+                                    android:gravity="center"
+                                    android:textSize="12dp"
+                                    android:textColor="#5e6264"
+                                    android:text="Sale Amt"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="0.7"
+                                android:orientation="vertical"
+                                android:padding="0dp">
+                                <ImageView
+                                    android:src="@drawable/line_dash_one"
+                                    android:layerType="software"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent" />
+                            </LinearLayout>
+
+                            <ScrollView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="10dp">
+                                <LinearLayout
+                                    android:id="@+id/batchSummaryEmployeeListLinearLayout"
+                                    android:tag="batchSummaryEmployeeListLinearLayoutTag"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+
+                                </LinearLayout>
+                            </ScrollView>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="0.3"
+                                android:orientation="vertical"
+                                android:padding="0dp">
+                                <ImageView
+                                    android:src="@drawable/line_dash_one"
+                                    android:layerType="software"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"/>
+                                <ImageView
+                                    android:src="@drawable/line_dash_one"
+                                    android:layerType="software"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:padding="5dp">
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center_vertical|left"
+                                    android:textSize="12dp"
+                                    android:textColor="#5e6264"
+                                    android:text="FOOD"/>
+                                <TextView
+                                    android:id="@+id/batchSummaryServiceTextView"
+                                    android:tag="batchSummaryServiceTextViewTag"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2"
+                                    android:gravity="center_vertical|right"
+                                    android:textSize="12dp"
+                                    android:textColor="#5e6264"
+                                    android:text="1299.99"/>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:padding="5dp">
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center_vertical|left"
+                                    android:textSize="12dp"
+                                    android:textColor="#5e6264"
+                                    android:text="PRODUCT"/>
+                                <TextView
+                                    android:id="@+id/batchSummaryProductTextView"
+                                    android:tag="batchSummaryProductTextViewTag"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2"
+                                    android:gravity="center_vertical|right"
+                                    android:textSize="12dp"
+                                    android:textColor="#5e6264"
+                                    android:text="1299.99"/>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:padding="5dp">
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center_vertical|left"
+                                    android:textSize="12dp"
+                                    android:textColor="#5e6264"
+                                    android:text="GIFT CARD"/>
+                                <TextView
+                                    android:id="@+id/batchSummaryGiftCardTextView"
+                                    android:tag="batchSummaryGiftCardTextViewTag"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2"
+                                    android:gravity="center_vertical|right"
+                                    android:textSize="12dp"
+                                    android:textColor="#5e6264"
+                                    android:text="1299.99"/>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:padding="5dp">
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center_vertical|left"
+                                    android:textSize="12dp"
+                                    android:textColor="#5e6264"
+                                    android:text="DISCOUNT"/>
+                                <TextView
+                                    android:id="@+id/batchSummaryDiscountTextView"
+                                    android:tag="batchSummaryDiscountTextViewTag"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2"
+                                    android:gravity="center_vertical|right"
+                                    android:textSize="12dp"
+                                    android:textColor="#5e6264"
+                                    android:text="1299.99"/>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:padding="5dp">
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center_vertical|left"
+                                    android:textSize="12dp"
+                                    android:textColor="#5e6264"
+                                    android:text="PICKUP FEE"/>
+                                <TextView
+                                    android:id="@+id/batchSummaryPickupFeeTextView"
+                                    android:tag="batchSummaryPickupFeeTextViewTag"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2"
+                                    android:gravity="center_vertical|right"
+                                    android:textSize="12dp"
+                                    android:textColor="#5e6264"
+                                    android:text="1299.99"/>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:padding="5dp">
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center_vertical|left"
+                                    android:textSize="12dp"
+                                    android:textColor="#5e6264"
+                                    android:text="DELIVERY FEE"/>
+                                <TextView
+                                    android:id="@+id/batchSummaryDeliveryFeeTextView"
+                                    android:tag="batchSummaryDeliveryFeeTextViewTag"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2"
+                                    android:gravity="center_vertical|right"
+                                    android:textSize="12dp"
+                                    android:textColor="#5e6264"
+                                    android:text="1299.99"/>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+
+                                android:orientation="horizontal"
+                                android:padding="5dp">
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center_vertical|left"
+                                    android:textSize="12dp"
+                                    android:textColor="#5e6264"
+                                    android:text="VOID"/>
+                                <TextView
+                                    android:id="@+id/batchSummaryVoidTextView"
+                                    android:tag="batchSummaryVoidTextViewTag"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2"
+                                    android:gravity="center_vertical|right"
+                                    android:textSize="12dp"
+                                    android:textColor="#5e6264"
+                                    android:text="1299.99"/>
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="0.3"
+                                android:orientation="vertical"
+                                android:padding="0dp">
+                                <ImageView
+                                    android:src="@drawable/line_dash_one"
+                                    android:layerType="software"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"/>
+                                <ImageView
+                                    android:src="@drawable/line_dash_one"
+                                    android:layerType="software"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:padding="5dp">
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center_vertical|left"
+                                    android:textSize="12dp"
+                                    android:textColor="#5e6264"
+                                    android:text="NET SALES"/>
+                                <TextView
+                                    android:id="@+id/batchSummaryNetSalesTextView"
+                                    android:tag="batchSummaryNetSalesTextViewTag"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2"
+                                    android:gravity="center_vertical|right"
+                                    android:textSize="12dp"
+                                    android:textColor="#5e6264"
+                                    android:text="1299.99"/>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:padding="5dp">
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center_vertical|left"
+                                    android:textSize="12dp"
+                                    android:textColor="#5e6264"
+                                    android:text="REFUND"/>
+                                <TextView
+                                    android:id="@+id/batchSummaryRefundTextView"
+                                    android:tag="batchSummaryRefundTextViewTag"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2"
+                                    android:gravity="center_vertical|right"
+                                    android:textSize="12dp"
+                                    android:textColor="#5e6264"
+                                    android:text="1299.99"/>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+
+                                android:orientation="horizontal"
+                                android:padding="5dp">
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center_vertical|left"
+                                    android:textSize="12dp"
+                                    android:textColor="#5e6264"
+                                    android:text="TAX"/>
+                                <TextView
+                                    android:id="@+id/batchSummaryTaxTextView"
+                                    android:tag="batchSummaryTaxTextViewTag"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2"
+                                    android:gravity="center_vertical|right"
+                                    android:textSize="12dp"
+                                    android:textColor="#5e6264"
+                                    android:text="1299.99"/>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:padding="5dp">
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center_vertical|left"
+                                    android:textSize="12dp"
+                                    android:textColor="#5e6264"
+                                    android:text="GROSS SALES"/>
+                                <TextView
+                                    android:id="@+id/batchSummaryGrossSalesTextView"
+                                    android:tag="batchSummaryGrossSalesTextViewTag"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2"
+                                    android:gravity="center_vertical|right"
+                                    android:textSize="12dp"
+                                    android:textColor="#5e6264"
+                                    android:text="1299.99"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="0.3"
+                                android:orientation="vertical"
+                                android:padding="0dp">
+                                <ImageView
+                                    android:src="@drawable/line_dash_one"
+                                    android:layerType="software"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"/>
+                                <ImageView
+                                    android:src="@drawable/line_dash_one"
+                                    android:layerType="software"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+
+                                android:orientation="horizontal"
+                                android:padding="5dp">
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center_vertical|left"
+                                    android:textSize="12dp"
+                                    android:textColor="#5e6264"
+                                    android:text="CASH"/>
+                                <TextView
+                                    android:id="@+id/batchSummaryCashAmountTextView"
+                                    android:tag="batchSummaryCashAmountTextViewTag"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2"
+                                    android:gravity="center_vertical|right"
+                                    android:textSize="12dp"
+                                    android:textColor="#5e6264"
+                                    android:text="1299.99"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+
+                                android:orientation="horizontal"
+                                android:padding="5dp">
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center_vertical|left"
+                                    android:textSize="12dp"
+                                    android:textColor="#5e6264"
+                                    android:text="CREDIT CARD"/>
+                                <TextView
+                                    android:id="@+id/batchSummaryCreditCardAmountTextView"
+                                    android:tag="batchSummaryCreditCardAmountTextViewTag"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2"
+                                    android:gravity="center_vertical|right"
+                                    android:textSize="12dp"
+                                    android:textColor="#5e6264"
+                                    android:text="1299.99"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+
+                                android:orientation="horizontal"
+                                android:padding="5dp">
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center_vertical|left"
+                                    android:textSize="12dp"
+                                    android:textColor="#5e6264"
+                                    android:text="CREDIT CARD TIP"/>
+                                <TextView
+                                    android:id="@+id/batchSummaryCreditCardTipAmountTextView"
+                                    android:tag="batchSummaryCreditCardTipAmountTextViewTag"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2"
+                                    android:gravity="center_vertical|right"
+                                    android:textSize="12dp"
+                                    android:textColor="#5e6264"
+                                    android:text="1299.99"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+
+                                android:orientation="horizontal"
+                                android:padding="5dp">
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center_vertical|right"
+                                    android:textSize="12dp"
+                                    android:textColor="#5e6264"
+                                    android:text="VISA"/>
+                                <TextView
+                                    android:id="@+id/batchSummaryCreditCardVisaCountTextView"
+                                    android:tag="batchSummaryCreditCardVisaCountTextViewTag"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.7"
+                                    android:gravity="center_vertical|right"
+                                    android:textSize="12dp"
+                                    android:textColor="#5e6264"
+                                    android:text="10" />
+                                <TextView
+                                    android:id="@+id/batchSummaryCreditCardVisaAmountTextView"
+                                    android:tag="batchSummaryCreditCardVisaAmountTextViewTag"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center_vertical|right"
+                                    android:textSize="12dp"
+                                    android:textColor="#5e6264"
+                                    android:text="10.99"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+
+                                android:orientation="horizontal"
+                                android:padding="5dp">
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center_vertical|right"
+                                    android:textSize="12dp"
+                                    android:textColor="#5e6264"
+                                    android:text="MASTER"/>
+                                <TextView
+                                    android:id="@+id/batchSummaryCreditCardMasterCountTextView"
+                                    android:tag="batchSummaryCreditCardMasterCountTextViewTag"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.7"
+                                    android:gravity="center_vertical|right"
+                                    android:textSize="12dp"
+                                    android:textColor="#5e6264"
+                                    android:text="10" />
+                                <TextView
+                                    android:id="@+id/batchSummaryCreditCardMasterAmountTextView"
+                                    android:tag="batchSummaryCreditCardMasterAmountTextViewTag"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center_vertical|right"
+                                    android:textSize="12dp"
+                                    android:textColor="#5e6264"
+                                    android:text="10.99"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+
+                                android:orientation="horizontal"
+                                android:padding="5dp">
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center_vertical|right"
+                                    android:textSize="12dp"
+                                    android:textColor="#5e6264"
+                                    android:text="AMEX"/>
+                                <TextView
+                                    android:id="@+id/batchSummaryCreditCardAmexCountTextView"
+                                    android:tag="batchSummaryCreditCardAmexCountTextViewTag"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.7"
+                                    android:gravity="center_vertical|right"
+                                    android:textSize="12dp"
+                                    android:textColor="#5e6264"
+                                    android:text="10" />
+                                <TextView
+                                    android:id="@+id/batchSummaryCreditCardAmexAmountTextView"
+                                    android:tag="batchSummaryCreditCardAmexAmountTextViewTag"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center_vertical|right"
+                                    android:textSize="12dp"
+                                    android:textColor="#5e6264"
+                                    android:text="10.99"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+
+                                android:orientation="horizontal"
+                                android:padding="5dp">
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center_vertical|right"
+                                    android:textSize="12dp"
+                                    android:textColor="#5e6264"
+                                    android:text="DISCOVER"/>
+                                <TextView
+                                    android:id="@+id/batchSummaryCreditCardDiscoverCountTextView"
+                                    android:tag="batchSummaryCreditCardDiscoverCountTextViewTag"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.7"
+                                    android:gravity="center_vertical|right"
+                                    android:textSize="12dp"
+                                    android:textColor="#5e6264"
+                                    android:text="10" />
+                                <TextView
+                                    android:id="@+id/batchSummaryCreditCardDiscoverAmountTextView"
+                                    android:tag="batchSummaryCreditCardDiscoverAmountTextViewTag"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center_vertical|right"
+                                    android:textSize="12dp"
+                                    android:textColor="#5e6264"
+                                    android:text="10.99"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+
+                                android:orientation="horizontal"
+                                android:padding="5dp">
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center_vertical|right"
+                                    android:textSize="12dp"
+                                    android:textColor="#5e6264"
+                                    android:text="OFF CARD"/>
+                                <TextView
+                                    android:id="@+id/batchSummaryCreditCardOffCardCountTextView"
+                                    android:tag="batchSummaryCreditCardOffCardCountTextViewTag"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.7"
+                                    android:gravity="center_vertical|right"
+                                    android:textSize="12dp"
+                                    android:textColor="#5e6264"
+                                    android:text="10" />
+                                <TextView
+                                    android:id="@+id/batchSummaryCreditCardOffCardAmountTextView"
+                                    android:tag="batchSummaryCreditCardOffCardAmountTextViewTag"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center_vertical|right"
+                                    android:textSize="12dp"
+                                    android:textColor="#5e6264"
+                                    android:text="10.99"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+
+                                android:orientation="horizontal"
+                                android:padding="5dp">
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center_vertical|left"
+                                    android:textSize="12dp"
+                                    android:textColor="#5e6264"
+                                    android:text="GIFT CARD REDEEMED"/>
+                                <TextView
+                                    android:id="@+id/batchSummaryGiftCardAmountTextView"
+                                    android:tag="batchSummaryGiftCardAmountTextViewTag"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2"
+                                    android:gravity="center_vertical|right"
+                                    android:textSize="12dp"
+                                    android:textColor="#5e6264"
+                                    android:text="1299.99"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+
+                                android:orientation="horizontal"
+                                android:padding="5dp">
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center_vertical|left"
+                                    android:textSize="12dp"
+                                    android:textColor="#5e6264"
+                                    android:text="POINT"/>
+                                <TextView
+                                    android:id="@+id/batchSummaryPointAmountTextView"
+                                    android:tag="batchSummaryPointAmountTextViewTag"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2"
+                                    android:gravity="center_vertical|right"
+                                    android:textSize="12dp"
+                                    android:textColor="#5e6264"
+                                    android:text="1299.99"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+
+                                android:orientation="horizontal"
+                                android:padding="5dp">
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center_vertical|left"
+                                    android:textSize="12dp"
+                                    android:textColor="#5e6264"
+                                    android:text="OTHER"/>
+                                <TextView
+                                    android:id="@+id/batchSummaryOtherAmountTextView"
+                                    android:tag="batchSummaryOtherAmountTextViewTag"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2"
+                                    android:gravity="center_vertical|right"
+                                    android:textSize="12dp"
+                                    android:textColor="#5e6264"
+                                    android:text="1299.99"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="0.3"
+                                android:orientation="vertical"
+                                android:padding="0dp">
+                                <ImageView
+                                    android:src="@drawable/line_dash_one"
+                                    android:layerType="software"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"/>
+                                <ImageView
+                                    android:src="@drawable/line_dash_one"
+                                    android:layerType="software"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+
+                                android:orientation="horizontal"
+                                android:padding="5dp">
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center_vertical|left"
+                                    android:textSize="12dp"
+                                    android:textColor="#5e6264"
+                                    android:text="Printed"/>
+                                <TextView
+                                    android:id="@+id/batchSummaryPrintedDateTextView"
+                                    android:tag="batchSummaryPrintedDateTextViewTag"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="3"
+                                    android:gravity="center_vertical|left"
+                                    android:textSize="12dp"
+                                    android:textColor="#5e6264"
+                                    android:text="January 7, 2016 03:11:13 am"/>
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/endofdayreportln"
+                            android:tag="endofdayreportlnTag"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="20dp"
+                            android:orientation="vertical"
+                            android:visibility="gone">
+
+                        </LinearLayout>
+
+                    </FrameLayout>
+
+
+
+                </ScrollView>
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.05"
+                    android:orientation="vertical">
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.8"
+                    android:paddingRight="15dp"
+                    android:orientation="vertical">
+
+                    <!-- 여백 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.5"
+                        android:orientation="vertical">
+                    </LinearLayout>
+
+                    <!-- Date -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:paddingBottom="10dp"
+                        android:visibility="gone">
+                        <TextView
+                            android:id="@+id/batchSummaryDateTitleTextView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="bottom|left"
+                            android:text="Date"
+                            android:textColor="#3e3d42"
+                            android:textSize="14dp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.8"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/batchSummaryDateSearchTextView"
+                            android:tag="batchSummaryDateSearchTextViewTag"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2.5"
+                            android:gravity="center"
+                            android:layout_marginRight="5dp"
+                            android:textColor="#333333"
+                            android:textSize="14dp"
+                            android:background="#f0f0f0"/>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1.5"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical|right">
+
+                            <Button
+                                android:id="@+id/batchSummaryDateSearchButton"
+                                android:tag="batchSummaryDateSearchButtonTag"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!-- 버튼들 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="7"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:id="@+id/batchSummaryPrintButton"
+                            android:tag="batchSummaryPrintButtonTag"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/button_selector_category7"
+                            android:text="PRINT"
+                            android:textSize="25dp"
+                            android:textStyle="bold"
+                            android:textColor="#ffffff"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" />
+
+                        <TextView
+                            android:id="@+id/batchSummaryNoBatchListTextView"
+                            android:tag="batchSummaryNoBatchListTextViewTag"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="bottom|center_horizontal"
+                            android:textColor="#a4a2a9"
+                            android:textSize="12dp"/>
+
+                        <Button
+                            android:id="@+id/batchSummaryBatchButton"
+                            android:tag="batchSummaryBatchButtonTag"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:layout_marginTop="5dp"
+                            android:background="@drawable/button_selector_cloud_download"
+                            android:text="BATCH"
+                            android:textSize="25dp"
+                            android:textStyle="bold"
+                            android:textColor="#ffffff"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.2" />
+
+                        <Button
+                            android:id="@+id/batchedListBtn"
+                            android:tag="batchedListBtnTag"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.5"
+                            android:layout_marginBottom="10dp"
+                            android:padding="3dp"
+                            android:background="@drawable/ab_imagebutton_batchedlist" />
+
+                    </LinearLayout>
+
+                    <!-- 여백 -->
+                    <LinearLayout
+                        android:id="@+id/batchsummaryLn"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="2.2"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" />
+
+                        <Button
+                            android:id="@+id/manualBatchBtn"
+                            android:tag="manualBatchBtnTag"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.5"
+                            android:layout_marginBottom="10dp"
+                            android:padding="3dp"
+                            android:text="SYNC. MANUAL BATCH"
+                            android:textSize="16sp"
+                            android:textColor="#036cd6"
+                            android:background="@drawable/button_selector_download1" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <!-- 중앙 컨텐츠 끝 -->
+
+</LinearLayout>

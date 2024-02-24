@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="20dp"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp"
+    android:background="#32323c" >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_marginTop="20dp"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:textColor="#ffffff"
+            android:textAlignment="center"
+            android:text="LOG HISTORY"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <ImageButton
+            android:id="@+id/log_history_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@color/zxing_transparent"
+            android:src="@drawable/tablesale_billsplitmerge_close_on" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/log_history_date_tv"
+            android:layout_weight="1.8"
+            android:layout_margin="20dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingRight="20dp"
+            android:paddingLeft="30dp"
+            android:textSize="20dp"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:background="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <EditText
+            android:lines="1"
+            android:id="@+id/log_history_search_txt"
+            android:layout_weight="1"
+            android:layout_marginTop="20dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingRight="30dp"
+            android:paddingLeft="30dp"
+            android:textAlignment="textEnd"
+            android:textSize="20dp"
+            android:background="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <ImageButton
+            android:id="@+id/log_history_search_btn"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/btn_logsearch"
+            android:background="@android:color/transparent"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+    <ListView
+        android:divider="#ffffff"
+        android:background="#ffffff"
+        android:id="@+id/log_list"
+        android:layout_margin="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

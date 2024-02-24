@@ -1,0 +1,1136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp">
+
+    <LinearLayout
+        android:id="@+id/settingsSystemLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical">
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/settingsSystemLn"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="8.5"
+            android:padding="10dp"
+            android:orientation="vertical">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="10dp"
+                        android:orientation="vertical"
+                        android:background="@drawable/roundlayout_background_settings_sub">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:orientation="horizontal">
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+                                <TextView
+                                    android:id="@+id/settingsPaymentGatewayTitleTextView1"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:textSize="20dp"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="bold"
+                                    android:text="Card Charge System Use?"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1">
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2">
+                                <Switch
+                                    android:id="@+id/cardchargesystemuseSwitch"
+                                    android:tag="cardchargesystemuseSwitchTag"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="left|center_vertical"
+                                    style="@style/SwitchCustom40"
+                                    android:switchTextAppearance="@style/SwitchTextAppearance"
+                                    android:textOn="Yes"
+                                    android:textOff="No"
+                                    android:checked="true"/>
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:orientation="horizontal">
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:orientation="horizontal">
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+                                <TextView
+                                    android:id="@+id/settingsPaymentGatewayTitleTextView2"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:textSize="20dp"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="bold"
+                                    android:text="Payment Gateway"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1">
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2">
+                                <Spinner
+                                    android:id="@+id/paymentgatewaySpinner"
+                                    android:tag="paymentgatewaySpinnerTag"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:visibility="gone"
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:orientation="horizontal">
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:visibility="gone"
+                            android:layout_width="match_parent"
+                            android:layout_height="110dp"
+                            android:orientation="horizontal">
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+                                <TextView
+                                    android:id="@+id/settingsPaymentGatewayTitleTextView3"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:textSize="20dp"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="bold"
+                                    android:text="Account Information"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1">
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"
+                                    android:paddingTop="8dp"
+                                    android:paddingBottom="4dp"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/settingsPaymentGatewaySubTitleTextView1"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="0.5"
+                                        android:gravity="right|center_vertical"
+                                        android:layout_marginRight="5dp"
+                                        android:textSize="16dp"
+                                        android:textColor="#ffffff"
+                                        android:text="ID "/>
+
+                                    <EditText
+                                        android:id="@+id/paymentgatewayidEditText"
+                                        android:tag="paymentgatewayidEditTextTag"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="2"
+                                        android:layout_gravity="left|center_vertical"
+                                        android:gravity="center"
+                                        android:background="@drawable/roundlayout_background_settings_textview"
+                                        android:textSize="20dp"
+                                        android:textColor="#3f3e3a"/>
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"/>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"
+                                    android:paddingTop="8dp"
+                                    android:paddingBottom="4dp"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/settingsPaymentGatewaySubTitleTextView2"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="0.5"
+                                        android:gravity="right|center_vertical"
+                                        android:layout_marginRight="5dp"
+                                        android:textSize="16dp"
+                                        android:textColor="#ffffff"
+                                        android:text="Password "/>
+
+                                    <EditText
+                                        android:id="@+id/paymentgatewaypwdEditText"
+                                        android:tag="@+id/paymentgatewaypwdEditTextTag"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="2"
+                                        android:layout_gravity="left|center_vertical"
+                                        android:gravity="center"
+                                        android:background="@drawable/roundlayout_background_settings_textview"
+                                        android:textSize="20dp"
+                                        android:textColor="#3f3e3a"/>
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"/>
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:orientation="horizontal">
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:orientation="horizontal">
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+                                <TextView
+                                    android:id="@+id/settingsPaymentGatewayTitleTextView12"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:textSize="20dp"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="bold"
+                                    android:text="Comm Type"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1">
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2">
+                                <Spinner
+                                    android:id="@+id/commtypeSpinner"
+                                    android:tag="commtypeSpinnerTag"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:orientation="horizontal">
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:orientation="horizontal">
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+                                <TextView
+                                    android:id="@+id/settingsPaymentGatewayTitleTextView5"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:textSize="20dp"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="bold"
+                                    android:text="Network IP"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1">
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2"
+                                android:orientation="horizontal" >
+
+                                <EditText
+                                    android:id="@+id/networkIpTextView1"
+                                    android:tag="networkIpTextView1Tag"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:background="@drawable/roundlayout_background_settings_textview"
+                                    android:padding="8dp"
+                                    android:inputType="number"
+                                    android:textSize="20dp"
+                                    android:textColor="#3f3e3a"
+                                    android:text=""/>
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.2"
+                                    android:gravity="bottom|center_horizontal"
+                                    android:textSize="20dp"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="bold"
+                                    android:text="."/>
+                                <EditText
+                                    android:id="@+id/networkIpTextView2"
+                                    android:tag="networkIpTextView2Tag"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:background="@drawable/roundlayout_background_settings_textview"
+                                    android:padding="8dp"
+                                    android:inputType="number"
+                                    android:textSize="20dp"
+                                    android:textColor="#3f3e3a"
+                                    android:text=""/>
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.2"
+                                    android:gravity="bottom|center_horizontal"
+                                    android:textSize="20dp"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="bold"
+                                    android:text="."/>
+                                <EditText
+                                    android:id="@+id/networkIpTextView3"
+                                    android:tag="networkIpTextView3Tag"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:background="@drawable/roundlayout_background_settings_textview"
+                                    android:padding="8dp"
+                                    android:inputType="number"
+                                    android:textSize="20dp"
+                                    android:textColor="#3f3e3a"
+                                    android:text=""/>
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.2"
+                                    android:gravity="bottom|center_horizontal"
+                                    android:textSize="20dp"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="bold"
+                                    android:text="."/>
+                                <EditText
+                                    android:id="@+id/networkIpTextView4"
+                                    android:tag="networkIpTextView4Tag"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:background="@drawable/roundlayout_background_settings_textview"
+                                    android:padding="8dp"
+                                    android:inputType="number"
+                                    android:textSize="20dp"
+                                    android:textColor="#3f3e3a"
+                                    android:text=""/>
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.2"
+                                    android:gravity="center"
+                                    android:textSize="20dp"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="bold"
+                                    android:text=":"/>
+                                <EditText
+                                    android:id="@+id/networkPortTextView"
+                                    android:tag="networkPortTextViewTag"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1.5"
+                                    android:gravity="center"
+                                    android:background="@drawable/roundlayout_background_settings_textview"
+                                    android:padding="8dp"
+                                    android:inputType="number"
+                                    android:textSize="20dp"
+                                    android:textColor="#3f3e3a"
+                                    android:text=""/>
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2"/>
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:orientation="horizontal">
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:orientation="horizontal">
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+                                <TextView
+                                    android:id="@+id/settingsPaymentGatewayTitleTextView6"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:textSize="20dp"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="bold"
+                                    android:text="Signature Pad"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1">
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2">
+                                <Switch
+                                    android:id="@+id/signaturePadSwitch"
+                                    android:tag="signaturePadSwitchTag"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="left|center_vertical"
+                                    style="@style/SwitchCustom40"
+                                    android:switchTextAppearance="@style/SwitchTextAppearance"
+                                    android:textOn="Yes"
+                                    android:textOff="No"
+                                    android:checked="true"/>
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:orientation="horizontal">
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:orientation="horizontal">
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+                                <TextView
+                                    android:id="@+id/settingsPaymentGatewayTitleTextView10"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:textSize="20dp"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="bold"
+                                    android:text="Signature Delete"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1">
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2">
+                                <EditText
+                                    android:id="@+id/signatureimagedeletedaysagoEv"
+                                    android:tag="signatureimagedeletedaysagoEvTag"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:background="@drawable/roundlayout_background_settings_textview"
+                                    android:padding="8dp"
+                                    android:inputType="number"
+                                    android:textSize="20dp"
+                                    android:textColor="#3f3e3a"
+                                    android:text=""/>
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:textSize="20dp"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="bold"
+                                    android:text="days ago"/>
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="3"/>
+                                <Button
+                                    android:id="@+id/signatureimagedeletedaysagoEv_del_btn"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2"
+                                    android:text="Del Sign."/>
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:orientation="horizontal">
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:orientation="horizontal">
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+                                <TextView
+                                    android:id="@+id/settingsPaymentGatewayTitleTextView4"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:textSize="20dp"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="bold"
+                                    android:text="Tip Use?"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1">
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2">
+                                <Switch
+                                    android:id="@+id/tipuseSwitch"
+                                    android:tag="tipuseSwitchTag"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="left|center_vertical"
+                                    style="@style/SwitchCustom40"
+                                    android:switchTextAppearance="@style/SwitchTextAppearance"
+                                    android:textOn="Yes"
+                                    android:textOff="No"
+                                    android:checked="true"/>
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:orientation="horizontal">
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:orientation="horizontal">
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+                                <TextView
+                                    android:id="@+id/settingsPaymentGatewayTitleTextView7"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:textSize="20dp"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="bold"
+                                    android:text="Tip Selection On Sign-Pad"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1">
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2">
+                                <Switch
+                                    android:id="@+id/tipSelectionOnSignaturePadSwitch"
+                                    android:tag="tipSelectionOnSignaturePadSwitchTag"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="left|center_vertical"
+                                    style="@style/SwitchCustom40"
+                                    android:switchTextAppearance="@style/SwitchTextAppearance"
+                                    android:textOn="Yes"
+                                    android:textOff="No"
+                                    android:checked="true"/>
+                            </LinearLayout>
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:orientation="horizontal">
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:orientation="horizontal">
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+                                <TextView
+                                    android:id="@+id/settingsPaymentGatewayTitleTextView9"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:textSize="20dp"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="bold"
+                                    android:text="Tip Line On the Receipt"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1">
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2">
+                                <Switch
+                                    android:id="@+id/tiplineOnReceiptSwitch"
+                                    android:tag="tiplineOnReceiptSwitchTag"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="left|center_vertical"
+                                    style="@style/SwitchCustom40"
+                                    android:switchTextAppearance="@style/SwitchTextAppearance"
+                                    android:textOn="Yes"
+                                    android:textOff="No"
+                                    android:checked="true"/>
+                            </LinearLayout>
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:orientation="horizontal">
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:orientation="horizontal">
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+                                <TextView
+                                    android:id="@+id/settingsPaymentGatewayTitleTextView8"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:textSize="20dp"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="bold"
+                                    android:text="Tip Selection"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1">
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2"
+                                android:orientation="horizontal" >
+
+                                <EditText
+                                    android:id="@+id/tipselect1"
+                                    android:tag="tipselectTag1"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:background="@drawable/roundlayout_background_settings_textview"
+                                    android:padding="8dp"
+                                    android:inputType="number"
+                                    android:textSize="20dp"
+                                    android:textColor="#3f3e3a"
+                                    android:text=""/>
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.5"
+                                    android:gravity="left|center_vertical"
+                                    android:textSize="20dp"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="bold"
+                                    android:text="%"/>
+                                <EditText
+                                    android:id="@+id/tipselect2"
+                                    android:tag="tipselectTag2"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:background="@drawable/roundlayout_background_settings_textview"
+                                    android:padding="8dp"
+                                    android:inputType="number"
+                                    android:textSize="20dp"
+                                    android:textColor="#3f3e3a"
+                                    android:text=""/>
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.5"
+                                    android:gravity="left|center_vertical"
+                                    android:textSize="20dp"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="bold"
+                                    android:text="%"/>
+                                <EditText
+                                    android:id="@+id/tipselect3"
+                                    android:tag="tipselectTag3"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:background="@drawable/roundlayout_background_settings_textview"
+                                    android:padding="8dp"
+                                    android:inputType="number"
+                                    android:textSize="20dp"
+                                    android:textColor="#3f3e3a"
+                                    android:text=""/>
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.5"
+                                    android:gravity="left|center_vertical"
+                                    android:textSize="20dp"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="bold"
+                                    android:text="%"/>
+                                <EditText
+                                    android:id="@+id/tipselect4"
+                                    android:tag="tipselectTag4"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:background="@drawable/roundlayout_background_settings_textview"
+                                    android:padding="8dp"
+                                    android:inputType="number"
+                                    android:textSize="20dp"
+                                    android:textColor="#3f3e3a"
+                                    android:text=""/>
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.5"
+                                    android:gravity="left|center_vertical"
+                                    android:textSize="20dp"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="bold"
+                                    android:text="%"/>
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2.3"/>
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:visibility="gone"
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:orientation="horizontal">
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:visibility="gone"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:orientation="horizontal">
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+                                <TextView
+                                    android:id="@+id/settingsPaymentGatewayTitleTextView11"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:textSize="20dp"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="bold"
+                                    android:text="Check the internet before pay"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1">
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2">
+                                <Switch
+                                    android:id="@+id/ischeckbeforecardpaySwitch"
+                                    android:tag="ischeckbeforecardpaySwitchSwitch"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="left|center_vertical"
+                                    style="@style/SwitchCustom40"
+                                    android:switchTextAppearance="@style/SwitchTextAppearance"
+                                    android:textOn="Yes"
+                                    android:textOff="No"
+                                    android:checked="true"/>
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:orientation="horizontal">
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:orientation="horizontal">
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+                                <TextView
+                                    android:id="@+id/settingsPaymentGatewayTitleTextView13"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:textSize="20dp"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="bold"
+                                    android:text="Key In Y / N"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1">
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2">
+                                <Switch
+                                    android:id="@+id/keyinynSwitch"
+                                    android:tag="keyinynSwitchTag"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="left|center_vertical"
+                                    style="@style/SwitchCustom40"
+                                    android:switchTextAppearance="@style/SwitchTextAppearance"
+                                    android:textOn="Yes"
+                                    android:textOff="No"
+                                    android:checked="true"/>
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:orientation="horizontal">
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:orientation="horizontal">
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+                                <TextView
+                                    android:id="@+id/settingsPaymentGatewayTitleTextView14"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:textSize="20dp"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="bold"
+                                    android:text="Tip Processing In Payment"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1">
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2">
+                                <Switch
+                                    android:id="@+id/tipprocessingynSwitch"
+                                    android:tag="tipprocessingynSwitchTag"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="left|center_vertical"
+                                    style="@style/SwitchCustom40"
+                                    android:switchTextAppearance="@style/SwitchTextAppearance"
+                                    android:textOn="Yes"
+                                    android:textOff="No"
+                                    android:checked="false"/>
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:orientation="horizontal">
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:orientation="horizontal">
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+                                <TextView
+                                    android:id="@+id/settingsPaymentGatewayTitleTextView15"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:textSize="20dp"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="bold"
+                                    android:text="Time Out "/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1">
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:weightSum="10"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2">
+                                <EditText
+                                    android:id="@+id/setting_payment_timeout"
+                                    android:tag="tipselectTag1"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1.5"
+                                    android:gravity="center"
+                                    android:background="@drawable/roundlayout_background_settings_textview"
+                                    android:padding="8dp"
+                                    android:inputType="number"
+                                    android:textSize="20dp"
+                                    android:textColor="#3f3e3a"
+                                    android:text=""/>
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2"
+                                    android:gravity="left|center_vertical"
+                                    android:textSize="20dp"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="bold"
+                                    android:text="  minute(s) "/>
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"
+                            android:orientation="horizontal">
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="3"
+                                android:orientation="horizontal">
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.9"
+                                android:orientation="horizontal">
+                                <Button
+                                    android:id="@+id/saveSettingsPaymentGatewayButton"
+                                    android:tag="saveSettingsPaymentGatewayButtonTag"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:padding="10dp"
+                                    android:background="@drawable/button_selector_settings_v"
+                                    android:textSize="30dp"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="bold"
+                                    android:text="V"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"
+                                android:orientation="horizontal">
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.1"
+                            android:orientation="horizontal">
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </ScrollView>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

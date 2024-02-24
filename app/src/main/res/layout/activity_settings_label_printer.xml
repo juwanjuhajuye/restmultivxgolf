@@ -1,0 +1,2508 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp">
+
+    <LinearLayout
+        android:id="@+id/settingsSystemLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical">
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/settingsSystemLn"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="8.5"
+            android:orientation="vertical">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <!-- Receipt Printer 관련 시작 -->
+                    <LinearLayout
+                        android:weightSum="8.5"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/roundlayout_background_settings_sub"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.1"
+                            android:orientation="horizontal"></LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/roundlayout_background_settings_tab_selected"
+                                android:padding="5dp">
+
+                                <TextView
+                                    android:id="@+id/settingsDevicePrinterTitleTextView1"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:text="Label Printer Settings "
+                                    android:textColor="#826953"
+                                    android:textSize="20dp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"></LinearLayout>
+
+
+                        <LinearLayout
+                            android:visibility="gone"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1.5"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:paddingBottom="8dp"
+                                android:paddingTop="8dp">
+
+                                <TextView
+                                    android:id="@+id/settingsDevicePrinterSubTitleTextView1"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:text="Printer Name"
+                                    android:textColor="#ffffff"
+                                    android:textSize="20dp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"></LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1.5"
+                                android:paddingBottom="8dp"
+                                android:paddingTop="8dp">
+
+                                <Spinner
+                                    android:id="@+id/printernameSpinner"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:tag="printernameSpinnerTag" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.1"
+                            android:orientation="horizontal"></LinearLayout>
+
+                        <LinearLayout
+                            android:visibility="gone"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1.5"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:paddingBottom="8dp"
+                                android:paddingTop="8dp">
+
+                                <TextView
+                                    android:id="@+id/settingsDevicePrinterSubTitleTextView14"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:text="Test Print"
+                                    android:textColor="#ffffff"
+                                    android:textSize="20dp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"></LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1.5"
+                                android:paddingTop="8dp"
+                                android:paddingBottom="8dp">
+
+
+                                <Button
+                                    android:id="@+id/connectPrintButton"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginRight="20dp"
+                                    android:background="@drawable/button_selector_category7"
+                                    android:gravity="center"
+                                    android:padding="8dp"
+                                    android:text="Connect Printer"
+                                    android:textColor="#ffffff"
+                                    android:textSize="14dp"
+                                    android:visibility="gone" />
+
+
+                                <!--                                <TextView-->
+                                <!--                                    android:layout_width="wrap_content"-->
+                                <!--                                    android:layout_height="match_parent"-->
+                                <!--                                    android:gravity="center"-->
+                                <!--                                    android:paddingLeft="5dp"-->
+                                <!--                                    android:paddingRight="5dp"-->
+                                <!--                                    android:text=" / "-->
+                                <!--                                    android:textColor="#ffffff"-->
+                                <!--                                    android:textSize="14dp"-->
+                                <!--                                    android:textStyle="bold" />-->
+
+
+                                <Button
+                                    android:id="@+id/testPrintButton"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:background="@drawable/button_selector_category6"
+                                    android:gravity="center"
+                                    android:padding="8dp"
+                                    android:text="TEST PRINT"
+                                    android:textColor="#ffffff"
+                                    android:textSize="14dp" />
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.1"
+                            android:orientation="horizontal"></LinearLayout>
+
+                        <LinearLayout
+                            android:visibility="gone"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:paddingBottom="8dp"
+                                android:paddingTop="8dp">
+
+                                <TextView
+                                    android:id="@+id/settingsDevicePrinterSubTitleTextView2"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:text="Auto Receipt"
+                                    android:textColor="#ffffff"
+                                    android:textSize="20dp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"></LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1.5"
+                                android:paddingBottom="8dp"
+                                android:paddingTop="8dp">
+
+                                <Switch
+                                    android:id="@+id/autoreceiptSwitch"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="left|center_vertical"
+                                    android:checked="true"
+                                    android:tag="autoreceiptSwitchTag"
+                                    android:textOff="Auto Receipt Off"
+                                    android:textOn="Auto Receipt On"
+                                    style="@style/SwitchCustom200"
+                                    android:switchTextAppearance="@style/SwitchTextAppearance" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:visibility="gone"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.1"
+                            android:orientation="horizontal"></LinearLayout>
+
+                        <LinearLayout
+                            android:visibility="gone"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:paddingBottom="8dp"
+                                android:paddingTop="8dp">
+
+                                <TextView
+                                    android:id="@+id/settingsDevicePrinterSubTitleTextView17"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:text="Print Language"
+                                    android:textColor="#ffffff"
+                                    android:textSize="20dp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"></LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1.5"
+                                android:paddingBottom="8dp"
+                                android:paddingTop="8dp">
+
+                                <Spinner
+                                    android:id="@+id/printlanguageSpinner"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:tag="printlanguageSpinnerTag" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:visibility="gone"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.1"
+                            android:orientation="horizontal"></LinearLayout>
+
+                        <LinearLayout
+                            android:visibility="gone"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:paddingBottom="8dp"
+                                android:paddingTop="8dp">
+
+                                <TextView
+                                    android:id="@+id/settingsDevicePrinterSubTitleTextView3"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:text="Font Size"
+                                    android:textColor="#ffffff"
+                                    android:textSize="20dp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"></LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1.5"
+                                android:paddingBottom="8dp"
+                                android:paddingTop="8dp">
+
+                                <Spinner
+                                    android:id="@+id/receiptfontsizeSpinner"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:tag="receiptfontsizeSpinnerTag" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:visibility="gone"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.1"
+                            android:orientation="horizontal"></LinearLayout>
+
+                        <LinearLayout
+                            android:visibility="gone"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:paddingBottom="8dp"
+                                android:paddingTop="8dp">
+
+                                <TextView
+                                    android:id="@+id/settingsDevicePrinterSubTitleTextView4"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:text="Receipt Paper Count"
+                                    android:textColor="#ffffff"
+                                    android:textSize="20dp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"></LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1.5"
+                                android:paddingBottom="8dp"
+                                android:paddingTop="8dp">
+
+                                <Spinner
+                                    android:id="@+id/receiptpapercountSpinner"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:tag="receiptpapercountSpinnerTag" />
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:visibility="gone"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.1"
+                            android:orientation="horizontal"></LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+
+                                <TextView
+
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:text="Pager Number"
+                                    android:textColor="#ffffff"
+                                    android:textSize="20dp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"></LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1.5"
+                                android:orientation="horizontal"
+                                android:paddingBottom="8dp"
+                                android:paddingTop="8dp">
+
+                                <Switch
+                                    android:id="@+id/label_printer_pagerNumber_switch"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="left|center_vertical"
+                                    android:checked="true"
+                                    android:textOff="Off"
+                                    android:textOn="On"
+                                    style="@style/SwitchCustom40"
+                                    android:switchTextAppearance="@style/SwitchTextAppearance" />
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.1"
+                            android:orientation="horizontal"></LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal"
+                            android:visibility="visible">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:paddingBottom="8dp"
+                                android:paddingTop="8dp">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:text="Name"
+                                    android:textColor="#ffffff"
+                                    android:textSize="20dp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"></LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1.5"
+                                android:paddingBottom="8dp"
+                                android:paddingTop="8dp">
+
+                                <RadioGroup
+                                    android:id="@+id/label_printer_name_RadioGroup"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/label_printer_name_RadioGroup_fname"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginRight="10dp"
+                                        android:checked="true"
+                                        android:text="First Name"
+                                        android:textColor="#ffffff"
+                                        android:textSize="15dp" />
+
+                                    <RadioButton
+                                        android:id="@+id/label_printer_name_RadioGroup_lname"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginLeft="20dp"
+                                        android:layout_marginRight="10dp"
+                                        android:text="Last Name"
+                                        android:textColor="#ffffff"
+                                        android:textSize="15dp" />
+
+                                    <RadioButton
+                                        android:id="@+id/label_printer_name_RadioGroup_fl_name"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginLeft="20dp"
+                                        android:layout_marginRight="10dp"
+                                        android:text="First, Last Name"
+                                        android:textColor="#ffffff"
+                                        android:textSize="15dp" />
+                                </RadioGroup>
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.1"
+                            android:orientation="horizontal"></LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:text="Modifier"
+                                    android:textColor="#ffffff"
+                                    android:textSize="20dp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"></LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1.5"
+                                android:orientation="horizontal"
+                                android:paddingBottom="8dp"
+                                android:paddingTop="8dp">
+
+                                <Switch
+                                    android:id="@+id/label_printer_modifier_switch"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="left|center_vertical"
+                                    android:checked="true"
+                                    android:textOff="Off"
+                                    android:textOn="On"
+                                    style="@style/SwitchCustom40"
+                                    android:switchTextAppearance="@style/SwitchTextAppearance" />
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.1"
+                            android:orientation="horizontal"></LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:text="Item Name"
+                                    android:textColor="#ffffff"
+                                    android:textSize="20dp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"></LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1.5"
+                                android:orientation="horizontal"
+                                android:paddingBottom="8dp"
+                                android:paddingTop="8dp">
+
+                                <Switch
+                                    android:id="@+id/label_printer_itemname_switch"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="left|center_vertical"
+                                    android:checked="true"
+                                    android:textOff="Off"
+                                    android:textOn="On"
+                                    style="@style/SwitchCustom40"
+                                    android:switchTextAppearance="@style/SwitchTextAppearance" />
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.1"
+                            android:orientation="horizontal"></LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:text="Order Type"
+                                    android:textColor="#ffffff"
+                                    android:textSize="20dp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"></LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1.5"
+                                android:orientation="horizontal"
+                                android:paddingBottom="8dp"
+                                android:paddingTop="8dp">
+
+                                <Switch
+                                    android:id="@+id/label_printer_ordertype_switch"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="left|center_vertical"
+                                    android:checked="true"
+                                    android:textOff="Off"
+                                    android:textOn="On"
+                                    style="@style/SwitchCustom40"
+                                    android:switchTextAppearance="@style/SwitchTextAppearance" />
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1.5"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:text="Printer Buzzer"
+                                    android:textColor="#ffffff"
+                                    android:textSize="20dp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"></LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1.5"
+                                android:orientation="horizontal"
+                                android:paddingBottom="8dp"
+                                android:paddingTop="8dp">
+
+                                <Switch
+                                    android:id="@+id/label_printer_buzzer"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="left|center_vertical"
+                                    android:checked="true"
+                                    android:textOff="Off"
+                                    android:textOn="On"
+                                    style="@style/SwitchCustom40"
+                                    android:switchTextAppearance="@style/SwitchTextAppearance" />
+                                <Spinner
+                                    android:layout_marginLeft="20dp"
+                                    android:id="@+id/label_printer_buzzer_count"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    />
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.1"
+                            android:orientation="horizontal"></LinearLayout>
+
+
+                        <LinearLayout
+                            android:visibility="gone"
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:paddingBottom="8dp"
+                                android:paddingTop="8dp">
+
+                                <TextView
+                                    android:id="@+id/settingsDevicePrinterSubTitleTextView5"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:text="Receipt Footer"
+                                    android:textColor="#ffffff"
+                                    android:textSize="20dp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"></LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1.5"
+                                android:orientation="horizontal"
+                                android:paddingBottom="8dp"
+                                android:paddingTop="8dp">
+
+                                <EditText
+                                    android:id="@+id/receiptfooterEditText"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/roundlayout_background_settings_textview"
+                                    android:gravity="left|top"
+                                    android:lines="5"
+                                    android:maxLines="5"
+                                    android:padding="8dp"
+                                    android:singleLine="false"
+                                    android:tag="receiptfooterEditTextTag"
+                                    android:text=""
+                                    android:textColor="#3f3e3a"
+                                    android:textSize="20dp" />
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.5" />
+                            </LinearLayout>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+
+                            android:orientation="horizontal">
+                        </LinearLayout>
+                    </LinearLayout>
+                    <!-- Receipt Printer 관련 끝 -->
+
+
+
+                    <!-- Device 관련 시작 -->
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/roundlayout_background_settings_sub"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.1"
+                            android:orientation="horizontal"></LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/roundlayout_background_settings_tab_selected"
+                                android:padding="5dp">
+
+                                <TextView
+                                    android:id="@+id/settingsDevicePrinterTitleTextView2"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:text=" Device Settings "
+                                    android:textColor="#826953"
+                                    android:textSize="20dp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"></LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:paddingBottom="8dp"
+                                android:paddingTop="8dp">
+
+                                <TextView
+                                    android:id="@+id/settingsDevicePrinterSubTitleTextView6"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:text="Tender Use for Zero Balance"
+                                    android:textColor="#ffffff"
+                                    android:textSize="20dp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"></LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1.5"
+                                android:paddingBottom="8dp"
+                                android:paddingTop="8dp">
+
+                                <Switch
+                                    android:id="@+id/tenderuseforzerobalanceSwitch"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="left|center_vertical"
+                                    android:checked="true"
+                                    android:tag="tenderuseforzerobalanceSwitchTag"
+                                    android:textOff="No"
+                                    android:textOn="Yes"
+                                    style="@style/SwitchCustom40"
+                                    android:switchTextAppearance="@style/SwitchTextAppearance" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.1"
+                            android:orientation="horizontal"></LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:paddingBottom="8dp"
+                                android:paddingTop="8dp">
+
+                                <TextView
+                                    android:id="@+id/settingsDevicePrinterSubTitleTextView7"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:text="Auto Discount Use for Only Cash"
+                                    android:textColor="#ffffff"
+                                    android:textSize="20dp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"></LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1.5"
+                                android:paddingBottom="8dp"
+                                android:paddingTop="8dp">
+
+                                <Switch
+                                    android:id="@+id/autodiscountuseforonlycashSwitch"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="left|center_vertical"
+                                    android:checked="true"
+                                    android:tag="autodiscountuseforonlycashSwitchTag"
+                                    android:textOff="Auto Discount Off"
+                                    android:textOn="Auto Discount On"
+                                    style="@style/SwitchCustom140"
+                                    android:switchTextAppearance="@style/SwitchTextAppearance" />
+
+                                <TextView
+                                    android:id="@+id/settingsDevicePrinterSubSubTitleTextView5"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginLeft="10dp"
+                                    android:gravity="center_vertical|right"
+                                    android:text="Rate "
+                                    android:textColor="#ffffff"
+                                    android:textSize="16dp" />
+
+                                <EditText
+                                    android:id="@+id/autodiscountuseforonlycashrateEditText"
+                                    android:layout_width="50dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="left|center_vertical"
+                                    android:background="@drawable/roundlayout_background_settings_textview"
+                                    android:gravity="center"
+                                    android:paddingLeft="8dp"
+                                    android:paddingRight="8dp"
+                                    android:tag="autodiscountuseforonlycashrateEditTextTag"
+                                    android:textColor="#3f3e3a"
+                                    android:textSize="20dp" />
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.1"
+                            android:orientation="horizontal"></LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:paddingBottom="8dp"
+                                android:paddingTop="8dp">
+
+                                <TextView
+                                    android:id="@+id/settingsDevicePrinterSubTitleTextView8"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:text="Membership Card Digit Position"
+                                    android:textColor="#ffffff"
+                                    android:textSize="20dp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"></LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1.5"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:paddingBottom="4dp"
+                                    android:paddingTop="8dp">
+
+                                    <RadioGroup
+                                        android:id="@+id/customercarddigitpositionalignRadioGroup"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginBottom="5dp"
+                                        android:layout_marginTop="5dp"
+                                        android:orientation="horizontal"
+                                        android:tag="customercarddigitpositionalignRadioGroupTag">
+
+                                        <RadioButton
+                                            android:id="@+id/customercarddigitpositionalignLeftRadioButton"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="match_parent"
+                                            android:layout_marginRight="10dp"
+                                            android:checked="true"
+                                            android:tag="customercarddigitpositionalignLeftRadioButtonTag"
+                                            android:text="Left"
+                                            android:textColor="#ffffff"
+                                            android:textSize="15dp" />
+
+                                        <RadioButton
+                                            android:id="@+id/customercarddigitpositionalignMiddleRadioButton"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="match_parent"
+                                            android:layout_marginLeft="20dp"
+                                            android:layout_marginRight="10dp"
+                                            android:tag="customercarddigitpositionalignMiddleRadioButtonTag"
+                                            android:text="Middle"
+                                            android:textColor="#ffffff"
+                                            android:textSize="15dp" />
+
+                                        <RadioButton
+                                            android:id="@+id/customercarddigitpositionalignRightRadioButton"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="match_parent"
+                                            android:layout_marginLeft="20dp"
+                                            android:tag="customercarddigitpositionalignRightRadioButtonTag"
+                                            android:text="Right"
+                                            android:textColor="#ffffff"
+                                            android:textSize="15dp" />
+
+                                        <RadioButton
+                                            android:id="@+id/customercarddigitpositionalignDefaultRadioButton"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="match_parent"
+                                            android:layout_marginLeft="20dp"
+                                            android:tag="customercarddigitpositionalignDefaultRadioButtonTag"
+                                            android:text="Default"
+                                            android:textColor="#ffffff"
+                                            android:textSize="15dp" />
+                                    </RadioGroup>
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:paddingBottom="2dp"
+                                    android:paddingTop="2dp">
+
+                                    <TextView
+                                        android:id="@+id/settingsDevicePrinterSubSubTitleTextView1"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginRight="5dp"
+                                        android:layout_weight="1"
+                                        android:gravity="right|center_vertical"
+                                        android:text="Start"
+                                        android:textColor="#ffffff"
+                                        android:textSize="16dp" />
+
+                                    <EditText
+                                        android:id="@+id/customercarddigitpositionstartEditText"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="left|center_vertical"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/roundlayout_background_settings_textview"
+                                        android:gravity="center"
+                                        android:tag="customercarddigitpositionstartEditTextTag"
+                                        android:textColor="#3f3e3a"
+                                        android:textSize="20dp" />
+
+                                    <TextView
+                                        android:id="@+id/settingsDevicePrinterSubSubTitleTextView2"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginRight="5dp"
+                                        android:layout_weight="1"
+                                        android:gravity="right|center_vertical"
+                                        android:text="Count"
+                                        android:textColor="#ffffff"
+                                        android:textSize="16dp" />
+
+                                    <EditText
+                                        android:id="@+id/customercarddigitpositioncountEditText"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="left|center_vertical"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/roundlayout_background_settings_textview"
+                                        android:gravity="center"
+                                        android:tag="customercarddigitpositioncountEditTextTag"
+                                        android:textColor="#3f3e3a"
+                                        android:textSize="20dp" />
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:gravity="right|center_vertical"
+                                        android:textColor="#ffffff"
+                                        android:textSize="16dp" />
+
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.1"
+                            android:orientation="horizontal"></LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:paddingBottom="8dp"
+                                android:paddingTop="8dp">
+
+                                <TextView
+                                    android:id="@+id/settingsDevicePrinterSubTitleTextView9"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:text="Giftcard Digit Position"
+                                    android:textColor="#ffffff"
+                                    android:textSize="20dp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"></LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1.5"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:paddingBottom="4dp"
+                                    android:paddingTop="8dp">
+
+                                    <RadioGroup
+                                        android:id="@+id/giftcarddigitpositionalignRadioGroup"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginBottom="5dp"
+                                        android:layout_marginTop="5dp"
+                                        android:orientation="horizontal"
+                                        android:tag="giftcarddigitpositionalignRadioGroupTag">
+
+                                        <RadioButton
+                                            android:id="@+id/giftcarddigitpositionalignLeftRadioButton"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="match_parent"
+                                            android:layout_marginRight="10dp"
+                                            android:checked="true"
+                                            android:tag="giftcarddigitpositionalignLeftRadioButtonTag"
+                                            android:text="Left"
+                                            android:textColor="#ffffff"
+                                            android:textSize="15dp" />
+
+                                        <RadioButton
+                                            android:id="@+id/giftcarddigitpositionalignMiddleRadioButton"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="match_parent"
+                                            android:layout_marginLeft="20dp"
+                                            android:layout_marginRight="10dp"
+                                            android:tag="giftcarddigitpositionalignMiddleRadioButtonTag"
+                                            android:text="Middle"
+                                            android:textColor="#ffffff"
+                                            android:textSize="15dp" />
+
+                                        <RadioButton
+                                            android:id="@+id/giftcarddigitpositionalignRightRadioButton"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="match_parent"
+                                            android:layout_marginLeft="20dp"
+                                            android:tag="giftcarddigitpositionalignRightRadioButtonTag"
+                                            android:text="Right"
+                                            android:textColor="#ffffff"
+                                            android:textSize="15dp" />
+
+                                        <RadioButton
+                                            android:id="@+id/giftcarddigitpositionalignDefaultRadioButton"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="match_parent"
+                                            android:layout_marginLeft="20dp"
+                                            android:tag="giftcarddigitpositionalignDefaultRadioButtonTag"
+                                            android:text="Default"
+                                            android:textColor="#ffffff"
+                                            android:textSize="15dp" />
+                                    </RadioGroup>
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:paddingBottom="2dp"
+                                    android:paddingTop="2dp">
+
+                                    <TextView
+                                        android:id="@+id/settingsDevicePrinterSubSubTitleTextView3"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginRight="5dp"
+                                        android:layout_weight="1"
+                                        android:gravity="right|center_vertical"
+                                        android:text="Start"
+                                        android:textColor="#ffffff"
+                                        android:textSize="16dp" />
+
+                                    <EditText
+                                        android:id="@+id/giftcarddigitpositionstartEditText"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="left|center_vertical"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/roundlayout_background_settings_textview"
+                                        android:gravity="center"
+                                        android:tag="giftcarddigitpositionstartEditTextTag"
+                                        android:textColor="#3f3e3a"
+                                        android:textSize="20dp" />
+
+                                    <TextView
+                                        android:id="@+id/settingsDevicePrinterSubSubTitleTextView4"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginRight="5dp"
+                                        android:layout_weight="1"
+                                        android:gravity="right|center_vertical"
+                                        android:text="Count"
+                                        android:textColor="#ffffff"
+                                        android:textSize="16dp" />
+
+                                    <EditText
+                                        android:id="@+id/giftcarddigitpositioncountEditText"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="left|center_vertical"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/roundlayout_background_settings_textview"
+                                        android:gravity="center"
+                                        android:tag="giftcarddigitpositioncountEditTextTag"
+                                        android:textColor="#3f3e3a"
+                                        android:textSize="20dp" />
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:gravity="right|center_vertical"
+                                        android:textColor="#ffffff"
+                                        android:textSize="16dp" />
+
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.1"
+                            android:orientation="horizontal"></LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/employeecommissionLn1"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal"
+                            android:visibility="visible">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:paddingBottom="8dp"
+                                android:paddingTop="8dp">
+
+                                <TextView
+                                    android:id="@+id/settingsDevicePrinterSubTitleTextView10"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:text="Employee Commission Policy"
+                                    android:textColor="#ffffff"
+                                    android:textSize="20dp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"></LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1.5"
+                                android:paddingBottom="8dp"
+                                android:paddingTop="8dp">
+
+                                <RadioGroup
+                                    android:id="@+id/employeecommissionpolicyRadioGroup"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:orientation="horizontal"
+                                    android:tag="employeecommissionpolicyRadioGroupTag">
+
+                                    <RadioButton
+                                        android:id="@+id/employeecommissionpolicyEmployeeOnlyRadioButton"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginRight="10dp"
+                                        android:checked="true"
+                                        android:tag="employeecommissionpolicyEmployeeOnlyRadioButtonTag"
+                                        android:text="Employee Only"
+                                        android:textColor="#ffffff"
+                                        android:textSize="15dp" />
+
+                                    <RadioButton
+                                        android:id="@+id/employeecommissionpolicyEmployeeMenuRadioButton"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginLeft="20dp"
+                                        android:layout_marginRight="10dp"
+                                        android:tag="employeecommissionpolicyEmployeeMenuRadioButtonTag"
+                                        android:text="Employee + Menu"
+                                        android:textColor="#ffffff"
+                                        android:textSize="15dp" />
+                                </RadioGroup>
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/employeecommissionLn2"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.1"
+                            android:orientation="horizontal"></LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+
+                                <TextView
+                                    android:id="@+id/settingsDevicePrinterSubTitleTextView15"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:text="Print for Void"
+                                    android:textColor="#ffffff"
+                                    android:textSize="20dp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"></LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1.5"
+                                android:orientation="horizontal"
+                                android:paddingBottom="8dp"
+                                android:paddingTop="8dp">
+
+                                <Switch
+                                    android:id="@+id/voidPrintSwitch"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="left|center_vertical"
+                                    android:checked="true"
+                                    android:tag="voidPrintSwitchTag"
+                                    android:textOff="Off"
+                                    android:textOn="On"
+                                    style="@style/SwitchCustom40"
+                                    android:switchTextAppearance="@style/SwitchTextAppearance" />
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.1"
+                            android:orientation="horizontal"></LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:paddingBottom="8dp"
+                                android:paddingTop="8dp">
+
+                                <TextView
+                                    android:id="@+id/settingsDevicePrinterSubTitleTextView16"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:text="Print for Return"
+                                    android:textColor="#ffffff"
+                                    android:textSize="20dp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"></LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1.5"
+                                android:orientation="horizontal"
+                                android:paddingBottom="8dp"
+                                android:paddingTop="8dp">
+
+                                <Switch
+                                    android:id="@+id/returnPrintSwitch"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="left|center_vertical"
+                                    android:checked="true"
+                                    android:tag="returnPrintSwitchTag"
+                                    android:textOff="Off"
+                                    android:textOn="On"
+                                    style="@style/SwitchCustom40"
+                                    android:switchTextAppearance="@style/SwitchTextAppearance" />
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.1"
+                            android:orientation="horizontal"></LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:paddingBottom="8dp"
+                                android:paddingTop="8dp">
+
+                                <TextView
+                                    android:id="@+id/settingsDevicePrinterSubTitleTextView11"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:text="Manager Pwd Use for Void"
+                                    android:textColor="#ffffff"
+                                    android:textSize="20dp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"></LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1.5"
+                                android:orientation="horizontal"
+                                android:paddingBottom="8dp"
+                                android:paddingTop="8dp">
+
+                                <Switch
+                                    android:id="@+id/managerpwduseforvoidSwitch"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="left|center_vertical"
+                                    android:checked="true"
+                                    android:tag="managerpwduseforvoidSwitchTag"
+                                    android:textOff="Off"
+                                    android:textOn="On"
+                                    style="@style/SwitchCustom40"
+                                    android:switchTextAppearance="@style/SwitchTextAppearance" />
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.1"
+                            android:orientation="horizontal"
+                            android:visibility="gone"></LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:paddingBottom="8dp"
+                                android:paddingTop="8dp">
+
+                                <TextView
+                                    android:id="@+id/settingsDevicePrinterSubTitleTextView12"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:text="Cash Drawer On/Off on Command"
+                                    android:textColor="#ffffff"
+                                    android:textSize="20dp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"></LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1.5"
+                                android:paddingBottom="8dp"
+                                android:paddingTop="8dp">
+
+                                <Switch
+                                    android:id="@+id/cashdraweronoffonsalemodeSwitch"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="left|center_vertical"
+                                    android:checked="true"
+                                    android:tag="cashdraweronoffonsalemodeSwitchTag"
+                                    android:textOff="Off"
+                                    android:textOn="On"
+                                    style="@style/SwitchCustom40"
+                                    android:switchTextAppearance="@style/SwitchTextAppearance" />
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.1"
+                            android:orientation="horizontal"
+                            android:visibility="gone"></LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:paddingBottom="8dp"
+                                android:paddingTop="8dp">
+
+                                <TextView
+                                    android:id="@+id/settingsDevicePrinterSubTitleTextView21"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:text="Cash Drawer On/Off on Receipt"
+                                    android:textColor="#ffffff"
+                                    android:textSize="20dp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"></LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1.5"
+                                android:paddingBottom="8dp"
+                                android:paddingTop="8dp">
+
+                                <Switch
+                                    android:id="@+id/cashdraweronoffonreceiptSwitch"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="left|center_vertical"
+                                    android:checked="true"
+                                    android:tag="cashdraweronoffonreceiptSwitchTag"
+                                    android:textOff="Off"
+                                    android:textOn="On"
+                                    style="@style/SwitchCustom40"
+                                    android:switchTextAppearance="@style/SwitchTextAppearance" />
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.1"
+                            android:orientation="horizontal"
+                            android:visibility="gone"></LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:paddingBottom="8dp"
+                                android:paddingTop="8dp">
+
+                                <TextView
+                                    android:id="@+id/settingsDevicePrinterSubTitleTextView18"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:text="Signed Print Y/N"
+                                    android:textColor="#ffffff"
+                                    android:textSize="20dp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"></LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1.5"
+                                android:paddingBottom="8dp"
+                                android:paddingTop="8dp">
+
+                                <Switch
+                                    android:id="@+id/signatureprintynSwitch"
+                                    android:tag="signatureprintynSwitchTag"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="left|center_vertical"
+                                    android:checked="true"
+                                    android:textOff="Off"
+                                    android:textOn="On"
+                                    style="@style/SwitchCustom40"
+                                    android:switchTextAppearance="@style/SwitchTextAppearance" />
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.1"
+                            android:orientation="horizontal"
+                            android:visibility="gone"></LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:paddingBottom="8dp"
+                                android:paddingTop="8dp">
+
+                                <TextView
+                                    android:id="@+id/settingsDevicePrinterSubTitleTextView20"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:text="Signed Print Seperately"
+                                    android:textColor="#ffffff"
+                                    android:textSize="20dp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"></LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1.5"
+                                android:paddingBottom="8dp"
+                                android:paddingTop="8dp">
+
+                                <Switch
+                                    android:id="@+id/signatureprintseperatelySwitch"
+                                    android:tag="signatureprintseperatelySwitchTag"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="left|center_vertical"
+                                    android:checked="true"
+                                    android:textOff="Off"
+                                    android:textOn="On"
+                                    style="@style/SwitchCustom40"
+                                    android:switchTextAppearance="@style/SwitchTextAppearance" />
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.1"
+                            android:orientation="horizontal"
+                            android:visibility="gone"></LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:paddingBottom="8dp"
+                                android:paddingTop="8dp">
+
+                                <TextView
+                                    android:id="@+id/settingsDevicePrinterSubTitleTextView19"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:text="Modifier Print Y/N"
+                                    android:textColor="#ffffff"
+                                    android:textSize="20dp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"></LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1.5"
+                                android:paddingBottom="8dp"
+                                android:paddingTop="8dp">
+
+                                <Switch
+                                    android:id="@+id/modifierprintynSwitch"
+                                    android:tag="modifierprintynSwitchTag"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="left|center_vertical"
+                                    android:checked="true"
+                                    android:textOff="Off"
+                                    android:textOn="On"
+                                    style="@style/SwitchCustom40"
+                                    android:switchTextAppearance="@style/SwitchTextAppearance" />
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.1"
+                            android:orientation="horizontal"
+                            android:visibility="gone"></LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:paddingBottom="8dp"
+                                android:paddingTop="8dp">
+
+                                <TextView
+                                    android:id="@+id/settingsDevicePrinterSubTitleTextView22"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:text="Card Merchant Receipt"
+                                    android:textColor="#ffffff"
+                                    android:textSize="20dp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"></LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1.5"
+                                android:paddingBottom="8dp"
+                                android:paddingTop="8dp">
+
+                                <Switch
+                                    android:id="@+id/cardmerchantreceiptynSwitch"
+                                    android:tag="cardmerchantreceiptynSwitchTag"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="left|center_vertical"
+                                    android:checked="true"
+                                    android:textOff="Off"
+                                    android:textOn="On"
+                                    style="@style/SwitchCustom40"
+                                    android:switchTextAppearance="@style/SwitchTextAppearance" />
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.1"
+                            android:orientation="horizontal"
+                            android:visibility="gone"></LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:paddingBottom="8dp"
+                                android:paddingTop="8dp">
+
+                                <TextView
+                                    android:id="@+id/settingsDevicePrinterSubTitleTextView23"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:text="Order No. Section View"
+                                    android:textColor="#ffffff"
+                                    android:textSize="20dp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"></LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1.5"
+                                android:paddingBottom="8dp"
+                                android:paddingTop="8dp">
+
+                                <Switch
+                                    android:id="@+id/ordernumbersectionviewynSwitch"
+                                    android:tag="ordernumbersectionviewynSwitchTag"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="left|center_vertical"
+                                    android:checked="true"
+                                    android:textOff="Off"
+                                    android:textOn="On"
+                                    style="@style/SwitchCustom40"
+                                    android:switchTextAppearance="@style/SwitchTextAppearance" />
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.1"
+                            android:orientation="horizontal"
+                            android:visibility="gone"></LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:paddingBottom="8dp"
+                                android:paddingTop="8dp">
+
+                                <TextView
+                                    android:id="@+id/settingsDevicePrinterSubTitleTextView24"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:text="Tax Exempt Text (T/E) Use"
+                                    android:textColor="#ffffff"
+                                    android:textSize="20dp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"></LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1.5"
+                                android:paddingBottom="8dp"
+                                android:paddingTop="8dp">
+
+                                <Switch
+                                    android:id="@+id/taxexemptprintingynSwitch"
+                                    android:tag="taxexemptprintingynSwitchTag"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="left|center_vertical"
+                                    android:checked="true"
+                                    android:textOff="Off"
+                                    android:textOn="On"
+                                    style="@style/SwitchCustom40"
+                                    android:switchTextAppearance="@style/SwitchTextAppearance" />
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.1"
+                            android:orientation="horizontal">
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/dualdpadtypeLn"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal"
+                            android:paddingBottom="8dp"
+                            android:paddingTop="8dp"
+                            android:visibility="visible">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+                                <TextView
+                                    android:id="@+id/settingsDevicePrinterSubTitleTextView25"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:textSize="20dp"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="bold"
+                                    android:text="Logo Printing On Receipt"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1">
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1.5">
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:orientation="horizontal"
+                                    android:gravity="left|center_vertical">
+
+                                    <Switch
+                                        android:id="@+id/logoprintingonreceiptynSwitch"
+                                        android:tag="logoprintingonreceiptynSwitchTag"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="left|center_vertical"
+                                        style="@style/SwitchCustom40"
+                                        android:switchTextAppearance="@style/SwitchTextAppearance"
+                                        android:textOn="On"
+                                        android:textOff="Off"
+                                        android:checked="true"/>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/imgLn"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2"
+                                    android:orientation="horizontal"
+                                    android:gravity="right|center_vertical">
+
+                                    <TextView
+                                        android:id="@+id/receiptLogoImgTv"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginRight="10dp"
+                                        android:text=""
+                                        android:textSize="20dp"
+                                        android:textColorHint="#ffffff" />
+
+                                    <Button
+                                        android:id="@+id/dualdpadlocalpathBtn"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:gravity="left|center_vertical"
+                                        android:background="@drawable/button_selector_category6"
+                                        android:textSize="16dp"
+                                        android:textColor="#ffffff"
+                                        android:text="  Download Logo File  " />
+
+                                </LinearLayout>
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:id="@+id/receiptlogoimgLn"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal"
+                            android:paddingBottom="8dp"
+                            android:paddingTop="8dp"
+                            android:visibility="visible">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:textSize="20dp"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="bold"
+                                    android:text=""/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1">
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1.5">
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:orientation="horizontal"
+                                    android:gravity="right|center_vertical">
+
+                                    <ImageView
+                                        android:id="@+id/receiptlogimgIv"
+                                        android:layout_width="200dp"
+                                        android:layout_height="100dp"
+                                        android:scaleType="fitXY" />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+                    <!-- Device 관련 끝 -->
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="15dp"
+                        android:orientation="horizontal"></LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1.8"
+                        android:orientation="horizontal">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+                                <LinearLayout
+                                    android:id="@+id/cloudLabelprinterLn"
+                                    android:tag="cloudLabelprinterLnTag"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical"
+                                    android:gravity="center"
+                                    android:visibility="visible">
+
+                                    <TextView
+                                        android:id="@+id/temptext1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textStyle="bold"
+                                        android:text="Cloud Kitchen Printer"
+                                        android:textSize="32dp"
+                                        android:textColor="#ffffff" />
+                                    <TextView
+                                        android:id="@+id/temptext2"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="by Middleware Solution"
+                                        android:textSize="22dp"
+                                        android:textColor="#ffffff" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/linearLayoutLabelPrinterList"
+                                    android:tag="linearLayoutLabelPrinterListTag"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical"
+                                    android:visibility="invisible">
+
+                                    <TableLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_margin="7dp" >
+                                        <TableRow
+                                            android:layout_width="match_parent"
+                                            android:layout_height="0dp"
+                                            android:layout_weight="1" >
+                                            <LinearLayout
+                                                android:id="@+id/kitchenprinterSelectionLinear1"
+                                                android:tag="labelprinterSelectionLinearTag1"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:orientation="vertical"
+                                                android:layout_margin="5dp" >
+                                            </LinearLayout>
+                                            <LinearLayout
+                                                android:id="@+id/kitchenprinterSelectionLinear2"
+                                                android:tag="labelprinterSelectionLinearTag2"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:orientation="vertical"
+                                                android:layout_margin="5dp" >
+                                            </LinearLayout>
+                                            <LinearLayout
+                                                android:id="@+id/kitchenprinterSelectionLinear3"
+                                                android:tag="labelprinterSelectionLinearTag3"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:orientation="vertical"
+                                                android:layout_margin="5dp" >
+                                            </LinearLayout>
+                                            <LinearLayout
+                                                android:id="@+id/kitchenprinterSelectionLinear4"
+                                                android:tag="labelprinterSelectionLinearTag4"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:orientation="vertical"
+                                                android:layout_margin="5dp" >
+                                            </LinearLayout>
+                                            <LinearLayout
+                                                android:id="@+id/kitchenprinterSelectionLinear5"
+                                                android:tag="labelprinterSelectionLinearTag5"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:orientation="vertical"
+                                                android:layout_margin="5dp" >
+                                            </LinearLayout>
+                                        </TableRow>
+                                        <TableRow
+                                            android:layout_width="match_parent"
+                                            android:layout_height="0dp"
+                                            android:layout_weight="0.1" >
+                                            <LinearLayout
+                                                android:id="@+id/kitchenprinterSelectionLinear6"
+                                                android:tag="kitchenprinterSelectionLinearTag6"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:orientation="vertical"
+                                                android:layout_margin="5dp" >
+                                            </LinearLayout>
+                                            <LinearLayout
+                                                android:id="@+id/kitchenprinterSelectionLinear7"
+                                                android:tag="kitchenprinterSelectionLinearTag7"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:orientation="vertical"
+                                                android:layout_margin="5dp" >
+                                            </LinearLayout>
+                                            <LinearLayout
+                                                android:id="@+id/kitchenprinterSelectionLinear8"
+                                                android:tag="kitchenprinterSelectionLinearTag8"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:orientation="vertical"
+                                                android:layout_margin="5dp" >
+                                            </LinearLayout>
+                                            <LinearLayout
+                                                android:id="@+id/kitchenprinterSelectionLinear9"
+                                                android:tag="kitchenprinterSelectionLinearTag9"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:orientation="vertical"
+                                                android:layout_margin="5dp" >
+                                            </LinearLayout>
+                                            <LinearLayout
+                                                android:id="@+id/kitchenprinterSelectionLinear10"
+                                                android:tag="kitchenprinterSelectionLinearTag10"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:orientation="vertical"
+                                                android:layout_margin="5dp" >
+                                            </LinearLayout>
+
+                                        </TableRow>
+                                    </TableLayout>
+
+                                </LinearLayout>
+
+                            </FrameLayout>
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <!-- Device 관련 시작 -->
+                    <LinearLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/roundlayout_background_settings_sub"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="3"
+                                android:orientation="horizontal"></LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.9"
+                                android:orientation="horizontal">
+
+                                <Button
+                                    android:id="@+id/saveSettingsDevicePrinterButton"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@drawable/button_selector_settings_v"
+                                    android:padding="10dp"
+                                    android:tag="saveSettingsDevicePrinterButtonTag"
+                                    android:text="V"
+                                    android:textColor="#ffffff"
+                                    android:textSize="30dp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"
+                                android:orientation="horizontal"></LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </ScrollView>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.1"
+            android:orientation="horizontal"></LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

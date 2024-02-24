@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_batch_detail"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.jjbfather.jjjqsrt2go2gorestkakaovx.com.example.jjbfather.jjjqsrt2go2gorest.BatchListDetail"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@+id/previousListParentLn"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:background="@drawable/roundlayout_black" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.7"
+            android:layout_marginBottom="10dp">
+            <TextView
+                android:id="@+id/previousListTitleTv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="Employee Cashout List (Latest 100)"
+                android:textSize="18dp"
+                android:textColor="#ffffff" />
+
+            <Button
+                android:id="@+id/previousListCloseBtn"
+                android:tag="previousListCloseBtnTag"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp"
+                android:gravity="center"
+                android:background="@drawable/button_selector_gray"
+                android:textColor="#ffffff"
+                android:text="X"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="8.5"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3.5" >
+
+                <!-- Previous List 보기 시작 -->
+                <LinearLayout
+                    android:id="@+id/previousListLn"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:background="#fcfae4"
+                    android:visibility="visible">
+
+                    <ScrollView
+                        android:id="@+id/previousListScrollView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp">
+
+                        <LinearLayout
+                            android:id="@+id/previousListScrollLn"
+                            android:tag="previousListScrollLnTag"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+
+                        </LinearLayout>
+
+
+                    </ScrollView>
+
+                </LinearLayout>
+                <!-- Batch List 보기 끝 -->
+
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:paddingLeft="8dp"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/previousListPrintBtn"
+                    android:tag="previousListPrintBtnTag"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="10dp"
+                    android:padding="10dp"
+                    android:background="@drawable/button_selector_category7"
+                    android:text="PRINT"
+                    android:textSize="25dp"
+                    android:textStyle="bold"
+                    android:textColor="#ffffff"/>
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="4.9" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

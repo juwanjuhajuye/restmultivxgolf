@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp">
+
+    <LinearLayout
+        android:id="@+id/activity_custom_popup_ln"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:background="@drawable/roundlayout" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#767c98"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="10dp"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/custom_popup_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="left|center_vertical"
+                    android:paddingLeft="10dp"
+                    android:text=""
+                    android:textStyle="bold"
+                    android:textSize="20dp"
+                    android:textColor="#ffffff" />
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:gravity="right|center_vertical"
+                android:padding="10dp"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/closeBtn"
+                    android:tag="cloudWebPageAtNotConnectionCloseBtnTag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:src="@drawable/setting_close_on"
+                    android:background="@color/zxing_transparent"
+                    android:text=""/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="5"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/custom_popup_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textSize="24dp"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                android:text="The Internet Network is not Connected\n\nCheck the Network"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/roundbackground_jjjsignpadbg">
+
+        <LinearLayout
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="8"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="7"
+                android:orientation="vertical">
+
+
+
+                <LinearLayout
+                    android:id="@+id/paymnetReviewLinearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:background="@drawable/roundlayout_selectreceipt" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.05"
+                        android:orientation="horizontal"></LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="8.0"
+                        android:padding="20dp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2.9"
+                            android:orientation="horizontal"
+                            android:background="@drawable/roundlayout_review_bg">
+
+
+
+                            <LinearLayout
+                                android:id="@+id/chargeSpaceLn"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="8"
+                                android:orientation="vertical">
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="3"
+                                    android:orientation="vertical">
+                                    <TextView
+                                        android:textAlignment="center"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="1"
+                                        android:gravity="left|center_vertical"
+                                        android:textSize="30dp"
+                                        android:textColor="#3e3d42"
+                                        android:textStyle="bold"
+                                        android:text="THE CHANGE IS"/>
+
+                                    <TextView
+                                        android:id="@+id/paymentReviewChangeTextView"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="3"
+                                        android:gravity="center_horizontal|center_vertical"
+                                        android:text="$15.08"
+                                        android:textColor="#00AAFF"
+                                        android:textStyle="bold"
+                                        android:textSize="50dp"
+                                        android:background="@drawable/aa_images_yhe_inneroutline"/>
+                                    <TextView
+                                        android:id="@+id/paymentReviewGiftcardBalanceTextView"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="1"
+                                        android:gravity="center_horizontal|center_vertical"
+                                        android:textSize="14dp"
+                                        android:textColor="#3e3d42"
+                                        android:text=""/>
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.1"
+                            android:orientation="vertical"
+                            android:padding="8dp"></LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/receiptLn2"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="5"
+                            android:weightSum="10"
+                            android:orientation="vertical"
+                            android:padding="8dp">
+                            <LinearLayout
+                                android:layout_weight="6"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp">
+                                <Button
+                                    android:id="@+id/customerselectreceiptCloseBtn"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.7"
+                                    android:text=""
+                                    android:gravity="center"
+                                    android:background="@drawable/ab_imagebutton_noreceipt3" />
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_marginTop="20dp"
+                                android:layout_weight="4"
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp">
+                                <LinearLayout
+                                    android:orientation="vertical"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1">
+                                    <Button
+                                        android:id="@+id/customerreceiptButton"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="2"
+                                        android:text=""
+                                        android:gravity="center"
+                                        android:background="@drawable/ab_imagebutton_paperreceipt3"/>
+                                    <View
+                                        android:layout_width="match_parent"
+                                        android:layout_height="2dp"/>
+                                    <Button
+                                        android:id="@+id/split_merchantreceiptButton"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="0.9"
+                                        android:text=""
+                                        android:gravity="center"
+                                        android:background="@drawable/ab_imagebutton_paperreceipt3_merchant"/>
+                                </LinearLayout>
+
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.1"
+                                    android:orientation="vertical" />
+
+                                <Button
+                                    android:id="@+id/smsreceiptButton"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:text=""
+                                    android:gravity="center"
+                                    android:background="@drawable/ab_imagebutton_smsreceipt3"/>
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.1"
+                                    android:orientation="vertical" />
+
+                                <Button
+                                    android:id="@+id/emailreceiptButton"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:text=""
+                                    android:gravity="center"
+                                    android:background="@drawable/ab_imagebutton_emailreceipt3" />
+                            </LinearLayout>
+
+
+
+
+
+
+                        </LinearLayout>
+
+
+
+
+                        <!-- 사용하지 않는 뷰 -->
+                        <LinearLayout
+                            android:id="@+id/receiptLn1"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="20dp"
+                            android:paddingBottom="20dp"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
+                            <Button
+                                android:id="@+id/customermerchantreceiptButton"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:text=""
+                                android:gravity="center"
+                                android:background="@drawable/ab_imagebutton_paperreceipt2"/>
+
+                            <Button
+                                android:id="@+id/merchantreceiptButton"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:text=""
+                                android:gravity="center"
+                                android:background="@drawable/ab_imagebutton_paperreceipt2"/>
+
+                            <Button
+                                android:id="@+id/noreceiptButton"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:text=""
+                                android:gravity="center"
+                                android:background="@drawable/ab_imagebutton_noreceipt"/>
+
+                            <TextView
+                                android:layout_width="20dp"
+                                android:layout_height="match_parent" />
+
+                            <Button
+                                android:id="@+id/paperreceiptButton"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:text=""
+                                android:gravity="center"
+                                android:background="@drawable/ab_imagebutton_paperreceipt" />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

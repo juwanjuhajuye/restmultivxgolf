@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp">
+
+    <LinearLayout
+        android:id="@+id/clockinoutWebPageLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:background="@drawable/roundlayout" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.8"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.7"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="10dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|center_vertical"
+                    android:src="@drawable/ab_imagebutton_clockinout_title"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/clockinoutWebPageTopBarLinearLayout1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="10dp"
+                android:orientation="horizontal">
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/clockinoutWebPageTopBarLinearLayout2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.7"
+                android:gravity="right|center_vertical"
+                android:paddingLeft="10dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/clockinoutWebPageCloseBtn"
+                    android:tag="clockinoutWebPageCloseBtnTag"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center"
+                    android:background="@drawable/roundlayout_button_white"
+                    android:text=" X "/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:orientation="horizontal"
+            android:background="#bbbbc8"></LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="8.5"
+            android:orientation="horizontal">
+
+            <WebView
+                android:id="@+id/clockinoutWebPageWebView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="3dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

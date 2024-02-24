@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:weightSum="10"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:background="@drawable/roundlayout_black"
+        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/progressBarTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/progressBarPer"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:textColor="#ffffff"
+            android:textAlignment="center"
+            android:background="@android:color/transparent"
+            android:textSize="20dp"
+            />
+
+        <TextView
+            android:id="@+id/progressBarPer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="10dp"
+            android:textColor="#ffffff"
+            android:textAlignment="center"
+            android:background="@android:color/transparent"
+            android:textSize="15dp"
+            />
+
+        <ProgressBar
+            android:id="@+id/progressBar1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_below="@+id/progressBarPer"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:indeterminateTint="@color/colorAccent"
+            android:max="100" />
+    </LinearLayout>
+
+
+</LinearLayout>

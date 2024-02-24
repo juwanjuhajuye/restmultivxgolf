@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:descendantFocusability="blocksDescendants"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+    <LinearLayout
+        android:id="@+id/cashinout_lin"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/cashinout_txt1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.8"
+            android:gravity="center_vertical|right"
+            android:paddingRight="8dp"
+            android:textSize="16dp"
+            android:textColor="#3e3d42"
+            android:text="$0.05 X " />
+        <TextView
+            android:id="@+id/cashinout_txt2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:gravity="center_vertical|right"
+            android:inputType="numberDecimal"
+            android:hint="0"
+            android:paddingRight="5dp"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:textColor="#fa1a01"
+            android:background="@drawable/roundlayout_background_suev"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2"
+            android:gravity="center"
+            android:textSize="14dp"
+            android:textColor="#485253"
+            android:text=" = "/>
+        <TextView
+            android:id="@+id/cashinout_txt3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.8"
+            android:gravity="center_vertical|right"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:text="$0.00"
+            android:textColor="#3e3d42"
+            android:textStyle="bold"
+            android:textSize="14dp"/>
+    </LinearLayout>
+
+</LinearLayout>

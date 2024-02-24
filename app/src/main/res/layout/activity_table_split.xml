@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp"
+    android:background="@android:color/transparent" >
+
+    <LinearLayout
+        android:id="@+id/table_main_table_split_ln"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="5"
+            android:orientation="horizontal">
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="15"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.7"
+                android:orientation="horizontal">
+            </LinearLayout>
+
+            <LinearLayout
+                android:background="@drawable/table_main_round_avtivity"
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+                <LinearLayout
+                    android:background="@drawable/table_main_popup_top"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp">
+                    <TextView
+                        android:id="@+id/titletv"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:textStyle="bold"
+                        android:textColor="#ffffff"
+                        android:text="Table Split"
+                        android:textSize="30dp"
+                        android:paddingLeft="20dp"
+                        android:gravity="center_vertical|left"
+                        android:layout_height="match_parent"/>
+                    <TextView
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"/>
+
+                    <ImageButton
+                        android:id="@+id/table_main_table_split_close"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_gravity="center"
+                        android:layout_margin="10dp"
+                        android:background="@drawable/aa_images_main_close_x"
+                        android:gravity="center"
+                        android:tag="saleHistoryCloseBtnTag" />
+                    <LinearLayout
+                        android:layout_weight="0.1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:background="#ffffff"
+                    android:layout_weight="4"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_height="0dp">
+
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_height="0dp">
+
+                        <Button
+                            android:id="@+id/counttableBtn1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:textColor="#ffffff"
+                            android:textSize="50dp"
+                            android:text="2ea"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/button_selector_bluebutton"/>
+
+                        <Button
+                            android:id="@+id/counttableBtn2"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:textColor="#ffffff"
+                            android:textSize="50dp"
+                            android:text="3ea"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/button_selector_bluebutton"/>
+
+
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_height="0dp">
+
+                        <Button
+                            android:id="@+id/counttableBtn3"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:textColor="#ffffff"
+                            android:textSize="50dp"
+                            android:text="4ea"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="20dp"
+                            android:background="@drawable/button_selector_bluebutton"/>
+
+                        <Button
+                            android:id="@+id/counttableBtn4"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:textColor="#ffffff"
+                            android:textSize="50dp"
+                            android:text="5ea"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="20dp"
+                            android:background="@drawable/button_selector_bluebutton"/>
+
+
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+<!--                <LinearLayout-->
+<!--                    android:theme="@style/ThemeWithCorners"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="0dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:gravity="right|bottom"-->
+<!--                    android:orientation="horizontal">-->
+<!--                    <ImageButton-->
+<!--                        android:id="@+id/table_main_table_split_close_red"-->
+<!--                        android:background="@android:color/transparent"-->
+<!--                        android:src="@drawable/table_main_imagebutton_billprint_cancel"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"/>-->
+<!--                    <ImageButton-->
+<!--                        android:id="@+id/submitbtn"-->
+<!--                        android:background="@android:color/transparent"-->
+<!--                        android:src="@drawable/table_main_imagebutton_billprint_print"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"/>-->
+<!--                </LinearLayout>-->
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.7"
+                android:orientation="horizontal">
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="5"
+            android:orientation="horizontal">
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

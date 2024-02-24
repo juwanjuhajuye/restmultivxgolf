@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="8dp" >
+
+    <TextView
+        android:id="@+id/tv_header1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:gravity="center_vertical|left"
+        android:textColor="#3e3d42"
+        android:textStyle="bold"
+        android:text="headder1"
+        android:textSize="22dp" />
+    <TextView
+        android:id="@+id/tv_header2"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="header2"
+        android:textColor="#fc2014"
+        android:textSize="16dp" />
+    <TextView
+        android:id="@+id/tv_header3"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="header3"
+        android:textColor="#0054d5"
+        android:textSize="16dp" />
+    <TextView
+        android:id="@+id/tv_header4"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1.2"
+        android:gravity="center_vertical|right"
+        android:text="header3"
+        android:textColor="#000000"
+        android:textSize="16dp" />
+
+
+</LinearLayout>

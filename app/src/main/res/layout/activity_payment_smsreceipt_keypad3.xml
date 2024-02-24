@@ -1,0 +1,170 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/smsreceiptKeypadLn"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:visibility="visible" >
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:stretchColumns="*">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" >
+                <Button
+                    android:id="@+id/smsreceipt_suButton1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_selector_numberbutton_qty"
+                    android:layout_margin="5dp"
+                    android:text="1"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:textColor="#ffffff"/>
+                <Button
+                    android:id="@+id/smsreceipt_suButton2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_selector_numberbutton_qty"
+                    android:layout_margin="5dp"
+                    android:text="2"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:textColor="#ffffff"/>
+                <Button
+                    android:id="@+id/smsreceipt_suButton3"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_selector_numberbutton_qty"
+                    android:layout_margin="5dp"
+                    android:text="3"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:textColor="#ffffff"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" >
+                <Button
+                    android:id="@+id/smsreceipt_suButton4"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_selector_numberbutton_qty"
+                    android:layout_margin="5dp"
+                    android:text="4"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:textColor="#ffffff"/>
+                <Button
+                    android:id="@+id/smsreceipt_suButton5"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_selector_numberbutton_qty"
+                    android:layout_margin="5dp"
+                    android:text="5"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:textColor="#ffffff"/>
+                <Button
+                    android:id="@+id/smsreceipt_suButton6"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_selector_numberbutton_qty"
+                    android:layout_margin="5dp"
+                    android:text="6"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:textColor="#ffffff"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" >
+                <Button
+                    android:id="@+id/smsreceipt_suButton7"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_selector_numberbutton_qty"
+                    android:layout_margin="5dp"
+                    android:text="7"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:textColor="#ffffff" />
+                <Button
+                    android:id="@+id/smsreceipt_suButton8"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_selector_numberbutton_qty"
+                    android:layout_margin="5dp"
+                    android:text="8"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:textColor="#ffffff"/>
+                <Button
+                    android:id="@+id/smsreceipt_suButton9"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_selector_numberbutton_qty"
+                    android:layout_margin="5dp"
+                    android:text="9"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:textColor="#ffffff"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" >
+                <Button
+                    android:id="@+id/smsreceipt_suButton0"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_selector_numberbutton_qty"
+                    android:layout_margin="5dp"
+                    android:text="0"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:textColor="#ffffff"/>
+
+                <Button
+                    android:id="@+id/smsreceipt_suButtonBack"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:background="@drawable/button_selector_numberbutton_qty"
+                    android:layout_margin="5dp"
+                    android:text="←"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:textColor="#ffffff"/>
+            </TableRow>
+
+        </TableLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

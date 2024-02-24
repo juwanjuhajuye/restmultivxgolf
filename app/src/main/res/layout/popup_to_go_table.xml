@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/darker_gray">
+    <RelativeLayout
+        android:background="@drawable/roundlayout_white"
+        android:layout_margin="1dp"
+        android:layout_width="match_parent"
+        android:layout_height="250dp">
+        <TextView
+            android:id="@+id/option_codetype_dialog_title_tv"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="Kitchen Printing"
+            android:textSize="30sp"
+            android:gravity="center_vertical"
+            android:paddingLeft="30dp"
+            android:textColor="#000000"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+        <TextView
+            android:textColor="#000000"
+            android:textSize="20dp"
+            android:layout_margin="30dp"
+            android:layout_centerInParent="true"
+            android:id="@+id/option_codetype_dialog_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+        <LinearLayout
+            android:id="@+id/dialog_numbers_bottom_layout"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:minHeight="56dp"
+            android:orientation="horizontal"
+            android:weightSum="3"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true">
+
+            <TextView
+                android:id="@+id/option_codetype_dialog_positive"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:background="#4682C2"
+                android:gravity="center"
+                android:text="YES"
+                android:textColor="#fff"
+                android:textSize="16sp" />
+            <TextView
+                android:id="@+id/option_codetype_dialog_negative"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:background="#757575"
+                android:textColor="#fff"
+                android:text="NO"
+                android:textSize="16sp" />
+
+
+
+        </LinearLayout>
+    </RelativeLayout>
+
+
+</RelativeLayout>

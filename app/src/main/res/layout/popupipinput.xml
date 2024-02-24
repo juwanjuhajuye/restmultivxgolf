@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="600dp"
+    android:layout_height="400dp"
+    android:orientation="vertical"
+    android:background="@drawable/aa_images_intro_new"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/roundlayout"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:orientation="horizontal"
+            android:background="#232531">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingRight="10dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.7"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:gravity="left|center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.3"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/aa_images_login_logo" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3.3"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.4"
+                    android:gravity="right|center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="15dp"
+                    android:paddingBottom="15dp"
+                    android:paddingTop="15dp">
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <!--
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#bbbbc8"
+            android:orientation="horizontal"></LinearLayout>
+            -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="4"
+            android:padding="15dp"
+            android:orientation="vertical">
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:padding="7dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/introRealDemoTitleTextView3"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical|right"
+                    android:paddingRight="10dp"
+                    android:textSize="20dp"
+                    android:textColor="#232531"
+                    android:text="MSSQL DB IP" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:orientation="horizontal" >
+
+                    <EditText
+                        android:id="@+id/mssqldbipTextView1"
+                        android:tag="mssqldbipTextView1Tag"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:background="@drawable/roundlayout_intro_edittext2"
+                        android:padding="8dp"
+                        android:textSize="20dp"
+                        android:textColor="#3f3e3a"
+                        android:text=""/>
+
+
+
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:padding="7dp"
+                android:orientation="horizontal">
+                <TextView
+
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical|right"
+                    android:paddingRight="10dp"
+                    android:textSize="20dp"
+                    android:textColor="#232531"
+                    android:text="MSSQL DB NAME" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:orientation="horizontal" >
+
+                    <EditText
+                        android:id="@+id/popup_dabasename_edtxt"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:background="@drawable/roundlayout_intro_edittext2"
+                        android:padding="8dp"
+                        android:textSize="20dp"
+                        android:textColor="#3f3e3a"
+                        android:text=""/>
+
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:padding="7dp"
+                android:orientation="horizontal">
+                <TextView
+
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical|right"
+                    android:paddingRight="10dp"
+                    android:textSize="20dp"
+                    android:textColor="#232531"
+                    android:text="MSSQL DB PWD" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:orientation="horizontal" >
+
+                    <EditText
+                        android:id="@+id/popup_dbpassword_edtxt"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:background="@drawable/roundlayout_intro_edittext2"
+                        android:padding="8dp"
+                        android:textSize="20dp"
+                        android:textColor="#3f3e3a"
+                        android:text=""/>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:padding="7dp"
+                android:orientation="horizontal">
+                <TextView
+
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical|right"
+                    android:paddingRight="10dp"
+                    android:textSize="20dp"
+                    android:textColor="#232531"
+                    android:text="MOBILE HOST" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:orientation="horizontal" >
+
+                    <EditText
+                        android:id="@+id/popup_mobilehost_edtxt"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:background="@drawable/roundlayout_intro_edittext2"
+                        android:padding="8dp"
+                        android:textSize="20dp"
+                        android:textColor="#3f3e3a"
+                        android:text=""/>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:padding="7dp"
+                android:orientation="horizontal">
+                <TextView
+
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical|right"
+                    android:paddingRight="10dp"
+                    android:textSize="20dp"
+                    android:textColor="#232531"
+                    android:text="CLOUD HOST" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:orientation="horizontal" >
+
+                    <EditText
+                        android:id="@+id/popup_cloudhost_edtxt"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:background="@drawable/roundlayout_intro_edittext2"
+                        android:padding="8dp"
+                        android:textSize="20dp"
+                        android:textColor="#3f3e3a"
+                        android:text=""/>
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:padding="7dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
+
+                    <Button
+                        android:id="@+id/popupipinputok"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:background="@drawable/button_selector_intro_demo"
+                        android:textSize="15dp"
+                        android:textColor="#ffffff"
+                        android:text="OK" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.1"/>
+
+                    <Button
+                        android:id="@+id/popupipinputcancel"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:background="@drawable/button_selector_intro_newaccount"
+                        android:textSize="15dp"
+                        android:textColor="#ffffff"
+                        android:text="Cancel" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp"
+    android:orientation="vertical"
+    tools:context="com.example.jjbfather.jjjqsrt2go2gorestkakaovx.com.example.jjbfather.jjjqsrt2go2gorest.CloudBackOffice">
+
+    <LinearLayout
+        android:id="@+id/cloudBackOfficeLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:background="@drawable/roundlayout" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="10dp"
+                android:orientation="horizontal">
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/cloudBackOfficeTopBarLinearLayout1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:gravity="center"
+                android:padding="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/allcategorydownbloadTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="3dp"
+                    android:gravity="center"
+                    android:text=" DOWNLOAD ALL CATEGORIES "
+                    android:textColor="#ffffff"
+                    android:textSize="16dp"
+                    android:background="@drawable/button_selector_calculator" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/cloudBackOfficeTopBarLinearLayout2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="right|center_vertical"
+                android:paddingLeft="10dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/cloudBackOfficeCloseBtn"
+                    android:tag="cloudBackOfficeCloseBtnTag"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center"
+                    android:background="@drawable/roundlayout_button_white"
+                    android:text=" X "/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/topCategoryLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="4"
+            android:orientation="horizontal" >
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <include
+                    android:id="@+id/servicecategory"
+                    layout="@layout/activity_category" />
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</LinearLayout>

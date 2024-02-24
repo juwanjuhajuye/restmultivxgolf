@@ -1,0 +1,608 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp">
+
+    <LinearLayout
+        android:id="@+id/customerAddLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:background="@drawable/roundlayout_deliverytakeawaybg" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:orientation="vertical"
+            android:layout_margin="7dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true" >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:id="@+id/saleHistoryTopTitleTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="left|center_vertical"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="DELIVERY INFORMATION"
+                    android:textColor="#ffffff"
+                    android:textSize="18dp" />
+
+                <Button
+                    android:id="@+id/hereToGoInfoCloseBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginBottom="5dp"
+                    android:paddingRight="20dp"
+                    android:paddingLeft="20dp"
+                    android:gravity="center"
+                    android:background="@drawable/button_selector_gray"
+                    android:textColor="#ffffff"
+                    android:text="X"/>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="7"
+                android:orientation="horizontal"
+                android:padding="3dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true" >
+
+                <!-- Left Start -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:orientation="vertical"
+                    android:padding="3dp"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true" >
+
+
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:padding="5dp"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true" >
+                        <TextView
+                            android:id="@+id/customerIdTextView"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:textSize="16dp"
+                            android:text="Phone No. *"
+                            android:paddingLeft="10dp"
+                            android:gravity="left|center_vertical"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.07" />
+
+                        <EditText
+                            android:id="@+id/customerIdEditText"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1.2"
+                            android:inputType="number"
+                            android:textSize="16dp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:hint="Phone# (No dashes or space)"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:background="@drawable/roundlayout_background_customeraddet_rq"/>
+
+                        <Button
+                            android:id="@+id/customerWalkInButotn"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.8"
+                            android:inputType="number"
+                            android:textSize="16dp"
+                            android:layout_marginLeft="10dp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:text="WALK IN"
+                            android:textColor="#ffffff"
+                            android:textStyle="bold"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:background="@drawable/button_selector_category7"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:padding="5dp"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true" >
+                        <TextView
+                            android:id="@+id/customerNameTextView"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:textSize="16dp"
+                            android:text="Name *"
+                            android:paddingLeft="10dp"
+                            android:gravity="left|center_vertical"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.07" />
+                        <EditText
+                            android:id="@+id/customerNameEditText"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:hint="First Name"
+                            android:textSize="16dp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:background="@drawable/roundlayout_background_customeraddet"/>
+                        <EditText
+                            android:id="@+id/customerNameEditText2"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:hint="Last Name"
+                            android:textSize="16dp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:layout_marginLeft="3dp"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:background="@drawable/roundlayout_background_customeraddet"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:padding="5dp"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true" >
+                        <TextView
+                            android:id="@+id/customerEmailTextView"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:textSize="16dp"
+                            android:text="Email"
+                            android:paddingLeft="10dp"
+                            android:gravity="left|center_vertical"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.07" />
+                        <EditText
+                            android:id="@+id/customerEmailEditText"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:textSize="16dp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:inputType="textEmailAddress"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:background="@drawable/roundlayout_background_customeraddet"/>
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:padding="5dp"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true" >
+                        <TextView
+                            android:id="@+id/customerDeliveryDayTextView"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:textSize="16dp"
+                            android:text="Delivery Date"
+                            android:paddingLeft="10dp"
+                            android:gravity="left|center_vertical"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.07" />
+                        <TextView
+                            android:id="@+id/customerDeilveryDaySearchTextView"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.99"
+                            android:textSize="16dp"
+                            android:textColor="#3c3d3a"
+                            android:hint="Delivery Day"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:background="@drawable/roundlayout_background_customeraddet"/>
+                        <TextView
+                            android:id="@+id/customerDeilveryTimeSearchTextView"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.99"
+                            android:background="@drawable/roundlayout_background_customeraddet"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:layout_marginLeft="3dp"
+                            android:hint="Delivery Time"
+                            android:textColor="#3c3d3a"
+                            android:textSize="16dp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/deliveryFeeLn"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:padding="5dp"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true" >
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:textSize="16dp"
+                            android:text="Delivery Fee"
+                            android:paddingLeft="10dp"
+                            android:gravity="left|center_vertical"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.07" />
+                        <EditText
+                            android:id="@+id/deliveryfeeEv"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1.2"
+                            android:inputType="numberDecimal"
+                            android:textSize="16dp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:hint=""
+                            android:gravity="center_vertical|right"
+                            android:background="@drawable/roundlayout_cashinout_tv_bg1"/>
+
+                        <Button
+                            android:id="@+id/deliveryFreeButotn"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.8"
+                            android:inputType="number"
+                            android:textSize="16dp"
+                            android:layout_marginLeft="10dp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:text="Free"
+                            android:textColor="#ffffff"
+                            android:textStyle="bold"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:background="@drawable/button_selector_category6"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:padding="5dp"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true" >
+
+
+
+                    </LinearLayout>
+
+
+
+                </LinearLayout>
+
+
+
+                <!-- Left End -->
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.1"
+                    android:orientation="vertical"
+                    android:padding="3dp"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true" >
+                </LinearLayout>
+
+                <!-- Right Start -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:orientation="vertical"
+                    android:padding="3dp"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:padding="5dp"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true" >
+                        <TextView
+                            android:id="@+id/customerAddr1TextView"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:textSize="16dp"
+                            android:text="Address"
+                            android:paddingLeft="10dp"
+                            android:gravity="left|center_vertical"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.07" />
+                        <EditText
+                            android:id="@+id/customerAddr1EditText"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:textSize="16dp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:gravity="left|center_vertical"
+                            android:background="@drawable/roundlayout_background_customeraddet"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:padding="5dp"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true" >
+                        <TextView
+                            android:id="@+id/customerAddr2TextView"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:textSize="16dp"
+                            android:text=""
+                            android:paddingLeft="10dp"
+                            android:gravity="left|center_vertical"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.07" />
+                        <EditText
+                            android:id="@+id/customerAddr2EditText"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:textSize="16dp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:gravity="left|center_vertical"
+                            android:background="@drawable/roundlayout_background_customeraddet"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:padding="5dp"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true" >
+                        <TextView
+                            android:id="@+id/customerCityTextView"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:textSize="16dp"
+                            android:text="City"
+                            android:paddingLeft="10dp"
+                            android:gravity="left|center_vertical"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.07" />
+                        <EditText
+                            android:id="@+id/customerCityEditText"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:textSize="16dp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:gravity="left|center_vertical"
+                            android:background="@drawable/roundlayout_background_customeraddet"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:padding="5dp"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true" >
+                        <TextView
+                            android:id="@+id/customerStateTextView"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:textSize="16dp"
+                            android:text="State/Province"
+                            android:paddingLeft="10dp"
+                            android:gravity="left|center_vertical"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.07" />
+                        <Spinner
+                            android:id="@+id/customerStateSpinner"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:background="@drawable/spinner_customeradd"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:padding="5dp"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true" >
+                        <TextView
+                            android:id="@+id/customerZipTextView"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:textSize="16dp"
+                            android:text="Zip/Postal Code"
+                            android:paddingLeft="10dp"
+                            android:gravity="left|center_vertical"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.07" />
+                        <EditText
+                            android:id="@+id/customerZipEditText"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:textSize="16dp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:inputType="number"
+                            android:gravity="left|center_vertical"
+                            android:background="@drawable/roundlayout_background_customeraddet"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:padding="5dp"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true" >
+                        <TextView
+                            android:id="@+id/customerMemoTextView"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:textSize="16dp"
+                            android:text="Note"
+                            android:paddingLeft="10dp"
+                            android:gravity="left|center_vertical"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.07" />
+
+                        <EditText
+                            android:id="@+id/customerMemoEditText"
+                            android:tag="customerMemoEditTextTag"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:gravity="left|top"
+                            android:singleLine="false"
+                            android:lines="3"
+                            android:background="@drawable/roundlayout_background_custmemo"
+                            android:textSize="16dp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:scrollbars="vertical"
+                            android:textColor="#3f3e3a"
+                            android:text=""/>
+                    </LinearLayout>
+
+                </LinearLayout>
+                <!-- Right End -->
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.5"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true" >
+
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:orientation="horizontal">
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/customerDeliveryTakeawaySubmitButton"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_selector_numberbutton_qty_v"
+                    android:layout_marginRight="10dp"
+                    android:text="V"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    android:textColor="#83444D" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

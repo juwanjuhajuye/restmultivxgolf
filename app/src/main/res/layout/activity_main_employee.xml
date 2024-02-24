@@ -1,0 +1,331 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/frameLayout_employeeSelection"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="10dp"
+        android:padding="10dp"
+        android:background="@drawable/roundlayout"
+        android:visibility="invisible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/employeeSelectionTitleEditText"
+                android:tag="employeeSelectionTitleEditTextTag"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.2"
+                android:gravity="left|center_vertical"
+                android:text="Employee Selection"
+                android:textSize="20dp"
+                android:textColor="#ffffff"
+                android:padding="10dp"
+                android:background="@drawable/roundlayout_smalltitle" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2.8"/>
+
+            <Button
+                android:id="@+id/employeeSelectionCloseBtn"
+                android:tag="employeeSelectionCloseBtnTag"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.4"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:gravity="center"
+                android:text="X"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="10"
+            android:orientation="horizontal">
+
+            <!-- 좌측 부서리스트 시작 -->
+            <LinearLayout
+                android:id="@+id/departmentLn"
+                android:tag="departmentLnTag"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.1">
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+
+                    <LinearLayout
+                        android:id="@+id/linearLayoutDepartmentList"
+                        android:tag="linearLayoutDepartmentListTag"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+                    </LinearLayout>
+
+                </ScrollView>
+
+            </LinearLayout>
+            <!-- 좌측 부서리스트 끝 -->
+
+
+            <!-- 우축 직원리스트 시작 -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:id="@+id/linearLayoutEmployeeList"
+                        android:tag="linearLayoutEmployeeListTag"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+                        <TableLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="7dp" >
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1" >
+                                <LinearLayout
+                                    android:id="@+id/employeeSelectionLinear1"
+                                    android:tag="employeeSelectionLinearTag1"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical"
+                                    android:layout_margin="5dp" >
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:id="@+id/employeeSelectionLinear2"
+                                    android:tag="employeeSelectionLinearTag2"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical"
+                                    android:layout_margin="5dp" >
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:id="@+id/employeeSelectionLinear3"
+                                    android:tag="employeeSelectionLinearTag3"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical"
+                                    android:layout_margin="5dp" >
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:id="@+id/employeeSelectionLinear4"
+                                    android:tag="employeeSelectionLinearTag4"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical"
+                                    android:layout_margin="5dp" >
+                                </LinearLayout>
+                            </TableRow>
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1" >
+                                <LinearLayout
+                                    android:id="@+id/employeeSelectionLinear5"
+                                    android:tag="employeeSelectionLinearTag5"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical"
+                                    android:layout_margin="5dp" >
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:id="@+id/employeeSelectionLinear6"
+                                    android:tag="employeeSelectionLinearTag6"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical"
+                                    android:layout_margin="5dp" >
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:id="@+id/employeeSelectionLinear7"
+                                    android:tag="employeeSelectionLinearTag7"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical"
+                                    android:layout_margin="5dp" >
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:id="@+id/employeeSelectionLinear8"
+                                    android:tag="employeeSelectionLinearTag8"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical"
+                                    android:layout_margin="5dp" >
+                                </LinearLayout>
+                            </TableRow>
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1" >
+                                <LinearLayout
+                                    android:id="@+id/employeeSelectionLinear9"
+                                    android:tag="employeeSelectionLinearTag9"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical"
+                                    android:layout_margin="5dp" >
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:id="@+id/employeeSelectionLinear10"
+                                    android:tag="employeeSelectionLinearTag10"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical"
+                                    android:layout_margin="5dp" >
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:id="@+id/employeeSelectionLinear11"
+                                    android:tag="employeeSelectionLinearTag11"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical"
+                                    android:layout_margin="5dp" >
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:id="@+id/employeeSelectionLinear12"
+                                    android:tag="employeeSelectionLinearTag12"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical"
+                                    android:layout_margin="5dp" >
+                                </LinearLayout>
+                            </TableRow>
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1" >
+                                <LinearLayout
+                                    android:id="@+id/employeeSelectionLinear13"
+                                    android:tag="employeeSelectionLinearTag13"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical"
+                                    android:layout_margin="5dp" >
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:id="@+id/employeeSelectionLinear14"
+                                    android:tag="employeeSelectionLinearTag14"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical"
+                                    android:layout_margin="5dp" >
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:id="@+id/employeeSelectionLinear15"
+                                    android:tag="employeeSelectionLinearTag15"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical"
+                                    android:layout_margin="5dp" >
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:id="@+id/employeeSelectionLinear16"
+                                    android:tag="employeeSelectionLinearTag16"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical"
+                                    android:layout_margin="5dp" >
+                                </LinearLayout>
+                            </TableRow>
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1" >
+                                <LinearLayout
+                                    android:id="@+id/employeeSelectionLinear17"
+                                    android:tag="employeeSelectionLinearTag17"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical"
+                                    android:layout_margin="5dp" >
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:id="@+id/employeeSelectionLinear18"
+                                    android:tag="employeeSelectionLinearTag18"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical"
+                                    android:layout_margin="5dp" >
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:id="@+id/employeeSelectionLinear19"
+                                    android:tag="employeeSelectionLinearTag19"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical"
+                                    android:layout_margin="5dp" >
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:id="@+id/employeeSelectionLinear20"
+                                    android:tag="employeeSelectionLinearTag20"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical"
+                                    android:layout_margin="5dp" >
+                                </LinearLayout>
+                            </TableRow>
+                        </TableLayout>
+
+                    </LinearLayout>
+
+                </FrameLayout>
+
+            </LinearLayout>
+            <!-- 우축 직원리스트 끝 -->
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</LinearLayout>

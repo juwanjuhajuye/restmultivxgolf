@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp"
+    android:background="@android:color/transparent">
+
+    <LinearLayout
+        android:id="@+id/employeeLoginChoiceLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/aa_images_cashinout_login_bg"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="10dp" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.0"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="left|center_vertical"
+                    android:paddingLeft="10dp"
+                    android:orientation="horizontal">
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:orientation="horizontal">
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/employeeLoginQuitButtonLinearyLayout"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="right|center_vertical"
+                    android:padding="10dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/employeeLoginQuitButton"
+                        android:tag="employeeLoginQuitButtonTag"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:paddingLeft="25dp"
+                        android:paddingRight="25dp"
+                        android:textSize="15dp"
+                        android:textColor="#fff"
+                        android:text="QUIT"
+                        android:background="@drawable/button_selector_intro_quit" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="8.5"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.9"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/aa_images_login_logo" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2.5"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.2"
+                        android:orientation="horizontal">
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:padding="15dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:padding="7dp"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:id="@+id/employeeLoginTitleTextView1"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center_vertical|right"
+                                android:paddingRight="20dp"
+                                android:textSize="18dp"
+                                android:textColor="#ffffff"
+                                android:text="EMPLOYEE" />
+                            <TextView
+                                android:id="@+id/employeeLoginEmpSelectTextView"
+                                android:tag="employeeLoginEmpSelectTextViewTag"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2"
+                                android:background="@drawable/roundlayout_login_edittext"
+                                android:gravity="center"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:hint="Touch here"
+                                android:textColorHint="#7d7b83"
+                                android:textSize="22dp"
+                                android:textStyle="bold"
+                                android:textColor="#3e3d42"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:padding="7dp"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:id="@+id/employeeLoginTitleTextView2"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center_vertical|right"
+                                android:paddingRight="20dp"
+                                android:textSize="18dp"
+                                android:textColor="#ffffff"
+                                android:text="PASSWORD" />
+                            <EditText
+                                android:id="@+id/employeeLoginPasswordEditText"
+                                android:tag="employeeLoginPasswordEditText"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2"
+                                android:background="@drawable/roundlayout_login_edittext"
+                                android:gravity="center"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:inputType="numberPassword"
+                                android:textSize="22dp"
+                                android:textStyle="bold"
+                                android:textColor="#3e3d42"/>
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:layout_marginTop="5dp"
+                            android:padding="7dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"></LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2"
+                                android:orientation="horizontal">
+
+                                <Button
+                                    android:id="@+id/employeeLoginButton"
+                                    android:tag="employeeLoginButtonTag"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:paddingLeft="10dp"
+                                    android:paddingRight="10dp"
+                                    android:background="@drawable/ab_imagebutton_login" />
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.6"
+                        android:orientation="horizontal">
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.4"
+                    android:paddingLeft="20dp"
+                    android:orientation="vertical"
+                    android:gravity="bottom|right"
+                    android:paddingRight="10dp">
+
+                    <LinearLayout
+                        android:id="@+id/adminLoginLn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:paddingLeft="30dp"
+                        android:orientation="horizontal"
+                        android:gravity="bottom|right" >
+                        <TextView
+                            android:id="@+id/adminLoginTv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:text="ADMIN LOGIN"
+                            android:textSize="18dp"
+                            android:textColor="#b9b9b9"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

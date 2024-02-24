@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/roundbackground_jjjsignpadbg">
+
+        <LinearLayout
+            android:id="@+id/emptyLn01"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"></LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="8"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/emptyLn02"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:orientation="vertical">
+
+
+
+                <LinearLayout
+                    android:id="@+id/paymnetReviewLinearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:background="@drawable/roundlayout_selectreceipt" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.05"
+                        android:orientation="horizontal"></LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="8.0"
+                        android:padding="20dp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:orientation="horizontal"
+                            android:background="@drawable/roundlayout_review_bg">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.8"
+                                android:orientation="vertical">
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/chargeSpaceLn"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="8"
+                                android:orientation="vertical">
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="3"
+                                    android:orientation="vertical">
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="1"
+                                        android:gravity="left|center_vertical"
+                                        android:textSize="30dp"
+                                        android:textColor="#3e3d42"
+                                        android:textStyle="bold"
+                                        android:text="SMS RECEIPT"/>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="4"
+                                        android:gravity="center"
+                                        android:orientation="horizontal">
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="2"
+                                            android:orientation="vertical">
+
+
+
+                                            <LinearLayout
+                                                android:id="@+id/smsreceiptLinearLayout"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="0dp"
+                                                android:layout_weight="1"
+                                                android:orientation="vertical"
+                                                android:focusable="true"
+                                                android:focusableInTouchMode="true"
+                                                android:background="@drawable/roundlayout_selectreceipt" >
+
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="0dp"
+                                                    android:layout_weight="1"
+                                                    android:orientation="vertical"
+                                                    android:layout_margin="7dp"
+                                                    android:focusable="true"
+                                                    android:focusableInTouchMode="true" >
+
+                                                    <LinearLayout
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="0dp"
+                                                        android:layout_weight="1.6"
+                                                        android:orientation="horizontal"
+                                                        android:paddingLeft="10dp"
+                                                        android:paddingRight="10dp"
+                                                        android:visibility="gone">
+
+                                                        <LinearLayout
+                                                            android:layout_width="0dp"
+                                                            android:layout_height="match_parent"
+                                                            android:layout_weight="2"
+                                                            android:gravity="left|center_vertical"
+                                                            android:paddingLeft="10dp"
+                                                            android:orientation="horizontal">
+
+                                                            <TextView
+                                                                android:id="@+id/discountExtraTitleEditText"
+                                                                android:tag="discountExtraTitleEditTextTag"
+                                                                android:layout_width="wrap_content"
+                                                                android:layout_height="wrap_content"
+                                                                android:textColor="#3e3d42"
+                                                                android:textSize="16dp"
+                                                                android:text="SMS Receipt"/>
+
+                                                        </LinearLayout>
+
+                                                        <TextView
+                                                            android:layout_width="0dp"
+                                                            android:layout_height="match_parent"
+                                                            android:layout_weight="1"/>
+
+
+
+                                                    </LinearLayout>
+
+                                                    <LinearLayout
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="0dp"
+                                                        android:layout_weight="1.5"
+                                                        android:orientation="horizontal"
+                                                        android:focusable="true"
+                                                        android:focusableInTouchMode="true" >
+
+
+                                                        <EditText
+                                                            android:id="@+id/customerPhoneNumberEv"
+                                                            android:layout_width="0dp"
+                                                            android:layout_height="match_parent"
+                                                            android:layout_weight="8"
+                                                            android:textSize="30dp"
+                                                            android:textStyle="bold"
+                                                            android:inputType="number"
+                                                            android:hint="Your Phone Number"
+                                                            android:textColorHint="#a4a2a9"
+                                                            android:textColor="#3e3d42"
+                                                            android:maxLength="26"
+                                                            android:gravity="center_horizontal|center_vertical"
+                                                            android:background="@drawable/roundlayout_smsnumber_bg"/>
+
+
+                                                    </LinearLayout>
+
+
+                                                </LinearLayout>
+
+                                                <LinearLayout
+                                                    android:id="@+id/sendsmsvSpaceLn"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="0dp"
+                                                    android:layout_weight="0.2"
+                                                    android:orientation="vertical">
+
+                                                </LinearLayout>
+
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="0dp"
+                                                    android:layout_weight="3.5"
+                                                    android:orientation="horizontal">
+
+
+                                                    <LinearLayout
+                                                        android:layout_width="0dp"
+                                                        android:layout_height="match_parent"
+                                                        android:layout_weight="6"
+                                                        android:orientation="horizontal">
+
+                                                        <FrameLayout
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="match_parent" >
+
+                                                            <!-- 카드번호 입력 키패드 시작 -->
+                                                            <include
+                                                                layout="@layout/activity_payment_smsreceipt_keypad3" />
+                                                            <!-- 카드번호 입력 키패드 끝 -->
+
+                                                        </FrameLayout>
+
+                                                    </LinearLayout>
+
+
+                                                </LinearLayout>
+
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="0dp"
+                                                    android:layout_weight="0.2"
+                                                    android:orientation="vertical">
+
+                                                </LinearLayout>
+
+                                            </LinearLayout>
+
+
+
+
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.8"
+                                android:orientation="vertical">
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.1"
+                            android:orientation="vertical"
+                            android:padding="8dp"></LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/receiptLn2"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:padding="8dp">
+
+                            <Button
+                                android:id="@+id/smsreceipt_suButtonV"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:text=""
+                                android:gravity="center"
+                                android:background="@drawable/ab_imagebutton_sendsms"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="0.1"
+                                android:orientation="vertical" />
+
+                            <Button
+                                android:id="@+id/backButton"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="0.7"
+                                android:text=""
+                                android:gravity="center"
+                                android:background="@drawable/ab_imagebutton_back"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="0.1"
+                                android:orientation="vertical" />
+
+
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="2.3"
+                                android:orientation="vertical" />
+
+                            <Button
+                                android:id="@+id/smsreceipt_suButtonX"
+                                android:tag="smsreceipt_suButtonXTag"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="0.7"
+                                android:text=""
+                                android:gravity="center"
+                                android:background="@drawable/ab_imagebutton_finishorder" />
+
+                        </LinearLayout>
+
+
+
+
+                        <!-- 사용하지 않는 뷰 -->
+                        <LinearLayout
+                            android:id="@+id/receiptLn1"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="20dp"
+                            android:paddingBottom="20dp"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
+                            <Button
+                                android:id="@+id/customermerchantreceiptButton"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:text=""
+                                android:gravity="center"
+                                android:background="@drawable/ab_imagebutton_paperreceipt2"/>
+
+                            <Button
+                                android:id="@+id/merchantreceiptButton"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:text=""
+                                android:gravity="center"
+                                android:background="@drawable/ab_imagebutton_paperreceipt2"/>
+
+                            <Button
+                                android:id="@+id/noreceiptButton"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:text=""
+                                android:gravity="center"
+                                android:background="@drawable/ab_imagebutton_noreceipt"/>
+
+                            <TextView
+                                android:layout_width="20dp"
+                                android:layout_height="match_parent" />
+
+                            <Button
+                                android:id="@+id/paperreceiptButton"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:text=""
+                                android:gravity="center"
+                                android:background="@drawable/ab_imagebutton_paperreceipt" />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/emptyLn03"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/emptyLn04"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

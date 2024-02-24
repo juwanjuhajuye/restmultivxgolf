@@ -1,0 +1,8 @@
+<!--?xml version="1.0" encoding="utf-8"?-->
+<!--color selector-->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 클릭 했을 경우 -->
+    <item android:state_selected="true" android:drawable="@drawable/roundlayout_skyblue"/>
+    <!-- 클릭하지 않은 경우 -->
+    <item android:state_selected="false" android:drawable="@drawable/roundlayout_white_gray"/>
+</selector>

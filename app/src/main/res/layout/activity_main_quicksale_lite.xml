@@ -1,0 +1,732 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/frameLayout_quickSale"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/roundlayout_line"
+        android:visibility="invisible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.9"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="left|center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/quickSaleTitleEditText"
+                    android:tag="quickSaleTitleEditTextTag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.4"
+                android:gravity="right|center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="15dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp">
+
+                <Button
+                    android:id="@+id/quickSaleCloseBtn"
+                    android:tag="quickSaleCloseBtnTag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="8.5"
+            android:padding="15dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <RadioGroup
+                            android:id="@+id/quickSaleServiceProductRadioGroup"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:checkedButton="@+id/quickSaleServiceRadioButton"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:tag="quickSaleServiceProductRadioGroupTag">
+
+                            <RadioButton
+                                android:id="@+id/quickSaleServiceRadioButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="16dp"
+                                android:tag="quickSaleServiceRadioButtonTag"
+                                android:text="Category"
+                                android:textColor="#3e3d42" />
+
+                            <RadioButton
+                                android:id="@+id/quickSaleProductRadioButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="14dp"
+                                android:tag="quickSaleProductRadioButtonTag"
+                                android:text="Product"
+                                android:textColor="#3e3d42" />
+                        </RadioGroup>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.1"
+                        android:orientation="vertical"></LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/quickSaleServiceProductNameTitleTextView"
+                            android:tag="quickSaleServiceProductNameTitleTextViewTag"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="right|center_vertical"
+                            android:textSize="14dp"
+                            android:textColor="#3e3d42"
+                            android:text="Name"/>
+                        <EditText
+                            android:id="@+id/quickSaleServiceProductNameEditText"
+                            android:tag="quickSaleServiceProductNameEditTextTag"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="3"
+                            android:gravity="center"
+                            android:layout_margin="5dp"
+                            android:background="#f0f0f0"
+                            android:textColor="#3e3d42"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/quickSalePriceTitleTextView"
+                            android:tag="quickSalePriceTitleTextViewTag"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="right|center_vertical"
+                            android:textSize="14dp"
+                            android:textColor="#3e3d42"
+                            android:text="Price"/>
+                        <EditText
+                            android:id="@+id/quickSalePriceEditText"
+                            android:tag="quickSalePriceEditTextTag"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="3"
+                            android:gravity="center"
+                            android:layout_margin="5dp"
+                            android:background="#f0f0f0"
+                            android:textColor="#3e3d42"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.15"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:orientation="vertical">
+
+                    <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/quickSaleCategoryTextView1"
+                                    android:tag="quickSaleCategoryTextViewTag1"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.2"
+                                    android:background="#d72274" />
+                                <Button
+                                    android:id="@+id/quickSaleCategoryButton1"
+                                    android:tag="quickSaleCategoryButtonTag1"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="9"
+                                    android:background="@drawable/roundlayout_button_topcategory"
+                                    android:textSize="14dp"
+                                    android:text=""
+                                    android:gravity="center" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="5dp"
+                                android:orientation="horizontal">
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/quickSaleCategoryTextView2"
+                                    android:tag="quickSaleCategoryTextViewTag2"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.2"
+                                    android:background="#d72274" />
+                                <Button
+                                    android:id="@+id/quickSaleCategoryButton2"
+                                    android:tag="quickSaleCategoryButtonTag2"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="9"
+                                    android:background="@drawable/roundlayout_button_topcategory"
+                                    android:textSize="14dp"
+                                    android:text=""
+                                    android:gravity="center" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="5dp"
+                                android:orientation="horizontal">
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/quickSaleCategoryTextView3"
+                                    android:tag="quickSaleCategoryTextViewTag3"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.2"
+                                    android:background="#d72274" />
+                                <Button
+                                    android:id="@+id/quickSaleCategoryButton3"
+                                    android:tag="quickSaleCategoryButtonTag3"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="9"
+                                    android:background="@drawable/roundlayout_button_topcategory"
+                                    android:textSize="14dp"
+                                    android:text=""
+                                    android:gravity="center" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="5dp"
+                                android:orientation="horizontal">
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/quickSaleCategoryTextView4"
+                                    android:tag="quickSaleCategoryTextViewTag4"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.2"
+                                    android:background="#d72274" />
+                                <Button
+                                    android:id="@+id/quickSaleCategoryButton4"
+                                    android:tag="quickSaleCategoryButtonTag4"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="9"
+                                    android:background="@drawable/roundlayout_button_topcategory"
+                                    android:textSize="14dp"
+                                    android:text=""
+                                    android:gravity="center" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="5dp"
+                                android:orientation="horizontal">
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/quickSaleCategoryTextView5"
+                                    android:tag="quickSaleCategoryTextViewTag5"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.2"
+                                    android:background="#d72274" />
+                                <Button
+                                    android:id="@+id/quickSaleCategoryButton5"
+                                    android:tag="quickSaleCategoryButtonTag5"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="9"
+                                    android:background="@drawable/roundlayout_button_topcategory"
+                                    android:textSize="14dp"
+                                    android:text=""
+                                    android:gravity="center" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="5dp"
+                                android:orientation="horizontal">
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/quickSaleCategoryTextView6"
+                                    android:tag="quickSaleCategoryTextViewTag6"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.2"
+                                    android:background="#d72274" />
+                                <Button
+                                    android:id="@+id/quickSaleCategoryButton6"
+                                    android:tag="quickSaleCategoryButtonTag6"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="9"
+                                    android:background="@drawable/roundlayout_button_topcategory"
+                                    android:textSize="14dp"
+                                    android:text=""
+                                    android:gravity="center" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="5dp"
+                                android:orientation="horizontal">
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/quickSaleCategoryTextView7"
+                                    android:tag="quickSaleCategoryTextViewTag7"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.2"
+                                    android:background="#d72274" />
+                                <Button
+                                    android:id="@+id/quickSaleCategoryButton7"
+                                    android:tag="quickSaleCategoryButtonTag7"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="9"
+                                    android:background="@drawable/roundlayout_button_topcategory"
+                                    android:textSize="14dp"
+                                    android:text=""
+                                    android:gravity="center" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="5dp"
+                                android:orientation="horizontal">
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/quickSaleCategoryTextView8"
+                                    android:tag="quickSaleCategoryTextViewTag8"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.2"
+                                    android:background="#d72274" />
+                                <Button
+                                    android:id="@+id/quickSaleCategoryButton8"
+                                    android:tag="quickSaleCategoryButtonTag8"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="9"
+                                    android:background="@drawable/roundlayout_button_topcategory"
+                                    android:textSize="14dp"
+                                    android:text=""
+                                    android:gravity="center" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="5dp"
+                                android:orientation="horizontal">
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/quickSaleCategoryTextView9"
+                                    android:tag="quickSaleCategoryTextViewTag9"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.2"
+                                    android:background="#d72274" />
+                                <Button
+                                    android:id="@+id/quickSaleCategoryButton9"
+                                    android:tag="quickSaleCategoryButtonTag9"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="9"
+                                    android:background="@drawable/roundlayout_button_topcategory"
+                                    android:textSize="14dp"
+                                    android:text=""
+                                    android:gravity="center" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="5dp"
+                                android:orientation="horizontal">
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/quickSaleCategoryTextView10"
+                                    android:tag="quickSaleCategoryTextViewTag10"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.2"
+                                    android:background="#d72274" />
+                                <Button
+                                    android:id="@+id/quickSaleCategoryButton10"
+                                    android:tag="quickSaleCategoryButtonTag10"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="9"
+                                    android:background="@drawable/roundlayout_button_topcategory"
+                                    android:textSize="14dp"
+                                    android:text=""
+                                    android:gravity="center" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </ScrollView>
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:orientation="vertical"
+                android:layout_marginLeft="20dp" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="7"
+                    android:orientation="horizontal">
+
+                    <TableLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:stretchColumns="*">
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" >
+                            <Button
+                                android:id="@+id/quickSaleSuButton7"
+                                android:tag="quickSaleSuButtonTag7"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/button_selector_numberbutton_quicksale"
+                                android:layout_margin="3dp"
+                                android:text="7"
+                                android:textSize="20dp"
+                                android:textStyle="bold"
+                                android:textColor="#5b5b5b"/>
+                            <Button
+                                android:id="@+id/quickSaleSuButton8"
+                                android:tag="quickSaleSuButtonTag8"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/button_selector_numberbutton_quicksale"
+                                android:layout_margin="3dp"
+                                android:text="8"
+                                android:textSize="20dp"
+                                android:textStyle="bold"
+                                android:textColor="#5b5b5b"/>
+                            <Button
+                                android:id="@+id/quickSaleSuButton9"
+                                android:tag="quickSaleSuButtonTag9"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/button_selector_numberbutton_quicksale"
+                                android:layout_margin="3dp"
+                                android:text="9"
+                                android:textSize="20dp"
+                                android:textStyle="bold"
+                                android:textColor="#5b5b5b"/>
+                        </TableRow>
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" >
+                            <Button
+                                android:id="@+id/quickSaleSuButton4"
+                                android:tag="quickSaleSuButtonTag4"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/button_selector_numberbutton_quicksale"
+                                android:layout_margin="3dp"
+                                android:text="4"
+                                android:textSize="20dp"
+                                android:textStyle="bold"
+                                android:textColor="#5b5b5b"/>
+                            <Button
+                                android:id="@+id/quickSaleSuButton5"
+                                android:tag="quickSaleSuButtonTag5"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/button_selector_numberbutton_quicksale"
+                                android:layout_margin="3dp"
+                                android:text="5"
+                                android:textSize="20dp"
+                                android:textStyle="bold"
+                                android:textColor="#5b5b5b"/>
+                            <Button
+                                android:id="@+id/quickSaleSuButton6"
+                                android:tag="quickSaleSuButtonTag6"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/button_selector_numberbutton_quicksale"
+                                android:layout_margin="3dp"
+                                android:text="6"
+                                android:textSize="20dp"
+                                android:textStyle="bold"
+                                android:textColor="#5b5b5b"/>
+                        </TableRow>
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" >
+                            <Button
+                                android:id="@+id/quickSaleSuButton1"
+                                android:tag="quickSaleSuButtonTag1"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/button_selector_numberbutton_quicksale"
+                                android:layout_margin="3dp"
+                                android:text="1"
+                                android:textSize="20dp"
+                                android:textStyle="bold"
+                                android:textColor="#5b5b5b"/>
+                            <Button
+                                android:id="@+id/quickSaleSuButton2"
+                                android:tag="quickSaleSuButtonTag2"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/button_selector_numberbutton_quicksale"
+                                android:layout_margin="3dp"
+                                android:text="2"
+                                android:textSize="20dp"
+                                android:textStyle="bold"
+                                android:textColor="#5b5b5b"/>
+                            <Button
+                                android:id="@+id/quickSaleSuButton3"
+                                android:tag="quickSaleSuButtonTag3"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/button_selector_numberbutton_quicksale"
+                                android:layout_margin="3dp"
+                                android:text="3"
+                                android:textSize="20dp"
+                                android:textStyle="bold"
+                                android:textColor="#5b5b5b"/>
+                        </TableRow>
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" >
+                            <Button
+                                android:id="@+id/quickSaleSuButton0"
+                                android:tag="quickSaleSuButtonTag0"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/button_selector_numberbutton_quicksale"
+                                android:layout_margin="3dp"
+                                android:text="0"
+                                android:textSize="20dp"
+                                android:textStyle="bold"
+                                android:textColor="#5b5b5b"/>
+                            <Button
+                                android:id="@+id/quickSaleSuButton00"
+                                android:tag="quickSaleSuButtonTag00"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/button_selector_numberbutton_quicksale"
+                                android:layout_margin="3dp"
+                                android:text="00"
+                                android:textSize="20dp"
+                                android:textStyle="bold"
+                                android:textColor="#5b5b5b"/>
+                            <Button
+                                android:id="@+id/quickSaleSuButtonBack"
+                                android:tag="quickSaleSuButtonTagBack"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/button_selector_numberbutton_quicksale"
+                                android:layout_margin="3dp"
+                                android:text="←"
+                                android:textSize="20dp"
+                                android:textStyle="bold"
+                                android:textColor="#5b5b5b"/>
+                        </TableRow>
+                    </TableLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1.8"
+                    android:orientation="horizontal">
+                    <Button
+                        android:id="@+id/quickSaleSuButtonV"
+                        android:tag="quickSaleSuButtonTagV"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/button_selector_numberbutton_quicksale_v"
+                        android:layout_margin="3dp"
+                        android:text="V"
+                        android:textSize="35dp"
+                        android:textStyle="bold"
+                        android:textColor="#3e3d42"/>
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

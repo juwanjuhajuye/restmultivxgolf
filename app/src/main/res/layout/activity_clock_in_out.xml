@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp">
+
+    <LinearLayout
+        android:id="@+id/clockInOutLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="0dp"
+        android:padding="10dp"
+        android:background="@drawable/roundlayout_clockinout_big_bg">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.7"
+            android:layout_marginBottom="5dp">
+            <TextView
+                android:id="@+id/clockInOutTitleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="Clock In / Out"
+                android:textSize="22dp"
+                android:textStyle="bold"
+                android:textColor="#ffffff" />
+
+            <Button
+                android:id="@+id/clockInOutCloseBtn"
+                android:tag="clockInOutCloseBtnTag"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:background="@drawable/button_selector_gray"
+                android:textColor="#ffffff"
+                android:text="X"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="8.5"
+            android:orientation="horizontal"
+            android:background="@drawable/roundlayout_clockinout_bg">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:paddingBottom="2dp"
+                    android:paddingTop="2dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/clockInOutNameTitleTextView"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical|left"
+                        android:textSize="18dp"
+                        android:textColor="#3c3c3c"
+                        android:text="Name"/>
+                    <TextView
+                        android:id="@+id/clockInOutEmployeeNameEditText"
+                        android:tag="clockInOutEmployeeNameEditTextTag"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2.5"
+                        android:gravity="center"
+                        android:background="@drawable/roundlayout_button_white"
+                        android:textSize="20dp"
+                        android:textStyle="bold"
+                        android:textColor="#313131" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:paddingBottom="2dp"
+                    android:paddingTop="2dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/clockInOutPasswordTitleTextView"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical|left"
+                        android:textSize="18dp"
+                        android:textColor="#3c3c3c"
+                        android:text="Password"/>
+                    <EditText
+                        android:id="@+id/clockInOutEmployeePasswordEditText"
+                        android:tag="clockInOutEmployeePasswordEditTextTag"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2.5"
+                        android:gravity="center"
+                        android:background="@drawable/roundlayout_button_white"
+                        android:inputType="textPassword"
+                        android:textSize="20dp"
+                        android:textStyle="bold"
+                        android:textColor="#313131"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1.3"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2.5"
+                        android:paddingTop="5dp"
+                        android:orientation="horizontal">
+                        <Button
+                            android:id="@+id/clockInOutClockInButton"
+                            android:tag="clockInOutClockInButtonTag"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:textSize="20dp"
+                            android:textStyle="bold"
+                            android:textColor="#ffffff"
+                            android:text="CLOCK IN"
+                            android:background="@drawable/button_selector_clockinout_clockin"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.1"/>
+                        <Button
+                            android:id="@+id/clockInOutClockOutButton"
+                            android:tag="clockInOutClockOutButtonTag"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:textSize="20dp"
+                            android:textStyle="bold"
+                            android:textColor="#ffffff"
+                            android:text="CLOCK OUT"
+                            android:background="@drawable/button_selector_clockinout_clockout"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1.2"
+                    android:orientation="horizontal">
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:paddingBottom="2dp"
+                    android:paddingTop="2dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/clockInOutDateTitleTextView"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical|left"
+                        android:textSize="18dp"
+                        android:textColor="#3c3c3c"
+                        android:text="Date"/>
+                    <TextView
+                        android:id="@+id/clockInOutDateEditText"
+                        android:tag="clockInOutDateEditTextTag"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.5"
+                        android:gravity="center"
+                        android:background="@drawable/roundlayout_button_white"
+                        android:textSize="20dp"
+                        android:textStyle="bold"
+                        android:textColor="#313131" />
+                    <Button
+                        android:id="@+id/clockInOutSearchButton"
+                        android:tag="clockInOutSearchButtonTag"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.7"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:textColor="#ffffff"
+                        android:textSize="15dp"
+                        android:textStyle="bold"
+                        android:text=" SEARCH "
+                        android:background="@drawable/button_selector_clockinout_search"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="6"
+                    android:orientation="vertical"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/roundlayout_clockinout_searchlist_bg" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginBottom="3dp"
+                        android:orientation="horizontal"
+                        android:background="@drawable/roundlayout_clockinout_title">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.7"
+                            android:gravity="center"
+                            android:text=" "/>
+                        <TextView
+                            android:id="@+id/clockInOutListTitleTextView1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2.5"
+                            android:gravity="center"
+                            android:textColor="#686868"
+                            android:text="EMPLOYEE"/>
+                        <TextView
+                            android:id="@+id/clockInOutListTitleTextView2"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="3"
+                            android:gravity="center"
+                            android:textColor="#686868"
+                            android:text="IN / OUT DATE"/>
+
+                        <TextView
+                            android:id="@+id/clockInOutListTitleTextView3"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:textColor="#686868"
+                            android:text="TIME"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text=" "/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="12"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal" >
+                        <ListView
+                            android:id="@+id/clockInOutListView"
+                            android:tag="clockInOutListViewTag"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:listSelector="#e6e6e6"
+                            android:cacheColorHint="#ffffff"
+                            android:fadingEdge="none" >
+                        </ListView>
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.5"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/linearLayoutClockInOut"
+                    android:tag="linearLayoutClockInOutTag"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="12"
+                    android:orientation="vertical">
+
+                    <TableLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="7dp" >
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1">
+                            <LinearLayout
+                                android:id="@+id/clockInOutLinear1"
+                                android:tag="clockInOutLinearTag1"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_margin="5dp" >
+                            </LinearLayout>
+                            <LinearLayout
+                                android:id="@+id/clockInOutLinear2"
+                                android:tag="clockInOutLinearTag2"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_margin="5dp" >
+                            </LinearLayout>
+                            <LinearLayout
+                                android:id="@+id/clockInOutLinear3"
+                                android:tag="clockInOutLinearTag3"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_margin="5dp" >
+                            </LinearLayout>
+                            <LinearLayout
+                                android:id="@+id/clockInOutLinear4"
+                                android:tag="clockInOutLinearTag4"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_margin="5dp" >
+                            </LinearLayout>
+                        </TableRow>
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" >
+                            <LinearLayout
+                                android:id="@+id/clockInOutLinear5"
+                                android:tag="clockInOutLinearTag5"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_margin="5dp" >
+                            </LinearLayout>
+                            <LinearLayout
+                                android:id="@+id/clockInOutLinear6"
+                                android:tag="clockInOutLinearTag6"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_margin="5dp" >
+                            </LinearLayout>
+                            <LinearLayout
+                                android:id="@+id/clockInOutLinear7"
+                                android:tag="clockInOutLinearTag7"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_margin="5dp" >
+                            </LinearLayout>
+                            <LinearLayout
+                                android:id="@+id/clockInOutLinear8"
+                                android:tag="clockInOutLinearTag8"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_margin="5dp" >
+                            </LinearLayout>
+                        </TableRow>
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" >
+                            <LinearLayout
+                                android:id="@+id/clockInOutLinear9"
+                                android:tag="clockInOutLinearTag9"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_margin="5dp" >
+                            </LinearLayout>
+                            <LinearLayout
+                                android:id="@+id/clockInOutLinear10"
+                                android:tag="clockInOutLinearTag10"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_margin="5dp" >
+                            </LinearLayout>
+                            <LinearLayout
+                                android:id="@+id/clockInOutLinear11"
+                                android:tag="clockInOutLinearTag11"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_margin="5dp" >
+                            </LinearLayout>
+                            <LinearLayout
+                                android:id="@+id/clockInOutLinear12"
+                                android:tag="clockInOutLinearTag12"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_margin="5dp" >
+                            </LinearLayout>
+                        </TableRow>
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" >
+                            <LinearLayout
+                                android:id="@+id/clockInOutLinear13"
+                                android:tag="clockInOutLinearTag13"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_margin="5dp" >
+                            </LinearLayout>
+                            <LinearLayout
+                                android:id="@+id/clockInOutLinear14"
+                                android:tag="clockInOutLinearTag14"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_margin="5dp" >
+                            </LinearLayout>
+                            <LinearLayout
+                                android:id="@+id/clockInOutLinear15"
+                                android:tag="clockInOutLinearTag15"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_margin="5dp" >
+                            </LinearLayout>
+                            <LinearLayout
+                                android:id="@+id/clockInOutLinear16"
+                                android:tag="clockInOutLinearTag16"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_margin="5dp" >
+                            </LinearLayout>
+                        </TableRow>
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" >
+                            <LinearLayout
+                                android:id="@+id/clockInOutLinear17"
+                                android:tag="clockInOutLinearTag17"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_margin="5dp" >
+                            </LinearLayout>
+                            <LinearLayout
+                                android:id="@+id/clockInOutLinear18"
+                                android:tag="clockInOutLinearTag18"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_margin="5dp" >
+                            </LinearLayout>
+                            <LinearLayout
+                                android:id="@+id/clockInOutLinear19"
+                                android:tag="clockInOutLinearTag19"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_margin="5dp" >
+                            </LinearLayout>
+                            <LinearLayout
+                                android:id="@+id/clockInOutLinear20"
+                                android:tag="clockInOutLinearTag20"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_margin="5dp" >
+                            </LinearLayout>
+                        </TableRow>
+                    </TableLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

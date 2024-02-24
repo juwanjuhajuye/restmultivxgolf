@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp">
+
+    <LinearLayout
+        android:id="@+id/paymnetReviewLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/roundlayout_line_noround"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="left|center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/otherpaymentTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="left|center_vertical"
+                    android:text="PAYMENT : 599.99"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="20dp"
+                    android:textColor="#3e3d42" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="right|center_vertical"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/paymnetOtherPayCloseBtn"
+                    android:tag="paymnetOtherPayCloseBtnTag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:orientation="horizontal"
+            android:background="#bbbbc8"></LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.2"
+            android:orientation="horizontal"></LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="7"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        xmlns:android="http://schemas.android.com/apk/res/android"
+                        xmlns:tools="http://schemas.android.com/tools"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <!-- 이메일 발송 관련 레이아웃 -->
+                        <LinearLayout
+                            android:id="@+id/paymentReviewLn2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:visibility="visible"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="2"
+                                android:orientation="horizontal">
+
+                                <ScrollView
+                                    android:id="@+id/appcompanySv"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <LinearLayout
+                                        android:id="@+id/appcompanyLn"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical">
+
+
+                                    </LinearLayout>
+
+                                </ScrollView>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="0.1"
+                                android:orientation="horizontal">
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="0.3"
+                                android:orientation="horizontal">
+
+                                <Button
+                                    android:id="@+id/downloadappnameBtn"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:text="Download Partner App Name"
+                                    android:textColor="#3e3d42"
+                                    android:textSize="14dp"
+                                    android:background="@drawable/button_selector_downloadappname"/>
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

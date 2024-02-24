@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@color/zxing_transparent"
+    android:padding="0dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:background="#282933"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center_vertical|center_horizontal"
+            android:padding="10dp"
+            android:text="Select a payment method"
+            android:textColor="#ffffff"
+            android:textSize="40dp" />
+
+        <ImageButton
+            android:id="@+id/popup_payment_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@color/zxing_transparent"
+            android:src="@drawable/btn_close_x_payment_popup" />
+
+    </RelativeLayout>
+    <LinearLayout
+        android:background="#1e1f2b"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:gravity="center"
+            android:layout_weight="0.6"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+            <Button
+                android:textAllCaps="false"
+                android:textSize="24dp"
+                android:textColor="#ffffff"
+                android:text="Check In For Deals"
+                android:background="@drawable/roundlayout_xback_whiteline"
+                android:fontFamily="@font/poppins_bold"
+                android:layout_width="400dp"
+                android:layout_height="60dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:orientation="horizontal"
+            android:layout_weight="3"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+            <RelativeLayout
+                android:id="@+id/rl_creditcard"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/popup_payment_btn_back"
+                android:gravity="center_horizontal"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/popup_payment_credit_image"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="50dp"
+                    android:src="@drawable/btn_credit_card_payment_popup" />
+
+                <TextView
+                    android:id="@+id/popup_payment_text_creditcard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/popup_payment_credit_image"
+                    android:layout_centerHorizontal="true"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="Credit Card"
+                    android:textColor="#92a5ff"
+
+                    android:textSize="30dp" />
+
+                <LinearLayout
+                    android:id="@+id/popup_payment_text_creditcard_amountln"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/popup_payment_text_creditcard"
+                    android:layout_marginTop="0dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/popup_payment_text_creditcard_amount"
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="$ 21.01"
+                        android:textColor="#ffffff"
+                        android:textSize="46dp"
+                        android:textStyle="bold"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/popup_payment_text_creditcard_amount2"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="$ 21.01"
+                        android:textColor="#ffffff"
+                        android:textSize="26dp"
+                        android:gravity="center" />
+
+                </LinearLayout>
+
+
+
+
+                <TextView
+                    android:id="@+id/popup_payment_text_discount_card_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/popup_payment_text_creditcard_amountln"
+                    android:layout_centerInParent="true"
+                    android:text=""
+                    android:layout_marginBottom="20dp"
+                    android:textColor="#ffffff"
+                    android:textSize="20dp" />
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rl_cash"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/popup_payment_btn_back"
+                android:gravity="center_horizontal"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/popup_payment_cash_image"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="50dp"
+                    android:src="@drawable/btn_cash_payment_popup" />
+
+                <TextView
+                    android:layout_below="@+id/popup_payment_cash_image"
+                    android:id="@+id/popup_payment_text_cash"
+                    android:fontFamily="@font/poppins_bold"
+                    android:textSize="30dp"
+                    android:textColor="#92a5ff"
+                    android:layout_centerHorizontal="true"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cash" />
+
+                <LinearLayout
+                    android:id="@+id/popup_payment_text_cash_amountln"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/popup_payment_text_cash"
+                    android:layout_marginTop="0dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/popup_payment_text_cash_amount"
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="$ 21.01"
+                        android:textColor="#ffffff"
+                        android:textSize="46dp"
+                        android:textStyle="bold"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/popup_payment_text_cash_amount2"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="$ 21.01"
+                        android:textColor="#ffffff"
+                        android:textSize="26dp"
+                        android:gravity="center" />
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/popup_payment_text_discount_cash_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/popup_payment_text_cash_amountln"
+                    android:layout_centerInParent="true"
+                    android:text=""
+                    android:layout_marginBottom="20dp"
+                    android:textColor="#ffffff"
+                    android:textSize="20dp" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:visibility="visible"
+                android:id="@+id/rl_otherpay"
+                android:layout_marginLeft="20dp"
+                android:background="@drawable/popup_payment_btn_back"
+                android:gravity="center_horizontal"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/popup_payment_otherpay_image"
+                    android:layout_width="250dp"
+                    android:layout_height="200dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="50dp"
+                    android:src="@drawable/btn_otherpay_payment_popup" />
+
+                <TextView
+                    android:layout_below="@+id/popup_payment_otherpay_image"
+                    android:id="@+id/popup_payment_text_otherpay"
+                    android:fontFamily="@font/poppins_bold"
+                    android:textSize="30dp"
+                    android:textColor="#92a5ff"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_centerHorizontal="true"
+
+                    android:text="Store Giftcard/Point" />
+
+                <LinearLayout
+                    android:id="@+id/popup_payment_text_otherpay_amountln"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/popup_payment_text_otherpay"
+                    android:layout_marginTop="0dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/popup_payment_text_otherpay_amount"
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="$ 21.01"
+                        android:textColor="#ffffff"
+                        android:textSize="46dp"
+                        android:textStyle="bold"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/popup_payment_text_otherpay_amount2"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="$ 21.01"
+                        android:textColor="#ffffff"
+                        android:textSize="26dp"
+                        android:gravity="center" />
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/popup_payment_text_discount_otherpay_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/popup_payment_text_otherpay_amountln"
+                    android:layout_centerInParent="true"
+                    android:layout_marginBottom="20dp"
+                    android:text=""
+                    android:textColor="#ffffff"
+                    android:textSize="20dp" />
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

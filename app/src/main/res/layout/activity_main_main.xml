@@ -1,0 +1,231 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/frameLayout_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="visible" >
+
+        <!-- 중앙/우측/상단 컨텐츠 시작 (카테고리 리스트) -->
+        <LinearLayout
+            android:id="@+id/topCategoryLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.3"
+            android:orientation="horizontal" >
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <include
+                    android:id="@+id/servicecategory"
+                    layout="@layout/activity_category" />
+
+            </FrameLayout>
+
+        </LinearLayout>
+        <!-- 중앙/우측/상단 컨텐츠 끝 (카테고리 리스트) -->
+
+        <LinearLayout
+            android:id="@+id/main_main_middle_empty1"
+            android:tag="main_main_middle_empty1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.1"
+            android:orientation="horizontal" >
+        </LinearLayout>
+
+        <!-- 구분선색 -->
+        <LinearLayout
+            android:id="@+id/main_main_middle_line"
+            android:tag="main_main_middle_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:orientation="horizontal" >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:background="#dfdfe7"
+                android:orientation="horizontal" >
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/main_main_middle_empty2"
+            android:tag="main_main_middle_empty2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.1"
+            android:orientation="horizontal" >
+        </LinearLayout>
+
+        <!-- 중앙/우측/중앙 컨텐츠 시작 -->
+        <LinearLayout
+            android:id="@+id/middleServiceLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="4"
+            android:orientation="horizontal" >
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <include
+                    android:id="@+id/servicemenulayout60"
+                    layout="@layout/activity_service_60" />
+
+                <include
+                    android:id="@+id/servicemenulayout72"
+                    layout="@layout/activity_service_72" />
+                <include
+                    android:id="@+id/customer_servicemenulayout_60"
+                    layout="@layout/activity_customer_service_60"/>
+
+            </FrameLayout>
+
+
+        </LinearLayout>
+        <!-- 중앙/우측/중앙 컨텐츠 끝 -->
+
+        <!-- 중앙/우측/하단 컨텐츠 시작 -->
+        <LinearLayout
+            android:id="@+id/main_main_bottom_menus_ln"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.8"
+            android:orientation="horizontal" >
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="7dp" >
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_margin="3dp" >
+                        <Button
+                            android:id="@+id/mainRightBottom_Discount"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="9"
+                            android:background="@drawable/button_selector_gray2"
+                            android:text="DISCOUNT"
+                            android:textSize="18dp"
+                            android:textColor="#ffffff"
+                            android:gravity="center" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_margin="3dp" >
+                        <Button
+                            android:id="@+id/mainRightBottom_QuickSale"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="9"
+                            android:background="@drawable/button_selector_gray2"
+                            android:text="QUICK SALE"
+                            android:textSize="18dp"
+                            android:textColor="#ffffff"
+                            android:gravity="center" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_margin="3dp" >
+                        <Button
+                            android:id="@+id/mainRightBottom_Product"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="9"
+                            android:background="@drawable/button_selector_gray2"
+                            android:text="PRODUCT"
+                            android:textSize="18dp"
+                            android:textColor="#ffffff"
+                            android:gravity="center" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_margin="3dp" >
+                        <Button
+                            android:id="@+id/mainRightBottom_GiftCard"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="9"
+                            android:background="@drawable/button_selector_gray2"
+                            android:text="GIFT CARD"
+                            android:textSize="18dp"
+                            android:textColor="#ffffff"
+                            android:gravity="center" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_margin="3dp" >
+                        <Button
+                            android:id="@+id/mainRightBottom_menusearch"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="9"
+                            android:background="@drawable/button_selector_gray2"
+                            android:text="FOOD SEARCH"
+                            android:textSize="18dp"
+                            android:textColor="#ffffff"
+                            android:gravity="center" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_margin="3dp" >
+                        <Button
+                            android:id="@+id/mainRightBottom_Employee"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="9"
+                            android:background="@drawable/button_selector_gray2"
+                            android:text="EMPLOYEE"
+                            android:textSize="18dp"
+                            android:textColor="#ffffff"
+                            android:gravity="center" />
+                    </LinearLayout>
+                </TableRow>
+            </TableLayout>
+
+        </LinearLayout>
+        <!-- 중앙/우측/하단 컨텐츠 끝 -->
+
+    </LinearLayout>
+
+</LinearLayout>

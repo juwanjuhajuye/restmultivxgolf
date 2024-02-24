@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:id="@+id/checklist_main"
+        android:background="@drawable/checklist_bg"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+<!--        Floor list-->
+        <LinearLayout
+            android:weightSum="10"
+            android:orientation="vertical"
+            android:layout_margin="2dp"
+            android:background="#666573"
+            android:layout_weight="3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <Button
+                android:background="@drawable/button_selector_bluebutton3"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:text="ALL CHECKS"
+                android:id="@+id/btn_checklist_allchecks"
+                android:textColor="#007bf7"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"/>
+            <ListView
+                android:divider="#00000000"
+                android:id="@+id/checklist_list1"
+                android:layout_weight="8"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"/>
+            <Button
+                android:id="@+id/btn_checklist_clearchecked"
+                android:textSize="20dp"
+                android:text="Clear Checked"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+<!--            타이틀 닫기버튼-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp">
+                <TextView
+                    android:layout_marginLeft="20dp"
+                    android:id="@+id/checklist_title"
+                    android:gravity="center"
+                    android:text="NEW CHECK LIST"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:textColor="#ffffff"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"/>
+                <ImageButton
+                    android:visibility="invisible"
+                    android:id="@+id/checklist_sort"
+                    android:src="@drawable/checklist_sort"
+                    android:background="@color/zxing_transparent"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_toRightOf="@+id/checklist_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <Button
+                    android:visibility="gone"
+                    android:id="@+id/checklist_loglist"
+                    android:layout_width="80dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginRight="60dp"
+                    android:background="@drawable/button_selector_checklist_in_log"
+                    android:text="log"
+                    android:textColor="#ffffff"
+                    android:textStyle="bold" />
+
+                <ImageButton
+                    android:id="@+id/checklist_close"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="2dp"
+                    android:background="@color/zxing_transparent"
+                    android:src="@drawable/checklist_close" />
+            </RelativeLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp">
+                <TextView
+                    android:textColor="#52ebdb"
+                    android:gravity="center_vertical|left"
+                    android:textSize="18dp"
+                    android:paddingLeft="20dp"
+                    android:text="Your Checks"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"/>
+                <TextView
+                    android:textSize="18dp"
+                    android:textColor="#52ebdb"
+                    android:gravity="center_vertical|right"
+                    android:text="Total : $ "
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"/>
+                <TextView
+                    android:id="@+id/floor_totalamount"
+                    android:textSize="18dp"
+                    android:textColor="#52ebdb"
+                    android:paddingRight="20dp"
+                    android:gravity="center_vertical|right"
+                    android:text="1,000.00"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
+<!--            Check List-->
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ListView
+                    android:dividerHeight="1dp"
+                    android:divider="#bbbbbb"
+                    android:scrollbars="none"
+                    android:id="@+id/checklist_list2"
+                    android:descendantFocusability="blocksDescendants"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="2dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

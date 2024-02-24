@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp">
+
+    <!-- 중앙 컨텐츠 시작 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:background="@drawable/roundlayout_salehistory" >
+
+        <LinearLayout
+            android:id="@+id/backOfficeStoreLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:background="#5C5F69"
+            android:visibility="visible">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.6"
+                android:layout_marginBottom="8dp">
+                <TextView
+                    android:id="@+id/backOfficeStoreTopTitleTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="left|center_vertical"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="Store"
+                    android:textSize="22dp"
+                    android:textColor="#ffffff" />
+
+                <Button
+                    android:id="@+id/backOfficeStoreCloseBtn"
+                    android:tag="backOfficeStoreCloseBtnTag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginBottom="5dp"
+                    android:paddingRight="20dp"
+                    android:paddingLeft="20dp"
+                    android:gravity="center"
+                    android:background="@drawable/button_selector_gray"
+                    android:textColor="#ffffff"
+                    android:text="X"/>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="8.5"
+                android:background="#dbdcdf"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="6"
+                    android:padding="10dp"
+                    android:orientation="vertical">
+
+                    <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:id="@+id/backOfficeStoreInformationtLinearLayout"
+                            android:tag="backOfficeStoreInformationtLinearLayoutTag"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="5dp"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_marginBottom="10dp">
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="3"
+                                    android:padding="10dp"
+                                    android:gravity="center"
+                                    android:text="Store Name"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="bold"
+                                    android:background="@drawable/roundlayout_background_backofficesubtitle"/>
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.3"/>
+                                <EditText
+                                    android:id="@+id/backOfficeStoreNameEditText"
+                                    android:tag="backOfficeStoreNameEditTextTag"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="7"
+                                    android:padding="10dp"
+                                    android:gravity="left|center_vertical"
+                                    android:background="@drawable/roundlayout_background_cashinout_in"
+                                    android:textColor="#818583"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_marginBottom="10dp">
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="3"
+                                    android:padding="10dp"
+                                    android:gravity="center"
+                                    android:text="Address1"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="bold"
+                                    android:background="@drawable/roundlayout_background_backofficesubtitle"/>
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.3"/>
+                                <EditText
+                                    android:id="@+id/backOfficeStoreAddress1EditText"
+                                    android:tag="backOfficeStoreAddress1EditTextTag"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="7"
+                                    android:padding="10dp"
+                                    android:gravity="left|center_vertical"
+                                    android:background="@drawable/roundlayout_background_cashinout_in"
+                                    android:textColor="#818583"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+
+
+                        </LinearLayout>
+
+                    </ScrollView>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:padding="10dp"
+                    android:background="#91949d">
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <!-- 중앙 컨텐츠 끝 -->
+
+</LinearLayout>

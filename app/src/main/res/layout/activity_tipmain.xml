@@ -1,0 +1,28 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/transparent" >
+
+    <LinearLayout
+        android:id="@+id/tipmainLn"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:visibility="visible"
+        android:background="@drawable/roundlayout_tipmain">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Would you like to leave a tip?"
+            android:textSize="30dp"
+            android:textColor="#3e3d42"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp">
+
+    <LinearLayout
+        android:id="@+id/settingsLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#f0f0f0" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:padding="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:gravity="center_vertical|left"
+                android:text="CLOUD KITCHEN PRINTING"
+                android:textSize="22dp"
+                android:textColor="#000000"
+                android:textStyle="bold"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:orientation="horizontal"
+                android:gravity="center_vertical|right">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:layout_marginRight="10dp"
+                    android:text=" SETTINGS "
+                    android:textSize="18dp"
+                    android:textColor="#0f79b9"
+                    android:textStyle="bold"
+                    android:background="@drawable/roundlayout_line_black"
+                    android:visibility="gone"/>
+
+                <Button
+                    android:id="@+id/saleHistoryCloseBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:text="    X    "
+                    android:textSize="30dp"
+                    android:textColor="#f00c00"
+                    android:textStyle="bold"
+                    android:background="@drawable/roundlayout_line_black"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.2"
+            android:orientation="horizontal">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="8"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/saleHistoryReturnItemListLinearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/roundlayout_line_noround"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="5"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/titleTv1"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.3"
+                                android:gravity="center"
+                                android:textSize="12dp"
+                                android:textColor="#a4a2a9"
+                                android:text="Station" />
+                            <TextView
+                                android:id="@+id/titleTv6"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1.5"
+                                android:gravity="center"
+                                android:textSize="12dp"
+                                android:textColor="#a4a2a9"
+                                android:text="Receipt No." />
+                            <TextView
+                                android:id="@+id/titleTv2"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:textSize="12dp"
+                                android:textColor="#a4a2a9"
+                                android:text="Order No." />
+                            <TextView
+                                android:id="@+id/titleTv3"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.5"
+                                android:gravity="center"
+                                android:textSize="12dp"
+                                android:textColor="#a4a2a9"
+                                android:text="Pager No." />
+                            <TextView
+                                android:id="@+id/titleTv4"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.7"
+                                android:gravity="center"
+                                android:textSize="12dp"
+                                android:textColor="#a4a2a9"
+                                android:text="Status" />
+                            <TextView
+                                android:id="@+id/titleTv5"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:textSize="12dp"
+                                android:textColor="#a4a2a9"
+                                android:text="Date" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#bbbbc8"
+                            android:orientation="horizontal">
+
+                        </LinearLayout>
+
+
+                        <ScrollView
+                            android:id="@+id/saleHistoryReturnItemListSaleListScrollView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <LinearLayout
+                                android:id="@+id/listLn"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:tag="listLnTag"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp">
+
+
+                            </LinearLayout>
+                        </ScrollView>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.1"
+                android:orientation="vertical">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/saleHistoryStartDateEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="#3e3d42"
+                        android:textStyle="bold"
+                        android:textSize="16dp"
+                        android:background="@drawable/roundlayout_line_noround"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.3" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/saleHistoryCustomerSearchEditText"
+                            android:tag="saleHistoryCustomerSearchEditTextTag"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="4.5"
+                            android:gravity="center"
+                            android:textColor="#3e3d42"
+                            android:textStyle="bold"
+                            android:textSize="14dp"
+                            android:background="@drawable/roundlayout_line_noround"
+                            android:cursorVisible="false"/>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1.6"
+                            android:orientation="horizontal"
+                            android:gravity="center">
+
+                            <Button
+                                android:id="@+id/saleHistoryCustomerSearchSHButton"
+                                android:tag="saleHistoryCustomerSearchSHButtonTag"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.3" />
+
+                    <Button
+                        android:id="@+id/reloadbtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.8"
+                        android:background="@drawable/button_selector_kitchenprinting_list"
+                        android:paddingRight="10dp"
+                        android:paddingLeft="10dp"
+                        android:text="RELOAD"
+                        android:textSize="16dp"
+                        android:textColor="#000000"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1.7"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/deletebtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1.5"
+                        android:background="@drawable/button_selector_addtoorder"
+                        android:paddingRight="10dp"
+                        android:paddingLeft="10dp"
+                        android:text="DELETE"
+                        android:textSize="20dp"
+                        android:textColor="#ffffff"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.2" />
+
+                    <Button
+                        android:id="@+id/reprintbtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="4"
+                        android:background="@drawable/button_selector_optionbutton_selected"
+                        android:paddingRight="10dp"
+                        android:paddingLeft="10dp"
+                        android:text="RE-PRINT"
+                        android:textSize="26dp"
+                        android:textStyle="bold"
+                        android:textColor="#ffffff"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.4"
+            android:orientation="horizontal">
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="@drawable/roundlayout_background_suev">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="Bill Printing"
+            android:textSize="20dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="100">
+
+        <Button
+            android:id="@+id/pbutton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="70"
+            android:text="Yes" />
+
+        <Button
+            android:id="@+id/nbutton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="30"
+            android:text="No" />
+    </LinearLayout>
+</LinearLayout>

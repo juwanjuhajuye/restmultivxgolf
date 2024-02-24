@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp"
+    android:background="@android:color/transparent" >
+
+    <LinearLayout
+        android:id="@+id/shlparentln"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:orientation="horizontal">
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="15"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:orientation="horizontal">
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="20"
+                android:orientation="horizontal"
+                android:background="@drawable/roundlayout_background_cartoption">
+
+                <LinearLayout
+                    android:id="@+id/salehistory_list_back"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#ffffff"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1.5"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:orientation="horizontal">
+                        <LinearLayout
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:paddingRight="10dp"
+                            android:paddingLeft="10dp">
+                            <TextView
+                                android:id="@+id/salehistory_list_StartDateEditText"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:textColor="#3e3d42"
+                                android:textStyle="bold"
+                                android:textSize="16dp"
+                                android:background="@drawable/roundlayout_cashinout_tv_bg1"/>
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.05"/>
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.3"
+                                android:gravity="center"
+                                android:textSize="25dp"
+                                android:textStyle="bold"
+                                android:text="-"/>
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.05"/>
+                            <TextView
+                                android:id="@+id/salehistory_list_EndDateEditText"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:textColor="#3e3d42"
+                                android:textStyle="bold"
+                                android:textSize="16dp"
+                                android:background="@drawable/roundlayout_cashinout_tv_bg1"/>
+
+                            <RadioGroup
+                                android:id="@+id/deliverytakeawayGroup"
+                                android:tag="deliverytakeawayGroupTag"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp" >
+                                <RadioButton
+                                    android:id="@+id/hereRadioButton"
+                                    android:tag="hereRadioButtonTag"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:textSize="15dp"
+                                    android:textColor="#000000"
+                                    android:text="Here" />
+                                <RadioButton
+                                    android:id="@+id/takeawayRadioButton"
+                                    android:tag="takeawayRadioButtonTag"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginLeft="20dp"
+                                    android:textSize="15dp"
+                                    android:textColor="#000000"
+                                    android:text="To Go"/>
+                                <RadioButton
+                                    android:id="@+id/deliveryRadioButton"
+                                    android:tag="deliveryRadioButtonTag"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginLeft="20dp"
+                                    android:textSize="15dp"
+                                    android:textColor="#000000"
+                                    android:text="Delivery" />
+                                <RadioButton
+                                    android:id="@+id/allRadioButton"
+                                    android:tag="allRadioButtonTag"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginLeft="20dp"
+                                    android:textSize="15dp"
+                                    android:textColor="#000000"
+                                    android:text="All  "
+                                    android:checked="true" />
+
+                            </RadioGroup>
+
+                            <EditText
+                                android:id="@+id/shlSearchEv"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:textColor="#3e3d42"
+                                android:textStyle="bold"
+                                android:textSize="16dp"
+                                android:background="@drawable/roundlayout_cashinout_tv_bg1"/>
+
+                            <ImageButton
+                                android:layout_gravity="center_vertical"
+                                android:id="@+id/salehistory_list_date_search"
+                                android:background="@android:color/transparent"
+                                android:src="@drawable/ab_imagebutton_salehistory_search"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+
+
+
+                            <Button
+                                android:visibility="gone"
+                                android:layout_gravity="center"
+                                android:id="@+id/salehistory_list_loglist"
+                                android:background="@drawable/button_selector_checklist_in_log"
+                                android:text="log"
+                                android:textStyle="bold"
+                                android:textColor="#ffffff"
+                                android:layout_marginTop="2dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:layout_weight="0.5"
+                                android:layout_width="0dp"
+                                android:layout_height="40dp"/>
+
+                        </LinearLayout>
+                        <LinearLayout
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="right|center_vertical"
+                            android:layout_marginRight="20dp"
+                            android:orientation="horizontal">
+                            <ImageButton
+                                android:id="@+id/salehistory_list_close"
+                                android:src="@drawable/ab_imagebutton_close_common2"
+                                android:background="@android:color/transparent"
+                                android:layout_gravity="center"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                        </LinearLayout>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.7"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:orientation="horizontal"
+                        android:background="#5e5e5e">
+
+                        <TextView
+                            android:id="@+id/shititletv1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:gravity="left|center_vertical"
+                            android:textSize="18dp"
+                            android:textColor="#ffffff"
+                            android:text="Date" />
+
+                        <TextView
+                            android:id="@+id/shititletv3"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1.5"
+                            android:textAlignment="gravity"
+                            android:gravity="center"
+                            android:textSize="18dp"
+                            android:textColor="#ffffff"
+                            android:text="Receipt No."
+                            android:visibility="gone"/>
+                        <TextView
+                            android:id="@+id/shititletv4"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:textAlignment="gravity"
+                            android:gravity="center"
+                            android:textSize="18dp"
+                            android:textColor="#ffffff"
+                            android:text="Pickup\nType" />
+                        <TextView
+                            android:id="@+id/shititletv_tablenum"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:textAlignment="gravity"
+                            android:gravity="center"
+                            android:textSize="18dp"
+                            android:textColor="#ffffff"
+                            android:text="Table Number" />
+                        <TextView
+                            android:id="@+id/shititletv5"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1.5"
+                            android:textAlignment="gravity"
+                            android:gravity="center"
+                            android:textSize="18dp"
+                            android:textColor="#ffffff"
+                            android:text="Customer" />
+                        <TextView
+                            android:id="@+id/shititletv6"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:textAlignment="gravity"
+                            android:gravity="center"
+                            android:textSize="18dp"
+                            android:textColor="#ffffff"
+                            android:text="Payment" />
+                        <TextView
+                            android:id="@+id/shititletv7"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:textAlignment="gravity"
+                            android:gravity="center"
+                            android:textSize="18dp"
+                            android:textColor="#ffffff"
+                            android:text="4-Digits\n/ Auth" />
+
+                        <TextView
+                            android:id="@+id/shititletv2"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1.5"
+                            android:textAlignment="gravity"
+                            android:gravity="center"
+                            android:textSize="18dp"
+                            android:textColor="#ffffff"
+                            android:text="Order No." />
+
+                        <TextView
+                            android:id="@+id/shititletv11"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.8"
+                            android:textAlignment="gravity"
+                            android:gravity="center"
+                            android:textSize="18dp"
+                            android:textColor="#ffffff"
+                            android:text="Gratuity"/>
+
+                        <TextView
+                            android:id="@+id/shititletv8"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:layout_gravity="center"
+                            android:textAlignment="gravity"
+                            android:gravity="right|center_vertical"
+                            android:textSize="18dp"
+                            android:textColor="#ffffff"
+                            android:text="Total\nAmount" />
+                        <TextView
+                            android:id="@+id/shititletv9"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:layout_gravity="center"
+                            android:textAlignment="gravity"
+                            android:gravity="right|center_vertical"
+                            android:textSize="18dp"
+                            android:textColor="#ffffff"
+                            android:text="Total\nTip" />
+                        <TextView
+                            android:id="@+id/salehistory_list_row_alltotal"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:layout_gravity="center"
+                            android:textAlignment="gravity"
+                            android:gravity="right|center_vertical"
+                            android:textSize="18dp"
+                            android:textColor="#ffffff"
+                            android:text="TOTAL\n( + TIP)" />
+                        <TextView
+                            android:id="@+id/shititletv10"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1.7"
+                            android:layout_gravity="center"
+                            android:textAlignment="gravity"
+                            android:gravity="right|center_vertical"
+                            android:textSize="18dp"
+                            android:textColor="#ffffff"
+                            android:text="" />
+                        <View
+                            android:visibility="gone"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"/>
+                    </LinearLayout>
+
+                    <ListView
+                        android:id="@+id/salehistory_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="10" />
+
+                    <LinearLayout
+                        android:id="@+id/listPageLn"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:gravity="center">
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:orientation="horizontal">
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:orientation="horizontal">
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

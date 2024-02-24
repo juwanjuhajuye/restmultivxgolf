@@ -1,0 +1,1213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp">
+
+    <LinearLayout
+        android:id="@+id/settingsSystemLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical">
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/settingsSystemLn"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="8.5"
+            android:orientation="horizontal">
+            <ScrollView
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:padding="50dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:id="@+id/temp_check_receipt_ln"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                </LinearLayout>
+
+
+            </ScrollView>
+
+            <ScrollView
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                    <LinearLayout
+                        android:layout_weight="2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <!-- Receipt Printer 관련 시작 -->
+
+
+
+                        <!-- Device 관련 시작 -->
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/roundlayout_background_settings_popup"
+                            android:orientation="vertical"
+                            android:padding="10dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="18dp"></LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="0.1"
+                                android:orientation="horizontal"></LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/employeecommissionLn1"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:visibility="visible">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2">
+
+                                    <TextView
+                                        android:id="@+id/setting_popup_check_header"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:gravity="left|center_vertical"
+                                        android:text="HEADER(STORE NAME, ADDRESS, PHONE)"
+                                        android:textColor="#ffffff"
+                                        android:textSize="18dp"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.1"></LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:paddingBottom="8dp"
+                                    android:paddingTop="8dp">
+
+                                    <Switch
+                                        android:id="@+id/sw_setting_popup_check_header"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="left|center_vertical"
+                                        android:checked="true"
+                                        android:textOff="Off"
+                                        android:textOn="On"
+                                        style="@style/SwitchCustom40"
+                                        android:switchTextAppearance="@style/SwitchTextAppearance" />
+
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/employeecommissionLn2"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="0.1"
+                                android:orientation="horizontal"></LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2">
+
+                                    <TextView
+                                        android:id="@+id/setting_popup_check_stationnumber"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="2"
+                                        android:gravity="left|center_vertical"
+                                        android:text="STATION NUMBER"
+                                        android:textColor="#ffffff"
+                                        android:textSize="18dp"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.1"></LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:orientation="horizontal"
+                                    android:paddingBottom="8dp"
+                                    android:paddingTop="8dp">
+
+                                    <Switch
+                                        android:id="@+id/sw_setting_popup_check_stationnumber"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="left|center_vertical"
+                                        android:checked="true"
+                                        android:textOff="Off"
+                                        android:textOn="On"
+                                        style="@style/SwitchCustom40"
+                                        android:switchTextAppearance="@style/SwitchTextAppearance" />
+
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="0.1"
+                                android:orientation="horizontal"></LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+android:layout_weight="2">
+
+                                    <TextView
+                                        android:id="@+id/setting_popup_check_casher"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:gravity="left|center_vertical"
+                                        android:text="CASHER"
+                                        android:textColor="#ffffff"
+                                        android:textSize="18dp"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.1"></LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:orientation="horizontal"
+                                    android:paddingBottom="8dp"
+                                    android:paddingTop="8dp">
+
+                                    <Switch
+                                        android:id="@+id/sw_setting_popup_check_casher"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="left|center_vertical"
+                                        android:checked="true"
+                                        android:textOff="Off"
+                                        android:textOn="On"
+                                        style="@style/SwitchCustom40"
+                                        android:switchTextAppearance="@style/SwitchTextAppearance" />
+
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="0.1"
+                                android:orientation="horizontal"></LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+android:layout_weight="2">
+
+                                    <TextView
+                                        android:id="@+id/setting_popup_check_ordernumber"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:gravity="left|center_vertical"
+                                        android:text="ORDER NUMBER"
+                                        android:textColor="#ffffff"
+                                        android:textSize="18dp"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.1"></LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:paddingBottom="8dp"
+                                    android:paddingTop="8dp">
+
+                                    <Switch
+                                        android:id="@+id/sw_setting_popup_check_ordernumber"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="left|center_vertical"
+                                        android:checked="true"
+                                        android:textOff="Off"
+                                        android:textOn="On"
+                                        style="@style/SwitchCustom40"
+                                        android:switchTextAppearance="@style/SwitchTextAppearance" />
+
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+android:layout_weight="2">
+
+                                    <TextView
+                                        android:id="@+id/setting_popup_check_ordertype"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:gravity="left|center_vertical"
+                                        android:text="ORDER TYPE"
+                                        android:textColor="#ffffff"
+                                        android:textSize="18dp"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.1"></LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:paddingBottom="8dp"
+                                    android:paddingTop="8dp">
+
+                                    <Switch
+                                        android:id="@+id/sw_setting_popup_check_ordertype"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="left|center_vertical"
+                                        android:checked="true"
+                                        android:textOff="Off"
+                                        android:textOn="On"
+                                        style="@style/SwitchCustom40"
+                                        android:switchTextAppearance="@style/SwitchTextAppearance" />
+
+                                </LinearLayout>
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+android:layout_weight="2">
+
+                                    <TextView
+                                        android:id="@+id/setting_popup_check_ordertypefont"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:gravity="left|center_vertical"
+                                        android:text="ORDER TYPE FONT"
+                                        android:textColor="#ffffff"
+                                        android:textSize="18dp"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.1"></LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:paddingBottom="8dp"
+                                    android:paddingTop="8dp">
+
+                                    <Switch
+                                        android:id="@+id/sw_setting_popup_check_ordertypefont"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="left|center_vertical"
+                                        android:checked="true"
+                                        android:textOff="Off"
+                                        android:textOn="On"
+                                        style="@style/SwitchCustom40"
+                                        android:switchTextAppearance="@style/SwitchTextAppearance" />
+
+                                </LinearLayout>
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+android:layout_weight="2">
+
+                                    <TextView
+                                        android:id="@+id/setting_popup_check_ordertypealignment"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:gravity="left|center_vertical"
+                                        android:text="ORDER TYPE ALIGNMENT (TOP,BOTTOM)"
+                                        android:textColor="#ffffff"
+                                        android:textSize="18dp"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.1"></LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:paddingBottom="8dp"
+                                    android:paddingTop="8dp">
+
+                                    <Switch
+                                        android:id="@+id/sw_setting_popup_check_ordertypealignment"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="left|center_vertical"
+                                        android:checked="true"
+                                        android:textOff="BOTTOM"
+                                        android:textOn="TOP"
+                                        style="@style/SwitchCustom40"
+                                        android:switchTextAppearance="@style/SwitchTextAppearance" />
+
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+android:layout_weight="2">
+
+                                    <TextView
+                                        android:id="@+id/setting_popup_check_tablenumber"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:gravity="left|center_vertical"
+                                        android:text="TABLE NUMBER"
+                                        android:textColor="#ffffff"
+                                        android:textSize="18dp"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.1"></LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:paddingBottom="8dp"
+                                    android:paddingTop="8dp">
+
+                                    <Switch
+                                        android:id="@+id/sw_setting_popup_check_tablenumber"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="left|center_vertical"
+                                        android:checked="true"
+                                        android:textOff="Off"
+                                        android:textOn="On"
+                                        style="@style/SwitchCustom40"
+                                        android:switchTextAppearance="@style/SwitchTextAppearance" />
+
+                                </LinearLayout>
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+android:layout_weight="2">
+
+                                    <TextView
+                                        android:id="@+id/setting_popup_check_tablenumberfont"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:gravity="left|center_vertical"
+                                        android:text="TABLE NUMBER FONT"
+                                        android:textColor="#ffffff"
+                                        android:textSize="18dp"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.1"></LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:paddingBottom="8dp"
+                                    android:paddingTop="8dp">
+
+                                    <Switch
+                                        android:id="@+id/sw_setting_popup_check_tablenumberfont"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="left|center_vertical"
+                                        android:checked="true"
+                                        android:textOff="Off"
+                                        android:textOn="On"
+                                        style="@style/SwitchCustom40"
+                                        android:switchTextAppearance="@style/SwitchTextAppearance" />
+
+                                </LinearLayout>
+                            </LinearLayout>
+
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+android:layout_weight="2">
+
+                                    <TextView
+                                        android:id="@+id/setting_popup_check_pagernumber"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:gravity="left|center_vertical"
+                                        android:text="PAGER NUMBER"
+                                        android:textColor="#ffffff"
+                                        android:textSize="18dp"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.1"></LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:paddingBottom="8dp"
+                                    android:paddingTop="8dp">
+
+                                    <Switch
+                                        android:id="@+id/sw_setting_popup_check_pagernumber"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="left|center_vertical"
+                                        android:checked="true"
+                                        android:textOff="Off"
+                                        android:textOn="On"
+                                        style="@style/SwitchCustom40"
+                                        android:switchTextAppearance="@style/SwitchTextAppearance" />
+
+                                </LinearLayout>
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="0.1"
+                                android:orientation="horizontal">
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+android:layout_weight="2">
+
+                                    <TextView
+                                        android:id="@+id/setting_popup_check_pagernumberfont"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:gravity="left|center_vertical"
+                                        android:text="PAGER NUMBER FONT"
+                                        android:textColor="#ffffff"
+                                        android:textSize="18dp"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.1"></LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:paddingBottom="8dp"
+                                    android:paddingTop="8dp">
+
+                                    <Switch
+                                        android:id="@+id/sw_setting_popup_check_pagernumberfont"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="left|center_vertical"
+                                        android:checked="true"
+                                        android:textOff="Off"
+                                        android:textOn="On"
+                                        style="@style/SwitchCustom40"
+                                        android:switchTextAppearance="@style/SwitchTextAppearance" />
+
+                                </LinearLayout>
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="0.1"
+                                android:orientation="horizontal">
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+android:layout_weight="2">
+
+                                    <TextView
+                                        android:id="@+id/setting_popup_check_pagernumberalignment"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:gravity="left|center_vertical"
+                                        android:text="PAGER ALIGNMENT (TOP, BOTTOM)"
+                                        android:textColor="#ffffff"
+                                        android:textSize="18dp"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.1"></LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:paddingBottom="8dp"
+                                    android:paddingTop="8dp">
+
+                                    <Switch
+                                        android:id="@+id/sw_setting_popup_check_pagernumberalignment"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="left|center_vertical"
+                                        android:checked="true"
+                                        android:textOff="BOTTOM"
+                                        android:textOn="TOP"
+                                        style="@style/SwitchCustom40"
+                                        android:switchTextAppearance="@style/SwitchTextAppearance" />
+
+                                </LinearLayout>
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="0.1"
+                                android:orientation="horizontal">
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+android:layout_weight="2">
+
+                                    <TextView
+                                        android:id="@+id/setting_popup_check_ordermemo"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:gravity="left|center_vertical"
+                                        android:text="ORDER MEMO"
+                                        android:textColor="#ffffff"
+                                        android:textSize="18dp"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.1"></LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:paddingBottom="8dp"
+                                    android:paddingTop="8dp">
+
+                                    <Switch
+                                        android:id="@+id/sw_setting_popup_check_ordermemo"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="left|center_vertical"
+                                        android:checked="true"
+                                        android:textOff="Off"
+                                        android:textOn="On"
+                                        style="@style/SwitchCustom40"
+                                        android:switchTextAppearance="@style/SwitchTextAppearance" />
+
+                                </LinearLayout>
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="0.1"
+                                android:orientation="horizontal">
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+android:layout_weight="2">
+
+                                    <TextView
+                                        android:id="@+id/setting_popup_check_itemmemo"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:gravity="left|center_vertical"
+                                        android:text="ITEM MEMO"
+                                        android:textColor="#ffffff"
+                                        android:textSize="18dp"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.1"></LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:paddingBottom="8dp"
+                                    android:paddingTop="8dp">
+
+                                    <Switch
+                                        android:id="@+id/sw_setting_popup_check_itemmemo"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="left|center_vertical"
+                                        android:checked="true"
+                                        android:textOff="Off"
+                                        android:textOn="On"
+                                        style="@style/SwitchCustom40"
+                                        android:switchTextAppearance="@style/SwitchTextAppearance" />
+
+                                </LinearLayout>
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="0.1"
+                                android:orientation="horizontal">
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+android:layout_weight="2">
+
+                                    <TextView
+                                        android:id="@+id/setting_popup_check_displayitemline"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:gravity="left|center_vertical"
+                                        android:text="DISPLAY ITEM LINE"
+                                        android:textColor="#ffffff"
+                                        android:textSize="18dp"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.1"></LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:paddingBottom="8dp"
+                                    android:paddingTop="8dp">
+
+                                    <Switch
+                                        android:id="@+id/sw_setting_popup_check_displayitemline"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="left|center_vertical"
+                                        android:checked="true"
+                                        android:textOff="Off"
+                                        android:textOn="On"
+                                        style="@style/SwitchCustom40"
+                                        android:switchTextAppearance="@style/SwitchTextAppearance" />
+
+                                </LinearLayout>
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="0.1"
+                                android:orientation="horizontal">
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+android:layout_weight="2">
+
+                                    <TextView
+                                        android:id="@+id/setting_popup_check_displayvoiditem"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:gravity="left|center_vertical"
+                                        android:text="DISPLAY VOID ITEM"
+                                        android:textColor="#ffffff"
+                                        android:textSize="18dp"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.1"></LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:paddingBottom="8dp"
+                                    android:paddingTop="8dp">
+
+                                    <Switch
+                                        android:id="@+id/sw_setting_popup_check_displayvoiditem"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="left|center_vertical"
+                                        android:checked="true"
+                                        android:textOff="Off"
+                                        android:textOn="On"
+                                        style="@style/SwitchCustom40"
+                                        android:switchTextAppearance="@style/SwitchTextAppearance" />
+
+                                </LinearLayout>
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="0.1"
+                                android:orientation="horizontal">
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+android:layout_weight="2">
+
+                                    <TextView
+                                        android:id="@+id/setting_popup_check_guestinfo"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:gravity="left|center_vertical"
+                                        android:text="GUEST INFO"
+                                        android:textColor="#ffffff"
+                                        android:textSize="18dp"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.1"></LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:paddingBottom="8dp"
+                                    android:paddingTop="8dp">
+
+                                    <Switch
+                                        android:id="@+id/sw_setting_popup_check_guestinfo"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="left|center_vertical"
+                                        android:checked="true"
+                                        android:textOff="Off"
+                                        android:textOn="On"
+                                        style="@style/SwitchCustom40"
+                                        android:switchTextAppearance="@style/SwitchTextAppearance" />
+
+                                </LinearLayout>
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="0.1"
+                                android:orientation="horizontal">
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+android:layout_weight="2">
+
+                                    <TextView
+                                        android:id="@+id/setting_popup_check_quantitysumarize"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:gravity="left|center_vertical"
+                                        android:text="QUANTITY SUMARIZED"
+                                        android:textColor="#ffffff"
+                                        android:textSize="18dp"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.1"></LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:paddingBottom="8dp"
+                                    android:paddingTop="8dp">
+
+                                    <Switch
+                                        android:id="@+id/sw_setting_popup_check_quantitysumarize"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="left|center_vertical"
+                                        android:checked="true"
+                                        android:textOff="Off"
+                                        android:textOn="On"
+                                        style="@style/SwitchCustom40"
+                                        android:switchTextAppearance="@style/SwitchTextAppearance" />
+
+                                </LinearLayout>
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="0.1"
+                                android:orientation="horizontal">
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+android:layout_weight="2">
+
+                                    <TextView
+                                        android:id="@+id/setting_popup_check_topfeedrowcount"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:gravity="left|center_vertical"
+                                        android:text="TOP FEED ROW COUNT"
+                                        android:textColor="#ffffff"
+                                        android:textSize="18dp"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.1"></LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:paddingBottom="8dp"
+                                    android:paddingTop="8dp">
+
+                                    <Switch
+                                        android:id="@+id/sw_setting_popup_check_topfeedrowcount"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="left|center_vertical"
+                                        android:checked="true"
+                                        android:textOff="Off"
+                                        android:textOn="On"
+                                        style="@style/SwitchCustom40"
+                                        android:switchTextAppearance="@style/SwitchTextAppearance" />
+
+                                </LinearLayout>
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="0.1"
+                                android:orientation="horizontal">
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:id="@+id/receiptlogoimgLn"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:paddingBottom="8dp"
+                                android:paddingTop="8dp"
+                                android:visibility="visible">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1">
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:gravity="left|center_vertical"
+                                        android:textSize="18dp"
+                                        android:textColor="#ffffff"
+                                        android:textStyle="bold"
+                                        android:text=""/>
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.1">
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1.5">
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:orientation="horizontal"
+                                        android:gravity="right|center_vertical">
+
+                                        <ImageView
+                                            android:id="@+id/receiptlogimgIv"
+                                            android:layout_width="200dp"
+                                            android:layout_height="100dp"
+                                            android:scaleType="fitXY" />
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+                        <!-- Device 관련 끝 -->
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="15dp"
+                            android:orientation="horizontal"></LinearLayout>
+
+
+                    </LinearLayout>
+
+
+
+                </LinearLayout>
+
+            </ScrollView>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.1"
+            android:orientation="horizontal"></LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

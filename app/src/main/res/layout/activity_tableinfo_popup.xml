@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp">
+
+    <LinearLayout
+        android:id="@+id/table_infopopup_main_ln"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:background="@drawable/roundlayout_pushpopup_weborders" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.3"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="6"
+                android:gravity="center_vertical|left"
+                android:paddingLeft="20dp"
+                android:text="Table Infomation."
+                android:textColor="#ffffff"
+                android:textSize="20dp"
+                android:textStyle="bold"/>
+            <Button
+                android:id="@+id/closeButton"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="8.5"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5">
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="25"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.5">
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="10"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.1"
+                        android:orientation="horizontal">
+                    </LinearLayout>
+
+
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical|right"
+                            android:paddingRight="5dp"
+                            android:textColor="#3a8cde"
+                            android:textSize="18dp"
+                            android:textStyle="bold"
+                            android:text="Table Name"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.1"/>
+                        <TextView
+                            android:id="@+id/table_info_name"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2.2"
+                            android:gravity="center_vertical|left"
+                            android:paddingLeft="5dp"
+                            android:textColor="#ffffff"
+                            android:textSize="18dp"
+                            android:text="table name"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.1"
+                        android:orientation="horizontal">
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical|right"
+                            android:paddingRight="5dp"
+                            android:textColor="#3a8cde"
+                            android:textSize="18dp"
+                            android:textStyle="bold"
+                            android:text="Table Capacity"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.1"/>
+                        <TextView
+                            android:id="@+id/table_info_capacity"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2.2"
+                            android:gravity="center_vertical|left"
+                            android:paddingLeft="5dp"
+                            android:textColor="#ffffff"
+                            android:textSize="18dp"
+                            android:text="0/0"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.1"
+                        android:orientation="horizontal">
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2.5"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:paddingRight="5dp"
+                            android:paddingTop="5dp"
+                            android:textColor="#3a8cde"
+                            android:textSize="18dp"
+                            android:textStyle="bold"
+                            android:text="Menu Name"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.1"/>
+                        <ListView
+                            android:id="@+id/table_info_menu"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2.2"
+                            android:gravity="center_vertical|left"
+                            android:paddingLeft="5dp"
+                            android:listSelector="@android:color/transparent"
+                            android:textColor="#ffffff"
+                            android:textSize="18dp"
+                            android:text="menu1\nmenu2\nmenu3"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.1"
+                        android:orientation="horizontal">
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:gravity="bottom"
+                        android:layout_marginBottom="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical|right"
+                            android:paddingRight="5dp"
+                            android:textColor="#3a8cde"
+                            android:textSize="18dp"
+                            android:textStyle="bold"
+                            android:text="Memu Total"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.1"/>
+                        <TextView
+                            android:id="@+id/table_info_menu_total"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2.2"
+                            android:gravity="center_vertical|left"
+                            android:paddingLeft="5dp"
+                            android:textColor="#ffffff"
+                            android:textSize="18dp"
+                            android:text="0.00$"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.1"
+                        android:orientation="horizontal">
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5">
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+
+
+    </LinearLayout>
+
+</LinearLayout>

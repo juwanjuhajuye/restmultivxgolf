@@ -1,0 +1,1022 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical">
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/kitchenprinterSelectPtLn"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="8.5"
+            android:orientation="vertical"
+            android:padding="5dp"
+            android:background="@drawable/roundlayout_background_settings_sub" >
+
+            <LinearLayout
+                android:id="@+id/frameLayout_kitchenprinterSelection"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.7"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/roundlayout_background_settings_tab_selected"
+                        android:padding="5dp">
+
+                        <TextView
+                            android:id="@+id/settingsDevicePrinterTitleTextView1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="left|center_vertical"
+                            android:text=" Kitchen Printers Setting "
+                            android:textColor="#826953"
+                            android:textSize="20dp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.2"
+                        android:orientation="vertical"
+                        android:gravity="center_vertical|right">
+
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.2"
+                        android:orientation="horizontal">
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:paddingBottom="8dp"
+                        android:paddingTop="8dp"
+                        android:visibility="gone">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1">
+                            <TextView
+                                android:id="@+id/settingsSystemTitleTextView1"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="left|center_vertical"
+                                android:textSize="20dp"
+                                android:textColor="#ffffff"
+                                android:textStyle="bold"
+                                android:text="Print Location"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.1">
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2">
+
+                            <RadioGroup
+                                android:id="@+id/cloudprintynGroup"
+                                android:tag="cloudprintynGroupTag"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal">
+                                <RadioButton
+                                    android:id="@+id/localprintRButton"
+                                    android:tag="localprintRButtonTAg"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginRight="10dp"
+                                    android:textSize="15dp"
+                                    android:textColor="#ffffff"
+                                    android:text="Local"
+                                    android:checked="true"/>
+                                <RadioButton
+                                    android:id="@+id/socketprintRButton"
+                                    android:tag="socketprintRButtonTag"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginRight="10dp"
+                                    android:layout_marginLeft="20dp"
+                                    android:textSize="15dp"
+                                    android:textColor="#ffffff"
+                                    android:text="Socket" />
+                                <RadioButton
+                                    android:id="@+id/bluetoothprintRButton"
+                                    android:tag="bluetoothprintRButtonTag"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginRight="10dp"
+                                    android:layout_marginLeft="20dp"
+                                    android:textSize="15dp"
+                                    android:textColor="#ffffff"
+                                    android:text="Blue Tooth" />
+                                <RadioButton
+                                    android:id="@+id/printingappRButton"
+                                    android:tag="otherappRButtonTag"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginRight="10dp"
+                                    android:layout_marginLeft="20dp"
+                                    android:textSize="15dp"
+                                    android:textColor="#ffffff"
+                                    android:text="Printing App" />
+                                <RadioButton
+                                    android:id="@+id/networkprintRButton"
+                                    android:tag="networkprintRButtonTag"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginLeft="20dp"
+                                    android:textSize="15dp"
+                                    android:textColor="#ffffff"
+                                    android:text="Cloud" />
+                            </RadioGroup>
+
+                            <TextView
+                                android:id="@+id/infoTextView1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:layout_marginLeft="20dp"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:textSize="16dp"
+                                android:textColor="#1356ff"
+                                android:text="Printing List"
+                                android:background="@drawable/button_selector_kitchenprinting_list"
+                                android:visibility="gone"/>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:id="@+id/socketLn7"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.1"
+                        android:orientation="horizontal">
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:paddingBottom="8dp"
+                        android:paddingTop="8dp"
+                        android:visibility="gone">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1">
+                            <TextView
+                                android:id="@+id/settingsSystemTitleTextView9"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="left|center_vertical"
+                                android:textSize="20dp"
+                                android:textColor="#ffffff"
+                                android:textStyle="bold"
+                                android:text="Local Connecting Type"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.1">
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:orientation="horizontal">
+
+                            <RadioGroup
+                                android:id="@+id/localconnectiongtypeGroup"
+                                android:tag="cloudprintynGroupTag"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <RadioButton
+                                    android:id="@+id/localconnectiongtypeNetwork"
+                                    android:tag="localconnectiongtypeNetworkTag"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginRight="10dp"
+                                    android:textSize="15dp"
+                                    android:textColor="#ffffff"
+                                    android:text="Network"
+                                    android:checked="true" />
+
+                                <RadioButton
+                                    android:id="@+id/localconnectiongtypeSerial"
+                                    android:tag="localconnectiongtypeSerialTag"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginRight="10dp"
+                                    android:layout_marginLeft="20dp"
+                                    android:textSize="15dp"
+                                    android:textColor="#ffffff"
+                                    android:text="Serial Port" />
+
+                            </RadioGroup>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1.8"
+                                android:orientation="horizontal"
+                                android:gravity="right|center_vertical">
+
+                                <Button
+                                    android:id="@+id/btn_bluetoothsearch"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:background="@drawable/button_selector_optionbutton_selected"
+                                    android:paddingRight="10dp"
+                                    android:paddingLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:text="PAIRING BLUETOOTH"
+                                    android:textSize="14dp"
+                                    android:textColor="#ffffff"/>
+
+                                <Button
+                                    android:id="@+id/btn_bluetoothtest"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:background="@drawable/button_selector_optionbutton_selected"
+                                    android:paddingRight="10dp"
+                                    android:paddingLeft="10dp"
+                                    android:text="SEND MSG. BY BLUETOOTH"
+                                    android:textSize="14dp"
+                                    android:textColor="#ffffff"/>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:id="@+id/socketLn3"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.1"
+                        android:orientation="horizontal">
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:id="@+id/socketLn4"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1">
+                            <TextView
+                                android:id="@+id/settingsSystemTitleTextView5"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="left|center_vertical"
+                                android:textSize="20dp"
+                                android:textColor="#ffffff"
+                                android:textStyle="bold"
+                                android:text="Server Station"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.1">
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:orientation="horizontal" >
+
+                            <EditText
+                                android:id="@+id/serverstationipTextView1"
+                                android:tag="serverstationipTextView1Tag"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:background="@drawable/roundlayout_background_settings_textview"
+                                android:padding="8dp"
+                                android:inputType="number"
+                                android:textSize="20dp"
+                                android:textColor="#3f3e3a"
+                                android:text=""/>
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.2"
+                                android:gravity="bottom|center_horizontal"
+                                android:textSize="20dp"
+                                android:textColor="#ffffff"
+                                android:textStyle="bold"
+                                android:text="."/>
+                            <EditText
+                                android:id="@+id/serverstationipTextView2"
+                                android:tag="serverstationipTextView2Tag"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:background="@drawable/roundlayout_background_settings_textview"
+                                android:padding="8dp"
+                                android:inputType="number"
+                                android:textSize="20dp"
+                                android:textColor="#3f3e3a"
+                                android:text=""/>
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.2"
+                                android:gravity="bottom|center_horizontal"
+                                android:textSize="20dp"
+                                android:textColor="#ffffff"
+                                android:textStyle="bold"
+                                android:text="."/>
+                            <EditText
+                                android:id="@+id/serverstationipTextView3"
+                                android:tag="serverstationipTextView3Tag"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:background="@drawable/roundlayout_background_settings_textview"
+                                android:padding="8dp"
+                                android:inputType="number"
+                                android:textSize="20dp"
+                                android:textColor="#3f3e3a"
+                                android:text=""/>
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.2"
+                                android:gravity="bottom|center_horizontal"
+                                android:textSize="20dp"
+                                android:textColor="#ffffff"
+                                android:textStyle="bold"
+                                android:text="."/>
+                            <EditText
+                                android:id="@+id/serverstationipTextView4"
+                                android:tag="serverstationipTextView4Tag"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:background="@drawable/roundlayout_background_settings_textview"
+                                android:padding="8dp"
+                                android:inputType="number"
+                                android:textSize="20dp"
+                                android:textColor="#3f3e3a"
+                                android:text=""/>
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.2"
+                                android:gravity="center"
+                                android:textSize="20dp"
+                                android:textColor="#ffffff"
+                                android:textStyle="bold"
+                                android:text=":"/>
+                            <EditText
+                                android:id="@+id/serverstationportTextView"
+                                android:tag="serverstationportTextViewTag"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1.5"
+                                android:gravity="center"
+                                android:background="@drawable/roundlayout_background_settings_textview"
+                                android:padding="8dp"
+                                android:inputType="number"
+                                android:textSize="20dp"
+                                android:textColor="#3f3e3a"
+                                android:text=""/>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="3"
+                                android:paddingLeft="10dp"
+                                android:orientation="horizontal">
+
+                                <Button
+                                    android:id="@+id/connectBtn"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:background="@drawable/button_selector_category6"
+                                    android:paddingLeft="10dp"
+                                    android:paddingRight="10dp"
+                                    android:textSize="16dp"
+                                    android:textColor="#ffffff"
+                                    android:text=" CONNECT " />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:id="@+id/socketLn5"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.2"
+                        android:orientation="horizontal">
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:id="@+id/socketLn6"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1">
+                            <TextView
+                                android:id="@+id/settingsSystemTitleTextView7"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="left|center_vertical"
+                                android:textSize="20dp"
+                                android:textColor="#ffffff"
+                                android:textStyle="bold"
+                                android:text='Port on Server'/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.1">
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:orientation="horizontal" >
+
+                            <EditText
+                                android:id="@+id/serverportTextView"
+                                android:tag="serverportTextViewTag"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1.5"
+                                android:gravity="center"
+                                android:background="@drawable/roundlayout_background_settings_textview"
+                                android:padding="8dp"
+                                android:inputType="number"
+                                android:textSize="20dp"
+                                android:textColor="#3f3e3a"
+                                android:text=""/>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="3"
+                                android:paddingLeft="10dp"
+                                android:orientation="horizontal">
+
+                                <Button
+                                    android:id="@+id/setserverBtn"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:background="@drawable/button_selector_category6"
+                                    android:paddingLeft="10dp"
+                                    android:paddingRight="10dp"
+                                    android:textSize="16dp"
+                                    android:textColor="#ffffff"
+                                    android:text=" SET SERVER " />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.1"
+                        android:orientation="horizontal">
+                    </LinearLayout>
+
+                    <LinearLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:paddingBottom="8dp"
+                        android:paddingTop="8dp"
+                        android:visibility="gone">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1">
+                            <TextView
+                                android:id="@+id/settingsSystemTitleTextView2"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="left|center_vertical"
+                                android:textSize="20dp"
+                                android:textColor="#ffffff"
+                                android:textStyle="bold"
+                                android:text="Print Text Size"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.1">
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2">
+                            <Switch
+                                android:id="@+id/kitchenprintfontsizeSwitch"
+                                android:tag="kitchenprintfontsizeSwitchTag"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="left|center_vertical"
+                                style="@style/SwitchCustom100"
+                                android:switchTextAppearance="@style/SwitchTextAppearance"
+                                android:textOn="Regular Size"
+                                android:textOff="Large Size"
+                                android:checked="true"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="left|center_vertical"
+                                android:paddingLeft="10dp"
+                                android:textSize="16dp"
+                                android:textColor="#fff0f2"
+                                android:text=""/>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.1"
+                        android:orientation="horizontal">
+                    </LinearLayout>
+
+                    <LinearLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:paddingBottom="8dp"
+                        android:paddingTop="8dp"
+                        android:visibility="gone">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1">
+                            <TextView
+                                android:id="@+id/settingsSystemTitleTextView10"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="left|center_vertical"
+                                android:textSize="20dp"
+                                android:textColor="#ffffff"
+                                android:textStyle="bold"
+                                android:text="Print Type"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.1">
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:orientation="horizontal">
+                            <Switch
+                                android:id="@+id/printtypeSwitch"
+                                android:tag="printtypeSwitchTag"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="left|center_vertical"
+                                style="@style/SwitchCustom100"
+                                android:switchTextAppearance="@style/SwitchTextAppearance"
+                                android:textOn="Image"
+                                android:textOff="Text"
+                                android:checked="true"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="left|center_vertical"
+                                android:layout_marginLeft="10dp"
+                                android:paddingLeft="10dp"
+                                android:textSize="16dp"
+                                android:textColor="#fff0f2"
+                                android:text="(Applies only to Giant 100 printers)"/>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.1"
+                        android:orientation="horizontal">
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:paddingBottom="8dp"
+                        android:paddingTop="8dp"
+                        android:visibility="gone">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1">
+                            <TextView
+                                android:id="@+id/settingsSystemTitleTextView3"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="left|center_vertical"
+                                android:textSize="20dp"
+                                android:textColor="#ffffff"
+                                android:textStyle="bold"
+                                android:text="Order No. Section View"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.1">
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2">
+                            <Switch
+                                android:id="@+id/kitchenordernumbersectionviewynSwitch"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="left|center_vertical"
+                                android:switchTextAppearance="@style/SwitchTextAppearance"
+                                android:textOff="Off"
+                                android:textOn="On"
+                                style="@style/SwitchCustom40"
+                                android:checked="true"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="left|center_vertical"
+                                android:paddingLeft="10dp"
+                                android:textSize="16dp"
+                                android:textColor="#fff0f2"
+                                android:text=""/>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.1"
+                        android:orientation="horizontal">
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:paddingBottom="8dp"
+                        android:paddingTop="8dp"
+                        android:visibility="visible">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1">
+                            <TextView
+                                android:id="@+id/settingsSystemTitleTextView8"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="left|center_vertical"
+                                android:textSize="20dp"
+                                android:textColor="#ffffff"
+                                android:textStyle="bold"
+                                android:text="This Station IP"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.1">
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2">
+
+                            <TextView
+                                android:id="@+id/thisstationip"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="left|center_vertical"
+                                android:textSize="22dp"
+                                android:textColor="#ffffff"
+                                android:textStyle="bold"  />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.2"
+                        android:orientation="horizontal">
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1.8"
+                    android:orientation="horizontal">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                            <LinearLayout
+                                android:id="@+id/cloudkitchenprinterLn"
+                                android:tag="cloudkitchenprinterLnTag"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center"
+                                android:visibility="visible">
+
+                                <TextView
+                                    android:id="@+id/temptext1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textStyle="bold"
+                                    android:text="Cloud Kitchen Printer"
+                                    android:textSize="32dp"
+                                    android:textColor="#ffffff" />
+                                <TextView
+                                    android:id="@+id/temptext2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="by Middleware Solution"
+                                    android:textSize="22dp"
+                                    android:textColor="#ffffff" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/linearLayoutKitchenPrinterList"
+                                android:tag="linearLayoutKitchenPrinterListTag"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:visibility="invisible">
+
+                                <TableLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_margin="7dp" >
+                                    <TableRow
+                                        android:layout_width="match_parent"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="1" >
+                                        <LinearLayout
+                                            android:id="@+id/kitchenprinterSelectionLinear1"
+                                            android:tag="kitchenprinterSelectionLinearTag1"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:orientation="vertical"
+                                            android:layout_margin="5dp" >
+                                        </LinearLayout>
+                                        <LinearLayout
+                                            android:id="@+id/kitchenprinterSelectionLinear2"
+                                            android:tag="kitchenprinterSelectionLinearTag2"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:orientation="vertical"
+                                            android:layout_margin="5dp" >
+                                        </LinearLayout>
+                                        <LinearLayout
+                                            android:id="@+id/kitchenprinterSelectionLinear3"
+                                            android:tag="kitchenprinterSelectionLinearTag3"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:orientation="vertical"
+                                            android:layout_margin="5dp" >
+                                        </LinearLayout>
+                                        <LinearLayout
+                                            android:id="@+id/kitchenprinterSelectionLinear4"
+                                            android:tag="kitchenprinterSelectionLinearTag4"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:orientation="vertical"
+                                            android:layout_margin="5dp" >
+                                        </LinearLayout>
+                                        <LinearLayout
+                                            android:id="@+id/kitchenprinterSelectionLinear5"
+                                            android:tag="kitchenprinterSelectionLinearTag5"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:orientation="vertical"
+                                            android:layout_margin="5dp" >
+                                        </LinearLayout>
+                                    </TableRow>
+                                    <TableRow
+                                        android:layout_width="match_parent"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="0.1" >
+                                        <LinearLayout
+                                            android:id="@+id/kitchenprinterSelectionLinear6"
+                                            android:tag="kitchenprinterSelectionLinearTag6"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:orientation="vertical"
+                                            android:layout_margin="5dp" >
+                                        </LinearLayout>
+                                        <LinearLayout
+                                            android:id="@+id/kitchenprinterSelectionLinear7"
+                                            android:tag="kitchenprinterSelectionLinearTag7"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:orientation="vertical"
+                                            android:layout_margin="5dp" >
+                                        </LinearLayout>
+                                        <LinearLayout
+                                            android:id="@+id/kitchenprinterSelectionLinear8"
+                                            android:tag="kitchenprinterSelectionLinearTag8"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:orientation="vertical"
+                                            android:layout_margin="5dp" >
+                                        </LinearLayout>
+                                        <LinearLayout
+                                            android:id="@+id/kitchenprinterSelectionLinear9"
+                                            android:tag="kitchenprinterSelectionLinearTag9"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:orientation="vertical"
+                                            android:layout_margin="5dp" >
+                                        </LinearLayout>
+                                        <LinearLayout
+                                            android:id="@+id/kitchenprinterSelectionLinear10"
+                                            android:tag="kitchenprinterSelectionLinearTag10"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:orientation="vertical"
+                                            android:layout_margin="5dp" >
+                                        </LinearLayout>
+
+                                    </TableRow>
+                                </TableLayout>
+
+                            </LinearLayout>
+
+                        </FrameLayout>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.1"
+            android:orientation="horizontal"></LinearLayout>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

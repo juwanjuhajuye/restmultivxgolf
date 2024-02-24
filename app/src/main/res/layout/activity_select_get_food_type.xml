@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp"
+    android:background="@drawable/roundbackground_ordertype" >
+
+    <LinearLayout
+        android:id="@+id/selectGetFoodLn"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="30dp"
+        android:orientation="vertical">
+
+
+
+
+        <LinearLayout
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:orientation="vertical"
+            android:background="#bbbbc8"></LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="10"
+            android:orientation="vertical"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.6"
+                android:orientation="vertical"
+                android:gravity="center_vertical|left">
+
+                <CheckBox
+                    android:id="@+id/phoneorderCheckbox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:text="  Phone Order (Print in the kitchen)"
+                    android:textSize="20dp"
+                    android:textColor="#3e3d42"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.1" />
+
+                <CheckBox
+                    android:id="@+id/checkprintCheckbox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:text="  Check Print"
+                    android:textSize="20dp"
+                    android:textColor="#3e3d42"
+                    android:visibility="invisible"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.1"
+                android:orientation="horizontal">
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.5"
+                android:orientation="horizontal"
+                android:padding="3dp">
+
+                <LinearLayout
+                    android:id="@+id/hereln"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:padding="3dp">
+
+                    <Button
+                        android:id="@+id/herebtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/ab_imagebutton_ordertype_here"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/herespaceln"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.05"
+                    android:orientation="horizontal"></LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/togoln"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:padding="3dp">
+
+                    <Button
+                        android:id="@+id/togobtn"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/ab_imagebutton_ordertype_togo"/>
+
+                </LinearLayout>
+
+                <!--<LinearLayout-->
+                    <!--android:visibility="gone"-->
+                    <!--android:id="@+id/togospaceln"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_weight="0.1"-->
+                    <!--android:orientation="horizontal"></LinearLayout>-->
+
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_weight="0.1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.6"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical|right">
+
+                <LinearLayout
+                    android:id="@+id/deliveryln"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.75"
+                    android:orientation="horizontal"
+                    android:padding="3dp">
+
+                    <Button
+                        android:id="@+id/deliverybtn"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/ab_imagebutton_ordertype_delivery"/>
+
+                </LinearLayout>
+                <LinearLayout
+
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.05"
+                    android:orientation="horizontal"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.25"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical|right">
+
+                    <Button
+                        android:id="@+id/ordertypeCloseBtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/button_selector_order_type_close"
+                        android:gravity="center" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

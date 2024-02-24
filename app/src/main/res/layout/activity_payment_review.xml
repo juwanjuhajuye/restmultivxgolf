@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/roundbackground_jjjsignpadbg">
+
+        <LinearLayout
+            android:id="@+id/emptyLn01"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"></LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="6"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/emptyLn02"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:id="@+id/paymnetReviewLinearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:background="@drawable/roundlayout" >
+
+                    <LinearLayout
+                        android:id="@+id/titleLn"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="2"
+                        android:background="#3a3f3a"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:padding="10dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="6"/>
+
+                            <Button
+                                android:id="@+id/paymnetReviewCloseBtn"
+                                android:tag="paymnetReviewCloseBtnTag"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1" />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/contentsLn"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="8.5"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:background="#3a3f3a"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="3"
+                            android:orientation="vertical"
+                            android:padding="8dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="0.7"
+                                android:orientation="vertical">
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="3"
+                                    android:orientation="vertical">
+                                    <TextView
+                                        android:id="@+id/paymentReviewChangeTextView"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="4"
+                                        android:gravity="center_horizontal|center_vertical"
+                                        android:textSize="56dp"
+                                        android:textColor="#ffffff"
+                                        android:textStyle="bold"
+                                        android:text="$0.00"/>
+                                    <TextView
+                                        android:id="@+id/paymentReviewGiftcardBalanceTextView"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="1"
+                                        android:gravity="center_horizontal|center_vertical"
+                                        android:textSize="36dp"
+                                        android:textColor="#363636"
+                                        android:text=""/>
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="0.7"
+                                    android:orientation="vertical"
+                                    android:gravity="center"
+                                    android:visibility="gone" >
+                                    <Switch
+                                        android:id="@+id/emailReceiptUseSwitch"
+                                        android:tag="emailReceiptUseSwitchTag"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        style="@style/SwitchCustom140"
+                                        android:switchTextAppearance="@style/SwitchTextAppearance"
+                                        android:textOn="Email Receipt On"
+                                        android:textOff="Email Receipt Off"
+                                        android:checked="false"/>
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:visibility="gone" >
+
+                                <FrameLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent" >
+
+                                    <!-- 광고관련 레이아웃 시작 -->
+                                    <include
+                                        android:id="@+id/paymentrvAd"
+                                        layout="@layout/activity_payment_review_ad" />
+                                    <!-- 광고관련 레이아웃 끝 -->
+
+                                    <!-- 이메일 발송관련 레이아웃 시작 -->
+                                    <include
+                                        android:id="@+id/paymentrvEmail"
+                                        layout="@layout/activity_payment_review_email" />
+                                    <!-- 이메일 발송관련 레이아웃 끝 -->
+
+                                </FrameLayout>
+
+                            </LinearLayout>
+
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/emptyLn03"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/emptyLn04"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

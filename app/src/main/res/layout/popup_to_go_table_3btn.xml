@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/darker_gray">
+    <RelativeLayout
+        android:background="@drawable/roundlayout_white"
+        android:layout_margin="1dp"
+        android:layout_width="match_parent"
+        android:layout_height="250dp">
+
+<!--        <TextView-->
+<!--            android:id="@+id/option_codetype_dialog_title_tv"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:layout_alignParentTop="true"-->
+<!--            android:layout_alignParentEnd="true"-->
+<!--            android:layout_marginTop="-3dp"-->
+<!--            android:layout_marginEnd="0dp"-->
+<!--            android:gravity="center_vertical"-->
+<!--            android:paddingLeft="30dp"-->
+<!--            android:text="Kitchen Printing"-->
+<!--            android:textColor="#000000"-->
+<!--            android:textSize="26sp" />-->
+
+        <TextView
+            android:textColor="#000000"
+            android:textSize="22dp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:height="50dp"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/option_codetype_dialog_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+        <LinearLayout
+            android:id="@+id/dialog_numbers_bottom_layout"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:minHeight="56dp"
+            android:orientation="vertical"
+            android:weightSum="4"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true">
+
+            <TextView
+                android:layout_margin="10dp"
+                android:id="@+id/option_codetype_dialog_positive"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:background="#4682C2"
+                android:gravity="center"
+                android:text="YES"
+                android:textColor="#fff"
+                android:textSize="36sp" />
+<!--            <TextView-->
+<!--                android:layout_margin="10dp"-->
+<!--                android:id="@+id/option_codetype_dialog_mid"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="0dp"-->
+<!--                android:layout_weight="2"-->
+<!--                android:background="#757575"-->
+<!--                android:gravity="center"-->
+<!--                android:text="No Kitchen Printing"-->
+<!--                android:textColor="#fff"-->
+<!--                android:textSize="26sp" />-->
+            <TextView
+                android:layout_margin="10dp"
+                android:id="@+id/option_codetype_dialog_negative"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:background="#ff0000"
+                android:textColor="#fff"
+                android:text="NO"
+                android:textSize="36sp" />
+
+
+
+        </LinearLayout>
+    </RelativeLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,791 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp">
+
+    <LinearLayout
+        android:id="@+id/returnCreditCardLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/roundlayout_line" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.8"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/returnCreditCardTopTitleTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="left|center_vertical"
+                    android:text="Return Payment - Credit Card"
+                    android:textSize="16dp"
+                    android:paddingLeft="10dp"
+                    android:textColor="#3e3d42" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.4"
+                android:gravity="right|center_vertical"
+                android:orientation="horizontal"
+                android:paddingRight="10dp" >
+
+                <Button
+                    android:id="@+id/returnCreditCardCloseBtn"
+                    android:tag="returnCreditCardCloseBtnTag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:orientation="horizontal"
+            android:background="#bbbbc8"></LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/returnCreditCardContentsLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="8.5"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:orientation="horizontal">
+
+
+            <!-- 좌측 컨텐츠 시작 -->
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2.2"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1.3"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/returnCreditCardTitleTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:textColor="#0054d5"
+                        android:textSize="16dp"
+                        android:textStyle="bold"
+                        android:text="CREDIT CARDS"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="8.5"
+                        android:orientation="horizontal"
+                        android:background="@drawable/roundlayout_background_paymentcreditcard_processingamount">
+
+                        <TextView
+                            android:id="@+id/returnCreditCardProcessingAmountTitleTextView"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical|left"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:textColor="#3f3f3f"
+                            android:text="Processing Amount : "/>
+
+                        <TextView
+                            android:id="@+id/returnCreditCardProcessingAmountTextView"
+                            android:tag="returnCreditCardProcessingAmountTextViewTag"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical|right"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:textColor="#3f3f3f"
+                            android:textSize="14dp"
+                            android:textStyle="bold"
+                            android:text="0.0"/>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.3"
+                    android:orientation="horizontal"></LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/insertswipekeyinLinearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1.2"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5" />
+                    <Button
+                        android:id="@+id/returnCreditCardInsertSwipeButton"
+                        android:tag="returnCreditCardInsertSwipeButtonTag"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="4"
+                        android:gravity="center"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:background="@drawable/button_selector_paymentcreditcard_insertswipe"
+                        android:textColor="#ffffff"
+                        android:textSize="16dp"
+                        android:text="Insert / Swipe"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5" />
+                    <Button
+                        android:id="@+id/returnCreditCardKeyInButton"
+                        android:tag="returnCreditCardKeyInButtonTag"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="4"
+                        android:gravity="center"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:background="@drawable/button_selector_paymentcreditcard_keyin"
+                        android:textColor="#ffffff"
+                        android:textSize="16dp"
+                        android:text="Key-In"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.3"
+                    android:orientation="horizontal"></LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="7.7"
+                    android:orientation="vertical" >
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" >
+
+                        <LinearLayout
+                            android:id="@+id/linearLayout_frameMain"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:visibility="visible" >
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1.4"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.5" />
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="8.5"
+                                    android:orientation="vertical"
+                                    android:background="@drawable/roundlayout_background_paymentgiftcard_cardnumber">
+
+                                    <TextView
+                                        android:id="@+id/returnCreditCardCardNumberTitleTextView"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="1"
+                                        android:gravity="center"
+                                        android:textColor="#3e3d42"
+                                        android:text="CARD NUMBER"/>
+
+                                    <TextView
+                                        android:id="@+id/returnCreditCardCardNumberTextView"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="1.2"
+                                        android:background="#ffffff"
+                                        android:layout_marginLeft="10dp"
+                                        android:layout_marginRight="10dp"
+                                        android:layout_marginBottom="10dp"
+                                        android:gravity="center"
+                                        android:textColor="#6a6a6a"
+                                        android:textSize="14dp"
+                                        android:text="**** **** **** ****"/>
+
+                                </LinearLayout>
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.5" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="0.3"
+                                android:orientation="horizontal"></LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="5"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.5" />
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="8.5"
+                                    android:orientation="horizontal">
+
+                                    <TableLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_margin="7dp"
+                                        android:stretchColumns="*">
+                                        <TableRow
+                                            android:layout_width="match_parent"
+                                            android:layout_height="0dp"
+                                            android:layout_weight="1" >
+                                            <Button
+                                                android:id="@+id/returnCreditCardSuButton7"
+                                                android:tag="returnCreditCardSuButtonTag7"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:background="@drawable/button_selector_numberbutton_qty"
+                                                android:layout_margin="3dp"
+                                                android:text="7"
+                                                android:textSize="16dp"
+                                                android:textStyle="bold"
+                                                android:textColor="#ffffff"/>
+                                            <Button
+                                                android:id="@+id/returnCreditCardSuButton8"
+                                                android:tag="returnCreditCardSuButtonTag8"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:background="@drawable/button_selector_numberbutton_qty"
+                                                android:layout_margin="3dp"
+                                                android:text="8"
+                                                android:textSize="16dp"
+                                                android:textStyle="bold"
+                                                android:textColor="#ffffff"/>
+                                            <Button
+                                                android:id="@+id/returnCreditCardSuButton9"
+                                                android:tag="returnCreditCardSuButtonTag9"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:background="@drawable/button_selector_numberbutton_qty"
+                                                android:layout_margin="3dp"
+                                                android:text="9"
+                                                android:textSize="16dp"
+                                                android:textStyle="bold"
+                                                android:textColor="#ffffff"/>
+                                        </TableRow>
+                                        <TableRow
+                                            android:layout_width="match_parent"
+                                            android:layout_height="0dp"
+                                            android:layout_weight="1" >
+                                            <Button
+                                                android:id="@+id/returnCreditCardSuButton4"
+                                                android:tag="returnCreditCardSuButtonTag4"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:background="@drawable/button_selector_numberbutton_qty"
+                                                android:layout_margin="3dp"
+                                                android:text="4"
+                                                android:textSize="16dp"
+                                                android:textStyle="bold"
+                                                android:textColor="#ffffff"/>
+                                            <Button
+                                                android:id="@+id/returnCreditCardSuButton5"
+                                                android:tag="returnCreditCardSuButtonTag5"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:background="@drawable/button_selector_numberbutton_qty"
+                                                android:layout_margin="3dp"
+                                                android:text="5"
+                                                android:textSize="16dp"
+                                                android:textStyle="bold"
+                                                android:textColor="#ffffff"/>
+                                            <Button
+                                                android:id="@+id/returnCreditCardSuButton6"
+                                                android:tag="returnCreditCardSuButtonTag6"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:background="@drawable/button_selector_numberbutton_qty"
+                                                android:layout_margin="3dp"
+                                                android:text="6"
+                                                android:textSize="16dp"
+                                                android:textStyle="bold"
+                                                android:textColor="#ffffff"/>
+                                        </TableRow>
+                                        <TableRow
+                                            android:layout_width="match_parent"
+                                            android:layout_height="0dp"
+                                            android:layout_weight="1" >
+                                            <Button
+                                                android:id="@+id/returnCreditCardSuButton1"
+                                                android:tag="returnCreditCardSuButtonTag1"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:background="@drawable/button_selector_numberbutton_qty"
+                                                android:layout_margin="3dp"
+                                                android:text="1"
+                                                android:textSize="16dp"
+                                                android:textStyle="bold"
+                                                android:textColor="#ffffff"/>
+                                            <Button
+                                                android:id="@+id/returnCreditCardSuButton2"
+                                                android:tag="returnCreditCardSuButtonTag2"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:background="@drawable/button_selector_numberbutton_qty"
+                                                android:layout_margin="3dp"
+                                                android:text="2"
+                                                android:textSize="16dp"
+                                                android:textStyle="bold"
+                                                android:textColor="#ffffff"/>
+                                            <Button
+                                                android:id="@+id/returnCreditCardSuButton3"
+                                                android:tag="returnCreditCardSuButtonTag3"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:background="@drawable/button_selector_numberbutton_qty"
+                                                android:layout_margin="3dp"
+                                                android:text="3"
+                                                android:textSize="16dp"
+                                                android:textStyle="bold"
+                                                android:textColor="#ffffff"/>
+                                        </TableRow>
+                                        <TableRow
+                                            android:layout_width="match_parent"
+                                            android:layout_height="0dp"
+                                            android:layout_weight="1" >
+                                            <Button
+                                                android:id="@+id/returnCreditCardSuButton0"
+                                                android:tag="returnCreditCardSuButtonTag0"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:background="@drawable/button_selector_numberbutton_qty"
+                                                android:layout_margin="3dp"
+                                                android:text="0"
+                                                android:textSize="16dp"
+                                                android:textStyle="bold"
+                                                android:textColor="#ffffff"/>
+                                            <Button
+                                                android:id="@+id/returnCreditCardSuButton00"
+                                                android:tag="returnCreditCardSuButtonTag00"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:background="@drawable/button_selector_numberbutton_qty"
+                                                android:layout_margin="3dp"
+                                                android:text="00"
+                                                android:textSize="16dp"
+                                                android:textStyle="bold"
+                                                android:textColor="#ffffff"/>
+                                            <Button
+                                                android:id="@+id/returnCreditCardSuButtonBack"
+                                                android:tag="returnCreditCardSuButtonTagBack"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:background="@drawable/button_selector_numberbutton_qty"
+                                                android:layout_margin="3dp"
+                                                android:text="←"
+                                                android:textSize="16dp"
+                                                android:textStyle="bold"
+                                                android:textColor="#ffffff"/>
+                                        </TableRow>
+                                    </TableLayout>
+
+                                </LinearLayout>
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.5" />
+
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1.5"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.7" />
+
+                                <Button
+                                    android:id="@+id/returnCreditCardCardProcessButton"
+                                    android:tag="returnCreditCardCardProcessButtonTag"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="8.5"
+                                    android:background="@drawable/button_selector_paymentcreditcard_cardprocess"
+                                    android:layout_margin="3dp"
+                                    android:text="Card Process"
+                                    android:textSize="16dp"
+                                    android:textStyle="bold"
+                                    android:textColor="#ffffff"/>
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.7" />
+
+
+                            </LinearLayout>
+
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/linearLayout_frameInsertSwipe"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:visibility="invisible" >
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:textSize="22dp"
+                                android:textStyle="bold"
+                                android:text="Insert / Swipe Card"/>
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:id="@+id/linearLayout_frameKeyIn"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:visibility="invisible" >
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:textSize="22dp"
+                                android:textStyle="bold"
+                                android:text="Key-In"/>
+
+                        </LinearLayout>
+
+
+
+                    </FrameLayout>
+                </LinearLayout>
+
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.3"
+                    android:orientation="horizontal"></LinearLayout>
+
+            </LinearLayout>
+
+            <!-- 좌측 컨텐츠 종료 -->
+
+
+
+            <!-- 우측 컨텐츠 시작 -->
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.5"
+                android:orientation="vertical"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:paddingRight="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:background="@drawable/roundlayout_line_noround">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1.5"
+                        android:background="#f0f0f0"
+                        android:orientation="vertical"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/returnCreditCardAmountTitleTextView"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1.5"
+                                android:gravity="center_vertical|left"
+                                android:textColor="#4a5757"
+                                android:textSize="14dp"
+                                android:text="Amount" />
+
+                            <TextView
+                                android:id="@+id/returnCreditCardAmountTextView"
+                                android:tag="returnCreditCardAmountTextViewTag"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2"
+                                android:gravity="center_vertical|right"
+                                android:textColor="#4a5757"
+                                android:textSize="16dp"
+                                android:textStyle="bold"
+                                android:text="0.0" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/returnCreditCardPaidTitleTextView"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1.5"
+                                android:gravity="center_vertical|left"
+                                android:textColor="#4a5757"
+                                android:textSize="14dp"
+                                android:text="Paid" />
+
+                            <TextView
+                                android:id="@+id/returnCreditCardPaidTextView"
+                                android:tag="returnCreditCardPaidTextViewTag"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2"
+                                android:gravity="center_vertical|right"
+                                android:textColor="#4a5757"
+                                android:textSize="16dp"
+                                android:textStyle="bold"
+                                android:text="0.0" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/returnCreditCardBalanceTitleTextView"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1.5"
+                                android:gravity="center_vertical|left"
+                                android:textColor="#4a5757"
+                                android:textSize="14dp"
+                                android:text="Balance" />
+
+                            <TextView
+                                android:id="@+id/returnCreditCardBalanceTextView"
+                                android:tag="returnCreditCardBalanceTextViewTag"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2"
+                                android:gravity="center_vertical|right"
+                                android:textColor="#4a5757"
+                                android:textSize="16dp"
+                                android:textStyle="bold"
+                                android:text="0.0" />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.1">
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="4"
+                        android:padding="5dp"
+                        android:orientation="vertical">
+
+                        <ScrollView
+                            android:id="@+id/returnCreditCardProcessingCardListScrollView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp">
+                            <LinearLayout
+                                android:id="@+id/returnCreditCardProcessingCardListLinearLayout"
+                                android:tag="returnCreditCardProcessingCardListTag"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+                            </LinearLayout>
+                        </ScrollView>
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.1">
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.8"
+                        android:paddingBottom="10dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/returnCreditCardVoidButton"
+                            android:tag="returnCreditCardVoidButtonTag"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="6.5"
+                            android:background="@drawable/button_selector_paymentcreditcard_void"
+                            android:layout_margin="3dp"
+                            android:text="Void"
+                            android:textSize="16dp"
+                            android:textColor="#ffffff"/>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.1"/>
+
+                        <Button
+                            android:id="@+id/returnCreditCardVButton"
+                            android:tag="returnCreditCardVButtonTag"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="10.5"
+                            android:background="@drawable/button_selector_paymentcreditcard_v"
+                            android:layout_margin="3dp"
+                            android:text="V"
+                            android:textSize="25dp"
+                            android:textColor="#ffffff"/>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- 우측 컨텐츠 종료 -->
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

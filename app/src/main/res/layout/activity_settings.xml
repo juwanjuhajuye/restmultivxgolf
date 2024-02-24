@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp">
+
+    <LinearLayout
+        android:id="@+id/settingsLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/roundlayout_background_settings" >
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.6"
+            android:background="#433637"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="left|center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/settingsTitleTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="left|center_vertical"
+                    android:text="SETTINGS"
+                    android:textSize="20dp"
+                    android:paddingLeft="10dp"
+                    android:textColor="#ffffff" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/cloudWebTopBarLinearLayout1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:gravity="center"
+                android:padding="3dp"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/storestationinfoTextView"
+                    android:tag="storestationinfoTextViewTag"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:paddingRight="3dp"
+                    android:paddingLeft="3dp"
+                    android:text="Store Code : 1200 / Station Code : ST01CDEFD00903040"
+                    android:textSize="13dp"
+                    android:textColor="#ffffff" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/cloudWebTopBarLinearLayout2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.7"
+                android:gravity="right|center_vertical"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/settingsCloseBtn"
+                    android:tag="settingsCloseBtnTag"
+                    android:layout_width="50dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:layout_marginRight="7dp"
+                    android:background="@drawable/roundlayout_button_white"
+                    android:text=" X "/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/tabContentLn"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="8.5"
+            android:padding="10dp"
+            android:orientation="horizontal">
+            <TabHost
+                android:id="@+id/settingsTabHost"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+                <TabWidget
+                    android:id="@android:id/tabs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <FrameLayout
+                    android:id="@android:id/tabcontent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingTop="10dp" >
+                    <LinearLayout
+                        android:id="@+id/settingsSystemLinearLayout"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" >
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingsDevicePrinterLinearLayout"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" >
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingsDevicePrinterLinearLayout2"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" >
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingsDeviceMasterPrinterLinearLayout"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" >
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/settingsPaymentGatewayLinearLayout"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" >
+
+                    </LinearLayout>
+
+
+                </FrameLayout>
+
+            </TabHost>
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,996 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/frameLayout_payment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:background="@drawable/roundlayout_line"
+        android:visibility="invisible">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.9"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="left|center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/paymentTitleEditText"
+                    android:tag="paymentTitleEditTextTag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.4"
+                android:gravity="right|center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="15dp"
+                android:paddingBottom="10dp" >
+
+                <Button
+                    android:id="@+id/paymentCloseBtn"
+                    android:tag="paymentCloseBtnTag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:orientation="vertical"
+                android:background="@drawable/roundlayout_line"
+                android:padding="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.7"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/employeeInfoTv1"
+                        android:tag="employeeInfoTv1Tag"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:textColor="#3e3d42"
+                        android:text=" Employee"
+                        android:textSize="14dp"
+                        android:gravity="left|center_vertical"/>
+
+                    <TextView
+                        android:id="@+id/employeeInfoTv2"
+                        android:tag="employeeInfoTv2Tag"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:textColor="#3e3d42"
+                        android:text="Wanhaye"
+                        android:textStyle="bold"
+                        android:textSize="14dp"
+                        android:gravity="right|center_vertical"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:background="@drawable/roundlayout_background_paymenttopln">
+
+                    <TextView
+                        android:id="@+id/gettypeTv1"
+                        android:tag="gettypeTv1Tag"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text=" Type"
+                        android:textSize="14dp"
+                        android:textColor="#3e3d42"
+                        android:gravity="left|center_vertical"/>
+
+                    <TextView
+                        android:id="@+id/paymentTopGetFoodTypeTv"
+                        android:tag="paymentTopGetFoodTypeTvTag"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="To Go"
+                        android:textSize="14dp"
+                        android:textColor="#3e3d42"
+                        android:textStyle="bold"
+                        android:gravity="right|center_vertical"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/pagernumLn"
+                    android:tag="pagernumLnTag"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:background="@drawable/roundlayout_background_paymenttopln">
+
+                    <TextView
+                        android:id="@+id/pagerNumTv1"
+                        android:tag="pagerNumTv1Tag"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text=" Pager No."
+                        android:textSize="14dp"
+                        android:textColor="#3e3d42"
+                        android:gravity="left|center_vertical"/>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp">
+
+                        <TextView
+                            android:id="@+id/pagerNumTv2"
+                            android:tag="pagerNumTv2Tag"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="right|center_vertical"
+                            android:textSize="14dp"
+                            android:textColor="#3e3d42"
+                            android:text="# "/>
+
+                        <TextView
+                            android:id="@+id/pagerNumEv"
+                            android:tag="pagerNumEvTag"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:textSize="18dp"
+                            android:textStyle="bold"
+                            android:textColor="#3e3d42"
+                            android:gravity="center"
+                            android:background="@drawable/roundlayout_pagerno_edittext"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.05"
+                android:orientation="vertical">
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="#ffffff"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:background="#ffffff"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Switch
+                    android:id="@+id/paymentReceiptSwitch"
+                    android:tag="paymentReceiptSwitchTag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="left|center_vertical"
+                    style="@style/SwitchCustom40_2"
+                    android:switchTextAppearance="@style/SwitchTextAppearance2"
+                    android:text="Receipt "
+                    android:textOn="Yes"
+                    android:textOff="No"
+                    android:checked="true"/>
+
+                <Switch
+                    android:id="@+id/paymentOfflineSwitch"
+                    android:tag="paymentOfflineSwitchTag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="50dp"
+                    android:layout_gravity="left|center_vertical"
+                    style="@style/SwitchCustom40_2"
+                    android:switchTextAppearance="@style/SwitchTextAppearance2"
+                    android:text="Online "
+                    android:textOn="Yes"
+                    android:textOff="No"
+                    android:checked="true"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#ffffff"
+                android:gravity="center_vertical|right"
+                android:paddingRight="20dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"/>
+
+                <Button
+                    android:id="@+id/paymentCalculatorBtn"
+                    android:tag="paymentCalculatorBtnTag"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="CALCULATOR"
+                    android:textSize="14dp"
+                    android:textStyle="bold"
+                    android:textColor="#ffffff"
+                    android:background="@drawable/button_selector_calculator"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="7.5" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#ffffff"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.2"
+                        android:orientation="horizontal" >
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="3"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+                                <TextView
+                                    android:id="@+id/paymentBalanceTitleTextView"
+                                    android:tag="paymentBalanceTitleTextViewTag"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:text="Balance"
+                                    android:textSize="18dp"
+                                    android:gravity="left|center_vertical"/>
+                                <TextView
+                                    android:id="@+id/paymentBalanceEditText"
+                                    android:tag="paymentBalanceEditTextTag"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2"
+                                    android:gravity="center_vertical|right"
+                                    android:textSize="20dp"
+                                    android:textStyle="bold"
+                                    android:textColor="#393e3e"
+                                    android:paddingRight="5dp"
+                                    android:background="@drawable/roundlayout_background_paymentmoney"
+                                    android:cursorVisible="false"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="0.1"
+                                android:orientation="horizontal">
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:layout_marginBottom="1dp"
+                                android:layout_marginTop="1dp"
+                                android:orientation="horizontal">
+                                <TextView
+                                    android:id="@+id/paymentTenderedTitleTextView"
+                                    android:tag="paymentTenderedTitleTextViewTag"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:text="Tendered"
+                                    android:textSize="18dp"
+                                    android:gravity="left|center_vertical"/>
+                                <TextView
+                                    android:id="@+id/paymentTenderedEditText"
+                                    android:tag="paymentTenderedEditTextTag"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2"
+                                    android:gravity="center_vertical|right"
+                                    android:textSize="20dp"
+                                    android:textStyle="bold"
+                                    android:textColor="#393e3e"
+                                    android:paddingRight="5dp"
+                                    android:background="@drawable/roundlayout_background_paymentmoney"
+                                    android:cursorVisible="false"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="0.1"
+                                android:orientation="horizontal">
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+                                <TextView
+                                    android:id="@+id/paymentChangeTitleTextView"
+                                    android:tag="paymentChangeTitleTextViewTag"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:text="Change"
+                                    android:textSize="18dp"
+                                    android:gravity="left|center_vertical"/>
+                                <TextView
+                                    android:id="@+id/paymentChangeEditText"
+                                    android:tag="paymentChangeEditTextTag"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2"
+                                    android:gravity="center_vertical|right"
+                                    android:textSize="20dp"
+                                    android:textStyle="bold"
+                                    android:textColor="#393e3e"
+                                    android:paddingRight="5dp"
+                                    android:background="@drawable/roundlayout_background_paymentmoney"
+                                    android:cursorVisible="false"/>
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.5"
+                        android:orientation="horizontal" >
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/paymentCashLinearLayout"
+                        android:tag="paymentCashLinearLayoutTag"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:background="@drawable/roundlayout_line_noround">
+                        <TextView
+                            android:id="@+id/paymentCashTitleTextView"
+                            android:tag="paymentCashTitleTextViewTag"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="CASH"
+                            android:textColor="#3e3d42"
+                            android:textStyle="bold"
+                            android:textSize="16dp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:gravity="center_vertical|left"/>
+                        <TextView
+                            android:id="@+id/paymentCashEditText"
+                            android:tag="paymentCashEditTextTag"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:gravity="center"
+                            android:textSize="25dp"
+                            android:textStyle="bold"
+                            android:textColor="#36373a"
+                            android:background="#f0f0f0"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.2"
+                        android:orientation="horizontal" >
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/paymentCardLinearLayout"
+                        android:tag="paymentCardLinearLayoutTag"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:background="@drawable/roundlayout_line_noround">
+                        <TextView
+                            android:id="@+id/paymentCardTitleTextView"
+                            android:tag="paymentCardTitleTextViewTag"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="CARD"
+                            android:textColor="#3e3d42"
+                            android:textStyle="bold"
+                            android:textSize="16dp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:gravity="center_vertical|left" />
+                        <TextView
+                            android:id="@+id/paymentCardEditText"
+                            android:tag="paymentCardEditTextTag"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:gravity="center"
+                            android:textSize="25dp"
+                            android:textStyle="bold"
+                            android:textColor="#36373a"
+                            android:background="#f0f0f0"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.2"
+                        android:orientation="horizontal" >
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/paymentCheckLinearLayout"
+                        android:tag="paymentCheckLinearLayoutTag"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:background="@drawable/roundlayout_line_noround">
+                        <TextView
+                            android:id="@+id/paymentCheckTitleTextView"
+                            android:tag="paymentCheckTitleTextViewTag"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="OTHER"
+                            android:textColor="#3e3d42"
+                            android:textStyle="bold"
+                            android:textSize="16dp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:gravity="center_vertical|left" />
+                        <TextView
+                            android:id="@+id/paymentCheckEditText"
+                            android:tag="paymentCheckEditTextTag"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:gravity="center"
+                            android:textSize="25dp"
+                            android:textStyle="bold"
+                            android:textColor="#36373a"
+                            android:background="#f0f0f0"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/paymentGiftCardLinearLayout"
+                        android:tag="paymentGiftCardLinearLayoutTag"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:background="@drawable/roundlayout_line_noround"
+                        android:visibility="gone">
+                        <TextView
+                            android:id="@+id/paymentGiftCardTitleTextView"
+                            android:tag="paymentGiftCardTitleTextViewTag"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="GIFT CARD"
+                            android:textColor="#3e3d42"
+                            android:textStyle="bold"
+                            android:textSize="16dp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:gravity="center_vertical|left" />
+                        <TextView
+                            android:id="@+id/paymentGiftCardEditText"
+                            android:tag="paymentGiftCardEditTextTag"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:gravity="center"
+                            android:textSize="25dp"
+                            android:textStyle="bold"
+                            android:textColor="#36373a"
+                            android:background="#f0f0f0"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/paymentPointLinearLayout"
+                        android:tag="paymentPointLinearLayoutTag"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:padding="10dp"
+                        android:background="@drawable/roundlayout_line_noround"
+                        android:layout_marginBottom="10dp"
+                        android:visibility="gone">
+                        <TextView
+                            android:id="@+id/paymentPointTitleTextView"
+                            android:tag="paymentPointTitleTextViewTag"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:text="POINT"
+                            android:textColor="#3e3d42"
+                            android:textStyle="bold"
+                            android:textSize="16dp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:gravity="center_vertical|left" />
+                        <TextView
+                            android:id="@+id/paymentPointEditText"
+                            android:tag="paymentPointEditTextTag"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2.5"
+                            android:gravity="center"
+                            android:textSize="25dp"
+                            android:textStyle="bold"
+                            android:textColor="#36373a"
+                            android:background="#f0f0f0"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                    </LinearLayout>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.1"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="7"
+                        android:orientation="horizontal">
+
+                        <TableLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="7dp"
+                            android:stretchColumns="*">
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1" >
+                                <Button
+                                    android:id="@+id/paymentSuButton7"
+                                    android:tag="paymentSuButtonTag7"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/button_selector_numberbutton_payment"
+                                    android:layout_margin="1dp"
+                                    android:text="7"
+                                    android:textSize="20dp"
+                                    android:textStyle="bold"
+                                    android:textColor="#0054d5"/>
+                                <Button
+                                    android:id="@+id/paymentSuButton8"
+                                    android:tag="paymentSuButtonTag8"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/button_selector_numberbutton_payment"
+                                    android:layout_margin="1dp"
+                                    android:text="8"
+                                    android:textSize="20dp"
+                                    android:textStyle="bold"
+                                    android:textColor="#0054d5"/>
+                                <Button
+                                    android:id="@+id/paymentSuButton9"
+                                    android:tag="paymentSuButtonTag9"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/button_selector_numberbutton_payment"
+                                    android:layout_margin="1dp"
+                                    android:text="9"
+                                    android:textSize="20dp"
+                                    android:textStyle="bold"
+                                    android:textColor="#0054d5"/>
+                            </TableRow>
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1" >
+                                <Button
+                                    android:id="@+id/paymentSuButton4"
+                                    android:tag="paymentSuButtonTag4"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/button_selector_numberbutton_payment"
+                                    android:layout_margin="1dp"
+                                    android:text="4"
+                                    android:textSize="20dp"
+                                    android:textStyle="bold"
+                                    android:textColor="#0054d5"/>
+                                <Button
+                                    android:id="@+id/paymentSuButton5"
+                                    android:tag="paymentSuButtonTag5"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/button_selector_numberbutton_payment"
+                                    android:layout_margin="1dp"
+                                    android:text="5"
+                                    android:textSize="20dp"
+                                    android:textStyle="bold"
+                                    android:textColor="#0054d5"/>
+                                <Button
+                                    android:id="@+id/paymentSuButton6"
+                                    android:tag="paymentSuButtonTag6"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/button_selector_numberbutton_payment"
+                                    android:layout_margin="1dp"
+                                    android:text="6"
+                                    android:textSize="20dp"
+                                    android:textStyle="bold"
+                                    android:textColor="#0054d5"/>
+                            </TableRow>
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1" >
+                                <Button
+                                    android:id="@+id/paymentSuButton1"
+                                    android:tag="paymentSuButtonTag1"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/button_selector_numberbutton_payment"
+                                    android:layout_margin="1dp"
+                                    android:text="1"
+                                    android:textSize="20dp"
+                                    android:textStyle="bold"
+                                    android:textColor="#0054d5"/>
+                                <Button
+                                    android:id="@+id/paymentSuButton2"
+                                    android:tag="paymentSuButtonTag2"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/button_selector_numberbutton_payment"
+                                    android:layout_margin="1dp"
+                                    android:text="2"
+                                    android:textSize="20dp"
+                                    android:textStyle="bold"
+                                    android:textColor="#0054d5"/>
+                                <Button
+                                    android:id="@+id/paymentSuButton3"
+                                    android:tag="paymentSuButtonTag3"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/button_selector_numberbutton_payment"
+                                    android:layout_margin="1dp"
+                                    android:text="3"
+                                    android:textSize="20dp"
+                                    android:textStyle="bold"
+                                    android:textColor="#0054d5"/>
+                            </TableRow>
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1" >
+                                <Button
+                                    android:id="@+id/paymentSuButton0"
+                                    android:tag="paymentSuButtonTag0"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/button_selector_numberbutton_payment"
+                                    android:layout_margin="1dp"
+                                    android:text="0"
+                                    android:textSize="20dp"
+                                    android:textStyle="bold"
+                                    android:textColor="#0054d5"/>
+                                <Button
+                                    android:id="@+id/paymentSuButton00"
+                                    android:tag="paymentSuButtonTag00"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/button_selector_numberbutton_payment"
+                                    android:layout_margin="1dp"
+                                    android:text="00"
+                                    android:textSize="20dp"
+                                    android:textStyle="bold"
+                                    android:textColor="#0054d5"/>
+                                <Button
+                                    android:id="@+id/paymentSuButtonBack"
+                                    android:tag="paymentSuButtonTagBack"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/button_selector_numberbutton_payment"
+                                    android:layout_margin="1dp"
+                                    android:text="←"
+                                    android:textSize="20dp"
+                                    android:textStyle="bold"
+                                    android:textColor="#0054d5"/>
+                            </TableRow>
+                        </TableLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1.8"
+                        android:orientation="horizontal"
+                        android:paddingRight="3dp">
+                        <Button
+                            android:id="@+id/paymentSuButtonV"
+                            android:tag="paymentSuButtonTagV"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/button_selector_numberbutton_payment_v"
+                            android:layout_marginBottom="3dp"
+                            android:text="V"
+                            android:textSize="35dp"
+                            android:textStyle="bold"
+                            android:textColor="#ffffff"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!-- Cash Pad -->
+                <LinearLayout
+                    android:id="@+id/cashpadLn"
+                    android:tag="cashpadLnTag"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.2"
+                    android:orientation="vertical"
+                    android:paddingRight="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingBottom="7dp"
+                    android:visibility="gone">
+
+                    <Button
+                        android:id="@+id/cashEnterLeftBtn1"
+                        android:tag="cashEnterLeftBtn1Tag"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="2"
+                        android:background="@drawable/button_selector_cashpad_button1"
+                        android:text="$0.00"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:textColor="#ffffff"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.1"/>
+
+                    <Button
+                        android:id="@+id/cashEnterLeftBtn2"
+                        android:tag="cashEnterLeftBtn2Tag"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/button_selector_cashpad_button2"
+                        android:text="$0.00"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:textColor="#000000"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.1"/>
+
+                    <Button
+                        android:id="@+id/cashEnterLeftBtn3"
+                        android:tag="cashEnterLeftBtn3Tag"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/button_selector_cashpad_button2"
+                        android:text="$0.00"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:textColor="#000000"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.1"/>
+
+                    <Button
+                        android:id="@+id/cashEnterLeftBtn4"
+                        android:tag="cashEnterLeftBtn4Tag"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/button_selector_cashpad_button2"
+                        android:text="$0.00"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:textColor="#000000"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.1"/>
+
+                    <Button
+                        android:id="@+id/cashEnterLeftBtn5"
+                        android:tag="cashEnterLeftBtn5Tag"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/button_selector_cashpad_button2"
+                        android:text="$0.00"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:textColor="#000000"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.1"/>
+
+                    <Button
+                        android:id="@+id/cashEnterLeftBtn6"
+                        android:tag="cashEnterLeftBtn6Tag"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/button_selector_cashpad_button2"
+                        android:text="$0.00"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:textColor="#000000"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.1"/>
+
+                    <Button
+                        android:id="@+id/cashEnterLeftBtn7"
+                        android:tag="cashEnterLeftBtn7Tag"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/button_selector_cashpad_button2"
+                        android:text="$0.00"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:textColor="#000000"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+
+
+    </LinearLayout>
+
+</LinearLayout>

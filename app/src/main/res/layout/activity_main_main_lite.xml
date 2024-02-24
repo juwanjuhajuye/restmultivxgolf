@@ -1,0 +1,313 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/frameLayout_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="visible" >
+
+        <!-- 중앙/우측/상단 컨텐츠 시작 (카테고리 리스트) -->
+        <LinearLayout
+            android:id="@+id/topCategoryLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.85"
+            android:orientation="horizontal" >
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:id="@+id/topCategoryLn1"
+                            android:tag="topCategoryLnTag1"
+                            android:padding="2dp"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:paddingTop="2dp"
+                            android:layout_margin="2dp" >
+
+                            <Button
+                                android:id="@+id/topCategoryButton1"
+                                android:tag="topCategoryButtonTag1"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="9"
+                                android:padding="5dp"
+                                android:background="#ffffff"
+                                android:text=""
+                                android:gravity="center" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/topCategoryLn2"
+                            android:tag="topCategoryLnTag2"
+                            android:padding="2dp"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:paddingTop="2dp"
+                            android:layout_margin="2dp" >
+
+                            <Button
+                                android:id="@+id/topCategoryButton2"
+                                android:tag="topCategoryButtonTag2"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="9"
+                                android:padding="5dp"
+                                android:background="#ffffff"
+                                android:text=""
+                                android:gravity="center" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/topCategoryLn3"
+                            android:tag="topCategoryLnTag3"
+                            android:padding="2dp"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:paddingTop="2dp"
+                            android:layout_margin="2dp" >
+
+                            <Button
+                                android:id="@+id/topCategoryButton3"
+                                android:tag="topCategoryButtonTag3"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="9"
+                                android:padding="5dp"
+                                android:background="#ffffff"
+                                android:text=""
+                                android:gravity="center" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/topCategoryLn4"
+                            android:tag="topCategoryLnTag4"
+                            android:padding="2dp"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:paddingTop="2dp"
+                            android:layout_margin="2dp" >
+
+                            <Button
+                                android:id="@+id/topCategoryButton4"
+                                android:tag="topCategoryButtonTag4"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="9"
+                                android:padding="5dp"
+                                android:background="#ffffff"
+                                android:text=""
+                                android:gravity="center" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/topCategoryLn5"
+                            android:tag="topCategoryLnTag5"
+                            android:padding="2dp"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:paddingTop="2dp"
+                            android:layout_margin="2dp" >
+
+                            <Button
+                                android:id="@+id/topCategoryButton5"
+                                android:tag="topCategoryButtonTag5"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="9"
+                                android:padding="5dp"
+                                android:background="#ffffff"
+                                android:text=""
+                                android:gravity="center" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:id="@+id/topCategoryLn6"
+                            android:tag="topCategoryLnTag6"
+                            android:padding="2dp"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:paddingTop="2dp"
+                            android:layout_margin="2dp" >
+
+                            <Button
+                                android:id="@+id/topCategoryButton6"
+                                android:tag="topCategoryButtonTag6"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="9"
+                                android:padding="5dp"
+                                android:background="#ffffff"
+                                android:text=""
+                                android:gravity="center" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/topCategoryLn7"
+                            android:tag="topCategoryLnTag7"
+                            android:padding="2dp"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:paddingTop="2dp"
+                            android:layout_margin="2dp" >
+
+                            <Button
+                                android:id="@+id/topCategoryButton7"
+                                android:tag="topCategoryButtonTag7"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="9"
+                                android:padding="5dp"
+                                android:background="#ffffff"
+                                android:text=""
+                                android:gravity="center" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/topCategoryLn8"
+                            android:tag="topCategoryLnTag8"
+                            android:padding="2dp"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:paddingTop="2dp"
+                            android:layout_margin="2dp" >
+
+                            <Button
+                                android:id="@+id/topCategoryButton8"
+                                android:tag="topCategoryButtonTag8"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="9"
+                                android:padding="5dp"
+                                android:background="#ffffff"
+                                android:text=""
+                                android:gravity="center" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/topCategoryLn9"
+                            android:tag="topCategoryLnTag9"
+                            android:padding="2dp"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:paddingTop="2dp"
+                            android:layout_margin="2dp" >
+
+                            <Button
+                                android:id="@+id/topCategoryButton9"
+                                android:tag="topCategoryButtonTag9"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="9"
+                                android:padding="5dp"
+                                android:background="#ffffff"
+                                android:text=""
+                                android:gravity="center" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/topCategoryLn10"
+                            android:tag="topCategoryLnTag10"
+                            android:padding="2dp"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:paddingTop="2dp"
+                            android:layout_margin="2dp" >
+
+                            <Button
+                                android:id="@+id/topCategoryButton10"
+                                android:tag="topCategoryButtonTag10"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="9"
+                                android:padding="5dp"
+                                android:background="#ffffff"
+                                android:text=""
+                                android:gravity="center" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </ScrollView>
+
+
+        </LinearLayout>
+        <!-- 중앙/우측/상단 컨텐츠 끝 (카테고리 리스트) -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.1"
+            android:orientation="horizontal" >
+        </LinearLayout>
+
+        <!-- 중앙/우측/중앙 컨텐츠 시작 -->
+        <LinearLayout
+            android:id="@+id/middleServiceLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="4"
+            android:orientation="horizontal" >
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <include
+                    android:id="@+id/servicemenulayout60"
+                    layout="@layout/activity_service_60_lite" />
+
+                <include
+                    android:id="@+id/servicemenulayout72"
+                    layout="@layout/activity_service_72_lite" />
+
+            </FrameLayout>
+
+
+        </LinearLayout>
+        <!-- 중앙/우측/중앙 컨텐츠 끝 -->
+
+
+    </LinearLayout>
+
+</LinearLayout>

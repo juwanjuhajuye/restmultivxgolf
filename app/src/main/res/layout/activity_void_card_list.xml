@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp">
+
+    <LinearLayout
+        android:id="@+id/tipCardListLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:background="@drawable/roundlayout" >
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="left|center_vertical"
+                android:textSize="20dp"
+                android:paddingLeft="10dp"
+                android:textColor="#ffffff" />
+
+            <Button
+                android:id="@+id/tipCardListCloseBtn"
+                android:tag="tipCardListCloseBtnTag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:gravity="center"
+                android:text=" X "/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="9"
+            android:padding="5dp"
+            android:orientation="vertical">
+
+            <ScrollView
+                android:id="@+id/tipCardListScrollView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp">
+                <LinearLayout
+                    android:id="@+id/tipCardListCardListLinearLayout"
+                    android:tag="tipCardListCardListLinearLayoutTag"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                </LinearLayout>
+            </ScrollView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.2"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingBottom="5dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/tipCardListSelectSubmitButton"
+                android:tag="tipCardListSelectSubmitButtonTag"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/roundlayout_numberbutton_v"
+                android:layout_margin="3dp"
+                android:text="V"
+                android:textSize="35dp"
+                android:textStyle="bold"
+                android:textColor="#ffffff"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

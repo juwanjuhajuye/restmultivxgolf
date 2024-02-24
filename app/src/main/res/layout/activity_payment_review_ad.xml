@@ -1,0 +1,61 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- 광고관련 레이아웃 -->
+    <LinearLayout
+        android:id="@+id/paymentReviewLn1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="8dp"
+        android:visibility="visible"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="5.5"
+            android:padding="5dp"
+            android:visibility="visible"
+            android:orientation="vertical">
+
+            <ViewFlipper
+                android:id="@+id/adViewFlipper"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/adImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ad_images_1" />
+
+            </ViewFlipper>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.2">
+            <Button
+                android:id="@+id/paymentReviewConfirmButton2"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/button_selector_payment_review_send"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="3dp"
+                android:text="V"
+                android:textSize="25dp"
+                android:layout_alignParentRight="true"
+                android:textColor="#ffffff"/>
+        </RelativeLayout>
+
+
+
+    </LinearLayout>
+
+</LinearLayout>

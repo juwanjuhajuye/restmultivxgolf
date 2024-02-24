@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp"
+    android:background="@android:color/transparent" >
+
+    <LinearLayout
+        android:id="@+id/table_main_table_split_ln"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.2"
+            android:orientation="horizontal">
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="15"
+            android:weightSum="10"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2.75"
+                android:orientation="horizontal">
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:background="@drawable/table_main_round_avtivity"
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4.5">
+
+                <LinearLayout
+                    android:background="@drawable/table_main_round_avtivity"
+
+                    android:id="@+id/table_main_billprint_ln"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/saleHistoryLinearLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_margin="0dp"
+
+                        android:visibility="visible">
+
+                        <RelativeLayout
+                            android:background="@drawable/table_main_popup_top"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:layout_marginBottom="10dp"
+                            android:paddingRight="10dp" >
+                            <TextView
+                                android:id="@+id/table_main_popup_top"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="left|center_vertical"
+                                android:paddingLeft="20dp"
+                                android:paddingRight="10dp"
+                                android:text="Bill Print"
+                                android:textSize="30dp"
+                                android:textStyle="bold"
+                                android:textColor="#ffffff" />
+
+                            <ImageButton
+                                android:id="@+id/table_main_bill_split_close"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerInParent="true"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:background="@drawable/aa_images_main_close_x"
+                                android:gravity="center"
+                                android:tag="saleHistoryCloseBtnTag" />
+                        </RelativeLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="8.5"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:visibility="gone">
+                                <ListView
+
+                                    android:paddingLeft="20dp"
+                                    android:paddingBottom="20dp"
+                                    android:paddingTop="20dp"
+                                    android:id="@+id/table_main_billprint_list"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"/>
+
+                            </LinearLayout>
+
+
+
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.05"
+
+                                android:orientation="vertical">
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1.5"
+                                    android:orientation="vertical"
+                                    android:visibility="gone">
+
+                                    <TextView
+                                        android:id="@+id/billtitletv"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:gravity="center"
+                                        android:text="TABLE 1 (Bill - A)"
+                                        android:textColor="#383838"
+                                        android:textSize="28dp"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"
+                                    android:background="#2c2c2c" />
+
+                                <ScrollView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="11"
+                                    android:padding="10dp">
+
+
+                                    <FrameLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent" >
+
+                                        <LinearLayout
+                                            android:id="@+id/billcontentsLn"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+
+                                            android:orientation="vertical"
+                                            android:paddingRight="20dp"
+                                            android:paddingBottom="20dp"
+                                            android:gravity="top|center_horizontal">
+                                        </LinearLayout>
+
+                                    </FrameLayout>
+
+                                </ScrollView>
+
+                            </LinearLayout>
+                            <LinearLayout
+                                android:weightSum="8"
+                                android:orientation="vertical"
+                                android:layout_weight="1"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent">
+                                <ImageButton
+                                    android:id="@+id/selectedPrintBtn"
+                                    android:background="@color/zxing_transparent"
+                                    android:scaleType="fitXY"
+                                    android:src="@drawable/ab_imagebutton_billprint_print_btn"
+                                    android:textSize="24dp"
+                                    android:text=""
+                                    android:textColor="#ffffff"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1" />
+
+
+                                <ImageButton
+                                    android:id="@+id/allPrintBtn"
+                                    android:background="@drawable/table_main_button_black1"
+                                    android:textSize="24dp"
+                                    android:text="All Bills Print"
+                                    android:textColor="#ffffff"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"
+                                    android:visibility="gone"/>
+                                <ImageButton
+                                    android:id="@+id/orderpayment"
+                                    android:textSize="24dp"
+                                    android:text=""
+                                    android:textColor="#ffffff"
+                                    android:background="@color/zxing_transparent"
+                                    android:scaleType="fitXY"
+                                    android:src="@drawable/ab_imagebutton_billprint_pay_btn"
+                                    android:layout_weight="1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"/>
+                                <ImageButton
+                                    android:visibility="invisible"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="5" />
+                                <ImageButton
+                                    android:id="@+id/kitchenprint"
+                                    android:textSize="24dp"
+                                    android:text=""
+                                    android:textColor="#ffffff"
+                                    android:background="@color/zxing_transparent"
+                                    android:scaleType="fitXY"
+                                    android:src="@drawable/ab_imagebutton_billprint_kitchen_btn"
+                                    android:layout_weight="1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"/>
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:orientation="horizontal">
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.2"
+            android:orientation="horizontal">
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

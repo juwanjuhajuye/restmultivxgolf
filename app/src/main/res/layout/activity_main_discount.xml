@@ -1,0 +1,573 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/frameLayout_discount"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="10dp"
+        android:background="@drawable/roundlayout_line"
+        android:visibility="invisible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.9"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="left|center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/discountExtraTitleEditText"
+                    android:tag="discountExtraTitleEditTextTag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.4"
+                android:gravity="right|center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="15dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp">
+
+                <Button
+                    android:id="@+id/discountCloseBtn"
+                    android:tag="discountCloseBtnTag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:orientation="horizontal"
+            android:background="#bbbbc8"></LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.3"
+            android:orientation="horizontal"></LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="8.5"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/discountCouponYNTitleTextView"
+                        android:tag="discountCouponYNTitleTextViewTag"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="Coupon"
+                        android:textSize="12dp"
+                        android:textColor="#3e3d42"
+                        android:gravity="left|center_vertical"/>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:gravity="center_vertical|left"
+                        android:orientation="horizontal">
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical|left"
+                            android:orientation="horizontal">
+
+                            <Switch
+                                android:id="@+id/discountCouponYNSwitch"
+                                style="@style/SwitchCustom40"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="left|center_vertical"
+                                android:checked="false"
+                                android:switchTextAppearance="@style/SwitchTextAppearance"
+                                android:tag="discountCouponYNSwitchTag"
+                                android:textOff="No"
+                                android:textOn="Yes" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <Button
+                    android:id="@+id/qrcodeOpenButton"
+                    android:tag="qrcodeOpenButtonTag"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:layout_margin="10dp"
+
+                    android:visibility="gone"
+                    android:text="QR/BARCODE"
+                    android:textColor="#0054d5"
+                    android:textSize="12dp"
+                    android:background="@drawable/button_selector_qrbarcode"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/discountCouponNumberTitleTextView"
+                        android:tag="discountCouponNumberTitleTextViewTag"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="Coupon #"
+                        android:textColor="#3e3d42"
+                        android:textSize="12dp"
+                        android:gravity="left|center_vertical"/>
+                    <EditText
+                        android:id="@+id/discountCouponNumberEditText"
+                        android:tag="discountCouponNumberEditTextTag"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:background="@drawable/roundlayout_background_discount_gray"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/couponBtnLn"
+                    android:tag="couponBtnLnTag"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.7"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:orientation="horizontal"
+                    android:visibility="invisible">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
+                    <Button
+                        android:id="@+id/discountCouponCheckBtn"
+                        android:tag="discountCouponCheckBtnTag"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:background="@drawable/button_selector_qrbarcode"
+                        android:text="Coupon Check"
+                        android:textColor="#0054d5"
+                        android:textSize="14dp"
+                        android:gravity="center"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/discountCouponDCExtraTitleTextView"
+                        android:tag="discountCouponDCExtraTitleTextViewTag"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="Extra/D.C"
+                        android:textColor="#3e3d42"
+                        android:textSize="12dp"
+                        android:gravity="left|center_vertical"/>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2">
+                        <Switch
+                            android:id="@+id/discountDiscountExtraSwitch"
+                            android:tag="discountDiscountExtraSwitchTag"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="left|center_vertical"
+                            style="@style/SwitchCustom80"
+                            android:switchTextAppearance="@style/SwitchTextAppearance"
+                            android:textOn="Discount"
+                            android:textOff="Extra"
+                            android:checked="true"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/discountCouponAllEachTitleTextView"
+                        android:tag="discountCouponAllEachTitleTextViewTag"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="Each/All"
+                        android:textColor="#3e3d42"
+                        android:textSize="12dp"
+                        android:gravity="left|center_vertical"/>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2">
+                        <Switch
+                            android:id="@+id/discountAllEachSwitch"
+                            android:tag="discountAllEachSwitchTag"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="left|center_vertical"
+                            android:textSize="10dp"
+                            style="@style/SwitchCustom80"
+                            android:switchTextAppearance="@style/SwitchTextAppearance"
+                            android:textOn="All"
+                            android:textOff="Each"
+                            android:checked="true"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/discountCouponRateTitleTextView"
+                        android:tag="discountCouponRateTitleTextViewTag"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="Rate"
+                        android:textColor="#3e3d42"
+                        android:textSize="12dp"
+                        android:gravity="left|center_vertical"/>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2">
+                        <EditText
+                            android:id="@+id/discountRateEditText"
+                            android:tag="discountRateEditTextTag"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="3"
+                            android:gravity="center"
+                            android:background="@drawable/roundlayout_background_discount" />
+
+                        <ToggleButton
+                            android:id="@+id/discountRateTypeButton"
+                            android:tag="discountRateTypeButtonTag"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:layout_gravity="center"
+                            android:background="@drawable/roundlayout_button_whitebg"
+                            android:layout_marginLeft="7dp"
+                            android:paddingLeft="3dp"
+                            android:paddingRight="3dp"
+                            android:textSize="16dp"
+                            android:textColor="#ffffff"
+                            android:textOn="%"
+                            android:textOff="$"
+                            android:checked="true" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.3"
+                    android:orientation="horizontal">
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="5"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <ScrollView
+                        android:id="@+id/discountbtnSv"
+                        android:tag="discountbtnSvTag"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:id="@+id/discountbtnLn"
+                            android:tag="discountbtnLnTag"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+
+                        </LinearLayout>
+
+                    </ScrollView>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.15"
+                android:orientation="vertical">
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="7"
+                    android:orientation="horizontal">
+
+                    <TableLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="7dp"
+                        android:stretchColumns="*">
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" >
+                            <Button
+                                android:id="@+id/discountSuButton7"
+                                android:tag="discountSuButtonTag7"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/button_selector_numberbutton_discount"
+                                android:layout_margin="3dp"
+                                android:text="7"
+                                android:textSize="16dp"
+                                android:textStyle="bold"
+                                android:textColor="#0054d5"/>
+                            <Button
+                                android:id="@+id/discountSuButton8"
+                                android:tag="discountSuButtonTag8"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/button_selector_numberbutton_discount"
+                                android:layout_margin="3dp"
+                                android:text="8"
+                                android:textSize="16dp"
+                                android:textStyle="bold"
+                                android:textColor="#0054d5"/>
+                            <Button
+                                android:id="@+id/discountSuButton9"
+                                android:tag="discountSuButtonTag9"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/button_selector_numberbutton_discount"
+                                android:layout_margin="3dp"
+                                android:text="9"
+                                android:textSize="16dp"
+                                android:textStyle="bold"
+                                android:textColor="#0054d5"/>
+                        </TableRow>
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" >
+                            <Button
+                                android:id="@+id/discountSuButton4"
+                                android:tag="discountSuButtonTag4"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/button_selector_numberbutton_discount"
+                                android:layout_margin="3dp"
+                                android:text="4"
+                                android:textSize="16dp"
+                                android:textStyle="bold"
+                                android:textColor="#0054d5"/>
+                            <Button
+                                android:id="@+id/discountSuButton5"
+                                android:tag="discountSuButtonTag5"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/button_selector_numberbutton_discount"
+                                android:layout_margin="3dp"
+                                android:text="5"
+                                android:textSize="16dp"
+                                android:textStyle="bold"
+                                android:textColor="#0054d5"/>
+                            <Button
+                                android:id="@+id/discountSuButton6"
+                                android:tag="discountSuButtonTag6"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/button_selector_numberbutton_discount"
+                                android:layout_margin="3dp"
+                                android:text="6"
+                                android:textSize="16dp"
+                                android:textStyle="bold"
+                                android:textColor="#0054d5"/>
+                        </TableRow>
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" >
+                            <Button
+                                android:id="@+id/discountSuButton1"
+                                android:tag="discountSuButtonTag1"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/button_selector_numberbutton_discount"
+                                android:layout_margin="3dp"
+                                android:text="1"
+                                android:textSize="16dp"
+                                android:textStyle="bold"
+                                android:textColor="#0054d5"/>
+                            <Button
+                                android:id="@+id/discountSuButton2"
+                                android:tag="discountSuButtonTag2"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/button_selector_numberbutton_discount"
+                                android:layout_margin="3dp"
+                                android:text="2"
+                                android:textSize="16dp"
+                                android:textStyle="bold"
+                                android:textColor="#0054d5"/>
+                            <Button
+                                android:id="@+id/discountSuButton3"
+                                android:tag="discountSuButtonTag3"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/button_selector_numberbutton_discount"
+                                android:layout_margin="3dp"
+                                android:text="3"
+                                android:textSize="16dp"
+                                android:textStyle="bold"
+                                android:textColor="#0054d5"/>
+                        </TableRow>
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" >
+                            <Button
+                                android:id="@+id/discountSuButton0"
+                                android:tag="discountSuButtonTag0"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/button_selector_numberbutton_discount"
+                                android:layout_margin="3dp"
+                                android:text="0"
+                                android:textSize="16dp"
+                                android:textStyle="bold"
+                                android:textColor="#0054d5"/>
+                            <Button
+                                android:id="@+id/discountSuButton00"
+                                android:tag="discountSuButtonTag00"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/button_selector_numberbutton_discount"
+                                android:layout_margin="3dp"
+                                android:text="00"
+                                android:textSize="16dp"
+                                android:textStyle="bold"
+                                android:textColor="#0054d5"/>
+                            <Button
+                                android:id="@+id/discountSuButtonBack"
+                                android:tag="discountSuButtonTagBack"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/button_selector_numberbutton_discount"
+                                android:layout_margin="3dp"
+                                android:text="←"
+                                android:textSize="16dp"
+                                android:textStyle="bold"
+                                android:textColor="#0054d5"/>
+                        </TableRow>
+                    </TableLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1.8"
+                    android:paddingLeft="6dp"
+                    android:paddingRight="6dp"
+                    android:orientation="horizontal">
+                    <Button
+                        android:id="@+id/discountSuButtonV"
+                        android:tag="discountSuButtonTagV"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/button_selector_numberbutton_discount_v"
+                        android:layout_margin="3dp"
+                        android:text="V"
+                        android:textSize="35dp"
+                        android:textStyle="bold"
+                        android:textColor="#3e3d42"/>
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

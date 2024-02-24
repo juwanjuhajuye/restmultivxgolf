@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center">
+    <LinearLayout
+        android:id="@+id/toptableLn"
+        android:layout_width="170dp"
+        android:layout_height="120dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/ordereddateLn"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/ordereddate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="12dp"
+                android:text=""
+                android:textColor="#ffffff" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/parentTableLn"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="4"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="3dp"
+            android:background="@drawable/roundlayout_table5">
+
+            <LinearLayout
+                android:id="@+id/tableLn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_margin="5dp"
+                        android:id="@+id/table_main_table_image"
+                        android:src="@drawable/ic_tables_circle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.5"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/table_main_bill_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#ffffff"
+                        android:textSize="18dp"
+                        android:text="Table 01"
+                        android:gravity="center" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:visibility="gone">
+                    <TextView
+                        android:id="@+id/capacityTv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Capacity  5 / 5"
+                        android:textColor="#575757"
+                        android:gravity="center"/>
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:visibility="invisible">
+                    <TextView
+                        android:id="@+id/totalordersTv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="TOTAL ORDERS"
+                        android:textStyle="bold"
+                        android:textColor="#575757"
+                        android:gravity="center"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:visibility="invisible">
+                    <TextView
+                        android:id="@+id/table_main_table_totalprice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#f6531a"
+                        android:textStyle="bold"
+                        android:textSize="20dp"
+                        android:text="$350.00" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
+                    <TextView
+                        android:id="@+id/main_table_row_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="TABLE01"
+                        android:textColor="#ffffff"
+                        android:gravity="center"/>
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</LinearLayout>

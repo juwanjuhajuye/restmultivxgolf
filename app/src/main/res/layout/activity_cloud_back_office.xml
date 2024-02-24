@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp"
+    android:orientation="vertical"
+    tools:context="com.example.jjbfather.jjjqsrt2go2gorestkakaovx.com.example.jjbfather.jjjqsrt2go2gorest.CloudBackOffice">
+
+    <LinearLayout
+        android:id="@+id/cloudBackOfficeLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:background="@drawable/roundlayout" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.8"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="10dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/cloudBackOfficeTitleImageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|center_vertical"
+                    android:src="@drawable/ab_imagebutton_cloud_title"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/cloudBackOfficeTopBarLinearLayout1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:padding="10dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/cloudBackOfficeDeskTopCloudButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ab_imagebutton_cloudback_desktopcloud"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/cloudBackOfficeTopBarLinearLayout2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="right|center_vertical"
+                android:paddingLeft="10dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/cloudBackOfficeLogoutButton"
+                    android:tag="cloudBackOfficeLogoutButtonTag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="10dp"
+                    android:paddingRight="15dp"
+                    android:paddingLeft="15dp"
+                    android:gravity="center"
+                    android:background="@drawable/button_selector_cloud_logout"
+                    android:textColor="#ffffff"
+                    android:text="Logout"
+                    android:visibility="invisible" />
+
+                <Button
+                    android:id="@+id/cloudBackOfficeCloseBtn"
+                    android:tag="cloudBackOfficeCloseBtnTag"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center"
+                    android:background="@drawable/roundlayout_button_white"
+                    android:text=" X "/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:orientation="horizontal"
+            android:background="#bbbbc8"></LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="8.5"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:orientation="vertical">
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="6">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingLeft="0dp"
+                            android:paddingRight="5dp"
+                            android:paddingTop="5dp"
+                            android:orientation="vertical">
+                            <Button
+                                android:id="@+id/cloudBackDashBoardButton"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/ab_imagebutton_cloudback_dashboard"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingLeft="0dp"
+                            android:paddingRight="5dp"
+                            android:paddingTop="5dp"
+                            android:orientation="vertical">
+                            <Button
+                                android:id="@+id/cloudBackStoreButton"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/ab_imagebutton_cloudback_store"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingLeft="0dp"
+                            android:paddingRight="5dp"
+                            android:paddingTop="5dp"
+                            android:orientation="vertical">
+                            <Button
+                                android:id="@+id/cloudBackEmployeeButton"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/ab_imagebutton_cloudback_employee"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingLeft="0dp"
+                            android:paddingRight="5dp"
+                            android:paddingTop="5dp"
+                            android:orientation="vertical">
+                            <Button
+                                android:id="@+id/cloudBackServiceButton"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/ab_imagebutton_cloudback_service"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingLeft="0dp"
+                            android:paddingRight="5dp"
+                            android:paddingTop="5dp"
+                            android:orientation="vertical">
+                            <Button
+                                android:id="@+id/cloudBackProductButton"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/ab_imagebutton_cloudback_product"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingLeft="0dp"
+                            android:paddingRight="5dp"
+                            android:paddingTop="5dp"
+                            android:orientation="vertical">
+                            <Button
+                                android:id="@+id/cloudBackGiftcardButton"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/ab_imagebutton_cloudback_giftcard"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingLeft="0dp"
+                            android:paddingRight="5dp"
+                            android:paddingTop="5dp"
+                            android:orientation="vertical">
+                            <Button
+                                android:id="@+id/cloudBackMemberButton"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/ab_imagebutton_cloudback_member"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingLeft="0dp"
+                            android:paddingRight="5dp"
+                            android:paddingTop="5dp"
+                            android:orientation="vertical">
+                            <Button
+                                android:id="@+id/cloudBackCouponButton"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/ab_imagebutton_cloudback_coupon"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingLeft="0dp"
+                            android:paddingRight="5dp"
+                            android:paddingTop="5dp"
+                            android:orientation="vertical">
+                            <Button
+                                android:id="@+id/cloudBackReportButton"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/ab_imagebutton_cloudback_report"/>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </ScrollView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.5"
+                        android:paddingLeft="0dp"
+                        android:paddingRight="5dp"
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/cloudBackOfficeSyncDataTimeTextView"
+                            android:tag="cloudBackOfficeSyncDataTimeTextViewTag"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:paddingRight="3dp"
+                            android:paddingLeft="3dp"
+                            android:textSize="9dp"
+                            android:textColor="#a4a2a9"
+                            android:visibility="invisible" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:paddingLeft="0dp"
+                        android:paddingRight="5dp"
+                        android:orientation="vertical">
+                        <Button
+                            android:id="@+id/cloudBackSaleDataUploadtButton"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/ab_imagebutton_cloudback_saledataup"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.1"
+                        android:orientation="vertical">
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:paddingLeft="0dp"
+                        android:paddingRight="5dp"
+                        android:orientation="vertical">
+                        <Button
+                            android:id="@+id/cloudBackOfficeDownloadButton"
+                            android:tag="cloudBackOfficeDownloadButtonTag"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/ab_imagebutton_cloud_appdown"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:orientation="vertical">
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="10"
+                    android:orientation="vertical">
+
+                    <WebView
+                        android:id="@+id/cloudBackOfficeview"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="3dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.8"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal|left"
+                        android:orientation="horizontal"
+                        android:paddingTop="5dp">
+
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.5"
+                        android:gravity="center_horizontal|right"
+                        android:orientation="horizontal"
+                        android:paddingTop="5dp">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <Button
+                                android:id="@+id/cloudBackOfficeItemDownloadButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="Syncronize"
+                                android:textColor="#ffffff"
+                                android:textSize="14dp"
+                                android:paddingLeft="8dp"
+                                android:paddingRight="8dp"
+                                android:background="@drawable/button_selector_cloud_itemdown"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

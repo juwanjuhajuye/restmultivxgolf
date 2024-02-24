@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp">
+
+    <LinearLayout
+        android:id="@+id/giftCardBalanceCheckLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:background="@drawable/roundlayout" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:orientation="vertical"
+            android:layout_margin="7dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true" >
+
+            <TextView
+                android:id="@+id/quantityTitleTextView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.5"
+                android:text="Gift Card Balance"
+                android:textColor="#3e3d42"
+                android:textSize="18dp"
+                android:gravity="center_horizontal|center_vertical"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:padding="3dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true" >
+
+                <TextView
+                    android:id="@+id/giftCardNumberTv"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:textColor="#3e3d42"
+                    android:textSize="14dp"
+                    android:text="Gift Card"
+                    android:paddingLeft="10dp"
+                    android:gravity="left|center_vertical"/>
+
+                <EditText
+                    android:id="@+id/giftCardNumberEv"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:textSize="16dp"
+                    android:textColor="#3e3d42"
+                    android:background="#f0f0f0"
+                    android:inputType="number"
+                    android:maxLength="16"
+                    android:gravity="center_horizontal|center_vertical"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:padding="3dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true" >
+
+                <TextView
+                    android:id="@+id/giftCardUsedTv"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:textSize="14dp"
+                    android:textColor="#3e3d42"
+                    android:text="Used"
+                    android:paddingLeft="10dp"
+                    android:gravity="left|center_vertical" />
+
+                <TextView
+                    android:id="@+id/giftCardUsedAmountTv"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:text="0.00"
+                    android:textSize="16dp"
+                    android:textColor="#3e3d42"
+                    android:paddingRight="10dp"
+                    android:inputType="number"
+                    android:maxLength="20"
+                    android:gravity="center_vertical|right"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:padding="3dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true" >
+
+                <TextView
+                    android:id="@+id/giftCardBalaceTv"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:textSize="14dp"
+                    android:textColor="#3e3d42"
+                    android:text="Balance"
+                    android:paddingLeft="10dp"
+                    android:gravity="left|center_vertical" />
+
+                <TextView
+                    android:id="@+id/giftCardBalanceAmountTv"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:text="0.00"
+                    android:textSize="18dp"
+                    android:textColor="#3e3d42"
+                    android:textStyle="bold"
+                    android:paddingRight="10dp"
+                    android:inputType="number"
+                    android:maxLength="20"
+                    android:gravity="center_vertical|right"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/giftcardeditLn"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:padding="3dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.2"
+                    android:gravity="center_vertical|right">
+
+                    <RadioGroup
+                        android:id="@+id/giftcardAddUseRadioGroup"
+                        android:tag="giftcardAddUseRadioGroupTag"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+                        <RadioButton
+                            android:id="@+id/giftcardAddRadioButton"
+                            android:tag="giftcardAddRadioButtonTag"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:textSize="12dp"
+                            android:textColor="#3e3d42"
+                            android:text="Add"
+                            android:checked="true"/>
+                        <RadioButton
+                            android:id="@+id/giftcardUseRadioButton"
+                            android:tag="giftcardUseRadioButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="5dp"
+                            android:textSize="12dp"
+                            android:textColor="#3e3d42"
+                            android:text="Use " />
+
+                    </RadioGroup>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:gravity="center" >
+
+                    <EditText
+                        android:id="@+id/giftcardeditEv"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
+                        android:textSize="16dp"
+                        android:textColor="#3e3d42"
+                        android:background="#f0f0f0"
+                        android:inputType="phone"
+                        android:maxLength="16"
+                        android:gravity="center_horizontal|center_vertical"/>
+
+                    <Button
+                        android:id="@+id/giftcardBalanceCheckHistoryEditButton"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="5dp"
+                        android:text="EDIT"
+                        android:textStyle="bold"
+                        android:textColor="#ffffff"
+                        android:textSize="16dp"
+                        android:background="@drawable/button_selector_category2" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:gravity="center_horizontal" >
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <!-- 카드번호 입력 키패드 시작 -->
+                <include
+                    android:id="@+id/giftcardKeypad"
+                    layout="@layout/activity_gift_card_balance_check_keypad" />
+                <!-- 카드번호 입력 키패드 끝 -->
+
+                <!-- 기프트카드 적립/사용 히스토리 시작 -->
+                <include
+                    android:id="@+id/giftcardHistory"
+                    layout="@layout/activity_gift_card_balance_check_history" />
+                <!-- 기프트카드 적립/사용 히스토리 끝 -->
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

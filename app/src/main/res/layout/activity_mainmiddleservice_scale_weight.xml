@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp"
+    android:background="@android:color/transparent" >
+
+    <LinearLayout
+        android:id="@+id/realtimewebordersLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:weightSum="10"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+            <View
+                android:layout_weight="8.4"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"/>
+
+            <LinearLayout
+                android:gravity="bottom"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:layout_marginBottom="5dp"
+                    android:id="@+id/weightcancelbtn"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:gravity="center"
+                    android:background="@drawable/aa_images_yhe_popup_close_normal"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="5"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:orientation="horizontal">
+            </LinearLayout>
+
+            <LinearLayout
+                android:background="@drawable/roundlayout_line_black"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:orientation="vertical">
+
+
+
+                <LinearLayout
+                    android:layout_margin="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:background="#25468b">
+
+                    <TextView
+                        android:id="@+id/itemnametv"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:gravity="center_vertical|left"
+                        android:paddingLeft="20dp"
+                        android:text="1 REG - To Go"
+                        android:textColor="#ffffff"
+                        android:textStyle="bold"
+                        android:textSize="32dp"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5"/>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical|right">
+
+                        <TextView
+                            android:id="@+id/itemprice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical|right"
+                            android:paddingRight="20dp"
+                            android:text="$10.99"
+                            android:textColor="#ffffff"
+                            android:textStyle="bold"
+                            android:textSize="32dp"/>
+
+                        <TextView
+                            android:id="@+id/itempriceperweight"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical|right"
+                            android:paddingRight="20dp"
+                            android:text="($1.99 / 1 oz)"
+                            android:textColor="#ffffff"
+                            android:textSize="24dp"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="4"
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" >
+
+                        <LinearLayout
+                            android:id="@+id/readyLn"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:id="@+id/infoTv"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:textSize="38dp"
+                                android:textColor="#0c69f5"
+                                android:text="This item is ready to weigh"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/weightLn"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:visibility="visible">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center_vertical|right"
+                                android:paddingRight="10dp"
+                                android:textSize="32dp"
+                                android:textColor="#000000"
+                                android:text="Item weight : "/>
+
+                            <TextView
+                                android:id="@+id/itemweighttv"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.4"
+                                android:gravity="center"
+                                android:textSize="60dp"
+                                android:textColor="#000000"
+                                android:textStyle="bold"
+                                android:text="2.0"/>
+
+                            <TextView
+                                android:id="@+id/itemscaleunittv"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.7"
+                                android:gravity="center_vertical|left"
+                                android:paddingLeft="10dp"
+                                android:textSize="32dp"
+                                android:textColor="#000000"
+                                android:text="oz"/>
+
+                        </LinearLayout>
+
+                    </FrameLayout>
+
+
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+
+                android:padding="5dp"
+                android:background="@drawable/roundlayout_line_black"
+                android:weightSum="10"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_weight="7.5"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp">
+                    <LinearLayout
+                        android:padding="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1.5"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <CheckBox
+                            android:id="@+id/notarecheck"
+                            android:tag="notare"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/roundlayout_button_whiteborder"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="20dp"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:gravity="center"
+                            android:text="NO TARE"
+                            android:textSize="18dp"
+                            android:textStyle="bold"
+                            android:textColor="#303030"
+                            android:visibility="gone"/>
+
+                        <!-- 092022 start -->
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"></TextView>
+
+                        <Spinner
+                            android:id="@+id/tareqtySpinner"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="5"
+                            android:tag="tareqtySpinnerTag" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"></TextView>
+                        <!-- 092022 end -->
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:padding="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1.5"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <CheckBox
+                            android:id="@+id/notarecheck_add1"
+                            android:tag="notare"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/roundlayout_button_whiteborder"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="20dp"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:gravity="center"
+                            android:text="NO TARE"
+                            android:textSize="18dp"
+                            android:textStyle="bold"
+                            android:textColor="#303030"
+                            android:visibility="gone"/>
+
+                        <!-- 092022 start -->
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"></TextView>
+
+                        <Spinner
+                            android:id="@+id/tareqtySpinner_add1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="5"
+                            android:tag="tareqtySpinnerTag" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"></TextView>
+                        <!-- 092022 end -->
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:padding="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1.5"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <CheckBox
+                            android:id="@+id/notarecheck_add2"
+                            android:tag="notare"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/roundlayout_button_whiteborder"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="20dp"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:gravity="center"
+                            android:text="NO TARE"
+                            android:textSize="18dp"
+                            android:textStyle="bold"
+                            android:textColor="#303030"
+                            android:visibility="gone"/>
+
+                        <!-- 092022 start -->
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"></TextView>
+
+                        <Spinner
+                            android:id="@+id/tareqtySpinner_add2"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="5"
+                            android:tag="tareqtySpinnerTag" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"></TextView>
+                        <!-- 092022 end -->
+
+                    </LinearLayout>
+                    <View
+                        android:layout_weight="3"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"/>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2.5"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/weightorderbtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:textSize="30dp"
+                        android:textStyle="bold"
+                        android:textColor="#ffffff"
+                        android:text="Get Weight"
+                        android:background="@drawable/button_selector_weightborder"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/emptyLinearLayout"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:orientation="horizontal">
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.2"
+            android:orientation="horizontal">
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,428 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/frameLayout_commandButton"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/roundlayout_line"
+        android:visibility="invisible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.9"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="left|center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/commandButtonEditText"
+                    android:tag="commandButtonEditTextTag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.4"
+                android:gravity="right|center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="15dp"
+                android:paddingBottom="15dp"
+                android:paddingTop="15dp">
+
+                <Button
+                    android:id="@+id/commandButtonCloseBtn"
+                    android:tag="commandButtonCloseBtnTag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.3"
+            android:orientation="horizontal"></LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="8.5"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2.8"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <Button
+                            android:id="@+id/salehistoryCommandButton"
+                            android:tag="salehistoryCommandButtonTag"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:text="SALE\nHISTORY"
+                            android:textSize="25dp"
+                            android:textStyle="bold"
+                            android:textColor="#ffffff" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="20dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <Button
+                            android:id="@+id/batchsummaryCommandButton"
+                            android:tag="batchsummaryCommandButtonTag"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:text="BATCH\nSUMMARY"
+                            android:textSize="25dp"
+                            android:textStyle="bold"
+                            android:textColor="#ffffff" />
+                    </LinearLayout>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.1"
+                    android:orientation="horizontal">
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <Button
+                            android:id="@+id/taxexemptCommandButton"
+                            android:tag="taxexemptCommandButtonTag"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+
+                            android:gravity="center_horizontal|center_vertical"
+                            android:text="TAX\nEXEMPT"
+                            android:textSize="25dp"
+                            android:textStyle="bold"
+                            
+                            android:textColor="#ffffff" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="20dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <Button
+                            android:id="@+id/undotaxexemptCommandButton"
+                            android:tag="undotaxexemptCommandButtonTag"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+
+                            android:gravity="center_horizontal|center_vertical"
+                            android:text="UNDO TAX\nEXEMPT"
+                            android:textSize="25dp"
+                            android:textStyle="bold"
+                            android:textColor="#ffffff" />
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.1"
+                    android:orientation="horizontal">
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <Button
+                            android:id="@+id/backupDBCommandButton"
+                            android:tag="backupDBCommandButtonTag"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+
+                            android:gravity="center_horizontal|center_vertical"
+                            android:text="BACKUP\nDATABASE"
+                            android:textSize="25dp"
+                            android:textStyle="bold"
+                            android:textColor="#ffffff" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="20dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <Button
+                            android:id="@+id/restoreDBCommandButton"
+                            android:tag="restoreDBCommandButtonTag"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+
+                            android:gravity="center_horizontal|center_vertical"
+                            android:text="RESTORE\nDATABASE"
+                            android:textSize="25dp"
+                            android:textStyle="bold"
+                            android:textColor="#ffffff" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.1"
+                    android:orientation="horizontal">
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <LinearLayout
+                            android:id="@+id/downloadCommandButton"
+                            android:tag="downloadCommandButtonTag"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:gravity="center_horizontal|center_vertical">
+
+                            <TextView
+                                android:id="@+id/downloadCommandButtonTextView"
+                                android:tag="downloadCommandButtonTextViewTag"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="4"
+                                android:gravity="center_horizontal|bottom"
+                                android:text="DOWNLOAD"
+                                android:textSize="25dp"
+                                android:textStyle="bold"
+                                android:textColor="#ffffff" />
+
+                            <TextView
+                                android:id="@+id/downloadSyncDataLastTimeTextView"
+                                android:tag="downloadSyncDataLastTimeTextViewTag"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:gravity="center_horizontal|top"
+                                android:textSize="12dp"
+                                android:textColor="#ffffff" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="20dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <Button
+                            android:id="@+id/settingsCommandButton"
+                            android:tag="settingsCommandButtonTag"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:text=""
+                            android:textSize="25dp"
+                            android:textStyle="bold"
+
+                            android:textColor="#ffffff" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.3"
+            android:orientation="horizontal"></LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <Button
+                android:id="@+id/reservationCommandButton"
+                android:tag="reservationCommandButtonTag"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/holdCommandButton"
+                android:tag="holdCommandButtonTag"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/recallCommandButton"
+                android:tag="recallCommandButtonTag"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/clockinoutCommandButton"
+                android:tag="clockinoutCommandButtonTag"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/realtimewebordersButton"
+                android:tag="realtimewebordersButtonTag"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/cashinoutButton"
+                android:tag="cashinoutButtonTag"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/cashdrawerCommandButton"
+                android:tag="cashdrawerCommandButtonTag"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:id="@+id/cloudCommandButton"
+                    android:tag="cloudCommandButtonTag"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+
+                    android:gravity="center_horizontal|center_vertical">
+
+                    <TextView
+                        android:id="@+id/cloudCloudCommandButtonTextView"
+                        android:tag="cloudCloudCommandButtonTextViewTag"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal|bottom"
+                        android:text="CLOUD"
+                        android:textSize="25dp"
+                        android:textStyle="bold"
+                        android:textColor="#ffffff" />
+
+                    <TextView
+                        android:id="@+id/cloudBackOfficeCommandButtonTextView"
+                        android:tag="cloudBackOfficeCommandButtonTextViewTag"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal|top"
+                        android:text="BACK OFFICE"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:textColor="#ffffff" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

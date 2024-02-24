@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp">
+
+    <LinearLayout
+        android:id="@+id/customerMemoLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:background="@drawable/roundlayout" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.9"
+            android:orientation="vertical"
+            android:layout_marginLeft="7dp"
+            android:layout_marginRight="7dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true" >
+
+            <TextView
+                android:id="@+id/quantityTitleTextView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.0"
+                android:textColor="#3e3d42"
+                android:text="Customer Memo"
+                android:textSize="16dp"
+                android:gravity="center_horizontal|center_vertical"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/onlineLn"
+            android:tag="onlineLnTag"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="9"
+            android:orientation="vertical"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:visibility="gone">
+
+            <WebView
+                android:id="@+id/customerSearchWv"
+                android:tag="customerSearchWvTag"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="3dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/offlineLn"
+            android:tag="onlineLnTag"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="9"
+            android:orientation="vertical"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.7"
+                android:orientation="horizontal"
+                android:padding="2dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true" >
+
+                <Spinner
+                    android:id="@+id/customerMemoSpinner"
+                    android:tag="customerSearchSpinnerTag"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#e9f2ff" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.5"
+                android:orientation="horizontal"
+                android:paddingTop="1dp"
+                android:paddingBottom="3dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true" >
+
+                <EditText
+                    android:id="@+id/customerMemoEditText"
+                    android:tag="customerMemoEditTextTag"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="left|top"
+                    android:singleLine="false"
+                    android:lines="3"
+                    android:background="@drawable/roundlayout_background_custmemo"
+                    android:padding="5dp"
+                    android:scrollbars="vertical"
+                    android:textSize="16dp"
+                    android:textColor="#3e3d42"
+                    android:text=""/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.8"
+                android:orientation="horizontal"
+                android:padding="2dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true" >
+
+                <Button
+                    android:id="@+id/customerMemoVButton"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:layout_margin="3dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.3"
+                android:gravity="center_horizontal" >
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:orientation="horizontal"
+                android:background="#dfdfe7"></LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:orientation="horizontal"
+                android:background="@drawable/roundlayout_giftcardcheckbalance">
+
+                <TextView
+                    android:id="@+id/customerMemoDateTv"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.5"
+                    android:text="Date"
+                    android:textSize="14dp"
+                    android:textColor="#a4a2a9"
+                    android:gravity="center"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.1"
+                    android:text="|"
+                    android:textSize="14dp"
+                    android:textColor="#a4a2a9"
+                    android:gravity="center" />
+                <TextView
+                    android:id="@+id/customerMemoNoteTv"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:text="Note"
+                    android:textSize="14dp"
+                    android:textColor="#a4a2a9"
+                    android:gravity="center"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:orientation="horizontal"
+                android:background="#dfdfe7"></LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="4"
+                android:paddingLeft="7dp"
+                android:paddingRight="7dp"
+                android:orientation="vertical" >
+                <ListView
+                    android:id="@+id/customerMemoHistoryListView"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="9"
+                    android:listSelector="#f0f0f0"
+                    android:cacheColorHint="#ffffff"
+                    android:fadingEdge="none" >
+                </ListView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:orientation="horizontal"
+                android:background="#dfdfe7"></LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.7"
+                android:orientation="horizontal"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:gravity="center_vertical|right" >
+
+                <Button
+                    android:id="@+id/customerMemoDeleteButton"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ab_imagebutton_custmemo_delete" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:orientation="horizontal"
+                android:background="#dfdfe7"></LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal" >
+
+            <LinearLayout
+                android:id="@+id/customerMemoHistoryLn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="11dp"
+                android:layout_marginRight="11dp"
+                android:orientation="vertical"
+                android:visibility="visible" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:paddingBottom="8dp"
+                    android:gravity="center_vertical|left" >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="6"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical|left" >
+
+                        <Button
+                            android:id="@+id/customerMemoPointButton"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/ab_imagebutton_custmemo_custpoint"
+                            android:layout_marginRight="8dp" />
+
+                        <Button
+                            android:id="@+id/customerMemoSaleHistoryButton"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/ab_imagebutton_custmemo_salehistory"
+                            android:layout_marginRight="8dp" />
+
+                        <Button
+                            android:id="@+id/customerMemoOtherCustomerButton"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/ab_imagebutton_custmemo_othercust"
+                            android:layout_marginRight="8dp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical|right" >
+
+                        <Button
+                            android:id="@+id/customerMemoCloseButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/ab_imagebutton_custmemo_close" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+</LinearLayout>

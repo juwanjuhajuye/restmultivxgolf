@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/customerPointHistoryDateTv"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1.5"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:text="Date"
+        android:textSize="14dp"
+        android:textColor="#2c5267"
+        android:gravity="center"/>
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.1"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:text="|"
+        android:textSize="14dp"
+        android:textColor="#2c5267"
+        android:textStyle="bold"
+        android:gravity="center" />
+    <TextView
+        android:id="@+id/customerPointHistoryAddedTv"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.7"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:text="Added"
+        android:textSize="14dp"
+        android:textColor="#2c5267"
+        android:gravity="center"/>
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.1"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:text="|"
+        android:textSize="14dp"
+        android:textColor="#2c5267"
+        android:textStyle="bold"
+        android:gravity="center" />
+    <TextView
+        android:id="@+id/customerPointHistoryUsedTv"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.7"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:text="Used"
+        android:textSize="14dp"
+        android:textColor="#2c5267"
+        android:gravity="center"/>
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.1"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:text="|"
+        android:textSize="14dp"
+        android:textColor="#2c5267"
+        android:textStyle="bold"
+        android:gravity="center" />
+    <TextView
+        android:id="@+id/customerPointHistoryContentsTv"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:paddingRight="8dp"
+        android:paddingLeft="8dp"
+        android:text="Memo"
+        android:textSize="14dp"
+        android:textColor="#2c5267"
+        android:gravity="center_vertical|left"/>
+
+</LinearLayout>

@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp"
+    android:background="@android:color/transparent" >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:orientation="horizontal">
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical"></LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/giftCardBalanceCheckLinearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="20"
+                android:orientation="vertical"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:background="@drawable/roundlayout" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:orientation="vertical"
+                    android:layout_margin="7dp"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true" >
+
+                    <TextView
+                        android:id="@+id/quantityTitleTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text="CREDIT CARD INFORMATION"
+                        android:textColor="#3e3d42"
+                        android:textSize="18dp"
+                        android:gravity="center_horizontal|center_vertical"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:padding="3dp"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true" >
+
+                        <TextView
+                            android:id="@+id/giftCardNumberTv"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:textColor="#3e3d42"
+                            android:textSize="14dp"
+                            android:text="CARD NUMBER"
+                            android:paddingLeft="10dp"
+                            android:gravity="left|center_vertical"/>
+
+                        <TextView
+                            android:id="@+id/cardnumberEv"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:textSize="20dp"
+                            android:textColor="#3e3d42"
+                            android:textStyle="bold"
+                            android:maxLength="19"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:background="@drawable/roundlayout_background_paymentgiftcard" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:padding="3dp"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true" >
+
+                        <TextView
+                            android:id="@+id/giftCardUsedTv"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:textSize="14dp"
+                            android:textColor="#3e3d42"
+                            android:text="EXP. DATE"
+                            android:paddingLeft="10dp"
+                            android:gravity="left|center_vertical" />
+
+                        <TextView
+                            android:id="@+id/expdateTv"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:text=""
+                            android:textSize="20dp"
+                            android:textColor="#3e3d42"
+                            android:textStyle="bold"
+                            android:paddingRight="10dp"
+                            android:maxLength="5"
+                            android:gravity="center"
+                            android:background="@drawable/roundlayout_background_paymentgiftcard" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:padding="3dp"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true" >
+
+                        <TextView
+                            android:id="@+id/giftCardBalaceTv"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:textSize="14dp"
+                            android:textColor="#3e3d42"
+                            android:text="CVV"
+                            android:paddingLeft="10dp"
+                            android:gravity="left|center_vertical" />
+
+                        <TextView
+                            android:id="@+id/cvvTv"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:text=""
+                            android:textSize="20dp"
+                            android:textColor="#3e3d42"
+                            android:textStyle="bold"
+                            android:paddingRight="10dp"
+                            android:maxLength="4"
+                            android:gravity="center"
+                            android:background="@drawable/roundlayout_background_paymentgiftcard"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:gravity="center_horizontal" >
+
+                    <LinearLayout
+                        xmlns:android="http://schemas.android.com/apk/res/android"
+                        xmlns:tools="http://schemas.android.com/tools"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:id="@+id/giftCardBalanceCheckKeypadLn"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center_horizontal"
+                            android:visibility="visible" >
+
+                            <TableLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_margin="7dp"
+                                android:stretchColumns="*">
+
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1" >
+                                    <Button
+                                        android:id="@+id/cardinfo_suButton7"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/button_selector_numberbutton_qty"
+                                        android:layout_margin="3dp"
+                                        android:text="7"
+                                        android:textSize="20dp"
+                                        android:textStyle="bold"
+                                        android:textColor="#ffffff"/>
+                                    <Button
+                                        android:id="@+id/cardinfo_suButton8"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/button_selector_numberbutton_qty"
+                                        android:layout_margin="3dp"
+                                        android:text="8"
+                                        android:textSize="20dp"
+                                        android:textStyle="bold"
+                                        android:textColor="#ffffff"/>
+                                    <Button
+                                        android:id="@+id/cardinfo_suButton9"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/button_selector_numberbutton_qty"
+                                        android:layout_margin="3dp"
+                                        android:text="9"
+                                        android:textSize="20dp"
+                                        android:textStyle="bold"
+                                        android:textColor="#ffffff"/>
+                                </TableRow>
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1" >
+                                    <Button
+                                        android:id="@+id/cardinfo_suButton4"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/button_selector_numberbutton_qty"
+                                        android:layout_margin="3dp"
+                                        android:text="4"
+                                        android:textSize="20dp"
+                                        android:textStyle="bold"
+                                        android:textColor="#ffffff"/>
+                                    <Button
+                                        android:id="@+id/cardinfo_suButton5"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/button_selector_numberbutton_qty"
+                                        android:layout_margin="3dp"
+                                        android:text="5"
+                                        android:textSize="20dp"
+                                        android:textStyle="bold"
+                                        android:textColor="#ffffff"/>
+                                    <Button
+                                        android:id="@+id/cardinfo_suButton6"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/button_selector_numberbutton_qty"
+                                        android:layout_margin="3dp"
+                                        android:text="6"
+                                        android:textSize="20dp"
+                                        android:textStyle="bold"
+                                        android:textColor="#ffffff"/>
+                                </TableRow>
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1" >
+                                    <Button
+                                        android:id="@+id/cardinfo_suButton1"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/button_selector_numberbutton_qty"
+                                        android:layout_margin="3dp"
+                                        android:text="1"
+                                        android:textSize="20dp"
+                                        android:textStyle="bold"
+                                        android:textColor="#ffffff"/>
+                                    <Button
+                                        android:id="@+id/cardinfo_suButton2"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/button_selector_numberbutton_qty"
+                                        android:layout_margin="3dp"
+                                        android:text="2"
+                                        android:textSize="20dp"
+                                        android:textStyle="bold"
+                                        android:textColor="#ffffff"/>
+                                    <Button
+                                        android:id="@+id/cardinfo_suButton3"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/button_selector_numberbutton_qty"
+                                        android:layout_margin="3dp"
+                                        android:text="3"
+                                        android:textSize="20dp"
+                                        android:textStyle="bold"
+                                        android:textColor="#ffffff"/>
+                                </TableRow>
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1" >
+                                    <Button
+                                        android:id="@+id/cardinfo_suButton0"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/button_selector_numberbutton_qty"
+                                        android:layout_margin="3dp"
+                                        android:text="0"
+                                        android:textSize="20dp"
+                                        android:textStyle="bold"
+                                        android:textColor="#ffffff"/>
+                                    <Button
+                                        android:id="@+id/cardinfo_suButton00"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/button_selector_numberbutton_qty"
+                                        android:layout_margin="3dp"
+                                        android:text="00"
+                                        android:textSize="20dp"
+                                        android:textStyle="bold"
+                                        android:textColor="#ffffff"/>
+                                    <Button
+                                        android:id="@+id/cardinfo_suButtonBack"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/button_selector_numberbutton_qty"
+                                        android:layout_margin="3dp"
+                                        android:text="←"
+                                        android:textSize="20dp"
+                                        android:textStyle="bold"
+                                        android:textColor="#ffffff"/>
+                                </TableRow>
+
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1" >
+                                    <Button
+                                        android:id="@+id/cardinfo_suButtonV"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="2"
+                                        android:background="@drawable/button_selector_numberbutton_qty_v"
+                                        android:layout_margin="3dp"
+                                        android:text="V"
+                                        android:textSize="22dp"
+                                        android:textStyle="bold"
+                                        android:textColor="#83444D"
+                                        android:layout_span="2" />
+                                    <Button
+                                        android:id="@+id/cardinfo_suButtonX"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/button_selector_numberbutton"
+                                        android:layout_margin="3dp"
+                                        android:text="CLOSE"
+                                        android:textSize="16dp"
+                                        android:textColor="#5b5b5b"/>
+
+                                </TableRow>
+
+                            </TableLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical"></LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.1"
+            android:orientation="horizontal">
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+
+
+</LinearLayout>

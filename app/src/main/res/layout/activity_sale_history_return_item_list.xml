@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp">
+
+    <LinearLayout
+        android:id="@+id/saleHistoryReturnItemListLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:background="@drawable/roundlayout" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.2"
+            android:orientation="vertical" >
+            <TextView
+                android:id="@+id/saleHistoryReturnItemTitleTextView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textSize="28dp"
+                android:textColor="#c22e50"
+                android:textStyle="bold"
+                android:text="CREDIT" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="5"
+            android:background="@drawable/roundlayout_line_noround"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/saleHistoryReturnItemListTitleTextView1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="9"
+                    android:gravity="center"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:textColor="#a4a2a9"
+                    android:text="Item" />
+                <TextView
+                    android:id="@+id/saleHistoryReturnItemListTitleTextView2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:textColor="#a4a2a9"
+                    android:text="Qty" />
+                <TextView
+                    android:id="@+id/saleHistoryReturnItemListTitleTextView3"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2.3"
+                    android:gravity="center"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:textColor="#a4a2a9"
+                    android:text="Price" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#bbbbc8"
+                android:orientation="horizontal">
+
+            </LinearLayout>
+
+
+            <ScrollView
+                android:id="@+id/saleHistoryReturnItemListSaleListScrollView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="10dp">
+                <LinearLayout
+                    android:id="@+id/saleHistoryReturnItemListSaleListLinearLayout"
+                    android:tag="saleHistoryReturnItemListSaleListLinearLayoutTag"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                </LinearLayout>
+            </ScrollView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.2"
+            android:orientation="vertical" >
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.8"
+            android:orientation="vertical" >
+            <TextView
+                android:id="@+id/saleHistoryReturnItemTotalAmountTextView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical|left"
+                android:layout_marginBottom="5dp"
+                android:textSize="15dp"
+                android:textColor="#ffffff"
+                android:textStyle="bold"
+                android:text="TOTAL CREDIT AMOUNT" />
+            <TextView
+                android:id="@+id/saleHistoryReturnItemListBalanceTotalAmount"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:gravity="center_vertical|right"
+                android:background="#ffffff"
+                android:textSize="22dp"
+                android:textColor="#3e3d42"
+                android:textStyle="bold"
+                android:text="0.00" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:background="#bbbbc8"></LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.2"
+            android:gravity="center"
+            android:orientation="horizontal" ></LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal" >
+            <Button
+                android:id="@+id/saleHistoryReturnItemSubmitButton"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:background="@drawable/button_selector_salehistory_returnitemlist"
+                android:gravity="center"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                android:textColor="#ffffff"
+                android:text="V"/>
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:text="   "/>
+            <Button
+                android:id="@+id/saleHistoryReturnItemCloseButton"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:background="@drawable/button_selector_gray"
+                android:gravity="center"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                android:textColor="#ffffff"
+                android:text="X"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

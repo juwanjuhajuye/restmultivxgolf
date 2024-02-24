@@ -1,0 +1,827 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp"
+    android:background="@android:color/transparent">
+
+    <RelativeLayout
+        android:id="@+id/employeeLoginChoiceLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="left|top">
+
+        <LinearLayout
+            android:id="@+id/closBtnLn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:layout_alignParentTop="true"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/employeeLoginQuitButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ab_imagebutton_login_close"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@drawable/img_bg"
+            android:padding="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="10dp" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.8"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="left|center_vertical"
+                        android:paddingLeft="10dp"
+                        android:orientation="horizontal">
+
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:orientation="horizontal">
+
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/employeeLoginQuitButtonLinearyLayout"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="right|center_vertical"
+                        android:padding="10dp"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:visibility="gone"
+                            android:tag="employeeLoginQuitButtonTag"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:paddingLeft="25dp"
+                            android:paddingRight="25dp"
+                            android:textSize="15dp"
+                            android:textColor="#fff"
+                            android:text="QUIT"
+                            android:background="@drawable/button_selector_intro_quit" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_weight="8.5"
+                    android:layout_width="match_parent"
+                    android:weightSum="10"
+                    android:layout_height="0dp">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="8"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.9"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/emplogin_imagetitle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/tx_login_title" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="3.1"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.7"
+                                android:orientation="horizontal">
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:weightSum="5"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1.2"
+                                android:padding="15dp"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1.2"
+
+                                    android:background="@drawable/img_input_bg"
+                                    android:orientation="horizontal">
+                                    <ImageView
+                                        android:layout_marginLeft="20dp"
+                                        android:layout_weight="0.8"
+                                        android:layout_width="0dp"
+                                        android:scaleType="center"
+                                        android:src="@drawable/ic_empid"
+                                        android:layout_height="match_parent"/>
+                                    <TextView
+                                        android:id="@+id/employeeLoginTitleTextView1"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1.5"
+                                        android:gravity="center_vertical"
+                                        android:paddingRight="20dp"
+                                        android:textSize="18dp"
+                                        android:textColor="#a5b1c2"
+                                        android:text="Access.ID" />
+                                    <TextView
+                                        android:id="@+id/employeeLoginEmpSelectTextView"
+                                        android:tag="employeeLoginEmpSelectTextViewTag"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="4"
+
+                                        android:gravity="center"
+                                        android:paddingLeft="10dp"
+                                        android:paddingRight="10dp"
+                                        android:inputType="numberPassword"
+                                        android:textColorHint="#7d7b83"
+                                        android:textSize="22dp"
+                                        android:textStyle="bold"
+                                        android:textColor="#3e3d42"/>
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:background="#1e234e"
+                                    android:layout_weight="3.8"
+                                    android:weightSum="4"
+                                    android:id="@+id/giftCardBalanceCheckKeypadLn"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:gravity="center_horizontal"
+                                    android:visibility="visible" >
+
+                                    <TableLayout
+                                        android:layout_weight="3"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:stretchColumns="*">
+
+                                        <TableRow
+                                            android:layout_width="match_parent"
+                                            android:layout_height="0dp"
+                                            android:layout_weight="1" >
+                                            <Button
+                                                android:id="@+id/emplogin_number7"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:background="@drawable/button_selector_numberbutton_blue"
+                                                android:layout_margin="1dp"
+                                                android:text="7"
+                                                android:textSize="20dp"
+                                                android:textStyle="bold"
+                                                android:textColor="#ffffff"/>
+                                            <Button
+                                                android:id="@+id/emplogin_number8"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:background="@drawable/button_selector_numberbutton_blue"
+                                                android:layout_margin="1dp"
+                                                android:text="8"
+                                                android:textSize="20dp"
+                                                android:textStyle="bold"
+                                                android:textColor="#ffffff"/>
+                                            <Button
+                                                android:id="@+id/emplogin_number9"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:background="@drawable/button_selector_numberbutton_blue"
+                                                android:layout_margin="1dp"
+                                                android:text="9"
+                                                android:textSize="20dp"
+                                                android:textStyle="bold"
+                                                android:textColor="#ffffff"/>
+                                        </TableRow>
+                                        <TableRow
+                                            android:layout_width="match_parent"
+                                            android:layout_height="0dp"
+                                            android:layout_weight="1" >
+                                            <Button
+                                                android:id="@+id/emplogin_number4"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:background="@drawable/button_selector_numberbutton_blue"
+                                                android:layout_margin="1dp"
+                                                android:text="4"
+                                                android:textSize="20dp"
+                                                android:textStyle="bold"
+                                                android:textColor="#ffffff"/>
+                                            <Button
+                                                android:id="@+id/emplogin_number5"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:background="@drawable/button_selector_numberbutton_blue"
+                                                android:layout_margin="1dp"
+                                                android:text="5"
+                                                android:textSize="20dp"
+                                                android:textStyle="bold"
+                                                android:textColor="#ffffff"/>
+                                            <Button
+                                                android:id="@+id/emplogin_number6"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:background="@drawable/button_selector_numberbutton_blue"
+                                                android:layout_margin="1dp"
+                                                android:text="6"
+                                                android:textSize="20dp"
+                                                android:textStyle="bold"
+                                                android:textColor="#ffffff"/>
+                                        </TableRow>
+                                        <TableRow
+                                            android:layout_width="match_parent"
+                                            android:layout_height="0dp"
+                                            android:layout_weight="1" >
+                                            <Button
+                                                android:id="@+id/emplogin_number1"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:background="@drawable/button_selector_numberbutton_blue"
+                                                android:layout_margin="1dp"
+                                                android:text="1"
+                                                android:textSize="20dp"
+                                                android:textStyle="bold"
+                                                android:textColor="#ffffff"/>
+                                            <Button
+                                                android:id="@+id/emplogin_number2"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:background="@drawable/button_selector_numberbutton_blue"
+                                                android:layout_margin="1dp"
+                                                android:text="2"
+                                                android:textSize="20dp"
+                                                android:textStyle="bold"
+                                                android:textColor="#ffffff"/>
+                                            <Button
+                                                android:id="@+id/emplogin_number3"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:background="@drawable/button_selector_numberbutton_blue"
+                                                android:layout_margin="1dp"
+                                                android:text="3"
+                                                android:textSize="20dp"
+                                                android:textStyle="bold"
+                                                android:textColor="#ffffff"/>
+                                        </TableRow>
+                                        <TableRow
+                                            android:layout_width="match_parent"
+                                            android:layout_height="0dp"
+                                            android:layout_weight="1" >
+                                            <Button
+                                                android:id="@+id/emplogin_number0"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:background="@drawable/button_selector_numberbutton_blue"
+                                                android:layout_margin="1dp"
+                                                android:text="0"
+                                                android:textSize="20dp"
+                                                android:textStyle="bold"
+                                                android:textColor="#ffffff"/>
+                                            <Button
+                                                android:id="@+id/emplogin_number00"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:background="@drawable/button_selector_numberbutton_blue"
+                                                android:layout_margin="1dp"
+                                                android:text="00"
+                                                android:textSize="20dp"
+                                                android:textStyle="bold"
+                                                android:textColor="#ffffff"/>
+                                            <Button
+                                                android:visibility="gone"
+                                                android:id="@+id/cashEnter_nextStep"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:background="@drawable/button_selector_numberbutton_cashinout"
+                                                android:layout_margin="1dp"
+                                                android:text="NEXT"
+                                                android:textSize="16dp"
+                                                android:textColor="#3e3d42" />
+
+                                        </TableRow>
+
+                                    </TableLayout>
+                                    <LinearLayout
+                                        android:weightSum="4"
+                                        android:layout_weight="1"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:orientation="vertical">
+                                        <Button
+                                            android:id="@+id/emplogin_number_back"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="0dp"
+                                            android:layout_weight="1"
+                                            android:layout_margin="1dp"
+                                            android:background="@drawable/button_selector_numberbutton_d_blue"
+                                            android:text="←"
+                                            android:textSize="30dp"
+                                            android:textStyle="bold"
+                                            android:textColor="#ffffff"/>
+                                        <Button
+                                            android:id="@+id/emplogin_number_close"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="0dp"
+                                            android:layout_weight="1"
+                                            android:layout_margin="1dp"
+                                            android:background="@drawable/button_selector_numberbutton_d_blue"
+                                            android:text="X"
+                                            android:textSize="30dp"
+
+                                            android:textColor="#ffffff"/>
+                                        <Button
+                                            android:id="@+id/emplogin_number_done"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="0dp"
+                                            android:layout_weight="2"
+                                            android:layout_margin="1dp"
+                                            android:background="@drawable/button_selector_numberbutton_done"
+                                            android:text="DONE"
+                                            android:textSize="25dp"
+                                            android:textColor="#ffffff"/>
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:visibility="gone"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1.5"
+                                    android:background="@drawable/img_input_bg"
+                                    android:orientation="horizontal">
+                                    <ImageView
+                                        android:layout_marginLeft="20dp"
+                                        android:layout_weight="0.8"
+                                        android:layout_width="0dp"
+                                        android:scaleType="center"
+                                        android:src="@drawable/ic_password"
+                                        android:layout_height="match_parent"/>
+                                    <TextView
+                                        android:id="@+id/employeeLoginTitleTextView2"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1.5"
+                                        android:gravity="center_vertical"
+                                        android:paddingRight="20dp"
+                                        android:textSize="18dp"
+                                        android:textColor="#a5b1c2"
+                                        android:text="PASSWORD" />
+                                    <EditText
+                                        android:id="@+id/employeeLoginPasswordEditText"
+                                        android:tag="employeeLoginPasswordEditText"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="4"
+                                        android:background="@android:color/transparent"
+                                        android:gravity="center"
+                                        android:paddingLeft="10dp"
+                                        android:paddingRight="10dp"
+                                        android:inputType="numberPassword"
+                                        android:textSize="22dp"
+                                        android:textStyle="bold"
+                                        android:textColor="#3e3d42"/>
+                                </LinearLayout>
+
+                                <!--                            <LinearLayout-->
+                                <!--                                android:layout_width="match_parent"-->
+                                <!--                                android:layout_height="0dp"-->
+                                <!--                                android:layout_weight="0.3"-->
+                                <!--                                android:layout_marginTop="15dp"-->
+                                <!--                                android:padding="7dp"-->
+                                <!--                                android:gravity="center_vertical"-->
+                                <!--                                android:orientation="horizontal">-->
+                                <!--                            </LinearLayout>-->
+
+                                <RelativeLayout
+                                    android:visibility="gone"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="2"
+                                    android:orientation="horizontal">
+                                    <ImageButton
+                                        android:id="@+id/employeeLoginButton"
+                                        android:tag="employeeLoginButtonTag"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:text="LOG IN"
+                                        android:adjustViewBounds="true"
+                                        android:src="@drawable/ab_imagebutton_emp_login"
+                                        android:background="@android:color/transparent" />
+                                    <TextView
+                                        android:textStyle="bold"
+                                        android:textSize="30dp"
+                                        android:textColor="#ffffff"
+                                        android:text="LOG IN"
+                                        android:paddingBottom="30dp"
+                                        android:layout_centerInParent="true"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"/>
+
+                                </RelativeLayout>
+
+
+
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.7"
+                                android:orientation="horizontal">
+                            </LinearLayout>
+
+
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.8"
+
+                            android:orientation="vertical"
+                            android:paddingRight="10dp">
+
+                            <LinearLayout
+                                android:weightSum="10"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:gravity="bottom|left" >
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="45dp"
+                                    android:orientation="horizontal"
+                                    android:gravity="center_vertical|left">
+                                    <Button
+                                        android:id="@+id/emplogin_info_version_num"
+                                        android:layout_centerVertical="true"
+                                        android:background="@android:color/transparent"
+                                        android:textColor="#f0f0f0"
+                                        android:textSize="20dp"
+                                        android:text="version name "
+                                        android:gravity="left|center_vertical"
+                                        android:layout_marginRight="15dp"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"/>
+                                    <ImageButton
+                                        android:id="@+id/emplogin_info_btn"
+                                        android:layout_alignRight="@+id/emplogin_info_version_num"
+                                        android:background="@android:color/transparent"
+                                        android:scaleType="centerCrop"
+                                        android:src="@drawable/button_information"
+                                        android:layout_width="30dp"
+                                        android:layout_height="30dp"/>
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_weight="2"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="10"
+                            android:orientation="vertical">
+                            <LinearLayout
+                                android:gravity="right"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+                                <Button
+                                    android:id="@+id/login_del_dbcompack"
+                                    android:background="@drawable/roundlayout_white_round"
+                                    android:text=" COMPACT DB DEL. "
+
+                                    android:layout_marginRight="20dp"
+                                    android:layout_marginLeft="20dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="40dp"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:gravity="left|center_vertical">
+                                <RelativeLayout
+                                    android:layout_margin="10dp"
+                                    android:layout_weight="1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+                                    <LinearLayout
+                                        android:id="@+id/login_dbcompack"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:background="@drawable/ab_imagebutton_emplogin_menu"
+                                        android:gravity="center"
+                                        android:orientation="vertical"
+                                        android:weightSum="5">
+
+                                        <ImageView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="0dp"
+                                            android:layout_centerInParent="true"
+                                            android:layout_marginTop="10dp"
+                                            android:layout_weight="2.5"
+                                            android:scaleType="centerInside"
+                                            android:src="@drawable/ic_dbcompack" />
+
+                                        <TextView
+                                            android:id="@+id/emplogintv_backup"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="0dp"
+                                            android:layout_alignParentBottom="true"
+                                            android:layout_weight="2"
+                                            android:gravity="center"
+                                            android:text="DB COMPACT"
+                                            android:textColor="#000000"
+                                            android:textSize="16dp" />
+                                    </LinearLayout>
+                                </RelativeLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:gravity="left|center_vertical">
+                                <RelativeLayout
+                                    android:layout_margin="10dp"
+                                    android:layout_weight="1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+                                    <LinearLayout
+                                        android:id="@+id/login_backoffice_command"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:background="@drawable/ab_imagebutton_emplogin_menu"
+                                        android:gravity="center"
+                                        android:orientation="vertical"
+                                        android:weightSum="5">
+
+                                        <ImageView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="0dp"
+                                            android:layout_centerInParent="true"
+                                            android:layout_marginTop="10dp"
+                                            android:layout_weight="2.5"
+                                            android:scaleType="centerInside"
+                                            android:src="@drawable/ic_command" />
+
+                                        <TextView
+                                            android:id="@+id/emplogintv1"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="0dp"
+                                            android:layout_alignParentBottom="true"
+                                            android:layout_weight="2"
+                                            android:gravity="center"
+                                            android:text="COMMAND"
+                                            android:textColor="#000000"
+                                            android:textSize="16dp" />
+                                    </LinearLayout>
+                                </RelativeLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:gravity="left|center_vertical">
+                                <RelativeLayout
+                                    android:layout_margin="10dp"
+                                    android:layout_weight="1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+                                    <LinearLayout
+                                        android:id="@+id/adminloginBtn"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:background="@drawable/ab_imagebutton_emplogin_menu"
+                                        android:gravity="center"
+                                        android:orientation="vertical"
+                                        android:weightSum="5">
+
+                                        <ImageView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="0dp"
+                                            android:layout_centerInParent="true"
+                                            android:layout_marginTop="10dp"
+                                            android:layout_weight="2.5"
+                                            android:scaleType="centerInside"
+                                            android:src="@drawable/ic_adminlogin" />
+
+                                        <TextView
+                                            android:id="@+id/emplogintv2"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="0dp"
+                                            android:layout_alignParentBottom="true"
+                                            android:layout_weight="2"
+                                            android:gravity="center"
+                                            android:text="ADMIN LOGIN"
+                                            android:textColor="#000000"
+                                            android:textSize="16dp" />
+                                    </LinearLayout>
+                                </RelativeLayout>
+
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:gravity="left|center_vertical">
+                                <RelativeLayout
+                                    android:layout_margin="10dp"
+                                    android:layout_weight="1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+                                    <LinearLayout
+                                        android:id="@+id/clockinoutBtn"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:background="@drawable/ab_imagebutton_emplogin_menu"
+                                        android:gravity="center"
+                                        android:orientation="vertical"
+                                        android:weightSum="5">
+
+                                        <ImageView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="0dp"
+                                            android:layout_centerInParent="true"
+                                            android:layout_marginTop="10dp"
+                                            android:layout_weight="2.5"
+                                            android:scaleType="centerInside"
+                                            android:src="@drawable/ic_clockinout" />
+
+                                        <TextView
+                                            android:id="@+id/emplogintv3"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="0dp"
+                                            android:layout_alignParentBottom="true"
+                                            android:layout_weight="2"
+                                            android:gravity="center"
+                                            android:text="CLOCK IN/OUT"
+                                            android:textColor="#000000"
+                                            android:textSize="16dp" />
+                                    </LinearLayout>
+                                </RelativeLayout>
+
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:gravity="left|center_vertical">
+                                <RelativeLayout
+                                    android:layout_margin="10dp"
+                                    android:layout_weight="1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+                                    <LinearLayout
+                                        android:weightSum="5"
+                                        android:orientation="vertical"
+                                        android:gravity="center"
+                                        android:id="@+id/endofdayBtn"
+                                        android:background="@drawable/ab_imagebutton_emplogin_menu"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent">
+                                        <ImageView
+                                            android:layout_marginTop="10dp"
+                                            android:layout_weight="2.5"
+                                            android:layout_centerInParent="true"
+                                            android:src="@drawable/ic_endofday"
+                                            android:scaleType="centerInside"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="0dp"/>
+                                        <TextView
+                                            android:layout_weight="2"
+                                            android:id="@+id/emplogintv4"
+                                            android:textSize="16dp"
+                                            android:layout_alignParentBottom="true"
+                                            android:gravity="center"
+                                            android:textColor="#000000"
+                                            android:text="END OF DAY"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="0dp"/>
+                                    </LinearLayout>
+                                </RelativeLayout>
+                            </LinearLayout>
+
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/loginNtepccinfotv"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="right|bottom"
+                                android:text="NTEP CC : 20-028"
+                                android:textSize="20dp"
+                                android:textColor="#ffffff"/>
+
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+
+</LinearLayout>
