@@ -3707,6 +3707,20 @@ public class DatabaseInit {
         }
 
 
+        // salon_storegeneral 테이블 컬럼 추가
+        // 2.27.2024, pointmintouse 컬럼 추가
+        altTableName = "salon_storegeneral";
+        if (checkTable(altTableName) > 0) {
+            alterDatabaseTableColumn(altTableName, "pointmintouse", "money", "DEFAULT 0", 0);
+        }
+        // salon_storegeneral 테이블 컬럼 추가
+        // 2.27.2024, pointmaxpayble 컬럼 추가
+        altTableName = "salon_storegeneral";
+        if (checkTable(altTableName) > 0) {
+            alterDatabaseTableColumn(altTableName, "pointmaxpayble", "money", "DEFAULT 0", 0);
+        }
+
+
         /****************************************************************************/
     }
 

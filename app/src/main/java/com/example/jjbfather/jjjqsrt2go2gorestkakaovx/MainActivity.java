@@ -2756,7 +2756,21 @@ public class MainActivity extends Activity {
         //GlobalMemberValues.GLOBAL_MAINMIDDLELEFTTOPLN.setBackgroundColor(Color.parseColor(GlobalMemberValues.MAINFRAMECOLOR));
         GlobalMemberValues.GLOBAL_MAINBOTTOMLN.setBackgroundColor(Color.parseColor(GlobalMemberValues.MAINFRAMECOLOR));
 
+        //02232024 Hide parts of layout for QSR mode.
+        if (GlobalMemberValues.getStationType().equals("Q")) {
+            LinearLayout main_selected_table_linear_layout = (LinearLayout) findViewById(R.id.main_selected_table_linear_layout);
+            LinearLayout mainOrderQTYLn = (LinearLayout) findViewById(R.id.mainOrderQTYLn);
 
+            mainOrderQTYLn.setVisibility(View.INVISIBLE);
+            GlobalMemberValues.GLOBAL_MAINPEOPLECNTLN.setVisibility(View.INVISIBLE);
+            main_selected_table_linear_layout.setVisibility(View.INVISIBLE);
+        }
+
+        //02232024 adjust side view buttons to be visible when station type is QSR.
+        if (GlobalMemberValues.getStationType().equals("Q")) {
+            GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAIN_SIDE_VIEW.setVisibility(View.VISIBLE);
+            GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAIN_BOTTOM_MENUS_VIEW.setVisibility(View.GONE);
+        }
     }
     /***********************************************************************************/
 

@@ -1310,6 +1310,32 @@ public class Payment {
                     break;
                 }
                 case R.id.paymentSuButtonV : {
+                    // 02242024 - 추가작업 ---------------------------------------------------------------------
+                    // 포인트로 처리할 수 있는 최대/최소 포인트 체크
+                    double paymentEvValuePoint = GlobalMemberValues.getDoubleAtString(paymentPointEditText.getText().toString());
+                    if (paymentEvValuePoint > 0) {
+                        double memPoints = GlobalMemberValues.getDoubleAtString(GlobalMemberValues.GLOBAL_BOTTOMMEMBER_POINT.getText().toString());
+                        double pointmintouse = GlobalMemberValues.getDoubleAtString(MainActivity.mDbInit.dbExecuteReadReturnString(
+                                " select pointmintouse from salon_storegeneral "
+                        ));
+                        double pointmaxpayble = GlobalMemberValues.getDoubleAtString(MainActivity.mDbInit.dbExecuteReadReturnString(
+                                " select pointmaxpayble from salon_storegeneral "
+                        ));
+
+                        if (memPoints < pointmintouse) {
+                            GlobalMemberValues.displayDialog(context, "Waraning", "You must have " + GlobalMemberValues.getCommaStringForDouble(pointmintouse + "") +
+                                    " points or more to use it.", "Close");
+                            return;
+                        } else {
+                            if (memPoints > pointmaxpayble) {
+                                GlobalMemberValues.displayDialog(context, "Waraning", "You cannot use more than " + GlobalMemberValues.getCommaStringForDouble(pointmaxpayble + "") +
+                                        " points", "Close");
+                                return;
+                            }
+                        }
+                    }
+                    // 02242024 - 추가작업 ---------------------------------------------------------------------
+
                     paymentComplite_LogSave(false);
                     paymentSuButtonV.setEnabled(false);
 
@@ -2075,7 +2101,6 @@ public class Payment {
                     break;
                 }
                 case R.id.paymentPointLinearLayout : {
-
                     // 09282023
                     setClickPointLn(v);
 
@@ -2769,6 +2794,22 @@ public class Payment {
             }
 
             if (!GlobalMemberValues.isStrEmpty(savePointAmount + "") && savePointAmount > 0 && !GlobalMemberValues.isStrEmpty(sales_customerId)) {
+                // 02242024 - 추가작업 ---------------------------------------------------------------------
+                // 회원 레벨별 포인트 비율 ----------------------------------------------------------------------
+                // grade 부터 구한다.
+                String tempGrade = MainActivity.mDbInit.dbExecuteReadReturnString(
+                        " select grade from member1 where uid = '" + sales_customerId + "' "
+                );
+                double memPointRatio = 1.0;
+                if (!GlobalMemberValues.isStrEmpty(tempGrade)) {
+                    memPointRatio = GlobalMemberValues.getDoubleAtString(MainActivity.mDbInit.dbExecuteReadReturnString(
+                            " select pointratio from salon_storememberlevel where idx = '" + tempGrade + "' "
+                    ));
+                }
+                savePointAmount = savePointAmount * memPointRatio;
+                // 02242024 - 추가작업 ---------------------------------------------------------------------
+
+
                 strUpdSqlQuery = "update salon_member set mileage = mileage + " + GlobalMemberValues.getStringFormatNumber(savePointAmount, "2") +
                         " where uid = '" + sales_customerId + "' ";
                 strInsertQueryVec.addElement(strUpdSqlQuery);
@@ -2777,6 +2818,7 @@ public class Payment {
                 if (GlobalMemberValues.GLOBAL_EMPLOYEEINFO != null) {
                     temmpEmpName = GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName;
                 }
+
                 strInsSqlQuery = "insert into member_mileage (contents, mileage, uid, mcase, membershipcardno, sid, codeforupload " +
                         ") values ( " +
                         " '" + "Stored by Sales - " + mSalesCode + "', " +

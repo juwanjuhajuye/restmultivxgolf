@@ -424,7 +424,7 @@
 
 
                             <LinearLayout
-
+                                android:id="@+id/main_selected_table_linear_layout"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1.0"

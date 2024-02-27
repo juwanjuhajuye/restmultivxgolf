@@ -936,6 +936,16 @@ public class MssqlAlterTables {
         alterDatabaseTableColumn(altTableName, "tordercode", "nvarchar(100)", "DEFAULT ''");
 
 
+        // salon_storegeneral 테이블 컬럼 추가
+        // 2.27.2024, pointmintouse 컬럼 추가
+        altTableName = "salon_storegeneral";
+        alterDatabaseTableColumn(altTableName, "pointmintouse", "money", "DEFAULT 0");
+
+        // salon_storegeneral 테이블 컬럼 추가
+        // 2.27.2024, pointmaxpayble 컬럼 추가
+        altTableName = "salon_storegeneral";
+        alterDatabaseTableColumn(altTableName, "pointmaxpayble", "money", "DEFAULT 0");
+
     }
 
     public static void alterTableColumnType() {

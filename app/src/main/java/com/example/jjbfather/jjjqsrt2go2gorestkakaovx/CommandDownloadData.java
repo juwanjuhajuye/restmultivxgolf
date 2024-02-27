@@ -376,6 +376,8 @@ public class CommandDownloadData extends Activity {
                                 .setPositiveButton("Yes",
                                         new DialogInterface.OnClickListener() {
                                             public void onClick(DialogInterface dialog, int which) {
+                                                //02232024 return screen to menu screen from the command screen.
+                                                GlobalMemberValues.setFrameLayoutVisibleChange("main");
                                                 submitDownloadData();
                                             }
                                         })

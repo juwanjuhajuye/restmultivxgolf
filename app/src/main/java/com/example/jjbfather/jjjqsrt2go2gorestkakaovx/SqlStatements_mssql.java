@@ -477,7 +477,11 @@ public class SqlStatements_mssql {
                     "gratuitydelyn nvarchar(2) DEFAULT 'Y', " +
                     "crmuseyn nvarchar(2) DEFAULT 'Y', " +
                     "cashdcshowonreceiptyn nvarchar(2) DEFAULT 'Y', " +
-                    "cashdctaxshowyn nvarchar(2) DEFAULT 'Y' " +
+                    "cashdctaxshowyn nvarchar(2) DEFAULT 'Y', " +
+
+                    // 02272024
+                    "pointmintouse money DEFAULT 0.0, " +
+                    "pointmaxpayble money DEFAULT 0.0 " +
 
                     ")";
 

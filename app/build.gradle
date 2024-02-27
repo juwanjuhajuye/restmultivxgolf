@@ -9,8 +9,8 @@ android {
         applicationId 'com.example.jjbfather.jjjqsrt2go2gorestkakaovx'
         minSdkVersion 17
         targetSdkVersion 28
-        versionCode 23112704
-        versionName "23.11.27.04.beta"
+        versionCode 24022402
+        versionName "24.02.24.02.beta"
         multiDexEnabled true
         ndk {
             abiFilters "armeabi-v7a", 'arm64-v8a','x86','x86_64', "armeabi", "mips"
