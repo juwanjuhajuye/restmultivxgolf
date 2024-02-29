@@ -149,41 +149,17 @@ public class GlobalMemberValues {
     // Cloud Server URL - Basic (클라우드 URL 기본값)
 
     /** 2go2go 관련 *************************************************************************************/
-//    // Store Server ---------------------------------------------------------------------------
-//    // real
-//    public static String DATABASE_NAME = "JJJQSRDBMULTI";           // DATABASE 명
-//    public static String mssql_pw = "DhksGkDP@02)";                       // DATABASE 비번
-//
-//    // 모바일 host
-//    public static String MOBILE_HOST = "yukdaejangm";
-//
-//    // Domain 정보
-//    public static String CLOUD_HOST = "yukdaejangcloud";
-//
-//    public static String CLOUD_FTP_IP = "110.234.18.134";
-//    public static String CLOUD_SERVER_URL_BASIC = "https://" + CLOUD_HOST + ".2go2go.com/";
-//    public static String CLOUD_SERVER_URL = "https://" + CLOUD_HOST + ".2go2go.com/";
-//    public static String CLOUD_SERVER_URL_FORHTTPS = "https://" + CLOUD_HOST + ".2go2go.com/";
-//
-//    // FTP 설정값
-//    public static String M_FTPIP = CLOUD_FTP_IP;
-//    public static int M_FTPPORT = 5252;
-//    public static String M_FTPID = "nzsalondbftp";
-//    public static String M_FTPPWD = "wndhkswngkwndP@01^";
-//    public static String M_FTPENCODING = "UTF-8";
-//    public static String M_FTPBASCIDIR = "";       // FTP 기본 디렉토리
-//    //------------------------------------------------------------------------------------------------
-
-    // Test Server ---------------------------------------------------------------------------
-    // test
-    public static String DATABASE_NAME = "jjjqsrdbmulti";             // DATABASE 명
-    public static String mssql_pw = "DhksGkDP@02)";                           // DATABASE 비번
+    // Store Server ---------------------------------------------------------------------------
+    // real
+    public static String DATABASE_NAME = "JJJVXGOLF";           // DATABASE 명
+    public static String mssql_pw = "DhksGkDP@02)";                       // DATABASE 비번
 
     // 모바일 host
-    public static String MOBILE_HOST = "restaurantm";
+    public static String MOBILE_HOST = "vxgolfm";
 
     // Domain 정보
-    public static String CLOUD_HOST = "rcloud";
+    public static String CLOUD_HOST = "kakaovx";
+
     public static String CLOUD_FTP_IP = "110.234.18.134";
     public static String CLOUD_SERVER_URL_BASIC = "https://" + CLOUD_HOST + ".2go2go.com/";
     public static String CLOUD_SERVER_URL = "https://" + CLOUD_HOST + ".2go2go.com/";
@@ -191,12 +167,36 @@ public class GlobalMemberValues {
 
     // FTP 설정값
     public static String M_FTPIP = CLOUD_FTP_IP;
-    public static int M_FTPPORT = 5252;
+    public static int M_FTPPORT = 5253;
     public static String M_FTPID = "nzsalondbftp";
     public static String M_FTPPWD = "wndhkswngkwndP@01^";
     public static String M_FTPENCODING = "UTF-8";
     public static String M_FTPBASCIDIR = "";       // FTP 기본 디렉토리
     //------------------------------------------------------------------------------------------------
+
+//    // Test Server ---------------------------------------------------------------------------
+//    // test
+//    public static String DATABASE_NAME = "JJJVXGOLF";             // DATABASE 명
+//    public static String mssql_pw = "DhksGkDP@02)";                           // DATABASE 비번
+//
+//    // 모바일 host
+//    public static String MOBILE_HOST = "vxgolfm";
+//
+//    // Domain 정보
+//    public static String CLOUD_HOST = "rcloud";
+//    public static String CLOUD_FTP_IP = "110.234.18.134";
+//    public static String CLOUD_SERVER_URL_BASIC = "https://" + CLOUD_HOST + ".2go2go.com/";
+//    public static String CLOUD_SERVER_URL = "https://" + CLOUD_HOST + ".2go2go.com/";
+//    public static String CLOUD_SERVER_URL_FORHTTPS = "https://" + CLOUD_HOST + ".2go2go.com/";
+//
+//    // FTP 설정값
+//    public static String M_FTPIP = CLOUD_FTP_IP;
+//    public static int M_FTPPORT = 5253;
+//    public static String M_FTPID = "nzsalondbftp";
+//    public static String M_FTPPWD = "wndhkswngkwndP@01^";
+//    public static String M_FTPENCODING = "UTF-8";
+//    public static String M_FTPBASCIDIR = "";       // FTP 기본 디렉토리
+//    //------------------------------------------------------------------------------------------------
     /**************************************************************************************************/
 
     /** mssql 관련 변수 ********************************************/
