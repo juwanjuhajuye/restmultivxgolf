@@ -90,7 +90,8 @@ public class SaleHistoryTipAdjustment extends Activity {
     String mTipuse = "";
 
     // 팁 지불할 카드관련 정보 ----------------------------------------------
-    public static String mSelectedSalonSalesCardIdx = "";
+//    public static String mSelectedSalonSalesCardIdx = "";
+    public static String mSelectedSalonSalesCard_Split_transaction_id = "";
     public static String mSelectedSalonSalesCardCardCom = "";
     public static String mSelectedSalonSalesCardTipAmount = "";
     public static String mSelectedSalonSalesCardCardLastFourDigitNumbers = "";
@@ -181,7 +182,7 @@ public class SaleHistoryTipAdjustment extends Activity {
         networkIp = pgInfo.cfnetworkip;
         networkPort = pgInfo.cfnetworkport;
 
-        mSelectedSalonSalesCardIdx = "";
+        mSelectedSalonSalesCard_Split_transaction_id = "";
         mSelectedSalonSalesCardCardCom = "";
         mSelectedSalonSalesCardTipAmount = "";
         mSelectedSalonSalesCardCardLastFourDigitNumbers = "";
@@ -691,7 +692,7 @@ public class SaleHistoryTipAdjustment extends Activity {
                         saleHistoryTipAdjustmentCardImageTextView.setBackgroundColor(Color.parseColor("#e9ebef"));
                         saleHistoryTipAdjustmentCardNumberTextView.setText("");
 
-                        mSelectedSalonSalesCardIdx = "";
+                        mSelectedSalonSalesCard_Split_transaction_id = "";
                         mSelectedSalonSalesCardCardCom = "";
                         mSelectedSalonSalesCardTipAmount = "";
                         mSelectedSalonSalesCardCardLastFourDigitNumbers = "";
@@ -735,15 +736,15 @@ public class SaleHistoryTipAdjustment extends Activity {
                     // -------------------------------------------------------------------------------------
                     startActivity(tipCardList);
                 } else {                            // 카드결제가 1개만 있을 경우
-                    String tempSql = "select idx from salon_sales_card " +
+                    String tempSql = "select split_transaction_id from salon_sales_card " +
                             " where salesCode = '" + mSalesCode + "' and status < 1 ";
-                    String cardPaymentIdx = MssqlDatabase.getResultSetValueToString(tempSql);
-                    if (!GlobalMemberValues.isStrEmpty(cardPaymentIdx)) {
+                    String cardPayment_Split_transaction_id = MssqlDatabase.getResultSetValueToString(tempSql);
+                    if (!GlobalMemberValues.isStrEmpty(cardPayment_Split_transaction_id)) {
                         String strQuery = " select cardCom, tipAmount, cardLastFourDigitNumbers, " +
                                 " cardRefNumber, cardEmvAid, cardEmvTsi, cardEmvTvr, " +
                                 " priceAmount " +            // 12212022
                                 " from salon_sales_card " +
-                                " where idx = '" + cardPaymentIdx + "' ";
+                                " where split_transaction_id = '" + cardPayment_Split_transaction_id + "' ";
                         //Cursor salonSalesCardCursor = dbInit.dbExecuteRead(strQuery);
                         ResultSet salonSalesCardCursor = MssqlDatabase.getResultSetValue(strQuery);
                         try {
@@ -760,7 +761,7 @@ public class SaleHistoryTipAdjustment extends Activity {
                                 String vPriceAmount = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(salonSalesCardCursor,7), 1);
 
                                 if (!GlobalMemberValues.isStrEmpty(vCardRefNumber)) {
-                                    SaleHistoryTipAdjustment.mSelectedSalonSalesCardIdx = cardPaymentIdx;
+                                    SaleHistoryTipAdjustment.mSelectedSalonSalesCard_Split_transaction_id = cardPayment_Split_transaction_id;
                                     SaleHistoryTipAdjustment.mSelectedSalonSalesCardCardCom = vCardCom;
                                     SaleHistoryTipAdjustment.mSelectedSalonSalesCardTipAmount = vTipAmount;
                                     SaleHistoryTipAdjustment.mSelectedSalonSalesCardCardLastFourDigitNumbers = vCardLastFourDigitNumbers;
@@ -818,11 +819,11 @@ public class SaleHistoryTipAdjustment extends Activity {
                 // -----------------------------------------------------------------------------------------------------------------------
             } else {
                 mSelectedSalonSalesCardCardOffCardYN = "Y";
-                String tempSql = "select idx from salon_sales_card " +
+                String tempSql = "select split_transaction_id from salon_sales_card " +
                         " where salesCode = '" + mSalesCode + "' and status < 1 ";
-                String cardPaymentIdx = MssqlDatabase.getResultSetValueToString(tempSql);
-                if (!GlobalMemberValues.isStrEmpty(cardPaymentIdx)) {
-                    mSelectedSalonSalesCardIdx = cardPaymentIdx;
+                String cardPayment_split_transaction_id = MssqlDatabase.getResultSetValueToString(tempSql);
+                if (!GlobalMemberValues.isStrEmpty(cardPayment_split_transaction_id)) {
+                    mSelectedSalonSalesCard_Split_transaction_id = cardPayment_split_transaction_id;
                 }
             }
             GlobalMemberValues.logWrite("tipCardListLog", "tipCardList 실행 - 2" + "\n");
@@ -987,14 +988,14 @@ public class SaleHistoryTipAdjustment extends Activity {
                                 strQuery = "update salon_sales_tip set " +
                                         " usedCash = '" + tempTipAmount + "', " +
                                         " isCloudUpload = 0 " +
-                                        " where idx = '" + salonSalesTipidx + "' ";
+                                        " where salesCode = '" + mSalesCode + "' ";
 
                                 // 05.09.2022
                                 // 팁 데이터 업로드를 위한 sqlite 에 데이터 수정
                                 String strQuery2 = "update salon_sales_tip set " +
                                         " usedCash = '" + tempTipAmount + "', " +
                                         " isCloudUpload = 0 " +
-                                        " where idx = '" + salonSalesTipidx_insqlite + "' ";
+                                        " where salesCode = '" + mSalesCode + "' ";
                                 GlobalMemberValues.logWrite("sqlitetipidxlog", "strQuery2 : " + strQuery2 + "\n");
                                 MainActivity.mDbInit.dbExecuteWriteReturnValueOnlySqlite(strQuery2);
                             }
@@ -1201,7 +1202,7 @@ public class SaleHistoryTipAdjustment extends Activity {
 
             strQuery = "update salon_sales_card set " +
                     " tipAmount = " + paramModPriceAmount + " " +
-                    " where idx = '" + mSelectedSalonSalesCardIdx + "' ";
+                    " where split_transaction_id = '" + mSelectedSalonSalesCard_Split_transaction_id + "' ";
             GlobalMemberValues.logWrite("SaleHistoryTipAdjustmentLog", "strQuery : " + strQuery + "\n");
             strQueryVec.addElement(strQuery);
 
@@ -1222,7 +1223,7 @@ public class SaleHistoryTipAdjustment extends Activity {
             } else {
                 double tempTipamount = GlobalMemberValues.getDoubleAtString(
                         MssqlDatabase.getResultSetValueToString(
-                                " select sum(tipamount) from salon_sales_card where salescode = '" + mSalesCode + "' and not(idx = '" + mSelectedSalonSalesCardIdx + "') "
+                                " select sum(tipamount) from salon_sales_card where salescode = '" + mSalesCode + "' and not(split_transaction_id = '" + mSelectedSalonSalesCard_Split_transaction_id + "') "
                         )
                 );
                 double tipamount = tempTipamount + paramModPriceAmount;
@@ -1230,14 +1231,14 @@ public class SaleHistoryTipAdjustment extends Activity {
                 strQuery = "update salon_sales_tip set " +
                         " usedCard = " + tipamount + ", " +
                         " isCloudUpload = '0' " +
-                        " where idx = '" + salonSalesTipidx + "' ";
+                        " where salesCode = '" + mSalesCode + "' ";
 
                 // 05.09.2022
                 // 팁 데이터 업로드를 위한 sqlite 에 데이터 수정
                 String strQuery2 = "update salon_sales_tip set " +
                         " usedCard = '" + tipamount + "', " +
                         " isCloudUpload = 0 " +
-                        " where idx = '" + salonSalesTipidx_insqlite + "' ";
+                        " where salesCode = '" + mSalesCode + "' ";
                 GlobalMemberValues.logWrite("sqlitetipidxlog", "strQuery2 : " + strQuery2 + "\n");
                 MainActivity.mDbInit.dbExecuteWriteReturnValueOnlySqlite(strQuery2);
 
@@ -1274,8 +1275,8 @@ public class SaleHistoryTipAdjustment extends Activity {
     public static void setCardTipSplitSave(double paramModPriceAmount) {
 
         // billpaididx 구하기
-        String billpaididx = MssqlDatabase.getResultSetValueToString(
-                " select idx from bill_list_paid where cardsalesidx = '" + mSelectedSalonSalesCardIdx + "' "
+        String transaction_id = MssqlDatabase.getResultSetValueToString(
+                " select idx from bill_list_paid where split_transaction_id = '" + mSelectedSalonSalesCard_Split_transaction_id + "' "
         );
 
         String cardsalestipidx = "";
@@ -1296,7 +1297,7 @@ public class SaleHistoryTipAdjustment extends Activity {
         // 신규입력인지여부 확인
         String tempTipSplitIdx = MssqlDatabase.getResultSetValueToString(
                 " select idx from salon_sales_tip_split where salescode = '" + mSalesCode + "' " +
-                        " and cardsalesidx = '" + mSelectedSalonSalesCardIdx + "' "
+                        " and split_transaction_id = '" + mSelectedSalonSalesCard_Split_transaction_id + "' "
         );
 
         Vector<String> strQueryVec = new Vector<String>();
@@ -1304,21 +1305,22 @@ public class SaleHistoryTipAdjustment extends Activity {
         String strQuery = "";
         if (GlobalMemberValues.isStrEmpty(tempTipSplitIdx)) {
             strQuery = "insert into salon_sales_tip_split (" +
-                    " salesCode, sidx, stcode, billpaididx, cardsalesidx, cardsalestipidx, tipamount, paytype " +
+                    " salesCode, sidx, stcode, billpaididx, cardsalesidx, cardsalestipidx, tipamount, paytype, split_transaction_id " +
                     " ) values (" +
                     " '" + mSalesCode + "', " +
                     " '" + GlobalMemberValues.STORE_INDEX + "', " +
                     " '" + GlobalMemberValues.STATION_CODE + "', " +
-                    " '" + billpaididx + "', " +
-                    " '" + mSelectedSalonSalesCardIdx + "', " +
+                    " '" + "0" + "', " +
+                    " '" + "0" + "', " +
                     " '" + cardsalestipidx + "', " +
                     " '" + paramModPriceAmount + "', " +
-                    " '" + mPayType + "' " +
+                    " '" + mPayType + "', " +
+                    " '" + mSelectedSalonSalesCard_Split_transaction_id + "' " +
                     " ) ";
         } else {
             strQuery = " update salon_sales_tip_split set" +
                     " tipamount = '" + paramModPriceAmount + "' " +
-                    " where idx = '" + tempTipSplitIdx + "' ";
+                    " where split_transaction_id = '" + mSelectedSalonSalesCard_Split_transaction_id + "' ";
         }
 
         GlobalMemberValues.logWrite("tipinsuplogjjj", "sql : " + strQuery + "\n");
@@ -1374,7 +1376,7 @@ public class SaleHistoryTipAdjustment extends Activity {
 
         mTempPriceValue = "";
 
-        mSelectedSalonSalesCardIdx = "";
+        mSelectedSalonSalesCard_Split_transaction_id  = "";
         mSelectedSalonSalesCardCardCom = "";
         mSelectedSalonSalesCardTipAmount = "";
         mSelectedSalonSalesCardCardLastFourDigitNumbers = "";

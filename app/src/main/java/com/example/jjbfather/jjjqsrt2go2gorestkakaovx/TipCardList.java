@@ -130,7 +130,7 @@ public class TipCardList extends Activity {
         ResultSet tipCardListCursor;
 
         String salonSalesDetailQuery = "select idx, tid, cardCom, priceAmount, tipAmount, insertSwipeKeyin, " +
-                " cardLastFourDigitNumbers, cardRefNumber, cardEmvAid, cardEmvTsi, cardEmvTvr " +
+                " cardLastFourDigitNumbers, cardRefNumber, cardEmvAid, cardEmvTsi, cardEmvTvr, split_transaction_id " +
                 " from salon_sales_card " +
                 " where salesCode = '" + mSalesCode + "' and status < 1 ";
 
@@ -148,13 +148,14 @@ public class TipCardList extends Activity {
                 String tempCardEmvAid = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tipCardListCursor, 8), 0);
                 String tempCardEmvTsi = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tipCardListCursor, 9), 0);
                 String tempCardEmvTvr = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tipCardListCursor, 10), 0);
+                String tempSplit_transaction_id = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tipCardListCursor, 11), 0);
 
                 // LinearLayout 객체 생성
                 LinearLayout newLn = new LinearLayout(this);
                 newLn.setLayoutParams(newLnLayoutParams);
                 newLn.setOrientation(LinearLayout.VERTICAL);
                 newLn.setBackgroundResource(R.drawable.roundlayout_background_paymentcreditcard_salonsalescardlist);
-                newLn.setTag(tempIdx);
+                newLn.setTag(tempSplit_transaction_id);
                 newLn.setPadding(15, 15, 15, 15);
 
                 newLn.setOnClickListener(new View.OnClickListener() {
@@ -275,7 +276,7 @@ public class TipCardList extends Activity {
             String strQuery = " select cardCom, tipAmount, cardLastFourDigitNumbers, " +
                     " cardRefNumber, cardEmvAid, cardEmvTsi, cardEmvTvr" +
                     " from salon_sales_card " +
-                    " where idx = '" + this.mSelectedSalonSalesCardIdx + "' ";
+                    " where split_transaction_id = '" + this.mSelectedSalonSalesCardIdx + "' ";
             //Cursor salonSalesCardCursor = dbInit.dbExecuteRead(strQuery);
             ResultSet salonSalesCardCursor = MssqlDatabase.getResultSetValue(strQuery);
             GlobalMemberValues.logWrite("salescardlogjjj", "strQuery : " + strQuery + "\n");
@@ -294,7 +295,7 @@ public class TipCardList extends Activity {
 //                                " select tipamount from salon_sales_tip_split where cardsalesidx = '" + this.mSelectedSalonSalesCardIdx + "' "
 //                        );
 
-                        SaleHistoryTipAdjustment.mSelectedSalonSalesCardIdx = this.mSelectedSalonSalesCardIdx;
+                        SaleHistoryTipAdjustment.mSelectedSalonSalesCard_Split_transaction_id  = this.mSelectedSalonSalesCardIdx;
                         SaleHistoryTipAdjustment.mSelectedSalonSalesCardCardCom = tempCardCom;
                         SaleHistoryTipAdjustment.mSelectedSalonSalesCardTipAmount = tempTipAmount;
                         SaleHistoryTipAdjustment.mSelectedSalonSalesCardCardLastFourDigitNumbers = tempCardLastFourDigitNumbers;

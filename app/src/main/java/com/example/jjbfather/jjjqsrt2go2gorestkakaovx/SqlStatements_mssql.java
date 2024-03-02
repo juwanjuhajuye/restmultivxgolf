@@ -1566,7 +1566,8 @@ public class SqlStatements_mssql {
                     "serverName nvarchar(100), " +                      // Server 이름
 
                     "cashoutNum int null DEFAULT 0, " +                             // cash out 여부
-                    "endofdayNum int DEFAULT 0 " +                             // End of Day 여부
+                    "endofdayNum int DEFAULT 0, " +                             // End of Day 여부
+                    "split_transaction_id nvarchar(100) default '' " +
                     ")";
 
 
@@ -2979,7 +2980,7 @@ public class SqlStatements_mssql {
                     "salesCode nvarchar(100) null, " +
                     "scode nvarchar(50) null, " +
                     "sidx int null, " +
-
+                    "stcode nvarchar(50) null," +
                     "jsonstr ntext null, " +
 
                     "downloadyn nvarchar(2) DEFAULT 'N', " +
@@ -3107,7 +3108,8 @@ public class SqlStatements_mssql {
                     "paytype nvarchar(50) default '', " +                     // 결제타입 (CASH, CARD, GIFTCARD, CHECK, POINT)
                     "wdate datetime DEFAULT getdate(), " +
                     "cardsalesidx int null, " +
-                    "billcode nvarchar(100) default '' " +                // bill_list_paid 와 bill_list_receipt_json 이 연결되는 코드
+                    "billcode nvarchar(100) default '', " +                // bill_list_paid 와 bill_list_receipt_json 이 연결되는 코드
+                    "split_transaction_id nvarchar(100) default '' " +
                     ")";
 
     // 테이블 card_processing_data 생성쿼리
@@ -3378,7 +3380,8 @@ public class SqlStatements_mssql {
                     "cardsalestipidx int null, " +
                     "tipamount money default 0, " +
                     "paytype nvarchar(50) default '', " +                     // 결제타입 (CASH, CARD, GIFTCARD, CHECK, POINT)
-                    "wdate datetime DEFAULT getdate() " +
+                    "wdate datetime DEFAULT getdate(), " +
+                    "split_transaction_id nvarchar(100) default '' " +
                     ")";
 
     // 테이블 salon_storestationsettings_deviceprinter_master 생성쿼리

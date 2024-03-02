@@ -440,11 +440,7 @@ public class SqlStatements {
                     "gratuitydelyn nvarchar(2) DEFAULT 'Y', " +
                     "crmuseyn nvarchar(2) DEFAULT 'Y', " +
                     "cashdcshowonreceiptyn nvarchar(2) DEFAULT 'Y', " +
-                    "cashdctaxshowyn nvarchar(2) DEFAULT 'Y', " +
-
-                    // 02272024
-                    "pointmintouse money DEFAULT 0.0, " +
-                    "pointmaxpayble money DEFAULT 0.0 " +
+                    "cashdctaxshowyn nvarchar(2) DEFAULT 'Y' " +
 
                     ")";
 
@@ -1360,7 +1356,8 @@ public class SqlStatements {
                     "endofdayNum int DEFAULT 0, " +                             // End of Day 여부
                     "adjustedyn varchar(2) DEFAULT 'Y', " +                     // 팁 프로세싱됐는지 여부
                     "refnum nvarchar(100) DEFAULT '', " +                       // 레퍼런스 번호
-                    "codeforupload nvarchar(100) NULL " +
+                    "codeforupload nvarchar(100) NULL, " +
+                    "split_transaction_id nvarchar(100) default '' " +
                     ")";
 
     // 테이블 salon_clockinout 생성쿼리
@@ -1436,7 +1433,8 @@ public class SqlStatements {
                     "serverName nvarchar(100), " +                      // Server 이름
 
                     "cashoutNum int null DEFAULT 0, " +                             // cash out 여부
-                    "endofdayNum int DEFAULT 0 " +                             // End of Day 여부
+                    "endofdayNum int DEFAULT 0, " +                             // End of Day 여부
+                    "split_transaction_id nvarchar(100) default '' " +
                     ")";
 
 
@@ -2770,7 +2768,8 @@ public class SqlStatements {
                     "paytype nvarchar(50) default '', " +                     // 결제타입 (CASH, CARD, GIFTCARD, CHECK, POINT)
                     "wdate datetime DEFAULT (datetime('now', 'localtime')), " +
                     "cardsalesidx int null, " +
-                    "billcode nvarchar(100) default '' " +                // bill_list_paid 와 bill_list_receipt_json 이 연결되는 코드
+                    "billcode nvarchar(100) default '', " +                // bill_list_paid 와 bill_list_receipt_json 이 연결되는 코드
+                    "split_transaction_id nvarchar(100) default '' " +
                     ")";
 
     // 테이블 card_processing_data 생성쿼리
@@ -3056,7 +3055,8 @@ public class SqlStatements {
                     "cardsalestipidx int null, " +
                     "tipamount money default 0, " +
                     "paytype nvarchar(50) default '', " +                     // 결제타입 (CASH, CARD, GIFTCARD, CHECK, POINT)
-                    "wdate datetime DEFAULT (datetime('now', 'localtime')) " +
+                    "wdate datetime DEFAULT (datetime('now', 'localtime')), " +
+                    "split_transaction_id nvarchar(100) default '' " +
                     ")";
 
 

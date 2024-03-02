@@ -113,6 +113,7 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 import java.util.Vector;
 import java.util.concurrent.ExecutionException;
 import java.util.regex.Matcher;
@@ -151,7 +152,7 @@ public class GlobalMemberValues {
     /** 2go2go 관련 *************************************************************************************/
     // Store Server ---------------------------------------------------------------------------
     // real
-    public static String DATABASE_NAME = "JJJVXGOLF";           // DATABASE 명
+    public static String DATABASE_NAME = "JJJQSRDBMULTI";           // DATABASE 명
     public static String mssql_pw = "DhksGkDP@02)";                       // DATABASE 비번
 
     // 모바일 host
@@ -176,11 +177,11 @@ public class GlobalMemberValues {
 
 //    // Test Server ---------------------------------------------------------------------------
 //    // test
-//    public static String DATABASE_NAME = "JJJVXGOLF";             // DATABASE 명
+//    public static String DATABASE_NAME = "jjjqsrdbmulti";             // DATABASE 명
 //    public static String mssql_pw = "DhksGkDP@02)";                           // DATABASE 비번
 //
 //    // 모바일 host
-//    public static String MOBILE_HOST = "vxgolfm";
+//    public static String MOBILE_HOST = "restaurantm";
 //
 //    // Domain 정보
 //    public static String CLOUD_HOST = "rcloud";
@@ -191,7 +192,7 @@ public class GlobalMemberValues {
 //
 //    // FTP 설정값
 //    public static String M_FTPIP = CLOUD_FTP_IP;
-//    public static int M_FTPPORT = 5253;
+//    public static int M_FTPPORT = 5252;
 //    public static String M_FTPID = "nzsalondbftp";
 //    public static String M_FTPPWD = "wndhkswngkwndP@01^";
 //    public static String M_FTPENCODING = "UTF-8";
@@ -1071,6 +1072,8 @@ public class GlobalMemberValues {
     public static double mPayAmountOnBill = 0.0;                        // bill 결제하는 금액
 
     public static boolean isBillPayContinue = false;                    // bill pay 를 이어서 계속할지 여부
+
+    public static String mSplit_transaction_id = "";
 
     // bill pay 를 계속 진행하게 하기 위한 변수
     public static String mHoldCodeForBillPay_on = "";
@@ -2840,6 +2843,29 @@ public class GlobalMemberValues {
         GlobalMemberValues.logWrite("holdsalescodejjjlog2", "value : " + returnHoldCode + "\n");
 
         return returnHoldCode;
+    }
+
+    public static String makeSplitTransactionCode() {
+        String returnSalesCode = "";
+
+        // 오늘 날짜 가져오기
+        String tempDay = DateMethodClass.nowDayGet();
+        String tempMonth = DateMethodClass.nowMonthGet();
+        String tempYear = DateMethodClass.nowYearGet();
+
+        StringBuffer buf =new StringBuffer();
+        buf.append(tempMonth).append(tempDay).append(tempYear);
+        Random rnd = new Random();
+        for(int i = 0; i < 10; i++) {
+            if(rnd.nextBoolean()) {
+                buf.append((char)((int)(rnd.nextInt(26))+65));
+            } else {
+                buf.append((rnd.nextInt(10)));
+            }
+        }
+        returnSalesCode = buf.toString();
+
+        return returnSalesCode;
     }
 
     // 02032024

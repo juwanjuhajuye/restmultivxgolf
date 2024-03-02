@@ -935,16 +935,18 @@ public class MssqlAlterTables {
         altTableName = "temp_salecart_del";
         alterDatabaseTableColumn(altTableName, "tordercode", "nvarchar(100)", "DEFAULT ''");
 
-
-        // salon_storegeneral 테이블 컬럼 추가
-        // 2.27.2024, pointmintouse 컬럼 추가
-        altTableName = "salon_storegeneral";
-        alterDatabaseTableColumn(altTableName, "pointmintouse", "money", "DEFAULT 0");
-
-        // salon_storegeneral 테이블 컬럼 추가
-        // 2.27.2024, pointmaxpayble 컬럼 추가
-        altTableName = "salon_storegeneral";
-        alterDatabaseTableColumn(altTableName, "pointmaxpayble", "money", "DEFAULT 0");
+        // bill_list_paid 테이블 컬럼 추가
+        // 2.29.2024, split_transaction_id 컬럼 추가
+        altTableName = "bill_list_paid";
+        alterDatabaseTableColumn(altTableName, "split_transaction_id", "nvarchar(100)", "DEFAULT ''");
+        // salon_sales_card 테이블 컬럼 추가
+        // 2.29.2024, split_transaction_id 컬럼 추가
+        altTableName = "salon_sales_card";
+        alterDatabaseTableColumn(altTableName, "split_transaction_id", "nvarchar(100)", "DEFAULT ''");
+        // salon_sales_tip_split 테이블 컬럼 추가
+        // 2.29.2024, split_transaction_id 컬럼 추가
+        altTableName = "salon_sales_tip_split";
+        alterDatabaseTableColumn(altTableName, "split_transaction_id", "nvarchar(100)", "DEFAULT ''");
 
     }
 

@@ -797,7 +797,7 @@ public class PaymentCreditCard extends Activity {
                     " cardLastFourDigitNumbers, cardRefNumber, " +
                     " cardEmvAid, cardEmvTsi, cardEmvTvr, " +
                     " employeeIdx, employeeName, " +
-                    " serverIdx, serverName  " +
+                    " serverIdx, serverName, split_transaction_id  " +
                     " ) values ( " +
                     " '" + insSalesCode + "', " +
                     " '" + insTid + "', " +
@@ -815,7 +815,8 @@ public class PaymentCreditCard extends Activity {
                     " '" + GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx,0) + "', " +
                     " '" + GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName,0) + "', " +
                     " '" + GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.SERVER_IDX,0) + "', " +
-                    " '" + GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.SERVER_NAME, 0) + "' " +
+                    " '" + GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.SERVER_NAME, 0) + "', " +
+                    " '" + GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.mSplit_transaction_id, 0) + "' " +
                     ")";
             // salon_sales_card 입력쿼리를 백터 strInsertQueryVec 에 담는다.
             strInsertQueryVec.addElement(strInsSqlQuery);

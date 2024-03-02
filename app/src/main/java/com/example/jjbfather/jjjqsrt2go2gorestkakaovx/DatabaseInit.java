@@ -3707,17 +3707,23 @@ public class DatabaseInit {
         }
 
 
-        // salon_storegeneral 테이블 컬럼 추가
-        // 2.27.2024, pointmintouse 컬럼 추가
-        altTableName = "salon_storegeneral";
+        // bill_list_paid 테이블 컬럼 추가
+        // 2.3.2024, tordercode 컬럼 추가
+        altTableName = "bill_list_paid";
         if (checkTable(altTableName) > 0) {
-            alterDatabaseTableColumn(altTableName, "pointmintouse", "money", "DEFAULT 0", 0);
+            alterDatabaseTableColumn(altTableName, "split_transaction_id", "nvarchar(100)", "DEFAULT ''", 0);
         }
-        // salon_storegeneral 테이블 컬럼 추가
-        // 2.27.2024, pointmaxpayble 컬럼 추가
-        altTableName = "salon_storegeneral";
+        // salon_sales_card 테이블 컬럼 추가
+        // 2.3.2024, tordercode 컬럼 추가
+        altTableName = "salon_sales_card";
         if (checkTable(altTableName) > 0) {
-            alterDatabaseTableColumn(altTableName, "pointmaxpayble", "money", "DEFAULT 0", 0);
+            alterDatabaseTableColumn(altTableName, "split_transaction_id", "nvarchar(100)", "DEFAULT ''", 0);
+        }
+        // salon_sales_tip_split 테이블 컬럼 추가
+        // 2.3.2024, tordercode 컬럼 추가
+        altTableName = "salon_sales_tip_split";
+        if (checkTable(altTableName) > 0) {
+            alterDatabaseTableColumn(altTableName, "split_transaction_id", "nvarchar(100)", "DEFAULT ''", 0);
         }
 
 

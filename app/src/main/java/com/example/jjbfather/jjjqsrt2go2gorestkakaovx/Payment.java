@@ -1310,32 +1310,6 @@ public class Payment {
                     break;
                 }
                 case R.id.paymentSuButtonV : {
-                    // 02242024 - 추가작업 ---------------------------------------------------------------------
-                    // 포인트로 처리할 수 있는 최대/최소 포인트 체크
-                    double paymentEvValuePoint = GlobalMemberValues.getDoubleAtString(paymentPointEditText.getText().toString());
-                    if (paymentEvValuePoint > 0) {
-                        double memPoints = GlobalMemberValues.getDoubleAtString(GlobalMemberValues.GLOBAL_BOTTOMMEMBER_POINT.getText().toString());
-                        double pointmintouse = GlobalMemberValues.getDoubleAtString(MainActivity.mDbInit.dbExecuteReadReturnString(
-                                " select pointmintouse from salon_storegeneral "
-                        ));
-                        double pointmaxpayble = GlobalMemberValues.getDoubleAtString(MainActivity.mDbInit.dbExecuteReadReturnString(
-                                " select pointmaxpayble from salon_storegeneral "
-                        ));
-
-                        if (memPoints < pointmintouse) {
-                            GlobalMemberValues.displayDialog(context, "Waraning", "You must have " + GlobalMemberValues.getCommaStringForDouble(pointmintouse + "") +
-                                    " points or more to use it.", "Close");
-                            return;
-                        } else {
-                            if (memPoints > pointmaxpayble) {
-                                GlobalMemberValues.displayDialog(context, "Waraning", "You cannot use more than " + GlobalMemberValues.getCommaStringForDouble(pointmaxpayble + "") +
-                                        " points", "Close");
-                                return;
-                            }
-                        }
-                    }
-                    // 02242024 - 추가작업 ---------------------------------------------------------------------
-
                     paymentComplite_LogSave(false);
                     paymentSuButtonV.setEnabled(false);
 
@@ -1483,6 +1457,8 @@ public class Payment {
 
         // 102022 이곳에
         GlobalMemberValues.setGoneForCardCashPayView();
+
+        GlobalMemberValues.mSplit_transaction_id = "";
     }
 
     public static void openPaymentReview(Context paramContext) {
@@ -2101,6 +2077,12 @@ public class Payment {
                     break;
                 }
                 case R.id.paymentPointLinearLayout : {
+                    // 02242024 - 추가작업 ---------------------------------------------------------------------
+                    // 포인트로 처리할 수 있는 최대/최소 포인트
+
+                    // 02242024 - 추가작업 ---------------------------------------------------------------------
+
+
                     // 09282023
                     setClickPointLn(v);
 
@@ -4558,12 +4540,20 @@ public class Payment {
                 // 01052023
                 String nBillCode = GlobalMemberValues.makeBillCode();
 
+                String str_split_transaction_id = "";
+
+                if (GlobalMemberValues.mSplit_transaction_id.isEmpty()){
+                    str_split_transaction_id = GlobalMemberValues.makeSplitTransactionCode();
+                } else {
+                    str_split_transaction_id = GlobalMemberValues.mSplit_transaction_id;
+                }
+
                 GlobalMemberValues.logWrite("billcntjjjlog", "여기실행" + "\n");
 
                 GlobalMemberValues.logWrite("billpaysalescardidxlogjjj", "card sales idx1 : " + GlobalMemberValues.mCardSalesIdxForBillPay + "\n");
 
                 strDelSqlQuery = " insert into bill_list_paid ( " +
-                        " salescode, holdcode, sidx, stcode, billidx, paidamount, paytype, changeamount, ordernum, cardsalesidx, billcode " +
+                        " salescode, holdcode, sidx, stcode, billidx, paidamount, paytype, changeamount, ordernum, cardsalesidx, billcode, split_transaction_id " +
                         " ) values ( " +
                         " '" + mSalesCode + "', " +
                         " '" + GlobalMemberValues.mSelectedHoldCodeForBillPay + "', " +
@@ -4575,7 +4565,8 @@ public class Payment {
                         " '" + temp_double_change + "', " +
                         " '" + customerOrderNumber + "', " +
                         " '" + GlobalMemberValues.mCardSalesIdxForBillPay + "', " +
-                        " '" + nBillCode + "' " +
+                        " '" + nBillCode + "', " +
+                        " '" + str_split_transaction_id + "' " +
                         " ) ";
                 strInsertQueryVec.addElement(strDelSqlQuery);
 
