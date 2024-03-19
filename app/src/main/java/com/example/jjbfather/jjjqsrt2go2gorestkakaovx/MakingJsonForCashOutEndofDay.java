@@ -59,8 +59,10 @@ public class MakingJsonForCashOutEndofDay {
         DatabaseInit dbInit = MainActivity.mDbInit;
 
         String subStrString = "substr(salesCode, 2)";
+        String subStrString2 = "substr(salesCode, 1, 1)";
         if (isEndofday) {
             subStrString = "substring(salescode, 2, len(salescode))";
+            subStrString2 = "substring(salesCode, 1, 1)";
         }
 
         // 직원 로그인/아웃 로그기록 ------------------------------------------------------------------------------------------
@@ -340,7 +342,7 @@ public class MakingJsonForCashOutEndofDay {
                         " and stcode = '" + stcode_arr[i] + "' " +
                         " and not(saveType = '2') " +
                         " and delyn = 'N' " +
-                        " and (substr(salesCode, 1, 1) = 'K' or substr(salesCode, 1, 1) = 'V') " + commonGratuitySql;
+                        " and (" + subStrString2 + " = 'K' or " + subStrString2 + " = 'V') " + commonGratuitySql;
                 String getTempData = GlobalMemberValues.getCommaStringForDouble(getDataOnSql(isEndofday, sqlQuery));
                 salessummary_sales_arr[i] = GlobalMemberValues.getDoubleAtString(getTempData);
             }
@@ -356,7 +358,7 @@ public class MakingJsonForCashOutEndofDay {
                         " where " + empSqlQuery + addSqlQuery +
                         " and stcode = '" + stcode_arr[i] + "' " +
                         " and delyn = 'N' " +
-                        " and substr(salesCode, 1, 1) = 'K' ";
+                        " and " + subStrString2 + " = 'K' ";
                 String getTempData = GlobalMemberValues.getCommaStringForDouble(getDataOnSql(isEndofday, sqlQuery));
                 salessummary_extra_arr[i] = GlobalMemberValues.getDoubleAtString(getTempData);
 
@@ -375,7 +377,7 @@ public class MakingJsonForCashOutEndofDay {
                         " and stcode = '" + stcode_arr[i] + "' " +
                         " and not(saveType = '2') " +
                         " and delyn = 'N' " +
-                        " and (substr(salesCode, 1, 1) = 'K' or substr(salesCode, 1, 1) = 'V') " +
+                        " and (" + subStrString2 + " = 'K' or " + subStrString2 + " = 'V') " +
                         " and itemName = '" + GlobalMemberValues.mCommonGratuityName + "' ";
                 String getTempData = GlobalMemberValues.getCommaStringForDouble(getDataOnSql(isEndofday, sqlQuery));
                 salessummary_gratuity_arr[i] = GlobalMemberValues.getDoubleAtString(getTempData + "");
@@ -396,8 +398,8 @@ public class MakingJsonForCashOutEndofDay {
                         " and " + subStrString + " not in " +
                         // 06122023
                         // commonGratuitySql 부분을 제거
-                        //" (select " + subStrString + " from salon_sales_detail where substr(salesCode, 1, 1) = 'V') " + commonGratuitySql;
-                        " (select " + subStrString + " from salon_sales_detail where substr(salesCode, 1, 1) = 'V') ";
+                        //" (select " + subStrString + " from salon_sales_detail where " + subStrString2 + " = 'V') " + commonGratuitySql;
+                        " (select " + subStrString + " from salon_sales_detail where " + subStrString2 + " = 'V') ";
                 String getTempData = GlobalMemberValues.getCommaStringForDouble(getDataOnSql(isEndofday, sqlQuery));
                 salessummary_discount_arr[i] = GlobalMemberValues.getDoubleAtString(getTempData + "");
             }
@@ -414,7 +416,7 @@ public class MakingJsonForCashOutEndofDay {
                         " and stcode = '" + stcode_arr[i] + "' " +
                         " and not(saveType = '2') " +
                         " and delyn = 'N' " +
-                        " and substr(salesCode, 1, 1) = 'C' " + commonGratuitySql;
+                        " and " + subStrString2 + " = 'C' " + commonGratuitySql;
                 String getTempData = GlobalMemberValues.getCommaStringForDouble(getDataOnSql(isEndofday, sqlQuery));
                 salessummary_refund_arr[i] = GlobalMemberValues.getDoubleAtString(getTempData + "");
             }
@@ -466,7 +468,7 @@ public class MakingJsonForCashOutEndofDay {
                 sqlQuery = " select sum(round((usedCash + usedCard), 2)) from salon_sales_tip " +
                         " where " + empSqlQuery + addSqlQuery +
                         " and salesCode in (select salesCode from salon_sales_detail where delyn = 'N' and stcode = '" + stcode_arr[i] + "' ) " +
-                        " and " + subStrString + " not in (select " + subStrString + " from salon_sales_detail where substr(salesCode, 1, 1) = 'V') ";
+                        " and " + subStrString + " not in (select " + subStrString + " from salon_sales_detail where " + subStrString2 + " = 'V') ";
 
                 String getTempData = GlobalMemberValues.getCommaStringForDouble(getDataOnSql(isEndofday, sqlQuery));
                 salessummary_totaltips_arr[i] = GlobalMemberValues.getDoubleAtString(getTempData + "");
@@ -476,7 +478,7 @@ public class MakingJsonForCashOutEndofDay {
                 sqlQuery = " select sum(round(usedCash, 2)) from salon_sales_tip " +
                         " where " + empSqlQuery + addSqlQuery +
                         " and salesCode in (select salesCode from salon_sales_detail where delyn = 'N' and stcode = '" + stcode_arr[i] + "' ) " +
-                        " and " + subStrString + " not in (select " + subStrString + " from salon_sales_detail where substr(salesCode, 1, 1) = 'V') ";
+                        " and " + subStrString + " not in (select " + subStrString + " from salon_sales_detail where " + subStrString2 + " = 'V') ";
 
                 String getTempData2 = GlobalMemberValues.getCommaStringForDouble(getDataOnSql(isEndofday, sqlQuery));
                 salessummary_totaltips_cash_arr[i] = GlobalMemberValues.getDoubleAtString(getTempData2 + "");
@@ -485,7 +487,7 @@ public class MakingJsonForCashOutEndofDay {
                 sqlQuery = " select sum(round(usedCard, 2)) from salon_sales_tip " +
                         " where " + empSqlQuery + addSqlQuery +
                         " and salesCode in (select salesCode from salon_sales_detail where delyn = 'N' and stcode = '" + stcode_arr[i] + "' ) " +
-                        " and " + subStrString + " not in (select " + subStrString + " from salon_sales_detail where substr(salesCode, 1, 1) = 'V') ";
+                        " and " + subStrString + " not in (select " + subStrString + " from salon_sales_detail where " + subStrString2 + " = 'V') ";
 
                 String getTempData3 = GlobalMemberValues.getCommaStringForDouble(getDataOnSql(isEndofday, sqlQuery));
                 salessummary_totaltips_card_arr[i] = GlobalMemberValues.getDoubleAtString(getTempData3 + "");

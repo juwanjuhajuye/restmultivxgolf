@@ -9702,19 +9702,21 @@ public class GlobalMemberValues {
         // 10092023 --------------------------------------------------------------------------
 
 
-        // 11102023
-        if (GlobalMemberValues.isPossibleSavingKitchenPrintingDataJson(jsonObject.toString())) {
-            strQuery = " insert into salon_sales_kitchenprintingdata_json " +
-                    " (salesCode, scode, sidx, stcode, jsonstr, reprintyn) values ( " +
-                    " '" + GlobalMemberValues.getDBTextAfterChecked(paramSalesCode,0) + "', " +
-                    " '" + GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.SALON_CODE,0) + "', " +
-                    "  " + GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.STORE_INDEX,0) + ", " +
-                    " '" + GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.STATION_CODE,0) + "', " +
-                    " '" + GlobalMemberValues.getDBTextAfterChecked(jsonObject.toString(), 0) + "', " +
-                    " '" + GlobalMemberValues.isKitchenReprinting + "' " +
-                    " ) ";
-            strInsertQueryVec.addElement(strQuery);
-        }
+        // 03182024
+        // 아래 부분을 삭제할 것 (멀티, handheld, vx golf)
+//        // 11102023
+//        if (GlobalMemberValues.isPossibleSavingKitchenPrintingDataJson(jsonObject.toString())) {
+//            strQuery = " insert into salon_sales_kitchenprintingdata_json " +
+//                    " (salesCode, scode, sidx, stcode, jsonstr, reprintyn) values ( " +
+//                    " '" + GlobalMemberValues.getDBTextAfterChecked(paramSalesCode,0) + "', " +
+//                    " '" + GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.SALON_CODE,0) + "', " +
+//                    "  " + GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.STORE_INDEX,0) + ", " +
+//                    " '" + GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.STATION_CODE,0) + "', " +
+//                    " '" + GlobalMemberValues.getDBTextAfterChecked(jsonObject.toString(), 0) + "', " +
+//                    " '" + GlobalMemberValues.isKitchenReprinting + "' " +
+//                    " ) ";
+//            strInsertQueryVec.addElement(strQuery);
+//        }
 
         // 초기화
         GlobalMemberValues.isKitchenReprinting = "N";
@@ -17223,8 +17225,9 @@ public class GlobalMemberValues {
                     " discountbuttonname, modifieridx, modifiercode, sPriceBalAmount_org, sTaxAmount_org, sTotalAmount_org, sCommissionAmount_org, sPointAmount_org, " +
                     " tableidx, billtag, mergednum, subtablenum, billnum, kitchenprintedyn, isCloudUpload, cardtryyn, dcextratype, dcextravalue, togodelitype, labelprintedyn, togotype, " +
                     " pastholdcode, billprintedyn," +
-                    // 05182023
-                    " billidx_byitemsplit ";
+                    " billidx_byitemsplit, " +
+                    // 03192024
+                    " tordercode ";
             String tempSql = " insert into temp_salecart (" + tempStr + ") " +
                     " select " + tempStr + " from temp_salecart_ordered where holdcode = '" + tempHoldCode + "' ";
             strInsertQueryVec.addElement(tempSql);

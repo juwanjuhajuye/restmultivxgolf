@@ -477,11 +477,7 @@ public class SqlStatements_mssql {
                     "gratuitydelyn nvarchar(2) DEFAULT 'Y', " +
                     "crmuseyn nvarchar(2) DEFAULT 'Y', " +
                     "cashdcshowonreceiptyn nvarchar(2) DEFAULT 'Y', " +
-                    "cashdctaxshowyn nvarchar(2) DEFAULT 'Y', " +
-
-                    // 02272024
-                    "pointmintouse money DEFAULT 0.0, " +
-                    "pointmaxpayble money DEFAULT 0.0 " +
+                    "cashdctaxshowyn nvarchar(2) DEFAULT 'Y' " +
 
                     ")";
 
@@ -1137,7 +1133,10 @@ public class SqlStatements_mssql {
                     "billprintedyn nvarchar(2) DEFAULT 'N', " +                 // bill 프린팅 했는지 여부
 
                     // 05182023
-                    "billidx_byitemsplit nvarchar(20) DEFAULT '' " +                        // bill 을 item 으로 split 시 billidx
+                    "billidx_byitemsplit nvarchar(20) DEFAULT '', " +                        // bill 을 item 으로 split 시 billidx
+
+                    // 02032024
+                    "tordercode nvarchar(100) DEFAULT '' " +                        // Torder 에서 받은 주문은 T 로 시작 포스에서 주문은 P 로 시작
 
                     ")";
 
@@ -1478,7 +1477,8 @@ public class SqlStatements_mssql {
                     "endofdayNum int DEFAULT 0, " +                             // End of Day 여부
                     "adjustedyn varchar(2) DEFAULT 'Y', " +                     // 팁 프로세싱됐는지 여부
                     "refnum nvarchar(100) DEFAULT '', " +                       // 레퍼런스 번호
-                    "codeforupload nvarchar(100) NULL " +
+                    "codeforupload nvarchar(100) NULL, " +
+                    "globalUID nvarchar(50) NULL " +                    // globaluid
                     ")";
 
     // 테이블 salon_clockinout 생성쿼리
@@ -2985,13 +2985,16 @@ public class SqlStatements_mssql {
 
                     "downloadyn nvarchar(2) DEFAULT 'N', " +
 
+                    "printedyn nvarchar(2) DEFAULT 'N', " +
+
                     "uploaddate datetime DEFAULT getdate(), " +
                     "downloaddate datetime DEFAULT getdate(), " +
 
-                    "tableidx nvarchar(50) DEFAULT '', " +
-                    "tablename nvarchar(200) DEFAULT '', " +
-                    "orderfrom nvarchar(200) DEFAULT ''  " +
+                    "preSalesCode nvarchar(100) DEFAULT '', " +
+                    "nowtableidx nvarchar(50) DEFAULT '', " +
+                    "nowtablename nvarchar(200) DEFAULT '', " +
 
+                    "reprintyn nvarchar(2) DEFAULT 'N' " +
                     ")";
 
 
@@ -3380,6 +3383,7 @@ public class SqlStatements_mssql {
                     "cardsalestipidx int null, " +
                     "tipamount money default 0, " +
                     "paytype nvarchar(50) default '', " +                     // 결제타입 (CASH, CARD, GIFTCARD, CHECK, POINT)
+                    "globalUID nvarchar(50) NULL, " +                    // globaluid
                     "wdate datetime DEFAULT getdate(), " +
                     "split_transaction_id nvarchar(100) default '' " +
                     ")";
@@ -3688,26 +3692,6 @@ public class SqlStatements_mssql {
 
                     ")";
 
-
-
-    // 02192024
-    // 테이블 salon_storememberlevel 생성쿼리
-    public static final String SQL_CREATE_SALONSTOREMEMBERLEVEL =
-            " IF NOT EXISTS " +
-                    " (SELECT * FROM INFORMATION_SCHEMA.tables WITH(NOLOCK) WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'salon_storememberlevel') " +
-
-                    "CREATE TABLE salon_storememberlevel ( " +
-                    "idx INTEGER PRIMARY KEY identity, " +
-                    "scode nvarchar(50), " +
-                    "sidx int NULL," +
-                    "aid nvarchar(100) NULL, " +
-                    "levelname nvarchar(100) NULL, " +
-                    "pointratio money NULL,"+
-                    "useyn nvarchar(2) DEFAULT 'Y'," +
-                    "delyn nvarchar(2) DEFAULT 'N'," +
-                    "wdate datetime DEFAULT getdate(), "+
-                    "mdate datetime DEFAULT getdate() "+
-                    ")";
 
 
 /******************************************************************************************/

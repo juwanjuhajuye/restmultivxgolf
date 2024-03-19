@@ -935,6 +935,8 @@ public class MssqlAlterTables {
         altTableName = "temp_salecart_del";
         alterDatabaseTableColumn(altTableName, "tordercode", "nvarchar(100)", "DEFAULT ''");
 
+
+        //
         // bill_list_paid 테이블 컬럼 추가
         // 2.29.2024, split_transaction_id 컬럼 추가
         altTableName = "bill_list_paid";
@@ -947,6 +949,12 @@ public class MssqlAlterTables {
         // 2.29.2024, split_transaction_id 컬럼 추가
         altTableName = "salon_sales_tip_split";
         alterDatabaseTableColumn(altTableName, "split_transaction_id", "nvarchar(100)", "DEFAULT ''");
+
+
+        // temp_salecart_ordered 테이블 컬럼 추가
+        // 3.19.2024, tordercode 컬럼 추가
+        altTableName = "temp_salecart_ordered";
+        alterDatabaseTableColumn(altTableName, "tordercode", "nvarchar(100)", "DEFAULT ''");
 
     }
 

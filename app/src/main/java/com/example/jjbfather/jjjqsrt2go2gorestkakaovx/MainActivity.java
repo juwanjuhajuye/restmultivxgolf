@@ -4963,4 +4963,19 @@ public class MainActivity extends Activity {
         }
     };
 
+    public static void setMainBillPrintButtonVisible(boolean is_visible){
+        if (GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINBUTTON_BILLPRINT == null) return;
+        MainActivity.mActivity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (is_visible){
+                    GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINBUTTON_BILLPRINT.setVisibility(View.VISIBLE);
+                } else {
+                    GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINBUTTON_BILLPRINT.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
+
+    }
+
 }

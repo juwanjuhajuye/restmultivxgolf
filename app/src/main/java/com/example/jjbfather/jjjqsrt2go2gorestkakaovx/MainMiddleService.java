@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.DataSetObserver;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -1413,8 +1414,6 @@ public class MainMiddleService {
             // 06122023
             // tempInsSvcTax > 0 ---> tempInsSvcTax != 0 으로 수정
             if (tempInsSvcTax != 0) {
-                // 03092024
-                // tax 관련 반올림 처리 아래 내용으로 수정
                 // Tax, 소수점 두자리까지
                 insSTax = GlobalMemberValues.getDoubleAtString(GlobalMemberValues.getCommaStringForDouble(tempInsSvcTax + ""));
 //                insSTaxAmount = GlobalMemberValues.getDoubleAtString(GlobalMemberValues.getStringFormatNumber((tempInsSvcTax * insSQty), "2"));
@@ -1942,6 +1941,14 @@ public class MainMiddleService {
                         }
                     } else {
                         mSaleCartAdapter = new SaleCartAdapter(context, R.layout.main_salecart_list, mGeneralArrayList);
+
+                        mSaleCartAdapter.registerDataSetObserver(new DataSetObserver() {
+                            @Override
+                            public void onChanged() {
+                                super.onChanged();
+                                MainActivity.setMainBillPrintButtonVisible(false);
+                            }
+                        });
 
                         if (GlobalMemberValues.ISDUALDISPLAYPOSSIBLE) {
                             mPresentationCartAdapter = new PresentationCartAdapter(context, R.layout.presentation_list_item, mGeneralArrayList);
@@ -2654,13 +2661,21 @@ public class MainMiddleService {
                     break;
 
                 case R.id.mainSaleCartButton_billprint : {
-                    LogsSave.saveLogsInDB(90);
-                    TableSaleMain.openBillPrint("Y");
-                    if (GlobalMemberValues.isBillPrintPopupOpen()){
+                    //03112024 check if item has been added before bill print
+                    //if item has been added, prompt user to print to kitchen first.
+                    if (MainActivity.temp_str_salecart_cnt == MainMiddleService.mGeneralArrayList.size()) {
+                        LogsSave.saveLogsInDB(90);
+                        TableSaleMain.openBillPrint("Y");
+                        if (GlobalMemberValues.isBillPrintPopupOpen()){
 
+                        } else {
+                            MainMiddleService.initList();
+                        }
                     } else {
-                        MainMiddleService.initList();
+                        GlobalMemberValues.displayDialog(MainActivity.mContext, "Warning",
+                                "There is an added menu\nPlease print the kitchen or delete the added menu", "Close");
                     }
+
                     break;
                 }
             }
@@ -3787,7 +3802,7 @@ public class MainMiddleService {
         // 단가 합계 변경 ------------------------------------------------------------------------------
         Double tempMSPriceAmount = 0.00;
         if (!GlobalMemberValues.isStrEmpty(parentTemporarySaleCart.mSPrice)) {
-            tempMSPriceAmount = (GlobalMemberValues.getDoubleAtString(parentTemporarySaleCart.mSPrice)) * tempEdittingQty;
+            tempMSPriceAmount = (Double.parseDouble(parentTemporarySaleCart.mSPrice)) * tempEdittingQty;
         }
         String insMSPriceAmount = "0.0";
         if (tempMSPriceAmount > 0) {
@@ -3800,7 +3815,7 @@ public class MainMiddleService {
         Double tempMSPriceBalAmount = 0.00;
         double tempmSPrice = 0.00;
         if (!GlobalMemberValues.isStrEmpty(parentTemporarySaleCart.mSPrice)) {
-            tempmSPrice = (GlobalMemberValues.getDoubleAtString(parentTemporarySaleCart.mSPrice));
+            tempmSPrice = (Double.parseDouble(parentTemporarySaleCart.mSPrice));
             tempMSPriceBalAmount = tempmSPrice * tempEdittingQty;
         }
         String insMSPriceBalAmount = "0.0";
@@ -3852,7 +3867,7 @@ public class MainMiddleService {
 
             /**
              if (!GlobalMemberValues.isStrEmpty(parentTemporarySaleCart.mSTax)) {
-             tempMSTaxAmount = (GlobalMemberValues.getDoubleAtString(parentTemporarySaleCart.mSTax)) * tempEdittingQty;
+             tempMSTaxAmount = (Double.parseDouble(parentTemporarySaleCart.mSTax)) * tempEdittingQty;
              }
              **/
 
@@ -3872,7 +3887,7 @@ public class MainMiddleService {
         // 커미션 합계 변경 ------------------------------------------------------------------------------
         Double tempMSCommissionAmount = 0.00;
         if (!GlobalMemberValues.isStrEmpty(parentTemporarySaleCart.mSCommission)) {
-            tempMSCommissionAmount = (GlobalMemberValues.getDoubleAtString(parentTemporarySaleCart.mSCommission)) * tempEdittingQty;
+            tempMSCommissionAmount = (Double.parseDouble(parentTemporarySaleCart.mSCommission)) * tempEdittingQty;
         }
         String insMSCommissionAmount  = "0.0";
         if (tempMSCommissionAmount > 0) {
@@ -3882,7 +3897,7 @@ public class MainMiddleService {
         // 포인트 합계 변경 ------------------------------------------------------------------------------
         Double tempMSPointAmount = 0.00;
         if (!GlobalMemberValues.isStrEmpty(parentTemporarySaleCart.mSPoint)) {
-            tempMSPointAmount = (GlobalMemberValues.getDoubleAtString(parentTemporarySaleCart.mSPoint)) * tempEdittingQty;
+            tempMSPointAmount = (Double.parseDouble(parentTemporarySaleCart.mSPoint)) * tempEdittingQty;
         }
         String insMSPointAmount  = "0.0";
         if (tempMSPointAmount > 0) {

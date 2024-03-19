@@ -265,9 +265,6 @@ public class DatabaseInit {
         // 01172024
         strCreateTableVec.addElement(SqlStatements.SQL_CREATE_SALONSALESKITCHENPRINTINGDATAJSONTORDER);
 
-        // 02192024
-        strCreateTableVec.addElement(SqlStatements.SQL_CREATE_SALONSTOREMEMBERLEVEL);
-
         // 테이블 컬럼 수정, 삭제 등 처리
         // ...................................
 
@@ -3707,6 +3704,7 @@ public class DatabaseInit {
         }
 
 
+
         // bill_list_paid 테이블 컬럼 추가
         // 2.3.2024, tordercode 컬럼 추가
         altTableName = "bill_list_paid";
@@ -3724,6 +3722,14 @@ public class DatabaseInit {
         altTableName = "salon_sales_tip_split";
         if (checkTable(altTableName) > 0) {
             alterDatabaseTableColumn(altTableName, "split_transaction_id", "nvarchar(100)", "DEFAULT ''", 0);
+        }
+
+
+        // temp_salecart_ordered 테이블 컬럼 추가
+        // 3.19.2024, tordercode 컬럼 추가
+        altTableName = "temp_salecart_ordered";
+        if (checkTable(altTableName) > 0) {
+            alterDatabaseTableColumn(altTableName, "tordercode", "nvarchar(100)", "DEFAULT ''", 0);
         }
 
 

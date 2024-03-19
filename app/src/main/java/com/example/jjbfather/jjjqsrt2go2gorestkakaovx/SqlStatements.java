@@ -1029,7 +1029,10 @@ public class SqlStatements {
                     "billprintedyn nvarchar(2) DEFAULT 'N', " +                 // bill 프린팅 했는지 여부
 
                     // 05182023
-                    "billidx_byitemsplit nvarchar(20) DEFAULT '' " +                        // bill 을 item 으로 split 시 billidx
+                    "billidx_byitemsplit nvarchar(20) DEFAULT '', " +                        // bill 을 item 으로 split 시 billidx
+
+                    // 02032024
+                    "tordercode nvarchar(100) DEFAULT '' " +                        // Torder 에서 받은 주문은 T 로 시작 포스에서 주문은 P 로 시작
 
 
                     ")";
@@ -1357,6 +1360,7 @@ public class SqlStatements {
                     "adjustedyn varchar(2) DEFAULT 'Y', " +                     // 팁 프로세싱됐는지 여부
                     "refnum nvarchar(100) DEFAULT '', " +                       // 레퍼런스 번호
                     "codeforupload nvarchar(100) NULL, " +
+                    "globalUID nvarchar(50) NULL, " +                    // globaluid
                     "split_transaction_id nvarchar(100) default '' " +
                     ")";
 
@@ -3055,6 +3059,7 @@ public class SqlStatements {
                     "cardsalestipidx int null, " +
                     "tipamount money default 0, " +
                     "paytype nvarchar(50) default '', " +                     // 결제타입 (CASH, CARD, GIFTCARD, CHECK, POINT)
+                    "globalUID nvarchar(50) NULL, " +                    // globaluid
                     "wdate datetime DEFAULT (datetime('now', 'localtime')), " +
                     "split_transaction_id nvarchar(100) default '' " +
                     ")";
@@ -3330,23 +3335,6 @@ public class SqlStatements {
 
                     ")";
 
-
-    // 02192024
-    // 테이블 salon_storememberlevel 생성쿼리
-    public static final String SQL_CREATE_SALONSTOREMEMBERLEVEL =
-            "CREATE TABLE IF NOT EXISTS salon_storememberlevel ( " +
-                    "idx INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    "scode nvarchar(50), " +
-                    "sidx int NULL," +
-                    "aid nvarchar(100) NULL, " +
-                    "levelname nvarchar(100) NULL, " +
-                    "pointratio money NULL,"+
-                    "useyn nvarchar(2) DEFAULT 'Y'," +
-                    "delyn nvarchar(2) DEFAULT 'N'," +
-                    "wdate datetime DEFAULT (datetime('now', 'localtime')), " +
-                    "edate datetime DEFAULT (datetime('now', 'localtime')) " +
-
-                    ")";
 
 
 /******************************************************************************************/
