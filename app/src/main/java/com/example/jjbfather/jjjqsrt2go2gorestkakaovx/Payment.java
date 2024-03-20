@@ -1095,6 +1095,18 @@ public class Payment {
 
 //                    MainMiddleService.mGeneralArrayList_copy = MainMiddleService.mGeneralArrayList;
 
+                    // temp_salecart 수정 제크. 032024
+                    if (MainActivity.temp_str_salecart_cnt == MainMiddleService.mGeneralArrayList.size()) {
+                        // 수정 안됨.
+                    } else {
+                        // 수정 됨.
+                        GlobalMemberValues.displayDialog(MainActivity.mContext, "Warning",
+                                "There are changes to your order history.\nPlease print to kitchen the changes first", "Close");
+                        return;
+                    }
+                    // temp_salecart 수정 제크.
+
+
                     GlobalMemberValues.mIsClickPayment = true;
 
 
@@ -4140,6 +4152,13 @@ public class Payment {
                 }
 
                 GlobalMemberValues.logWrite("jsonforbilllogjjj", "여기4 : " + jsonroot_kitchen.toString() + "\n");
+
+
+                // 03202024
+                // payment 시에는 salon_sales_kitchenprintingdata_json 에 데이터 쌓지 않도록 처리해야 하므로
+                // tempPrintYN 을 무조건 Y 로 처리
+                tempPrintYN = "Y";
+
 
                 // 11102023
                 if (GlobalMemberValues.isPossibleSavingKitchenPrintingDataJson(jsonroot_kitchen.toString())) {
