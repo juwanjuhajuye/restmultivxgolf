@@ -3719,19 +3719,22 @@ public class GlobalMemberValues {
                             {
                                 EpsonReceiptPrint epsonReceiptPrint = new EpsonReceiptPrint(MainActivity.mContext);
 
-                                if (paramReceiptPrintType.equals("phoneordercheckprint")){
-                                    if (epsonReceiptPrint.runPrintReceiptSequence(paramJsonroot,paramReceiptPrintType, Payment.jsonroot_kitchen)){
-                                        if (TableSaleMain.mSelectedTablesArrList != null && TableSaleMain.mSelectedTablesArrList.size() != 0){
-                                            GlobalMemberValues.setChangeBillPrintedStatus(TableSaleMain.mSelectedTablesArrList.get(0).toString(), TableSaleMain.mSubTableNum, true);
-                                        } else if (!TableSaleMain.mSelectedTableIDX.isEmpty()){
-                                            GlobalMemberValues.setChangeBillPrintedStatus(TableSaleMain.mSelectedTableIDX, TableSaleMain.mSubTableNum, true);
-                                            TableSaleMain.mSelectedTableIDX = "";
-                                        }
-
-                                    }
-                                } else {
-                                    epsonReceiptPrint.runPrintReceiptSequence(paramJsonroot,paramReceiptPrintType, Payment.jsonroot_kitchen);
-                                }
+                                // 032224 bill print 시 epson 외 다른 프린트가 table main 으로 이동하지 않아서 아래라인으로 코드 이동함.
+//                                if (paramReceiptPrintType.equals("phoneordercheckprint")){
+//                                    if (epsonReceiptPrint.runPrintReceiptSequence(paramJsonroot,paramReceiptPrintType, Payment.jsonroot_kitchen)){
+//                                        if (TableSaleMain.mSelectedTablesArrList != null && TableSaleMain.mSelectedTablesArrList.size() != 0){
+//                                            GlobalMemberValues.setChangeBillPrintedStatus(TableSaleMain.mSelectedTablesArrList.get(0).toString(), TableSaleMain.mSubTableNum, true);
+//                                        } else if (!TableSaleMain.mSelectedTableIDX.isEmpty()){
+//                                            GlobalMemberValues.setChangeBillPrintedStatus(TableSaleMain.mSelectedTableIDX, TableSaleMain.mSubTableNum, true);
+//                                            TableSaleMain.mSelectedTableIDX = "";
+//                                        }
+//
+//                                    }
+//                                } else {
+//                                    epsonReceiptPrint.runPrintReceiptSequence(paramJsonroot,paramReceiptPrintType, Payment.jsonroot_kitchen);
+//                                }
+                                // 032224 bill print 시 epson 외 다른 프린트가 table main 으로 이동하지 않아서 아래라인으로 코드 이동함.
+                                epsonReceiptPrint.runPrintReceiptSequence(paramJsonroot,paramReceiptPrintType, Payment.jsonroot_kitchen);
 
                                 b_temp = true;
                             }else {
@@ -3801,6 +3804,17 @@ public class GlobalMemberValues {
                 break;
             }
         }
+
+        // 032224 bill print 시 epson 외 다른 프린트가 table main 으로 이동하지 않아서 아래라인으로 코드 이동함.
+        if (paramReceiptPrintType.equals("phoneordercheckprint")){
+            if (TableSaleMain.mSelectedTablesArrList != null && TableSaleMain.mSelectedTablesArrList.size() != 0){
+                GlobalMemberValues.setChangeBillPrintedStatus(TableSaleMain.mSelectedTablesArrList.get(0).toString(), TableSaleMain.mSubTableNum, true);
+            } else if (!TableSaleMain.mSelectedTableIDX.isEmpty()){
+                GlobalMemberValues.setChangeBillPrintedStatus(TableSaleMain.mSelectedTableIDX, TableSaleMain.mSubTableNum, true);
+                TableSaleMain.mSelectedTableIDX = "";
+            }
+        }
+        // 032224 bill print 시 epson 외 다른 프린트가 table main 으로 이동하지 않아서 아래라인으로 코드 이동함.
 
         if (getUseYNMasterPrinter(MainActivity.mContext).equals("1")){
             // master printing 실행
