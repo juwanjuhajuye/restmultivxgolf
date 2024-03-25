@@ -956,6 +956,11 @@ public class MssqlAlterTables {
         altTableName = "temp_salecart_ordered";
         alterDatabaseTableColumn(altTableName, "tordercode", "nvarchar(100)", "DEFAULT ''");
 
+
+        // salon_storegeneral 테이블 컬럼 추가
+        // 3.25.2024, torderuseyn 컬럼 추가
+        altTableName = "salon_storegeneral";
+        alterDatabaseTableColumn(altTableName, "torderuseyn", "nvarchar(2)", "DEFAULT 'N'");
     }
 
     public static void alterTableColumnType() {

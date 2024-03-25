@@ -3733,6 +3733,14 @@ public class DatabaseInit {
         }
 
 
+
+        // salon_storegeneral 테이블 컬럼 추가
+        // 3.25.2024, torderuseyn 컬럼 추가
+        altTableName = "salon_storegeneral";
+        if (checkTable(altTableName) > 0) {
+            alterDatabaseTableColumn(altTableName, "torderuseyn", "nvarchar(2)", "DEFAULT 'N'", 0);
+        }
+
         /****************************************************************************/
     }
 

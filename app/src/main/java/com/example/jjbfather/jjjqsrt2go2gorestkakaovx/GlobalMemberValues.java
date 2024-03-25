@@ -19455,4 +19455,19 @@ public class GlobalMemberValues {
         }
         return returnValue;
     }
+
+
+
+    // 0325204
+    // T-Order 사용여부
+    public static boolean isTOrderUse() {
+        boolean returnValue = false;
+        DatabaseInit dbInit = new DatabaseInit(MainActivity.mContext);   // DatabaseInit 객체 생성
+        String getData = getDBTextAfterChecked(dbInit.dbExecuteReadReturnString(
+                "select torderuseyn from salon_storegeneral"), 1);
+        if (getData == "Y" || getData.equals("Y")) {
+            returnValue = true;
+        }
+        return returnValue;
+    }
 }
