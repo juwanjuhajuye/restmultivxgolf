@@ -143,6 +143,7 @@ public class APIDownLoad_salon_storegeneral extends AsyncTask {
 
     // 03252024
     String torderuseyn = "";
+    String torderkey = "";
 
     String totaloptionitem = "";
     /**********************************************************/
@@ -489,6 +490,9 @@ public class APIDownLoad_salon_storegeneral extends AsyncTask {
                         if (tagName.equals("torderuseyn")) {
                             torderuseyn = xpp.getText();
                         }
+                        if (tagName.equals("torderkey")) {
+                            torderkey = xpp.getText();
+                        }
 
 
                         if (tagName.equals("totaloptionitem")) {
@@ -527,7 +531,7 @@ public class APIDownLoad_salon_storegeneral extends AsyncTask {
                                 // 08012023
                                 " gratuitydelyn, crmuseyn, cashdcshowonreceiptyn, cashdctaxshowyn, " +
                                 // 03252024
-                                " torderuseyn " +
+                                " torderuseyn, torderkey " +
                                 " ) " +
                                 " values (" +
                                 "'" + GlobalMemberValues.getDBTextAfterChecked(idx, 0) + "', " +
@@ -636,7 +640,8 @@ public class APIDownLoad_salon_storegeneral extends AsyncTask {
                                 "'" + GlobalMemberValues.getDBTextAfterChecked(cashdctaxshowyn, 0) + "', " +
 
                                 // 03252024
-                                "'" + GlobalMemberValues.getDBTextAfterChecked(torderuseyn, 0) + "' " +
+                                "'" + GlobalMemberValues.getDBTextAfterChecked(torderuseyn, 0) + "', " +
+                                "'" + GlobalMemberValues.getDBTextAfterChecked(torderkey, 0) + "' " +
 
                                 ")";
                         sqlQueryVecIns.add(mInsertSqlQuery);
@@ -766,7 +771,8 @@ public class APIDownLoad_salon_storegeneral extends AsyncTask {
                                 " cashdctaxshowyn = '" + GlobalMemberValues.getDBTextAfterChecked(cashdctaxshowyn, 0) + "', " +
 
                                 // 03252024
-                                " torderuseyn = '" + GlobalMemberValues.getDBTextAfterChecked(torderuseyn, 0) + "' " +
+                                " torderuseyn = '" + GlobalMemberValues.getDBTextAfterChecked(torderuseyn, 0) + "', " +
+                                " torderkey = '" + GlobalMemberValues.getDBTextAfterChecked(torderkey, 0) + "' " +
 
                                 " where idx = " + idx;
 
@@ -910,6 +916,7 @@ public class APIDownLoad_salon_storegeneral extends AsyncTask {
 
                         // 03252024
                         torderuseyn = "";
+                        torderkey = "";
 
                         totaloptionitem = "";
                         /***********************************************/

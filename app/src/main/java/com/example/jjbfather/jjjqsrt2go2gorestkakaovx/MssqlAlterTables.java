@@ -961,6 +961,11 @@ public class MssqlAlterTables {
         // 3.25.2024, torderuseyn 컬럼 추가
         altTableName = "salon_storegeneral";
         alterDatabaseTableColumn(altTableName, "torderuseyn", "nvarchar(2)", "DEFAULT 'N'");
+        // salon_storegeneral 테이블 컬럼 추가
+        // 3.25.2024, torderkey 컬럼 추가
+        altTableName = "salon_storegeneral";
+        alterDatabaseTableColumn(altTableName, "torderkey", "nvarchar(100)", "DEFAULT ''");
+
     }
 
     public static void alterTableColumnType() {

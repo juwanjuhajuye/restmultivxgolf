@@ -19470,4 +19470,14 @@ public class GlobalMemberValues {
         }
         return returnValue;
     }
+    // T-Order Partner Key
+    public String getTOrderKey() {
+        String returnData = "";
+        returnData = getDBTextAfterChecked(MainActivity.mDbInit.dbExecuteReadReturnString(
+                " select torderkey from salon_storegeneral "), 1);
+        if (GlobalMemberValues.isStrEmpty(returnData)) {
+            returnData = "";
+        }
+        return returnData;
+    }
 }

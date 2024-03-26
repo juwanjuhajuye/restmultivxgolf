@@ -480,7 +480,8 @@ public class SqlStatements_mssql {
                     "cashdctaxshowyn nvarchar(2) DEFAULT 'Y', " +
 
                     // 03252024
-                    "torderuseyn nvarchar(2) DEFAULT 'N' " +
+                    "torderuseyn nvarchar(2) DEFAULT 'N', " +
+                    "torderkey nvarchar(100) DEFAULT '' " +
 
                     ")";
 

@@ -12944,6 +12944,75 @@ public class CloverMakingViewInPrinting {
 
                 printingLn.addView(tipsummarydetails_cashtransactionsLn);
                 // --------------------------------------------------------------------------------------------------------------------
+                // Cash Gratuity ----------------------------------------------------------------------------------------------------
+                LinearLayout tipsummarydetails_cashGratuity_ln = new LinearLayout(MainActivity.mContext);
+                tipsummarydetails_cashGratuity_ln.setLayoutParams(matchParentParams);
+                tipsummarydetails_cashGratuity_ln.setOrientation(LinearLayout.HORIZONTAL);
+
+                TextView tipsummarydetails_CashGratuityLeftTv = new TextView(MainActivity.mContext);
+                tipsummarydetails_CashGratuityLeftTv.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
+                if (!salessummary_gratuity_cash.isEmpty() && GlobalMemberValues.getDoubleAtString(salessummary_gratuity_cash) > 0){
+                    //
+                } else {
+                    // 0
+                    salessummary_gratuity_cash = "0.00";
+                }
+                tipsummarydetails_CashGratuityLeftTv.setText("Cash Gratuity");
+                tipsummarydetails_CashGratuityLeftTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
+                GlobalMemberValues.setTextStyleOnClover(tipsummarydetails_CashGratuityLeftTv);
+                tipsummarydetails_CashGratuityLeftTv.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.0f));
+                tipsummarydetails_cashGratuity_ln.addView(tipsummarydetails_CashGratuityLeftTv);
+
+                TextView tipsummarydetails_CashGratuityRightTv = new TextView(MainActivity.mContext);
+                tipsummarydetails_CashGratuityRightTv.setGravity(Gravity.CENTER_VERTICAL | Gravity.RIGHT);
+                tipsummarydetails_CashGratuityRightTv.setText(salessummary_gratuity_cash);
+                tipsummarydetails_CashGratuityRightTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
+                GlobalMemberValues.setTextStyleOnClover(tipsummarydetails_CashGratuityRightTv);
+                tipsummarydetails_CashGratuityRightTv.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.5f));
+                tipsummarydetails_cashGratuity_ln.addView(tipsummarydetails_CashGratuityRightTv);
+
+                printingLn.addView(tipsummarydetails_cashGratuity_ln);
+                // --------------------------------------------------------------------------------------------------------------------
+
+                // Cash Tip Total ----------------------------------------------------------------------------------------------------
+                LinearLayout tipsummarydetails_cash_tip_total_ln = new LinearLayout(MainActivity.mContext);
+                tipsummarydetails_cash_tip_total_ln.setLayoutParams(matchParentParams);
+                tipsummarydetails_cash_tip_total_ln.setOrientation(LinearLayout.HORIZONTAL);
+
+                String str_tipsummarydetails_cash_tip_total = "0.00";
+                Double temp_d_str_tipsummarydetails_cash_tip_total = GlobalMemberValues.getDoubleAtString(salessummary_totaltips_cash) + GlobalMemberValues.getDoubleAtString(salessummary_gratuity_cash);
+                str_tipsummarydetails_cash_tip_total = GlobalMemberValues.setDoubleToString(temp_d_str_tipsummarydetails_cash_tip_total,2);
+
+                TextView tipsummarydetails_cash_tip_total_LeftTv = new TextView(MainActivity.mContext);
+                tipsummarydetails_cash_tip_total_LeftTv.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
+                tipsummarydetails_cash_tip_total_LeftTv.setText("Cash Tip Total");
+                tipsummarydetails_cash_tip_total_LeftTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
+                GlobalMemberValues.setTextStyleOnClover(tipsummarydetails_cash_tip_total_LeftTv);
+                tipsummarydetails_cash_tip_total_LeftTv.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.0f));
+                tipsummarydetails_cash_tip_total_ln.addView(tipsummarydetails_cash_tip_total_LeftTv);
+
+                TextView tipsummarydetails_cash_tip_total_RightTv = new TextView(MainActivity.mContext);
+                tipsummarydetails_cash_tip_total_RightTv.setGravity(Gravity.CENTER_VERTICAL | Gravity.RIGHT);
+                tipsummarydetails_cash_tip_total_RightTv.setText(str_tipsummarydetails_cash_tip_total); // cash tip + cash gratuity
+                tipsummarydetails_cash_tip_total_RightTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
+                GlobalMemberValues.setTextStyleOnClover(tipsummarydetails_cash_tip_total_RightTv);
+                tipsummarydetails_cash_tip_total_RightTv.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.5f));
+                tipsummarydetails_cash_tip_total_ln.addView(tipsummarydetails_cash_tip_total_RightTv);
+
+                printingLn.addView(tipsummarydetails_cash_tip_total_ln);
+                // --------------------------------------------------------------------------------------------------------------------
+
+                LinearLayout tipsummarydetails_empty_ln = new LinearLayout(MainActivity.mContext);
+                tipsummarydetails_cashGratuity_ln.setLayoutParams(matchParentParams);
+                tipsummarydetails_cashGratuity_ln.setOrientation(LinearLayout.HORIZONTAL);
+                TextView tipsummarydetails_empty_Tv = new TextView(MainActivity.mContext);
+                tipsummarydetails_empty_Tv.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
+                tipsummarydetails_empty_Tv.setText(" ");
+                tipsummarydetails_empty_Tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
+                GlobalMemberValues.setTextStyleOnClover(tipsummarydetails_empty_Tv);
+                tipsummarydetails_empty_Tv.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.0f));
+                tipsummarydetails_empty_ln.addView(tipsummarydetails_empty_Tv);
+                printingLn.addView(tipsummarydetails_empty_ln);
 
                 // Card Tip ----------------------------------------------------------------------------------------------------
                 LinearLayout tipsummarydetails_cashsalesLn = new LinearLayout(MainActivity.mContext);
@@ -12968,60 +13037,122 @@ public class CloverMakingViewInPrinting {
 
                 printingLn.addView(tipsummarydetails_cashsalesLn);
                 // --------------------------------------------------------------------------------------------------------------------
+                // Card Gratuity ----------------------------------------------------------------------------------------------------
+                LinearLayout tipsummarydetails_card_gratuity_Ln = new LinearLayout(MainActivity.mContext);
+                tipsummarydetails_card_gratuity_Ln.setLayoutParams(matchParentParams);
+                tipsummarydetails_card_gratuity_Ln.setOrientation(LinearLayout.HORIZONTAL);
 
+                if (!salessummary_gratuity_card.isEmpty() && GlobalMemberValues.getDoubleAtString(salessummary_gratuity_card) > 0){
+                    //
+                } else {
+                    // 0
+                    salessummary_gratuity_card = "0.00";
+                }
+
+                TextView tipsummarydetails_card_gratuity_LeftTv = new TextView(MainActivity.mContext);
+                tipsummarydetails_card_gratuity_LeftTv.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
+                tipsummarydetails_card_gratuity_LeftTv.setText("Card Gratuity");
+                tipsummarydetails_card_gratuity_LeftTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
+                GlobalMemberValues.setTextStyleOnClover(tipsummarydetails_card_gratuity_LeftTv);
+                tipsummarydetails_card_gratuity_LeftTv.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.0f));
+                tipsummarydetails_card_gratuity_Ln.addView(tipsummarydetails_card_gratuity_LeftTv);
+
+                TextView tipsummarydetails_card_gratuity_RightTv = new TextView(MainActivity.mContext);
+                tipsummarydetails_card_gratuity_RightTv.setGravity(Gravity.CENTER_VERTICAL | Gravity.RIGHT);
+                tipsummarydetails_card_gratuity_RightTv.setText(salessummary_gratuity_card);
+                tipsummarydetails_card_gratuity_RightTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
+                GlobalMemberValues.setTextStyleOnClover(tipsummarydetails_card_gratuity_RightTv);
+                tipsummarydetails_card_gratuity_RightTv.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.5f));
+                tipsummarydetails_card_gratuity_Ln.addView(tipsummarydetails_card_gratuity_RightTv);
+
+                printingLn.addView(tipsummarydetails_card_gratuity_Ln);
+                // --------------------------------------------------------------------------------------------------------------------
+
+                // Card Tip Total ----------------------------------------------------------------------------------------------------
+                LinearLayout tipsummarydetails_card_tip_total_Ln = new LinearLayout(MainActivity.mContext);
+                tipsummarydetails_card_tip_total_Ln.setLayoutParams(matchParentParams);
+                tipsummarydetails_card_tip_total_Ln.setOrientation(LinearLayout.HORIZONTAL);
+
+                String str_tipsummarydetails_card_tip_total = "0.00";
+                Double temp_d_str_tipsummarydetails_card_tip_total = GlobalMemberValues.getDoubleAtString(salessummary_totaltips_card) + GlobalMemberValues.getDoubleAtString(salessummary_gratuity_card);
+                str_tipsummarydetails_card_tip_total = GlobalMemberValues.setDoubleToString(temp_d_str_tipsummarydetails_card_tip_total,2);
+
+                TextView tipsummarydetails_card_tip_total_LeftTv = new TextView(MainActivity.mContext);
+                tipsummarydetails_card_tip_total_LeftTv.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
+                tipsummarydetails_card_tip_total_LeftTv.setText("Card Tip Total");
+                tipsummarydetails_card_tip_total_LeftTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
+                GlobalMemberValues.setTextStyleOnClover(tipsummarydetails_card_tip_total_LeftTv);
+                tipsummarydetails_card_tip_total_LeftTv.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.0f));
+                tipsummarydetails_card_tip_total_Ln.addView(tipsummarydetails_card_tip_total_LeftTv);
+
+                TextView tipsummarydetails_card_tip_total_RightTv = new TextView(MainActivity.mContext);
+                tipsummarydetails_card_tip_total_RightTv.setGravity(Gravity.CENTER_VERTICAL | Gravity.RIGHT);
+                tipsummarydetails_card_tip_total_RightTv.setText(str_tipsummarydetails_card_tip_total); // card tip + gratuity
+                tipsummarydetails_card_tip_total_RightTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
+                GlobalMemberValues.setTextStyleOnClover(tipsummarydetails_card_tip_total_RightTv);
+                tipsummarydetails_card_tip_total_RightTv.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.5f));
+                tipsummarydetails_card_tip_total_Ln.addView(tipsummarydetails_card_tip_total_RightTv);
+
+                printingLn.addView(tipsummarydetails_card_tip_total_Ln);
+                // --------------------------------------------------------------------------------------------------------------------
+
+
+
+                // 03262024 - tip , gratuity 표시 변경
                 // 04242023
                 // Gratuity ----------------------------------------------------------------------------------------------------
-                LinearLayout tipsummarydetails_gratuityLn = new LinearLayout(MainActivity.mContext);
-                tipsummarydetails_gratuityLn.setLayoutParams(matchParentParams);
-                tipsummarydetails_gratuityLn.setOrientation(LinearLayout.HORIZONTAL);
-
-                TextView tipsummarydetails_gratuityLeftTv = new TextView(MainActivity.mContext);
-                tipsummarydetails_gratuityLeftTv.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
-                tipsummarydetails_gratuityLeftTv.setText("Gratuity");
-                tipsummarydetails_gratuityLeftTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
-                GlobalMemberValues.setTextStyleOnClover(tipsummarydetails_gratuityLeftTv);
-                tipsummarydetails_gratuityLeftTv.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.0f));
-                tipsummarydetails_gratuityLn.addView(tipsummarydetails_gratuityLeftTv);
-
-                TextView tipsummarydetails_gratuityRightTv = new TextView(MainActivity.mContext);
-                tipsummarydetails_gratuityRightTv.setGravity(Gravity.CENTER_VERTICAL | Gravity.RIGHT);
-                tipsummarydetails_gratuityRightTv.setText(salessummary_gratuity);
-                tipsummarydetails_gratuityRightTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
-                GlobalMemberValues.setTextStyleOnClover(tipsummarydetails_gratuityRightTv);
-                tipsummarydetails_gratuityRightTv.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.5f));
-                tipsummarydetails_gratuityLn.addView(tipsummarydetails_gratuityRightTv);
-
-                printingLn.addView(tipsummarydetails_gratuityLn);
-                // --------------------------------------------------------------------------------------------------------------------
-
-                // Tip Total ----------------------------------------------------------------------------------------------------
-                // 04242023
-                double salessummary_totaltips_dbl = GlobalMemberValues.getDoubleAtString(salessummary_totaltips)
-                        + GlobalMemberValues.getDoubleAtString(salessummary_gratuity);
-                salessummary_totaltips = GlobalMemberValues.getCommaStringForDouble(salessummary_totaltips_dbl + "");
-
-                LinearLayout tipsummarydetails_cashrefundLn = new LinearLayout(MainActivity.mContext);
-                tipsummarydetails_cashrefundLn.setLayoutParams(matchParentParams);
-                tipsummarydetails_cashrefundLn.setOrientation(LinearLayout.HORIZONTAL);
-
-                TextView tipsummarydetails_cashrefundLeftTv = new TextView(MainActivity.mContext);
-                tipsummarydetails_cashrefundLeftTv.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
-                tipsummarydetails_cashrefundLeftTv.setText("Tip Total (+Gratuity)");
-                tipsummarydetails_cashrefundLeftTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
-                GlobalMemberValues.setTextStyleOnClover(tipsummarydetails_cashrefundLeftTv);
-                tipsummarydetails_cashrefundLeftTv.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.0f));
-                tipsummarydetails_cashrefundLn.addView(tipsummarydetails_cashrefundLeftTv);
-
-                TextView tipsummarydetails_cashrefundRightTv = new TextView(MainActivity.mContext);
-                tipsummarydetails_cashrefundRightTv.setGravity(Gravity.CENTER_VERTICAL | Gravity.RIGHT);
-                tipsummarydetails_cashrefundRightTv.setText(salessummary_totaltips);
-                tipsummarydetails_cashrefundRightTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
-                GlobalMemberValues.setTextStyleOnClover(tipsummarydetails_cashrefundRightTv);
-                tipsummarydetails_cashrefundRightTv.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.5f));
-                tipsummarydetails_cashrefundLn.addView(tipsummarydetails_cashrefundRightTv);
-
-                printingLn.addView(tipsummarydetails_cashrefundLn);
-                // --------------------------------------------------------------------------------------------------------------------
+//                LinearLayout tipsummarydetails_gratuityLn = new LinearLayout(MainActivity.mContext);
+//                tipsummarydetails_gratuityLn.setLayoutParams(matchParentParams);
+//                tipsummarydetails_gratuityLn.setOrientation(LinearLayout.HORIZONTAL);
+//
+//                TextView tipsummarydetails_gratuityLeftTv = new TextView(MainActivity.mContext);
+//                tipsummarydetails_gratuityLeftTv.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
+//                tipsummarydetails_gratuityLeftTv.setText("Gratuity");
+//                tipsummarydetails_gratuityLeftTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
+//                GlobalMemberValues.setTextStyleOnClover(tipsummarydetails_gratuityLeftTv);
+//                tipsummarydetails_gratuityLeftTv.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.0f));
+//                tipsummarydetails_gratuityLn.addView(tipsummarydetails_gratuityLeftTv);
+//
+//                TextView tipsummarydetails_gratuityRightTv = new TextView(MainActivity.mContext);
+//                tipsummarydetails_gratuityRightTv.setGravity(Gravity.CENTER_VERTICAL | Gravity.RIGHT);
+//                tipsummarydetails_gratuityRightTv.setText(salessummary_gratuity);
+//                tipsummarydetails_gratuityRightTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
+//                GlobalMemberValues.setTextStyleOnClover(tipsummarydetails_gratuityRightTv);
+//                tipsummarydetails_gratuityRightTv.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.5f));
+//                tipsummarydetails_gratuityLn.addView(tipsummarydetails_gratuityRightTv);
+//
+//                printingLn.addView(tipsummarydetails_gratuityLn);
+//                // --------------------------------------------------------------------------------------------------------------------
+//
+//                // Tip Total ----------------------------------------------------------------------------------------------------
+//                // 04242023
+//                double salessummary_totaltips_dbl = GlobalMemberValues.getDoubleAtString(salessummary_totaltips)
+//                        + GlobalMemberValues.getDoubleAtString(salessummary_gratuity);
+//                salessummary_totaltips = GlobalMemberValues.getCommaStringForDouble(salessummary_totaltips_dbl + "");
+//
+//                LinearLayout tipsummarydetails_cashrefundLn = new LinearLayout(MainActivity.mContext);
+//                tipsummarydetails_cashrefundLn.setLayoutParams(matchParentParams);
+//                tipsummarydetails_cashrefundLn.setOrientation(LinearLayout.HORIZONTAL);
+//
+//                TextView tipsummarydetails_cashrefundLeftTv = new TextView(MainActivity.mContext);
+//                tipsummarydetails_cashrefundLeftTv.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
+//                tipsummarydetails_cashrefundLeftTv.setText("Tip Total (+Gratuity)");
+//                tipsummarydetails_cashrefundLeftTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
+//                GlobalMemberValues.setTextStyleOnClover(tipsummarydetails_cashrefundLeftTv);
+//                tipsummarydetails_cashrefundLeftTv.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.0f));
+//                tipsummarydetails_cashrefundLn.addView(tipsummarydetails_cashrefundLeftTv);
+//
+//                TextView tipsummarydetails_cashrefundRightTv = new TextView(MainActivity.mContext);
+//                tipsummarydetails_cashrefundRightTv.setGravity(Gravity.CENTER_VERTICAL | Gravity.RIGHT);
+//                tipsummarydetails_cashrefundRightTv.setText(salessummary_totaltips);
+//                tipsummarydetails_cashrefundRightTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
+//                GlobalMemberValues.setTextStyleOnClover(tipsummarydetails_cashrefundRightTv);
+//                tipsummarydetails_cashrefundRightTv.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.5f));
+//                tipsummarydetails_cashrefundLn.addView(tipsummarydetails_cashrefundRightTv);
+//
+//                printingLn.addView(tipsummarydetails_cashrefundLn);
+//                // --------------------------------------------------------------------------------------------------------------------
+                // 03262024 - tip , gratuity 표시 변경
 
                 // 한줄 점선 -----------------------------------------------------------------------------------------------------------------------
                 printingLn.addView(GlobalMemberValues.getDotLineViewForClover(MainActivity.mContext));
