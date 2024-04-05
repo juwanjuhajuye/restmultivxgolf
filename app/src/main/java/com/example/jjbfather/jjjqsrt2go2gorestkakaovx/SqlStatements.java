@@ -3339,6 +3339,23 @@ public class SqlStatements {
 
                     ")";
 
+    // 02192024
+    // 테이블 salon_storememberlevel 생성쿼리
+    public static final String SQL_CREATE_SALONSTOREMEMBERLEVEL =
+            "CREATE TABLE IF NOT EXISTS salon_storememberlevel ( " +
+                    "idx INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "scode nvarchar(50), " +
+                    "sidx int NULL," +
+                    "aid nvarchar(100) NULL, " +
+                    "levelname nvarchar(100) NULL, " +
+                    "pointratio money NULL,"+
+                    "useyn nvarchar(2) DEFAULT 'Y'," +
+                    "delyn nvarchar(2) DEFAULT 'N'," +
+                    "wdate datetime DEFAULT (datetime('now', 'localtime')), " +
+                    "edate datetime DEFAULT (datetime('now', 'localtime')) " +
+
+                    ")";
+
 
 
 /******************************************************************************************/

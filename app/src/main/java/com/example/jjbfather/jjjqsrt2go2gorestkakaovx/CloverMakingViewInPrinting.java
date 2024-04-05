@@ -10174,14 +10174,43 @@ public class CloverMakingViewInPrinting {
 
                 // Gratuity ---------------------------------------------------------------------------------------------
 
+                // 04042024---------------------------------------------------------------------------------------------------
+                LinearLayout salessummary_cashtipsLn = new LinearLayout(MainActivity.mContext);
+                salessummary_cashtipsLn.setLayoutParams(matchParentParams);
+                salessummary_cashtipsLn.setOrientation(LinearLayout.HORIZONTAL);
+
+                TextView salessummary_cashtipsLeftTv = new TextView(MainActivity.mContext);
+                salessummary_cashtipsLeftTv.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
+//                salessummary_credittipsLeftTv.setText("Credit Tips");
+                // 040424 변경
+                salessummary_cashtipsLeftTv.setText("Cash Tips");
+                salessummary_cashtipsLeftTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
+                GlobalMemberValues.setTextStyleOnClover(salessummary_cashtipsLeftTv);
+                salessummary_cashtipsLeftTv.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.0f));
+                salessummary_cashtipsLn.addView(salessummary_cashtipsLeftTv);
+
+                TextView salessummary_cashtipsRightTv = new TextView(MainActivity.mContext);
+                salessummary_cashtipsRightTv.setGravity(Gravity.CENTER_VERTICAL | Gravity.RIGHT);
+                salessummary_cashtipsRightTv.setText(salessummary_totaltips_cash);
+                salessummary_cashtipsRightTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
+                GlobalMemberValues.setTextStyleOnClover(salessummary_cashtipsRightTv);
+                salessummary_cashtipsRightTv.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.5f));
+                salessummary_cashtipsLn.addView(salessummary_cashtipsRightTv);
+
+                printingLn.addView(salessummary_cashtipsLn);
+                // --------------------------------------------------------------------------------------------------------------------
+
                 // Credit Tips ----------------------------------------------------------------------------------------------------
+                // 040424 변경 Card Tips ----------------------------------------------------------------------------------------------------
                 LinearLayout salessummary_credittipsLn = new LinearLayout(MainActivity.mContext);
                 salessummary_credittipsLn.setLayoutParams(matchParentParams);
                 salessummary_credittipsLn.setOrientation(LinearLayout.HORIZONTAL);
 
                 TextView salessummary_credittipsLeftTv = new TextView(MainActivity.mContext);
                 salessummary_credittipsLeftTv.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
-                salessummary_credittipsLeftTv.setText("Credit Tips");
+//                salessummary_credittipsLeftTv.setText("Credit Tips");
+                // 040424 변경
+                salessummary_credittipsLeftTv.setText("Card Tips");
                 salessummary_credittipsLeftTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
                 GlobalMemberValues.setTextStyleOnClover(salessummary_credittipsLeftTv);
                 salessummary_credittipsLeftTv.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.0f));
@@ -10189,7 +10218,7 @@ public class CloverMakingViewInPrinting {
 
                 TextView salessummary_credittipsRightTv = new TextView(MainActivity.mContext);
                 salessummary_credittipsRightTv.setGravity(Gravity.CENTER_VERTICAL | Gravity.RIGHT);
-                salessummary_credittipsRightTv.setText(salessummary_totaltips);
+                salessummary_credittipsRightTv.setText(salessummary_totaltips_card);
                 salessummary_credittipsRightTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
                 GlobalMemberValues.setTextStyleOnClover(salessummary_credittipsRightTv);
                 salessummary_credittipsRightTv.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.5f));

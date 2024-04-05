@@ -265,6 +265,10 @@ public class DatabaseInit {
         // 01172024
         strCreateTableVec.addElement(SqlStatements.SQL_CREATE_SALONSALESKITCHENPRINTINGDATAJSONTORDER);
 
+        // 02192024
+        strCreateTableVec.addElement(SqlStatements.SQL_CREATE_SALONSTOREMEMBERLEVEL);
+
+
         // 테이블 컬럼 수정, 삭제 등 처리
         // ...................................
 
