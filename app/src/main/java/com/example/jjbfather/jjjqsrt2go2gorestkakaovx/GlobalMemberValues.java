@@ -152,7 +152,7 @@ public class GlobalMemberValues {
     /** 2go2go 관련 *************************************************************************************/
     // Store Server ---------------------------------------------------------------------------
     // real
-    public static String DATABASE_NAME = "JJJQSRDBMULTI";           // DATABASE 명
+    public static String DATABASE_NAME = "JJJQSRDBMULTI_VX";           // DATABASE 명
     public static String mssql_pw = "DhksGkDP@02)";                       // DATABASE 비번
 
     // 모바일 host
@@ -177,7 +177,7 @@ public class GlobalMemberValues {
 
 //    // Test Server ---------------------------------------------------------------------------
 //    // test
-//    public static String DATABASE_NAME = "jjjqsrdbmulti";             // DATABASE 명
+//    public static String DATABASE_NAME = "JJJQSRDBMULTI_VX";             // DATABASE 명
 //    public static String mssql_pw = "DhksGkDP@02)";                           // DATABASE 비번
 //
 //    // 모바일 host

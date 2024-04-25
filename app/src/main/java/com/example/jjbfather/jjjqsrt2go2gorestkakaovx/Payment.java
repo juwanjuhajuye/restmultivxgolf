@@ -2787,20 +2787,26 @@ public class Payment {
                 savePointAmount = tempSavedPointTotal;
             }
 
+            GlobalMemberValues.logWrite("mileagejjjlog", "savePointAmount1 : " + savePointAmount + "\n");
+
             if (!GlobalMemberValues.isStrEmpty(savePointAmount + "") && savePointAmount > 0 && !GlobalMemberValues.isStrEmpty(sales_customerId)) {
                 // 02242024 - 추가작업 ---------------------------------------------------------------------
                 // 회원 레벨별 포인트 비율 ----------------------------------------------------------------------
                 // grade 부터 구한다.
-                String tempGrade = MainActivity.mDbInit.dbExecuteReadReturnString(
-                        " select grade from member1 where uid = '" + sales_customerId + "' "
-                );
+                String tempGrade = "";
                 double memPointRatio = 1.0;
-                if (!GlobalMemberValues.isStrEmpty(tempGrade)) {
-                    memPointRatio = GlobalMemberValues.getDoubleAtString(MainActivity.mDbInit.dbExecuteReadReturnString(
-                            " select pointratio from salon_storememberlevel where idx = '" + tempGrade + "' "
-                    ));
+                if (GlobalMemberValues.GLOBAL_CUSTOMERINFO != null) {
+                    tempGrade = GlobalMemberValues.GLOBAL_CUSTOMERINFO.memGrade;
+                    memPointRatio = GlobalMemberValues.getDoubleAtString(GlobalMemberValues.GLOBAL_CUSTOMERINFO.memGradePointRatio);
+                    if (memPointRatio == 0.0) {
+                        memPointRatio = 1.0;
+                    }
                 }
+
                 savePointAmount = savePointAmount * memPointRatio;
+
+
+                GlobalMemberValues.logWrite("mileagejjjlog", "savePointAmount2 : " + savePointAmount + "\n");
                 // 02242024 - 추가작업 ---------------------------------------------------------------------
 
 

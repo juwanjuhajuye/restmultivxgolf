@@ -380,7 +380,7 @@ public class IntroRealDemoChoice extends Activity {
 
 
         introRealDemoDatabaseNameEditText = (TextView)findViewById(R.id.introRealDemoDatabaseNameEditText);
-//        introRealDemoDatabaseNameEditText.setText("JJJQSRDBMULTI");
+//        introRealDemoDatabaseNameEditText.setText("JJJQSRDBMULTI_VX");
         introRealDemoDbPasswordEditText = (TextView)findViewById(R.id.introRealDemoDbPasswordEditText);
 //        introRealDemoDbPasswordEditText.setText("DhksGkDP@02)");
         introRealDemoMobileHostEditText = (TextView)findViewById(R.id.introRealDemoMobileHostEditText);

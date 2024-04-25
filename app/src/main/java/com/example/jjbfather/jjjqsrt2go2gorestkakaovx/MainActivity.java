@@ -4041,7 +4041,7 @@ public class MainActivity extends Activity {
 
         // 변수 저장 -----------------------------------------------------------------------------------------------------------------------
         String tempIp = "0.0.0.0";
-        String tempDbName = "JJJQSRDBMULTI";
+        String tempDbName = GlobalMemberValues.DATABASE_NAME;
         String tempDbPass = "DhksGkDP@02)";
         String tempMobileHost = "yukdaejangm";
         String tempCloudHost = "yukdaejangcloud";
@@ -4059,7 +4059,7 @@ public class MainActivity extends Activity {
                 tempIp = "0.0.0.0";
             }
             if (GlobalMemberValues.isStrEmpty(tempDbName)) {
-                tempDbName = "JJJQSRDBMULTI";
+                tempDbName = GlobalMemberValues.DATABASE_NAME;
             }
             if (GlobalMemberValues.isStrEmpty(tempDbPass)) {
                 tempDbPass = "DhksGkDP@02)";

@@ -1574,7 +1574,7 @@ public class SqlStatements {
                     "cardstatususe nvarchar(2) DEFAULT 'N', " +       // 신용카드 결제시도시 결제관련 데이터 임시 저장
                     "qtyinsyn nvarchar(2) DEFAULT 'N', " +               // 수량(qty)을 수기로 입력할지 여부
                     "customernumberviewyn nvarchar(2) DEFAULT 'N', " +               // 테이블에 앉은 고객 수량 설정창 보여줄지 여부
-                    "databasename nvarchar(50) DEFAULT 'JJJQSRDBMULTI', " + // introDemo - Database Name
+                    "databasename nvarchar(50) DEFAULT '" + GlobalMemberValues.DATABASE_NAME + "', " + // introDemo - Database Name
                     "databasepass nvarchar(50) DEFAULT 'DhksGkDP@02)', " +  // introDemo - Database Pass
                     "mobilehost nvarchar(50) DEFAULT 'yukdaejangm', " +     // introDemo - Mobile Host
                     "cloudhost nvarchar(50) DEFAULT 'yukdaejangcloud', " +    // introDemo - Cloud Host

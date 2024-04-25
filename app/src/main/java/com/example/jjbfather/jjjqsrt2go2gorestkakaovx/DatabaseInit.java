@@ -2795,7 +2795,7 @@ public class DatabaseInit {
         // 10.21.2021, databasename 컬럼 추가
         altTableName = "salon_storestationsettings_system";
         if (checkTable(altTableName) > 0) {
-            alterDatabaseTableColumn(altTableName, "databasename", "nvarchar(50)", "DEFAULT 'JJJQSRDBMULTI'", 0);
+            alterDatabaseTableColumn(altTableName, "databasename", "nvarchar(50)", "DEFAULT '" + GlobalMemberValues.DATABASE_NAME + "'", 0);
         }
         // salon_storestationsettings_system 테이블 컬럼 추가
         // 10.21.2021, databasepass 컬럼 추가

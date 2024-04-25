@@ -10,6 +10,7 @@ public class TemporaryCustomerInfo {
     public String memAddr1, memAddr2, memZip, memState, memCity;
     public String memMembershipCardNo, memMemo, memMileage;
     public String memLastvisitForSale, memcardnum, memmemmobile;
+    public String memGrade, memGradePointRatio, memGradeName;
 
     public TemporaryCustomerInfo() {
         this.memIdx = "";
@@ -38,6 +39,11 @@ public class TemporaryCustomerInfo {
 
         this.memcardnum = "";
         this.memmemmobile = "";
+
+        this.memGrade = "";
+        this.memGradePointRatio = "";
+        this.memGradeName = "";
+
     }
 
     public TemporaryCustomerInfo(String[] tempArray) {
@@ -81,6 +87,15 @@ public class TemporaryCustomerInfo {
         }
         if (tempArray.length > 21) {
             this.memmemmobile = tempArray[21];
+        }
+        if (tempArray.length > 22) {
+            this.memGrade = tempArray[22];
+        }
+        if (tempArray.length > 23) {
+            this.memGradePointRatio = tempArray[23];
+        }
+        if (tempArray.length > 24) {
+            this.memGradeName = tempArray[24];
         }
     }
 }

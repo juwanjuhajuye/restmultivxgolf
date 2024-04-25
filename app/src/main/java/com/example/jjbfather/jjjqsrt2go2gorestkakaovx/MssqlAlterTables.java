@@ -317,7 +317,7 @@ public class MssqlAlterTables {
         // salon_storestationsettings_system 테이블 컬럼 추가
         // 10.21.2021, mssqldbip 컬럼 추가
         altTableName = "salon_storestationsettings_system";
-        alterDatabaseTableColumn(altTableName, "databasename", "nvarchar(50)", "DEFAULT 'JJJQSRDBMULTI'");
+        alterDatabaseTableColumn(altTableName, "databasename", "nvarchar(50)", "DEFAULT '" + GlobalMemberValues.DATABASE_NAME + "'");
 
         // salon_storestationsettings_system 테이블 컬럼 추가
         // 10.21.2021, databasepass 컬럼 추가
