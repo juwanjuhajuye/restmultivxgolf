@@ -96,6 +96,9 @@ public class TableSaleMain extends Activity {
     JSONObject temp_price;
     JSONArray temp_arr_price;
 
+    // 04302024
+    LinearLayout tablesalemainactivity;
+
     LinearLayout floorLn;
 
     int main_100_width = 0;
@@ -346,6 +349,14 @@ public class TableSaleMain extends Activity {
         mTablePeopleCnt = 0;
         GlobalMemberValues.now_saletypeisrestaurant = true;
 
+        // 04302024
+        tablesalemainactivity = (LinearLayout)findViewById(R.id.tablesalemainactivity);
+        if (GlobalMemberValues.isQSRPOSonRestaurantPOS) {
+            tablesalemainactivity.setVisibility(View.GONE);
+        } else {
+            tablesalemainactivity.setVisibility(View.VISIBLE);
+        }
+
         floorLn = (LinearLayout)findViewById(R.id.floorLn);
 
         tableorderbtn = (ImageButton)findViewById(R.id.tableorderbtn);
@@ -526,6 +537,17 @@ public class TableSaleMain extends Activity {
 //        if (logoprintingonreceiptyn == "Y" || logoprintingonreceiptyn.equals("Y")) {
 //
 //        }
+
+
+        if (GlobalMemberValues.isQSRPOSonRestaurantPOS) {
+            GlobalMemberValues.mToGoType = "C";
+            goSaleMainForToGo();
+            if (GlobalMemberValues.ISDUALDISPLAYPOSSIBLE) {
+                //jihun park sub display
+                PaxPresentation.unSetLogo();
+                MainActivity.updatePresentation();
+            }
+        }
     }
 
 
@@ -5389,26 +5411,33 @@ public class TableSaleMain extends Activity {
 //            GlobalMemberValues.logWrite("jjjsaletablelog", "1. MainMiddleService.mHoldCode : " + MainMiddleService.mHoldCode + "\n");
         mTableIdxArrList = paramArr;
 //            GlobalMemberValues.logWrite("jjjsaletablelog", "selected table idx : " + mTableIdxArrList + "\n");
-        // 직원 선택창 여부
-        if (!b_emp_selected) {
-            if (EmployeeSelectionPopup.openCount == 0) {
+
+
+        if (GlobalMemberValues.isQSRPOSonRestaurantPOS) {
+            setCloseActivity(false);
+        } else {
+            // 직원 선택창 여부
+            if (!b_emp_selected) {
+                if (EmployeeSelectionPopup.openCount == 0) {
 //                    Intent employeeSelectionPopup = new Intent(mContext.getApplicationContext(), EmployeeSelectionPopup.class);
 //                    employeeSelectionPopup.putExtra("main_side","T");
 //                    employeeSelectionPopup.putExtra("table_idx_arr_list", paramArr);
 //                    mActivity.startActivity(employeeSelectionPopup);
 //                    mActivity.overridePendingTransition(R.anim.act_in_top, R.anim.act_out_top);
 //
-                Intent intent = new Intent(mContext.getApplicationContext(), EmployeeKeyIn.class);
-                intent.putExtra("main_side","T");
-                intent.putExtra("table_idx_arr_list", paramArr);
-                mActivity.startActivity(intent);
-                if (GlobalMemberValues.isUseFadeInOut()) {
-                    mActivity.overridePendingTransition(R.anim.act_in_right, R.anim.act_out_right);
+                    Intent intent = new Intent(mContext.getApplicationContext(), EmployeeKeyIn.class);
+                    intent.putExtra("main_side","T");
+                    intent.putExtra("table_idx_arr_list", paramArr);
+                    mActivity.startActivity(intent);
+                    if (GlobalMemberValues.isUseFadeInOut()) {
+                        mActivity.overridePendingTransition(R.anim.act_in_right, R.anim.act_out_right);
+                    }
                 }
+            } else {
+                setCloseActivity(false);
             }
-        } else {
-            setCloseActivity(false);
         }
+
     }
 
     public static int getTableSplitCount(String paramTableIdx) {
@@ -5749,6 +5778,15 @@ public class TableSaleMain extends Activity {
     @Override
     public void onResume() {
         super.onResume();
+
+        // 04302024
+        tablesalemainactivity = (LinearLayout)findViewById(R.id.tablesalemainactivity);
+        if (GlobalMemberValues.isQSRPOSonRestaurantPOS) {
+            tablesalemainactivity.setVisibility(View.GONE);
+        } else {
+            tablesalemainactivity.setVisibility(View.VISIBLE);
+        }
+
 
         String tempDeviceKind = MainActivity.mDbInit.dbExecuteReadReturnString("select devicekind from salon_storestationsettings_system");
         if (!GlobalMemberValues.isStrEmpty(tempDeviceKind)) {

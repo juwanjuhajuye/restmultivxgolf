@@ -3962,6 +3962,21 @@ public class MainActivity extends Activity {
         String tempSqlQuery = "";
         String tempValue = "";
 
+
+        // 04302024
+        // 레스토랑 포스에서 QSR POS 로 사용할지 여부
+        tempSqlQuery = "select qsronrestaurantyn from salon_storegeneral";
+        tempValue = MainActivity.mDbInit.dbExecuteReadReturnString(tempSqlQuery);
+        if (GlobalMemberValues.isStrEmpty(tempValue)) {
+            tempValue = "N";
+        }
+        if (tempValue == "Y" || tempValue.equals("Y")) {
+            GlobalMemberValues.isQSRPOSonRestaurantPOS = true;
+        } else {
+            GlobalMemberValues.isQSRPOSonRestaurantPOS = false;
+        }
+
+
         // 아이템(메뉴) 추가시 애니메이션 사용여부
         tempSqlQuery = "select itemanimationyn from salon_storestationsettings_system";
         GlobalMemberValues.ITEMADDANIMATIONYN = MainActivity.mDbInit.dbExecuteReadReturnString(tempSqlQuery);

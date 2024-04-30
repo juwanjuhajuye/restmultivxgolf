@@ -444,7 +444,10 @@ public class SqlStatements {
 
                     // 03252024
                     "torderuseyn nvarchar(2) DEFAULT 'N', " +
-                    "torderkey nvarchar(100) DEFAULT '' " +
+                    "torderkey nvarchar(100) DEFAULT '', " +
+
+                    // 04302024
+                    "qsronrestaurantyn nvarchar(2) DEFAULT 'N' " +
 
                     ")";
 

@@ -3751,6 +3751,14 @@ public class DatabaseInit {
             alterDatabaseTableColumn(altTableName, "torderkey", "nvarchar(100)", "DEFAULT ''", 0);
         }
 
+
+        // salon_storegeneral 테이블 컬럼 추가
+        // 4.30.2024, qsronrestaurantyn 컬럼 추가
+        altTableName = "salon_storegeneral";
+        if (checkTable(altTableName) > 0) {
+            alterDatabaseTableColumn(altTableName, "qsronrestaurantyn", "nvarchar(2)", "DEFAULT 'N'", 0);
+        }
+
         /****************************************************************************/
     }
 
