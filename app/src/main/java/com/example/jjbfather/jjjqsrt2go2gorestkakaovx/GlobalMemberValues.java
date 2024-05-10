@@ -95,10 +95,15 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.Socket;
+import java.net.URL;
 import java.net.URLDecoder;
 import java.nio.channels.FileChannel;
 import java.security.MessageDigest;
@@ -107,12 +112,15 @@ import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Random;
 import java.util.Vector;
 import java.util.concurrent.ExecutionException;
@@ -206,6 +214,7 @@ public class GlobalMemberValues {
     public static String mssql_ip = "0.0.0.0";
     public static String mssql_db = GlobalMemberValues.DATABASE_NAME;
     public static String mssql_id = "wanhayedb";
+//    public static String mssql_id = "sa";
     public static String mssql_sync = "N";
     /*************************************************************/
 
@@ -438,6 +447,11 @@ public class GlobalMemberValues {
     public static String API_WEBORDER_URL2 = GlobalMemberValues.API_WEB + "API_OrdersList_ForAndroid.asp";
     // API - 온라인 주문데이터
     public static String API_WEBORDER_URL = GlobalMemberValues.API_WEB + "API_Orders_ForAndroid.asp";
+
+    // 03252025 API - T Order API
+    public static String TORDER_PARTNER_ID = "NAVYSPOS_TEST001";
+    public static String TORDER_API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6Ik5BVllaUE9TX1RFU1QifQ.RZfVu7oYxh0rK5_XegyYMf9sfy81NStgOcnC_WUOk7w";
+    public static String API_TORDER = "https://api.middleware.torder.tech/event/v1/partners/" + TORDER_PARTNER_ID;
 
     // jihun add 190913
     public static boolean b_one_run_thread = false;
@@ -1440,6 +1454,10 @@ public class GlobalMemberValues {
     public static TextView GLOBAL_LAYOUTMEMBER_MAIN_TOP_LEFT_CUSTOMER_INFO_NAME;
     public static TextView GLOBAL_LAYOUTMEMBER_MAIN_TOP_LEFT_CUSTOMER_INFO_PHONE;
     public static TextView GLOBAL_LAYOUTMEMBER_MAIN_TOP_LEFT_CUSTOMER_INFO_ONLINE_SHOW;
+
+    // 메인 좌측 상단 Restaurant QSR 사용시 나타나는 버튼용
+    public static LinearLayout GLOBAL_LAYOUTMEMBER_MAIN_TOP_LEFT_CUSTOMER_INFO3;
+    public static Button GLOBAL_LAYOUTMEMBER_MAIN_TOP_LEFT_ORDER_LIST;    
 
     // 메인 좌측상단 Total Order QTY
     public static TextView GLOBAL_LAYOUTMEMBER_MAIN_TOP_LEFT_TOTAL_ORDER_QTY;
@@ -3049,6 +3067,9 @@ public class GlobalMemberValues {
 //        } else {
 //            GlobalMemberValues.doMethodInClose(paramActivity);
 //        }
+        if (isTOrderUse()) {
+            sendTOrderAPIProgramFinishWait();
+        }
         GlobalMemberValues.doMethodInClose(paramActivity);
 //        if (GlobalMemberValues.getAppVersionName(MainActivity.mContext).contains("beta")) {
 //
@@ -6237,12 +6258,12 @@ public class GlobalMemberValues {
             Intent newWebOrderService = new Intent(paramContext.getApplicationContext(), CheckWebOrdersInCloudService.class);
             CURRENTSERVICEINTENT_NEWWEBORDER = newWebOrderService;    // 실행되는 서비스 인텐트를 저장해둔다.
             CURRENTACTIVITYOPENEDSERVICE_NEWWEBORDER = paramActivity;           // 서비스를 실행시킨 액티비티를 저장해 둔다.
-//            paramActivity.startService(newWebOrderService);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                paramActivity.startForegroundService(newWebOrderService);
-            } else {
-                paramActivity.startService(newWebOrderService);
-            }
+            paramActivity.startService(newWebOrderService);
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//                paramActivity.startForegroundService(newWebOrderService);
+//            } else {
+//                paramActivity.startService(newWebOrderService);
+//            }
         }
     }
 
@@ -6256,12 +6277,12 @@ public class GlobalMemberValues {
             Intent intent = new Intent(paramContext.getApplicationContext(), CheckNewTableOrderInCloudService.class);
             CURRENTSERVICEINTENT_NEWTABLEORDER = intent;    // 실행되는 서비스 인텐트를 저장해둔다.
             CURRENTACTIVITYOPENEDSERVICE_NEWTABLEORDER = paramActivity;           // 서비스를 실행시킨 액티비티를 저장해 둔다.
-//            paramActivity.startService(intent);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                paramActivity.startForegroundService(intent);
-            } else {
-                paramActivity.startService(intent);
-            }
+            paramActivity.startService(intent);
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//                paramActivity.startForegroundService(intent);
+//            } else {
+//                paramActivity.startService(intent);
+//            }
         }
     }
 
@@ -6449,36 +6470,66 @@ public class GlobalMemberValues {
                     //GlobalMemberValues.displayDialog(MainActivity.mContext, "Warning", "Database Error", "Close");
                 } else { // 정상처리일 경우 팝업창 오픈
                     if (GlobalMemberValues.isPushMsgReceiving() && GlobalMemberValues.isOnlineOrderUseYN()) {
-                        Intent pushIntent = new Intent(MainActivity.mContext, PushPopupForWebOrders.class);
-                        pushIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
 
-                        pushIntent.putExtra("webOrdersSalesCode", webOrdersSalesCode);
+                        // 04192024 -----------------------------------------------
+                        // 온라인 주문 개선관련
+                        // 기존방식에 GlobalMemberValues.isUseOnlinePopupOpen() 를 추가하여
+                        // 해당 값이 true 이면 기존처럼 푸시팝업창 오픈하고,
+                        // false 이면 프린팅만 실행
 
-                        pushIntent.putExtra("webOrdersCustomerId", webOrdersCustomerId);
-                        pushIntent.putExtra("webOrdersCustomerName", webOrdersCustomerName);
-                        pushIntent.putExtra("webOrdersCustomerPhone", webOrdersCustomerPhone);
+                        if (GlobalMemberValues.isUseOnlinePopupOpen()) {
+                            GlobalMemberValues.logWrite("webprintexejjjlog", "여기실행되면 안됨" + "\n");
 
-                        pushIntent.putExtra("webOrdersDeliveryDay", webOrdersDeliveryday);
-                        pushIntent.putExtra("webOrdersDeliveryTime", webOrdersDeliverytime);
-                        pushIntent.putExtra("webOrdersDeliveryDate", webOrdersDeliveryDate);
-                        pushIntent.putExtra("webOrdersDeliveryTakeaway", webOrdersDeliveryTakeaway);
+                            Intent pushIntent = new Intent(MainActivity.mContext, PushPopupForWebOrders.class);
+                            pushIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
 
-                        pushIntent.putExtra("webOrdersSaleDate", webOrdersSaleDate);
-                        pushIntent.putExtra("webOrdersSaleItems", webOrdersSaleItems);
-                        pushIntent.putExtra("webOrdersMemo", webOrdersMemo);
+                            pushIntent.putExtra("webOrdersSalesCode", webOrdersSalesCode);
 
-                        pushIntent.putExtra("webOrdersCustomerOrderNumber", webOrdersCustomerOrderNumber);
-                        pushIntent.putExtra("webOrdersTableName",webOrdersTablename);
-                        pushIntent.putExtra("webOrdersTableIdx",webOrdersTableidx);
+                            pushIntent.putExtra("webOrdersCustomerId", webOrdersCustomerId);
+                            pushIntent.putExtra("webOrdersCustomerName", webOrdersCustomerName);
+                            pushIntent.putExtra("webOrdersCustomerPhone", webOrdersCustomerPhone);
 
-                        // 08302023
-                        pushIntent.putExtra("webOrdersOnlineType",onlinetype);
+                            pushIntent.putExtra("webOrdersDeliveryDay", webOrdersDeliveryday);
+                            pushIntent.putExtra("webOrdersDeliveryTime", webOrdersDeliverytime);
+                            pushIntent.putExtra("webOrdersDeliveryDate", webOrdersDeliveryDate);
+                            pushIntent.putExtra("webOrdersDeliveryTakeaway", webOrdersDeliveryTakeaway);
 
-                        // 10112023
-                        pushIntent.putExtra("webOrdersOrderfrom",webOrdersOrderfrom);
-                        pushIntent.putExtra("webOrdersSalescodethirdparty",webOrdersSalescodethirdparty);
+                            pushIntent.putExtra("webOrdersSaleDate", webOrdersSaleDate);
+                            pushIntent.putExtra("webOrdersSaleItems", webOrdersSaleItems);
+                            pushIntent.putExtra("webOrdersMemo", webOrdersMemo);
 
-                        MainActivity.mActivity.startActivity(pushIntent);
+                            pushIntent.putExtra("webOrdersCustomerOrderNumber", webOrdersCustomerOrderNumber);
+                            pushIntent.putExtra("webOrdersTableName",webOrdersTablename);
+                            pushIntent.putExtra("webOrdersTableIdx",webOrdersTableidx);
+
+                            // 08302023
+                            pushIntent.putExtra("webOrdersOnlineType",onlinetype);
+
+                            // 10112023
+                            pushIntent.putExtra("webOrdersOrderfrom",webOrdersOrderfrom);
+                            pushIntent.putExtra("webOrdersSalescodethirdparty",webOrdersSalescodethirdparty);
+
+                            MainActivity.mActivity.startActivity(pushIntent);
+                        } else {
+                            ArrayList<String> arrayList = new ArrayList<String>();
+                            arrayList.add(0, webOrdersSalesCode);
+                            arrayList.add(1, webOrdersCustomerName);
+                            arrayList.add(2, webOrdersSaleItems);
+                            arrayList.add(3, webOrdersDeliveryTakeaway);
+                            arrayList.add(4, webOrdersDeliveryDate);
+                            arrayList.add(5, webOrdersMemo);
+                            arrayList.add(6, webOrdersCustomerOrderNumber);
+                            arrayList.add(7, webOrdersTablename);
+                            arrayList.add(8, webOrdersOrderfrom);
+                            arrayList.add(9, webOrdersSalescodethirdparty);
+
+                            GlobalMemberValues.logWrite("webprintexejjjlog", "여기실행...0" + "\n");
+
+                            GlobalMemberValues.logWrite("webprintexejjjlog", "arrayList size : " + arrayList.size() + "\n");
+
+                            OnlineOrderDataPrint oPrint = new OnlineOrderDataPrint(arrayList);
+                            oPrint.printOnlineOrders();
+                        }
                     }
                 }
             }
@@ -8129,6 +8180,537 @@ public class GlobalMemberValues {
 //
 //            }
         }catch (Exception e){
+
+        }
+
+        GlobalMemberValues.logWrite("tempcustmemojjjinfo", "GlobalMemberValues.mTempCustomerInfo...2 : " + GlobalMemberValues.mTempCustomerInfo + "\n");
+        if (!GlobalMemberValues.isStrEmpty(GlobalMemberValues.mTempCustomerInfo)) {
+            String tempCustValue[] = GlobalMemberValues.mTempCustomerInfo.split("-JJJ-");
+
+            temp_customerPhone = tempCustValue[0];
+            if (tempCustValue.length > 1) {
+                temp_customerName = tempCustValue[1];
+            }
+            if (tempCustValue.length > 2) {
+                temp_customermemo = tempCustValue[2];
+            }
+
+            GlobalMemberValues.mTempCustomerInfo = "";
+        }
+
+        GlobalMemberValues.logWrite("customerinfojjjlog", "temp_customerPhone : " + temp_customerPhone + "\n");
+
+        jsonroot_kitchen.put("customername", temp_customerName);
+
+        jsonroot_kitchen.put("deliverytakeaway", temp_deliverytakeaway);
+        jsonroot_kitchen.put("deliverydate", temp_deliverydate);
+        jsonroot_kitchen.put("ordertype", "POS");
+
+        jsonroot_kitchen.put("customermemo", temp_customermemo);
+
+        jsonroot_kitchen.put("phoneorder", "Y");
+
+        jsonroot_kitchen.put("phoneordernumber", GlobalMemberValues.getPhoneOrderNewNumber(paramSalesCode));
+
+        /** Store 정보 추출 ************************************************/
+        String storeNameForReceipt = "";
+        String storeAddressForReceipt1 = "";
+        String storeAddressForReceipt2 = "";
+        String storeCityForReceipt = "";
+        String storeStateForReceipt = "";
+        String storeZipForReceipt = "";
+        String storePhoneForReceipt = "";
+
+        String storeNameForReceipt2 = "";
+
+        strQuery = "select " +
+                " name, addr1, addr2, city, state, zip, phone, name2 " +
+                " from salon_storeinfo ";
+        Cursor paymentStoreInfoCursor = MainActivity.mDbInit.dbExecuteRead(strQuery);
+        if (paymentStoreInfoCursor.getCount() > 0 && paymentStoreInfoCursor.moveToFirst()) {
+            storeNameForReceipt = GlobalMemberValues.getDBTextAfterChecked(paymentStoreInfoCursor.getString(0), 1);
+            storeAddressForReceipt1 = GlobalMemberValues.getDBTextAfterChecked(paymentStoreInfoCursor.getString(1), 1);
+            storeAddressForReceipt2 = GlobalMemberValues.getDBTextAfterChecked(paymentStoreInfoCursor.getString(2), 1);
+            storeCityForReceipt = GlobalMemberValues.getDBTextAfterChecked(paymentStoreInfoCursor.getString(3), 1);
+            storeStateForReceipt = GlobalMemberValues.getDBTextAfterChecked(paymentStoreInfoCursor.getString(4), 1);
+            storeZipForReceipt = GlobalMemberValues.getDBTextAfterChecked(paymentStoreInfoCursor.getString(5), 1);
+            storePhoneForReceipt = GlobalMemberValues.getDBTextAfterChecked(paymentStoreInfoCursor.getString(6), 1);
+
+            storeNameForReceipt2 = GlobalMemberValues.getDBTextAfterChecked(paymentStoreInfoCursor.getString(7), 1);
+
+            if (!GlobalMemberValues.isStrEmpty(storeNameForReceipt2)) {
+                storeNameForReceipt = storeNameForReceipt2;
+            }
+        }
+
+        jsonroot_kitchen.put("storename", storeNameForReceipt);  // JSON
+        jsonroot_kitchen.put("storeaddress1", storeAddressForReceipt1);  // JSON
+        jsonroot_kitchen.put("storeaddress2", storeAddressForReceipt2);  // JSON
+        jsonroot_kitchen.put("storecity", storeCityForReceipt);  // JSON
+        jsonroot_kitchen.put("storestate", storeStateForReceipt);  // JSON
+        jsonroot_kitchen.put("storezip", storeZipForReceipt);  // JSON
+        jsonroot_kitchen.put("storephone", storePhoneForReceipt);  // JSON
+
+        // JSON (고객 전화번호, 고객 배송지 주소) ---------------------------------------
+        jsonroot_kitchen.put("customerphonenum", temp_customerPhone);
+        jsonroot_kitchen.put("customeraddress", temp_customerAddrAll);
+        // ---------------------------------------------------------------------------
+
+        /******************************************************************/
+
+        GlobalMemberValues.PHONEORDER_HOLDCODE = paramSalesCode;
+
+        GlobalMemberValues.logWrite("jsonjjjptlog", "json 값111 : " + jsonroot_kitchen.toString() + "\n");
+
+        return jsonroot_kitchen;
+    }
+
+
+    //04232024 tOrderOrderJson
+    public static JSONObject tOrderOrderJson(String paramSalesCode, String paramPrintingType, String paramTableInfos) throws JSONException {
+        GlobalMemberValues.logWrite("jjjptlog", "여기jjj123" + "\n");
+
+        GlobalMemberValues.logWrite("phoneorderPrintKitchenlog", "paramSalesCode : " + paramSalesCode + "\n");
+
+        GlobalMemberValues.logWrite("phoneorderjsonlog", "tableInfos : " + paramTableInfos + "\n");
+
+        JSONObject jsonroot_kitchen = null;
+        jsonroot_kitchen = new JSONObject();
+
+        jsonroot_kitchen.put("receiptno", paramSalesCode);
+        jsonroot_kitchen.put("saledate", DateMethodClass.nowMonthGet() + "/" + DateMethodClass.nowDayGet() + "/" + DateMethodClass.nowYearGet());
+        jsonroot_kitchen.put("saletime", DateMethodClass.nowHourGet() + ":" + DateMethodClass.nowMinuteGet() + ":" + DateMethodClass.nowSecondGet());
+
+        boolean isAddSql = true;
+        switch (paramPrintingType) {
+            case "A": {
+                isAddSql = true;
+                break;
+            }
+            case "R": {
+                isAddSql = true;
+                break;
+            }
+            case "K": {
+                isAddSql = false;
+                break;
+            }
+        }
+
+        String addSql = "";
+        String tableName = "";
+        String peopleCnt = "";
+
+        String mergednum = "";
+        String tableidx = "";
+        String subtablenum = "";
+        String billnum = "";
+
+        if (!GlobalMemberValues.isStrEmpty(paramTableInfos)) {
+            String[] paramTableInfosSplt = paramTableInfos.split("-JJJ-");
+            mergednum = paramTableInfosSplt[0];
+            tableidx = paramTableInfosSplt[1];
+            subtablenum = paramTableInfosSplt[2];
+            if (GlobalMemberValues.isStrEmpty(subtablenum)) {
+                subtablenum = "1";
+            }
+            billnum = paramTableInfosSplt[3];
+            if (GlobalMemberValues.isStrEmpty(billnum)) {
+                billnum = "1";
+            }
+
+            if (GlobalMemberValues.getIntAtString(mergednum) == 0) {
+                tableName = MainActivity.mDbInit.dbExecuteReadReturnString(
+                        " select tablename from salon_store_restaurant_table where idx = '" + GlobalMemberValues.getReplaceText(tableidx, "T", "") + "' ");
+                if (TableSaleMain.getTableSplitCount(tableidx) > 1) {
+                    tableName = tableName + " (S - " + subtablenum + ")";
+                }
+            } else {
+                String mergednumstr = "0" + mergednum;
+                mergednumstr = "M-" + mergednumstr.substring((mergednumstr.length() - 2), mergednumstr.length());
+                tableName = mergednumstr;
+            }
+            peopleCnt = TableSaleMain.getTablePeopleCntByHoldCode(paramSalesCode) + "";
+        }
+
+        // Restaurant 관련 데이터 ----------------------------------------------------
+        jsonroot_kitchen.put("restaurant_tableidx", tableidx);
+        jsonroot_kitchen.put("restaurant_tablename", tableName);
+        jsonroot_kitchen.put("restaurant_tablepeoplecnt", peopleCnt);
+
+        jsonroot_kitchen.put("restaurant_tableholdcode", paramSalesCode);
+        // ---------------------------------------------------------------------------
+
+        if (isAddSql && !GlobalMemberValues.isStrEmpty(paramTableInfos)) {
+            if (GlobalMemberValues.getIntAtString(mergednum) > 0) {
+                addSql = " and mergednum = '" + mergednum + "' ";
+            } else {
+                addSql = " and tableIdx like '%" + tableidx + "%' and subtablenum = '" + subtablenum + "' ";
+            }
+
+            addSql = " and billnum = '" + billnum + "' ";
+        }
+
+        String addSql2 = "";
+        if (!GlobalMemberValues.isStrEmpty(GlobalMemberValues.mDeletedSaleCartIdx)) {
+//            addSql2 = " and idx = '" + GlobalMemberValues.mDeletedSaleCartIdx + "' ";
+            addSql2 = " and idx = '" + GlobalMemberValues.mDeletedSaleCartIdx + "' and kitchenprintedyn = 'Y'";
+        }
+
+        if (GlobalMemberValues.mCancelBtnClickYN == "Y" || GlobalMemberValues.mCancelBtnClickYN.equals("Y")) {
+            addSql2 = " and idx = '999999999' ";
+        }
+
+        // 최초로 키친 프린팅 하는 것인지 확인
+        int tempKitchenPrintedItemCnt = GlobalMemberValues.getIntAtString(MssqlDatabase.getResultSetValueToString(
+                " select count(*) from temp_salecart where holdcode = '" + paramSalesCode + "' and kitchenprintedyn = 'Y' "
+        ));
+
+        String tempSaleCartQuery = "";
+        tempSaleCartQuery = "select sQty, holdcode, '" + GlobalMemberValues.STORE_INDEX + "', '" + GlobalMemberValues.STATION_CODE.toUpperCase() + "', " +
+                " midx, svcIdx, " +
+                " svcName, svcFileName, svcFilePath, " +
+                " sPrice, sPrice, '', '', " +
+                " sCommissionRatio, sCommissionRatioType, sPointRatio,  " +
+                " svcPositionNo, svcSetMenuYN, " +
+                " customerId, customerName, customerPhoneNo,  " +
+                " saveType, empIdx, empName, quickSaleYN, " +
+                " svcCategoryName, " +
+                " giftcardNumber, giftcardSavePrice, " +
+                " idx, svcCategoryColor, taxExempt, " +
+                " reservationCode, " +
+                " optionTxt, optionprice, additionalTxt1, additionalprice1, additionalTxt2, additionalprice2, " +
+                " sPriceAmount, sTaxAmount, sTotalAmount, memoToKitchen, kitchenprintedyn, " + // 42
+                " selectedDcExtraAllEach , selectedDcExtraType, dcextratype, dcextravalue, selectedDcExtraPrice, " + // 43, 44, 45, 46, 47
+                " togodelitype, " +
+                " stax, labelprintedyn," + // 50 labelprintedyn
+                // 04192023
+                " pastholdcode, " +
+                // 04232024
+                " wdate " +
+                " from temp_salecart " +
+                " where holdcode = '" + paramSalesCode + "' " + addSql + addSql2 +
+                " order by idx asc";
+
+        GlobalMemberValues.logWrite("jjjwanhayelog2", "tempSaleCartQuery : " + tempSaleCartQuery + "\n");
+
+        // 04192023
+        String pastHoldCodeStr = "";
+
+        String itemDetailText = "";
+        int itemDetailCount = 0;
+        ResultSet tempSaleCartCursor = MssqlDatabase.getResultSetValue(tempSaleCartQuery);
+        try {
+            while (tempSaleCartCursor.next()) {
+                String item_qty = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 0), 1);
+
+                String item_itemName = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 6), 1);
+
+                String item_saveType = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 21), 1);
+
+                // insertTempSaleCart 메소드에 전달할 값을 String 배열로 만든다.
+                String temp_optionTxt = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 32), 1);
+                String temp_optionprice = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 33), 1);
+                String temp_additionalTxt1 = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 34), 1);
+                String temp_additionalprice1 = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 35), 1);
+                String temp_additionalTxt2 = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 36), 1);
+                String temp_additionalprice2 = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 37), 1);
+
+                String temp_sPrice = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 9), 1);
+                String temp_sPriceAmount = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 38), 1);
+                String temp_sTaxAmount = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 39), 1);
+                String temp_sTotalAmount = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 40), 1);
+
+                String temp_memoToKitchen = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 41), 1);
+
+                String temp_isQuickSale = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 24), 1);
+
+                String temp_itemIdx = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 5), 1);
+
+                String temp_kitchenprintedyn = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 42), 1);
+
+                String selectedDcExtraAllEach = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 43), 1);
+                String selectedDcExtraType = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 44), 1);
+                String dcextratype = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 45), 1);
+                String dcextravalue = GlobalMemberValues.getStringFormatNumber(GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 46), 1), "2");
+                String selectedDcExtraPrice = GlobalMemberValues.getStringFormatNumber(GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 47), 1), "2");
+
+                String togodelitype = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 48), 1);
+
+                String temp_categoryname = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 25), 1);
+
+                String temp_stax = GlobalMemberValues.getStringFormatNumber(GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 49), 1), "2");
+
+                String labelprintedYN = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 50), 1);
+
+                // 04192023
+                String pastHoldCode = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 51), 1);
+
+                // 04232024
+                String wdate = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 52), 1);
+
+                if (GlobalMemberValues.isStrEmpty(togodelitype)) {
+                    togodelitype = "H";
+                }
+
+                if (GlobalMemberValues.isStrEmpty(temp_memoToKitchen)) {
+                    temp_memoToKitchen = "nokitchenmemo";
+                }
+
+                if (GlobalMemberValues.isStrEmpty(temp_kitchenprintedyn)) {
+                    temp_kitchenprintedyn = "N";
+                }
+
+                // 주방프린팅 여부와 주방프린터 번호 구하기
+                String tempKitchenPrinterNumber = GlobalMemberValues.getKitchenPrinterNumber(temp_itemIdx);
+
+                String temp_kitchenPrintYN = "N";
+                if (item_saveType == "0" || item_saveType.equals("0")) {
+                    if (!GlobalMemberValues.isStrEmpty(temp_itemIdx)) {
+                        temp_kitchenPrintYN = MainActivity.mDbInit.dbExecuteReadReturnString(
+                                "select kitchenprintyn from salon_storeservice_sub where idx = '" + temp_itemIdx + "' ");
+                        if (GlobalMemberValues.isStrEmpty(temp_kitchenPrintYN)) {
+                            temp_kitchenPrintYN = "N";
+                        }
+                    }
+//                    if (!GlobalMemberValues.isStrEmpty(temp_itemIdx)) {
+//                        temp_kitchenPrintYN = MssqlDatabase.getResultSetValueToString(
+//                                "select kitchenprintyn from salon_storeservice_sub where idx = '" + temp_itemIdx + "' ");
+//                        if (GlobalMemberValues.isStrEmpty(temp_kitchenPrintYN)) {
+//                            temp_kitchenPrintYN = "N";
+//                        }
+//                    }
+                } else {
+                    // 푸드가 아닐 경우 주방프린팅 실행여부는 Y 로 하더라도
+                    // 키친프린팅 번호를 99 로 해서 키친프린팅이 되지 않도록 한다.
+                    temp_kitchenPrintYN = "Y";
+                    tempKitchenPrinterNumber = "99";
+                }
+
+                // Common Gratuity 일 경우에는 temp_kitchenPrintYN 을 Y 로 처리한다
+                if (item_itemName.equals(GlobalMemberValues.mCommonGratuityName)) {
+                    temp_kitchenPrintYN = "Y";
+                }
+
+                GlobalMemberValues.logWrite("checkandkitchenprintlog", "* temp_sPrice : " + temp_sPrice + "\n");
+                GlobalMemberValues.logWrite("checkandkitchenprintlog", "* temp_sPriceAmount : " + temp_sPriceAmount + "\n");
+                GlobalMemberValues.logWrite("checkandkitchenprintlog", "* temp_sTaxAmount : " + temp_sTaxAmount + "\n");
+                GlobalMemberValues.logWrite("checkandkitchenprintlog", "* temp_sTotalAmount : " + temp_sTotalAmount + "\n");
+
+                boolean isPrintItem = true;
+                String str_additem = "N";
+                if (Recall.mKitchenPrintOnRecall == "Y" || Recall.mKitchenPrintOnRecall.equals("Y")) {
+                    isPrintItem = true;
+                    if (!temp_kitchenprintedyn.equals("N")) {
+                        isPrintItem = true;
+                    } else {
+                        isPrintItem = false;
+                        str_additem = "Y";
+                    }
+                } else {
+                    switch (paramPrintingType) {
+                        case "A": {
+
+                            if (!temp_kitchenprintedyn.equals("N")) {
+                                isPrintItem = true;
+                            } else {
+                                isPrintItem = false;
+//                            isPrintItem = true;
+                                str_additem = "Y";
+                            }
+                            break;
+                        }
+                        case "R": {
+                            isPrintItem = true;
+                            break;
+                        }
+                        case "K": {
+                            if (!temp_kitchenprintedyn.equals("N")) {
+                                isPrintItem = true;
+                            } else {
+                                isPrintItem = false;
+                                str_additem = "Y";
+                            }
+                            break;
+                        }
+                    }
+                }
+
+//            item_itemName = str_test_add + item_itemName;
+                if (tempKitchenPrintedItemCnt == 0) {
+                    str_additem = "N";
+                }
+
+                // common gratuity
+                if (item_itemName.equals(GlobalMemberValues.mCommonGratuityName)) {
+                    temp_sTaxAmount = "0.00";
+                    temp_stax = "0.00";
+                }
+
+
+                // 08102023
+                // alt name 구하기
+                String temp_itemName_alt = MainActivity.mDbInit.dbExecuteReadReturnString(
+                        " select servicenamealt from salon_storeservice_sub where idx = '" + temp_itemIdx + "' "
+                );
+                if (GlobalMemberValues.isStrEmpty(temp_itemName_alt)) {
+                    temp_itemName_alt = "";
+                }
+
+                String item_itemname_optionadd = item_itemName +
+                        "-ANNIETTASU-" + temp_optionTxt +
+                        "-ANNIETTASU-" + temp_additionalTxt1 +
+                        "-ANNIETTASU-" + temp_additionalTxt2 +
+                        "-ANNIETTASU-" + temp_itemIdx +
+                        "-ANNIETTASU-" + tempKitchenPrinterNumber +
+                        "-ANNIETTASU-" + temp_memoToKitchen +
+                        "-ANNIETTASU-" + GlobalMemberValues.getStringFormatNumber(temp_optionprice, "2") +
+                        "-ANNIETTASU-" + GlobalMemberValues.getStringFormatNumber(temp_additionalprice1, "2") +
+                        "-ANNIETTASU-" + GlobalMemberValues.getStringFormatNumber(temp_additionalprice2, "2") +
+                        "-ANNIETTASU-" + selectedDcExtraAllEach +
+                        "-ANNIETTASU-" + selectedDcExtraType +
+                        "-ANNIETTASU-" + dcextratype +
+                        "-ANNIETTASU-" + GlobalMemberValues.getStringFormatNumber(dcextravalue, "2") +
+                        "-ANNIETTASU-" + GlobalMemberValues.getStringFormatNumber(selectedDcExtraPrice, "2") +
+                        "-ANNIETTASU-" + togodelitype +
+                        "-ANNIETTASU-" + temp_categoryname +
+                        "-ANNIETTASU-" + str_additem +
+                        "-ANNIETTASU-" + labelprintedYN +
+
+                        // 08102023
+                        "-ANNIETTASU-" + temp_itemName_alt +
+
+                        //04232024
+                        "-ANNIETTASU-" + wdate;
+
+                GlobalMemberValues.logWrite("phoneorddermodifierlog", "item_itemname_optionadd : " + item_itemname_optionadd + "\n");
+
+                GlobalMemberValues.logWrite("jjjwanhayelog", "mKitchenPrintOnRecall : " + Recall.mKitchenPrintOnRecall + "\n");
+                GlobalMemberValues.logWrite("jjjwanhayelog", "temp_kitchenPrintYN : " + temp_kitchenPrintYN + "\n");
+
+                GlobalMemberValues.logWrite("jjjtogodelitypelog", "* togodelitype : " + togodelitype + "\n");
+
+
+                if (isPrintItem) {
+
+                }
+
+                String temp_kitchenprintnum = "0";
+                temp_kitchenprintnum = GlobalMemberValues.getKitchenPrinterNumber(temp_itemIdx);
+
+                // 푸드(서비스) 일때에만 키친프린트할 항목을 저장한다..
+                if (temp_kitchenPrintYN == "Y" || temp_kitchenPrintYN.equals("Y") || temp_isQuickSale == "Y" || temp_isQuickSale.equals("Y")) {
+
+                    if (itemDetailCount == 0) {
+//                            itemDetailText = item_itemname_optionadd + "-JJJ-" + item_qty +
+//                                    "-JJJ-" + temp_sPrice + "-JJJ-" + temp_sPriceAmount + "-JJJ-" + temp_sTaxAmount + "-JJJ-" + temp_sTotalAmount;
+                        itemDetailText = item_itemname_optionadd + "-JJJ-" + item_qty +
+                                "-JJJ-" + temp_kitchenprintnum + "-JJJ-" + temp_categoryname + "-JJJ-" + "" +
+                                "-JJJ-" + temp_sPrice + "-JJJ-" + temp_sPriceAmount + "-JJJ-" + temp_stax + "-JJJ-" + temp_sTaxAmount +
+                                "-JJJ-" + temp_optionprice + "-JJJ-" + temp_additionalprice1 + "-JJJ-" + temp_additionalprice2 + "-JJJ-" + togodelitype;
+
+                        // 04192023
+                        pastHoldCodeStr = pastHoldCode;
+                    } else {
+                        itemDetailText += "-WANHAYE-" + item_itemname_optionadd + "-JJJ-" + item_qty +
+                                "-JJJ-" + temp_kitchenprintnum + "-JJJ-" + temp_categoryname + "-JJJ-" + "" +
+                                "-JJJ-" + temp_sPrice + "-JJJ-" + temp_sPriceAmount + "-JJJ-" + temp_stax + "-JJJ-" + temp_sTaxAmount +
+                                "-JJJ-" + temp_optionprice + "-JJJ-" + temp_additionalprice1 + "-JJJ-" + temp_additionalprice2 + "-JJJ-" + togodelitype;
+
+                        // 04192023
+                        pastHoldCodeStr += "," + pastHoldCode;
+                    }
+                    itemDetailCount++;
+                }
+            }
+            tempSaleCartCursor.close();
+        } catch (Exception e) {
+
+        }
+
+        GlobalMemberValues.logWrite("jjjwanhayelog", "itemDetailText : " + itemDetailText + "\n");
+
+        jsonroot_kitchen.put("saleitemlist", itemDetailText);
+
+        // 04192023
+        jsonroot_kitchen.put("pastholdcode", pastHoldCodeStr);
+
+
+        // temp_salecart_deliveryinfo 테이블에서 배송관련정보 가져온다.
+        String temp_customerId = "";
+        String temp_customerName = "";
+        String temp_customerPhone = "";
+        String temp_customerEmail = "";
+        String temp_customerAddr1 = "";
+        String temp_customerAddr2 = "";
+        String temp_customerCity = "";
+        String temp_customerState = "";
+        String temp_customerZip = "";
+        String temp_deliveryday = "";
+        String temp_deliverytime = "";
+        String temp_deliverydate = "";
+        String temp_deliverytakeaway = "";
+        String temp_customermemo = "";
+        String temp_customerAddrAll = "";
+
+        String strQuery = "select customerId, customerName, customerPhone, customerEmail, " +
+                " customerAddr1, customerAddr2, customerCity, customerState, customerZip, " +
+                " deliveryday, deliverytime, deliverydate, deliverytakeaway, " +
+                " customermemo " +
+                " from temp_salecart_deliveryinfo " +
+                " where holdcode = '" + paramSalesCode + "' ";
+        GlobalMemberValues.logWrite("paymentlog", "strQuery2 : " + strQuery + "\n");
+        ResultSet deliverytakeawayInfoCursor = MssqlDatabase.getResultSetValue(strQuery);
+        try {
+            while (deliverytakeawayInfoCursor.next()) {
+                temp_customerId = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor, 0), 1);
+                temp_customerName = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor, 1), 1);
+                temp_customerPhone = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor, 2), 1);
+                temp_customerEmail = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor, 3), 1);
+
+                temp_customerAddr1 = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor, 4), 1);
+                temp_customerAddr2 = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor, 5), 1);
+                temp_customerCity = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor, 6), 1);
+                temp_customerState = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor, 7), 1);
+                temp_customerZip = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor, 8), 1);
+
+                temp_deliveryday = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor, 9), 1);
+                temp_deliverytime = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor, 10), 1);
+                temp_deliverydate = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor, 11), 1);
+                temp_deliverytakeaway = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor, 12), 1);
+                if (!GlobalMemberValues.isToGoSale()) {
+                    temp_deliverytakeaway = "H";
+                }
+
+                temp_customermemo = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor, 13), 1);
+
+                if (!GlobalMemberValues.isStrEmpty(temp_customerAddr1)
+                        || !GlobalMemberValues.isStrEmpty(temp_customerAddr2)
+                        || !GlobalMemberValues.isStrEmpty(temp_customerCity)
+                        || !GlobalMemberValues.isStrEmpty(temp_customerState)
+                        || !GlobalMemberValues.isStrEmpty(temp_customerZip)) {
+
+                    temp_customerAddrAll = temp_customerAddr1;
+
+                    if (!GlobalMemberValues.isStrEmpty(temp_customerAddr2)) {
+                        temp_customerAddrAll += " " + temp_customerAddr2;
+                    }
+                    if (!GlobalMemberValues.isStrEmpty(temp_customerCity)) {
+                        temp_customerAddrAll += "\n" + temp_customerCity;
+                    }
+                    if (!GlobalMemberValues.isStrEmpty(temp_customerState)) {
+                        temp_customerAddrAll += ", " + temp_customerState;
+                    }
+                    if (!GlobalMemberValues.isStrEmpty(temp_customerZip)) {
+                        temp_customerAddrAll += " " + temp_customerZip;
+                    }
+                }
+            }
+            deliverytakeawayInfoCursor.close();
+//            if (deliverytakeawayInfoCursor.getCount() > 0 && deliverytakeawayInfoCursor.moveToFirst()) {
+//
+//            }
+        } catch (Exception e) {
 
         }
 
@@ -19503,5 +20085,618 @@ public class GlobalMemberValues {
             returnData = "";
         }
         return returnData;
+    }
+
+    //03252024 T-Order API methods
+    //API call when restuarant program has started
+    //event code: P0101
+    public static void sendTOrderAPIProgramStart() {
+        String code = "P0101";
+        String storeId = SALON_CODE;
+        String message = "POS program started";
+
+        // create a clock
+        ZoneId utczone = null;
+        ZonedDateTime timestamp = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            utczone = ZoneId.of("UTC");
+        }
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            timestamp = ZonedDateTime.now(utczone);
+        }
+
+        // Create request body JSON
+        JSONObject requestBody = new JSONObject();
+        try {
+            requestBody.put("code", code);
+            requestBody.put("storeId", storeId);
+            requestBody.put("message", message);
+            requestBody.put("timestamp", timestamp);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        int cloudSentResult = 0;
+
+        API_torder_programstart apiKitchenprintingdataTocloud = new API_torder_programstart(requestBody.toString());
+        apiKitchenprintingdataTocloud.execute(null, null, null);
+        try {
+            Thread.sleep(GlobalMemberValues.API_UPLOAD_THREAD_TIME);
+            if (apiKitchenprintingdataTocloud.mFlag) {
+                cloudSentResult = apiKitchenprintingdataTocloud.cloudSentResult;
+            }
+        } catch (InterruptedException e) {
+            GlobalMemberValues.logWrite("TORDERAPI", "Thread Error : " + e.getMessage() + "\n");
+            //GlobalMemberValues.logWrite("APIDownLoadClass", "Thread Error : " + e.getMessage());
+        }
+
+    }
+
+    //API call when restuarant program has finished
+    //event code: P0101
+    public static void sendTOrderAPIProgramFinish() {
+        String code = "P0102";
+        String storeId = SALON_CODE;
+        String message = "POS program exited";
+
+        // create a clock
+        ZoneId utczone = null;
+        ZonedDateTime timestamp = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            utczone = ZoneId.of("UTC");
+        }
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            timestamp = ZonedDateTime.now(utczone);
+        }
+
+        // Create request body JSON
+        JSONObject requestBody = new JSONObject();
+        try {
+            requestBody.put("code", code);
+            requestBody.put("storeId", storeId);
+            requestBody.put("message", message);
+            requestBody.put("timestamp", timestamp);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        int cloudSentResult = 0;
+
+        API_torder_programstart apiKitchenprintingdataTocloud = new API_torder_programstart(requestBody.toString());
+        apiKitchenprintingdataTocloud.execute(null, null, null);
+        try {
+            Thread.sleep(GlobalMemberValues.API_UPLOAD_THREAD_TIME);
+            if (apiKitchenprintingdataTocloud.mFlag) {
+                cloudSentResult = apiKitchenprintingdataTocloud.cloudSentResult;
+            }
+        } catch (InterruptedException e) {
+            GlobalMemberValues.logWrite("TORDERAPI", "Thread Error : " + e.getMessage() + "\n");
+            //GlobalMemberValues.logWrite("APIDownLoadClass", "Thread Error : " + e.getMessage());
+        }
+    }
+
+    //04222024 API Call when program is closed, wait for the api call to finish.
+    public static void sendTOrderAPIProgramFinishWait() {
+        String TAG = "sendTOrderAPIProgramFinishWait";
+        String mStrUrl = GlobalMemberValues.API_TORDER;
+        String JsonMsg = "";
+
+        String code = "P0102";
+        String storeId = SALON_CODE;
+        String message = "POS program exited";
+
+        // create a clock
+        ZoneId utczone = null;
+        ZonedDateTime timestamp = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            utczone = ZoneId.of("UTC");
+        }
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            timestamp = ZonedDateTime.now(utczone);
+        }
+
+        // Create request body JSON
+        JSONObject requestBody = new JSONObject();
+        try {
+            requestBody.put("code", code);
+            requestBody.put("storeId", storeId);
+            requestBody.put("message", message);
+            requestBody.put("timestamp", timestamp);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonMsg = requestBody.toString();
+
+        try {
+            GlobalMemberValues.logWrite(TAG, "url :" + mStrUrl + "\n");
+
+            OutputStream os = null;
+            InputStream is = null;
+            ByteArrayOutputStream baos = null;
+            HttpURLConnection conn = null;
+            String response = "";
+
+            // 1. 처리가 오래걸리는 부분 실행 --------------------------------------------------
+            try {
+                URL url = new URL(mStrUrl);
+
+                conn = (HttpURLConnection) url.openConnection();
+                conn.setConnectTimeout(5 * 1000);
+                conn.setReadTimeout(5 * 1000);
+                //conn.setRequestProperty ("Authorization", basicAuth);
+                conn.setRequestMethod("POST");
+                conn.setRequestProperty("Authorization", "Bearer " + GlobalMemberValues.TORDER_API_KEY);
+                conn.setRequestProperty("Content-Type", "application/json");
+                conn.setRequestProperty("Accept", "application/json");
+                conn.setDoOutput(true);
+                conn.setDoInput(true);
+                ;
+
+                os = conn.getOutputStream();
+                os.write(JsonMsg.getBytes());
+                os.flush();
+
+                int responseCode = conn.getResponseCode();
+                String responseBody = conn.getResponseMessage();
+                String reponseMethod = conn.getRequestMethod();
+
+                GlobalMemberValues.logWrite("TORDERDEBUG", String.valueOf(responseCode));
+
+                if (responseCode == HttpURLConnection.HTTP_OK) {
+
+                    is = conn.getInputStream();
+                    baos = new ByteArrayOutputStream();
+                    byte[] byteBuffer = new byte[1024];
+                    byte[] byteData = null;
+                    int nLength = 0;
+                    while ((nLength = is.read(byteBuffer, 0, byteBuffer.length)) != -1) {
+                        baos.write(byteBuffer, 0, nLength);
+                    }
+                    byteData = baos.toByteArray();
+                    response = new String(byteData);
+                    GlobalMemberValues.logWrite(TAG, "DATA response = " + response + "\n");
+
+                    //mFlag = true;
+                    //cloudSentResult = 0;
+                    //smsSentResultStr = response;
+                } else {
+                    is = conn.getInputStream();
+                    baos = new ByteArrayOutputStream();
+                    byte[] byteBuffer = new byte[1024];
+                    byte[] byteData = null;
+                    int nLength = 0;
+                    while ((nLength = is.read(byteBuffer, 0, byteBuffer.length)) != -1) {
+                        baos.write(byteBuffer, 0, nLength);
+                    }
+                    byteData = baos.toByteArray();
+                    response = new String(byteData);
+                    GlobalMemberValues.logWrite(TAG, "DATA response = " + response + "\n");
+
+                }
+
+            } catch (MalformedURLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+                //cloudSentResult = 1;
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+                //cloudSentResult = 2;
+            } catch (Exception e) {
+                GlobalMemberValues.logWrite(TAG, "error msg :" + e.toString() + "\n");
+                //cloudSentResult = 3;
+            }
+            // ---------------------------------------------------------------------------------
+
+        } catch (Exception e) {
+            // 예외발생
+            GlobalMemberValues.logWrite("TORDERDEBUG", "error msg :" + e.toString() + "\n");
+        }
+    }
+
+    //API call when a order is made/updated (Sent to kitchen)
+    //event code: P0401
+    public static void sendTOrderAPIOrderData(String paramSalesCode, String paramPrintingType, String paramTableInfos) {
+        String code = "P0401";
+        String storeId = SALON_CODE;
+        String tableId = "";
+        String message = "Table" + tableId + "order data sent";
+
+        // create a clock
+        ZoneId utczone = null;
+        ZonedDateTime timestamp = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            utczone = ZoneId.of("UTC");
+        }
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            timestamp = ZonedDateTime.now(utczone);
+        }
+
+        //Create fields for the beginning of the request body.
+        JSONObject requestBody = new JSONObject();
+        try {
+            requestBody.put("code", code);
+            requestBody.put("storeId", storeId);
+            requestBody.put("message", message);
+            requestBody.put("timestamp", timestamp);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        //Since every order is being sent, get all unique holcode(shopping cart id) that we can iterate through
+        String strQuery = "SELECT DISTINCT holdcode from temp_salecart";
+        ResultSet holdcodeCursor = MssqlDatabase.getResultSetValue(strQuery);
+        ArrayList<String> holdCodeArrayList = new ArrayList<>();
+        try {
+            while (holdcodeCursor.next()) {
+                holdCodeArrayList.add(GlobalMemberValues.getDBTextAfterChecked
+                        (GlobalMemberValues.resultDB_checkNull_string(holdcodeCursor, 0), 1));
+            }
+            holdcodeCursor.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        JSONObject data = new JSONObject();
+
+        //create order data
+        JSONArray posOrders = new JSONArray();
+
+        //Per holdcode(Table order) create an posOrder object.
+        for (int x = 0; x < holdCodeArrayList.size(); x++) {
+            //Get order data
+            JSONObject orderData = null;
+
+            //organizing saleitemlist string
+            try {
+                orderData = tOrderOrderJson(holdCodeArrayList.get(x), paramPrintingType, TableSaleMain.getTableInfosByHoldCode(holdCodeArrayList.get(x)));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            // Create an order object
+            JSONObject posOrderObject = new JSONObject();
+            //arraylist with day, month, and year of the sales date
+            String[] salesDateArrayList = null;
+            try {
+                salesDateArrayList = orderData.get("saledate").toString().split("/");
+            } catch (JSONException e) {
+                throw new RuntimeException(e);
+            }
+            String salesDay = salesDateArrayList[1];
+            String salesMonth = salesDateArrayList[0];
+            String salesYear = salesDateArrayList[2];
+            String salesTime = "";
+            try {
+                salesTime = orderData.get("saletime").toString();
+            } catch (JSONException e) {
+                throw new RuntimeException(e);
+            }
+
+            try {
+                posOrderObject.put("id", holdCodeArrayList.get(x));
+                posOrderObject.put("tableId", orderData.get("restaurant_tableidx").toString());
+                posOrderObject.put("tablename", orderData.get("restaurant_tablename").toString());
+                posOrderObject.put("salesDate", salesYear + salesMonth + salesDay);
+                posOrderObject.put("createdTime", salesYear + "-" + salesMonth + "-" + salesDay + " " + salesTime);
+                posOrderObject.put("updatedTime", salesYear + "-" + salesMonth + "-" + salesDay + " " + salesTime);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            //*****************************
+            //Create a posOrderGuests array
+            JSONArray posOrderGuests = new JSONArray();
+
+            //Create a posOrderGuest Object
+            JSONObject posOrderGuestObject = new JSONObject();
+            try {
+                posOrderGuestObject.put("type", "Guest");
+                posOrderGuestObject.put("qty", orderData.get("restaurant_tablepeoplecnt"));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            posOrderGuests.put(posOrderGuestObject);
+
+            try {
+                posOrderObject.put("posOrderGuests", posOrderGuests);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            //*****************************
+
+            //*****************************
+            //Create a posOrderGoods array
+            JSONArray posOrderGoods = new JSONArray();
+
+            String saleitemlist = "";
+            try {
+                saleitemlist = orderData.get("saleitemlist").toString();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            if (!GlobalMemberValues.isStrEmpty(saleitemlist)) {
+                String[] strOrderItemsList = saleitemlist.split(GlobalMemberValues.STRSPLITTER_ORDERITEM1);
+                JSONArray array_orderItemList = new JSONArray();
+                for (int i = 0; i < strOrderItemsList.length; i++) {
+                    //Create a posOrderGood object
+                    //one posOrderGoodObject should be created per menu item ordered.
+                    JSONObject posOrderGoodObject = new JSONObject();
+
+                    String[] strOrderInfo = strOrderItemsList[i].split(GlobalMemberValues.STRSPLITTER_ORDERITEM3);
+                    String tempDiscountAmount = strOrderInfo[14];
+                    String itemOrderDate = strOrderInfo[20].split("-JJJ-")[0];
+
+                    String[] strOrderItems = strOrderItemsList[i].split(GlobalMemberValues.STRSPLITTER_ORDERITEM2);
+
+                    // 상품명, 수량 정보 --------------------------------------------------------------------
+                    String tempItemNameOptionAdd = strOrderItems[0];
+                    String tempItemQty = strOrderItems[1]; //qty
+                    String tempPrice = strOrderItems[5];//price
+                    String tempPriceAmount = strOrderItems[6]; //amount
+                    String tempTaxAmount = strOrderItems[4];
+                    String tempTotalAmount = strOrderItems[5];
+
+                    GlobalMemberValues.logWrite("saleitemstrarray", "tempItemNameOptionAdd : " + tempItemNameOptionAdd + "\n");
+
+                    String[] strItemNAmeOptionAdd = tempItemNameOptionAdd.split(GlobalMemberValues.STRSPLITTER_ORDERITEM3);
+                    String tempItemName = strItemNAmeOptionAdd[0]; //name
+                    String tempOptionTxt = "";
+                    String tempAdditionalTxt1 = "";
+                    String tempAdditionalTxt2 = "";
+                    String tempItemIdx = ""; //goodsId
+                    String tempKitchenMemo = "";
+                    String tempOptionPrice = "";
+                    String temptemp_additionalprice1 = "";
+                    String temptemp_additionalprice2 = "";
+                    String selectedDcExtraAllEach = "";
+                    String selectedDcExtraType = "";
+                    String dcextratype = "";
+                    String dcextravalue = "";
+                    String selectedDcExtraPrice = "";
+                    String printedLabel = "";
+                    String additem = "";
+                    try {
+                        posOrderGoodObject.put("name", tempItemName);
+                        if (strItemNAmeOptionAdd.length > 1) {
+                            tempOptionTxt = strItemNAmeOptionAdd[1];
+                            if (strItemNAmeOptionAdd.length > 2) {
+                                tempAdditionalTxt1 = strItemNAmeOptionAdd[2];
+                            }
+                            if (strItemNAmeOptionAdd.length > 3) {
+                                tempAdditionalTxt2 = strItemNAmeOptionAdd[3];
+                            }
+                            if (strItemNAmeOptionAdd.length > 4) {
+                                tempItemIdx = strItemNAmeOptionAdd[4];
+                                posOrderGoodObject.put("goodsId", tempItemIdx);
+                            }
+                            if (strItemNAmeOptionAdd.length > 5) {
+                                posOrderGoodObject.put("qty", tempItemQty);
+                            }
+                            if (strItemNAmeOptionAdd.length > 6) {
+                                tempKitchenMemo = strItemNAmeOptionAdd[6];
+                            }
+                            if (strItemNAmeOptionAdd.length > 7) {
+                                tempOptionPrice = strItemNAmeOptionAdd[7];
+                            }
+                            if (strItemNAmeOptionAdd.length > 8) {
+                                temptemp_additionalprice1 = strItemNAmeOptionAdd[8];
+                            }
+                            if (strItemNAmeOptionAdd.length > 9) {
+                                temptemp_additionalprice2 = strItemNAmeOptionAdd[9];
+                            }
+                            // discount / extra
+                            if (strItemNAmeOptionAdd.length > 10) {
+                                selectedDcExtraAllEach = strItemNAmeOptionAdd[10];
+                            }
+                            if (strItemNAmeOptionAdd.length > 11) {
+                                selectedDcExtraType = strItemNAmeOptionAdd[11];
+                            }
+                            if (strItemNAmeOptionAdd.length > 12) {
+                                dcextratype = strItemNAmeOptionAdd[12];
+                            }
+                            if (strItemNAmeOptionAdd.length > 13) {
+                                dcextravalue = strItemNAmeOptionAdd[13];
+                            }
+                            if (strItemNAmeOptionAdd.length > 14) {
+                                selectedDcExtraPrice = strItemNAmeOptionAdd[14];
+                            }
+                            if (strItemNAmeOptionAdd.length > 17) {
+                                additem = strItemNAmeOptionAdd[17];
+                            }
+                            if (strItemNAmeOptionAdd.length > 18) {
+                                printedLabel = strItemNAmeOptionAdd[18];
+                            }
+
+                            posOrderGoodObject.put("price", tempPrice);
+                            posOrderGoodObject.put("amount", tempPriceAmount);
+                            posOrderGoodObject.put("discountedAmount", String.valueOf(Double.parseDouble(tempPrice) -
+                                    Double.parseDouble(tempDiscountAmount)));
+                            posOrderGoodObject.put("vat", "0");
+                            posOrderGoodObject.put("createdTime", itemOrderDate);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                    if (printedLabel.equals("N")) {
+                        //array_orderItemList.put(jsonObject_item);
+                    }
+
+                    //Create a posOrderGoodsOptions array
+                    JSONArray posOrderGoodsOptions = new JSONArray();
+
+                    //Format the tempOptionTxt so that an object can be made of it.
+                    String[] paramTxtArr = tempOptionTxt.split(", ");
+                    //processing posOrderGoodsOption data
+                    if(!Objects.equals(paramTxtArr[0], "") && paramTxtArr[0] != null) {
+                        for (int j = 0; j < paramTxtArr.length; j++) {
+
+                            //Create a posOrderGoodsOption object
+                            JSONObject posOrderGoodsOptionObject = new JSONObject();
+
+                            String[] modifierItem = paramTxtArr[j].split("[(]");
+                            String modifierName = "";
+                            int modifierQty = 0;
+                            double modifierPrice = 0.0;
+
+                            //modifier name
+                            if (modifierItem.length > 0) {
+                                modifierName = modifierItem[0];
+                                if (modifierItem.length > 1) {
+                                    //modifier quantity
+                                    String modifierQtyString = modifierItem[1].replace("ea)", "");
+                                    modifierQtyString = modifierQtyString.trim();
+                                    modifierQty = Integer.parseInt(modifierQtyString);
+
+                                    //modifier price
+                                    if (modifierItem.length > 2) {
+                                        //TODO: Add check for negative since negative will not be allowed?
+                                        modifierPrice = Double.parseDouble(modifierItem[2].replace("-", "").replace("+", "").replace(")", ""));
+                                    }
+                                }
+                            }
+
+                            try {
+                                posOrderGoodsOptionObject.put("goodsId", modifierName);
+                                posOrderGoodsOptionObject.put("name", modifierName);
+                                posOrderGoodsOptionObject.put("qty", modifierQty);
+                                posOrderGoodsOptionObject.put("price", modifierPrice);
+                                posOrderGoodsOptionObject.put("amount", new Double(modifierQty * modifierPrice));
+                                posOrderGoodsOptionObject.put("discountedAmount", new Double(modifierQty * modifierPrice));
+                                posOrderGoodsOptionObject.put("vat", "0");
+                                posOrderGoodsOptionObject.put("createdTime", itemOrderDate);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+
+                            posOrderGoodsOptions.put(posOrderGoodsOptionObject);
+
+                        }
+                    }
+
+                    //puts posOrderGoodsOptions array into posOrderGoodObject
+                    try {
+                        posOrderGoodObject.put("posOrderGoodsOptions", posOrderGoodsOptions);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                    //puts posOrderGoodsObject into posOrderGoodsArray
+                    posOrderGoods.put(posOrderGoodObject);
+
+                    //puts posOrderGoods array into posOrderObject
+                    try {
+                        posOrderObject.put("posOrderGoods", posOrderGoods);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+
+                }
+
+
+                //puts posOrderObject into posOrder
+                posOrders.put(posOrderObject);
+
+                try {
+                    data.put("posOrders", posOrders);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            GlobalMemberValues.logWrite("TAG", "test");
+
+        }
+        //*****************************
+
+
+        try {
+            requestBody.put("data", data);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        GlobalMemberValues.logWrite("TORDERSENDORDER", "order requestbody created");
+        int cloudSentResult = 0;
+
+        API_torder_programstart apiKitchenprintingdataTocloud = new API_torder_programstart(requestBody.toString());
+        apiKitchenprintingdataTocloud.execute(null, null, null);
+        try {
+            Thread.sleep(GlobalMemberValues.API_UPLOAD_THREAD_TIME);
+            if (apiKitchenprintingdataTocloud.mFlag) {
+                cloudSentResult = apiKitchenprintingdataTocloud.cloudSentResult;
+            }
+        } catch (InterruptedException e) {
+            GlobalMemberValues.logWrite("TORDERAPI", "Thread Error : " + e.getMessage() + "\n");
+        }
+    }
+
+    //API call when a table is cleared
+    //event code: P0402
+    public static void sendTOrderAPITableClear(String tableid) {
+        String code = "P0501";
+        String storeId = SALON_CODE;
+        String tableId = tableid;
+        String message = "Table" + tableId + "cleared";
+
+        // create a clock
+        ZoneId utczone = null;
+        ZonedDateTime timestamp = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            utczone = ZoneId.of("UTC");
+        }
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            timestamp = ZonedDateTime.now(utczone);
+        }
+
+        // Create request body JSON
+        JSONObject requestBody = new JSONObject();
+        try {
+            requestBody.put("code", code);
+            requestBody.put("storeId", storeId);
+            requestBody.put("message", message);
+            requestBody.put("timestamp", timestamp);
+            requestBody.put("tableId", tableid);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        int cloudSentResult = 0;
+
+        API_torder_programstart apiKitchenprintingdataTocloud = new API_torder_programstart(requestBody.toString());
+        apiKitchenprintingdataTocloud.execute(null, null, null);
+        try {
+            Thread.sleep(GlobalMemberValues.API_UPLOAD_THREAD_TIME);
+            if (apiKitchenprintingdataTocloud.mFlag) {
+                cloudSentResult = apiKitchenprintingdataTocloud.cloudSentResult;
+            }
+        } catch (InterruptedException e) {
+            GlobalMemberValues.logWrite("TORDERAPI", "Thread Error : " + e.getMessage() + "\n");
+            //GlobalMemberValues.logWrite("APIDownLoadClass", "Thread Error : " + e.getMessage());
+        }
+    }
+
+    // 04192024
+    // 온라인 주문 개선관련
+    public static boolean isUseOnlinePopupOpen() {
+        boolean returnValue = false;
+        DatabaseInit dbInit = new DatabaseInit(MainActivity.mContext);   // DatabaseInit 객체 생성
+
+        String tempGetValue = getDBTextAfterChecked(dbInit.dbExecuteReadReturnString(
+                "select pushpopupopenyn from salon_storestationsettings_system"), 1);
+        if (GlobalMemberValues.isStrEmpty(tempGetValue)) {
+            tempGetValue = "N";
+        }
+        if (tempGetValue == "Y" || tempGetValue.equals("Y")) {
+            returnValue = true;
+        }
+
+        return returnValue;
     }
 }

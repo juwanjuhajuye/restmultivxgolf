@@ -30,21 +30,29 @@ import android.os.Message;
 import android.os.Parcelable;
 import androidx.annotation.RequiresApi;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SimpleItemAnimator;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -59,6 +67,7 @@ import com.clover.sdk.v3.order.DisplayLineItem;
 import com.clover.sdk.v3.order.DisplayOrder;
 import com.clover.sdk.v3.scanner.BarcodeResult;
 import com.clover.sdk.v3.scanner.BarcodeScanner;
+import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.tablesale.BillSplitMerge;
 import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.tablesale.EmployeeKeyIn;
 import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.apiadapter.ActivityMonitor;
 import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.apiadapter.ApiAdapter;
@@ -212,6 +221,13 @@ public class MainActivity extends Activity {
     static int temp_str_salecart_cnt = 0;
 
     static boolean b_customer_place_to_order = false;
+
+    //
+    RelativeLayout main_grid_relative_view;
+    LinearLayout main_grid_relative_view_loading;
+    Animation Quick_LeftAnim;
+    Animation Quick_RightAnim;
+    public RecyclerView quick_table_grid_list;    
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -434,6 +450,18 @@ public class MainActivity extends Activity {
 
         //ProgressBar progressBar = (ProgressBar) findViewById(R.id.main_progressbar);
         //new ProgressTask(progressBar).execute();
+
+        ///////
+        main_grid_relative_view = (RelativeLayout)findViewById(R.id.main_grid_relative_view);
+        main_grid_relative_view_loading = (LinearLayout)findViewById(R.id.main_grid_relative_view_loading);
+
+        Quick_LeftAnim = AnimationUtils.loadAnimation(this, R.anim.act_out_left);
+        Quick_RightAnim = AnimationUtils.loadAnimation(this, R.anim.act_in_right);
+        MainActivity.SlidingTogoViewAnimationListener slidingTogoViewAnimationListener = new MainActivity.SlidingTogoViewAnimationListener();
+        Quick_LeftAnim.setAnimationListener(slidingTogoViewAnimationListener);
+        Quick_RightAnim.setAnimationListener(slidingTogoViewAnimationListener);
+        quick_table_grid_list = (RecyclerView)findViewById(R.id.main_quick_table_gridview);
+
     }
 
     public static void setEloInit() {
@@ -677,6 +705,11 @@ public class MainActivity extends Activity {
         GlobalMemberValues.APPOPENCOUNT++;
 
         GlobalMemberValues.setBooleanDevice();
+
+        //04182024 Send POST request to TOrder that device program started
+        if(GlobalMemberValues.isTOrderUse()){
+            GlobalMemberValues.sendTOrderAPIProgramStart();
+        }
 
     }
 
@@ -2474,6 +2507,9 @@ public class MainActivity extends Activity {
         GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAIN_TOP_LEFT_CUSTOMER_INFO_PHONE = (TextView)findViewById(R.id.main_top_left_customer_info_phone);
         GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAIN_TOP_LEFT_CUSTOMER_INFO_ONLINE_SHOW = (TextView)findViewById(R.id.main_top_left_customer_info_online_order_kind);
 
+        GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAIN_TOP_LEFT_CUSTOMER_INFO3 = (LinearLayout)findViewById(R.id.main_top_left_customer_info_ln3);
+        GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAIN_TOP_LEFT_ORDER_LIST = (Button)findViewById(R.id.main_top_left_order_list);        
+
         GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAIN_TOP_LEFT_CUSTOMER_INFO_NAME.setTextSize(30 * GlobalMemberValues.getGlobalFontSize() + GlobalMemberValues.globalAddFontSizeForPAX());
         GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAIN_TOP_LEFT_CUSTOMER_INFO_PHONE.setTextSize(30 * GlobalMemberValues.getGlobalFontSize() + GlobalMemberValues.globalAddFontSizeForPAX());
         GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAIN_TOP_LEFT_CUSTOMER_INFO_ONLINE_SHOW.setTextSize(30 * GlobalMemberValues.getGlobalFontSize() + GlobalMemberValues.globalAddFontSizeForPAX());
@@ -2869,7 +2905,7 @@ public class MainActivity extends Activity {
                     GlobalMemberValues.mIsClickSendToKitchen = true;
                     Payment.openGetFoodTypeIntent("");
                     //clickSendToKitchen();
-
+                    TableSaleMain.mSelectedTablesArrList.clear();
                     break;
                 }
                 case R.id.button_main_side_table : {
@@ -3793,7 +3829,7 @@ public class MainActivity extends Activity {
         GlobalMemberValues.STR_NOW_DATE = DateMethodClass.nowMonthGet() + "-" + DateMethodClass.nowDayGet() + "-" + DateMethodClass.nowYearGet();
 
         // 네트워크 상태 체크
-        GlobalMemberValues.checkOnlineService(mContext, mActivity);
+        // GlobalMemberValues.checkOnlineService(mContext, mActivity);
 
         if (ProductList.onProductListYN == "Y" || ProductList.onProductListYN.equals("Y")) {
             // 키보드 안보이게 --------------------------------------------------------------------------------------
@@ -4230,6 +4266,36 @@ public class MainActivity extends Activity {
                         GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAIN_TOP_LEFT_CUSTOMER_INFO1.setVisibility(View.VISIBLE);
 //                        GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINBUTTONQTY_PLUS_MINUS_LN.setVisibility(View.VISIBLE);
                         GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINBUTTON_DELIVERY_TOGO_LN.setVisibility(View.VISIBLE);
+
+                        if (GlobalMemberValues.isQSRPOSonRestaurantPOS){
+                            GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAIN_TOP_LEFT_CUSTOMER_INFO1.setVisibility(View.GONE);
+                            GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAIN_TOP_LEFT_CUSTOMER_INFO3.setVisibility(View.VISIBLE);
+                            GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAIN_TOP_LEFT_ORDER_LIST.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    if (MainMiddleService.mSaleCartAdapter != null){
+                                        if (MainMiddleService.mSaleCartAdapter.getCount() != 0){
+                                            GlobalMemberValues.displayDialog(mContext, "Warning", "There is a menu in the shopping cart.", "Close");
+                                            return;
+                                        }
+                                    }
+                                    if (GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAIN_TOP_LEFT_ORDER_LIST.isSelected()){
+                                        GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAIN_TOP_LEFT_ORDER_LIST.setSelected(false);
+//                                        quick_table_popup_btn.setSelected(false);
+                                        main_grid_relative_view.setVisibility(View.INVISIBLE);
+                                        main_grid_relative_view_loading.setVisibility(View.VISIBLE);
+                                        main_grid_relative_view.startAnimation(Quick_LeftAnim);
+                                    } else {
+                                        GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAIN_TOP_LEFT_ORDER_LIST.setSelected(true);
+//                                        quick_table_popup_btn.setSelected(true);
+                                        main_grid_relative_view.startAnimation(Quick_RightAnim);
+                                        main_grid_relative_view.setVisibility(View.VISIBLE);
+                                    }
+                                }
+                            });
+                        } else {
+                            GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAIN_TOP_LEFT_CUSTOMER_INFO3.setVisibility(View.GONE);
+                        }
                     }
                 }
 
@@ -4978,6 +5044,34 @@ public class MainActivity extends Activity {
         }
     };
 
+    public void viewTableSettignsForQuick() {
+//        setClearSelectedTableIdx(true);
+//
+//        // 초기화
+//        table_main_view.removeAllViews();
+
+//        GlobalMemberValues gm = new GlobalMemberValues();
+
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                String[] tableinfo = GlobalMemberValues.getRestaurantTableForQuick();
+                GlobalMemberValues.s_str_tableinfo = tableinfo;
+                // 저장된 테이블이 있을 경우에만..
+                if (tableinfo != null && tableinfo.length > 0) {
+                    MainActivity.QuickViewHolder temp_quickTable_gridListAdapter = new MainActivity.QuickViewHolder(MainActivity.mContext, tableinfo);
+                    quick_table_grid_list.setLayoutManager(new GridLayoutManager(MainActivity.mContext, 3));
+                    RecyclerView.ItemAnimator animator = quick_table_grid_list.getItemAnimator();
+                    if (animator instanceof SimpleItemAnimator) {
+                        ((SimpleItemAnimator) animator).setSupportsChangeAnimations(false);
+                    }
+                    quick_table_grid_list.setAdapter(temp_quickTable_gridListAdapter);
+//                    quick_table_grid_list.deferNotifyDataSetChanged();
+                }
+            }
+        });
+    }    
+
     public static void setMainBillPrintButtonVisible(boolean is_visible){
         if (GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINBUTTON_BILLPRINT == null) return;
         MainActivity.mActivity.runOnUiThread(new Runnable() {
@@ -4993,4 +5087,621 @@ public class MainActivity extends Activity {
 
     }
 
+    private class SlidingTogoViewAnimationListener implements Animation.AnimationListener{
+
+        public void onAnimationEnd(Animation animation){
+            if (GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAIN_TOP_LEFT_ORDER_LIST.isSelected()){
+                viewTableSettignsForQuick();
+            }
+
+            main_grid_relative_view_loading.setVisibility(View.INVISIBLE);
+
+        }
+        @Override
+        public void onAnimationStart(Animation animation) {
+            main_grid_relative_view_loading.setVisibility(View.VISIBLE);
+        }
+
+        @Override
+        public void onAnimationRepeat(Animation animation) {
+
+        }
+    }
+
+//    private View.OnClickListener onQuickTableClickTable = new View.OnClickListener() {
+//        @Override
+//        public void onClick(View v) {
+//            String str = (String) v.getTag();
+//            Toast.makeText(TableSaleMain.this, str, Toast.LENGTH_SHORT).show();
+//        }
+//    };
+
+
+
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if (main_grid_relative_view != null && (ev.getAction() == MotionEvent.ACTION_UP || ev.getAction() == MotionEvent.ACTION_MOVE)) {
+            int scrcoords[] = new int[2];
+            main_grid_relative_view.getLocationOnScreen(scrcoords);
+            float x = ev.getRawX() + main_grid_relative_view.getLeft() - scrcoords[0];
+            float y = ev.getRawY() + main_grid_relative_view.getTop() - scrcoords[1];
+            if (x < main_grid_relative_view.getLeft() || x > main_grid_relative_view.getRight() || y < main_grid_relative_view.getTop() || y > main_grid_relative_view.getBottom()){
+                if (main_grid_relative_view.getVisibility() == View.VISIBLE){
+//                    quick_table_popup_btn.setSelected(false);
+                    main_grid_relative_view.setVisibility(View.GONE);
+                    main_grid_relative_view.startAnimation(Quick_LeftAnim);
+                    GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAIN_TOP_LEFT_ORDER_LIST.setSelected(false);
+                }
+            }
+        }
+        return super.dispatchTouchEvent(ev);
+    }
+
+    public void uploadTableDataCloudExe() {
+        // 클라우드 업로드 ----------------------------------------------------------------------------------------
+        // 10초후 실행
+//        try {
+//            Thread.sleep(5000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+
+        GlobalMemberValues gm = new GlobalMemberValues();
+        if (gm.isPOSWebPay() &&
+                (gm.getPOSType().toUpperCase() == "R" || gm.getPOSType().toUpperCase().equals("R"))) {
+            // 장바구니데이터 클라우드 전송
+            GlobalMemberValues.setSendCartToCloud(mContext, mActivity);
+            // 장바구니데이터 삭제 클라우드 전송
+            GlobalMemberValues.setSendCartDeleteToCloud(mContext, mActivity);
+        }
+        // -----------------------------------------------------------------------------------------------------
+    }
+
+    public class QuickViewHolder extends RecyclerView.Adapter<MainActivity.QuickViewHolder.ViewHolder> {
+
+        private String[] mData = new String[0];
+        private LayoutInflater mInflater;
+
+        // Data is passed into the constructor
+        public QuickViewHolder(Context context, String[] data) {
+            this.mInflater = LayoutInflater.from(context);
+            this.mData = data;
+        }
+
+        // Inflates the cell layout from xml when needed
+        @Override
+        public MainActivity.QuickViewHolder.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            View view = mInflater.inflate(R.layout.quick_table_grid_row, parent, false);
+            //            View view = LayoutInflater.from(context)
+//                    .inflate(R.layout.quick_table_grid_row, parent, false);
+            view.setLayoutParams(new GridView.LayoutParams(GridView.AUTO_FIT, 120));
+            MainActivity.QuickViewHolder.ViewHolder viewHolder = new MainActivity.QuickViewHolder.ViewHolder(view);
+            return viewHolder;
+        }
+
+        // Binds the data to the textview in each cell
+        @Override
+        public void onBindViewHolder(MainActivity.QuickViewHolder.ViewHolder holder, int position) {
+
+
+
+
+            String[] tablearr = null;
+            String tableidx = "";
+            String tablename = "";
+            String capacity = "";
+            String colorvalue = "#5351fb";
+            String tabletype = "";
+            String chargeridx = "";
+            String pagernum = "";
+            String xvaluerate = "";
+            String yvaluerate = "";
+            String tableordercnt = "";
+            String boxtype = "";
+            String boxkinds = "";
+            String customername = "";
+            String customerphonenum = "";
+            String togotype = "";
+
+            tablearr = mData[position].split("-JJJ-");
+
+            tableidx = tablearr[0];
+            tablename = tablearr[1];
+            capacity = tablearr[2];
+            colorvalue = tablearr[3];
+            tabletype = tablearr[4];
+            chargeridx = tablearr[5];
+            pagernum = tablearr[6];
+            xvaluerate = tablearr[7];
+            yvaluerate = tablearr[8];
+            boxtype = tablearr[9];
+            boxkinds = tablearr[10];
+            customername = tablearr[11];
+            customerphonenum = tablearr[12];
+
+            if (GlobalMemberValues.isStrEmpty(boxtype)) {
+                boxtype = "0";
+            }
+            if (GlobalMemberValues.isStrEmpty(boxkinds)) {
+                boxkinds = "table";
+            }
+
+            if (GlobalMemberValues.isStrEmpty(colorvalue)) {
+                colorvalue = "#5351fb";
+            }
+
+            if (GlobalMemberValues.isStrEmpty(capacity)) {
+                capacity = "0";
+            }
+
+            holder.textview1.setText(tablename);
+
+
+            tableidx = "T" + GlobalMemberValues.getTableIdxWithoutStringT(tableidx) + "T";
+            TableSaleMain.mAllTablesArrList.add(tableidx);
+
+//             테이블이 split 되어 있는지 확인
+            int subTableCount = 0;//getTableSplitCount(tableidx);
+
+            if (subTableCount > 0 && subTableCount > 1) {
+                String tempSubTableStr = subTableCount + "ea";
+                tablename = tempSubTableStr + " Split";
+//                for (int jjj = 0; jjj < subTableCount; jjj++) {
+//                    tempSubTableStr += " " + (jjj + 1);
+//                }
+
+                holder.textview1.setText(tablename);
+            }
+
+            String tableTxtColor = "#ffffff";
+
+            String getHoldCodeTemp = TableSaleMain.getHoldCodeByTableidx(tableidx, TableSaleMain.mSubTableNum);
+
+            int mergednum = 0;
+
+            // mergednum -------------------------------------------------------------------------
+            holder.textview2.setTextSize(30);
+            holder.textview2.setText(customername);
+            holder.textview3.setText(customerphonenum);
+
+
+            boolean isOrderInTable = false;
+
+            // 주문시간 add
+            String strQuery_temp = " select top 1 wdate, mergednum, togotype from temp_salecart " +
+                    " where holdcode = '" + getHoldCodeTemp + "' order by wdate asc";
+
+            ResultSet timeCursor = MssqlDatabase.getResultSetValue(strQuery_temp);
+            String ordereddateValue = "";
+            try {
+                while (timeCursor.next()){
+                    String getTime = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(timeCursor,0), 1);
+                    ordereddateValue = getTime;
+
+                    mergednum = GlobalMemberValues.getIntAtString(GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(timeCursor,1), 1));
+
+                    togotype = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(timeCursor,2), 1);
+
+                    isOrderInTable = true;
+                }
+                timeCursor.close();
+            } catch (Exception e) {
+            }
+
+            if (!GlobalMemberValues.isStrEmpty(togotype)) {
+                switch (togotype) {
+                    case "C" : {
+                        if (customerphonenum.equals("Walk In")) {
+                            holder.textview3.setText("Call In");
+                        } else {
+                            holder.textview3.setText(customerphonenum + "(Call In)");
+                        }
+
+                        break;
+                    }
+                    case "W" : {
+                        if (!customerphonenum.equals("Walk In")) {
+                            holder.textview3.setText(customerphonenum + "(Walk In)");
+                        }
+                        break;
+                    }
+                }
+            }
+
+            String date1 = ordereddateValue;
+
+            if (GlobalMemberValues.isTimeDisplayonTable()){
+//                holder.textview4 = timeupdate_in_textview(holder.textview4,date1);
+            }
+
+
+
+//            textview4.setText("");
+            if (mergednum > 0) {
+                if (TableSaleMain.getTableCountByHoldcode(getHoldCodeTemp) == 1
+                        && TableSaleMain.getTableCountByTableidxInMergedTable(tableidx) < 2) {
+                    String newHoldCode = GlobalMemberValues.makeHoldCode();
+                    Vector<String> updateVector = new Vector<String>();
+                    String strQuery = " update temp_salecart set holdcode = '" + newHoldCode + "', mergednum = '0', isCloudUpload = 0  " +
+                            " where tableidx like '%" + tableidx + "%' ";
+                    updateVector.addElement(strQuery);
+
+                    strQuery = " delete from salon_store_restaurant_table_merge where tableidx like '%" + tableidx + "%' ";
+                    updateVector.addElement(strQuery);
+
+                    for (String tempQuery : updateVector) {
+                        //GlobalMemberValues.logWrite("mergetablelog", "query : " + tempQuery + "\n");
+                    }
+
+                    // 트랜잭션으로 DB 처리한다.
+                    String returnResult = MssqlDatabase.executeTransaction(updateVector);
+                    if (returnResult == "N" || returnResult == "") {
+                        //GlobalMemberValues.displayDialog(mContext, "Warning", "Database Error", "Close");
+                        //return;
+                    } else {
+                        // 클라우드 업로드
+                        uploadTableDataCloudExe();
+                    }
+                } else {
+
+
+                    String mergednumstr = "0" + mergednum;
+                    mergednumstr = "M-" + mergednumstr.substring((mergednumstr.length() - 2), mergednumstr.length());
+                    tablename = "Merged\n(" + mergednumstr + ")";
+
+                    holder.textview1.setText(tablename);
+//                    textview1.setTextColor(Color.parseColor(tableTxtColor));
+                    int tablecolornum = mergednum % 7;
+//                    textview1.setTextColor(Color.parseColor(GlobalMemberValues.MERGEDTABLECOLOR[tablecolornum]));
+
+                    holder.textview2.setBackgroundColor(Color.parseColor(GlobalMemberValues.MERGEDTABLECOLOR[tablecolornum]));
+                    holder.textview2.setText("   Merged Table   ");
+                    holder.textview2.setTextSize(20);
+                    holder.textview2.setTextColor(Color.parseColor("#ffffff"));
+                    holder.qt_row.setBackgroundResource(R.drawable.table_quicktable_btn_back_on);
+                }
+            } else {
+                if (TableSaleMain.getTableCountByTableidxInMergedTable(tableidx) > 1) {
+                    String tempHoldCode = TableSaleMain.getHoldCodeByTableidxInMergedTable(tableidx);
+                    if (!GlobalMemberValues.isStrEmpty(tempHoldCode)) {
+
+
+
+
+                        mergednum = TableSaleMain.getMergedNumByTableidxInMergedTable(tableidx);
+
+                        String mergednumstr = "0" + mergednum;
+                        mergednumstr = "M-" + mergednumstr.substring((mergednumstr.length() - 2), mergednumstr.length());
+                        tablename = "Merged\n(" + mergednumstr + ")";
+
+                        holder.textview1.setText(tablename);
+//                       textview1.setTextColor(Color.parseColor(tableTxtColor));
+
+                        int tablecolornum = mergednum % 7;
+//                        textview1.setTextColor(Color.parseColor(GlobalMemberValues.MERGEDTABLECOLOR[tablecolornum]));
+
+                        holder.textview2.setBackgroundColor(Color.parseColor(GlobalMemberValues.MERGEDTABLECOLOR[tablecolornum]));
+                        holder.textview2.setText("   Merged Table   ");
+                        holder.textview2.setTextSize(20);
+                        holder.textview2.setTextColor(Color.parseColor("#ffffff"));
+                        holder.qt_row.setBackgroundResource(R.drawable.table_quicktable_btn_back_on);
+                    }
+                } else {
+                    Vector<String> deleteVec = new Vector<String>();
+                    String strQuery = " delete from salon_store_restaurant_table_merge where tableidx like '%" + tableidx + "%' ";
+                    deleteVec.addElement(strQuery);
+
+                    // 트랜잭션으로 DB 처리한다.
+                    String returnResult = MssqlDatabase.executeTransaction(deleteVec);
+                    if (returnResult == "N" || returnResult == "") {
+                        //GlobalMemberValues.displayDialog(mContext, "Warning", "Database Error", "Close");
+                        //return;
+                    } else {
+                    }
+                }
+            }
+
+            int tableordercnt_int = 0;
+            if (isOrderInTable){
+                holder.qt_row.setBackgroundResource(R.drawable.roundlayout_quick_grid_sel);
+
+                // 해당 테이블 주문메뉴 수
+//            tableordercnt = MssqlDatabase.getResultSetValueToString("select count(*) from temp_salecart where tableidx like '%" + tableidx + "%' ");
+//                tableordercnt = MssqlDatabase.getResultSetValueToString("select count(*) from temp_salecart where holdcode = '" + getHoldCodeTemp + "' ");
+//                GlobalMemberValues.getIntAtString(tableordercnt);
+                GlobalMemberValues.logWrite("jjjtableinfolog", "tableordercnt : " + tableordercnt + "\n");
+
+            } else {
+                holder.qt_row.setBackgroundResource(R.drawable.roundlayout_quick_grid_not_sel);
+            }
+
+
+            if (GlobalMemberValues.isDeviceSunmiFromDB()){
+                holder.textview1.setTextSize(10);
+                holder.textview2.setTextSize(22);
+                holder.textview3.setTextSize(16);
+            }
+
+
+            final String finalTablename = tablename;
+            final String finalTableidx = tableidx;
+            final String finalTableTxtColor = tableTxtColor;
+            holder.qt_row.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    BillSplitMerge.setInitValuesForBillPay();
+
+                    tableCell_singleClick(view, holder.qt_row, holder.qt_row, finalTableidx,
+                            finalTablename, finalTableTxtColor, tableordercnt_int, "Q");
+
+                    if (GlobalMemberValues.ISDUALDISPLAYPOSSIBLE) {
+                        //jihun park sub display
+                        PaxPresentation.unSetLogo();
+                        MainActivity.updatePresentation();
+                    }
+                }
+            });
+
+            // table double touch
+
+
+            // table longclick
+            holder.qt_row.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+//                    tableCell_longClick(v);
+                    return false;
+                }
+            });
+            holder.qt_row.setTag(tableidx);
+
+
+        }
+
+        // Total number of cells
+        @Override
+        public int getItemCount() {
+            return mData.length;
+        }
+
+        // Stores and recycles views as they are scrolled off screen
+        public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+            LinearLayout qt_row;
+            TextView textview2 ;
+            TextView textview1 ;
+            TextView textview3 ;
+            TextView textview4 ;
+
+            public ViewHolder(View itemView) {
+                super(itemView);
+                qt_row = itemView.findViewById(R.id.quick_table_row_ln);
+                textview2 = itemView.findViewById(R.id.quick_table_text2);
+                textview1 = itemView.findViewById(R.id.quick_table_text1);
+                textview3 = itemView.findViewById(R.id.quick_table_text3);
+                textview4 = itemView.findViewById(R.id.quick_table_text4);
+
+                itemView.setOnClickListener(this);
+            }
+
+            @Override
+            public void onClick(View view) {
+                onItemClick(view, getAdapterPosition());
+            }
+        }
+
+        // Convenience method for getting data at click position
+        public String getItem(int id) {
+            return mData[id];
+        }
+
+        // Method that executes your code for the action received
+        public void onItemClick(View view, int position) {
+            Log.i("TAG", "You clicked number " + getItem(position).toString() + ", which is at cell position " + position);
+        }
+    }
+
+    public void tableCell_singleClick(View view, LinearLayout parentTableLn, LinearLayout table_row3,
+                                      String finalTableidx, String finalTablename, String finalTableTxtColor, int tableordercnt,
+                                      String paramTableBoardType) {
+        int mTablePeopleCnt = 0;
+
+        TextView title = view.findViewById(R.id.main_table_row_title);
+
+        if (paramTableBoardType.equals("Q")){
+            title = view.findViewById(R.id.quick_table_text1);
+        }
+
+        title.setTextColor(Color.parseColor(finalTableTxtColor));
+        TableSaleMain.mSelectedTablesArrList.remove(finalTableidx);
+        title.setText(finalTablename);
+        GlobalMemberValues.str_selected_table_name = finalTablename;
+
+        GlobalMemberValues.logWrite("kimwanhayejjjlog", "여기2 : " + TableSaleMain.mSelectedTablesArrList.toString() + "\n");
+
+        if (table_row3.isSelected()) {
+            table_row3.setSelected(false);
+            if (GlobalMemberValues.isShowQuickMenusInTableBoard) {
+                switch (paramTableBoardType) {
+                    case "0" : {
+                        break;
+                    }
+                    case "A" : {
+                        parentTableLn.setBackgroundResource(R.drawable.roundlayout_table);
+                        break;
+                    }
+                    case "B" : {
+                        if (tableordercnt > 0) {
+                            parentTableLn.setBackgroundResource(R.drawable.roundlayout_table5_2);
+                        } else {
+                            parentTableLn.setBackgroundResource(R.drawable.roundlayout_table5);
+                        }
+                        break;
+                    }
+                    case "C" : {
+                        break;
+                    }
+                    case "Q" : {
+                        if (tableordercnt > 0) {
+                            parentTableLn.setBackgroundResource(R.drawable.roundlayout_quick_grid_sel);
+                        } else {
+                            parentTableLn.setBackgroundResource(R.drawable.roundlayout_quick_grid_not_sel);
+                        }
+                        break;
+                    }
+                }
+            }
+
+        } else {
+            if (!TableSaleMain.getCheckSelectedStatusByOtherStations(finalTableidx)) {
+                GlobalMemberValues.displayDialog(mContext, "Warning",
+                        "This table is being used by another station", "Close");
+                return;
+            }
+
+            table_row3.setSelected(true);
+
+            if (GlobalMemberValues.isShowQuickMenusInTableBoard) {
+                switch (paramTableBoardType) {
+                    case "0" : {
+                        break;
+                    }
+                    case "A" : {
+                        parentTableLn.setBackgroundResource(R.drawable.roundlayout_table_selected);
+                        break;
+                    }
+                    case "B" : {
+                        if (tableordercnt > 0) {
+                            parentTableLn.setBackgroundResource(R.drawable.roundlayout_table_selected5_2);
+                        } else {
+                            parentTableLn.setBackgroundResource(R.drawable.roundlayout_table_selected5);
+                        }
+                        break;
+                    }
+                    case "C" : {
+                        break;
+                    }
+                    case "Q" : {
+                        if (tableordercnt > 0) {
+                            parentTableLn.setBackgroundResource(R.drawable.roundlayout_table_selected5_2);
+                        } else {
+                            parentTableLn.setBackgroundResource(R.drawable.roundlayout_table_selected5);
+                        }
+                        break;
+                    }
+                }
+
+                title.setText("Sel.");
+                title.setTextColor(Color.parseColor("#ffffff"));
+
+                //Toast.makeText(getApplicationContext(), "Table " + finalI + " select!", Toast.LENGTH_SHORT).show();
+            }
+
+            TableSaleMain.mSelectedTablesArrList.remove(finalTableidx);
+            TableSaleMain.mSelectedTablesArrList.add(finalTableidx);
+        }
+
+        if (!GlobalMemberValues.isShowQuickMenusInTableBoard) {
+            TableSaleMain.mSelectedTablesArrList.remove(finalTableidx);
+            TableSaleMain.mSelectedTablesArrList.add(finalTableidx);
+        }
+
+        GlobalMemberValues.logWrite("mSelectedTablesArrListLog", "선택된 값 ===============================" + "\n");
+        for (String tempidx : TableSaleMain.mSelectedTablesArrList) {
+            GlobalMemberValues.logWrite("mSelectedTablesArrListLog", "값 : " + tempidx + "\n");
+        }
+        GlobalMemberValues.logWrite("mSelectedTablesArrListLog", "=========================================" + "\n");
+
+//        if (waitDouble == true) {
+//            // single click
+//            waitDouble = false;
+//            doubleClick_finalTableidx = finalTableidx;
+//            Thread thread = new Thread() {
+//                @Override
+//                public void run() {
+//                    try {
+//                        sleep(DOUBLE_CLICK_TIME);
+//                        if (waitDouble == false) {
+//                            waitDouble = true;
+//                            //single click event
+//
+//                        }
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            };
+//            thread.start();
+//        } else {
+//            waitDouble = true;
+//
+//            if (doubleClick_finalTableidx != finalTableidx){
+//                return;
+//            }
+//
+//            //double click event
+//            int mSubTableCount = getTableSplitCount(finalTableidx);
+//
+//            if (mSubTableCount > 0 && mSubTableCount > 1) {
+//                AlertDialog.Builder builder = new AlertDialog.Builder(TableSaleMain.this);
+//                builder.setTitle("merge split?");
+//                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+////                                            setTwoSplit(finalTableidx);
+//                        setTableMerge(finalTableidx);
+//                        //viewTableSettigns(mSelectedZoneIdx);
+//                        setInitValues();
+//                        // 클라우드 업로드
+//                        uploadTableDataCloudExe();
+//                    }
+//                });
+//                builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        if (!GlobalMemberValues.isShowQuickMenusInTableBoard) {
+//                            setClearSelectedTableIdx(true);
+//                        }
+//                    }
+//                });
+//                builder.create();
+//                builder.show();
+//                setInitValues();
+//                return;
+//            } else {
+//                AlertDialog.Builder builder = new AlertDialog.Builder(TableSaleMain.this);
+//                builder.setTitle("Table Split");
+//                builder.setTitle("Would you like to split this table into two?");
+//                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        setTwoSplit(finalTableidx);
+//                        //viewTableSettigns(mSelectedZoneIdx);
+//                        setInitValues();
+//                        // 클라우드 업로드
+//                        uploadTableDataCloudExe();
+//                    }
+//                });
+//                builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        if (!GlobalMemberValues.isShowQuickMenusInTableBoard) {
+//                            setClearSelectedTableIdx(true);
+//                        }
+//                    }
+//                });
+//                builder.create();
+//                builder.show();
+//            }
+//        }
+
+        TableSaleMain.doCellSelectEvent();
+
+        // 우측 퀵메뉴가 보여지지 않는 상태일때는 세일 화면으로 바로 이동한다.
+        if (!GlobalMemberValues.isShowQuickMenusInTableBoard) {
+            TableSaleMain.goSalesMain();
+            if (MainMiddleService.mSaleCartAdapter != null) MainMiddleService.mSaleCartAdapter.notifyDataSetChanged();        // 추가된 항목을 Adapter 에 알림
+        }
+    }
 }

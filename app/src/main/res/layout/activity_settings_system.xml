@@ -2288,6 +2288,61 @@
 
 
 
+
+                        <!-- 04192024 온라인 주문 개선관련 -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal"
+                            android:paddingBottom="8dp"
+                            android:paddingTop="8dp"
+                            android:visibility="visible">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+                                <TextView
+                                    android:id="@+id/settingsSystemTitleTextView93"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:textSize="20dp"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="bold"
+                                    android:text="Online Order Popup Open"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1">
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2">
+                                <Switch
+                                    android:id="@+id/pushpopupopenynSwitch"
+                                    android:tag="pushpopupopenynSwitchTag"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="left|center_vertical"
+                                    style="@style/SwitchCustom80"
+                                    android:switchTextAppearance="@style/SwitchTextAppearance"
+                                    android:textOn="Yes"
+                                    android:textOff="No"
+                                    android:checked="false"/>
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+
+
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="0dp"

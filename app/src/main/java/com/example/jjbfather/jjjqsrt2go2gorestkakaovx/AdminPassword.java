@@ -121,7 +121,7 @@ public class AdminPassword extends Activity {
 
 
         // 네트워크 상태 체크
-        GlobalMemberValues.checkOnlineService(context, activity);
+        // GlobalMemberValues.checkOnlineService(context, activity);
 
         adminPasswordTitleTextView = (TextView)findViewById(R.id.adminPasswordTitleTextView);
         adminPasswordTitleTextView.setTextSize(GlobalMemberValues.globalAddFontSize() + adminPasswordTitleTextView.getTextSize() * GlobalMemberValues.getGlobalFontSize() + GlobalMemberValues.globalAddFontSizeForPAX());

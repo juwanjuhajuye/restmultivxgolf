@@ -13,8 +13,12 @@ public class ForecdTerminationService extends Service {
    @Override
    public void onTaskRemoved(Intent rootIntent) { //핸들링 하는 부분
       Log.e("Error","onTaskRemoved - 강제 종료 " + rootIntent);
-      Toast.makeText(this, "onTaskRemoved ", Toast.LENGTH_SHORT).show();
+//      Toast.makeText(this, "onTaskRemoved ", Toast.LENGTH_SHORT).show();
       GlobalMemberValues.doMethodInClose(MainActivity.mActivity);
+//      if(GlobalMemberValues.isTOrderUse()){
+//         GlobalMemberValues.sendTOrderAPIProgramFinish();
+//      }
+
       stopSelf(); //서비스 종료
    }
 

@@ -718,7 +718,7 @@ public class MainMiddleService {
         @Override
         public void onClick(View v) {
             // 네트워크 상태 체크
-            GlobalMemberValues.checkOnlineService(MainActivity.mContext, MainActivity.mActivity);
+            // GlobalMemberValues.checkOnlineService(MainActivity.mContext, MainActivity.mActivity);
 
             // All Discount / Extra 가 실행된지 체크후 -------------------------------
             // 실행후라면 이후의 코드를 실행하지 않는다.
@@ -2188,6 +2188,11 @@ public class MainMiddleService {
                                                 }
                                             } else {
                                                 item_delete_action_all();
+                                            }
+
+                                            //04182024 when menu is cancelled send POST request to TORDER
+                                            if(GlobalMemberValues.isTOrderUse()){
+                                                GlobalMemberValues.sendTOrderAPITableClear(GlobalMemberValues.mSelectedTableIdx);
                                             }
 
                                         }

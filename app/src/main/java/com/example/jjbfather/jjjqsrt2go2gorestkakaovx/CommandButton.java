@@ -420,6 +420,7 @@ public class CommandButton {
             commandButton_togo_table.setVisibility(View.VISIBLE);
         } else {
             closeBtn.setVisibility(View.VISIBLE);
+            downloadCommandButton.setVisibility(View.INVISIBLE);
 
             // 04302024
             if (!GlobalMemberValues.isQSRPOSonRestaurantPOS) {

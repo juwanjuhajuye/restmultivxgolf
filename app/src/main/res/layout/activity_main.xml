@@ -524,6 +524,22 @@
 
 
                         </LinearLayout>
+                        <LinearLayout
+
+                            android:id="@+id/main_top_left_customer_info_ln3"
+                            android:layout_weight="4"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+                            <Button
+                                android:id="@+id/main_top_left_order_list"
+                                android:text="Phone Order List"
+                                android:textColor="#ffffff"
+                                android:layout_marginLeft="100dp"
+                                android:background="@drawable/roundlayout_salehistory_button_blue"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"/>
+                        </LinearLayout>                        
 
 
 
@@ -1723,6 +1739,42 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"/>
+
+        <RelativeLayout
+            android:id="@+id/main_grid_relative_view"
+            android:horizontalSpacing="5dp"
+            android:verticalSpacing="5dp"
+            android:layout_marginTop="150dp"
+            android:layout_marginRight="200dp"
+            android:visibility="gone"
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:numColumns="3"
+                android:horizontalSpacing="5dp"
+                android:verticalSpacing="5dp"
+                android:id="@+id/main_quick_table_gridview"
+                android:visibility="visible"
+                android:background="#dde1ec"
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/main_grid_relative_view_loading"
+                android:background="#aaffffff"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:gravity="center"
+                    android:text="Loading.."
+                    android:textSize="40dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
+        </RelativeLayout>            
 
     </RelativeLayout>
 

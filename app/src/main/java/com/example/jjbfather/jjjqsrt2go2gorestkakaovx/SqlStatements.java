@@ -1609,7 +1609,12 @@ public class SqlStatements {
                     "itemdeletereasonyn nvarchar(2) DEFAULT 'N', " +        //  메뉴 삭제시 이유남겨야 될지 여부
 
                     // 01172024
-                    "tableorderuseyn nvarchar(2) DEFAULT 'N' " +        //  테이블 오더 사용 여부
+                    "tableorderuseyn nvarchar(2) DEFAULT 'N', " +        //  테이블 오더 사용 여부
+
+
+                    // 04192024
+                    // 온라인 주문 개선관련
+                    "pushpopupopenyn nvarchar(2) DEFAULT 'N'" +                   // push popup 창 오픈 여부
 
                     ")";
 

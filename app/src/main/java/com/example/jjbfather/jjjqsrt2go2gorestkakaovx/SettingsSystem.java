@@ -190,6 +190,8 @@ public class SettingsSystem extends Activity {
     // 01172024
     private TextView settingsSystemTitleTextView92;
 
+    private TextView settingsSystemTitleTextView93;
+
     private TextView infoTextView1, infoTextView2;
     // 01172024
     private TextView infoTextView3;
@@ -2166,6 +2168,11 @@ public class SettingsSystem extends Activity {
         // 01172024
         settingsSystemTitleTextView92 = (TextView)findViewById(R.id.settingsSystemTitleTextView92);
         settingsSystemTitleTextView92.setTextSize(settingsSystemTitleTextView92.getTextSize() * GlobalMemberValues.getGlobalFontSize());
+
+
+        settingsSystemTitleTextView93 = (TextView)findViewById(R.id.settingsSystemTitleTextView93);
+        settingsSystemTitleTextView93.setTextSize(settingsSystemTitleTextView93.getTextSize() * GlobalMemberValues.getGlobalFontSize());
+
 
 
         infoTextView1 = (TextView)findViewById(R.id.infoTextView1);

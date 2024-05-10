@@ -111,7 +111,7 @@ public class TableSaleMain extends Activity {
     public static String mSelectedZoneIdx = "";
     Button mSelectedZoneBtn = null;
 
-    static ArrayList<String> mAllTablesArrList;
+    public static ArrayList<String> mAllTablesArrList;
     public static ArrayList<String> mSelectedTablesArrList = null;
 
     public static String mSelectedTableIDX = "";
@@ -5297,6 +5297,9 @@ public class TableSaleMain extends Activity {
 
         try {
             GlobalMemberValues.phoneorderPrinting(paramHoldCode, "K", get_tableInfos);
+            if(GlobalMemberValues.isTOrderUse()){
+                GlobalMemberValues.sendTOrderAPIOrderData(paramHoldCode, "K", get_tableInfos);
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -5414,6 +5417,7 @@ public class TableSaleMain extends Activity {
 
 
         if (GlobalMemberValues.isQSRPOSonRestaurantPOS) {
+            if (GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAIN_TOP_LEFT_ORDER_LIST.isSelected()) GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAIN_TOP_LEFT_ORDER_LIST.callOnClick();
             setCloseActivity(false);
         } else {
             // 직원 선택창 여부
@@ -5488,6 +5492,12 @@ public class TableSaleMain extends Activity {
             } else {
                 temp_holdcode = getHoldCodeByTableidx(mTableIdxArrList.get(0).toString(), TableSaleMain.mSubTableNum);
             }
+
+            if (GlobalMemberValues.isQSRPOSonRestaurantPOS){
+                if (temp_holdcode.isEmpty()){
+                    temp_holdcode = getHoldCodeByTableidx_byQSR(mTableIdxArrList.get(0).toString(), TableSaleMain.mSubTableNum);
+                }
+            }            
 
             // 06.02.2022 ------------------------------------------------------------------
             if (!GlobalMemberValues.isStrEmpty(GlobalMemberValues.mHoldCode_byRepay)) {
@@ -6567,6 +6577,18 @@ public class TableSaleMain extends Activity {
             e.printStackTrace();
         }
     }
+
+    public static String getHoldCodeByTableidx_byQSR(String paramTableIdx, String paramSubTableNum) {
+        if (GlobalMemberValues.isStrEmpty(paramSubTableNum)) {
+            paramSubTableNum = "1";
+        }
+        paramTableIdx = paramTableIdx.replace("TT","T");
+        String temp_holdcode = MssqlDatabase.getResultSetValueToString(
+                "SELECT distinct holdcode FROM temp_salecart WHERE holdcode LIKE '%"+paramTableIdx+"%' and subtablenum = '" + paramSubTableNum + "' "
+        );
+
+        return temp_holdcode;
+    }    
 
 
 }

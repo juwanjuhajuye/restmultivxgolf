@@ -1100,9 +1100,13 @@ public class Payment {
                         // 수정 안됨.
                     } else {
                         // 수정 됨.
-                        GlobalMemberValues.displayDialog(MainActivity.mContext, "Warning",
-                                "There are changes to your order history.\nPlease print to kitchen the changes first", "Close");
-                        return;
+                        if (GlobalMemberValues.isQSRPOSonRestaurantPOS){
+
+                        } else {
+                            GlobalMemberValues.displayDialog(MainActivity.mContext, "Warning",
+                                    "There are changes to your order history.\nPlease print to kitchen the changes first", "Close");
+                            return;
+                        }
                     }
                     // temp_salecart 수정 제크.
 
@@ -1458,6 +1462,11 @@ public class Payment {
         GlobalMemberValues.logWrite("SignatureImageDeleteLog", "서명이미지 파일지정한 기간의 파일 삭제시작\n");
         GlobalMemberValues.deleteSignatureImageOnSales(context, mActivity);
 //        // -------------------------------------------------------------------------------------
+
+        //04192024 When order is paid for send POST request to TOrder
+        if(GlobalMemberValues.isTOrderUse()){
+            GlobalMemberValues.sendTOrderAPITableClear(GlobalMemberValues.mSelectedTableIdx);
+        }
 
         MainMiddleService.mHoldCode = "NOHOLDCODE";
         MainMiddleService.selectedPosition = -1;
