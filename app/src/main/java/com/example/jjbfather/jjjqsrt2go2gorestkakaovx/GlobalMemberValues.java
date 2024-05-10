@@ -6701,6 +6701,8 @@ public class GlobalMemberValues {
 
                                         String[] strOrderItems = strOrderItemsList[i].split(GlobalMemberValues.STRSPLITTER_ORDERITEM2);
 
+                                        GlobalMemberValues.logWrite("jjjkcprintlog", "strOrderItems.length : " + strOrderItems.length + "\n");
+
                                         // 상품명, 수량 정보 ------------------------------------------------------------------------
                                         qty = strOrderItems[1];
                                         kitchenprintnum = strOrderItems[2];
@@ -6720,18 +6722,28 @@ public class GlobalMemberValues {
                                         String tempItemNameOptionAdd = strOrderItems[0];
                                         GlobalMemberValues.logWrite("jjjkcprintlog", "tempItemNameOptionAdd : " + tempItemNameOptionAdd + "\n");
                                         String[] strItemNAmeOptionAdd = tempItemNameOptionAdd.split(GlobalMemberValues.STRSPLITTER_ORDERITEM3);
-                                        itemName = strItemNAmeOptionAdd[0];
 
+                                        GlobalMemberValues.logWrite("jjjkcprintlog", "strItemNAmeOptionAdd.length : " + strItemNAmeOptionAdd.length + "\n");
+
+                                        itemName = strItemNAmeOptionAdd[0];
                                         optionTxt = strItemNAmeOptionAdd[1];
                                         additionalTxt1 = strItemNAmeOptionAdd[2];
                                         additionalTxt2 = strItemNAmeOptionAdd[3];
                                         itemIdx = strItemNAmeOptionAdd[4];
-                                        kitchenprintnum = strItemNAmeOptionAdd[5];
-                                        nokitchenmemo = strItemNAmeOptionAdd[6];
-                                        kitchenmemo = strItemNAmeOptionAdd[7];
+                                        if (strItemNAmeOptionAdd.length > 5) {
+                                            kitchenprintnum = strItemNAmeOptionAdd[5];
+                                        }
+                                        if (strItemNAmeOptionAdd.length > 6) {
+                                            nokitchenmemo = strItemNAmeOptionAdd[6];
+                                        }
+                                        if (strItemNAmeOptionAdd.length > 7) {
+                                            kitchenmemo = strItemNAmeOptionAdd[7];
+                                        }
                                         if (strItemNAmeOptionAdd.length > 8) {
                                             soldoutmemo = strItemNAmeOptionAdd[8];
                                         }
+
+                                        GlobalMemberValues.logWrite("logcheckjjj", "체크1" + "\n");
 
                                         if (GlobalMemberValues.isStrEmpty(categoryname)) {
                                             qty = "0";
@@ -6779,6 +6791,8 @@ public class GlobalMemberValues {
                                             soldoutmemo = "";
                                         }
 
+                                        GlobalMemberValues.logWrite("logcheckjjj", "체크2" + "\n");
+
                                         double sPriceAmount = GlobalMemberValues.getDoubleAtString(salesPrice) * GlobalMemberValues.getIntAtString(qty);
                                         double sTaxAmount = GlobalMemberValues.getDoubleAtString(tax) * GlobalMemberValues.getIntAtString(qty);
                                         double sTotalAmount = sPriceAmount + sTaxAmount;
@@ -6820,6 +6834,8 @@ public class GlobalMemberValues {
                                         int mergednum = 0;
 
                                         String tempStationCode = ordertype;
+
+                                        GlobalMemberValues.logWrite("logcheckjjj", "체크3" + "\n");
 
                                         strQuery = " insert into temp_salecart ( " +
                                                 " holdcode, sidx, stcode, midx, svcIdx,  " +
@@ -6912,6 +6928,8 @@ public class GlobalMemberValues {
                                                 " ) ";
                                         dbVec.addElement(strQuery);
 
+                                        GlobalMemberValues.logWrite("logcheckjjj", "체크4" + "\n");
+
                                         GlobalMemberValues.logWrite("openNewSideMenuStr5", "strQuery : " + strQuery + "\n");
 
                                         // -----------------------------------------------------------------------------------------
@@ -6989,6 +7007,8 @@ public class GlobalMemberValues {
                                         GlobalMemberValues.setSendCartToCloud(MainActivity.mContext, MainActivity.mActivity);
                                     }
                                     // 02242024 - 추가작업 ---------------------------------------------------------------------
+
+
 
 
 
