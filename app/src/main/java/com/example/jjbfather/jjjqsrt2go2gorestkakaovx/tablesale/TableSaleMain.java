@@ -5853,8 +5853,10 @@ public class TableSaleMain extends Activity {
 
 
         // 05202024
-        GlobalMemberValues.SAVEORDELETE = "del";
-        GlobalMemberValues.setTableIdxInCloud(mContext, mActivity);
+        if (GlobalMemberValues.isTOrderUse()) {
+            GlobalMemberValues.SAVEORDELETE = "del";
+            GlobalMemberValues.setTableIdxInCloud(mContext, mActivity);
+        }
 
 
 

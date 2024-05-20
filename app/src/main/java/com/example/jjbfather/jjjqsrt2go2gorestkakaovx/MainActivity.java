@@ -3518,16 +3518,18 @@ public class MainActivity extends Activity {
 
 
         // 05202024
-        if (TableSaleMain.mTableIdxArrList != null && TableSaleMain.mTableIdxArrList.size() > 0) {
-            String tableIdx = TableSaleMain.mTableIdxArrList.get(0).toString();
-            if (!GlobalMemberValues.isStrEmpty(tableIdx)) {
-                tableIdx = tableIdx.replace("T", "");
+        if (GlobalMemberValues.isTOrderUse()) {
+            if (TableSaleMain.mTableIdxArrList != null && TableSaleMain.mTableIdxArrList.size() > 0) {
+                String tableIdx = TableSaleMain.mTableIdxArrList.get(0).toString();
+                if (!GlobalMemberValues.isStrEmpty(tableIdx)) {
+                    tableIdx = tableIdx.replace("T", "");
+                }
+
+                GlobalMemberValues.logWrite("settableidxincloudstr", "tableIdx : " + tableIdx + "\n");
+
+                GlobalMemberValues.SAVEORDELETE = "ins";
+                GlobalMemberValues.setTableIdxInCloud(mContext, mActivity);
             }
-
-            GlobalMemberValues.logWrite("settableidxincloudstr", "tableIdx : " + tableIdx + "\n");
-
-            GlobalMemberValues.SAVEORDELETE = "ins";
-            GlobalMemberValues.setTableIdxInCloud(mContext, mActivity);
         }
 
 
