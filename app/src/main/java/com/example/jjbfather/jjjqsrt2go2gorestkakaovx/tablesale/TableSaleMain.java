@@ -5849,6 +5849,15 @@ public class TableSaleMain extends Activity {
         if (TableSaleBillPrint.mActivity != null && !TableSaleBillPrint.mActivity.isFinishing()) {
             TableSaleBillPrint.mActivity.finish();
         }
+
+
+
+        // 05202024
+        GlobalMemberValues.SAVEORDELETE = "del";
+        GlobalMemberValues.setTableIdxInCloud(mContext, mActivity);
+
+
+
     }
 
     @Override

@@ -733,6 +733,18 @@ public class GlobalMemberValues {
     // 신규 테이블오더 체크 서비스
     public static Activity CURRENTACTIVITYOPENEDSERVICE_NEWTABLEORDER = null;
 
+
+
+    // 05202024
+    // 신규 set Table Idx 체크 서비스 인텐트
+    public static Intent CURRENTSERVICEINTENT_SETTABLEIDX = null;
+    // 신규 set Table Idx 체크 서비스
+    public static Activity CURRENTACTIVITYOPENEDSERVICE_SETTABLEIDX = null;
+    // Save or Delete 여부
+    public static String SAVEORDELETE = "";
+
+
+
     // 신규 Curbside 오더 체크 서비스 인텐트
     public static Intent CURRENTSERVICEINTENT_CURSIDE = null;
     // 신규 Curbside 오더 체크 서비스
@@ -20098,10 +20110,10 @@ public class GlobalMemberValues {
         // create a clock
         ZoneId utczone = null;
         ZonedDateTime timestamp = null;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             utczone = ZoneId.of("UTC");
         }
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             timestamp = ZonedDateTime.now(utczone);
         }
 
@@ -20142,10 +20154,10 @@ public class GlobalMemberValues {
         // create a clock
         ZoneId utczone = null;
         ZonedDateTime timestamp = null;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             utczone = ZoneId.of("UTC");
         }
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             timestamp = ZonedDateTime.now(utczone);
         }
 
@@ -20188,10 +20200,10 @@ public class GlobalMemberValues {
         // create a clock
         ZoneId utczone = null;
         ZonedDateTime timestamp = null;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             utczone = ZoneId.of("UTC");
         }
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             timestamp = ZonedDateTime.now(utczone);
         }
 
@@ -20306,10 +20318,10 @@ public class GlobalMemberValues {
         // create a clock
         ZoneId utczone = null;
         ZonedDateTime timestamp = null;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             utczone = ZoneId.of("UTC");
         }
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             timestamp = ZonedDateTime.now(utczone);
         }
 
@@ -20540,22 +20552,47 @@ public class GlobalMemberValues {
 
                             String[] modifierItem = paramTxtArr[j].split("[(]");
                             String modifierName = "";
-                            int modifierQty = 0;
+                            int modifierQty = 1;
                             double modifierPrice = 0.0;
 
                             //modifier name
                             if (modifierItem.length > 0) {
                                 modifierName = modifierItem[0];
                                 if (modifierItem.length > 1) {
-                                    //modifier quantity
-                                    String modifierQtyString = modifierItem[1].replace("ea)", "");
-                                    modifierQtyString = modifierQtyString.trim();
-                                    modifierQty = Integer.parseInt(modifierQtyString);
+                                    //05162024 check if index 1 contains quantity or price.
+                                    //Index 1 is quantity
+                                    if(modifierItem[1].contains("ea")){
+                                        //modifier quantity
+                                        String modifierQtyString = modifierItem[1].replace("ea)", "");
+                                        modifierQtyString = modifierQtyString.trim();
 
-                                    //modifier price
+                                        //05162024 catch exception in case qty does not exist.
+                                        try {
+                                            modifierQty = Integer.parseInt(modifierQtyString);
+                                        } catch (Exception e){
+                                            modifierQty = 1;
+                                        }
+                                        //Index 1 is price
+                                    } else {
+                                        try {
+                                            modifierPrice = Double.parseDouble(modifierItem[1].replace("-", "").replace("+", "").replace(")", ""));
+                                            modifierPrice = modifierPrice / modifierQty;
+                                        } catch (Exception e){
+                                            modifierPrice = 0.0;
+                                        }
+                                    }
+
+                                    //modifier price. Only runs when modifier qty view setting is being used, making the modifierItemLength
+                                    //equal 3 (name, qty, price).
                                     if (modifierItem.length > 2) {
                                         //TODO: Add check for negative since negative will not be allowed?
-                                        modifierPrice = Double.parseDouble(modifierItem[2].replace("-", "").replace("+", "").replace(")", ""));
+                                        //05162024 catch exception in case qty does not exist.
+                                        try {
+                                            modifierPrice = Double.parseDouble(modifierItem[2].replace("-", "").replace("+", "").replace(")", ""));
+                                            modifierPrice = modifierPrice / modifierQty;
+                                        } catch (Exception e){
+                                            modifierPrice = 0.0;
+                                        }
                                     }
                                 }
                             }
@@ -20648,10 +20685,10 @@ public class GlobalMemberValues {
         // create a clock
         ZoneId utczone = null;
         ZonedDateTime timestamp = null;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             utczone = ZoneId.of("UTC");
         }
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             timestamp = ZonedDateTime.now(utczone);
         }
 
@@ -20698,5 +20735,19 @@ public class GlobalMemberValues {
         }
 
         return returnValue;
+    }
+
+
+    // 05202024
+    public static void setTableIdxInCloud(Context paramContext, Activity paramActivity) {
+        if (paramContext != null && paramActivity != null) {
+            if (CURRENTACTIVITYOPENEDSERVICE_SETTABLEIDX != null && CURRENTSERVICEINTENT_SETTABLEIDX != null) {
+            }
+
+            Intent intent = new Intent(paramContext.getApplicationContext(), SetTableIdxInCloudService.class);
+            CURRENTSERVICEINTENT_SETTABLEIDX = intent;    // 실행되는 서비스 인텐트를 저장해둔다.
+            CURRENTACTIVITYOPENEDSERVICE_SETTABLEIDX = paramActivity;           // 서비스를 실행시킨 액티비티를 저장해 둔다.
+            paramActivity.startService(intent);
+        }
     }
 }

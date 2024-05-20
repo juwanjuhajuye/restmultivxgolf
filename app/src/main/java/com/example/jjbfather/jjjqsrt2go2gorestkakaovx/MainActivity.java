@@ -3516,6 +3516,23 @@ public class MainActivity extends Activity {
         }
 
 
+
+        // 05202024
+        if (TableSaleMain.mTableIdxArrList != null && TableSaleMain.mTableIdxArrList.size() > 0) {
+            String tableIdx = TableSaleMain.mTableIdxArrList.get(0).toString();
+            if (!GlobalMemberValues.isStrEmpty(tableIdx)) {
+                tableIdx = tableIdx.replace("T", "");
+            }
+
+            GlobalMemberValues.logWrite("settableidxincloudstr", "tableIdx : " + tableIdx + "\n");
+
+            GlobalMemberValues.SAVEORDELETE = "ins";
+            GlobalMemberValues.setTableIdxInCloud(mContext, mActivity);
+        }
+
+
+
+
         // 장바구니 메뉴가 담길때만 send to kitchen 보이게
         if (MainMiddleService.mSaleCartAdapter == null){
             if (GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINBUTTONSAVEORDER != null)

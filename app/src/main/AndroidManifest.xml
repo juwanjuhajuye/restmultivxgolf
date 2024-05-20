@@ -865,6 +865,15 @@
             android:name="com.example.jjbfather.jjjqsrt2go2gorestkakaovx.CheckCursideInCloudService"
             android:enabled="true"
             android:exported="false" />
+
+
+        <!-- 05202024 -->
+        <service
+            android:name="com.example.jjbfather.jjjqsrt2go2gorestkakaovx.SetTableIdxInCloudService"
+            android:enabled="true"
+            android:exported="false" />
+
+
         <service
             android:name="com.example.jjbfather.jjjqsrt2go2gorestkakaovx.CheckNewSideMenuOrderCloudService"
             android:enabled="true"

@@ -973,6 +973,10 @@ public class MssqlAlterTables {
         alterDatabaseTableColumn(altTableName, "qsronrestaurantyn", "nvarchar(2)", "DEFAULT 'N'");
 
 
+        // salon_sales_kitchenprintingdata_json 테이블 컬럼 추가
+        // 5.17.2024, stcode 컬럼 추가
+        altTableName = "salon_sales_kitchenprintingdata_json";
+        alterDatabaseTableColumn(altTableName, "stcode", "nvarchar(50)", "DEFAULT ''");
     }
 
     public static void alterTableColumnType() {
