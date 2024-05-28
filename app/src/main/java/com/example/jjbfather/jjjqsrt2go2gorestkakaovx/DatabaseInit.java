@@ -3759,14 +3759,6 @@ public class DatabaseInit {
             alterDatabaseTableColumn(altTableName, "qsronrestaurantyn", "nvarchar(2)", "DEFAULT 'N'", 0);
         }
 
-
-        // salon_sales_kitchenprintingdata_json 테이블 컬럼 추가
-        // 5.17.2024, stcode 컬럼 추가
-        altTableName = "salon_sales_kitchenprintingdata_json";
-        if (checkTable(altTableName) > 0) {
-            alterDatabaseTableColumn(altTableName, "stcode", "nvarchar(50)", "DEFAULT ''", 0);
-        }
-
         /****************************************************************************/
     }
 

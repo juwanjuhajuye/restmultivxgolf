@@ -6854,6 +6854,9 @@ public class GlobalMemberValues {
                                             soldoutmemo = "";
                                         }
 
+                                        // 05282024
+                                        salesPrice = GlobalMemberValues.getDoubleAtString(salesPrice) + GlobalMemberValues.getDoubleAtString(optionprice) + "";
+
                                         GlobalMemberValues.logWrite("logcheckjjj", "체크2" + "\n");
 
                                         double sPriceAmount = GlobalMemberValues.getDoubleAtString(salesPrice) * GlobalMemberValues.getIntAtString(qty);
