@@ -20102,12 +20102,35 @@ public class GlobalMemberValues {
         return returnData;
     }
 
+    // 05292024
+    // 05292024
+    public static String makeStoreCodeForTOrder() {
+        String returnValue = "";
+
+        String tempStoreCode = GlobalMemberValues.STORE_INDEX;
+
+        if (!GlobalMemberValues.isStrEmpty(tempStoreCode)) {
+            int lenStoreCode = tempStoreCode.length();
+            if (lenStoreCode < 5) {
+                String varStr = "";
+                for (int i = 0; i < (5 - lenStoreCode); i++) {
+                    varStr += "0";
+                }
+                tempStoreCode = varStr + tempStoreCode;
+            }
+
+            returnValue = "nz_st_" + tempStoreCode;
+        }
+
+        return returnValue;
+    }
+
     //03252024 T-Order API methods
     //API call when restuarant program has started
     //event code: P0101
     public static void sendTOrderAPIProgramStart() {
         String code = "P0101";
-        String storeId = SALON_CODE;
+        String storeId = GlobalMemberValues.makeStoreCodeForTOrder();
         String message = "POS program started";
 
         // create a clock
@@ -20151,7 +20174,7 @@ public class GlobalMemberValues {
     //event code: P0101
     public static void sendTOrderAPIProgramFinish() {
         String code = "P0102";
-        String storeId = SALON_CODE;
+        String storeId = GlobalMemberValues.makeStoreCodeForTOrder();
         String message = "POS program exited";
 
         // create a clock
@@ -20197,7 +20220,7 @@ public class GlobalMemberValues {
         String JsonMsg = "";
 
         String code = "P0102";
-        String storeId = SALON_CODE;
+        String storeId = GlobalMemberValues.makeStoreCodeForTOrder();
         String message = "POS program exited";
 
         // create a clock
@@ -20314,7 +20337,7 @@ public class GlobalMemberValues {
     //event code: P0401
     public static void sendTOrderAPIOrderData(String paramSalesCode, String paramPrintingType, String paramTableInfos) {
         String code = "P0401";
-        String storeId = SALON_CODE;
+        String storeId = GlobalMemberValues.makeStoreCodeForTOrder();
         String tableId = "";
         String message = "Table" + tableId + "order data sent";
 
@@ -20681,7 +20704,7 @@ public class GlobalMemberValues {
     //event code: P0402
     public static void sendTOrderAPITableClear(String tableid) {
         String code = "P0501";
-        String storeId = SALON_CODE;
+        String storeId = GlobalMemberValues.makeStoreCodeForTOrder();
         String tableId = tableid;
         String message = "Table" + tableId + "cleared";
 
