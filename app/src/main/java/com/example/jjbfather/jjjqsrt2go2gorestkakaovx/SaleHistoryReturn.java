@@ -1498,7 +1498,15 @@ public class SaleHistoryReturn extends Activity {
 
         // 팁 Tip 리턴처리 ------------------------------------------------------------------------------------------------------
         for (String salesTipIdx : mSelectedTipIdxArrayList) {
-            strDelSqlQuery = "delete from salon_sales_tip where idx = '" + salesTipIdx + "' ";
+            // strDelSqlQuery = "delete from salon_sales_tip where idx = '" + salesTipIdx + "' ";
+            strDelSqlQuery = " insert into salon_sales_tip (sidx, salesCode, employeeIdx, employeeName, serverIdx, serverName, usedCash, usedCard, cardCom, codeforupload, isCloudUpload," +
+                    " wdate) " +
+                    " select sidx, salesCode, employeeIdx, employeeName, serverIdx, serverName, (usedCash * -1), (usedCard * -1), cardCom, codeforupload, 1, " +
+                    " '" + DateMethodClass.nowYearGet() + "-" + DateMethodClass.nowMonthGet() + "-" + DateMethodClass.nowDayGet() +
+                    " " + DateMethodClass.nowHourGet() + ":" + DateMethodClass.nowMinuteGet() + ":" + DateMethodClass.nowSecondGet() + "'" +
+                    " from salon_sales_tip " +
+                    " where idx = '" + salesTipIdx + "' ";
+            GlobalMemberValues.logWrite("tiplogjjj", "sql : " + strDelSqlQuery + "\n");
             strInsertQueryVec.addElement(strDelSqlQuery);
         }
         // ---------------------------------------------------------------------------------------------------------------------
@@ -1638,6 +1646,28 @@ public class SaleHistoryReturn extends Activity {
         if (mPickupDeliveryFee > 0) {
             strUpdSqlQuery += ", deliverypickupfee = deliverypickupfee - " + mPickupDeliveryFee + "";
             strUpdSqlQuery += ", returneddeliverypickupfee = " + (mPickupDeliveryFee * -1) + "";
+
+            // 05302024 -------------------------
+            // 오늘날짜가 아닌 데이터를 return 할 경우 EOD 에서 해당 금액을 합산처리하기 위해 deliverypickupfee 금액을 임시테이블에 저장한다.
+            String salonsales_date = MainActivity.mDbInit.dbExecuteReadReturnString(
+                    " select strftime('%Y-%m-%d', saledate) from salon_sales where salescode = '" + mSalesCode + "' and endofdayNum > 0 "
+            );
+            GlobalMemberValues.logWrite("deliverytogofeelogjjj", "salonsales_date : " + salonsales_date + "\n");
+            GlobalMemberValues.logWrite("deliverytogofeelogjjj", "now date : " + DateMethodClass.nowYearGet() + "-" + DateMethodClass.nowMonthGet() + "-" + DateMethodClass.nowDayGet() + "\n");
+            if (!GlobalMemberValues.isStrEmpty(salonsales_date)) {
+                String nowDateTemp = DateMethodClass.nowYearGet() + "-" + DateMethodClass.nowMonthGet() + "-" + DateMethodClass.nowDayGet();
+                if (!nowDateTemp.equals(salonsales_date)) {
+                    String insQuery = " insert into salon_sales_togodeliveryfee (sidx, salescode, deliverypickupfee, employeeidx) values ( " +
+                            " '" + GlobalMemberValues.STORE_INDEX + "', " +
+                            " '" + mSalesCode + "', " +
+                            " '" + (mPickupDeliveryFee * -1) + "', " +
+                            " '" + GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx + "' " +
+                            " ) ";
+                    GlobalMemberValues.logWrite("deliverytogofeelogjjj", "insQuery : " + insQuery + "\n");
+                    strInsertQueryVec.addElement(insQuery);
+                }
+            }
+            // 05302024 -------------------------
         }
         if (mTotalTipAmount > 0) {
             strUpdSqlQuery += ", returnedtip = " + (mTotalTipAmount * -1) + "";

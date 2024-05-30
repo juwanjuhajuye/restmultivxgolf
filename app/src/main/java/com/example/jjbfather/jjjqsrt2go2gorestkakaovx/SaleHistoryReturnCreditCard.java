@@ -671,18 +671,30 @@ public class SaleHistoryReturnCreditCard extends Activity {
             String returnResult = "";
 
             // 원래 sale 의 직원 idx, name 가져오기
-            String tempEmpIdx = MainActivity.mDbInit.dbExecuteReadReturnString(
+            String tempEmpIdx = MssqlDatabase.getResultSetValueToString(
                     " select employeeIdx from salon_sales_card where salesCode = 'K" + insSalesCode.substring(1) + "' "
             );
-            String tempEmpName = MainActivity.mDbInit.dbExecuteReadReturnString(
+            String tempEmpName = MssqlDatabase.getResultSetValueToString(
                     " select employeeName from salon_sales_card where salesCode = 'K" + insSalesCode.substring(1) + "' "
             );
+
+
+            // 05302024
+            // 리턴시 원래 tip 금액 저장
+            String tempOrgTip = MssqlDatabase.getResultSetValueToString(
+                    " select tipAmount from salon_sales_card where salesCode = 'K" + insSalesCode.substring(1) + "' "
+            );
+            if (GlobalMemberValues.getDoubleAtString(tempOrgTip) == 0) {
+                tempOrgTip = "0.0";
+            }
+
 
             strInsSqlQuery = "insert into salon_sales_card (" +
                     " salesCode, tid, sidx, stcode, cardCom, priceAmount, insertSwipeKeyin, status, " +
                     " cardLastFourDigitNumbers, cardRefNumber, " +
                     " cardEmvAid, cardEmvTsi, cardEmvTvr, " +
-                    " returnCode, employeeIdx, employeeName " +
+                    " returnCode, employeeIdx, employeeName, " +
+                    " orgTip " +
                     " ) values ( " +
                     " '" + insSalesCode + "', " +
                     " '" + insTid + "', " +
@@ -699,7 +711,8 @@ public class SaleHistoryReturnCreditCard extends Activity {
                     " '" + insCardEmvTvr + "', " +
                     " '" + SaleHistoryReturn.mStrReturnCode + "', " +
                     " '" + tempEmpIdx + "', " +
-                    " '" + tempEmpName + "' " +
+                    " '" + tempEmpName + "', " +
+                    " '" + tempOrgTip + "' " +
                     ")";
             // salon_sales_card 입력쿼리를 백터 strInsertQueryVec 에 담는다.
             strInsertQueryVec.addElement(strInsSqlQuery);

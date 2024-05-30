@@ -268,6 +268,9 @@ public class DatabaseInit {
         // 02192024
         strCreateTableVec.addElement(SqlStatements.SQL_CREATE_SALONSTOREMEMBERLEVEL);
 
+        // 05302024
+        strCreateTableVec.addElement(SqlStatements.SQL_CREATE_SALONSALESTOGODELIVERYFEE);
+
 
         // 테이블 컬럼 수정, 삭제 등 처리
         // ...................................
@@ -3758,6 +3761,35 @@ public class DatabaseInit {
         if (checkTable(altTableName) > 0) {
             alterDatabaseTableColumn(altTableName, "qsronrestaurantyn", "nvarchar(2)", "DEFAULT 'N'", 0);
         }
+
+
+        // salon_storegeneral 테이블 컬럼 추가
+        // 5.30.2024, torderapikey 컬럼 추가
+        altTableName = "salon_storegeneral";
+        if (checkTable(altTableName) > 0) {
+            alterDatabaseTableColumn(altTableName, "torderapikey", "nvarchar(1000)", "DEFAULT ''", 0);
+        }
+        // salon_storegeneral 테이블 컬럼 추가
+        // 5.30.2024, torderpartnerid 컬럼 추가
+        altTableName = "salon_storegeneral";
+        if (checkTable(altTableName) > 0) {
+            alterDatabaseTableColumn(altTableName, "torderpartnerid", "nvarchar(200)", "DEFAULT ''", 0);
+        }
+        // salon_storegeneral 테이블 컬럼 추가
+        // 5.30.2024, torderapiurl 컬럼 추가
+        altTableName = "salon_storegeneral";
+        if (checkTable(altTableName) > 0) {
+            alterDatabaseTableColumn(altTableName, "torderapiurl", "nvarchar(1000)", "DEFAULT ''", 0);
+        }
+
+
+        // salon_sales_card 테이블 컬럼 추가
+        // 05.30.2024, orgTip 컬럼 추가
+        altTableName = "salon_sales_card";
+        if (checkTable(altTableName) > 0) {
+            alterDatabaseTableColumn(altTableName, "orgTip", "money", "DEFAULT 0.0", 0);
+        }
+
 
         /****************************************************************************/
     }

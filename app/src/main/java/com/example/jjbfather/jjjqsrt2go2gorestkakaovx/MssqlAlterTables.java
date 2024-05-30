@@ -973,6 +973,25 @@ public class MssqlAlterTables {
         alterDatabaseTableColumn(altTableName, "qsronrestaurantyn", "nvarchar(2)", "DEFAULT 'N'");
 
 
+        // salon_storegeneral 테이블 컬럼 추가
+        // 3.25.2024, torderapikey 컬럼 추가
+        altTableName = "salon_storegeneral";
+        alterDatabaseTableColumn(altTableName, "torderapikey", "nvarchar(1000)", "DEFAULT ''");
+        // salon_storegeneral 테이블 컬럼 추가
+        // 3.25.2024, torderpartnerid 컬럼 추가
+        altTableName = "salon_storegeneral";
+        alterDatabaseTableColumn(altTableName, "torderpartnerid", "nvarchar(200)", "DEFAULT ''");
+        // salon_storegeneral 테이블 컬럼 추가
+        // 3.25.2024, torderapiurl 컬럼 추가
+        altTableName = "salon_storegeneral";
+        alterDatabaseTableColumn(altTableName, "torderapiurl", "nvarchar(1000)", "DEFAULT ''");
+
+
+        // salon_sales_card 테이블 컬럼 추가
+        // 5.30.2024, orgTip 컬럼 추가
+        altTableName = "salon_sales_card";
+        alterDatabaseTableColumn(altTableName, "orgTip", "money", "DEFAULT 0.0");
+
     }
 
     public static void alterTableColumnType() {

@@ -216,6 +216,10 @@ public class MssqlCreateTables {
         vec.addElement(SqlStatements_mssql.SQL_CREATE_SALONSTOREMEMBERLEVEL);
 
 
+        // 05302024
+        vec.addElement(SqlStatements_mssql.SQL_CREATE_SALONSALESTOGODELIVERYFEE);
+
+
 
         MssqlDatabase.executeTransaction(vec);
     }

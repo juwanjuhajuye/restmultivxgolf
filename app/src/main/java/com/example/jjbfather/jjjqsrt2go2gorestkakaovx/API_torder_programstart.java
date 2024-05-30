@@ -36,7 +36,7 @@ public class API_torder_programstart extends AsyncTask {
     String smsSentResultStr = "";
 
     public API_torder_programstart(String paramJson) {
-        mStrUrl = GlobalMemberValues.API_TORDER;
+        mStrUrl = GlobalMemberValues.getTOrderApiUrl();
         JsonMsg = paramJson;
     }
 
@@ -60,7 +60,7 @@ public class API_torder_programstart extends AsyncTask {
                 conn.setReadTimeout(5 * 1000);
                 //conn.setRequestProperty ("Authorization", basicAuth);
                 conn.setRequestMethod("POST");
-                conn.setRequestProperty("Authorization","Bearer " + GlobalMemberValues.TORDER_API_KEY);
+                conn.setRequestProperty("Authorization","Bearer " + GlobalMemberValues.getTOrderApiKey());
                 conn.setRequestProperty("Content-Type", "application/json");
                 conn.setRequestProperty("Accept", "application/json");
                 conn.setDoOutput(true);

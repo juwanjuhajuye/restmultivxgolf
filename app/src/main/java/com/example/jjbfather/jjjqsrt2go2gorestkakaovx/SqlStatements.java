@@ -446,6 +446,11 @@ public class SqlStatements {
                     "torderuseyn nvarchar(2) DEFAULT 'N', " +
                     "torderkey nvarchar(100) DEFAULT '', " +
 
+                    // 05302024
+                    "torderapikey nvarchar(1000) DEFAULT '', " +
+                    "torderpartnerid nvarchar(200) DEFAULT '', " +
+                    "torderapiurl nvarchar(1000) DEFAULT '', " +
+
                     // 04302024
                     "qsronrestaurantyn nvarchar(2) DEFAULT 'N' " +
 
@@ -1445,7 +1450,12 @@ public class SqlStatements {
 
                     "cashoutNum int null DEFAULT 0, " +                             // cash out 여부
                     "endofdayNum int DEFAULT 0, " +                             // End of Day 여부
-                    "split_transaction_id nvarchar(100) default '' " +
+                    "split_transaction_id nvarchar(100) default '', " +
+
+                    // 05302024
+                    // 리턴시 원래 tip 금액 저장
+                    "orgTip money DEFAULT 0.0 " +
+
                     ")";
 
 
@@ -3363,6 +3373,22 @@ public class SqlStatements {
                     "edate datetime DEFAULT (datetime('now', 'localtime')) " +
 
                     ")";
+
+
+    // 05302024
+    // 테이블 salon_sales_togodeliveryfee 생성쿼리
+    public static final String SQL_CREATE_SALONSALESTOGODELIVERYFEE =
+            "CREATE TABLE IF NOT EXISTS salon_sales_togodeliveryfee ( " +
+                    "idx INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "sidx int NULL," +
+                    "salesCode nvarchar(100), " +
+                    "deliverypickupfee money DEFAULT 0.0, " +
+                    "wdate datetime DEFAULT (datetime('now', 'localtime')), " +
+                    "cashoutNum int null DEFAULT 0, " +                             // cash out 여부
+                    "endofdayNum int DEFAULT 0, " +                             // End of Day 여부
+                    "employeeidx int null " +
+                    ")";
+
 
 
 

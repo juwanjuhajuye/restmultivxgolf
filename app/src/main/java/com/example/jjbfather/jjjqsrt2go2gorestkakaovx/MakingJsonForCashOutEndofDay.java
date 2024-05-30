@@ -838,6 +838,16 @@ public class MakingJsonForCashOutEndofDay {
                 " and status = 0 " +
                 " and deliverytakeaway = 'T' ";
         String salessummary_pickupfee = getDataOnSql(isEndofday, sqlQuery);
+
+        // 05302024 ------------------------------------
+        // 오늘날짜가 아닌 다른 날짜를 return 처리한 deliverypickupfee 금액을 가져온다.
+        sqlQuery = "select sum(round(deliverypickupfee, 2)) from salon_sales_togodeliveryfee " +
+                " where " + empSqlQuery + addSqlQuery;
+        String diffdate_deliverypickupfee = getDataOnSql(isEndofday, sqlQuery);
+        double pickupfee_dbl = GlobalMemberValues.getDoubleAtString(salessummary_pickupfee) + GlobalMemberValues.getDoubleAtString(diffdate_deliverypickupfee);
+        salessummary_pickupfee = pickupfee_dbl + "";
+        // 05302024 ------------------------------------
+
         jsonroot.put("salessummary_pickupfee",
                 GlobalMemberValues.getCommaStringForDouble(GlobalMemberValues.getDoubleAtString(salessummary_pickupfee) + ""));  // JSON
         // ------------------------------------------------------------------------------------------------------------------
@@ -996,7 +1006,7 @@ public class MakingJsonForCashOutEndofDay {
 //                " and delyn = 'N' " +
 //                " and status = 0 ";
 
-        sqlQuery = "select sum(round(priceAmount, 2)) from salon_sales_card " +
+        sqlQuery = "select sum(round((priceAmount + orgTip), 2)) from salon_sales_card " +
                 " where " + empSqlQuery + addSqlQuery +
                 " and delyn = 'N' " +
                 " and " + subStrString + " not in (select " + subStrString + " from salon_sales_card where substr(salesCode, 1, 1) = 'V') ";
@@ -1189,7 +1199,7 @@ public class MakingJsonForCashOutEndofDay {
             jsonroot.put("cardsettlementdetail_cardtransmaster", cardsettlementdetail_cardtransmaster);  // JSON
             // -------------------------------------------------------------------------------------------------------------------
             // Master Sales --------------------------------------------------------------------------------------------------
-            sqlQuery = "select sum(round(priceAmount, 2)) from salon_sales_card " +
+            sqlQuery = "select sum(round((priceAmount + orgTip), 2)) from salon_sales_card " +
                     " where " + empSqlQuery + addSqlQuery +
                     " and delyn = 'N' " +
                     " and cardCom = 'M'" +
@@ -1200,7 +1210,7 @@ public class MakingJsonForCashOutEndofDay {
             jsonroot.put("cardsettlementdetail_cardsalesmaster", cardsettlementdetail_cardsalesmaster);  // JSON
             // -------------------------------------------------------------------------------------------------------------------
             // Master Refund --------------------------------------------------------------------------------------------------
-            sqlQuery = "select sum(round(priceAmount, 2)) from salon_sales_card " +
+            sqlQuery = "select sum(round((priceAmount + orgTip), 2)) from salon_sales_card " +
                     " where " + empSqlQuery + addSqlQuery +
                     " and delyn = 'N' " +
                     " and cardCom = 'M'" +
@@ -1240,7 +1250,7 @@ public class MakingJsonForCashOutEndofDay {
             jsonroot.put("cardsettlementdetail_cardtransvisa", cardsettlementdetail_cardtransvisa);  // JSON
             // -------------------------------------------------------------------------------------------------------------------
             // visa Sales --------------------------------------------------------------------------------------------------
-            sqlQuery = "select sum(round(priceAmount, 2)) from salon_sales_card " +
+            sqlQuery = "select sum(round((priceAmount + orgTip), 2)) from salon_sales_card " +
                     " where " + empSqlQuery + addSqlQuery +
                     " and delyn = 'N' " +
                     " and cardCom = 'V'" +
@@ -1251,7 +1261,7 @@ public class MakingJsonForCashOutEndofDay {
             jsonroot.put("cardsettlementdetail_cardsalesvisa", cardsettlementdetail_cardsalesvisa);  // JSON
             // -------------------------------------------------------------------------------------------------------------------
             // visa Refund --------------------------------------------------------------------------------------------------
-            sqlQuery = "select sum(round(priceAmount, 2)) from salon_sales_card " +
+            sqlQuery = "select sum(round((priceAmount + orgTip), 2)) from salon_sales_card " +
                     " where " + empSqlQuery + addSqlQuery +
                     " and delyn = 'N' " +
                     " and cardCom = 'V'" +
@@ -1291,7 +1301,7 @@ public class MakingJsonForCashOutEndofDay {
             jsonroot.put("cardsettlementdetail_cardtransamex", cardsettlementdetail_cardtransamex);  // JSON
             // -------------------------------------------------------------------------------------------------------------------
             // amex Sales --------------------------------------------------------------------------------------------------
-            sqlQuery = "select sum(round(priceAmount, 2)) from salon_sales_card " +
+            sqlQuery = "select sum(round((priceAmount + orgTip), 2)) from salon_sales_card " +
                     " where " + empSqlQuery + addSqlQuery +
                     " and delyn = 'N' " +
                     " and cardCom = 'A'" +
@@ -1302,7 +1312,7 @@ public class MakingJsonForCashOutEndofDay {
             jsonroot.put("cardsettlementdetail_cardsalesamex", cardsettlementdetail_cardsalesamex);  // JSON
             // -------------------------------------------------------------------------------------------------------------------
             // amex Refund --------------------------------------------------------------------------------------------------
-            sqlQuery = "select sum(round(priceAmount, 2)) from salon_sales_card " +
+            sqlQuery = "select sum(round((priceAmount + orgTip), 2)) from salon_sales_card " +
                     " where " + empSqlQuery + addSqlQuery +
                     " and delyn = 'N' " +
                     " and cardCom = 'A'" +
@@ -1342,7 +1352,7 @@ public class MakingJsonForCashOutEndofDay {
             jsonroot.put("cardsettlementdetail_cardtransdiscover", cardsettlementdetail_cardtransdiscover);  // JSON
             // -------------------------------------------------------------------------------------------------------------------
             // discover Sales --------------------------------------------------------------------------------------------------
-            sqlQuery = "select sum(round(priceAmount, 2)) from salon_sales_card " +
+            sqlQuery = "select sum(round((priceAmount + orgTip), 2)) from salon_sales_card " +
                     " where " + empSqlQuery + addSqlQuery +
                     " and delyn = 'N' " +
                     " and cardCom = 'D'" +
@@ -1353,7 +1363,7 @@ public class MakingJsonForCashOutEndofDay {
             jsonroot.put("cardsettlementdetail_cardsalesdiscover", cardsettlementdetail_cardsalesdiscover);  // JSON
             // -------------------------------------------------------------------------------------------------------------------
             // discover Refund --------------------------------------------------------------------------------------------------
-            sqlQuery = "select sum(round(priceAmount, 2)) from salon_sales_card " +
+            sqlQuery = "select sum(round((priceAmount + orgTip), 2)) from salon_sales_card " +
                     " where " + empSqlQuery + addSqlQuery +
                     " and delyn = 'N' " +
                     " and cardCom = 'D'" +
@@ -1394,7 +1404,7 @@ public class MakingJsonForCashOutEndofDay {
             jsonroot.put("cardsettlementdetail_cardtransother", cardsettlementdetail_cardtransother);  // JSON
             // -------------------------------------------------------------------------------------------------------------------
             // other Sales --------------------------------------------------------------------------------------------------
-            sqlQuery = "select sum(round(priceAmount, 2)) from salon_sales_card " +
+            sqlQuery = "select sum(round((priceAmount + orgTip), 2)) from salon_sales_card " +
                     " where " + empSqlQuery + addSqlQuery +
                     " and delyn = 'N' " +
                     " and not(cardCom = 'M' or cardCom = 'V' or cardCom = 'A' or cardCom = 'D') " +
@@ -1405,7 +1415,7 @@ public class MakingJsonForCashOutEndofDay {
             jsonroot.put("cardsettlementdetail_cardsalesother", cardsettlementdetail_cardsalesother);  // JSON
             // -------------------------------------------------------------------------------------------------------------------
             // other Refund --------------------------------------------------------------------------------------------------
-            sqlQuery = "select sum(round(priceAmount, 2)) from salon_sales_card " +
+            sqlQuery = "select sum(round((priceAmount + orgTip), 2)) from salon_sales_card " +
                     " where " + empSqlQuery + addSqlQuery +
                     " and delyn = 'N' " +
                     " and not(cardCom = 'M' or cardCom = 'V' or cardCom = 'A' or cardCom = 'D') " +
@@ -1444,7 +1454,7 @@ public class MakingJsonForCashOutEndofDay {
             jsonroot.put("cardsettlementdetail_cardtranstotal", cardsettlementdetail_cardtranstotal);  // JSON
             // -------------------------------------------------------------------------------------------------------------------
             // total Sales --------------------------------------------------------------------------------------------------
-            sqlQuery = "select sum(round(priceAmount, 2)) from salon_sales_card " +
+            sqlQuery = "select sum(round((priceAmount + orgTip), 2)) from salon_sales_card " +
                     " where " + empSqlQuery + addSqlQuery +
                     " and delyn = 'N' " +
                     " and substr(salesCode, 1, 1) = 'K' " +
@@ -1454,7 +1464,7 @@ public class MakingJsonForCashOutEndofDay {
             jsonroot.put("cardsettlementdetail_cardsalestotal", cardsettlementdetail_cardsalestotal);  // JSON
             // -------------------------------------------------------------------------------------------------------------------
             // total Refund --------------------------------------------------------------------------------------------------
-            sqlQuery = "select sum(round(priceAmount, 2)) from salon_sales_card " +
+            sqlQuery = "select sum(round((priceAmount + orgTip), 2)) from salon_sales_card " +
                     " where " + empSqlQuery + addSqlQuery +
                     " and delyn = 'N' " +
                     " and substr(salesCode, 1, 1) = 'C' " +
@@ -1472,7 +1482,7 @@ public class MakingJsonForCashOutEndofDay {
             jsonroot.put("cardsettlementdetail_cardtiptotal", GlobalMemberValues.getCommaStringForDouble(salesbytendertypes_cardtipamount_total_dbl + ""));  // JSON
             // -------------------------------------------------------------------------------------------------------------------
             // total Total --------------------------------------------------------------------------------------------------
-            sqlQuery = "select sum(round(priceAmount, 2)) from salon_sales_card " +
+            sqlQuery = "select sum(round((priceAmount + orgTip), 2)) from salon_sales_card " +
                     " where " + empSqlQuery + addSqlQuery +
                     " and delyn = 'N' " +
                     " and " + subStrString + " not in (select " + subStrString + " from salon_sales_card where substr(salesCode, 1, 1) = 'V') ";

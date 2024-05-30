@@ -2092,6 +2092,14 @@ public class CashInOutPopup extends Activity {
                 insUpdDelVec.addElement(insUpdDelQuery);
             }
 
+            // 05302024
+            insUpdDelQuery = " update salon_sales_togodeliveryfee " +
+                    " set " +
+                    " cashoutnum = '" + newCashOutNum + "', endofdayNum = '" + newEndofdayNum + "' " +
+                    " where employeeIdx = '" + GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx + "' " +
+                    " and cashoutNum = 0";
+            insUpdDelVec.addElement(insUpdDelQuery);
+
             insUpdDelQuery = " insert into salon_sales_cashout_json ( " +
                     " scode, sidx, stcode, employeeIdx, employeeName, cashoutNum, endofdayNum, jsonstr " +
                     " ) values ( " +

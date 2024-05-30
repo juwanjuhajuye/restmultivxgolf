@@ -149,6 +149,12 @@ public class APIDownLoad_salon_storegeneral extends AsyncTask {
     String qsronrestaurantyn = "";
 
 
+    // 05302024
+    String torderapikey = "";
+    String torderpartnerid = "";
+    String torderapiurl = "";
+
+
     String totaloptionitem = "";
     /**********************************************************/
 
@@ -504,6 +510,17 @@ public class APIDownLoad_salon_storegeneral extends AsyncTask {
                             qsronrestaurantyn = xpp.getText();
                         }
 
+                        // 05302024
+                        if (tagName.equals("torderapikey")) {
+                            torderapikey = xpp.getText();
+                        }
+                        if (tagName.equals("torderpartnerid")) {
+                            torderpartnerid = xpp.getText();
+                        }
+                        if (tagName.equals("torderapiurl")) {
+                            torderapiurl = xpp.getText();
+                        }
+
 
 
                         if (tagName.equals("totaloptionitem")) {
@@ -542,7 +559,9 @@ public class APIDownLoad_salon_storegeneral extends AsyncTask {
                                 // 08012023
                                 " gratuitydelyn, crmuseyn, cashdcshowonreceiptyn, cashdctaxshowyn, " +
                                 // 03252024
-                                " torderuseyn, torderkey, qsronrestaurantyn  " +
+                                " torderuseyn, torderkey, qsronrestaurantyn,  " +
+                                // 05302024
+                                " torderapikey, torderpartnerid, torderapiurl " +
                                 " ) " +
                                 " values (" +
                                 "'" + GlobalMemberValues.getDBTextAfterChecked(idx, 0) + "', " +
@@ -655,7 +674,12 @@ public class APIDownLoad_salon_storegeneral extends AsyncTask {
                                 "'" + GlobalMemberValues.getDBTextAfterChecked(torderkey, 0) + "', " +
 
                                 // 04302024
-                                "'" + GlobalMemberValues.getDBTextAfterChecked(qsronrestaurantyn, 0) + "' " +
+                                "'" + GlobalMemberValues.getDBTextAfterChecked(qsronrestaurantyn, 0) + "', " +
+
+                                // 05302024
+                                "'" + GlobalMemberValues.getDBTextAfterChecked(torderapikey, 0) + "', " +
+                                "'" + GlobalMemberValues.getDBTextAfterChecked(torderpartnerid, 0) + "', " +
+                                "'" + GlobalMemberValues.getDBTextAfterChecked(torderapiurl, 0) + "' " +
 
                                 ")";
                         sqlQueryVecIns.add(mInsertSqlQuery);
@@ -789,7 +813,12 @@ public class APIDownLoad_salon_storegeneral extends AsyncTask {
                                 " torderkey = '" + GlobalMemberValues.getDBTextAfterChecked(torderkey, 0) + "', " +
 
                                 // 04302024
-                                " qsronrestaurantyn = '" + GlobalMemberValues.getDBTextAfterChecked(qsronrestaurantyn, 0) + "' " +
+                                " qsronrestaurantyn = '" + GlobalMemberValues.getDBTextAfterChecked(qsronrestaurantyn, 0) + "', " +
+
+                                // 05302024
+                                " torderapikey = '" + GlobalMemberValues.getDBTextAfterChecked(torderapikey, 0) + "', " +
+                                " torderpartnerid = '" + GlobalMemberValues.getDBTextAfterChecked(torderpartnerid, 0) + "', " +
+                                " torderapiurl = '" + GlobalMemberValues.getDBTextAfterChecked(torderapiurl, 0) + "' " +
 
                                 " where idx = " + idx;
 
@@ -937,6 +966,11 @@ public class APIDownLoad_salon_storegeneral extends AsyncTask {
 
                         // 04302024
                         qsronrestaurantyn = "";
+
+                        // 05302024
+                        torderapikey = "";
+                        torderpartnerid = "";
+                        torderapiurl = "";
 
                         totaloptionitem = "";
                         /***********************************************/

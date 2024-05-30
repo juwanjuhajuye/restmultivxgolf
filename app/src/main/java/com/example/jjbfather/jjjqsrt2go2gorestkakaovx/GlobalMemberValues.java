@@ -448,10 +448,6 @@ public class GlobalMemberValues {
     // API - 온라인 주문데이터
     public static String API_WEBORDER_URL = GlobalMemberValues.API_WEB + "API_Orders_ForAndroid.asp";
 
-    // 03252025 API - T Order API
-    public static String TORDER_PARTNER_ID = "NAVYSPOS_TEST001";
-    public static String TORDER_API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6Ik5BVllaUE9TX1RFU1QifQ.RZfVu7oYxh0rK5_XegyYMf9sfy81NStgOcnC_WUOk7w";
-    public static String API_TORDER = "https://api.middleware.torder.tech/event/v1/partners/" + TORDER_PARTNER_ID;
 
     // jihun add 190913
     public static boolean b_one_run_thread = false;
@@ -1974,7 +1970,10 @@ public class GlobalMemberValues {
 
 
             // 10272023
-            "salon_itemdeletereason"
+            "salon_itemdeletereason",
+
+            // 05302024
+            "salon_sales_togodeliveryfee"
 
 
             // "basic_pos_information" <--- 이 테이블은 기본정보를 가지고 있기 때문에 삭제하면 안된다.
@@ -20216,7 +20215,7 @@ public class GlobalMemberValues {
     //04222024 API Call when program is closed, wait for the api call to finish.
     public static void sendTOrderAPIProgramFinishWait() {
         String TAG = "sendTOrderAPIProgramFinishWait";
-        String mStrUrl = GlobalMemberValues.API_TORDER;
+        String mStrUrl = GlobalMemberValues.getTOrderApiUrl();
         String JsonMsg = "";
 
         String code = "P0102";
@@ -20264,7 +20263,7 @@ public class GlobalMemberValues {
                 conn.setReadTimeout(5 * 1000);
                 //conn.setRequestProperty ("Authorization", basicAuth);
                 conn.setRequestMethod("POST");
-                conn.setRequestProperty("Authorization", "Bearer " + GlobalMemberValues.TORDER_API_KEY);
+                conn.setRequestProperty("Authorization", "Bearer " + GlobalMemberValues.getTOrderApiKey());
                 conn.setRequestProperty("Content-Type", "application/json");
                 conn.setRequestProperty("Accept", "application/json");
                 conn.setDoOutput(true);
@@ -20775,5 +20774,37 @@ public class GlobalMemberValues {
             CURRENTACTIVITYOPENEDSERVICE_SETTABLEIDX = paramActivity;           // 서비스를 실행시킨 액티비티를 저장해 둔다.
             paramActivity.startService(intent);
         }
+    }
+
+
+    // 05302024
+    public static String getTOrderApiKey() {
+        String returnData = "";
+        returnData = getDBTextAfterChecked(MainActivity.mDbInit.dbExecuteReadReturnString(
+                " select torderapikey from salon_storegeneral "), 1);
+        if (GlobalMemberValues.isStrEmpty(returnData)) {
+            returnData = "";
+        }
+        return returnData;
+    }
+    public static String getTOrderPartnerId() {
+        String returnData = "";
+        returnData = getDBTextAfterChecked(MainActivity.mDbInit.dbExecuteReadReturnString(
+                " select torderpartnerid from salon_storegeneral "), 1);
+        if (GlobalMemberValues.isStrEmpty(returnData)) {
+            returnData = "";
+        }
+        return returnData;
+    }
+    public static String getTOrderApiUrl() {
+        String returnData = "";
+        returnData = getDBTextAfterChecked(MainActivity.mDbInit.dbExecuteReadReturnString(
+                " select torderapiurl from salon_storegeneral "), 1);
+        if (GlobalMemberValues.isStrEmpty(returnData)) {
+            returnData = "";
+        } else {
+            returnData = returnData + GlobalMemberValues.getTOrderPartnerId();
+        }
+        return returnData;
     }
 }
