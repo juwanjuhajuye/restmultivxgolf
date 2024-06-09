@@ -4562,6 +4562,11 @@ public class TableSaleMain extends Activity {
 
             // 해당 테이블의 cart 비우기
             setClearCartOfTableByTableidx(tempTableIdx);
+
+            //06032024 send table cleared call to TOrder API if torder is in use
+            if(GlobalMemberValues.isTOrderUse()){
+                GlobalMemberValues.sendTOrderAPITableClear(tempTableIdx);
+            }
         }
         // 장바구니 비우기
         MainMiddleService.clearListExe();
@@ -4866,7 +4871,9 @@ public class TableSaleMain extends Activity {
                     " additionalTxt1, additionalprice1, additionalTxt2, additionalprice2, modifieridx, " +
                     " modifiercode, memoToKitchen, " +
                     " sPriceBalAmount_org, sTaxAmount_org, sTotalAmount_org, sCommissionAmount_org, sPointAmount_org, " +
-                    " tableidx, subtablenum, billnum, kitchenprintedyn, togotype " +
+                    " tableidx, subtablenum, billnum, kitchenprintedyn, togotype, " +
+                    // 05312024
+                    " tordercode, iscloudupload " +
                     " ) " +
                     " select " +
                     " '" + newHoldCode + "', " +
@@ -4882,7 +4889,9 @@ public class TableSaleMain extends Activity {
                     " modifiercode, memoToKitchen, " +
                     " sPriceBalAmount_org, sTaxAmount_org, sTotalAmount_org, sCommissionAmount_org, sPointAmount_org, " +
                     " '" + paramNextTableIdx + "', " +
-                    " subtablenum, billnum, kitchenprintedyn, togotype " +
+                    " subtablenum, billnum, kitchenprintedyn, togotype, " +
+                    // 05312024
+                    " tordercode, 0 " +
                     " from temp_salecart " +
                     " where tableIdx like '%" + paramPrevTableIdx + "%' ";
             updateVector.addElement(strQuery);
@@ -4938,6 +4947,12 @@ public class TableSaleMain extends Activity {
                 viewTableSettigns(mSelectedZoneIdx);
                 uploadTableDataCloudExe();
             }
+
+            //06032024 if using torder send data to torder API
+            if (GlobalMemberValues.isTOrderUse()){
+                GlobalMemberValues.sendTOrderAPIOrderData("K");
+            }
+
         }
     }
 
@@ -5298,7 +5313,7 @@ public class TableSaleMain extends Activity {
         try {
             GlobalMemberValues.phoneorderPrinting(paramHoldCode, "K", get_tableInfos);
             if(GlobalMemberValues.isTOrderUse()){
-                GlobalMemberValues.sendTOrderAPIOrderData(paramHoldCode, "K", get_tableInfos);
+                GlobalMemberValues.sendTOrderAPIOrderData("K");
             }
         } catch (JSONException e) {
             e.printStackTrace();

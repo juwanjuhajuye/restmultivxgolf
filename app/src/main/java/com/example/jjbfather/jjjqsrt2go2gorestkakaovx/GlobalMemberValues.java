@@ -20334,7 +20334,7 @@ public class GlobalMemberValues {
 
     //API call when a order is made/updated (Sent to kitchen)
     //event code: P0401
-    public static void sendTOrderAPIOrderData(String paramSalesCode, String paramPrintingType, String paramTableInfos) {
+    public static void sendTOrderAPIOrderData(String paramPrintingType) {
         String code = "P0401";
         String storeId = GlobalMemberValues.makeStoreCodeForTOrder();
         String tableId = "";

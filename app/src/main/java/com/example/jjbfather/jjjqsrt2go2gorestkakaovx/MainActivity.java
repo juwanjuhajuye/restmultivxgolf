@@ -632,6 +632,18 @@ public class MainActivity extends Activity {
                 proDial.dismiss();
                 GlobalMemberValues.logWrite(TAG, "프로그래스바 종료후... \n");
                 // -------------------------------------------------------------------------------------
+
+                //06032024 Send data to TOrder after download completes
+                if(GlobalMemberValues.isTOrderUse()){
+                    try {
+                        Thread.sleep(10000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    SendDataToTOrderEvent tOrderDataSender = new SendDataToTOrderEvent();
+                    tOrderDataSender.execute();
+                }
+
             }
         }
     };
