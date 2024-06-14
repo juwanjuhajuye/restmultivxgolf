@@ -991,6 +991,18 @@ public class UploadSalesDataToCloud extends Service implements Runnable {
                         // 11082023 -------------------------------------------------------------------------------------------
 
 
+                        // 06142024 ---------------------------------------------------------------------------------------------
+                        // 리턴시 discount 문제관련
+                        tempDcExtraForReturn = MssqlDatabase.getResultSetValueToString(
+                                " select sum(dcextraforreturn) from salon_sales_detail where salescode = '" + tempSalesCode + "' "
+                        );
+                        if (GlobalMemberValues.isStrEmpty(tempDcExtraForReturn)) {
+                            tempDcExtraForReturn = "0";
+                        }
+                        tempDcExtraForReturn = (GlobalMemberValues.getDoubleAtString(tempDcExtraForReturn) * -1) + "";
+                        // -----------------------------------------------------------------------------------------------------
+
+
                         String apiParametersStr = "SCODE=" + tempApi_SCODE +
                                 "&SIDX=" + tempApi_SIDX +
                                 "&IDG_COD=" + tempApi_IDG_COD +
