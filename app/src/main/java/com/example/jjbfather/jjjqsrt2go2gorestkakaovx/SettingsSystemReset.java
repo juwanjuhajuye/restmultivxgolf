@@ -388,6 +388,12 @@ public class SettingsSystemReset extends Activity {
         strInsertQueryVec.addElement(tempDeleteDataSql22);
 
 
+        // 06172024
+        // salon_sales_togodeliveryfee 삭제 추가
+        String tempDeleteDataSql_J01 = "delete from salon_sales_togodeliveryfee" + addQuery1;
+        strInsertQueryVec.addElement(tempDeleteDataSql_J01);
+
+
         return strInsertQueryVec;
     }
 
