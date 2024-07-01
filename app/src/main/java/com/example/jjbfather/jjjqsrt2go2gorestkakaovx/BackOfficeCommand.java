@@ -490,14 +490,62 @@ public class BackOfficeCommand extends Activity {
             if (sd.canWrite()) {
                 File backupDB = new File(
                         data, "//data//" + tempPackagename + "//databases//" + GlobalMemberValues.DATABASE_NAME);
+                File backupDBWal = new File(
+                        data, "//data//" + tempPackagename + "//databases//" + GlobalMemberValues.DATABASE_NAME + "-wal");
+                File backupDBShm = new File(
+                        data, "//data//" + tempPackagename + "//databases//" + GlobalMemberValues.DATABASE_NAME + "-shm");
+
                 File currentDB = new File(sd, "Download/" + GlobalMemberValues.DATABASE_NAME);
+                File currentDBWal = new File(sd, "Download/" + GlobalMemberValues.DATABASE_NAME + "-wal");
+                File currentDBShm = new File(sd, "Download/" + GlobalMemberValues.DATABASE_NAME + "-shm");
 
                 FileChannel src = new FileInputStream(currentDB).getChannel();
                 FileChannel dst = new FileOutputStream(backupDB).getChannel();
 
-                dst.transferFrom(src, 0, src.size());
+                dbInit.closeDBHanlder();
+
+                //06272024 Loop transferFrom method to make sure all the content transfers
+                for(long count = currentDB.length(); count > 0L;){
+                    final long transferred = dst.transferFrom(
+                            src, dst.position(), count);
+                    dst.position(dst.position() + transferred);
+                    count -= transferred;
+                }
                 src.close();
                 dst.close();
+
+                //06272024 only if the device is using wal mode, restore the -wal and -shm file
+                if (backupDBWal.exists()){
+                    FileChannel srcWal = new FileInputStream(currentDBWal).getChannel();
+                    FileChannel dstWal = new FileOutputStream(backupDBWal).getChannel();
+
+                    FileChannel srcShm = new FileInputStream(currentDBShm).getChannel();
+                    FileChannel dstShm = new FileOutputStream(backupDBShm).getChannel();
+
+                    for(long count = currentDBWal.length(); count > 0L;){
+                        final long transferred = dstWal.transferFrom(
+                                srcWal, dstWal.position(), count);
+                        dstWal.position(dstWal.position() + transferred);
+                        count -= transferred;
+                    }
+
+                    srcWal.close();
+                    dstWal.close();
+
+                    for(long count = currentDBShm.length(); count > 0L;){
+                        final long transferred = dstShm.transferFrom(
+                                srcShm, dstShm.position(), count);
+                        dstShm.position(dstShm.position() + transferred);
+                        count -= transferred;
+                    }
+
+                    srcShm.close();
+                    dstShm.close();
+                }
+
+                //GlobalMemberValues.setCloseAndroidAppMethod(MainActivity.mActivity);
+
+                dbInit.openDBHandler();
 
                 if (!MainActivity.mActivity.isFinishing()) {
                     Toast.makeText(MainActivity.mContext, "Database restoration OK", Toast.LENGTH_SHORT).show();

@@ -250,6 +250,12 @@ public class DatabaseHandler {
         }
     }
 
+    //06272024
+    /**  Open database ***************************************************/
+    public void openDatabase(String dbName){
+        this.database = this.context.openOrCreateDatabase(dbName, Context.MODE_PRIVATE, null);
+    }
+
     @Override
     protected void finalize() throws Throwable {
         close();

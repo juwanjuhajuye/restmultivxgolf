@@ -6,6 +6,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
@@ -1222,14 +1223,60 @@ public class CommandButton {
             if (sd.canWrite()) {
                 File backupDB = new File(
                         data, "//data//" + tempPackagename + "//databases//" + GlobalMemberValues.DATABASE_NAME);
+                File backupDBWal = new File(
+                        data, "//data//" + tempPackagename + "//databases//" + GlobalMemberValues.DATABASE_NAME + "-wal");
+                File backupDBShm = new File(
+                        data, "//data//" + tempPackagename + "//databases//" + GlobalMemberValues.DATABASE_NAME + "-shm");
+
                 File currentDB = new File(sd, "Download/" + GlobalMemberValues.DATABASE_NAME);
+                File currentDBWal = new File(sd, "Download/" + GlobalMemberValues.DATABASE_NAME + "-wal");
+                File currentDBShm = new File(sd, "Download/" + GlobalMemberValues.DATABASE_NAME + "-shm");
 
                 FileChannel src = new FileInputStream(currentDB).getChannel();
                 FileChannel dst = new FileOutputStream(backupDB).getChannel();
 
-                dst.transferFrom(src, 0, src.size());
+                dbInit.closeDBHanlder();
+
+                //06272024 Loop transferFrom method to make sure all the content transfers
+                for(long count = currentDB.length(); count > 0L;){
+                    final long transferred = dst.transferFrom(
+                            src, dst.position(), count);
+                    dst.position(dst.position() + transferred);
+                    count -= transferred;
+                }
                 src.close();
                 dst.close();
+
+                //06272024 only if the device is using wal mode, restore the -wal and -shm file
+                if (backupDBWal.exists()){
+                    FileChannel srcWal = new FileInputStream(currentDBWal).getChannel();
+                    FileChannel dstWal = new FileOutputStream(backupDBWal).getChannel();
+
+                    FileChannel srcShm = new FileInputStream(currentDBShm).getChannel();
+                    FileChannel dstShm = new FileOutputStream(backupDBShm).getChannel();
+
+                    for(long count = currentDBWal.length(); count > 0L;){
+                        final long transferred = dstWal.transferFrom(
+                                srcWal, dstWal.position(), count);
+                        dstWal.position(dstWal.position() + transferred);
+                        count -= transferred;
+                    }
+
+                    srcWal.close();
+                    dstWal.close();
+
+                    for(long count = currentDBShm.length(); count > 0L;){
+                        final long transferred = dstShm.transferFrom(
+                                srcShm, dstShm.position(), count);
+                        dstShm.position(dstShm.position() + transferred);
+                        count -= transferred;
+                    }
+
+                    srcShm.close();
+                    dstShm.close();
+                }
+
+                dbInit.openDBHandler();
 
                 if (!MainActivity.mActivity.isFinishing()) {
                     Toast.makeText(MainActivity.mContext, "Database restoration OK", Toast.LENGTH_SHORT).show();
@@ -1250,6 +1297,7 @@ public class CommandButton {
             GlobalMemberValues.logWrite("commandButtonDatabase", "에러메시지 : " + e.getMessage().toString() + "\n");
         }
     }
+
 
     public static void backupDatabase(boolean paramOpenDialog) {
         // 패키지명 가져오기
@@ -1275,14 +1323,82 @@ public class CommandButton {
 
                 File currentDB = new File(
                         data, "//data//" + tempPackagename + "//databases//" + GlobalMemberValues.DATABASE_NAME);
+                File currentDBWal = new File(
+                        data, "//data//" + tempPackagename + "//databases//" + GlobalMemberValues.DATABASE_NAME + "-wal");
+                File currentDBShm = new File(
+                        data, "//data//" + tempPackagename + "//databases//" + GlobalMemberValues.DATABASE_NAME + "-shm");
+
                 File backupDB = new File(sd, "Download/" + GlobalMemberValues.DATABASE_NAME);
+                File backupDBWal = new File(sd, "Download/" + GlobalMemberValues.DATABASE_NAME + "-wal");
+                File backupDBShm = new File(sd, "Download/" + GlobalMemberValues.DATABASE_NAME + "-shm");
 
                 FileChannel src = new FileInputStream(currentDB).getChannel();
                 FileChannel dst = new FileOutputStream(backupDB).getChannel();
 
-                dst.transferFrom(src, 0, src.size());
+                //06272024 only if the device is using wal mode, back up -wal and -shm files,
+                //and flush the -wal file into main db file.
+                if (currentDBWal.exists()){
+                    //05312024 Flush wal content into main database file
+                    int wal_busy,wal_log,wal_checkpointed = -99;
+
+                    Cursor cursor = dbInit.dbExecuteRead("PRAGMA wal_checkpoint");
+                    if (cursor.moveToFirst()) {
+                        wal_busy = cursor.getInt(0);
+                        wal_log = cursor.getInt(1);
+                        wal_checkpointed = cursor.getInt(2);
+                    }
+
+                    cursor = dbInit.dbExecuteRead("PRAGMA wal_checkpoint(TRUNCATE)");
+                    cursor.getCount();
+                    cursor = dbInit.dbExecuteRead("PRAGMA wal_checkpoint");
+                    if (cursor.moveToFirst()) {
+                        wal_busy = cursor.getInt(0);
+                        wal_log = cursor.getInt(1);
+                        wal_checkpointed = cursor.getInt(2);
+                    }
+                }
+
+                dbInit.closeDBHanlder();
+
+                //06272024 Loop transferFrom method to make sure all the content transfers
+                for(long count = currentDB.length(); count > 0L;){
+                    final long transferred = dst.transferFrom(
+                            src, dst.position(), count);
+                    dst.position(dst.position() + transferred);
+                    count -= transferred;
+                }
                 src.close();
                 dst.close();
+
+                if(currentDBWal.exists()){
+                    FileChannel srcWal = new FileInputStream(currentDBWal).getChannel();
+                    FileChannel dstWal = new FileOutputStream(backupDBWal).getChannel();
+
+                    FileChannel srcShm = new FileInputStream(currentDBShm).getChannel();
+                    FileChannel dstShm = new FileOutputStream(backupDBShm).getChannel();
+
+                    for(long count = currentDBWal.length(); count > 0L;){
+                        final long transferred = dstWal.transferFrom(
+                                srcWal, dstWal.position(), count);
+                        dstWal.position(dstWal.position() + transferred);
+                        count -= transferred;
+                    }
+
+                    srcWal.close();
+                    dstWal.close();
+
+                    for(long count = currentDBShm.length(); count > 0L;){
+                        final long transferred = dstShm.transferFrom(
+                                srcShm, dstShm.position(), count);
+                        dstShm.position(dstShm.position() + transferred);
+                        count -= transferred;
+                    }
+
+                    srcShm.close();
+                    dstShm.close();
+                }
+
+                dbInit.openDBHandler();
 
                 if (!MainActivity.mActivity.isFinishing()) {
                     Toast.makeText(MainActivity.mContext, "Database Backup OK", Toast.LENGTH_SHORT).show();

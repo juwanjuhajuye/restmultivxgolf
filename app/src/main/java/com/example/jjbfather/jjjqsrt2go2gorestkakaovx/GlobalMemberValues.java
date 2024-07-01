@@ -15955,27 +15955,94 @@ public class GlobalMemberValues {
 
                 File currentDB = new File(
                         data, "//data//" + tempPackagename + "//databases//" + GlobalMemberValues.DATABASE_NAME);
+                File currentDBWal = new File(
+                        data, "//data//" + tempPackagename + "//databases//" + GlobalMemberValues.DATABASE_NAME + "-wal");
+                File currentDBShm = new File(
+                        data, "//data//" + tempPackagename + "//databases//" + GlobalMemberValues.DATABASE_NAME + "-shm");
+
                 File backupDB = new File(sd, "Download/" + GlobalMemberValues.DATABASE_NAME + "_" + date_text);
+
+                //only deal with wal file if the device is actually running wal mode for sqlite db
+                if(currentDBWal.exists()){
+                    //06272024 Flush wal content into main database file
+                    int wal_busy,wal_log,wal_checkpointed = -99;
+
+                    DatabaseInit dbInit = new DatabaseInit(MainActivity.mContext);
+
+                    Cursor cursor = dbInit.dbExecuteRead("PRAGMA wal_checkpoint");
+                    if (cursor.moveToFirst()) {
+                        wal_busy = cursor.getInt(0);
+                        wal_log = cursor.getInt(1);
+                        wal_checkpointed = cursor.getInt(2);
+                    }
+
+                    cursor = dbInit.dbExecuteRead("PRAGMA wal_checkpoint(TRUNCATE)");
+                    cursor.getCount();
+                    cursor = dbInit.dbExecuteRead("PRAGMA wal_checkpoint");
+                    if (cursor.moveToFirst()) {
+                        wal_busy = cursor.getInt(0);
+                        wal_log = cursor.getInt(1);
+                        wal_checkpointed = cursor.getInt(2);
+                    }
+
+                    dbInit.closeDBHanlder();
+                }
 
                 FileChannel src = new FileInputStream(currentDB).getChannel();
                 FileChannel dst = new FileOutputStream(backupDB).getChannel();
 
-                dst.transferFrom(src, 0, src.size());
+                //06272024 Loop transferFrom method to make sure all the content transfers
+                for(long count = currentDB.length(); count > 0L;){
+                    final long transferred = dst.transferFrom(
+                            src, dst.position(), count);
+                    dst.position(dst.position() + transferred);
+                    count -= transferred;
+                }
+
                 src.close();
                 dst.close();
+
+                if(currentDBWal.exists()){
+                    File backupDBWal = new File(sd, "Download/" + GlobalMemberValues.DATABASE_NAME + "-wal" + "_" + date_text);
+                    File backupDBShm = new File(sd, "Download/" + GlobalMemberValues.DATABASE_NAME + "-shm" + "_" + date_text );
+
+                    FileChannel srcWal = new FileInputStream(currentDBWal).getChannel();
+                    FileChannel dstWal = new FileOutputStream(backupDBWal).getChannel();
+
+                    FileChannel srcShm = new FileInputStream(currentDBShm).getChannel();
+                    FileChannel dstShm = new FileOutputStream(backupDBShm).getChannel();
+
+                    for(long count = currentDBWal.length(); count > 0L;){
+                        final long transferred = dstWal.transferFrom(
+                                srcWal, dstWal.position(), count);
+                        dstWal.position(dstWal.position() + transferred);
+                        count -= transferred;
+                    }
+
+                    srcWal.close();
+                    dstWal.close();
+
+                    for(long count = currentDBShm.length(); count > 0L;){
+                        final long transferred = dstShm.transferFrom(
+                                srcShm, dstShm.position(), count);
+                        dstShm.position(dstShm.position() + transferred);
+                        count -= transferred;
+                    }
+
+                    srcShm.close();
+                    dstShm.close();
+                }
 //                    Toast.makeText(MainActivity.mContext, "Database backup is Complite", Toast.LENGTH_SHORT).show();
 
                 if (initSalesDataByOut()){
 //                        Toast.makeText(MainActivity.mContext, "SaleData reset Complite", Toast.LENGTH_SHORT).show();
                 } else {
 //                        Toast.makeText(MainActivity.mContext, "SaleData reset failed", Toast.LENGTH_SHORT).show();
-
                 }
             }
         } catch (Exception e) {
             if (!MainActivity.mActivity.isFinishing()) {
 //                    Toast.makeText(MainActivity.mContext, "Database backup is failed", Toast.LENGTH_SHORT).show();
-                closeProgress();
             }
             GlobalMemberValues.logWrite("commandButtonDatabase", "에러메시지 : " + e.getMessage().toString() + "\n");
         }

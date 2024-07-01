@@ -4353,6 +4353,8 @@ public class DatabaseInit {
     }
     /**********************************************************************/
 
+    /** Method that opens DB Handler***************************************/
+    public void openDBHandler() {dbHandler.openDatabase(GlobalMemberValues.DATABASE_NAME);}
 
     /**
      * 테이블명 및 컬럼명 가져오는 구문
