@@ -23,9 +23,20 @@ public class API_weborder_newtableorder extends AsyncTask {
     boolean mFlag;
     public Vector<String> sqlQueryVec = new Vector<String>();
 
+    // 07092024
+    // 예약내역 가져오기 관련
+    public static String mHoldcode = "";
+
     public API_weborder_newtableorder(String paramStr) {
         if (!GlobalMemberValues.isStrEmpty(paramStr)) {
-            mStrUrl = GlobalMemberValues.API_WEB + "API_Check_NewTableOrder_ForAndroid.asp?sidx=" + paramStr + "&stcode=" + GlobalMemberValues.STATION_CODE;
+            // 07092024
+            // 예약내역 가져오기 관련
+            if (!GlobalMemberValues.isStrEmpty(mHoldcode)) {
+                mStrUrl = GlobalMemberValues.API_WEB + "API_Check_GetReservation_ForAndroid.asp?sidx=" + paramStr + "&stcode=" + GlobalMemberValues.STATION_CODE + "&holdcode=" + mHoldcode;
+            } else {
+                mStrUrl = GlobalMemberValues.API_WEB + "API_Check_NewTableOrder_ForAndroid.asp?sidx=" + paramStr + "&stcode=" + GlobalMemberValues.STATION_CODE;
+            }
+
 
             GlobalMemberValues.logWrite(TAG, "url : " + mStrUrl + "\n");
         }
@@ -92,6 +103,10 @@ public class API_weborder_newtableorder extends AsyncTask {
             GlobalMemberValues.logWrite(TAG, "여기까지..4" + "\n");
             GlobalMemberValues.logWrite(TAG, "결과값 : " + mApiReturnCode + "\n");
             GlobalMemberValues.logWrite(TAG, "리턴값 : " + mReturnValue + "\n");
+
+            // 07092024
+            // 예약내역 가져오기 관련
+            mHoldcode = "";
 
         } catch (Exception e) {
             // 예외발생

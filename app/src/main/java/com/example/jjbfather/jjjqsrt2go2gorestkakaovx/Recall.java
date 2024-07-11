@@ -24,6 +24,7 @@ import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.R;
 import org.json.JSONException;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Vector;
 
 public class Recall extends Activity {
@@ -604,6 +605,15 @@ public class Recall extends Activity {
             }
         } catch (Exception e){
 
+        }
+
+        //07052024 catch resultset
+        try {
+            if(!tempSaleCartCursor.isClosed()){
+                tempSaleCartCursor.close();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
 
         MainMiddleService.mHoldCode = mSelectedHoldCode;
@@ -1421,6 +1431,15 @@ public class Recall extends Activity {
             }
         }catch (Exception e){
             GlobalMemberValues.logWrite("TestLog", "Exception : " + e.toString() + "\n");
+        }
+
+        //07052024 catch resultset
+        try {
+            if(!tempSaleCartCursor.isClosed()){
+                tempSaleCartCursor.close();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
 
     }

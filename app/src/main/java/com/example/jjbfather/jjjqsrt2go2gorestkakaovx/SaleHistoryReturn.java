@@ -28,6 +28,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Vector;
 
@@ -276,6 +277,15 @@ public class SaleHistoryReturn extends Activity {
 //            }
         } catch (Exception e){
 
+        }
+
+        //07052024 close resultset
+        try {
+            if(!salonSalesCursor.isClosed()){
+                salonSalesCursor.close();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
 
         /***********************************************************************************************************/
@@ -1590,6 +1600,14 @@ public class SaleHistoryReturn extends Activity {
             } catch (Exception e){
 
             }
+            //07052024 close resultset
+            try {
+                if(!salonSalesCursor.isClosed()){
+                    salonSalesCursor.close();
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         }
         // --------------------------------------------------------------------------------------------------------------------
         // 고객이 사용한 포인트로 리턴해 주는 경우 ----------------------------------------------------------------------------
@@ -1631,6 +1649,15 @@ public class SaleHistoryReturn extends Activity {
 //                }
             } catch (Exception e) {
 
+            }
+
+            //07052024 close resultset
+            try {
+                if(!salonSalesCursorForMileage.isClosed()){
+                    salonSalesCursorForMileage.close();
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
             }
         }
         // --------------------------------------------------------------------------------------------------------------------

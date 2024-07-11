@@ -89,6 +89,8 @@ public class Payment_CreditCard_Proc_Exec {
                 forceSaleBtn = "N";
                 cnt++;
             }
+            //07052024 close resultset
+            resultSet.close();
         } catch (Exception e) {
         }
 
@@ -130,6 +132,8 @@ public class Payment_CreditCard_Proc_Exec {
                     returnValue = GlobalMemberValues.getReplaceText(returnValue, "@n@", "\n");
                 }
             }
+            //07052024 close resultset
+            resultSet.close();
         } catch (Exception e) {
         }
         return returnValue;

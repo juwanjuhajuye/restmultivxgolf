@@ -11,6 +11,7 @@ import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.MssqlDatabase;
 import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.R;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Vector;
 
@@ -612,6 +613,15 @@ public class BillExecute {
                 }
             } catch (Exception e) {
             }
+
+            //07052024 close resultset
+            try {
+                if(!resultSet.isClosed()){
+                    resultSet.close();
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         }
         return returnArrayList;
     }
@@ -803,6 +813,15 @@ public class BillExecute {
                     returnValue = true;
                 }
             } catch (Exception e) {
+            }
+
+            //07052024 close resultset
+            try {
+                if(!resultSet.isClosed()){
+                    resultSet.close();
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
             }
         }
 

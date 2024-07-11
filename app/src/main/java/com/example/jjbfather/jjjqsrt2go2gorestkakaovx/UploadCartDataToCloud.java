@@ -73,7 +73,11 @@ public class UploadCartDataToCloud extends Service implements Runnable {
 
             String strQueryString = " select idx, holdcode, svcName, svcOrgPrice, sPrice, sTax, sQty, sSaleYN, " +
                     " (sPrice - svcOrgPrice) as optionprice, sCommission, sPoint, optionTxt, " +
-                    " midx, svcidx, tableidx, tordercode, wdate " +
+                    " midx, svcidx, tableidx, tordercode, wdate, " +
+
+                    // 07112024
+                    " sTaxAmount, selecteddcextraprice, selecteddcextratype, mergednum " +
+
                     " from temp_salecart " +
                     " where isCloudUpload = 0 " +
 
@@ -106,6 +110,41 @@ public class UploadCartDataToCloud extends Service implements Runnable {
                     String tordercode = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(cartCursor,15), 1);
                     String saledate = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(cartCursor,16), 1);
 
+
+                    // 07112024 -----------------------------------------
+                    String taxAmount = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(cartCursor,17), 1);
+
+                    String selecteddcextraprice = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(cartCursor,18), 1);
+                    String selecteddcextratype = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(cartCursor,19), 1);
+
+                    if (GlobalMemberValues.getDoubleAtString(selecteddcextraprice) > 0) {
+                        if (GlobalMemberValues.isStrEmpty(selecteddcextratype)) {
+                            selecteddcextratype = "DC";
+                        }
+
+                        if (selecteddcextratype.equals("DC")) {
+                            selecteddcextraprice = "-" + selecteddcextraprice;
+                        }
+                    } else {
+                        selecteddcextraprice = "0";
+                        selecteddcextratype = "";
+                    }
+
+                    String mergednum = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(cartCursor,20), 1);
+                    String tmergeyn = "N";
+                    String tmergevalue = "";
+                    if (GlobalMemberValues.getIntAtString(mergednum) > 0) {
+                        tmergeyn = "Y";
+
+                        String mergednumstr = "0" + mergednum;
+                        tmergevalue = "M-" + mergednumstr.substring((mergednumstr.length() - 2), mergednumstr.length());
+                    } else {
+                        tmergeyn = "N";
+                        tmergevalue = "";
+                    }
+                    // 07112024 -----------------------------------------
+
+
                     // 02242024 - 추가작업 ---------------------------------------------------------------------
                     if (GlobalMemberValues.isStrEmpty(tableidx) && !GlobalMemberValues.isStrEmpty(holdcodefrompos)) {
                         tableidx = MssqlDatabase.getResultSetValueToString(
@@ -133,6 +172,24 @@ public class UploadCartDataToCloud extends Service implements Runnable {
                     if (GlobalMemberValues.isStrEmpty(tax)) {
                         tax = "0";
                     }
+
+
+                    // 07112024 ----------------------------------------
+                    if (GlobalMemberValues.isStrEmpty(taxAmount)) {
+                        taxAmount = "0";
+                    }
+                    if (GlobalMemberValues.getIntAtString(qty) > 1) {
+                        double taxAmount_dbl = GlobalMemberValues.getDoubleAtString(taxAmount);
+                        if (taxAmount_dbl > 0) {
+                            double tax_dbl = taxAmount_dbl / GlobalMemberValues.getDoubleAtString(qty);
+                            tax = GlobalMemberValues.getDoubleAtString(tax_dbl + "") + "";
+                        }
+                    } else {
+                        tax = taxAmount;
+                    }
+                    // 07112024 ----------------------------------------
+
+
                     if (GlobalMemberValues.isStrEmpty(qty)) {
                         qty = "0";
                     }
@@ -182,7 +239,12 @@ public class UploadCartDataToCloud extends Service implements Runnable {
                             "&tablename=" + GlobalMemberValues.getEncoderUtf8(tablename) +
                             "&tableidx=" + tableidx +
                             "&tordercode=" + tordercode +
-                            "&saledate=" + saledate;
+                            "&saledate=" + saledate +
+                            // 07112024
+                            "&selecteddcextraprice=" + selecteddcextraprice +
+                            "&selecteddcextratype=" + selecteddcextratype +
+                            "&tmergeyn=" + tmergeyn +
+                            "&tmergevalue=" + tmergevalue;
 
                             strUpdateQuery = "update temp_salecart set isCloudUpload = 1 " +
                             " where idx = '" + posidx + "' ";
@@ -192,6 +254,16 @@ public class UploadCartDataToCloud extends Service implements Runnable {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+
+            //07052024 close resultset
+            try {
+                if(!cartCursor.isClosed()){
+                    cartCursor.close();
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+
 
 
             if (apiVec.size() > 0) {

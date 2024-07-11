@@ -4244,6 +4244,8 @@ public class MainActivity extends Activity {
                             spttbnum++;
                         }
                     }
+                    //07052024 close resultset
+                    splittedCursor.close();
                 } catch (Exception e){
 
                 }

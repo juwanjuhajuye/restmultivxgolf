@@ -94,6 +94,8 @@ public class MakingJsonForCashOutEndofDay {
                     jsonList_loginout.put(jsontmp_loginout);
 
                 }
+                //07052024 close resultset
+                empLoginCursor.close();
             } catch (Exception e) {
             }
 
@@ -146,6 +148,8 @@ public class MakingJsonForCashOutEndofDay {
 
                     jsonList_cashin.put(jsontmp_cashin);
                 }
+                //07052024 close resultset
+                empCashInCursor.close();
             } catch (Exception e) {
             }
         } else {
@@ -902,6 +906,8 @@ public class MakingJsonForCashOutEndofDay {
                         tempTotalOverShortCash += tempOverShortCash;
                     }
                 }
+                //07052024 close resultset
+                dataCursor.close();
             } catch (Exception e) {
             }
 
@@ -1610,6 +1616,8 @@ public class MakingJsonForCashOutEndofDay {
                             }
                         }
                     }
+                    //07052024 close result set
+                    empCashierCursor.close();
                 } catch (Exception e) {
                 }
             } else {
@@ -1762,6 +1770,8 @@ public class MakingJsonForCashOutEndofDay {
 
                     jsonList_thirdparty.put(jsontmp_thirdparty);
                 }
+                //07052025 close resultset
+                empLoginCursor.close();
             } catch (Exception e) {
             }
         } else {
@@ -1897,6 +1907,8 @@ public class MakingJsonForCashOutEndofDay {
 
                         catecnt++;
                     }
+                    //07052024 close resultset
+                    empLoginCursor.close();
                 } catch (Exception e) {
                 }
             } else {

@@ -26,6 +26,7 @@ import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.MssqlDatabase;
 import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.R;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -246,6 +247,15 @@ public class TableTogoList extends Activity {
 
                 }
             } catch (Exception e) {
+            }
+
+            //07052024 close resultset
+            try {
+                if(!timeCursor.isClosed()){
+                    timeCursor.close();
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
             }
 
             String date1 = ordereddateValue;

@@ -1936,6 +1936,15 @@ public class Discount {
                     // GlobalMemberValues.addCartLastItemForCommonGratuityUse();
                 }
                 // ----------------------------------------------------------------------------
+
+
+                // 07112024
+                GlobalMemberValues gm = new GlobalMemberValues();
+                if (gm.isPOSWebPay() && (gm.getPOSType().toUpperCase() == "R" || gm.getPOSType().toUpperCase().equals("R"))) {
+                    GlobalMemberValues.logWrite("discountdatauploadlogjjj", "장바구니데이터 업로드 진입" + "\n");
+                    GlobalMemberValues.setSendCartToCloud(MainActivity.mContext, MainActivity.mActivity);
+                }
+
             }
         }
     }
@@ -2193,6 +2202,14 @@ public class Discount {
                 }
                 // getCalcSubTotalTaxTotalValue 메소드로 구해온 값들을 Sub Total, Tax, Total 텍스트뷰에 넣는다.
                 MainMiddleService.setCalcSubTotalTaxTotalValue(MainMiddleService.getCalcSubTotalTaxTotalValue(MainMiddleService.mGeneralArrayList));
+
+
+                // 07112024
+                GlobalMemberValues gm = new GlobalMemberValues();
+                if (gm.isPOSWebPay() && (gm.getPOSType().toUpperCase() == "R" || gm.getPOSType().toUpperCase().equals("R"))) {
+                    GlobalMemberValues.logWrite("discountdatauploadlogjjj", "장바구니데이터 업로드 진입" + "\n");
+                    GlobalMemberValues.setSendCartToCloud(MainActivity.mContext, MainActivity.mActivity);
+                }
             }
 
 

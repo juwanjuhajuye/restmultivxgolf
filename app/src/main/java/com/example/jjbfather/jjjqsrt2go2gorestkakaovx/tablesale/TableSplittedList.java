@@ -22,6 +22,7 @@ import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.MssqlDatabase;
 import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.R;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class TableSplittedList extends Activity {
@@ -204,6 +205,15 @@ public class TableSplittedList extends Activity {
             appcompanyLn.addView(newLn);
         } catch (Exception e){
 
+        }
+
+        //07052024 close resultset
+        try {
+            if(!splittedCursor.isClosed()){
+                splittedCursor.close();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
 
     }

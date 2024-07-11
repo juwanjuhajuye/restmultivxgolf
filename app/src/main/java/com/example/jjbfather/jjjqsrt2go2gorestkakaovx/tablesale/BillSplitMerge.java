@@ -42,6 +42,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Vector;
 
@@ -1074,6 +1075,15 @@ public class BillSplitMerge extends Activity {
         } catch (Exception e) {
         }
 
+        //07052024 close resultset
+        try {
+            if(!resultSet.isClosed()){
+                resultSet.close();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
         if (GlobalMemberValues.isStrEmpty(get_holdcode)) {
             GlobalMemberValues.displayDialog(mContext, "Warning", "Please select a bill to pay", "Close");
         } else {
@@ -1261,6 +1271,15 @@ public class BillSplitMerge extends Activity {
                     ins_cartidxs += get_cartidxs;
                 }
             } catch (Exception e) {
+            }
+
+            //07052024 close resultset
+            try {
+                if(!resultSet.isClosed()){
+                    resultSet.close();
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
             }
 
             rsCnt++;

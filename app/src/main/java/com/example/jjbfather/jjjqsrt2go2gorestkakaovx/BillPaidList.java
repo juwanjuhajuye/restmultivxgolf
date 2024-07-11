@@ -329,6 +329,8 @@ public class BillPaidList extends Activity {
 
                 billPaidListCardListLinearLayout.addView(newLn);
             }
+            //07052024 close resultset
+            billPaidListCursor.close();
         } catch (Exception e) {
         }
 

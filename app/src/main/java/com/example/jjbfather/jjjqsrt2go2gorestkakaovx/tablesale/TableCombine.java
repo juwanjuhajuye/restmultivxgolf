@@ -317,6 +317,15 @@ public class TableCombine extends Activity {
                     TableSaleMain.onRefreshAtOutside();
                     TableSaleMain.setInitValues();
 
+
+                    // 07112024
+                    GlobalMemberValues gm = new GlobalMemberValues();
+                    if (gm.isPOSWebPay() && (gm.getPOSType().toUpperCase() == "R" || gm.getPOSType().toUpperCase().equals("R"))) {
+                        GlobalMemberValues.logWrite("combinedatauploadlogjjj", "장바구니데이터 업로드 진입" + "\n");
+                        GlobalMemberValues.setSendCartToCloud(MainActivity.mContext, MainActivity.mActivity);
+                    }
+
+
                     setFinish();
                 }
             }

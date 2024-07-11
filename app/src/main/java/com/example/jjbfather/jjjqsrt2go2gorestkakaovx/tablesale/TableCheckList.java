@@ -1436,6 +1436,15 @@ public class TableCheckList extends Activity {
                         }
                     } catch (Exception e) {
                     }
+
+                    //07052024 close resultset
+                    try {
+                        if(!tempCursor.isClosed()){
+                            tempCursor.close();
+                        }
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
 
                 if (!GlobalMemberValues.isStrEmpty(item_tableidx)) {
@@ -1768,6 +1777,14 @@ public class TableCheckList extends Activity {
 
         }
 
+        //07052024 close resultset
+        try {
+            if(!deliverytakeawayInfoCursor.isClosed()){
+                deliverytakeawayInfoCursor.close();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
         // 07.11.2022 -------------------------------------------------------------------------
         // temp_customerId 의 값이 salon_store_deliveryappcompany 에 등록된 appname 과 같으면

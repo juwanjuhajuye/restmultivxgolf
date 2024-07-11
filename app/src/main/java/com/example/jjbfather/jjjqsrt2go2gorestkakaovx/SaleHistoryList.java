@@ -635,6 +635,15 @@ public class SaleHistoryList extends Activity {
 
         }
 
+        //07052024 close resultset
+        try {
+            if(!salecursor.isClosed()){
+                salecursor.close();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
         return mArrList;
     }
 

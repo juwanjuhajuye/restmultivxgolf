@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
 
+import net.sourceforge.jtds.jdbc.CachedResultSet;
+
 public class MssqlDatabase {
     public static Connection conn;
 
@@ -153,9 +155,11 @@ public class MssqlDatabase {
 
     public static ResultSet getResultSetValue(String paramQuery) {
         ResultSet returnvalue = null;
+        Statement tempStmt = null;
+        //07052024 close connections after they are used.
         if( MssqlDatabase.tryConnect(true) ){
             try {
-                Statement tempStmt = MssqlDatabase.conn.createStatement();
+                tempStmt = MssqlDatabase.conn.createStatement();
                 if (tempStmt != null) {
                     returnvalue = tempStmt.executeQuery(paramQuery);
                 }

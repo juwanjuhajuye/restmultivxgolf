@@ -141,6 +141,14 @@ public class TableDetailInfo extends Activity {
             }
         } catch (Exception e) {
         }
+        //07052024 close resultset
+        try {
+            if(!timeCursor.isClosed()){
+                timeCursor.close();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         // -------------------------------------------------------------------------------------------------
 
         TableSaleMain.mSelectedIdxArrListInCart = new ArrayList<String>();
@@ -535,6 +543,15 @@ public class TableDetailInfo extends Activity {
                 MssqlDatabase.conn.close();
             } catch (SQLException e) {
                 e.printStackTrace();
+            }
+
+            //07052024 close resultset
+            try {
+                if(!cartCurosr.isClosed()){
+                    cartCurosr.close();
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
             }
         } else {
             GlobalMemberValues.logWrite("mssqlitemlog", "여기2" + "\n");

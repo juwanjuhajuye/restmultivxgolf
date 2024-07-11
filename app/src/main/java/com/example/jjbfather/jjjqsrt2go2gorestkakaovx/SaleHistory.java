@@ -1097,6 +1097,14 @@ public class SaleHistory extends Activity {
 
             }
         }
+        //07052024 close resultset
+        try {
+            if(!receiptJson_return.isClosed()){
+                receiptJson_return.close();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static void LabelprintReceipt(Context paramContext, String paramSalesCode) {
@@ -1217,6 +1225,15 @@ public class SaleHistory extends Activity {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+
+            //07052024 close resultset
+            try {
+                if(!salonSalesDetailCursor.isClosed()){
+                    salonSalesDetailCursor.close();
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         }
 
         // jsonroot 를 리턴에 맞게 변경.
@@ -1249,6 +1266,15 @@ public class SaleHistory extends Activity {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+
+        //07052024 close resultset
+        try {
+            if(!receiptJson_return_returncode.isClosed()){
+                receiptJson_return_returncode.close();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
 
         GlobalMemberValues.printReceiptByJHP(jsonroot, context, "return");
@@ -3945,6 +3971,15 @@ public class SaleHistory extends Activity {
                         " ) ";
                 strInsertQueryVec.addElement(strInsSqlQuery);
             }
+
+            //07052024 close resultset
+            try {
+                if(!salonSalesCardCursor.isClosed()){
+                    salonSalesCardCursor.close();
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
             // --------------------------------------------------------------------------------------------------------------------------------------
 
             // 온라인 카드 결제가 있으면 카드 API 에서 void 처리후 salon_sales_card 에서 void 처리한다. ---------------------------------------------------
@@ -4052,6 +4087,15 @@ public class SaleHistory extends Activity {
                         ")";
                 strInsertQueryVec.addElement(strInsSqlQuery);
             }
+
+            //07052024 close resultset
+            try {
+                if(!salonSalesCursor.isClosed()){
+                    salonSalesCursor.close();
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
             // --------------------------------------------------------------------------------------------------------------------
             /********************************************************************************************************************************************/
 
@@ -4125,6 +4169,14 @@ public class SaleHistory extends Activity {
                 // --------------------------------------------------------------------------------------------------------------------
             }
 
+            //07052024 close resultset
+            try {
+                if(!salonSalesCursorForMileage.isClosed()){
+                    salonSalesCursorForMileage.close();
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
 
             // 클라우드 키친 프린팅일 경우 ----------------------------------------------------------------------------------------------
             // 클라우드 프린팅 일 경우에만 아래 사항이 저장되도록 했었음 (01132023 수정)

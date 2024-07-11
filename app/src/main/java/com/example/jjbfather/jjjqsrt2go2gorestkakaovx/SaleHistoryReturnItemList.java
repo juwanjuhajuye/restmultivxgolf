@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.R;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class SaleHistoryReturnItemList extends Activity {
@@ -265,6 +266,15 @@ public class SaleHistoryReturnItemList extends Activity {
         } catch (Exception e) {
 
         }
+
+        //07052024 close resultset
+        try {
+            if(!salonSalesDetailCursor.isClosed()){
+                salonSalesDetailCursor.close();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         // ----------------------------------------------------------------------------------------------------------------------------------
 
         // pick up or delivery fee 데이터 출력 -----------------------------------------------------------------------------------------------
@@ -358,6 +368,15 @@ public class SaleHistoryReturnItemList extends Activity {
         } catch (Exception e) {
 
         }
+
+        //07052024 close resultset
+        try {
+            if(!salonSalesFeeCursor.isClosed()){
+                salonSalesFeeCursor.close();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         // ----------------------------------------------------------------------------------------------------------------------------------
 
         // salon_sales_tip 데이터 출력 ---------------------------------------------------------------------------------------------------
@@ -447,6 +466,15 @@ public class SaleHistoryReturnItemList extends Activity {
             }
         } catch (Exception e){
 
+        }
+
+        //07052024 close resultset
+        try {
+            if(!salonSalesTipCursor.isClosed()){
+                salonSalesTipCursor.close();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
 
         // ----------------------------------------------------------------------------------------------------------------------------------

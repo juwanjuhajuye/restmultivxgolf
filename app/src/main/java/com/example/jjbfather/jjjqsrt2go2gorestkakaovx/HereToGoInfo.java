@@ -182,6 +182,8 @@ public class HereToGoInfo extends Activity {
                             }
                         }
                     }
+                    //07052024 close result set
+                    memberCursor.close();
                 } catch (Exception e) {
                 }
 
@@ -215,6 +217,8 @@ public class HereToGoInfo extends Activity {
                         }
                     }
                 }
+                //07052024 close resultset
+                memberCursor.close();
             } catch (Exception e) {
             }
         }

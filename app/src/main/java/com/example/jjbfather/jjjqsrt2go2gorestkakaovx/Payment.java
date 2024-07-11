@@ -3711,6 +3711,14 @@ public class Payment {
             }
 
         }
+        //07052024 close resultset
+        try {
+            if(!deliverytakeawayInfoCursor.isClosed()){
+                deliverytakeawayInfoCursor.close();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 //        if (deliverytakeawayInfoCursor.getCount() > 0 && deliverytakeawayInfoCursor.moveToFirst()) {
 //
 //        }

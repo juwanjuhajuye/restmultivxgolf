@@ -21,6 +21,7 @@ import androidx.core.content.res.ResourcesCompat;
 
 import java.io.File;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Vector;
 
 public class VoidCardList extends Activity {
@@ -305,6 +306,15 @@ public class VoidCardList extends Activity {
         } catch (Exception e) {
         }
 
+        //07052024 close resultset
+        try {
+            if(!tipCardListCursor.isClosed()){
+                tipCardListCursor.close();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
         /***********************************************************************************************************/
     }
 
@@ -450,6 +460,15 @@ public class VoidCardList extends Activity {
 
                 }
             } catch (Exception e) {
+            }
+
+            //07052024 close resultset
+            try {
+                if(!salonSalesCardCursor.isClosed()){
+                    salonSalesCardCursor.close();
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
             }
         }
     }

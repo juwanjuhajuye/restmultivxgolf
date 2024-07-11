@@ -499,6 +499,15 @@ public class SaleHistoryTipAdjustment extends Activity {
             e.printStackTrace();
         }
 
+        //07052024 close resultset
+        try {
+            if(!salonSalesCursor.isClosed()){
+                salonSalesCursor.close();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
         // RadioGroup 객체생성 및 리스너 연결
         saleHistoryTipAdjustmentPayTypeRadioGroup = (RadioGroup)findViewById(R.id.saleHistoryTipAdjustmentPayTypeRadioGroup);
 
@@ -639,6 +648,15 @@ public class SaleHistoryTipAdjustment extends Activity {
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
+
+                //07052024 close resultset
+                try {
+                    if(!salonSalesTipCursor.isClosed()){
+                        salonSalesTipCursor.close();
+                    }
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
                 // -----------------------------------------------------------------------------------------------------
             } else {
                 GlobalMemberValues.displayDialog(context, "Warning", "Invalid Access [No Employee Info (1)]", "Close");
@@ -647,6 +665,15 @@ public class SaleHistoryTipAdjustment extends Activity {
 
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+
+        //07052024 close resultset
+        try {
+            if(!salonSalesDetailCursor.isClosed()){
+                salonSalesDetailCursor.close();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
 
 
@@ -813,6 +840,15 @@ public class SaleHistoryTipAdjustment extends Activity {
                             }
                         } catch (SQLException e) {
                             e.printStackTrace();
+                        }
+
+                        //07052024 close resultset
+                        try {
+                            if(!salonSalesCardCursor.isClosed()){
+                                salonSalesCardCursor.close();
+                            }
+                        } catch (SQLException e) {
+                            throw new RuntimeException(e);
                         }
                     }
                 }

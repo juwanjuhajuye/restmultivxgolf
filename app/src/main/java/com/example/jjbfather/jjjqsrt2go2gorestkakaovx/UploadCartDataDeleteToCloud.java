@@ -115,6 +115,15 @@ public class UploadCartDataDeleteToCloud extends Service implements Runnable {
                 e.printStackTrace();
             }
 
+            //07052024 close resultset
+            try {
+                if(!cartCursor.isClosed()){
+                    cartCursor.close();
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+
 
             if (apiVec.size() > 0) {
                 Vector<String > apiUpdateQueryVec = new Vector<String>();
