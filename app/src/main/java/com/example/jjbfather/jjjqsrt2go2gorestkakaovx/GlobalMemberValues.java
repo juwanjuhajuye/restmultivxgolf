@@ -2903,25 +2903,42 @@ public class GlobalMemberValues {
 
     // 02032024
     public static String makeTOrderCodeForPOSOrder() {
-        String returnHoldCode = "";
+        String returnValue = "";
 
-        // 오늘 일시 가져오기
-        String tempYear = DateMethodClass.nowYearGet();
-        String tempDay = DateMethodClass.nowDayGet();
-        String tempMonth = DateMethodClass.nowMonthGet();
-        String tempHour = DateMethodClass.nowHourGet();
-        String tempMinute = DateMethodClass.nowMinuteGet();
-        String tempSec = DateMethodClass.nowSecondGet();
+//        // 오늘 일시 가져오기
+//        String tempYear = DateMethodClass.nowYearGet();
+//        String tempDay = DateMethodClass.nowDayGet();
+//        String tempMonth = DateMethodClass.nowMonthGet();
+//        String tempHour = DateMethodClass.nowHourGet();
+//        String tempMinute = DateMethodClass.nowMinuteGet();
+//        String tempSec = DateMethodClass.nowSecondGet();
+//
+//
+//        StringBuffer buf = new StringBuffer();
+//        buf.append(tempYear).append(tempMonth).append(tempDay).append(tempHour).append(tempMinute).append(tempSec);
+//
+//        returnValue = buf.toString();
+//
+//        returnValue = "P" + returnValue;
 
 
-        StringBuffer buf =new StringBuffer();
-        buf.append(tempYear).append(tempMonth).append(tempDay).append(tempHour).append(tempMinute).append(tempSec);
+        StringBuilder sb = new StringBuilder();
+        Random rd = new Random();
 
-        returnHoldCode = buf.toString();
+        int range = 19;
 
-        returnHoldCode = "P" + returnHoldCode;
+        for(int i=0;i<range;i++){
 
-        return returnHoldCode;
+            if(rd.nextBoolean()){
+                sb.append(rd.nextInt(10));
+            }else {
+                sb.append((char)(rd.nextInt(26)+65));
+            }
+        }
+
+        returnValue = "P" + sb.toString().toLowerCase();
+
+        return returnValue;
     }
 
     public static String getSaveType(String tempType) {
@@ -6407,22 +6424,22 @@ public class GlobalMemberValues {
                 String webOrdersCustomerOrderNumber = ordersContentsArr[11];
 
                 String webOrdersTablename = "";
-                if (ordersContentsArr.length >= 12) {
+                if (ordersContentsArr.length > 12) {
                     webOrdersTablename = ordersContentsArr[12];
                 }
 
                 String webOrdersTableidx = "";
-                if (ordersContentsArr.length >= 13) {
+                if (ordersContentsArr.length > 13) {
                     webOrdersTableidx = ordersContentsArr[13];
                 }
 
                 // 10112023
                 String webOrdersOrderfrom = "";
-                if (ordersContentsArr.length >= 14) {
+                if (ordersContentsArr.length > 14) {
                     webOrdersOrderfrom = ordersContentsArr[14];
                 }
                 String webOrdersSalescodethirdparty = "";
-                if (ordersContentsArr.length >= 15) {
+                if (ordersContentsArr.length > 15) {
                     webOrdersSalescodethirdparty = ordersContentsArr[15];
                 }
 
