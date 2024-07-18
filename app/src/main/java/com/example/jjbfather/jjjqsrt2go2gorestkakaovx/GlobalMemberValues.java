@@ -7091,6 +7091,11 @@ public class GlobalMemberValues {
                                     // 02242024 - 추가작업 ---------------------------------------------------------------------
 
 
+                                    // 07182024
+                                    // TORDER 관련 추가
+                                    if (GlobalMemberValues.isTOrderUse()){
+                                        GlobalMemberValues.sendTOrderAPIOrderData("K");
+                                    }
 
 
 
