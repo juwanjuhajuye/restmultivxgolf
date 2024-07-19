@@ -4948,11 +4948,6 @@ public class TableSaleMain extends Activity {
                 uploadTableDataCloudExe();
             }
 
-            //06032024 if using torder send data to torder API
-            if (GlobalMemberValues.isTOrderUse()){
-                GlobalMemberValues.sendTOrderAPIOrderData("K");
-            }
-
         }
     }
 
@@ -5312,9 +5307,6 @@ public class TableSaleMain extends Activity {
 
         try {
             GlobalMemberValues.phoneorderPrinting(paramHoldCode, "K", get_tableInfos);
-            if(GlobalMemberValues.isTOrderUse()){
-                GlobalMemberValues.sendTOrderAPIOrderData("K");
-            }
         } catch (JSONException e) {
             e.printStackTrace();
         }

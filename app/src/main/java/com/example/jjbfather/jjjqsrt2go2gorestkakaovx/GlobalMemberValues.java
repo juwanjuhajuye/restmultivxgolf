@@ -7071,6 +7071,10 @@ public class GlobalMemberValues {
                                     GlobalMemberValues.logWrite("torderquerydblogjjj", "query returned error");
                                 } else { // 정상처리일 경우
 
+                                    // 07192024
+                                    if (GlobalMemberValues.isTOrderUse()){
+                                        GlobalMemberValues.sendTOrderAPIOrderData("K");
+                                    }
 
                                     // 02242024 - 추가작업 ---------------------------------------------------------------------
                                     TableSaleMain.isAfterMerge = true;
@@ -7089,13 +7093,6 @@ public class GlobalMemberValues {
                                         GlobalMemberValues.setSendCartToCloud(MainActivity.mContext, MainActivity.mActivity);
                                     }
                                     // 02242024 - 추가작업 ---------------------------------------------------------------------
-
-
-                                    // 07182024
-                                    // TORDER 관련 추가
-                                    if (GlobalMemberValues.isTOrderUse()){
-                                        GlobalMemberValues.sendTOrderAPIOrderData("K");
-                                    }
 
 
 

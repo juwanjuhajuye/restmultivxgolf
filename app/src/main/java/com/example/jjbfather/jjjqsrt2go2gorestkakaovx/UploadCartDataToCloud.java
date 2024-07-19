@@ -300,6 +300,11 @@ public class UploadCartDataToCloud extends Service implements Runnable {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
+
+                    // 07192024
+                    if (GlobalMemberValues.isTOrderUse()){
+                        GlobalMemberValues.sendTOrderAPIOrderData("K");
+                    }
                 }
             }
         }
