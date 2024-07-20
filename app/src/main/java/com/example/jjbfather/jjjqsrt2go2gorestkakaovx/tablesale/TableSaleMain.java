@@ -306,6 +306,10 @@ public class TableSaleMain extends Activity {
     };
 
     private void setContent() {
+        // 07212024 - TOrder Send Data
+        GlobalMemberValues.sendDataToTOrderService(MainActivity.mContext, MainActivity.mActivity, "");
+
+
         // 09262023
         isAfterMerge = false;
 
@@ -3547,7 +3551,7 @@ public class TableSaleMain extends Activity {
 
 
                             if (!GlobalMemberValues.isShowQuickMenusInTableBoard){
-                                if(SystemClock.elapsedRealtime() - mLastClickTime < 4000) {
+                                if(SystemClock.elapsedRealtime() - mLastClickTime < 700) {
                                     return;
                                 }
                                 mLastClickTime = SystemClock.elapsedRealtime();
@@ -3896,6 +3900,9 @@ public class TableSaleMain extends Activity {
             GlobalMemberValues.setSendCartDeleteToCloud(mContext, mActivity);
         }
         // -----------------------------------------------------------------------------------------------------
+
+        // 07212024 - TOrder Send Data
+        GlobalMemberValues.sendDataToTOrderService(MainActivity.mContext, MainActivity.mActivity, "");
     }
 
     public void setTableSplit() {

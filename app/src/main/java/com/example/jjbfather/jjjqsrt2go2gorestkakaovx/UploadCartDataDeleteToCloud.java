@@ -160,10 +160,10 @@ public class UploadCartDataDeleteToCloud extends Service implements Runnable {
                         e.printStackTrace();
                     }
 
-                    // 07192024
-                    if (GlobalMemberValues.isTOrderUse()){
-                        GlobalMemberValues.sendTOrderAPIOrderData("K");
-                    }
+//                    // 07192024
+//                    if (GlobalMemberValues.isTOrderUse()){
+//                        GlobalMemberValues.sendTOrderAPIOrderData("K");
+//                    }
 
                 }
             }

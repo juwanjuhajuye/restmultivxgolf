@@ -7072,9 +7072,9 @@ public class GlobalMemberValues {
                                 } else { // 정상처리일 경우
 
                                     // 07192024
-                                    if (GlobalMemberValues.isTOrderUse()){
-                                        GlobalMemberValues.sendTOrderAPIOrderData("K");
-                                    }
+//                                    if (GlobalMemberValues.isTOrderUse()){
+//                                        GlobalMemberValues.sendTOrderAPIOrderData("K");
+//                                    }
 
                                     // 02242024 - 추가작업 ---------------------------------------------------------------------
                                     TableSaleMain.isAfterMerge = true;
@@ -7094,6 +7094,9 @@ public class GlobalMemberValues {
                                     }
                                     // 02242024 - 추가작업 ---------------------------------------------------------------------
 
+
+                                    // 07212024 - TOrder Send Data
+                                    GlobalMemberValues.sendDataToTOrderService(MainActivity.mContext, MainActivity.mActivity, "500");
 
 
                                     GlobalMemberValues.logWrite("torderquerydblogjjj", "query executed correctly");
@@ -20893,4 +20896,14 @@ public class GlobalMemberValues {
         }
         return returnData;
     }
+
+
+
+    // 07202024
+    public static void sendDataToTOrderService(Context paramContext, Activity paramActivity, String paramDelayTime) {
+        Intent tempIntent = new Intent(paramContext.getApplicationContext(), TOrderDataSendService.class);
+        tempIntent.putExtra("delaytime", paramDelayTime);
+        paramActivity.startService(tempIntent);
+    }
+
 }

@@ -939,6 +939,13 @@
             android:enabled="true"
             android:exported="false" />
 
+        <!-- 07202024 -->
+        <service
+            android:name="com.example.jjbfather.jjjqsrt2go2gorest.TOrderDataSendService"
+            android:enabled="true"
+            android:exported="true" />
+
+
         <!-- Service 끝 -->
         <!-- 구글 플레이 서비스 구글플레이서비스 (Google Play Service) -->
         <!-- FCM 관련 -->

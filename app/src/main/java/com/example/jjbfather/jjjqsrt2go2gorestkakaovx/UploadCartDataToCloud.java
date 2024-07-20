@@ -302,9 +302,9 @@ public class UploadCartDataToCloud extends Service implements Runnable {
                     }
 
                     // 07192024
-                    if (GlobalMemberValues.isTOrderUse()){
-                        GlobalMemberValues.sendTOrderAPIOrderData("K");
-                    }
+//                    if (GlobalMemberValues.isTOrderUse()){
+//                        GlobalMemberValues.sendTOrderAPIOrderData("K");
+//                    }
                 }
             }
         }
