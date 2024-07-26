@@ -17,6 +17,7 @@ import com.epson.epos2.printer.PrinterStatusInfo;
 import com.epson.epos2.printer.ReceiveListener;
 import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.R;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 

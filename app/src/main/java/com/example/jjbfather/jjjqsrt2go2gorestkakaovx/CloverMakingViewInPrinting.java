@@ -12,6 +12,7 @@ import android.text.Layout;
 import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.style.StyleSpan;
+import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -701,35 +702,35 @@ public class CloverMakingViewInPrinting {
                     // 테이블 세일이 아닌 퀵 세일인 경우.
                     if (paramPrintingType.equals("sales")) {
                         if (!GlobalMemberValues.isStrEmpty(str_customerPagerNumber)) {
-                                if (GlobalMemberValues.getValueOnReceiptMerCusShowYN("pagernumber_yn",paramCusMer)){
+                            if (GlobalMemberValues.getValueOnReceiptMerCusShowYN("pagernumber_yn",paramCusMer)){
 
-                                    LinearLayout pagerLn = new LinearLayout(MainActivity.mContext);
-                                    pagerLn.setLayoutParams(matchParentParams);
-                                    pagerLn.setOrientation(LinearLayout.HORIZONTAL);
+                                LinearLayout pagerLn = new LinearLayout(MainActivity.mContext);
+                                pagerLn.setLayoutParams(matchParentParams);
+                                pagerLn.setOrientation(LinearLayout.HORIZONTAL);
 
-                                    TextView pagerTv1 = new TextView(MainActivity.mContext);
-                                    pagerTv1.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
-                                    pagerTv1.setText("Pager No.");
-                                    pagerTv1.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
-                                    GlobalMemberValues.setTextStyleOnClover(pagerTv1);
-                                    pagerTv1.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.0f));
-                                    pagerLn.addView(pagerTv1);
+                                TextView pagerTv1 = new TextView(MainActivity.mContext);
+                                pagerTv1.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
+                                pagerTv1.setText("Pager No.");
+                                pagerTv1.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
+                                GlobalMemberValues.setTextStyleOnClover(pagerTv1);
+                                pagerTv1.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.0f));
+                                pagerLn.addView(pagerTv1);
 
-                                    String pagenoTxt = GlobalMemberValues.getPagerNumberHeaderTxt() + str_customerPagerNumber + "\n";
+                                String pagenoTxt = GlobalMemberValues.getPagerNumberHeaderTxt() + str_customerPagerNumber + "\n";
 
-                                    TextView pagerTv2 = new TextView(MainActivity.mContext);
-                                    pagerTv2.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
-                                    pagerTv2.setText(" : " + pagenoTxt);
-                                    pagerTv2.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
-                                    GlobalMemberValues.setTextStyleOnClover(pagerTv2);
-                                    pagerTv2.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.5f));
-                                    pagerLn.addView(pagerTv2);
+                                TextView pagerTv2 = new TextView(MainActivity.mContext);
+                                pagerTv2.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
+                                pagerTv2.setText(" : " + pagenoTxt);
+                                pagerTv2.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
+                                GlobalMemberValues.setTextStyleOnClover(pagerTv2);
+                                pagerTv2.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.5f));
+                                pagerLn.addView(pagerTv2);
 
-                                    printingLn.addView(pagerLn);
-                                    // 점선 ----------------------------------------------------------------------------------------------------------------------------
-                                    printingLn.addView(GlobalMemberValues.getDotLineViewForClover(MainActivity.mContext));
-                                    // ------------------------------------------------------------------------------------------------------------------------------
-                                }
+                                printingLn.addView(pagerLn);
+                                // 점선 ----------------------------------------------------------------------------------------------------------------------------
+                                printingLn.addView(GlobalMemberValues.getDotLineViewForClover(MainActivity.mContext));
+                                // ------------------------------------------------------------------------------------------------------------------------------
+                            }
                         }
                     }
                 }
@@ -2278,46 +2279,49 @@ public class CloverMakingViewInPrinting {
                         " select gratuityvalue from salon_storegeneral "
                 ));
 
-                String tempCGName = "";
-                if (tempCGtype == "%" || tempCGtype.equals("%")) {
-                    tempCGName = tempGratuityvalue + tempCGtype;
-                } else {
-                    tempCGName = tempCGtype + tempGratuityvalue;
+                //07162024 only add gratuity line in receipt if gratuity is not zero
+                if (!str_gratuity_amount.equals("0.00")) {
+                    String tempCGName = "";
+                    if (tempCGtype == "%" || tempCGtype.equals("%")) {
+                        tempCGName = tempGratuityvalue + tempCGtype;
+                    } else {
+                        tempCGName = tempCGtype + tempGratuityvalue;
+                    }
+
+                    String commonGratuityStr = "Gratuity " + tempCGName;
+                    // 04242023 --------------------------------------------------------------------------
+
+
+                    TextView commongratuityTv = new TextView(MainActivity.mContext);
+                    commongratuityTv.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
+
+                    // 04242023
+                    commongratuityTv.setText(commonGratuityStr);
+
+                    commongratuityTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
+                    GlobalMemberValues.setTextStyleOnClover(commongratuityTv);
+                    commongratuityTv.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.0f));
+                    commongratuityLn.addView(commongratuityTv);
+
+                    if (paramPrintingType.equals("void") || paramPrintingType.equals("return")) {
+                        str_gratuity_amount = combineStringForVoidPrint(str_gratuity_amount);
+                    }
+
+                    // 230421
+                    if (!str_bill_list_idx.isEmpty()) {
+                        str_gratuity_amount = GlobalMemberValues.getCommaStringForDouble(MssqlDatabase.getResultSetValueToString(" select gratuityamt from bill_list where holdcode = '" + str_bill_list_holdcode + "' and idx = '" + str_bill_list_idx + "'"));
+                    }
+
+                    TextView commongratuityRightTv = new TextView(MainActivity.mContext);
+                    commongratuityRightTv.setGravity(Gravity.CENTER_VERTICAL | Gravity.RIGHT);
+                    commongratuityRightTv.setText(finalTempDollarStr + str_gratuity_amount);
+                    commongratuityRightTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
+                    GlobalMemberValues.setTextStyleOnClover(commongratuityRightTv);
+                    commongratuityRightTv.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.0f));
+                    commongratuityLn.addView(commongratuityRightTv);
+
+                    printingLn.addView(commongratuityLn);
                 }
-
-                String commonGratuityStr = "Gratuity " + tempCGName;
-                // 04242023 --------------------------------------------------------------------------
-
-
-                TextView commongratuityTv = new TextView(MainActivity.mContext);
-                commongratuityTv.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
-
-                // 04242023
-                commongratuityTv.setText(commonGratuityStr);
-
-                commongratuityTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
-                GlobalMemberValues.setTextStyleOnClover(commongratuityTv);
-                commongratuityTv.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.0f));
-                commongratuityLn.addView(commongratuityTv);
-
-                if (paramPrintingType.equals("void") || paramPrintingType.equals("return")) {
-                    str_gratuity_amount = combineStringForVoidPrint(str_gratuity_amount);
-                }
-
-                // 230421
-                if (!str_bill_list_idx.isEmpty()){
-                    str_gratuity_amount = GlobalMemberValues.getCommaStringForDouble(MssqlDatabase.getResultSetValueToString(" select gratuityamt from bill_list where holdcode = '" + str_bill_list_holdcode + "' and idx = '" + str_bill_list_idx + "'"));
-                }
-
-                TextView commongratuityRightTv = new TextView(MainActivity.mContext);
-                commongratuityRightTv.setGravity(Gravity.CENTER_VERTICAL | Gravity.RIGHT);
-                commongratuityRightTv.setText(finalTempDollarStr + str_gratuity_amount);
-                commongratuityRightTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
-                GlobalMemberValues.setTextStyleOnClover(commongratuityRightTv);
-                commongratuityRightTv.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.0f));
-                commongratuityLn.addView(commongratuityRightTv);
-
-                printingLn.addView(commongratuityLn);
                 // ---------------------------------------------------------------------------------------------------------------------------------
 
                 // each discount total
@@ -2407,7 +2411,7 @@ public class CloverMakingViewInPrinting {
 
 
                 if (!(GlobalMemberValues.getDoubleAtString(str_tipcard) == 0.00)
-                || !(GlobalMemberValues.getDoubleAtString(str_tipcash) == 0.00)){
+                        || !(GlobalMemberValues.getDoubleAtString(str_tipcash) == 0.00)){
                     LinearLayout tipLn = new LinearLayout(MainActivity.mContext);
                     tipLn.setLayoutParams(matchParentParams);
                     tipLn.setOrientation(LinearLayout.HORIZONTAL);
@@ -5784,37 +5788,41 @@ public class CloverMakingViewInPrinting {
                         " select gratuityvalue from salon_storegeneral "
                 ));
 
-                String tempCGName = "";
-                if (tempCGtype == "%" || tempCGtype.equals("%")) {
-                    tempCGName = tempGratuityvalue + tempCGtype;
-                } else {
-                    tempCGName = tempCGtype + tempGratuityvalue;
+                //07162024 only add gratuity line in receipt if gratuity is not zero
+                if (!str_commongratuity.equals("0.00") && !str_commongratuity.equals("") ) {
+
+                    String tempCGName = "";
+                    if (tempCGtype == "%" || tempCGtype.equals("%")) {
+                        tempCGName = tempGratuityvalue + tempCGtype;
+                    } else {
+                        tempCGName = tempCGtype + tempGratuityvalue;
+                    }
+
+                    String commonGratuityStr = "Gratuity " + tempCGName;
+                    // 04242023 --------------------------------------------------------------------------
+
+                    TextView commongratuityTv = new TextView(MainActivity.mContext);
+                    commongratuityTv.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
+
+                    // 04242023
+                    commongratuityTv.setText(commonGratuityStr);
+
+                    commongratuityTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
+                    GlobalMemberValues.setTextStyleOnClover(commongratuityTv);
+                    commongratuityTv.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.0f));
+                    commongratuityLn.addView(commongratuityTv);
+
+
+                    TextView commongratuityRightTv = new TextView(MainActivity.mContext);
+                    commongratuityRightTv.setGravity(Gravity.CENTER_VERTICAL | Gravity.RIGHT);
+                    commongratuityRightTv.setText(finalTempDollarStr + GlobalMemberValues.setDoubleToString(GlobalMemberValues.getDoubleAtString(str_commongratuity), 2));
+                    commongratuityRightTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
+                    GlobalMemberValues.setTextStyleOnClover(commongratuityRightTv);
+                    commongratuityRightTv.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.0f));
+                    commongratuityLn.addView(commongratuityRightTv);
+
+                    printingLn.addView(commongratuityLn);
                 }
-
-                String commonGratuityStr = "Gratuity " + tempCGName;
-                // 04242023 --------------------------------------------------------------------------
-
-                TextView commongratuityTv = new TextView(MainActivity.mContext);
-                commongratuityTv.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
-
-                // 04242023
-                commongratuityTv.setText(commonGratuityStr);
-
-                commongratuityTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
-                GlobalMemberValues.setTextStyleOnClover(commongratuityTv);
-                commongratuityTv.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.0f));
-                commongratuityLn.addView(commongratuityTv);
-
-
-                TextView commongratuityRightTv = new TextView(MainActivity.mContext);
-                commongratuityRightTv.setGravity(Gravity.CENTER_VERTICAL | Gravity.RIGHT);
-                commongratuityRightTv.setText(finalTempDollarStr + GlobalMemberValues.setDoubleToString(GlobalMemberValues.getDoubleAtString(str_commongratuity),2));
-                commongratuityRightTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
-                GlobalMemberValues.setTextStyleOnClover(commongratuityRightTv);
-                commongratuityRightTv.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.0f));
-                commongratuityLn.addView(commongratuityRightTv);
-
-                printingLn.addView(commongratuityLn);
                 // ---------------------------------------------------------------------------------------------------------------------------------
 
                 // ---------------------------------------------------------------------------------------------------------------------------------
@@ -9877,27 +9885,27 @@ public class CloverMakingViewInPrinting {
 
                 // Extra Total ----------------------------------------------------------------------------------------------------
                 /**
-                LinearLayout salessummary_extraLn = new LinearLayout(MainActivity.mContext);
-                salessummary_extraLn.setLayoutParams(matchParentParams);
-                salessummary_extraLn.setOrientation(LinearLayout.HORIZONTAL);
+                 LinearLayout salessummary_extraLn = new LinearLayout(MainActivity.mContext);
+                 salessummary_extraLn.setLayoutParams(matchParentParams);
+                 salessummary_extraLn.setOrientation(LinearLayout.HORIZONTAL);
 
-                TextView salessummary_extraLeftTv = new TextView(MainActivity.mContext);
-                salessummary_extraLeftTv.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
-                salessummary_extraLeftTv.setText("Extra Total");
-                salessummary_extraLeftTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
-                GlobalMemberValues.setTextStyleOnClover(salessummary_extraLeftTv);
-                salessummary_extraLeftTv.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.0f));
-                salessummary_extraLn.addView(salessummary_extraLeftTv);
+                 TextView salessummary_extraLeftTv = new TextView(MainActivity.mContext);
+                 salessummary_extraLeftTv.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
+                 salessummary_extraLeftTv.setText("Extra Total");
+                 salessummary_extraLeftTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
+                 GlobalMemberValues.setTextStyleOnClover(salessummary_extraLeftTv);
+                 salessummary_extraLeftTv.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.0f));
+                 salessummary_extraLn.addView(salessummary_extraLeftTv);
 
-                TextView salessummary_extraRightTv = new TextView(MainActivity.mContext);
-                salessummary_extraRightTv.setGravity(Gravity.CENTER_VERTICAL | Gravity.RIGHT);
-                salessummary_extraRightTv.setText(salessummary_extra);
-                salessummary_extraRightTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
-                GlobalMemberValues.setTextStyleOnClover(salessummary_extraRightTv);
-                salessummary_extraRightTv.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.5f));
-                salessummary_extraLn.addView(salessummary_extraRightTv);
+                 TextView salessummary_extraRightTv = new TextView(MainActivity.mContext);
+                 salessummary_extraRightTv.setGravity(Gravity.CENTER_VERTICAL | Gravity.RIGHT);
+                 salessummary_extraRightTv.setText(salessummary_extra);
+                 salessummary_extraRightTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
+                 GlobalMemberValues.setTextStyleOnClover(salessummary_extraRightTv);
+                 salessummary_extraRightTv.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.5f));
+                 salessummary_extraLn.addView(salessummary_extraRightTv);
 
-                printingLn.addView(salessummary_extraLn);
+                 printingLn.addView(salessummary_extraLn);
                  **/
                 // --------------------------------------------------------------------------------------------------------------------
 
@@ -10173,7 +10181,6 @@ public class CloverMakingViewInPrinting {
                 // 10302023 -----------------------------------------------------------------------------
 
                 // Gratuity ---------------------------------------------------------------------------------------------
-
                 // 04042024---------------------------------------------------------------------------------------------------
                 LinearLayout salessummary_cashtipsLn = new LinearLayout(MainActivity.mContext);
                 salessummary_cashtipsLn.setLayoutParams(matchParentParams);
@@ -10327,7 +10334,7 @@ public class CloverMakingViewInPrinting {
                 // --------------------------------------------------------------------------------------------------------------------
 
                 // Over Short Cash ----------------------------------------------------------------------------------------------------
-                    // cash in/out 일 경우에만 over, short cash 표시할 경우 아래 조건문 안에 넣을 것
+                // cash in/out 일 경우에만 over, short cash 표시할 경우 아래 조건문 안에 넣을 것
 //                if (endofdayyn == "N" || endofdayyn.equals("N")) {
 //                }
                 double temp_overShortCash = GlobalMemberValues.getDoubleAtString(salessummary_overshortcash);
@@ -15863,6 +15870,7 @@ public class CloverMakingViewInPrinting {
                             " select gratuityvalue from salon_storegeneral "
                     ));
 
+
                     String tempCGName = "";
                     if (tempCGtype == "%" || tempCGtype.equals("%")) {
                         tempCGName = tempGratuityvalue + tempCGtype;
@@ -17137,7 +17145,7 @@ public class CloverMakingViewInPrinting {
 
 
                 // Sub Total ----------------------------------------------------------------------------------------------------------------------
-                 LinearLayout subtotalLn = new LinearLayout(MainActivity.mContext);
+                LinearLayout subtotalLn = new LinearLayout(MainActivity.mContext);
                 subtotalLn.setLayoutParams(matchParentParams);
                 subtotalLn.setOrientation(LinearLayout.HORIZONTAL);
 

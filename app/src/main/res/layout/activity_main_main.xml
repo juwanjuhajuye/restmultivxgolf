@@ -88,6 +88,15 @@
                 <include
                     android:id="@+id/servicemenulayout72"
                     layout="@layout/activity_service_72" />
+
+                <include
+                    android:id="@+id/servicemenulayout65"
+                    layout="@layout/activity_service_65" />
+
+                <include
+                    android:id="@+id/servicemenulayout68"
+                    layout="@layout/activity_service_68" />
+
                 <include
                     android:id="@+id/customer_servicemenulayout_60"
                     layout="@layout/activity_customer_service_60"/>

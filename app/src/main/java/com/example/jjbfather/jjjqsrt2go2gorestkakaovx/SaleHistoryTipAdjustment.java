@@ -20,13 +20,26 @@ import android.widget.TextView;
 
 import com.byullbam.restapi.RestApiConfig;
 import com.byullbam.restapi.RestApiTipAdd;
+import com.pax.poslink.PaymentRequest;
+import com.pax.poslink.PaymentResponse;
+
+import net.sourceforge.jtds.jdbc.MSSqlServerInfo;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 
 public class SaleHistoryTipAdjustment extends Activity {
     static Activity mActivity;
@@ -567,7 +580,12 @@ public class SaleHistoryTipAdjustment extends Activity {
 
         // 최초에는 CASH 를 선택하게 한다.
         //saleHistoryTipAdjustmentPayTypeRadioGroup.check(saleHistoryTipAdjustmentCashRadioButton.getId());
-        //mPayType = "CASH";
+        //mPayType = "CASH";ㄴ
+        // Card 선택
+        // 라디오 버튼 숨김으로 변경 (카드선택 고정) 071724
+        saleHistoryTipAdjustmentPayTypeRadioGroup.check(saleHistoryTipAdjustmentCardRadioButton.getId());
+        mPayType = "CARD";
+        openTipCardListActivity();
         /***********************************************************************************************************/
 
         /** 부모로부터 전달받은 값 및 초기값 할당 ****************************************************************/
@@ -1118,6 +1136,24 @@ public class SaleHistoryTipAdjustment extends Activity {
                 }
             }
 
+
+            // 07222024 ------------------------------------------------------------
+            String sales_pgdevicenum = MssqlDatabase.getResultSetValueToString(
+                    " select pgdevicenum from salon_sales where salescode = '" + mSalesCode + "' "
+            );
+            String sales_pgip = "";
+            String sales_pgport = "";
+            if (!GlobalMemberValues.isStrEmpty(sales_pgdevicenum)) {
+                sales_pgip = MssqlDatabase.getResultSetValueToString(
+                        " select networkip from salon_pgip where pgdevicenum = '" + sales_pgdevicenum + "' "
+                );
+                sales_pgport = MssqlDatabase.getResultSetValueToString(
+                        " select networkport from salon_pgip where pgdevicenum = '" + sales_pgdevicenum + "' "
+                );
+            }
+            // 07222024 ------------------------------------------------------------
+
+
             Intent intent = new Intent(context, JJJ_PaxPay.class);
             // 객체 및 데이터 전달하기 ---------------------------------------------------------------
             intent.putExtra("cardtendertype", "CREDIT");
@@ -1130,6 +1166,12 @@ public class SaleHistoryTipAdjustment extends Activity {
             intent.putExtra("refnum", mSelectedSalonSalesCardCardRefNumber);
             intent.putExtra("ecrrefnum", Payment.mSalesCode);
             intent.putExtra("fromsignpad", "N");
+
+
+            // 07222024
+            intent.putExtra("sales_pgip", sales_pgip);
+            intent.putExtra("sales_pgport", sales_pgport);
+
 
             GlobalMemberValues.logWrite("cardtipadjustment", "card comp : " + mSelectedSalonSalesCardCardCom + "\n");
             // -------------------------------------------------------------------------------------
@@ -1264,10 +1306,19 @@ public class SaleHistoryTipAdjustment extends Activity {
                 );
                 double tipamount = tempTipamount + paramModPriceAmount;
 
+
                 strQuery = "update salon_sales_tip set " +
                         " usedCard = " + tipamount + ", " +
                         " isCloudUpload = '0' " +
                         " where salesCode = '" + mSalesCode + "' ";
+
+//                String mssql_strQuery = "update salon_sales_tip set " +
+//                        " usedCard = " + tipamount + ", " +
+//                        " isCloudUpload = '0' " +
+//                        " where idx = '" + salonSalesTipidx + "' ";
+//                MssqlDatabase.executeTransactionByQuery(mssql_strQuery);
+
+
 
                 // 05.09.2022
                 // 팁 데이터 업로드를 위한 sqlite 에 데이터 수정
@@ -1412,7 +1463,7 @@ public class SaleHistoryTipAdjustment extends Activity {
 
         mTempPriceValue = "";
 
-        mSelectedSalonSalesCard_Split_transaction_id  = "";
+        mSelectedSalonSalesCard_Split_transaction_id = "";
         mSelectedSalonSalesCardCardCom = "";
         mSelectedSalonSalesCardTipAmount = "";
         mSelectedSalonSalesCardCardLastFourDigitNumbers = "";

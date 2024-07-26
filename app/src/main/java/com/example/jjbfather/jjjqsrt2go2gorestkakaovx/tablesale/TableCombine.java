@@ -24,6 +24,8 @@ import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.Vector;
 
 public class TableCombine extends Activity {
@@ -219,6 +221,7 @@ public class TableCombine extends Activity {
                             " set holdcode = '" + tempHoldCode + "', " +
                             " tableidx = '" + paramChoiceTableIdx + "', " +
                             " mergednum = '0', isCloudUpload = 0 " +
+
                             " where tableidx like '%" + tempTblIdx + "%' ";
                     updateVector.addElement(strQuery);
 
@@ -323,6 +326,9 @@ public class TableCombine extends Activity {
                     if (gm.isPOSWebPay() && (gm.getPOSType().toUpperCase() == "R" || gm.getPOSType().toUpperCase().equals("R"))) {
                         GlobalMemberValues.logWrite("combinedatauploadlogjjj", "장바구니데이터 업로드 진입" + "\n");
                         GlobalMemberValues.setSendCartToCloud(MainActivity.mContext, MainActivity.mActivity);
+
+                        // 07212024 - TOrder Send Data
+                        // GlobalMemberValues.sendDataToTOrderService(MainActivity.mContext, MainActivity.mActivity);
                     }
 
 

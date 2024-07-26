@@ -816,6 +816,13 @@
             android:theme="@android:style/Theme.Dialog"
             android:windowSoftInputMode="stateAlwaysHidden" />
 
+        <activity
+            android:name="com.example.jjbfather.jjjqsrt2go2gorestkakaovx.SettingsPaymentGatewayDevices"
+            android:configChanges="keyboard|keyboardHidden|orientation|orientation|screenSize"
+            android:label="@string/title_activity_settings"
+            android:theme="@android:style/Theme.Dialog"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+
         <!-- Service 시작 -->
         <service
             android:name="com.example.jjbfather.jjjqsrt2go2gorestkakaovx.UploadSaleJsonToCloud"
@@ -872,7 +879,6 @@
             android:name="com.example.jjbfather.jjjqsrt2go2gorestkakaovx.SetTableIdxInCloudService"
             android:enabled="true"
             android:exported="false" />
-
 
         <service
             android:name="com.example.jjbfather.jjjqsrt2go2gorestkakaovx.CheckNewSideMenuOrderCloudService"
@@ -941,7 +947,7 @@
 
         <!-- 07202024 -->
         <service
-            android:name="com.example.jjbfather.jjjqsrt2go2gorest.TOrderDataSendService"
+            android:name="com.example.jjbfather.jjjqsrt2go2gorestkakaovx.TOrderDataSendService"
             android:enabled="true"
             android:exported="true" />
 

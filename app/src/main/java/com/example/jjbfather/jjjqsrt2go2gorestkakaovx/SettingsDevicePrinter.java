@@ -10,6 +10,7 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -46,6 +47,8 @@ import com.starmicronics.starioextension.ConnectionCallback;
 
 //import com.starmicronics.stario.StarResultCode;
 //import com.starmicronics.starioextension.ConnectionCallback;
+import com.starmicronics.starioextension.ICommandBuilder;
+import com.starmicronics.starioextension.IConnectionCallback;
 import com.starmicronics.starioextension.StarIoExt;
 import com.starmicronics.starioextension.StarIoExtManager;
 import com.starmicronics.starioextension.StarIoExtManagerListener;

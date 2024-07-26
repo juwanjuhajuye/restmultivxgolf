@@ -1,5 +1,6 @@
 package com.example.jjbfather.jjjqsrt2go2gorestkakaovx;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 
 import android.app.Activity;
@@ -9,6 +10,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +22,9 @@ import android.widget.TextView;
 
 import org.json.JSONObject;
 
+import java.io.File;
 import java.sql.ResultSet;
+import java.util.Vector;
 
 public class BillPaidList extends Activity {
     public static Activity mActivity;

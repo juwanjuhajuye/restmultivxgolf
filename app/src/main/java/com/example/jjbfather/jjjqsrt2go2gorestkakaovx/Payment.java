@@ -38,6 +38,8 @@ import org.json.JSONObject;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Vector;
 
 
@@ -589,6 +591,12 @@ public class Payment {
                 GlobalMemberValues.BASICNUMBERTEXTSIZE * 1.2f
         );
 
+        if (GlobalMemberValues.isQSRPOSonRestaurantPOS){
+            billsplitinpayment.setText("PAY SPLIT");
+        } else {
+            billsplitinpayment.setText("BILL SPLIT");
+        }
+
 
         paymentSuButton1.setOnClickListener(paymentBtnClickListener);
         paymentSuButton2.setOnClickListener(paymentBtnClickListener);
@@ -1061,7 +1069,12 @@ public class Payment {
             switch (v.getId()) {
                 case R.id.billsplitinpayment : {
                     LogsSave.saveLogsInDB(204);
-                    TableSaleMain.openBillSplitMerge();
+                    if (GlobalMemberValues.isQSRPOSonRestaurantPOS){
+                        TableSaleMain.openBillSplitMerge_in_QSRMode();
+                    } else {
+                        TableSaleMain.openBillSplitMerge();
+                    }
+
                     break;
                 }
                 case R.id.cardstatusbtn : {
@@ -1100,13 +1113,28 @@ public class Payment {
                         // 수정 안됨.
                     } else {
                         // 수정 됨.
-                        if (GlobalMemberValues.isQSRPOSonRestaurantPOS){
+                        if (GlobalMemberValues.isQSRPOSonRestaurantPOS || (GlobalMemberValues.mToGoType.equals("C") || GlobalMemberValues.mToGoType.equals("W"))){
 
                         } else {
-                            GlobalMemberValues.displayDialog(MainActivity.mContext, "Warning",
-                                    "There are changes to your order history.\nPlease print to kitchen the changes first", "Close");
-                            return;
+                            //07172024 check if the additions are only discounts, not menu items. If it is all
+                            //discounts let the payment go through.
+                            int discountCount = 0;
+                            for(TemporarySaleCart tempCart : MainMiddleService.mGeneralArrayList){
+                                //check if its discount by checking tempSaleCartIdx, discounts don't have this value
+                                if(tempCart.tempSaleCartIdx == null || tempCart.tempSaleCartIdx.equals("")){
+                                    discountCount++;
+                                }
+                            }
+
+                            //if the discount items and menu items don't add up to match the mGeneralArrayList size, that
+                            //means other items were added, so don't let user go to payment.
+                            if(discountCount + MainActivity.temp_str_salecart_cnt !=  MainMiddleService.mGeneralArrayList.size()){
+                                GlobalMemberValues.displayDialog(MainActivity.mContext, "Warning",
+                                        "There are changes to your order history.\nPlease print to kitchen the changes first", "Close");
+                                return;
+                            }
                         }
+
                     }
                     // temp_salecart 수정 제크.
 
@@ -1167,7 +1195,12 @@ public class Payment {
 
                     if (GlobalMemberValues.isPaymentByBills) {
                         //GlobalMemberValues.displayDialog(context, "Payment", "Choose Item", "Close");
-                        return;
+                        if (GlobalMemberValues.isQSRPOSonRestaurantPOS){
+                            TableSaleMain.openBillSplitMerge_in_QSRMode();
+                        } else {
+                            return;
+                        }
+
                     }
 
                     if (mCardPaidYN == "N" || mCardPaidYN.equals("N")) {
@@ -2419,6 +2452,9 @@ public class Payment {
         }
 
         // 레스토랑이지만 togo 주문의 경우 kitchen print 를 해야하지 않나? 라는 의문이 드는 시점.
+        if ((GlobalMemberValues.mToGoType.equals("C") || GlobalMemberValues.mToGoType.equals("W"))){
+            GlobalMemberValues.now_iskitchenprinting = true;
+        }
         // GlobalMemberValues.now_iskitchenprinting = true;
         //
 
@@ -2779,6 +2815,9 @@ public class Payment {
 
         /** 포인트 적립전 포인트로 결제한 내역이 있는지 체크하여 ****************************************************/
         /** 결제한 내역이 있을 경우 결제한 내역비율만큼은 적립포인트에서 차감하여 지급한다 ****************************/
+
+        GlobalMemberValues.logWrite("jjjbillpaymemmileagelog", "sales_customerId : " + sales_customerId + "\n");
+
         double savePointAmount_forsales = 0.0;
         if (!GlobalMemberValues.isStrEmpty(sales_customerId) && tempSavedPointTotal > 0) {
             double savePointAmount = 0.0;
@@ -2796,29 +2835,7 @@ public class Payment {
                 savePointAmount = tempSavedPointTotal;
             }
 
-            GlobalMemberValues.logWrite("mileagejjjlog", "savePointAmount1 : " + savePointAmount + "\n");
-
             if (!GlobalMemberValues.isStrEmpty(savePointAmount + "") && savePointAmount > 0 && !GlobalMemberValues.isStrEmpty(sales_customerId)) {
-                // 02242024 - 추가작업 ---------------------------------------------------------------------
-                // 회원 레벨별 포인트 비율 ----------------------------------------------------------------------
-                // grade 부터 구한다.
-                String tempGrade = "";
-                double memPointRatio = 1.0;
-                if (GlobalMemberValues.GLOBAL_CUSTOMERINFO != null) {
-                    tempGrade = GlobalMemberValues.GLOBAL_CUSTOMERINFO.memGrade;
-                    memPointRatio = GlobalMemberValues.getDoubleAtString(GlobalMemberValues.GLOBAL_CUSTOMERINFO.memGradePointRatio);
-                    if (memPointRatio == 0.0) {
-                        memPointRatio = 1.0;
-                    }
-                }
-
-                savePointAmount = savePointAmount * memPointRatio;
-
-
-                GlobalMemberValues.logWrite("mileagejjjlog", "savePointAmount2 : " + savePointAmount + "\n");
-                // 02242024 - 추가작업 ---------------------------------------------------------------------
-
-
                 strUpdSqlQuery = "update salon_member set mileage = mileage + " + GlobalMemberValues.getStringFormatNumber(savePointAmount, "2") +
                         " where uid = '" + sales_customerId + "' ";
                 strInsertQueryVec.addElement(strUpdSqlQuery);
@@ -2827,6 +2844,25 @@ public class Payment {
                 if (GlobalMemberValues.GLOBAL_EMPLOYEEINFO != null) {
                     temmpEmpName = GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName;
                 }
+
+
+                // 07252024 (new) -----------------------------------------------------------------------------------------
+                // split pay 일 경우 save point 을 결제금액 비율로 조정
+                if (GlobalMemberValues.isPaymentByBills && GlobalMemberValues.mPayTotalAmountOnBill > 0 && GlobalMemberValues.mPayAmountOnBill > 0) {
+                    double payRatio = 0.0;
+                    String payRatio_str = GlobalMemberValues.getCommaStringForDouble((GlobalMemberValues.mPayAmountOnBill / GlobalMemberValues.mPayTotalAmountOnBill) + "");
+                    payRatio = GlobalMemberValues.getDoubleAtString(payRatio_str);
+
+                    String savePointAmount_split = GlobalMemberValues.getCommaStringForDouble((savePointAmount * payRatio) + "") + "";
+                    savePointAmount = GlobalMemberValues.getDoubleAtString(savePointAmount_split);
+
+                    GlobalMemberValues.logWrite("jjjbillpaymemmileagelog", "GlobalMemberValues.mPayTotalAmountOnBill : " + GlobalMemberValues.mPayTotalAmountOnBill + "\n");
+                    GlobalMemberValues.logWrite("jjjbillpaymemmileagelog", "GlobalMemberValues.mPayAmountOnBill : " + GlobalMemberValues.mPayAmountOnBill + "\n");
+                    GlobalMemberValues.logWrite("jjjbillpaymemmileagelog", "payRatio : " + payRatio + "\n");
+                    GlobalMemberValues.logWrite("jjjbillpaymemmileagelog", "savePointAmount_split : " + savePointAmount_split + "\n");
+                }
+                // 07252024 (new) -----------------------------------------------------------------------------------------
+
 
                 strInsSqlQuery = "insert into member_mileage (contents, mileage, uid, mcase, membershipcardno, sid, codeforupload " +
                         ") values ( " +
@@ -3886,7 +3922,12 @@ public class Payment {
                 " serverIdx, serverName, " +
                 " deliverypickupfee, " +
                 " checkcompany, phoneorder, customerordernumber, customerpagernumber, " +
-                " tablename, tablepeoplecnt, salepg_ip, togotype " + sqlQuery_add1 +
+                " tablename, tablepeoplecnt, salepg_ip, togotype, " +
+
+                // 07202024
+                " pgdevicenum "
+
+                + sqlQuery_add1 +
                 " ) values ( " +
 
                 " '" + mSalesCode + "', " +
@@ -3982,7 +4023,10 @@ public class Payment {
 
                 " '" + GlobalMemberValues.getDBTextAfterChecked(salepg_ip,0) + "', " +
 
-                " '" + tempTogoType + "' " +
+                " '" + tempTogoType + "', " +
+
+                // 07202024
+                " '" + GlobalMemberValues.getPGDeviceNum() + "' " +
 
                 sqlQuery_add2 +
                 ")";
@@ -4176,12 +4220,15 @@ public class Payment {
 
                 GlobalMemberValues.logWrite("jsonforbilllogjjj", "여기4 : " + jsonroot_kitchen.toString() + "\n");
 
-
                 // 03202024
                 // payment 시에는 salon_sales_kitchenprintingdata_json 에 데이터 쌓지 않도록 처리해야 하므로
                 // tempPrintYN 을 무조건 Y 로 처리
                 tempPrintYN = "Y";
 
+                // 07262024
+                if (GlobalMemberValues.isQSRPOSonRestaurantPOS) {
+                    tempPrintYN = "N";
+                }
 
                 // 11102023
                 if (GlobalMemberValues.isPossibleSavingKitchenPrintingDataJson(jsonroot_kitchen.toString())) {
@@ -4589,6 +4636,7 @@ public class Payment {
                 } else {
                     str_split_transaction_id = GlobalMemberValues.mSplit_transaction_id;
                 }
+
 
                 GlobalMemberValues.logWrite("billcntjjjlog", "여기실행" + "\n");
 

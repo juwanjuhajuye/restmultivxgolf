@@ -1,6 +1,9 @@
 package com.example.jjbfather.jjjqsrt2go2gorestkakaovx;
 
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;

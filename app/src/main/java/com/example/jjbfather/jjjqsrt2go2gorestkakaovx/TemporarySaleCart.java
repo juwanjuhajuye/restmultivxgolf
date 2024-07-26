@@ -208,4 +208,28 @@ public class TemporarySaleCart implements Serializable {
         mServiceType = "";
     }
 
+    //07182024 add a method to return string of temporary salecart. Useful for comparing two different lists of temporarySaleCart
+
+    public String returnTempCartString(){
+        String returnString = "";
+        returnString = returnString + mHoldCode + mSidx + mStcode + mMidx + mSvcidx + mSvcName + mSvcFileName + mSvcFilePath
+        + mSvcPositionNo + mSvcOrgPrice + mSvcSetMenuYN + mSPrice + mSTax + mSQty + mSPriceAmount + mSTaxAmount + mSTotalAmount
+        + mSCommission + mSPoint + mSCommissionAmount + mSPointAmount + mSSaleYN + mCustomerId + mCustomerName + mCustomerPhoneNo
+        + mSaveType + mEmpIdx + mEmpName + tempSaleCartIdx + mQuickSaleYN + mSvcCategoryName + mGiftCardNumber + mGiftCardSavePrice
+        + selectedDcExtraPrice + selectedDcExtraType + selectedDcExtraAllEach + couponNumber + selectedDcExtraParentTempSaleCartIdx
+        + mCommissionRatioType + mCommissionRatio + mPointRatio + mSPriceBalAmount + mTaxExempt + mCategoryColor + mRcode
+        + eachDcExtraStr + optionTxt + optionprice + additionalTxt1 + additionalprice1 + additionalTxt2 + additionalprice2
+        + allDcExtraPrice + allDcExtraType + staticMSPrice + kitchenMemo + discountButtonName + modifieridx + modifiercode;
+
+        //check if it has a parent cart for discount
+        if(selectedDcExtraParentTemporarySaleCart != null){
+            returnString = returnString + selectedDcExtraParentTemporarySaleCart.returnTempCartString();
+        }
+
+        returnString = returnString + mSPriceBalAmount_org + mSTaxAmount_org + mSTotalAmount_org + mSCommissionAmount_org
+        + mSPointAmount_org + mQuickSaleKitchenPrintingYN + mDcExtraForReturn + mServiceType;
+
+        return returnString;
+    }
+
 }

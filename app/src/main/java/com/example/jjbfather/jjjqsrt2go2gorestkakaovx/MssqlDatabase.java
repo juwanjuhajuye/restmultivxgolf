@@ -1,4 +1,9 @@
 package com.example.jjbfather.jjjqsrt2go2gorestkakaovx;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+
+import net.sourceforge.jtds.jdbc.CachedResultSet;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -10,6 +15,8 @@ import net.sourceforge.jtds.jdbc.CachedResultSet;
 
 public class MssqlDatabase {
     public static Connection conn;
+
+    public static AlertDialog connection_error_dialog;
 
     public static boolean tryConnect(boolean showMessage) {
         if (GlobalMemberValues.mssql_useyn == "N" || GlobalMemberValues.mssql_useyn.equals("N")) {
@@ -38,12 +45,14 @@ public class MssqlDatabase {
                     if (showMessage)
                         GlobalMemberValues.logWrite("DBCONNECTLOG", "연결실패 .... : " + connClass.getLastErrMsg() + "\n");
                     showToast("연결실패 .... : " + connClass.getLastErrMsg());
+                    showDialog(MainActivity.mContext, "Warning", "The connection to the server is unstable.", "Close");
                     return false;
                 } else {
                     if (conn.isClosed()) {
                         if (showMessage)
                             GlobalMemberValues.logWrite("DBCONNECTLOG", "연결실패" + "\n");
                         showToast("DataBase 연결 실패.");
+                        showDialog(MainActivity.mContext, "Warning", "The connection to the server is unstable.", "Close");
                         return false;
                     } else {
                         if (showMessage)
@@ -165,6 +174,8 @@ public class MssqlDatabase {
                 }
                 //tempStmt.close();
                 //MssqlDatabase.conn.close();
+
+
             }  catch (Exception e) {
                 e.printStackTrace();
                 GlobalMemberValues.logWrite("TestLog", "err3 : " + e.toString() + "\n");
@@ -213,6 +224,45 @@ public class MssqlDatabase {
         } catch (SQLException e) {
             e.printStackTrace();
             return 0;
+        }
+    }
+
+    public static void showDialog(Context paramContext, String paramTitle, String paramMsg, String paramButtonTxt) {
+        if (paramContext != null) {
+            if (connection_error_dialog != null){
+                if (connection_error_dialog.isShowing())return;
+                try {
+                    connection_error_dialog = new AlertDialog.Builder(paramContext)
+                            .setTitle(paramTitle)
+                            .setMessage(paramMsg)
+                            //.setIcon(R.drawable.ic_launcher)
+                            .setPositiveButton(paramButtonTxt,
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            //
+                                            dialog.dismiss();
+                                        }
+                                    })
+                            .show();
+                } catch (Exception e) {
+                }
+            }else {
+                try {
+                    connection_error_dialog = new AlertDialog.Builder(paramContext)
+                            .setTitle(paramTitle)
+                            .setMessage(paramMsg)
+                            //.setIcon(R.drawable.ic_launcher)
+                            .setPositiveButton(paramButtonTxt,
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            //
+                                            dialog.dismiss();
+                                        }
+                                    })
+                            .show();
+                } catch (Exception e) {
+                }
+            }
         }
     }
 }

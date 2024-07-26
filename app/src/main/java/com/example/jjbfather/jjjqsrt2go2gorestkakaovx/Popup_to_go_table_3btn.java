@@ -3,6 +3,7 @@ package com.example.jjbfather.jjjqsrt2go2gorestkakaovx;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 public class Popup_to_go_table_3btn extends Dialog {

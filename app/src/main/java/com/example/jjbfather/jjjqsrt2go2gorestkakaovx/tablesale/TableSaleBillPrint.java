@@ -20,6 +20,8 @@ import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.GlobalMemberValues;
 import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.MainMiddleService;
 import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.MssqlDatabase;
 import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.R;
+import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.MainActivity;
+import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.Payment;
 
 import org.json.JSONException;
 import org.json.JSONObject;

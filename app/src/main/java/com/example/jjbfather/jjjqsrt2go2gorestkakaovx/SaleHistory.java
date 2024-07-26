@@ -4011,19 +4011,19 @@ public class SaleHistory extends Activity {
                             " salesCode, tid, sidx, stcode, cardCom, priceAmount, insertSwipeKeyin, status, " +
                             " cardLastFourDigitNumbers, cardRefNumber, cardEmvAid, cardEmvTsi, cardEmvTvr " +
                             " ) values ( " +
-                            "'" + salesCodeForVoid + "', " +
+                            "'" + GlobalMemberValues.getDBTextAfterChecked(salesCodeForVoid, 0) + "', " +
                             "'" + "" + "', " +
                             "'" + GlobalMemberValues.STORE_INDEX + "', " +
                             "'" + GlobalMemberValues.STATION_CODE + "', " +
-                            "'" + salonSalesCard_cardCom + "', " +
+                            "'" + GlobalMemberValues.getDBTextAfterChecked(salonSalesCard_cardCom, 0) + "', " +
                             "'" + salonSalesCard_priceAmountStr + "', " +
-                            "'" + salonSalesCard_insertSwipeKeyin + "', " +
+                            "'" + GlobalMemberValues.getDBTextAfterChecked(salonSalesCard_insertSwipeKeyin, 0) + "', " +
                             "'" + "1" + "', " +
-                            "'" + salonSalesCard_cardLastFourDigitNumbers + "', " +
-                            "'" + salonSalesCard_cardRefNumber + "', " +
-                            "'" + salonSalesCard_cardEmvAid + "', " +
-                            "'" + salonSalesCard_cardEmvTsi + "', " +
-                            "'" + salonSalesCard_cardEmvTvr + "' " +
+                            "'" + GlobalMemberValues.getDBTextAfterChecked(salonSalesCard_cardLastFourDigitNumbers, 0) + "', " +
+                            "'" + GlobalMemberValues.getDBTextAfterChecked(salonSalesCard_cardRefNumber, 0) + "', " +
+                            "'" + GlobalMemberValues.getDBTextAfterChecked(salonSalesCard_cardEmvAid, 0) + "', " +
+                            "'" + GlobalMemberValues.getDBTextAfterChecked(salonSalesCard_cardEmvTsi, 0) + "', " +
+                            "'" + GlobalMemberValues.getDBTextAfterChecked(salonSalesCard_cardEmvTvr, 0) + "' " +
                             " ) ";
                     strInsertQueryVec.addElement(strInsSqlQuery);
                 }
@@ -4177,6 +4177,7 @@ public class SaleHistory extends Activity {
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
+
 
             // 클라우드 키친 프린팅일 경우 ----------------------------------------------------------------------------------------------
             // 클라우드 프린팅 일 경우에만 아래 사항이 저장되도록 했었음 (01132023 수정)
@@ -4387,7 +4388,11 @@ public class SaleHistory extends Activity {
                 " employeeIdx, employeeName, " +
                 " deliverypickupfee, " +
                 " checkcompany, phoneorder, customerordernumber, customerpagernumber, " +
-                " tablename, tablepeoplecnt, salepg_ip " +
+                " tablename, tablepeoplecnt, salepg_ip, " +
+
+                // 07202024
+                " pgdevicenum " +
+
                 " from salon_sales where salesCode = '" + tempSalesCode + "' " ;
 
         ResultSet salonSalesCursor_temp = MssqlDatabase.getResultSetValue(strGetSqlQuery);
@@ -4417,7 +4422,12 @@ public class SaleHistory extends Activity {
                         " employeeIdx, employeeName, " +
                         " deliverypickupfee, " +
                         " checkcompany, phoneorder, customerordernumber, customerpagernumber, " +
-                        " tablename, tablepeoplecnt, salepg_ip, cancelreason " + sqlQuery_add1 +
+                        " tablename, tablepeoplecnt, salepg_ip, " +
+
+                        // 07202024
+                        " pgdevicenum, " +
+
+                        " cancelreason " + sqlQuery_add1 +
                         " ) values ( " +
 
                         " '" + GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(salonSalesCursor_temp,0), 0) + "', " +
@@ -4509,6 +4519,9 @@ public class SaleHistory extends Activity {
                         " '" + TableSaleMain.mTablePeopleCnt + "', " +
 
                         " '" + GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(salonSalesCursor_temp,67), 0) + "', " +
+
+                        // 07202024
+                        " '" + GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(salonSalesCursor_temp,68), 0) + "', " +
 
                         " '" + GlobalMemberValues.getDBTextAfterChecked(mCancelReason, 0) + "' " +
 
@@ -4825,19 +4838,19 @@ public class SaleHistory extends Activity {
                         " salesCode, tid, sidx, stcode, cardCom, priceAmount, insertSwipeKeyin, status, " +
                         " cardLastFourDigitNumbers, cardRefNumber, cardEmvAid, cardEmvTsi, cardEmvTvr " +
                         " ) values ( " +
-                        "'" + salesCodeForVoid + "', " +
+                        "'" + GlobalMemberValues.getDBTextAfterChecked(salesCodeForVoid, 0) + "', " +
                         "'" + "" + "', " +
                         "'" + GlobalMemberValues.STORE_INDEX + "', " +
                         "'" + GlobalMemberValues.STATION_CODE + "', " +
-                        "'" + salonSalesCard_cardCom + "', " +
+                        "'" + GlobalMemberValues.getDBTextAfterChecked(salonSalesCard_cardCom, 0) + "', " +
                         "'" + salonSalesCard_priceAmountStr + "', " +
-                        "'" + salonSalesCard_insertSwipeKeyin + "', " +
+                        "'" + GlobalMemberValues.getDBTextAfterChecked(salonSalesCard_insertSwipeKeyin, 0) + "', " +
                         "'" + "1" + "', " +
-                        "'" + salonSalesCard_cardLastFourDigitNumbers + "', " +
-                        "'" + salonSalesCard_cardRefNumber + "', " +
-                        "'" + salonSalesCard_cardEmvAid + "', " +
-                        "'" + salonSalesCard_cardEmvTsi + "', " +
-                        "'" + salonSalesCard_cardEmvTvr + "' " +
+                        "'" + GlobalMemberValues.getDBTextAfterChecked(salonSalesCard_cardLastFourDigitNumbers, 0) + "', " +
+                        "'" + GlobalMemberValues.getDBTextAfterChecked(salonSalesCard_cardRefNumber, 0) + "', " +
+                        "'" + GlobalMemberValues.getDBTextAfterChecked(salonSalesCard_cardEmvAid, 0) + "', " +
+                        "'" + GlobalMemberValues.getDBTextAfterChecked(salonSalesCard_cardEmvTsi, 0) + "', " +
+                        "'" + GlobalMemberValues.getDBTextAfterChecked(salonSalesCard_cardEmvTvr, 0) + "' " +
                         " ) ";
                 strInsertQueryVec.addElement(strInsSqlQuery);
             }
@@ -4913,11 +4926,11 @@ public class SaleHistory extends Activity {
                             " ) values ( " +
                             " '" + "Void Restored by Sales - " + selectedSalesCode + "', " +
                             " '" + tempUsedPointAmount + "', " +
-                            " '" + tempCustomerId + "', " +
+                            " '" + GlobalMemberValues.getDBTextAfterChecked(tempCustomerId, 0) + "', " +
                             " '" + "1" + "', " +            // 1: 적립        2 : 사용
                             " '" + "" + "', " +             // 멤버쉽카드번호가 있을 경우 추후 코딩할 것
-                            " '" + temmpEmpName + "', " +
-                            " '" + GlobalMemberValues.getCodeForUpload("mileage") + "' " +
+                            " '" + GlobalMemberValues.getDBTextAfterChecked(temmpEmpName, 0) + "', " +
+                            " '" + GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.getCodeForUpload("mileage"), 0) + "' " +
                             " ) ";
                     strInsertQueryVec.addElement(strInsSqlQuery);
                 }
@@ -4937,11 +4950,11 @@ public class SaleHistory extends Activity {
                             " ) values ( " +
                             " '" + "Void Minus by Sales - " + selectedSalesCode + "', " +
                             " '" + tempSavedPointAmount + "', " +
-                            " '" + tempCustomerId + "', " +
+                            " '" + GlobalMemberValues.getDBTextAfterChecked(tempCustomerId, 0) + "', " +
                             " '" + "2" + "', " +            // 1: 적립        2 : 사용
                             " '" + "" + "', " +             // 멤버쉽카드번호가 있을 경우 추후 코딩할 것
-                            " '" + temmpEmpName + "', " +
-                            " '" + GlobalMemberValues.getCodeForUpload("mileage") + "' " +
+                            " '" + GlobalMemberValues.getDBTextAfterChecked(temmpEmpName, 0) + "', " +
+                            " '" + GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.getCodeForUpload("mileage"), 0) + "' " +
                             " ) ";
                     strInsertQueryVec.addElement(strInsSqlQuery);
                 }
@@ -5017,7 +5030,6 @@ public class SaleHistory extends Activity {
                 }
                 // --------------------------------------------------------------------------------------------------------------------
             }
-
 
             /********************************************************************************************************************************************/
 

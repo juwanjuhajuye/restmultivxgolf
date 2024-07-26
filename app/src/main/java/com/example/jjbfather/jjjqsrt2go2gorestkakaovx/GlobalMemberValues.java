@@ -103,8 +103,8 @@ import java.math.RoundingMode;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.Socket;
-import java.net.URL;
 import java.net.URLDecoder;
+import java.net.URL;
 import java.nio.channels.FileChannel;
 import java.security.MessageDigest;
 import java.sql.ResultSet;
@@ -242,7 +242,7 @@ public class GlobalMemberValues {
 
     /** Store 정보 ***********************************************/
     // Salon 아이디 (sid)
-    public static String SALON_SID= "";
+    public static String SALON_SID = "";
     // Salon 코드 (scode)
     public static String SALON_CODE = "";
     // Store 인덱스 (sidx)
@@ -272,7 +272,7 @@ public class GlobalMemberValues {
     // 스토어 최대 기프트카드 상품갯수
     public static int STOREMAXGIFTCARDSU = 0;
     // 리워드 샐러드 사용유무 (Y : 사용      N : 미사용)
-    public static String  REWARDSALADUSEYN = "N";
+    public static String REWARDSALADUSEYN = "N";
     public static double REWARDSALADRATIO = 0.0;
 
     // Quick Sale 커미션 관련
@@ -448,6 +448,9 @@ public class GlobalMemberValues {
     // API - 온라인 주문데이터
     public static String API_WEBORDER_URL = GlobalMemberValues.API_WEB + "API_Orders_ForAndroid.asp";
 
+    // 03252025 API - T Order API
+    public static String TORDER_PARTNER_ID = "NAVYSPOS_TEST001";
+    public static String API_TORDER = "https://api.middleware.torder.tech/event/v1/partners/" + TORDER_PARTNER_ID;
 
     // jihun add 190913
     public static boolean b_one_run_thread = false;
@@ -780,13 +783,13 @@ public class GlobalMemberValues {
     // Kitchen Printing 관련 인텐트
     public static Intent CURRENTSERVICEINTENT_PRINTING_KITCHEN = null;
     // Kitchen Printing 관련
-    public static Activity CURRENTACTIVITYOPENEDSERVICE_PRINTING_KITCHEN  = null;
+    public static Activity CURRENTACTIVITYOPENEDSERVICE_PRINTING_KITCHEN = null;
 
 
     // One Time Tip Adjustment 관련 인텐트
     public static Intent CURRENTSERVICEINTENT_ONETIMETIPADJUSTMENT = null;
     // One Time Tip Adjustment 관련
-    public static Activity CURRENTACTIVITYOPENEDSERVICE_ONETIMETIPADJUSTMENT  = null;
+    public static Activity CURRENTACTIVITYOPENEDSERVICE_ONETIMETIPADJUSTMENT = null;
 
     // 팁 데이터 전송관련 인텐트
     public static Intent CURRENTSERVICEINTENT_SAVEDATAINDB = null;
@@ -1134,6 +1137,9 @@ public class GlobalMemberValues {
     public static boolean isQSRPOSonRestaurantPOS = true;
     // --------------------------------------------------------------------------
 
+    // 071224
+    // 모디파이어 메뉴 추가 여부
+    public static boolean is_modifier_add = false;
 
 
     // Common Gratuity 명
@@ -1465,7 +1471,7 @@ public class GlobalMemberValues {
 
     // 메인 좌측 상단 Restaurant QSR 사용시 나타나는 버튼용
     public static LinearLayout GLOBAL_LAYOUTMEMBER_MAIN_TOP_LEFT_CUSTOMER_INFO3;
-    public static Button GLOBAL_LAYOUTMEMBER_MAIN_TOP_LEFT_ORDER_LIST;    
+    public static Button GLOBAL_LAYOUTMEMBER_MAIN_TOP_LEFT_ORDER_LIST;
 
     // 메인 좌측상단 Total Order QTY
     public static TextView GLOBAL_LAYOUTMEMBER_MAIN_TOP_LEFT_TOTAL_ORDER_QTY;
@@ -1698,8 +1704,8 @@ public class GlobalMemberValues {
     public static String sh_deliverytakeaway = "";
     public static String sh_keyword = "";
 
-    public static  String sh_fromCommand = "N";
-    public static  String shweb_fromCommand = "N";
+    public static String sh_fromCommand = "N";
+    public static String shweb_fromCommand = "N";
     /*************************************************************/
 
     public static int kitchenprinter1_papercount = 1;
@@ -1728,16 +1734,22 @@ public class GlobalMemberValues {
     // drawer 를 open 했는지 여부
     public static boolean b_isDrawerOpen = false;
 
-    /** 메인 액티비티 FrameLayout 중에서 현재 visible 로 되어 있는 레이어******/
+    /**
+     * 메인 액티비티 FrameLayout 중에서 현재 visible 로 되어 있는 레이어
+     ******/
     public static String visibleLayoutName = "main";
     /********************************************************************/
 
 
-    /** 직원정보 관련 변수 *************************************************/
+    /**
+     * 직원정보 관련 변수
+     *************************************************/
     public static TemporaryEmployeeInfo GLOBAL_EMPLOYEEINFO;
     /********************************************************************/
 
-    /** 고객정보 관련 변수 *************************************************/
+    /**
+     * 고객정보 관련 변수
+     *************************************************/
     public static TemporaryCustomerInfo GLOBAL_CUSTOMERINFO;
     /********************************************************************/
 
@@ -1750,7 +1762,9 @@ public class GlobalMemberValues {
     // 키친프린팅시에 고객정보를 임시로 저장하는 변수
     public static String mTempCustomerInfo = "";
 
-    /** 태블릿 해상도 *************************************************/
+    /**
+     * 태블릿 해상도
+     *************************************************/
     // 기본 해상도
     public static int tabletBasicWidth = 800;
     public static int tabletBasicHeight = 1280;
@@ -1792,6 +1806,7 @@ public class GlobalMemberValues {
         retInt = display.getWidth();
         return retInt;
     }
+
     public static int getDisplayHeiheight(Context paramCxt) {
         int retInt = 0;
         Display display = ((WindowManager)paramCxt.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
@@ -1800,11 +1815,13 @@ public class GlobalMemberValues {
     }
     /********************************************************************/
 
-    /** Credit Card Error Code 값 ***************************************/
-    public static String getCreditCardErrors(String paramErrCode){
+    /**
+     * Credit Card Error Code 값
+     ***************************************/
+    public static String getCreditCardErrors(String paramErrCode) {
         String retMsgStr = "Credit card processing is failure";
         switch (paramErrCode) {
-            case "-1" : {
+            case "-1": {
                 retMsgStr = "Connection Error (Terminal is not connected)";
                 break;
             }
@@ -1973,7 +1990,12 @@ public class GlobalMemberValues {
             "salon_itemdeletereason",
 
             // 05302024
-            "salon_sales_togodeliveryfee"
+            "salon_sales_togodeliveryfee",
+
+
+            // 07182024
+            // 카드결제 기기등록관련
+            "salon_pgip"
 
 
             // "basic_pos_information" <--- 이 테이블은 기본정보를 가지고 있기 때문에 삭제하면 안된다.
@@ -2878,29 +2900,6 @@ public class GlobalMemberValues {
         return returnHoldCode;
     }
 
-    public static String makeSplitTransactionCode() {
-        String returnSalesCode = "";
-
-        // 오늘 날짜 가져오기
-        String tempDay = DateMethodClass.nowDayGet();
-        String tempMonth = DateMethodClass.nowMonthGet();
-        String tempYear = DateMethodClass.nowYearGet();
-
-        StringBuffer buf =new StringBuffer();
-        buf.append(tempMonth).append(tempDay).append(tempYear);
-        Random rnd = new Random();
-        for(int i = 0; i < 10; i++) {
-            if(rnd.nextBoolean()) {
-                buf.append((char)((int)(rnd.nextInt(26))+65));
-            } else {
-                buf.append((rnd.nextInt(10)));
-            }
-        }
-        returnSalesCode = buf.toString();
-
-        return returnSalesCode;
-    }
-
     // 02032024
     public static String makeTOrderCodeForPOSOrder() {
         String returnValue = "";
@@ -2941,6 +2940,29 @@ public class GlobalMemberValues {
         return returnValue;
     }
 
+    public static String makeSplitTransactionCode() {
+        String returnSalesCode = "";
+
+        // 오늘 날짜 가져오기
+        String tempDay = DateMethodClass.nowDayGet();
+        String tempMonth = DateMethodClass.nowMonthGet();
+        String tempYear = DateMethodClass.nowYearGet();
+
+        StringBuffer buf =new StringBuffer();
+        buf.append(tempMonth).append(tempDay).append(tempYear);
+        Random rnd = new Random();
+        for(int i = 0; i < 10; i++) {
+            if(rnd.nextBoolean()) {
+                buf.append((char)((int)(rnd.nextInt(26))+65));
+            } else {
+                buf.append((rnd.nextInt(10)));
+            }
+        }
+        returnSalesCode = buf.toString();
+
+        return returnSalesCode;
+    }
+
     public static String getSaveType(String tempType) {
         String retStr = "";
         if (!GlobalMemberValues.isStrEmpty(tempType)) {
@@ -2966,8 +2988,7 @@ public class GlobalMemberValues {
     public static String convertDate(String parmaDate) {
         String returnDate = "";
 
-        if (!GlobalMemberValues.isStrEmpty(parmaDate))
-        {
+        if (!GlobalMemberValues.isStrEmpty(parmaDate)) {
             // 먼저 paramDate 문자열의 유효성 검사
             String tempSplitStr[] = null;
             if (parmaDate.indexOf("-") > -1) {
@@ -3045,7 +3066,6 @@ public class GlobalMemberValues {
 
         return returnValue;
     }
-
 
 
     public static void setCloseAndroidApp(final Activity paramActivity) {
@@ -3768,8 +3788,7 @@ public class GlobalMemberValues {
                                     EpsonPrinterKitchen2.mPrinter == null &&
                                     EpsonPrinterKitchen3.mPrinter == null &&
                                     EpsonPrinterKitchen4.mPrinter == null &&
-                                    EpsonPrinterKitchen5.mPrinter == null)
-                            {
+                                    EpsonPrinterKitchen5.mPrinter == null) {
                                 EpsonReceiptPrint epsonReceiptPrint = new EpsonReceiptPrint(MainActivity.mContext);
 
                                 // 032224 bill print 시 epson 외 다른 프린트가 table main 으로 이동하지 않아서 아래라인으로 코드 이동함.
@@ -3787,10 +3806,10 @@ public class GlobalMemberValues {
 //                                    epsonReceiptPrint.runPrintReceiptSequence(paramJsonroot,paramReceiptPrintType, Payment.jsonroot_kitchen);
 //                                }
                                 // 032224 bill print 시 epson 외 다른 프린트가 table main 으로 이동하지 않아서 아래라인으로 코드 이동함.
-                                epsonReceiptPrint.runPrintReceiptSequence(paramJsonroot,paramReceiptPrintType, Payment.jsonroot_kitchen);
+                                epsonReceiptPrint.runPrintReceiptSequence(paramJsonroot, paramReceiptPrintType, Payment.jsonroot_kitchen);
 
                                 b_temp = true;
-                            }else {
+                            } else {
                             }
                             try {
                                 Thread.sleep(2000);
@@ -3811,11 +3830,11 @@ public class GlobalMemberValues {
                     int tempKitchenPrintingValue = GlobalMemberValues.getIntAtString(Payment.dbInit.dbExecuteReadReturnString(
                             "select kitchenprinting from salon_storestationsettings_deviceprinter2"));
                     if (!GlobalMemberValues.isCloudKitchenPrinter() && tempKitchenPrintingValue == 0) {
-                        if (Payment.jsonroot_kitchen == null){
+                        if (Payment.jsonroot_kitchen == null) {
                             Payment.jsonroot_kitchen = new JSONObject();
                         }
                         try {
-                            if (GlobalMemberValues.getReceiptFooterKitchen2() == null){
+                            if (GlobalMemberValues.getReceiptFooterKitchen2() == null) {
 
                             } else {
                                 if (Payment.jsonroot_kitchen != null) {
@@ -3859,10 +3878,10 @@ public class GlobalMemberValues {
         }
 
         // 032224 bill print 시 epson 외 다른 프린트가 table main 으로 이동하지 않아서 아래라인으로 코드 이동함.
-        if (paramReceiptPrintType.equals("phoneordercheckprint")){
-            if (TableSaleMain.mSelectedTablesArrList != null && TableSaleMain.mSelectedTablesArrList.size() != 0){
+        if (paramReceiptPrintType.equals("phoneordercheckprint")) {
+            if (TableSaleMain.mSelectedTablesArrList != null && TableSaleMain.mSelectedTablesArrList.size() != 0) {
                 GlobalMemberValues.setChangeBillPrintedStatus(TableSaleMain.mSelectedTablesArrList.get(0).toString(), TableSaleMain.mSubTableNum, true);
-            } else if (!TableSaleMain.mSelectedTableIDX.isEmpty()){
+            } else if (!TableSaleMain.mSelectedTableIDX.isEmpty()) {
                 GlobalMemberValues.setChangeBillPrintedStatus(TableSaleMain.mSelectedTableIDX, TableSaleMain.mSubTableNum, true);
                 TableSaleMain.mSelectedTableIDX = "";
             }
@@ -4075,8 +4094,7 @@ public class GlobalMemberValues {
                                     EpsonPrinterKitchen2.mPrinter == null &&
                                     EpsonPrinterKitchen3.mPrinter == null &&
                                     EpsonPrinterKitchen4.mPrinter == null &&
-                                    EpsonPrinterKitchen5.mPrinter == null)
-                            {
+                                    EpsonPrinterKitchen5.mPrinter == null) {
                                 EpsonReceiptPrint epsonReceiptPrint = new EpsonReceiptPrint(MainActivity.mContext);
                                 epsonReceiptPrint.runPrintReceiptSequence(paramJsonroot,paramReceiptPrintType, Payment.jsonroot_kitchen);
                                 b_temp = true;
@@ -4452,8 +4470,7 @@ public class GlobalMemberValues {
                                         EpsonPrinterKitchen2.mPrinter == null &&
                                         EpsonPrinterKitchen3.mPrinter == null &&
                                         EpsonPrinterKitchen4.mPrinter == null &&
-                                        EpsonPrinterKitchen5.mPrinter == null)
-                                {
+                                        EpsonPrinterKitchen5.mPrinter == null) {
                                     EpsonPrinterKitchen1 epsonPrinterKitchen1 = new EpsonPrinterKitchen1(MainActivity.mContext);
                                     epsonPrinterKitchen1.runPrintReceiptSequence(paramJsonroot,paramReceiptPrintType);
                                     b_temp = true;
@@ -4532,8 +4549,7 @@ public class GlobalMemberValues {
                                     EpsonPrinterKitchen2.mPrinter == null &&
                                     EpsonPrinterKitchen3.mPrinter == null &&
                                     EpsonPrinterKitchen4.mPrinter == null &&
-                                    EpsonPrinterKitchen5.mPrinter == null)
-                            {
+                                    EpsonPrinterKitchen5.mPrinter == null) {
                                 EpsonPrinterKitchen2 epsonPrinterKitchen2 = new EpsonPrinterKitchen2(MainActivity.mContext);
                                 epsonPrinterKitchen2.runPrintReceiptSequence(paramJsonroot,paramReceiptPrintType);
                                 b_temp = true;
@@ -4609,8 +4625,7 @@ public class GlobalMemberValues {
                                     EpsonPrinterKitchen2.mPrinter == null &&
                                     EpsonPrinterKitchen3.mPrinter == null &&
                                     EpsonPrinterKitchen4.mPrinter == null &&
-                                    EpsonPrinterKitchen5.mPrinter == null)
-                            {
+                                    EpsonPrinterKitchen5.mPrinter == null) {
                                 EpsonPrinterKitchen3 epsonPrinterKitchen3 = new EpsonPrinterKitchen3(MainActivity.mContext);
                                 epsonPrinterKitchen3.runPrintReceiptSequence(paramJsonroot,paramReceiptPrintType);
                                 b_temp = true;
@@ -4687,8 +4702,7 @@ public class GlobalMemberValues {
                                     EpsonPrinterKitchen2.mPrinter == null &&
                                     EpsonPrinterKitchen3.mPrinter == null &&
                                     EpsonPrinterKitchen4.mPrinter == null &&
-                                    EpsonPrinterKitchen5.mPrinter == null)
-                            {
+                                    EpsonPrinterKitchen5.mPrinter == null) {
                                 EpsonPrinterKitchen4 epsonPrinterKitchen4 = new EpsonPrinterKitchen4(MainActivity.mContext);
                                 epsonPrinterKitchen4.runPrintReceiptSequence(paramJsonroot,paramReceiptPrintType);
                                 b_temp = true;
@@ -4765,8 +4779,7 @@ public class GlobalMemberValues {
                                     EpsonPrinterKitchen2.mPrinter == null &&
                                     EpsonPrinterKitchen3.mPrinter == null &&
                                     EpsonPrinterKitchen4.mPrinter == null &&
-                                    EpsonPrinterKitchen5.mPrinter == null)
-                            {
+                                    EpsonPrinterKitchen5.mPrinter == null) {
                                 EpsonPrinterKitchen5 epsonPrinterKitchen5 = new EpsonPrinterKitchen5(MainActivity.mContext);
                                 epsonPrinterKitchen5.runPrintReceiptSequence(paramJsonroot,paramReceiptPrintType);
                                 b_temp = true;
@@ -5707,10 +5720,9 @@ public class GlobalMemberValues {
 
             iRealEnd = iRealStart;
             int iEndLength = iRealStart + iByteLength;
-            for(int iIndex = iRealStart; iIndex < iEndLength; iIndex++)
-            {
-                iChar = (int)bytTemp[iIndex];
-                if((iChar > 127)|| (iChar < 0)) {
+            for (int iIndex = iRealStart; iIndex < iEndLength; iIndex++) {
+                iChar = (int) bytTemp[iIndex];
+                if ((iChar > 127) || (iChar < 0)) {
                     // 한글의 경우(2byte 통과처리)
                     // 한글은 2Byte이기 때문에 다음 글자는 볼것도 없이 스킵한다
                     iRealEnd++;
@@ -5720,9 +5732,9 @@ public class GlobalMemberValues {
                     iRealEnd++;
                 }
             }
-        } catch(Exception e) {
+        } catch (Exception e) {
             //
-            Log.d("DEBUG",e.getMessage());
+            Log.d("DEBUG", e.getMessage());
         }
 
         return strData.substring(iRealStart, iRealEnd);
@@ -5920,40 +5932,40 @@ public class GlobalMemberValues {
             int schVectorIndex = paramVector.indexOf(tempGetUid);
             if (schVectorIndex != -1) {
             } else {
-                sqlQuery = "delete from member_mileage where uid = '" + tempGetUid +"' ";
+                sqlQuery = "delete from member_mileage where uid = '" + tempGetUid + "' ";
                 deleteQueryVec.addElement(sqlQuery);
 
-                sqlQuery = "delete from member1 where uid = '" + tempGetUid +"' ";
+                sqlQuery = "delete from member1 where uid = '" + tempGetUid + "' ";
                 deleteQueryVec.addElement(sqlQuery);
 
-                sqlQuery = "delete from member2 where uid = '" + tempGetUid +"' ";
+                sqlQuery = "delete from member2 where uid = '" + tempGetUid + "' ";
                 deleteQueryVec.addElement(sqlQuery);
 
-                sqlQuery = "delete from reservation where uid = '" + tempGetUid +"' ";
+                sqlQuery = "delete from reservation where uid = '" + tempGetUid + "' ";
                 deleteQueryVec.addElement(sqlQuery);
 
-                sqlQuery = "delete from salon_member where uid = '" + tempGetUid +"' ";
+                sqlQuery = "delete from salon_member where uid = '" + tempGetUid + "' ";
                 deleteQueryVec.addElement(sqlQuery);
 
-                sqlQuery = "delete from coupon_issue_history where uid = '" + tempGetUid +"' ";
+                sqlQuery = "delete from coupon_issue_history where uid = '" + tempGetUid + "' ";
                 deleteQueryVec.addElement(sqlQuery);
 
-                sqlQuery = "delete from member_memo where uid = '" + tempGetUid +"' ";
+                sqlQuery = "delete from member_memo where uid = '" + tempGetUid + "' ";
                 deleteQueryVec.addElement(sqlQuery);
 
-                sqlQuery = "delete from temp_salecart where customerId = '" + tempGetUid +"' ";
+                sqlQuery = "delete from temp_salecart where customerId = '" + tempGetUid + "' ";
                 deleteQueryVec.addElement(sqlQuery);
 
-                sqlQuery = "delete from salon_storegiftcard_number where customerId = '" + tempGetUid +"' ";
+                sqlQuery = "delete from salon_storegiftcard_number where customerId = '" + tempGetUid + "' ";
                 deleteQueryVec.addElement(sqlQuery);
 
-                sqlQuery = "delete from salon_storegiftcard_number_history where customerId = '" + tempGetUid +"' ";
+                sqlQuery = "delete from salon_storegiftcard_number_history where customerId = '" + tempGetUid + "' ";
                 deleteQueryVec.addElement(sqlQuery);
 
-                sqlQuery = "delete from salon_sales_detail where customerId = '" + tempGetUid +"' ";
+                sqlQuery = "delete from salon_sales_detail where customerId = '" + tempGetUid + "' ";
                 deleteQueryVec.addElement(sqlQuery);
 
-                sqlQuery = "delete from salon_sales where customerId = '" + tempGetUid +"' ";
+                sqlQuery = "delete from salon_sales where customerId = '" + tempGetUid + "' ";
                 deleteQueryVec.addElement(sqlQuery);
             }
         }
@@ -5977,14 +5989,14 @@ public class GlobalMemberValues {
         MessageDigest mDigest = MessageDigest.getInstance("MD5");
         mDigest.update(paramPwd.getBytes());
 
-        byte[] msgStr = mDigest.digest() ;
+        byte[] msgStr = mDigest.digest();
 
-        for(int i=0; i < msgStr.length; i++){
-            String tmpEncTxt = Integer.toHexString((int)msgStr[i] & 0x00ff) ;
-            sbuf.append(tmpEncTxt) ;
+        for (int i = 0; i < msgStr.length; i++) {
+            String tmpEncTxt = Integer.toHexString((int) msgStr[i] & 0x00ff);
+            sbuf.append(tmpEncTxt);
         }
 
-        return sbuf.toString() ;
+        return sbuf.toString();
     }
 
     public static void setTimeMenuCodeValue(String paramTimeCodValue) {
@@ -6069,10 +6081,10 @@ public class GlobalMemberValues {
 //            GlobalMemberValues.NOW_TIME_CODEVALUE = "e";
 //        }
         // jihun park add
-        if (nowTime >= eStartInt && nowTime < nStartInt){
+        if (nowTime >= eStartInt && nowTime < nStartInt) {
             GlobalMemberValues.NOW_TIME_CODEVALUE = "e";
         }
-        if (nowTime >= nStartInt && nowTime < mStartInt){
+        if (nowTime >= nStartInt && nowTime < mStartInt) {
             GlobalMemberValues.NOW_TIME_CODEVALUE = "n";
         }
 
@@ -6120,10 +6132,10 @@ public class GlobalMemberValues {
     }
 
     public static byte[] bitmapToByteArrayFunc(Bitmap bitmap) {
-        ByteArrayOutputStream stream = new ByteArrayOutputStream() ;
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream) ;
-        byte[] byteArray = stream.toByteArray() ;
-        return byteArray ;
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        byte[] byteArray = stream.toByteArray();
+        return byteArray;
     }
 
     public static void eloCfdScreenViewOn(final String line1, final String line2) {
@@ -6254,19 +6266,19 @@ public class GlobalMemberValues {
 
                 // 인터넷 연결 상태 이미지 변경
                 switch (GlobalMemberValues.GLOBALNETWORKSTATUS) {
-                    case 0 : {
+                    case 0: {
                         GlobalMemberValues.changeNetworkUI("NOT CONNECTED", R.drawable.aa_images_main_disconnect);
                         break;
                     }
-                    case 1 : {
+                    case 1: {
                         GlobalMemberValues.changeNetworkUI("WIFI", R.drawable.aa_images_main_wifi);
                         break;
                     }
-                    case 2 : {
+                    case 2: {
                         GlobalMemberValues.changeNetworkUI("3G/LTE", R.drawable.aa_images_main_lte);
                         break;
                     }
-                    case 3 : {
+                    case 3: {
                         GlobalMemberValues.changeNetworkUI("ONLINE", R.drawable.aa_images_main_online);
                         break;
                     }
@@ -6409,7 +6421,6 @@ public class GlobalMemberValues {
                 // ------------------------------------------------------------------
 
 
-
                 String webOrdersSalesCode = ordersContentsArr[0];
                 String webOrdersCustomerId = ordersContentsArr[1];
                 String webOrdersCustomerName = ordersContentsArr[2];
@@ -6423,26 +6434,37 @@ public class GlobalMemberValues {
                 String webOrdersMemo = ordersContentsArr[10];
                 String webOrdersCustomerOrderNumber = ordersContentsArr[11];
 
+                GlobalMemberValues.logWrite("weborderjjjlog", "여기왔음1" + "\n");
+
                 String webOrdersTablename = "";
                 if (ordersContentsArr.length > 12) {
                     webOrdersTablename = ordersContentsArr[12];
                 }
+
+                GlobalMemberValues.logWrite("weborderjjjlog", "여기왔음2" + "\n");
 
                 String webOrdersTableidx = "";
                 if (ordersContentsArr.length > 13) {
                     webOrdersTableidx = ordersContentsArr[13];
                 }
 
+                GlobalMemberValues.logWrite("weborderjjjlog", "여기왔음3" + "\n");
+
+                GlobalMemberValues.logWrite("weborderjjjlog", "ordersContentsArr.length : " + ordersContentsArr.length + "\n");
+
                 // 10112023
                 String webOrdersOrderfrom = "";
                 if (ordersContentsArr.length > 14) {
                     webOrdersOrderfrom = ordersContentsArr[14];
                 }
+                GlobalMemberValues.logWrite("weborderjjjlog", "여기왔음4" + "\n");
+
                 String webOrdersSalescodethirdparty = "";
                 if (ordersContentsArr.length > 15) {
                     webOrdersSalescodethirdparty = ordersContentsArr[15];
                 }
 
+                GlobalMemberValues.logWrite("weborderjjjlog", "여기왔음5" + "\n");
 
                 String returnResult = "";
                 String strQuery = "";
@@ -6450,7 +6472,7 @@ public class GlobalMemberValues {
                 Vector<String> strQueryVec = new Vector<String>();
 
                 //먼저 같은 SalesCode 로 저장된 값을 삭제
-                strQuery = "delete from salon_sales_web_push_realtime where salesCode = '"+ webOrdersSalesCode + "' ";
+                strQuery = "delete from salon_sales_web_push_realtime where salesCode = '" + webOrdersSalesCode + "' ";
                 strQueryVec.addElement(strQuery);
 
                 strQuery = "insert into salon_sales_web_push_realtime (" +
@@ -6564,6 +6586,7 @@ public class GlobalMemberValues {
         }
     }
 
+
     public static void openCursideStr(String paramOrdersStr) {
         if (!GlobalMemberValues.isStrEmpty(paramOrdersStr)) {
             String[] ordersArr = paramOrdersStr.split("-JJJFAM-");
@@ -6583,10 +6606,10 @@ public class GlobalMemberValues {
                 GlobalMemberValues gm = new GlobalMemberValues();
                 if (GlobalMemberValues.getCurbsidePickupCount(curbside_salecode) == 0 && gm.isCurbsideOrder()) {
                     Intent pushIntent = new Intent(MainActivity.mContext, PushPopupForCustomerArrive.class);
-                    pushIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+                    pushIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
 
                     pushIntent.putExtra("curbside_carinfo", curbside_carinfo);
-                    pushIntent.putExtra("curbside_calltime", curbside_calltime.replace("&nbsp;"," "));
+                    pushIntent.putExtra("curbside_calltime", curbside_calltime.replace("&nbsp;", " "));
                     pushIntent.putExtra("curbside_cus_phone", curbside_cus_phone);
                     pushIntent.putExtra("curbside_salecode", curbside_salecode);
                     pushIntent.putExtra("curbside_ordernum", curbside_ordernum);
@@ -6621,15 +6644,15 @@ public class GlobalMemberValues {
                 GlobalMemberValues gm = new GlobalMemberValues();
                 if (GlobalMemberValues.getCurbsideNewSideMenuCount_sidemenuidx(sideMenu_index) == 0 && gm.isSideMenuOrder()) {
                     Intent pushIntent = new Intent(MainActivity.mContext, PushPopupForCurbNewSideMenu.class);
-                    pushIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+                    pushIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
 
                     pushIntent.putExtra("sideMenu_index", sideMenu_index);
                     pushIntent.putExtra("sideMenu_salecode", sideMenu_salecode);
                     pushIntent.putExtra("sideMenu_tableidx", sideMenu_tableidx);
                     pushIntent.putExtra("sideMenu_tablename", sideMenu_tablename);
-                    pushIntent.putExtra("sideMenu_ordertime", sideMenu_ordertime.replace("&nbsp;"," "));
+                    pushIntent.putExtra("sideMenu_ordertime", sideMenu_ordertime.replace("&nbsp;", " "));
                     pushIntent.putExtra("sideMenu_ordernum", sideMenu_ordernum);
-                    pushIntent.putExtra("sideMenu_orderdetail", sideMenu_orderdetail.replace("&nbsp;"," "));
+                    pushIntent.putExtra("sideMenu_orderdetail", sideMenu_orderdetail.replace("&nbsp;", " "));
 
                     MainActivity.mActivity.startActivity(pushIntent);
 
@@ -6735,9 +6758,8 @@ public class GlobalMemberValues {
                                 String tordercode = "";
 
 
-
                                 receiptno = GlobalMemberValues.getDataInJsonData(json, "receiptno");
-                                saledate  = GlobalMemberValues.getDataInJsonData(json, "saledate");
+                                saledate = GlobalMemberValues.getDataInJsonData(json, "saledate");
                                 saletime = GlobalMemberValues.getDataInJsonData(json, "saletime");
                                 restaurant_tableidx = GlobalMemberValues.getDataInJsonData(json, "restaurant_tableidx");
                                 restaurant_tablename = GlobalMemberValues.getDataInJsonData(json, "restaurant_tablename");
@@ -6870,8 +6892,13 @@ public class GlobalMemberValues {
                                             soldoutmemo = "";
                                         }
 
+                                        GlobalMemberValues.logWrite("salepricelogjjj", "salesPrice1 : " + salesPrice + "\n");
+                                        GlobalMemberValues.logWrite("salepricelogjjj", "optionprice : " + optionprice + "\n");
+
                                         // 05282024
                                         salesPrice = GlobalMemberValues.getDoubleAtString(salesPrice) + GlobalMemberValues.getDoubleAtString(optionprice) + "";
+
+                                        GlobalMemberValues.logWrite("salepricelogjjj", "optionprice2 : " + salesPrice + "\n");
 
                                         GlobalMemberValues.logWrite("logcheckjjj", "체크2" + "\n");
 
@@ -7018,8 +7045,6 @@ public class GlobalMemberValues {
                                     }
 
 
-
-
                                     // 02242024 - 추가작업
                                     strQuery = " delete from salon_store_restaurant_table_peoplecnt where tableidx like '%" + restaurant_tableidx + "%' ";
                                     dbVec.addElement(strQuery);
@@ -7030,8 +7055,6 @@ public class GlobalMemberValues {
                                             "'" + restaurant_tablepeoplecnt + "' " +
                                             " )";
                                     dbVec.addElement(strQuery);
-
-
 
 
                                     strQuery = " insert into salon_sales_kitchenprintingdata_json_torder (" +
@@ -7051,10 +7074,10 @@ public class GlobalMemberValues {
 
                                     strQuery = " insert into salon_sales_kitchenprintingdata_json " +
                                             " (salesCode, scode, sidx, stcode, jsonstr, printedyn) values ( " +
-                                            " '" + GlobalMemberValues.getDBTextAfterChecked(holdcode,0) + "', " +
-                                            " '" + GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.SALON_CODE,0) + "', " +
-                                            "  " + GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.STORE_INDEX,0) + ", " +
-                                            " '" + GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.STATION_CODE,0) + "', " +
+                                            " '" + GlobalMemberValues.getDBTextAfterChecked(holdcode, 0) + "', " +
+                                            " '" + GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.SALON_CODE, 0) + "', " +
+                                            "  " + GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.STORE_INDEX, 0) + ", " +
+                                            " '" + GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.STATION_CODE, 0) + "', " +
                                             " '" + GlobalMemberValues.getDBTextAfterChecked(jsonstr, 0) + "', " +
                                             " 'N' " +
                                             " ) ";
@@ -7076,6 +7099,8 @@ public class GlobalMemberValues {
 //                                        GlobalMemberValues.sendTOrderAPIOrderData("K");
 //                                    }
 
+
+
                                     // 02242024 - 추가작업 ---------------------------------------------------------------------
                                     TableSaleMain.isAfterMerge = true;
                                     MainMiddleService.mHoldCode = holdcode;
@@ -7094,10 +7119,8 @@ public class GlobalMemberValues {
                                     }
                                     // 02242024 - 추가작업 ---------------------------------------------------------------------
 
-
                                     // 07212024 - TOrder Send Data
                                     GlobalMemberValues.sendDataToTOrderService(MainActivity.mContext, MainActivity.mActivity, "500");
-
 
                                     GlobalMemberValues.logWrite("torderquerydblogjjj", "query executed correctly");
                                 }
@@ -7129,7 +7152,7 @@ public class GlobalMemberValues {
                 GlobalMemberValues gm = new GlobalMemberValues();
                 if (GlobalMemberValues.getTableOrderByHoldCode(tablepay_holdcode) > 0 && gm.isPOSWebPay()) {
                     Intent pushIntent = new Intent(MainActivity.mContext, PushPopupForTablePay.class);
-                    pushIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+                    pushIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
 
                     pushIntent.putExtra("tablepay_salescode", tablepay_salescode);
                     pushIntent.putExtra("tablepay_holdcode", tablepay_holdcode);
@@ -7150,10 +7173,10 @@ public class GlobalMemberValues {
     public static boolean isOnlineInternet(String paramHost) {
         CheckConnectInternetByGoogle cc = new CheckConnectInternetByGoogle(paramHost);
         cc.start();
-        try{
+        try {
             cc.join();
             return cc.isSuccess();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return false;
@@ -7366,7 +7389,6 @@ public class GlobalMemberValues {
 //    public static boolean isDeviceSunmi(){ return GlobalMemberValues.mDeviceSunmi;}
 
 
-
     public static boolean isPickupTypeHere() {
         boolean returnValue = false;
         DatabaseInit dbInit = new DatabaseInit(MainActivity.mContext);   // DatabaseInit 객체 생성
@@ -7530,7 +7552,7 @@ public class GlobalMemberValues {
     public static String getCustomerOrderNewNumber(String paramSalesCode) {
         String returnValue = "";
 
-        String strQuery =  "";
+        String strQuery = "";
         String newCustomerOrderNumber = "";
 
         DatabaseInit dbInit = new DatabaseInit(Payment.context);
@@ -7625,7 +7647,7 @@ public class GlobalMemberValues {
             headTxt = "R_";
         }
 
-        String strQuery =  "";
+        String strQuery = "";
         String newPhoneOrderNumber = "";
 
         DatabaseInit dbInit = new DatabaseInit(MainActivity.mContext);
@@ -7715,12 +7737,12 @@ public class GlobalMemberValues {
             String getCountColumnName = "";
 
             switch (paramType) {
-                case "employee" : {
+                case "employee": {
                     getStartColumnName = "empcardstartnum";
                     getCountColumnName = "empcardcountnum";
                     break;
                 }
-                case "giftcard" : {
+                case "giftcard": {
                     getStartColumnName = "giftcardstartnum";
                     getCountColumnName = "giftcardcountnum";
                     break;
@@ -7796,15 +7818,15 @@ public class GlobalMemberValues {
 
         boolean isAddSql = true;
         switch (paramPrintingType) {
-            case "A" : {
+            case "A": {
                 isAddSql = true;
                 break;
             }
-            case "R" : {
+            case "R": {
                 isAddSql = true;
                 break;
             }
-            case "K" : {
+            case "K": {
                 isAddSql = false;
                 break;
             }
@@ -7913,49 +7935,49 @@ public class GlobalMemberValues {
         ResultSet tempSaleCartCursor = MssqlDatabase.getResultSetValue(tempSaleCartQuery);
         try {
             while (tempSaleCartCursor.next()) {
-                String item_qty = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,0), 1);
+                String item_qty = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 0), 1);
 
-                String item_itemName = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,6), 1);
+                String item_itemName = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 6), 1);
 
-                String item_saveType = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,21), 1);
+                String item_saveType = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 21), 1);
 
                 // insertTempSaleCart 메소드에 전달할 값을 String 배열로 만든다.
-                String temp_optionTxt = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,32), 1);
-                String temp_optionprice = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,33), 1);
-                String temp_additionalTxt1 = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,34), 1);
-                String temp_additionalprice1 = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,35), 1);
-                String temp_additionalTxt2 = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,36), 1);
-                String temp_additionalprice2 = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,37), 1);
+                String temp_optionTxt = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 32), 1);
+                String temp_optionprice = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 33), 1);
+                String temp_additionalTxt1 = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 34), 1);
+                String temp_additionalprice1 = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 35), 1);
+                String temp_additionalTxt2 = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 36), 1);
+                String temp_additionalprice2 = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 37), 1);
 
-                String temp_sPrice = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,9), 1);
-                String temp_sPriceAmount = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,38), 1);
-                String temp_sTaxAmount = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,39), 1);
-                String temp_sTotalAmount = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,40), 1);
+                String temp_sPrice = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 9), 1);
+                String temp_sPriceAmount = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 38), 1);
+                String temp_sTaxAmount = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 39), 1);
+                String temp_sTotalAmount = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 40), 1);
 
-                String temp_memoToKitchen = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,41), 1);
+                String temp_memoToKitchen = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 41), 1);
 
-                String temp_isQuickSale = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,24), 1);
+                String temp_isQuickSale = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 24), 1);
 
-                String temp_itemIdx = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,5), 1);
+                String temp_itemIdx = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 5), 1);
 
-                String temp_kitchenprintedyn = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,42), 1);
+                String temp_kitchenprintedyn = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 42), 1);
 
-                String selectedDcExtraAllEach = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,43), 1);
-                String selectedDcExtraType = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,44), 1);
-                String dcextratype = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,45), 1);
-                String dcextravalue = GlobalMemberValues.getStringFormatNumber(GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,46), 1),"2");
-                String selectedDcExtraPrice = GlobalMemberValues.getStringFormatNumber(GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,47), 1), "2");
+                String selectedDcExtraAllEach = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 43), 1);
+                String selectedDcExtraType = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 44), 1);
+                String dcextratype = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 45), 1);
+                String dcextravalue = GlobalMemberValues.getStringFormatNumber(GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 46), 1), "2");
+                String selectedDcExtraPrice = GlobalMemberValues.getStringFormatNumber(GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 47), 1), "2");
 
-                String togodelitype = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,48), 1);
+                String togodelitype = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 48), 1);
 
-                String temp_categoryname = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,25), 1);
+                String temp_categoryname = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 25), 1);
 
-                String temp_stax = GlobalMemberValues.getStringFormatNumber(GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,49), 1), "2");
+                String temp_stax = GlobalMemberValues.getStringFormatNumber(GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 49), 1), "2");
 
-                String labelprintedYN = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,50), 1);
+                String labelprintedYN = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 50), 1);
 
                 // 04192023
-                String pastHoldCode = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,51), 1);
+                String pastHoldCode = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 51), 1);
 
                 if (GlobalMemberValues.isStrEmpty(togodelitype)) {
                     togodelitype = "H";
@@ -8017,7 +8039,7 @@ public class GlobalMemberValues {
                     }
                 } else {
                     switch (paramPrintingType) {
-                        case "A" : {
+                        case "A": {
 
                             if (!temp_kitchenprintedyn.equals("N")) {
                                 isPrintItem = true;
@@ -8028,11 +8050,11 @@ public class GlobalMemberValues {
                             }
                             break;
                         }
-                        case "R" : {
+                        case "R": {
                             isPrintItem = true;
                             break;
                         }
-                        case "K" : {
+                        case "K": {
                             if (!temp_kitchenprintedyn.equals("N")) {
                                 isPrintItem = true;
                             } else {
@@ -8050,7 +8072,7 @@ public class GlobalMemberValues {
                 }
 
                 // common gratuity
-                if (item_itemName.equals(GlobalMemberValues.mCommonGratuityName)){
+                if (item_itemName.equals(GlobalMemberValues.mCommonGratuityName)) {
                     temp_sTaxAmount = "0.00";
                     temp_stax = "0.00";
                 }
@@ -8129,7 +8151,7 @@ public class GlobalMemberValues {
                 }
             }
             tempSaleCartCursor.close();
-        } catch (Exception e){
+        } catch (Exception e) {
 
         }
 
@@ -8167,27 +8189,27 @@ public class GlobalMemberValues {
         GlobalMemberValues.logWrite("paymentlog", "strQuery2 : " + strQuery + "\n");
         ResultSet deliverytakeawayInfoCursor = MssqlDatabase.getResultSetValue(strQuery);
         try {
-            while (deliverytakeawayInfoCursor.next()){
-                temp_customerId = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor,0), 1);
-                temp_customerName = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor,1), 1);
-                temp_customerPhone = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor,2), 1);
-                temp_customerEmail = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor,3), 1);
+            while (deliverytakeawayInfoCursor.next()) {
+                temp_customerId = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor, 0), 1);
+                temp_customerName = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor, 1), 1);
+                temp_customerPhone = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor, 2), 1);
+                temp_customerEmail = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor, 3), 1);
 
-                temp_customerAddr1 = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor,4), 1);
-                temp_customerAddr2 = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor,5), 1);
-                temp_customerCity = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor,6), 1);
-                temp_customerState = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor,7), 1);
-                temp_customerZip = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor,8), 1);
+                temp_customerAddr1 = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor, 4), 1);
+                temp_customerAddr2 = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor, 5), 1);
+                temp_customerCity = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor, 6), 1);
+                temp_customerState = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor, 7), 1);
+                temp_customerZip = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor, 8), 1);
 
-                temp_deliveryday = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor,9), 1);
-                temp_deliverytime = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor,10), 1);
-                temp_deliverydate = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor,11), 1);
-                temp_deliverytakeaway = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor,12), 1);
+                temp_deliveryday = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor, 9), 1);
+                temp_deliverytime = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor, 10), 1);
+                temp_deliverydate = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor, 11), 1);
+                temp_deliverytakeaway = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor, 12), 1);
                 if (!GlobalMemberValues.isToGoSale()) {
                     temp_deliverytakeaway = "H";
                 }
 
-                temp_customermemo = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor,13), 1);
+                temp_customermemo = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor, 13), 1);
 
                 if (!GlobalMemberValues.isStrEmpty(temp_customerAddr1)
                         || !GlobalMemberValues.isStrEmpty(temp_customerAddr2)
@@ -8215,7 +8237,7 @@ public class GlobalMemberValues {
 //            if (deliverytakeawayInfoCursor.getCount() > 0 && deliverytakeawayInfoCursor.moveToFirst()) {
 //
 //            }
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
 
@@ -8300,7 +8322,6 @@ public class GlobalMemberValues {
 
         return jsonroot_kitchen;
     }
-
 
     //04232024 tOrderOrderJson
     public static JSONObject tOrderOrderJson(String paramSalesCode, String paramPrintingType, String paramTableInfos) throws JSONException {
@@ -8848,15 +8869,15 @@ public class GlobalMemberValues {
 
         boolean isAddSql = true;
         switch (paramPrintingType) {
-            case "A" : {
+            case "A": {
                 isAddSql = true;
                 break;
             }
-            case "R" : {
+            case "R": {
                 isAddSql = true;
                 break;
             }
-            case "K" : {
+            case "K": {
                 isAddSql = false;
                 break;
             }
@@ -8936,9 +8957,9 @@ public class GlobalMemberValues {
         if (paramSplitMergeInfo != null) {
             if (paramSplitMergeInfo.length >= 4) {
                 cartidxs = paramSplitMergeInfo[4].split(",");
-                if (cartidxs != null){
-                    if (cartidxs.length > 0){
-                        if (!GlobalMemberValues.isStrEmpty(cartidxs[0])){
+                if (cartidxs != null) {
+                    if (cartidxs.length > 0) {
+                        if (!GlobalMemberValues.isStrEmpty(cartidxs[0])) {
                             i_view_kind = 1;
                         } else {
                             i_view_kind = 0;
@@ -8993,50 +9014,50 @@ public class GlobalMemberValues {
                 int tempCursorCnt = 0;
 
                 while (tempSaleCartCursor.next()) {
-                    item_qty = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,0), 1);
+                    item_qty = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 0), 1);
 
-                    String item_itemName = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,6), 1);
+                    String item_itemName = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 6), 1);
 
-                    String item_saveType = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,21), 1);
+                    String item_saveType = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 21), 1);
 
                     // insertTempSaleCart 메소드에 전달할 값을 String 배열로 만든다.
-                    String temp_optionTxt = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,32), 1);
-                    String temp_optionprice = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,33), 1);
-                    String temp_additionalTxt1 = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,34), 1);
-                    String temp_additionalprice1 = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,35), 1);
-                    String temp_additionalTxt2 = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,36), 1);
-                    String temp_additionalprice2 = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,37), 1);
+                    String temp_optionTxt = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 32), 1);
+                    String temp_optionprice = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 33), 1);
+                    String temp_additionalTxt1 = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 34), 1);
+                    String temp_additionalprice1 = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 35), 1);
+                    String temp_additionalTxt2 = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 36), 1);
+                    String temp_additionalprice2 = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 37), 1);
 
-                    String temp_sPrice = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,9), 1);
-                    String temp_sPriceAmount = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,38), 1);
-                    String temp_sTaxAmount = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,39), 1);
-                    String temp_sTotalAmount = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,40), 1);
+                    String temp_sPrice = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 9), 1);
+                    String temp_sPriceAmount = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 38), 1);
+                    String temp_sTaxAmount = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 39), 1);
+                    String temp_sTotalAmount = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 40), 1);
 
-                    String temp_memoToKitchen = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,41), 1);
+                    String temp_memoToKitchen = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 41), 1);
 
-                    String temp_isQuickSale = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,24), 1);
+                    String temp_isQuickSale = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 24), 1);
 
-                    String temp_itemIdx = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,5), 1);
+                    String temp_itemIdx = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 5), 1);
 
-                    String temp_kitchenprintedyn = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,42), 1);
+                    String temp_kitchenprintedyn = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 42), 1);
 
-                    String selectedDcExtraAllEach = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,43), 1);
-                    String selectedDcExtraType = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,44), 1);
-                    String dcextratype = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,45), 1);
-                    String dcextravalue = GlobalMemberValues.getStringFormatNumber(GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,46), 1),"2");
-                    String selectedDcExtraPrice = GlobalMemberValues.getStringFormatNumber(GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,47), 1), "2");
+                    String selectedDcExtraAllEach = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 43), 1);
+                    String selectedDcExtraType = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 44), 1);
+                    String dcextratype = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 45), 1);
+                    String dcextravalue = GlobalMemberValues.getStringFormatNumber(GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 46), 1), "2");
+                    String selectedDcExtraPrice = GlobalMemberValues.getStringFormatNumber(GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 47), 1), "2");
 
-                    String togodelitype = GlobalMemberValues.getStringFormatNumber(GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,48), 1), "2");
+                    String togodelitype = GlobalMemberValues.getStringFormatNumber(GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 48), 1), "2");
                     if (GlobalMemberValues.isStrEmpty(togodelitype)) {
                         togodelitype = "H";
                     }
 
-                    String temp_categoryname = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,25), 1);
+                    String temp_categoryname = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 25), 1);
 
-                    String temp_stax = GlobalMemberValues.getStringFormatNumber(GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,49), 1), "2");
+                    String temp_stax = GlobalMemberValues.getStringFormatNumber(GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 49), 1), "2");
 
                     // 04192023
-                    String pastholdcode = GlobalMemberValues.getStringFormatNumber(GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,50), 1), "2");
+                    String pastholdcode = GlobalMemberValues.getStringFormatNumber(GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 50), 1), "2");
                     if (tempCursorCnt == 0) {
                         pastHoldCodeStr = pastholdcode;
                     } else {
@@ -9130,15 +9151,15 @@ public class GlobalMemberValues {
                         isPrintItem = true;
                     } else {
                         switch (paramPrintingType) {
-                            case "A" : {
+                            case "A": {
                                 isPrintItem = true;
                                 break;
                             }
-                            case "R" : {
+                            case "R": {
                                 isPrintItem = true;
                                 break;
                             }
-                            case "K" : {
+                            case "K": {
                                 if (temp_kitchenprintedyn.equals("N")) {
                                     isPrintItem = true;
                                 } else {
@@ -9175,12 +9196,12 @@ public class GlobalMemberValues {
                     tempCursorCnt++;
                 }
                 tempSaleCartCursor.close();
-            }catch (Exception e){
+            } catch (Exception e) {
 
             }
         } else if (i_view_kind == 1) {
             cartidxs = paramSplitMergeInfo[4].split(",");
-            for(String str_cartidx : cartidxs) {
+            for (String str_cartidx : cartidxs) {
 
                 String tempCartidxQuery = "";
                 tempCartidxQuery = "select sQty, holdcode, '" + GlobalMemberValues.STORE_INDEX + "', '" + GlobalMemberValues.STATION_CODE.toUpperCase() + "', " +
@@ -9212,51 +9233,51 @@ public class GlobalMemberValues {
                     // 04192023
                     int tempCursorCnt = 0;
                     while (tempSaleCartCursor.next()) {
-                        item_qty = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,0), 1);
+                        item_qty = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 0), 1);
 
 
-                        String item_itemName = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,6), 1);
+                        String item_itemName = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 6), 1);
 
-                        String item_saveType = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,21), 1);
+                        String item_saveType = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 21), 1);
 
                         // insertTempSaleCart 메소드에 전달할 값을 String 배열로 만든다.
-                        String temp_optionTxt = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,32), 1);
-                        String temp_optionprice = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,33), 1);
-                        String temp_additionalTxt1 = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,34), 1);
-                        String temp_additionalprice1 = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,35), 1);
-                        String temp_additionalTxt2 = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,36), 1);
-                        String temp_additionalprice2 = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,37), 1);
+                        String temp_optionTxt = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 32), 1);
+                        String temp_optionprice = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 33), 1);
+                        String temp_additionalTxt1 = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 34), 1);
+                        String temp_additionalprice1 = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 35), 1);
+                        String temp_additionalTxt2 = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 36), 1);
+                        String temp_additionalprice2 = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 37), 1);
 
-                        String temp_sPrice = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,9), 1);
-                        String temp_sPriceAmount = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,38), 1);
-                        String temp_sTaxAmount = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,39), 1);
-                        String temp_sTotalAmount = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,40), 1);
+                        String temp_sPrice = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 9), 1);
+                        String temp_sPriceAmount = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 38), 1);
+                        String temp_sTaxAmount = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 39), 1);
+                        String temp_sTotalAmount = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 40), 1);
 
-                        String temp_memoToKitchen = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,41), 1);
+                        String temp_memoToKitchen = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 41), 1);
 
-                        String temp_isQuickSale = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,24), 1);
+                        String temp_isQuickSale = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 24), 1);
 
-                        String temp_itemIdx = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,5), 1);
+                        String temp_itemIdx = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 5), 1);
 
-                        String temp_kitchenprintedyn = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,42), 1);
+                        String temp_kitchenprintedyn = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 42), 1);
 
-                        String selectedDcExtraAllEach = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,43), 1);
-                        String selectedDcExtraType = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,44), 1);
-                        String dcextratype = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,45), 1);
-                        String dcextravalue = GlobalMemberValues.getStringFormatNumber(GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,46), 1),"2");
-                        String selectedDcExtraPrice = GlobalMemberValues.getStringFormatNumber(GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,47), 1), "2");
+                        String selectedDcExtraAllEach = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 43), 1);
+                        String selectedDcExtraType = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 44), 1);
+                        String dcextratype = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 45), 1);
+                        String dcextravalue = GlobalMemberValues.getStringFormatNumber(GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 46), 1), "2");
+                        String selectedDcExtraPrice = GlobalMemberValues.getStringFormatNumber(GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 47), 1), "2");
 
-                        String togodelitype = GlobalMemberValues.getStringFormatNumber(GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,48), 1), "2");
+                        String togodelitype = GlobalMemberValues.getStringFormatNumber(GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 48), 1), "2");
                         if (GlobalMemberValues.isStrEmpty(togodelitype)) {
                             togodelitype = "H";
                         }
 
-                        String temp_categoryname = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,25), 1);
+                        String temp_categoryname = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 25), 1);
 
-                        String temp_stax = GlobalMemberValues.getStringFormatNumber(GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,49), 1), "2");
+                        String temp_stax = GlobalMemberValues.getStringFormatNumber(GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 49), 1), "2");
 
                         // 04192023
-                        String pastholdcode = GlobalMemberValues.getStringFormatNumber(GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,50), 1), "2");
+                        String pastholdcode = GlobalMemberValues.getStringFormatNumber(GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 50), 1), "2");
                         if (tempCursorCnt == 0) {
                             pastHoldCodeStr = pastholdcode;
                         } else {
@@ -9350,15 +9371,15 @@ public class GlobalMemberValues {
                             isPrintItem = true;
                         } else {
                             switch (paramPrintingType) {
-                                case "A" : {
+                                case "A": {
                                     isPrintItem = true;
                                     break;
                                 }
-                                case "R" : {
+                                case "R": {
                                     isPrintItem = true;
                                     break;
                                 }
-                                case "K" : {
+                                case "K": {
                                     if (temp_kitchenprintedyn.equals("N")) {
                                         isPrintItem = true;
                                     } else {
@@ -9401,15 +9422,13 @@ public class GlobalMemberValues {
 
                     }
                     tempSaleCartCursor.close();
-                } catch (Exception e){
+                } catch (Exception e) {
 
                 }
             }
         }
 
         /////////////////////////////
-
-
 
 
         GlobalMemberValues.logWrite("phoneorderitemlog", "itemDetailText : " + itemDetailText + "\n");
@@ -9446,27 +9465,27 @@ public class GlobalMemberValues {
         GlobalMemberValues.logWrite("paymentlog", "strQuery2 : " + strQuery + "\n");
         ResultSet deliverytakeawayInfoCursor = MssqlDatabase.getResultSetValue(strQuery);
         try {
-            while (deliverytakeawayInfoCursor.next()){
-                temp_customerId = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor,0), 1);
-                temp_customerName = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor,1), 1);
-                temp_customerPhone = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor,2), 1);
-                temp_customerEmail = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor,3), 1);
+            while (deliverytakeawayInfoCursor.next()) {
+                temp_customerId = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor, 0), 1);
+                temp_customerName = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor, 1), 1);
+                temp_customerPhone = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor, 2), 1);
+                temp_customerEmail = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor, 3), 1);
 
-                temp_customerAddr1 = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor,4), 1);
-                temp_customerAddr2 = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor,5), 1);
-                temp_customerCity = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor,6), 1);
-                temp_customerState = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor,7), 1);
-                temp_customerZip = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor,8), 1);
+                temp_customerAddr1 = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor, 4), 1);
+                temp_customerAddr2 = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor, 5), 1);
+                temp_customerCity = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor, 6), 1);
+                temp_customerState = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor, 7), 1);
+                temp_customerZip = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor, 8), 1);
 
-                temp_deliveryday = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor,9), 1);
-                temp_deliverytime = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor,10), 1);
-                temp_deliverydate = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor,11), 1);
-                temp_deliverytakeaway = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor,12), 1);
+                temp_deliveryday = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor, 9), 1);
+                temp_deliverytime = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor, 10), 1);
+                temp_deliverydate = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor, 11), 1);
+                temp_deliverytakeaway = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor, 12), 1);
                 if (!GlobalMemberValues.isToGoSale()) {
                     temp_deliverytakeaway = "H";
                 }
 
-                temp_customermemo = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor,13), 1);
+                temp_customermemo = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor, 13), 1);
 
                 if (!GlobalMemberValues.isStrEmpty(temp_customerAddr1)
                         || !GlobalMemberValues.isStrEmpty(temp_customerAddr2)
@@ -9494,7 +9513,7 @@ public class GlobalMemberValues {
 //            if (deliverytakeawayInfoCursor.getCount() > 0 && deliverytakeawayInfoCursor.moveToFirst()) {
 //
 //            }
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
 
@@ -9567,7 +9586,7 @@ public class GlobalMemberValues {
                 temp_stotalAmount += GlobalMemberValues.getDoubleAtString(totalamount);
             }
             sTotalAmountCursor.close();
-        } catch (Exception e){
+        } catch (Exception e) {
 
         }
 
@@ -9689,49 +9708,49 @@ public class GlobalMemberValues {
         ResultSet tempSaleCartCursor = MssqlDatabase.getResultSetValue(tempSaleCartQuery);
         try {
             while (tempSaleCartCursor.next()) {
-                String item_qty = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,0), 1);
+                String item_qty = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 0), 1);
 
-                String item_itemName = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,6), 1);
+                String item_itemName = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 6), 1);
 
-                String item_saveType = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,21), 1);
+                String item_saveType = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 21), 1);
 
                 // insertTempSaleCart 메소드에 전달할 값을 String 배열로 만든다.
-                String temp_optionTxt = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,32), 1);
-                String temp_optionprice = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,33), 1);
-                String temp_additionalTxt1 = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,34), 1);
-                String temp_additionalprice1 = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,35), 1);
-                String temp_additionalTxt2 = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,36), 1);
-                String temp_additionalprice2 = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,37), 1);
+                String temp_optionTxt = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 32), 1);
+                String temp_optionprice = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 33), 1);
+                String temp_additionalTxt1 = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 34), 1);
+                String temp_additionalprice1 = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 35), 1);
+                String temp_additionalTxt2 = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 36), 1);
+                String temp_additionalprice2 = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 37), 1);
 
-                String temp_sPrice = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,9), 1);
-                String temp_sPriceAmount = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,38), 1);
-                String temp_sTaxAmount = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,39), 1);
-                String temp_sTotalAmount = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,40), 1);
+                String temp_sPrice = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 9), 1);
+                String temp_sPriceAmount = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 38), 1);
+                String temp_sTaxAmount = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 39), 1);
+                String temp_sTotalAmount = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 40), 1);
 
-                String temp_memoToKitchen = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,41), 1);
+                String temp_memoToKitchen = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 41), 1);
 
-                String temp_isQuickSale = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,24), 1);
+                String temp_isQuickSale = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 24), 1);
 
-                String temp_itemIdx = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,5), 1);
+                String temp_itemIdx = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 5), 1);
 
-                String temp_kitchenprintedyn = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,42), 1);
+                String temp_kitchenprintedyn = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 42), 1);
 
-                String selectedDcExtraAllEach = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,43), 1);
-                String selectedDcExtraType = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,44), 1);
-                String dcextratype = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,45), 1);
-                String dcextravalue = GlobalMemberValues.getStringFormatNumber(GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,46), 1),"2");
-                String selectedDcExtraPrice = GlobalMemberValues.getStringFormatNumber(GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,47), 1), "2");
+                String selectedDcExtraAllEach = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 43), 1);
+                String selectedDcExtraType = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 44), 1);
+                String dcextratype = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 45), 1);
+                String dcextravalue = GlobalMemberValues.getStringFormatNumber(GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 46), 1), "2");
+                String selectedDcExtraPrice = GlobalMemberValues.getStringFormatNumber(GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 47), 1), "2");
 
-                String togodelitype = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,48), 1);
+                String togodelitype = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 48), 1);
 
-                String temp_categoryname = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,25), 1);
+                String temp_categoryname = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 25), 1);
 
-                String temp_stax = GlobalMemberValues.getStringFormatNumber(GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,49), 1), "2");
+                String temp_stax = GlobalMemberValues.getStringFormatNumber(GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 49), 1), "2");
 
-                String temp_labelprintedYN = GlobalMemberValues.getStringFormatNumber(GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,50), 1), "2");
+                String temp_labelprintedYN = GlobalMemberValues.getStringFormatNumber(GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 50), 1), "2");
 
                 // 04192023
-                String pastholdcode = GlobalMemberValues.getStringFormatNumber(GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,51), 1), "2");
+                String pastholdcode = GlobalMemberValues.getStringFormatNumber(GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 51), 1), "2");
 
                 if (GlobalMemberValues.isStrEmpty(togodelitype)) {
                     togodelitype = "H";
@@ -9864,7 +9883,7 @@ public class GlobalMemberValues {
                 }
             }
             tempSaleCartCursor.close();
-        } catch (Exception e){
+        } catch (Exception e) {
 
         }
 
@@ -9902,28 +9921,28 @@ public class GlobalMemberValues {
         GlobalMemberValues.logWrite("paymentlog", "strQuery2 : " + strQuery + "\n");
         ResultSet deliverytakeawayInfoCursor = MssqlDatabase.getResultSetValue(strQuery);
         try {
-            while (deliverytakeawayInfoCursor.next()){
-                temp_customerId = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor,0), 1);
-                temp_customerName = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor,1), 1);
-                temp_customerPhone = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor,2), 1);
-                temp_customerEmail = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor,3), 1);
+            while (deliverytakeawayInfoCursor.next()) {
+                temp_customerId = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor, 0), 1);
+                temp_customerName = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor, 1), 1);
+                temp_customerPhone = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor, 2), 1);
+                temp_customerEmail = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor, 3), 1);
 
-                temp_customerAddr1 = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor,4), 1);
-                temp_customerAddr2 = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor,5), 1);
-                temp_customerCity = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor,6), 1);
-                temp_customerState = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor,7), 1);
-                temp_customerZip = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor,8), 1);
+                temp_customerAddr1 = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor, 4), 1);
+                temp_customerAddr2 = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor, 5), 1);
+                temp_customerCity = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor, 6), 1);
+                temp_customerState = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor, 7), 1);
+                temp_customerZip = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor, 8), 1);
 
-                temp_deliveryday = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor,9), 1);
-                temp_deliverytime = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor,10), 1);
-                temp_deliverydate = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor,11), 1);
-                temp_deliverytakeaway = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor,12), 1);
+                temp_deliveryday = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor, 9), 1);
+                temp_deliverytime = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor, 10), 1);
+                temp_deliverydate = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor, 11), 1);
+                temp_deliverytakeaway = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor, 12), 1);
                 if (!GlobalMemberValues.isToGoSale()) {
                     temp_deliverytakeaway = "H";
                 }
 
 
-                temp_customermemo = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor,13), 1);
+                temp_customermemo = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(deliverytakeawayInfoCursor, 13), 1);
 
                 if (!GlobalMemberValues.isStrEmpty(temp_customerAddr1)
                         || !GlobalMemberValues.isStrEmpty(temp_customerAddr2)
@@ -9951,7 +9970,7 @@ public class GlobalMemberValues {
 //            if (deliverytakeawayInfoCursor.getCount() > 0 && deliverytakeawayInfoCursor.moveToFirst()) {
 //
 //            }
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
 
@@ -10068,7 +10087,7 @@ public class GlobalMemberValues {
             } else {
                 jsonObject.put("canceldeleteyn", "N");
             }
-            item_list = jsonObject.optString("saleitemlist","");
+            item_list = jsonObject.optString("saleitemlist", "");
 
             String tempReprint = "N";
             if (Recall.mKitchenReprint != null && Recall.mKitchenReprint.equals("Y")) {
@@ -10102,10 +10121,10 @@ public class GlobalMemberValues {
         if (GlobalMemberValues.isPossibleSavingKitchenPrintingDataJson(jsonObject.toString())) {
             strQuery = " insert into salon_sales_kitchenprintingdata_json " +
                     " (salesCode, scode, sidx, stcode, jsonstr, reprintyn) values ( " +
-                    " '" + GlobalMemberValues.getDBTextAfterChecked(paramSalesCode,0) + "', " +
-                    " '" + GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.SALON_CODE,0) + "', " +
-                    "  " + GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.STORE_INDEX,0) + ", " +
-                    " '" + GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.STATION_CODE,0) + "', " +
+                    " '" + GlobalMemberValues.getDBTextAfterChecked(paramSalesCode, 0) + "', " +
+                    " '" + GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.SALON_CODE, 0) + "', " +
+                    "  " + GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.STORE_INDEX, 0) + ", " +
+                    " '" + GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.STATION_CODE, 0) + "', " +
                     " '" + GlobalMemberValues.getDBTextAfterChecked(jsonObject.toString(), 0) + "', " +
                     " '" + GlobalMemberValues.isKitchenReprinting + "' " +
                     " ) ";
@@ -10145,16 +10164,16 @@ public class GlobalMemberValues {
         GlobalMemberValues.logWrite("phoneordercheckprintlog", "phoneorderlog : " + jsonObject.toString() + "\n");
 
         // Label print
-        if (isUseLabelPrinter()){
+        if (isUseLabelPrinter()) {
             // json 쪼개기..
             JSONObject label_jsonobject = new JSONObject();
             for (Iterator<String> iterator = jsonObject.keys(); iterator.hasNext(); ) {
-                String      key     = iterator.next();
-                JSONObject  value   = jsonObject.optJSONObject(key);
+                String key = iterator.next();
+                JSONObject value = jsonObject.optJSONObject(key);
 
                 try {
                     label_jsonobject.put(key, value);
-                } catch ( JSONException e ) {
+                } catch (JSONException e) {
                     //TODO process exception
                 }
             }
@@ -10268,13 +10287,13 @@ public class GlobalMemberValues {
                         e.printStackTrace();
                     }
 
-                    if (printedLabel.equals("N")){
+                    if (printedLabel.equals("N")) {
                         array_orderItemList.put(jsonObject_item);
                     }
                 }
                 try {
-                    label_jsonobject.put("saleitemlist",array_orderItemList);
-                    label_jsonobject.put("phoneordernumber",jsonObject.get("phoneordernumber"));
+                    label_jsonobject.put("saleitemlist", array_orderItemList);
+                    label_jsonobject.put("phoneordernumber", jsonObject.get("phoneordernumber"));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -10282,7 +10301,7 @@ public class GlobalMemberValues {
 
             JSONArray temp_array = new JSONArray();
             temp_array = GlobalMemberValues.labelPrint_menuSplit(label_jsonobject);
-            if (temp_array != null && temp_array.length() != 0){
+            if (temp_array != null && temp_array.length() != 0) {
 //                            EpsonLabelPrinter epsonLabelPrinter = new EpsonLabelPrinter(MainActivity.mContext);
 //                            epsonLabelPrinter.runPrintReceiptSequence_array(temp_array, "USB:");
                 GlobalMemberValues.printLabel1to5(temp_array);
@@ -10318,7 +10337,7 @@ public class GlobalMemberValues {
                 jsonObject.put("canceldeleteyn", "N");
             }
 
-            item_list = jsonObject.optString("saleitemlist","");
+            item_list = jsonObject.optString("saleitemlist", "");
 
 
             // 05172023
@@ -10350,12 +10369,35 @@ public class GlobalMemberValues {
         ));
         strQuery = " insert into salon_billprinted_itemqty " +
                 " (stcode, holdcode, qtycount) values ( " +
-                " '" + GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.STATION_CODE,0) + "', " +
+                " '" + GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.STATION_CODE, 0) + "', " +
                 " '" + GlobalMemberValues.getDBTextAfterChecked(paramSalesCode, 0) + "', " +
                 " '" + qtycount + "' " +
                 " ) ";
         strInsertQueryVec.addElement(strQuery);
         // 10092023 --------------------------------------------------------------------------
+
+
+        /// 이동
+        GlobalMemberValues.PHONEORDERYN = "Y";
+        GlobalMemberValues.PHONEORDER_FORCE_KITCHENPRINT = "Y";
+
+        GlobalMemberValues.logWrite("phoneordercheckprintlog", "phoneorder2 : " + GlobalMemberValues.PHONEORDERYN + "\n");
+
+        GlobalMemberValues.logWrite("phoneordercheckprintlog", "phoneorderlog : " + jsonObject.toString() + "\n");
+
+        if (paramPrintingType.equals("A")) {
+            GlobalMemberValues.printReceiptByJHP(jsonObject, MainActivity.mContext, "phoneordercheckprint");
+            GlobalMemberValues.printGateByKitchen(jsonObject, MainActivity.mContext, "kitchen1");
+        } else {
+            if (paramPrintingType.equals("R")) {
+                GlobalMemberValues.printReceiptByJHP(jsonObject, MainActivity.mContext, "phoneordercheckprint");
+            }
+            if (paramPrintingType.equals("K")) {
+                GlobalMemberValues.logWrite("phoneordercheckprintlog", "여기왔음..." + "\n");
+                GlobalMemberValues.printGateByKitchen(jsonObject, MainActivity.mContext, "kitchen1");
+            }
+        }
+        /// 이동
 
 
         // 03182024
@@ -10397,30 +10439,10 @@ public class GlobalMemberValues {
         // --------------------------------------------------------------------------------------------
 
 
-        GlobalMemberValues.PHONEORDERYN = "Y";
-        GlobalMemberValues.PHONEORDER_FORCE_KITCHENPRINT = "Y";
 
-        GlobalMemberValues.logWrite("phoneordercheckprintlog", "phoneorder2 : " + GlobalMemberValues.PHONEORDERYN + "\n");
-
-        GlobalMemberValues.logWrite("phoneordercheckprintlog", "phoneorderlog : " + jsonObject.toString() + "\n");
-
-        if (paramPrintingType.equals("A")) {
-            GlobalMemberValues.printReceiptByJHP(jsonObject, MainActivity.mContext, "phoneordercheckprint");
-            GlobalMemberValues.printGateByKitchen(jsonObject, MainActivity.mContext, "kitchen1");
-        } else {
-            if (paramPrintingType.equals("R")) {
-                GlobalMemberValues.printReceiptByJHP(jsonObject, MainActivity.mContext, "phoneordercheckprint");
-            }
-            if (paramPrintingType.equals("K")) {
-                GlobalMemberValues.logWrite("phoneordercheckprintlog", "여기왔음..." + "\n");
-                GlobalMemberValues.printGateByKitchen(jsonObject, MainActivity.mContext, "kitchen1");
-            }
-        }
     }
 
-    public static void tableMainPrinting(String paramSalesCode, String paramPrintingType, String paramTableInfos,  String param_splitmerge_total, String[] paramSplitMergeInfo, String str_Billsplit_Type, JSONObject jsonObject) throws JSONException {
-
-
+    public static void tableMainPrinting(String paramSalesCode, String paramPrintingType, String paramTableInfos, String param_splitmerge_total, String[] paramSplitMergeInfo, String str_Billsplit_Type, JSONObject jsonObject) throws JSONException {
 
         GlobalMemberValues.PHONEORDERYN = "Y";
         GlobalMemberValues.PHONEORDER_FORCE_KITCHENPRINT = "Y";
@@ -10456,7 +10478,7 @@ public class GlobalMemberValues {
                 jsonObject.put("canceldeleteyn", "N");
             }
 
-            item_list = jsonObject.optString("saleitemlist","");
+            item_list = jsonObject.optString("saleitemlist", "");
 
             String tempReprint = "N";
 //            if (Recall.mKitchenReprint != null && Recall.mKitchenReprint.equals("Y")) {
@@ -10477,10 +10499,10 @@ public class GlobalMemberValues {
         if (GlobalMemberValues.isPossibleSavingKitchenPrintingDataJson(jsonObject.toString())) {
             insQuery = " insert into salon_sales_kitchenprintingdata_json " +
                     " (salesCode, scode, sidx, stcode, jsonstr) values ( " +
-                    " '" + GlobalMemberValues.getDBTextAfterChecked(paramSalesCode,0) + "', " +
-                    " '" + GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.SALON_CODE,0) + "', " +
-                    "  " + GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.STORE_INDEX,0) + ", " +
-                    " '" + GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.STATION_CODE,0) + "', " +
+                    " '" + GlobalMemberValues.getDBTextAfterChecked(paramSalesCode, 0) + "', " +
+                    " '" + GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.SALON_CODE, 0) + "', " +
+                    "  " + GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.STORE_INDEX, 0) + ", " +
+                    " '" + GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.STATION_CODE, 0) + "', " +
                     " '" + GlobalMemberValues.getDBTextAfterChecked(jsonObject.toString(), 0) + "' " +
                     " ) ";
         }
@@ -10505,16 +10527,16 @@ public class GlobalMemberValues {
         GlobalMemberValues.logWrite("phoneordercheckprintlog", "phoneorderlog : " + jsonObject.toString() + "\n");
 
         // Label print
-        if (isUseLabelPrinter()){
+        if (isUseLabelPrinter()) {
             // json 쪼개기..
             JSONObject label_jsonobject = new JSONObject();
             for (Iterator<String> iterator = jsonObject.keys(); iterator.hasNext(); ) {
-                String      key     = iterator.next();
-                JSONObject  value   = jsonObject.optJSONObject(key);
+                String key = iterator.next();
+                JSONObject value = jsonObject.optJSONObject(key);
 
                 try {
                     label_jsonobject.put(key, value);
-                } catch ( JSONException e ) {
+                } catch (JSONException e) {
                     //TODO process exception
                 }
             }
@@ -10621,7 +10643,7 @@ public class GlobalMemberValues {
                     array_orderItemList.put(jsonObject_item);
                 }
                 try {
-                    label_jsonobject.put("saleitemlist",array_orderItemList);
+                    label_jsonobject.put("saleitemlist", array_orderItemList);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -10629,7 +10651,7 @@ public class GlobalMemberValues {
 
             JSONArray temp_array = new JSONArray();
             temp_array = GlobalMemberValues.labelPrint_menuSplit(label_jsonobject);
-            if (temp_array != null && temp_array.length() != 0){
+            if (temp_array != null && temp_array.length() != 0) {
 //            EpsonLabelPrinter epsonLabelPrinter = new EpsonLabelPrinter(MainActivity.mContext);
 //            epsonLabelPrinter.runPrintReceiptSequence_array(temp_array, "USB:");
 
@@ -10640,7 +10662,7 @@ public class GlobalMemberValues {
     }
 
     public static void setPhoneorderLabelPrinted(String paramSalesCode) {
-        String strQuery =  "";
+        String strQuery = "";
         DatabaseInit dbInit = new DatabaseInit(MainActivity.mContext);
         String returnResult = "";
         Vector<String> strInsertQueryVec = new Vector<String>();
@@ -10660,7 +10682,7 @@ public class GlobalMemberValues {
     }
 
     public static void setPhoneorderKitchenPrinted(String paramSalesCode) {
-        String strQuery =  "";
+        String strQuery = "";
         DatabaseInit dbInit = new DatabaseInit(MainActivity.mContext);
         String returnResult = "";
         Vector<String> strInsertQueryVec = new Vector<String>();
@@ -10923,7 +10945,7 @@ public class GlobalMemberValues {
         return returnValue;
     }
 
-    public static String setStringCutLineInKitchenReceipt(String str_content){
+    public static String setStringCutLineInKitchenReceipt(String str_content) {
         int str_max = 29;
         int i_tempOptionTxt_Length = str_content.length();
         int loopCnt = i_tempOptionTxt_Length / str_max + 1;
@@ -10931,9 +10953,9 @@ public class GlobalMemberValues {
         for (int i = 0; i < loopCnt; i++) {
             int lastIndex = (i + 1) * str_max;
             //글자길이보다 긴 lastIndex를 설정하면 StringIndexOutOfBoundsException 오류가 발생하므로 if문으로 분기
-            if(i_tempOptionTxt_Length > lastIndex){
+            if (i_tempOptionTxt_Length > lastIndex) {
                 str_tempOptionTxt += GlobalMemberValues.getModifierTxtForKitchen2(str_content.substring(i * str_max, lastIndex) + "\n", 6);
-            }else{
+            } else {
                 str_tempOptionTxt += GlobalMemberValues.getModifierTxtForKitchen2(str_content.substring(i * str_max), 6);
             }
         }
@@ -11125,23 +11147,23 @@ public class GlobalMemberValues {
 
         if (!GlobalMemberValues.isStrEmpty(paramKitchenNum)) {
             switch (paramKitchenNum) {
-                case "1" : {
+                case "1": {
                     returnValue = GlobalMemberValues.getSavedPrinterNameForKitchen2(MainActivity.mContext);
                     break;
                 }
-                case "2" : {
+                case "2": {
                     returnValue = GlobalMemberValues.getSavedPrinterNameForKitchen3(MainActivity.mContext);
                     break;
                 }
-                case "3" : {
+                case "3": {
                     returnValue = GlobalMemberValues.getSavedPrinterNameForKitchen4(MainActivity.mContext);
                     break;
                 }
-                case "4" : {
+                case "4": {
                     returnValue = GlobalMemberValues.getSavedPrinterNameForKitchen5(MainActivity.mContext);
                     break;
                 }
-                case "5" : {
+                case "5": {
                     returnValue = GlobalMemberValues.getSavedPrinterNameForKitchen6(MainActivity.mContext);
                     break;
                 }
@@ -11178,6 +11200,7 @@ public class GlobalMemberValues {
 
         return returnValue;
     }
+
     public static String getSettingLabelPrinter(String paramLabelNum) {
         String returnValue = "";
 
@@ -11187,13 +11210,14 @@ public class GlobalMemberValues {
 
         return returnValue;
     }
+
     public static String getSavedPrinterNameForLabel(Context paramContext, String printerNum) {
         String tempPrinterName = "";
         if (printerNum.isEmpty()) return "";
         DatabaseInit dbInit = new DatabaseInit(paramContext);
         String tempSqlQuery = "select printername from salon_storestationsettings_deviceprinter_label" + printerNum;
 
-        if (MainActivity.mDbInit == null){
+        if (MainActivity.mDbInit == null) {
             tempPrinterName = dbInit.dbExecuteReadReturnString(tempSqlQuery);
         } else {
             tempPrinterName = MainActivity.mDbInit.dbExecuteReadReturnString(tempSqlQuery);
@@ -11294,7 +11318,7 @@ public class GlobalMemberValues {
 
         if (!GlobalMemberValues.isStrEmpty(paramExceptNum)) {
             for (int i = 2; i < 7; i++) {
-                if (("J"+i) != ("J"+(paramExceptNum))) {
+                if (("J" + i) != ("J" + (paramExceptNum))) {
                     String strQuery = " select count(idx) from salon_storestationsettings_deviceprinter" + i +
                             " where printername = 'PosBank' " +
                             " and networkprinterip1 = '" + paramIp1 + "' " +
@@ -11511,7 +11535,7 @@ public class GlobalMemberValues {
     public static void setKitchenDataUploadResult(String paramIdx) {
         // 성공
         if (!GlobalMemberValues.isStrEmpty(paramIdx)) {
-            Vector<String > apiUpdateQueryVec = new Vector<String>();
+            Vector<String> apiUpdateQueryVec = new Vector<String>();
 
             String strQuery = "";
             strQuery = "update salon_sales_kitchen_json set isCloudUpload = 1 " +
@@ -11679,9 +11703,10 @@ public class GlobalMemberValues {
     }
 
     public static void openTimeMenuSelectPopup() {
-        if (!GlobalMemberValues.isOpenedTimeMenuPopup) {
+//        if (!GlobalMemberValues.isOpenedTimeMenuPopup) {
+        if (false) {
             // 타임메뉴 선택창 오픈
-            if (MainActivity.mContext != null){
+            if (MainActivity.mContext != null) {
                 Intent timeMenuIntent = new Intent(MainActivity.mContext.getApplicationContext(), TimeMenuSet.class);
                 MainActivity.mActivity.startActivity(timeMenuIntent);
                 if (GlobalMemberValues.isUseFadeInOut()) {
@@ -11716,25 +11741,25 @@ public class GlobalMemberValues {
                 MainActivity.bottomTimeMenuTv.setTextSize(GlobalMemberValues.globalAddFontSize() + 12);
 
                 switch (paramTimeCode) {
-                    case "m" : {
+                    case "m": {
                         MainActivity.bottomTimeMenuTv.setText(" Breakfast Time ");
                         MainActivity.bottomTimeMenuTv.setTextColor(Color.parseColor("#a8bc58"));
                         MainActivity.bottomTimeMenuTv.setBackgroundResource(R.drawable.roundlayout_line_timemenu1);
                         break;
                     }
-                    case "a" : {
+                    case "a": {
                         MainActivity.bottomTimeMenuTv.setText(" Lunch Time ");
                         MainActivity.bottomTimeMenuTv.setTextColor(Color.parseColor("#de7676"));
                         MainActivity.bottomTimeMenuTv.setBackgroundResource(R.drawable.roundlayout_line_timemenu2);
                         break;
                     }
-                    case "e" : {
+                    case "e": {
                         MainActivity.bottomTimeMenuTv.setText(" Dinner Time ");
                         MainActivity.bottomTimeMenuTv.setTextColor(Color.parseColor("#5c8cb4"));
                         MainActivity.bottomTimeMenuTv.setBackgroundResource(R.drawable.roundlayout_line_timemenu3);
                         break;
                     }
-                    case "n" : {
+                    case "n": {
                         MainActivity.bottomTimeMenuTv.setText(" Night Time ");
                         MainActivity.bottomTimeMenuTv.setTextColor(Color.parseColor("#a0a0a0"));
                         MainActivity.bottomTimeMenuTv.setBackgroundResource(R.drawable.roundlayout_line_timemenu4);
@@ -11801,7 +11826,7 @@ public class GlobalMemberValues {
     }
 
     public static String getCustomerPagerNewNumber() {
-        String strQuery =  "";
+        String strQuery = "";
         String newCustomerPagerNumber = "";
 
         DatabaseInit dbInit = new DatabaseInit(Payment.context);
@@ -11834,7 +11859,7 @@ public class GlobalMemberValues {
             }
             // 오늘날짜의 주문에서 Customer Pager Number 가 Settings 에서 설정한 페이저 최대값 이상일 경우 초기화 (0000)
             if (GlobalMemberValues.getIntAtString(maxCustomerPagerNumber)
-                    > (GlobalMemberValues.getIntAtString(maxCustomerPagerNumberOnSettings) -1)) {
+                    > (GlobalMemberValues.getIntAtString(maxCustomerPagerNumberOnSettings) - 1)) {
                 //                maxCustomerPagerNumber = "00";
                 maxCustomerPagerNumber = startPagerNum + "";
             }
@@ -12102,8 +12127,8 @@ public class GlobalMemberValues {
 
                 if (!GlobalMemberValues.isStrEmpty(tempGetUid)) {
                     insQuery = "insert into temp_mileagecart (uid, mileage) values (" +
-                            " '" + tempGetUid +"', " +
-                            " '" + tempGetMileage +"' " +
+                            " '" + tempGetUid + "', " +
+                            " '" + tempGetMileage + "' " +
                             " )";
                     insQueryVec.addElement(insQuery);
                 }
@@ -12206,35 +12231,35 @@ public class GlobalMemberValues {
         int returnValue = 0;
         if (!GlobalMemberValues.isStrEmpty(paramColor)) {
             switch (paramColor) {
-                case "#a0a0a0" : {
+                case "#a0a0a0": {
                     returnValue = R.drawable.roundlayout_button_newcategoryover1;
                     break;
                 }
-                case "#f8b452" : {
+                case "#f8b452": {
                     returnValue = R.drawable.roundlayout_button_newcategoryover2;
                     break;
                 }
-                case "#b06cd0" : {
+                case "#b06cd0": {
                     returnValue = R.drawable.roundlayout_button_newcategoryover3;
                     break;
                 }
-                case "#5c8cb4" : {
+                case "#5c8cb4": {
                     returnValue = R.drawable.roundlayout_button_newcategoryover4;
                     break;
                 }
-                case "#a8bc58" : {
+                case "#a8bc58": {
                     returnValue = R.drawable.roundlayout_button_newcategoryover5;
                     break;
                 }
-                case "#8ababc" : {
+                case "#8ababc": {
                     returnValue = R.drawable.roundlayout_button_newcategoryover6;
                     break;
                 }
-                case "#de7676" : {
+                case "#de7676": {
                     returnValue = R.drawable.roundlayout_button_newcategoryover7;
                     break;
                 }
-                case "#fc78c4" : {
+                case "#fc78c4": {
                     returnValue = R.drawable.roundlayout_button_newcategoryover8;
                     break;
                 }
@@ -12250,7 +12275,7 @@ public class GlobalMemberValues {
         int returnValue = 0;
 
         returnValue = GlobalMemberValues.getIntAtString(MainActivity.mDbInit.dbExecuteReadReturnString(
-                "select count(idx) from temp_salecart where holdcode = '" + paramHoldCode + "' " ));
+                "select count(idx) from temp_salecart where holdcode = '" + paramHoldCode + "' "));
 
         return returnValue;
     }
@@ -12381,7 +12406,7 @@ public class GlobalMemberValues {
             }
 
             double tempPickupDeliveryFee = GlobalMemberValues.getDoubleAtString(GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINDELIVERYPICKUPPRICETV.getText().toString());
-            String tempPickUpDeliveryStr =GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINDELIVERYPICKUPTEXTTV.getText().toString();
+            String tempPickUpDeliveryStr = GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINDELIVERYPICKUPTEXTTV.getText().toString();
 
             if (tempPickupDeliveryFee > 0) {
                 MainActivity.items_clover.add(new DisplayLineItem("{\"id\":\"" + "pickupdelivery" + "\",\"name\":\"" + tempPickUpDeliveryStr +
@@ -12473,7 +12498,7 @@ public class GlobalMemberValues {
         Canvas canvas = new Canvas(bitMap);
         canvas.drawColor(Color.WHITE);
         paramView.draw(canvas);
-        if(bitMap != null) {
+        if (bitMap != null) {
             //ivTest.setImageBitmap(bitMap); // 직접 화면에서 확인하려면 주석 해제후 확인 가능
             new ImagePrintJob.Builder().bitmap(bitMap).maxWidth().build().print(MainActivity.mContext, MainActivity.account_clover);
         }
@@ -12506,7 +12531,7 @@ public class GlobalMemberValues {
             iv.setImageBitmap(BitmapFactory.decodeFile(path));
             ll.addView(iv);
         }
-        if (arr.length == i+1) { // 이미지 이후 텍스트가 있다면 출력해야 함.
+        if (arr.length == i + 1) { // 이미지 이후 텍스트가 있다면 출력해야 함.
             TextView tv = new TextView(MainActivity.mContext);
             tv.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
             tv.setTextColor(Color.BLACK);
@@ -12525,7 +12550,7 @@ public class GlobalMemberValues {
         Canvas canvas = new Canvas(bitMap);
         canvas.drawColor(Color.WHITE);
         ll.draw(canvas);
-        if(bitMap != null) {
+        if (bitMap != null) {
             //ivTest.setImageBitmap(bitMap); // 직접 화면에서 확인하려면 주석 해제후 확인 가능
             new ImagePrintJob.Builder().bitmap(bitMap).maxWidth().build().print(MainActivity.mContext, MainActivity.account_clover);
         }
@@ -12550,9 +12575,9 @@ public class GlobalMemberValues {
 
         //final String pathName = "/storage/emulated/0/ST01GRBWG16034042/serviceimage/serviceimg_13711.png"; // 내부이미지 경로만 변경하면 됨.
         final String pathName = paramFilePath;
-        new AsyncTask<Void, Void, Pair<Printer,Bitmap>>() {
+        new AsyncTask<Void, Void, Pair<Printer, Bitmap>>() {
             @Override
-            protected Pair<Printer,Bitmap> doInBackground(Void... voids) {
+            protected Pair<Printer, Bitmap> doInBackground(Void... voids) {
                 try {
                     Bitmap b = BitmapFactory.decodeFile(pathName);
                     Printer p = GlobalMemberValues.getCloverPrinter();
@@ -12564,7 +12589,7 @@ public class GlobalMemberValues {
             }
 
             @Override
-            protected void onPostExecute(Pair<Printer,Bitmap> result) {
+            protected void onPostExecute(Pair<Printer, Bitmap> result) {
                 if (result == null || result.first == null || result.second == null) {
                     if (!MainActivity.mActivity.isFinishing()) {
 //                        Toast.makeText(MainActivity.mContext, "No Image", Toast.LENGTH_SHORT).show();
@@ -12618,7 +12643,7 @@ public class GlobalMemberValues {
     public static TextView getDotLineViewForClover(Context paramContext) {
         TextView dotLineTv1 = new TextView(MainActivity.mContext);
         dotLineTv1.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 30));
-        dotLineTv1.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.TOP);
+        dotLineTv1.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.TOP);
         //dotLineTv1.setText("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
         dotLineTv1.setText("--------------------------------------------------------------------------------------");
         dotLineTv1.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
@@ -12630,7 +12655,7 @@ public class GlobalMemberValues {
     public static TextView getDotLineViewForCloverSmall(Context paramContext) {
         TextView dotLineTv1 = new TextView(MainActivity.mContext);
         dotLineTv1.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 30));
-        dotLineTv1.setGravity(Gravity.RIGHT|Gravity.TOP);
+        dotLineTv1.setGravity(Gravity.RIGHT | Gravity.TOP);
         //dotLineTv1.setText("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
         dotLineTv1.setText("--------------------------------------------------------------------------");
         dotLineTv1.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
@@ -12642,7 +12667,7 @@ public class GlobalMemberValues {
     public static TextView getDotLineViewForCloverMedium(Context paramContext) {
         TextView dotLineTv1 = new TextView(MainActivity.mContext);
         dotLineTv1.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 30));
-        dotLineTv1.setGravity(Gravity.RIGHT|Gravity.TOP);
+        dotLineTv1.setGravity(Gravity.RIGHT | Gravity.TOP);
         //dotLineTv1.setText("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
         dotLineTv1.setText("----------------------------------------------------------------------------------");
         dotLineTv1.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
@@ -12654,7 +12679,7 @@ public class GlobalMemberValues {
     public static TextView getDoubleDotLineViewForClover(Context paramContext) {
         TextView dotLineTv1 = new TextView(MainActivity.mContext);
         dotLineTv1.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 30));
-        dotLineTv1.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.TOP);
+        dotLineTv1.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.TOP);
         dotLineTv1.setText("======================================================================================");
         dotLineTv1.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
         GlobalMemberValues.setTextStyleOnClover(dotLineTv1);
@@ -12665,7 +12690,7 @@ public class GlobalMemberValues {
     public static TextView getSpaceZoneViewForClover(Context paramContext, int paramValue) {
         TextView spacezoneTv = new TextView(MainActivity.mContext);
         spacezoneTv.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, paramValue));
-        spacezoneTv.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.TOP);
+        spacezoneTv.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.TOP);
         spacezoneTv.setText("  ");
         spacezoneTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
         GlobalMemberValues.setTextStyleOnClover(spacezoneTv);
@@ -12678,7 +12703,7 @@ public class GlobalMemberValues {
 
         if (paramJsonData != null) {
             // key가 존재하는지 체크한다.
-            if(paramJsonData.has(paramKey)) {
+            if (paramJsonData.has(paramKey)) {
                 try {
                     returnValue = paramJsonData.getString(paramKey);
                 } catch (JSONException e) {
@@ -12836,7 +12861,7 @@ public class GlobalMemberValues {
             syncYN = "Y";
         }
 
-        Vector<String > apiUpdateQueryVec = new Vector<String>();
+        Vector<String> apiUpdateQueryVec = new Vector<String>();
         String strQuery = "";
         strQuery = "update salon_storestationsettings_system set mileagesyncinselectcustomer = '" + syncYN + "' ";
         apiUpdateQueryVec.addElement(strQuery);
@@ -12854,15 +12879,15 @@ public class GlobalMemberValues {
     public static String getCodeForUpload(String paramType) {
         String returnValue = "";
         switch (paramType) {
-            case "giftcard" : {
+            case "giftcard": {
                 returnValue = "GC" + GlobalMemberValues.makeSalesCode();
                 break;
             }
-            case "mileage" : {
+            case "mileage": {
                 returnValue = "MG" + GlobalMemberValues.makeSalesCode();
                 break;
             }
-            case "tip" : {
+            case "tip": {
                 returnValue = "TP" + GlobalMemberValues.makeSalesCode();
                 break;
             }
@@ -12893,19 +12918,19 @@ public class GlobalMemberValues {
         if (!GlobalMemberValues.isStrEmpty(paramGetType)) {
             String tempSql = "";
             switch (paramGetType) {
-                case "H" : {
+                case "H": {
                     tempSql = " select heretaxfreeyn from salon_storegeneral ";
                     break;
                 }
-                case "T" : {
+                case "T": {
                     tempSql = " select togotaxfreeyn from salon_storegeneral ";
                     break;
                 }
-                case "D" : {
+                case "D": {
                     tempSql = " select deliverytaxfreeyn from salon_storegeneral ";
                     break;
                 }
-                case "N" : {        // Dine in
+                case "N": {        // Dine in
                     tempSql = " select dineintaxfreeyn from salon_storegeneral ";
                     break;
                 }
@@ -12976,19 +13001,19 @@ public class GlobalMemberValues {
                 if (!GlobalMemberValues.isStrEmpty(tempDeliTakeType)) {
                     String tempGetTypeStr = "";
                     switch (tempDeliTakeType) {
-                        case "H" : {
+                        case "H": {
                             tempGetTypeStr = "here";
                             break;
                         }
-                        case "T" : {
+                        case "T": {
                             tempGetTypeStr = "togo";
                             break;
                         }
-                        case "D" : {
+                        case "D": {
                             tempGetTypeStr = "delivery";
                             break;
                         }
-                        case "N" : {
+                        case "N": {
                             tempGetTypeStr = "dinein";
                             break;
                         }
@@ -13107,9 +13132,9 @@ public class GlobalMemberValues {
     public static boolean isCheckInteger(String s) {
         try {
             Integer.parseInt(s);
-        } catch(NumberFormatException e) {
+        } catch (NumberFormatException e) {
             return false;
-        } catch(NullPointerException e) {
+        } catch (NullPointerException e) {
             return false;
         }
         return true;
@@ -13118,9 +13143,9 @@ public class GlobalMemberValues {
     public static boolean isCheckDouble(String s) {
         try {
             Double.parseDouble(s);
-        } catch(NumberFormatException e) {
+        } catch (NumberFormatException e) {
             return false;
-        } catch(NullPointerException e) {
+        } catch (NullPointerException e) {
             return false;
         }
         return true;
@@ -13145,11 +13170,11 @@ public class GlobalMemberValues {
             DatabaseInit dbInit = MainActivity.mDbInit;
             String strQuery = "";
             switch (paramItemType) {
-                case "S" : {        // 서비스
+                case "S": {        // 서비스
                     strQuery = "select taxtype from salon_storeservice_sub where idx = '" + paramItemIdx + "' ";
                     break;
                 }
-                case "P" : {        // 상품
+                case "P": {        // 상품
                     //strQuery = "select taxtype from salon_storeproduct where idx = '" + paramItemIdx + "' ";
                     break;
                 }
@@ -13180,11 +13205,11 @@ public class GlobalMemberValues {
             DatabaseInit dbInit = MainActivity.mDbInit;
             String strQuery = "";
             switch (paramItemType) {
-                case "S" : {        // 서비스
+                case "S": {        // 서비스
                     strQuery = "select taxvalues from salon_storeservice_sub where idx = '" + paramItemIdx + "' ";
                     break;
                 }
-                case "P" : {        // 상품
+                case "P": {        // 상품
                     //strQuery = "select taxfreeyn from salon_storeproduct where idx = '" + paramItemIdx + "' ";
                     break;
                 }
@@ -13270,7 +13295,7 @@ public class GlobalMemberValues {
         return returnValue;
     }
 
-    public static String Payment_stringBackSpace_Exch(int stringLength ,String instr) {
+    public static String Payment_stringBackSpace_Exch(int stringLength, String instr) {
         String return_str = "";
         String temp_str = "";
 
@@ -13288,7 +13313,7 @@ public class GlobalMemberValues {
                 String spaceStr = "";
                 int i_space = stringLength - strLength;
                 StringBuilder temp_build = new StringBuilder(instr);
-                for (int i = 0; i < i_space; i++){
+                for (int i = 0; i < i_space; i++) {
                     spaceStr += " ";
                 }
                 temp_str = temp_build.toString() + spaceStr;
@@ -13301,7 +13326,7 @@ public class GlobalMemberValues {
         return return_str;
     }
 
-    public static String Payment_stringFowardSpace_Exch(int stringLength ,String instr) {
+    public static String Payment_stringFowardSpace_Exch(int stringLength, String instr) {
         String return_str = "";
         String temp_str = "";
 
@@ -13314,11 +13339,11 @@ public class GlobalMemberValues {
 
             if (strLength > stringLength) {
                 //temp_str = instr.substring(0,stringLength);
-                temp_str =  " " + GlobalMemberValues.getJJJSubString(instr, 0, stringLength);
+                temp_str = " " + GlobalMemberValues.getJJJSubString(instr, 0, stringLength);
             } else {
                 int i_space = stringLength - strLength;
                 StringBuilder temp_build = new StringBuilder("");
-                for (int i = 0; i < i_space; i++){
+                for (int i = 0; i < i_space; i++) {
                     temp_build.append(" ");
                 }
                 temp_build.append(instr);
@@ -13356,7 +13381,7 @@ public class GlobalMemberValues {
         if (paramView != null) {
             LinearLayout getPrintingLn = null;
             // ---------------------------------------------------------------------------------------------------------------------------------------------------
-            getPrintingLn = (LinearLayout)paramView;
+            getPrintingLn = (LinearLayout) paramView;
 
             getPrintingLn.setDrawingCacheEnabled(true);  //화면에 뿌릴때 캐시를 사용하게 한다
 
@@ -13379,13 +13404,13 @@ public class GlobalMemberValues {
                     File tempfile = new File(imgSavePath);  //Pictures폴더 screenshot.png 파일
                     FileOutputStream os = null;
                     if (!tempfile.isDirectory()) tempfile.mkdirs(); // 파일 경로 확인 및 생성.
-                    try{
-                        os = new FileOutputStream(imgSavePath +"/"+ paramFileName + ".png");
+                    try {
+                        os = new FileOutputStream(imgSavePath + "/" + paramFileName + ".png");
                         screenBitmap.compress(Bitmap.CompressFormat.PNG, 90, os);   //비트맵을 PNG파일로 변환
                         os.close();
 
-                        strFilePath = imgSavePath +"/"+ paramFileName + ".png";
-                    } catch (IOException e){
+                        strFilePath = imgSavePath + "/" + paramFileName + ".png";
+                    } catch (IOException e) {
                         e.printStackTrace();
 
                     }
@@ -13398,7 +13423,7 @@ public class GlobalMemberValues {
             }
         }
 
-        return  returnImageFilePath;
+        return returnImageFilePath;
     }
 
     public static void setPagerNumberHeaderTxt() {
@@ -13430,7 +13455,7 @@ public class GlobalMemberValues {
 
 
     // jihun.park add 0513
-    public static void printingViewOnPax(Context context, LinearLayout paramView){
+    public static void printingViewOnPax(Context context, LinearLayout paramView) {
 
         GlobalMemberValues.logWrite("printLnLog", "width : " + paramView.getWidth() + "\n");
         GlobalMemberValues.logWrite("printLnLog", "height : " + paramView.getHeight() + "\n");
@@ -13483,7 +13508,7 @@ public class GlobalMemberValues {
     }
 
     // jihun.park add 0513
-    public static Bitmap printingViewOnEpson(LinearLayout paramView){
+    public static Bitmap printingViewOnEpson(LinearLayout paramView) {
 
         GlobalMemberValues.logWrite("printLnLog", "width : " + paramView.getWidth() + "\n");
         GlobalMemberValues.logWrite("printLnLog", "height : " + paramView.getHeight() + "\n");
@@ -13517,7 +13542,7 @@ public class GlobalMemberValues {
 
     }
 
-    public static void printingViewOnElo(Context context, LinearLayout paramView, ApiAdapter apiAdapter){
+    public static void printingViewOnElo(Context context, LinearLayout paramView, ApiAdapter apiAdapter) {
         GlobalMemberValues.logWrite("printLnLog", "width : " + paramView.getWidth() + "\n");
         GlobalMemberValues.logWrite("printLnLog", "height : " + paramView.getHeight() + "\n");
 
@@ -13632,10 +13657,10 @@ public class GlobalMemberValues {
                 if (GlobalMemberValues.GLOBAL_LAYOUTMEMBER_PRESENTATION_SUBTOTALTEXTVIEW != null) {
                     GlobalMemberValues.GLOBAL_LAYOUTMEMBER_PRESENTATION_SUBTOTALTEXTVIEW.setText(GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINSUBTOTALTEXTVIEW.getText());
                 }
-                if (GlobalMemberValues.GLOBAL_LAYOUTMEMBER_PRESENTATION_TAXTEXTVIEW != null){
+                if (GlobalMemberValues.GLOBAL_LAYOUTMEMBER_PRESENTATION_TAXTEXTVIEW != null) {
                     GlobalMemberValues.GLOBAL_LAYOUTMEMBER_PRESENTATION_TAXTEXTVIEW.setText(GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINTAXTEXTVIEW.getText());
                 }
-                if (GlobalMemberValues.GLOBAL_LAYOUTMEMBER_PRESENTATION_TOTALTEXTVIEW != null){
+                if (GlobalMemberValues.GLOBAL_LAYOUTMEMBER_PRESENTATION_TOTALTEXTVIEW != null) {
                     GlobalMemberValues.GLOBAL_LAYOUTMEMBER_PRESENTATION_TOTALTEXTVIEW.setText(GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINTOTALTEXTVIEW.getText());
                 }
             }
@@ -13645,8 +13670,8 @@ public class GlobalMemberValues {
     }
 
     // jihun pax scanner
-    public static void paxBarcodeScannerOn(final Context context){
-        MainActivity.posLinkScanner = POSLinkScanner.getPOSLinkScanner(context,POSLinkScanner.ScannerType.REAR);
+    public static void paxBarcodeScannerOn(final Context context) {
+        MainActivity.posLinkScanner = POSLinkScanner.getPOSLinkScanner(context, POSLinkScanner.ScannerType.REAR);
         ProcessResult result = MainActivity.posLinkScanner.open();
         if (result.getCode().equals(ProcessResult.CODE_OK)) {
             MainActivity.posLinkScanner.start(new POSLinkScanner.ScannerListener() {
@@ -13655,6 +13680,7 @@ public class GlobalMemberValues {
                     GlobalMemberValues.logWrite("paxscannerresult", "scan on result : " + s + "\n");
 //                    Toast.makeText(context, s, Toast.LENGTH_SHORT).show();
                 }
+
                 @Override
                 public void onFinish() {
                     if (MainActivity.posLinkScanner == null) {
@@ -13671,7 +13697,7 @@ public class GlobalMemberValues {
     }
 
     // jihun pax 원형 입니다.
-    public static void paxScannerConnect(Context context){
+    public static void paxScannerConnect(Context context) {
         MainActivity.posLinkScanner = POSLinkScanner.getPOSLinkScanner(context, POSLinkScanner.ScannerType.REAR);
         ProcessResult result = MainActivity.posLinkScanner.open();
         if (result.getCode().equals(ProcessResult.CODE_OK)) {
@@ -13680,7 +13706,8 @@ public class GlobalMemberValues {
             //연결 실패시
         }
     }
-    public static String paxGetScanResult(Context context){
+
+    public static String paxGetScanResult(Context context) {
         final String[] resultText = {""};
         if (MainActivity.posLinkScanner == null) {
             // 스케너 연결 안되어있을경우.
@@ -13692,6 +13719,7 @@ public class GlobalMemberValues {
                 // 스켄 성공시 실행.
                 resultText[0] = s;
             }
+
             @Override
             public void onFinish() {
                 // 스케닝 후 실행되는 함수.
@@ -13699,7 +13727,8 @@ public class GlobalMemberValues {
         });
         return resultText[0];
     }
-    public static void paxScannerClose(){
+
+    public static void paxScannerClose() {
         if (MainActivity.posLinkScanner == null) {
             // 연결되어있지 않을때.
             return;
@@ -13707,7 +13736,7 @@ public class GlobalMemberValues {
         ProcessResult result = MainActivity.posLinkScanner.close();
         if (result.getCode().equals(ProcessResult.CODE_OK)) {
             // close 성공시.
-        }else {
+        } else {
             // close 실패시.
         }
     }
@@ -13734,7 +13763,7 @@ public class GlobalMemberValues {
     public static void deleteDirEmpty(String paramDirName) {
         //String path = Environment.getExternalStorageDirectory().toString() + paramDirName;
 
-        File dir    = new File(paramDirName);
+        File dir = new File(paramDirName);
         File[] childFileList = dir.listFiles();
 
         if (dir.exists()) {
@@ -13770,7 +13799,7 @@ public class GlobalMemberValues {
         // 파일 생성
         File saveFile = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/qsrt_sale_data"); // 저장 경로
         // 폴더 생성
-        if(!saveFile.exists()){ // 폴더 없을 경우
+        if (!saveFile.exists()) { // 폴더 없을 경우
             saveFile.mkdir(); // 폴더 생성
         }
         try {
@@ -13779,7 +13808,7 @@ public class GlobalMemberValues {
             SimpleDateFormat sdf = new SimpleDateFormat("MMddyyyy");
             String nowTime = sdf.format(date);
 
-            BufferedWriter buf = new BufferedWriter(new FileWriter(saveFile+"/" + nowTime + "_" + receiptno + ".txt", true));
+            BufferedWriter buf = new BufferedWriter(new FileWriter(saveFile + "/" + nowTime + "_" + receiptno + ".txt", true));
             buf.append(nowTime + " "); // 날짜 쓰기
             buf.append(jsonObject.toString()); // 파일 쓰기
             buf.newLine(); // 개행
@@ -13792,7 +13821,7 @@ public class GlobalMemberValues {
 
     }
 
-    public static void deleteSaleJsonData(){
+    public static void deleteSaleJsonData() {
         File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/qsrt_sale_data"); // 저장 경로
         File[] childFileList = dir.listFiles();
 
@@ -13806,7 +13835,7 @@ public class GlobalMemberValues {
                     Date nowDate = new Date(now);
                     Date temp_Date = null;
                     String fileName = childFile.getName();
-                    fileName = fileName.substring(0,8);
+                    fileName = fileName.substring(0, 8);
                     try {
                         temp_Date = dateFormat.parse(fileName);
                     } catch (ParseException e) {
@@ -13815,7 +13844,7 @@ public class GlobalMemberValues {
                     long calDate = nowDate.getTime() - temp_Date.getTime();
                     // Date.getTime() 은 해당날짜를 기준으로1970년 00:00:00 부터 몇 초가 흘렀는지를 반환해준다.
                     // 이제 24*60*60*1000(각 시간값에 따른 차이점) 을 나눠주면 일수가 나온다.
-                    long calDateDays = calDate / ( 24*60*60*1000);
+                    long calDateDays = calDate / (24 * 60 * 60 * 1000);
                     calDateDays = Math.abs(calDateDays);
                     if (calDateDays > 30) {
                         childFile.delete();
@@ -13892,19 +13921,19 @@ public class GlobalMemberValues {
                         " select receipttypeonnoselect from salon_storestationsettings_system "
                 );
                 switch (tempReceipttypeonnoselect) {
-                    case "A" : {
+                    case "A": {
                         GlobalMemberValues.RECEIPTPRINTTYPE = "custmerc";
                         break;
                     }
-                    case "C" : {
+                    case "C": {
                         GlobalMemberValues.RECEIPTPRINTTYPE = "customer";
                         break;
                     }
-                    case "M" : {
+                    case "M": {
                         GlobalMemberValues.RECEIPTPRINTTYPE = "merchant";
                         break;
                     }
-                    default : {
+                    default: {
                         GlobalMemberValues.RECEIPTPRINTTYPE = "";
                         break;
                     }
@@ -13918,7 +13947,7 @@ public class GlobalMemberValues {
 
         }
         GlobalMemberValues globalMemberValues = new GlobalMemberValues();
-        if (!(globalMemberValues.getPOSType().toUpperCase() == "R" || globalMemberValues.getPOSType().toUpperCase().equals("R"))){
+        if (!(globalMemberValues.getPOSType().toUpperCase() == "R" || globalMemberValues.getPOSType().toUpperCase().equals("R"))) {
             GlobalMemberValues.printReceiptByJHP_menu(Payment.jsonrootForPaymentReview, Payment.context, "menu_print");
         }
 
@@ -14014,7 +14043,7 @@ public class GlobalMemberValues {
                     }
                 }
 
-                if (isOnlineOrder){
+                if (isOnlineOrder) {
                     addPrice = "";
                 }
 
@@ -14034,7 +14063,7 @@ public class GlobalMemberValues {
 //                    tempHeight = (tempHeight * 2) + 24;
 //                }
 
-                for (int z = 25; z <= GlobalMemberValues.getSizeToString(splitArr[0]) ; z += 26){
+                for (int z = 25; z <= GlobalMemberValues.getSizeToString(splitArr[0]); z += 26) {
                     tempHeight += 34;
                 }
 
@@ -14156,15 +14185,14 @@ public class GlobalMemberValues {
                     splitArr[1] = "";
                 }
 
-                if (splitArr[0].indexOf("(1ea)") > -1){
+                if (splitArr[0].indexOf("(1ea)") > -1) {
                     splitArr[0] = splitArr[0].replace("(1ea)", "");
                 } else {
-                    if (splitArr[0].indexOf("(") > -1){
+                    if (splitArr[0].indexOf("(") > -1) {
                         splitArr[0] = splitArr[0].replace("(", "x ");
                         splitArr[0] = splitArr[0].replace("ea)", "");
                     }
                 }
-
 
 
                 String addPrice = "";
@@ -14261,15 +14289,14 @@ public class GlobalMemberValues {
                     splitArr[1] = "";
                 }
 
-                if (splitArr[0].indexOf("(1ea)") > -1){
+                if (splitArr[0].indexOf("(1ea)") > -1) {
                     splitArr[0] = splitArr[0].replace("(1ea)", "");
                 } else {
-                    if (splitArr[0].indexOf("(") > -1){
+                    if (splitArr[0].indexOf("(") > -1) {
                         splitArr[0] = splitArr[0].replace("(", "x ");
                         splitArr[0] = splitArr[0].replace("ea)", "");
                     }
                 }
-
 
 
                 String addPrice = "";
@@ -14289,14 +14316,13 @@ public class GlobalMemberValues {
                     tempHeight = (tempHeight * 2) + 8;
                 }
 
-                textData.append(splitArr[0]+"\n");
+                textData.append(splitArr[0] + "\n");
                 try {
                     mPrinter.addText(textData.toString());
                     textData.delete(0, textData.length());
                 } catch (Epos2Exception e) {
                     e.printStackTrace();
                 }
-
 
 
                 // --------------------------------------------------------------------------------------------------------------------------------
@@ -14377,23 +14403,23 @@ public class GlobalMemberValues {
         if (!GlobalMemberValues.isStrEmpty(paramKitchenPrinterNum)) {
             int printcount = GlobalMemberValues.kitchenprinter1_papercount;
             switch (paramKitchenPrinterNum) {
-                case "1" : {
+                case "1": {
                     printcount = GlobalMemberValues.kitchenprinter1_papercount;
                     break;
                 }
-                case "2" : {
+                case "2": {
                     printcount = GlobalMemberValues.kitchenprinter2_papercount;
                     break;
                 }
-                case "3" : {
+                case "3": {
                     printcount = GlobalMemberValues.kitchenprinter3_papercount;
                     break;
                 }
-                case "4" : {
+                case "4": {
                     printcount = GlobalMemberValues.kitchenprinter4_papercount;
                     break;
                 }
-                case "5" : {
+                case "5": {
                     printcount = GlobalMemberValues.kitchenprinter5_papercount;
                     break;
                 }
@@ -14419,30 +14445,30 @@ public class GlobalMemberValues {
         if (!GlobalMemberValues.isStrEmpty(paramKitchenPrinterNum)) {
             String tempPrinterTableName = "salon_storestationsettings_deviceprinter2";
             switch (paramKitchenPrinterNum) {
-                case "1" : {
+                case "1": {
                     tempPrinterTableName = "salon_storestationsettings_deviceprinter2";
                     break;
                 }
-                case "2" : {
+                case "2": {
                     tempPrinterTableName = "salon_storestationsettings_deviceprinter3";
                     break;
                 }
-                case "3" : {
+                case "3": {
                     tempPrinterTableName = "salon_storestationsettings_deviceprinter4";
                     break;
                 }
-                case "4" : {
+                case "4": {
                     tempPrinterTableName = "salon_storestationsettings_deviceprinter5";
                     break;
                 }
-                case "5" : {
+                case "5": {
                     tempPrinterTableName = "salon_storestationsettings_deviceprinter6";
                     break;
                 }
             }
 
             String count_str = MainActivity.mDbInit.dbExecuteReadReturnString(" select receiptpapercount from " + tempPrinterTableName);
-            if (!TextUtils.isEmpty(count_str)){
+            if (!TextUtils.isEmpty(count_str)) {
                 returnValue = GlobalMemberValues.getIntAtString(count_str);
             }
 
@@ -14542,7 +14568,7 @@ public class GlobalMemberValues {
 
     public static void setRestartAndroidAppMethod(final Activity paramActivity) {
         // jihun add
-        if (false){
+        if (false) {
 //        if (isDataBase5mb()){
             new AlertDialog.Builder(paramActivity)
                     .setTitle("NZ ANDROID")
@@ -14591,8 +14617,8 @@ public class GlobalMemberValues {
     public static void restartApplication(Activity paramActivity) {
         Intent mStartActivity = new Intent(MainActivity.mContext, MainActivity.class);
         int mPendingIntentId = 101216;
-        PendingIntent mPendingIntent = PendingIntent.getActivity(MainActivity.mContext, mPendingIntentId,    mStartActivity, PendingIntent.FLAG_CANCEL_CURRENT);
-        AlarmManager mgr = (AlarmManager)MainActivity.mContext.getSystemService(ALARM_SERVICE);
+        PendingIntent mPendingIntent = PendingIntent.getActivity(MainActivity.mContext, mPendingIntentId, mStartActivity, PendingIntent.FLAG_CANCEL_CURRENT);
+        AlarmManager mgr = (AlarmManager) MainActivity.mContext.getSystemService(ALARM_SERVICE);
         mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, mPendingIntent);
         System.exit(0);
     }
@@ -14689,15 +14715,15 @@ public class GlobalMemberValues {
                 // 이곳에서 소켓프린터용 서버스테이션으로 연겷나다.
 
 //                Sam4sSocketPrinter sam4sSocketPrinter = new Sam4sSocketPrinter();
-                long currentClickTime= SystemClock.uptimeMillis();
-                long elapsedTime=currentClickTime-mLastClickTime;
-                mLastClickTime=currentClickTime;
+                long currentClickTime = SystemClock.uptimeMillis();
+                long elapsedTime = currentClickTime - mLastClickTime;
+                mLastClickTime = currentClickTime;
 
                 // 중복 클릭인 경우
-                if(elapsedTime<=MIN_CLICK_INTERVAL){
+                if (elapsedTime <= MIN_CLICK_INTERVAL) {
                     return;
                 } else {
-                    Sam4sSocketPrinter.connectServer(serverIp,Integer.parseInt(serverPort));
+                    Sam4sSocketPrinter.connectServer(serverIp, Integer.parseInt(serverPort));
                     Sam4sSocketPrinter.reconnect_check();
                 }
                 //
@@ -14721,7 +14747,7 @@ public class GlobalMemberValues {
 //        }
 
 
-        Thread thread = new Thread(){
+        Thread thread = new Thread() {
             @Override
             public void run() {
                 super.run();
@@ -14749,7 +14775,7 @@ public class GlobalMemberValues {
                 }
 
                 if (socket != null) {
-                    if (socket.isConnected() && ! socket.isClosed()) {
+                    if (socket.isConnected() && !socket.isClosed()) {
                     } else {
 //                        Sam4sSocketPrinter samSocket = new Sam4sSocketPrinter();
                         Sam4sSocketPrinter.connectServer(ip_num, port_num);
@@ -14759,7 +14785,7 @@ public class GlobalMemberValues {
         }
     }
 
-    public static void makeToastText(String msg){
+    public static void makeToastText(String msg) {
         if (SettingsDeviceKitchen.context != null) {
             GlobalMemberValues.displayDialog(SettingsDeviceKitchen.context, "",
                     msg, "Close");
@@ -14809,8 +14835,6 @@ public class GlobalMemberValues {
 //        // ----------------------------------------------------------------------------------------------------------
 //
 //        return newEndofdayNum;
-
-
 
 
         String nowDateStr = GlobalMemberValues.getReplaceText(GlobalMemberValues.STR_NOW_DATE, "-", "");
@@ -14905,64 +14929,64 @@ public class GlobalMemberValues {
     /** 키친프린팅용앱에 사용되는 메소드들 시작 ****************************************************************************************************************/
 
     /**
-     // 키친프린팅 타이머 시작 ------------------------------------------------------------------------------------------------------------------------
-     public static void runTimer_kitchenprinting() {
-     // 30초마다 타이머를 돌린다. ----------------------------------------------------------------
-     TimerTask tt_checkweborder = new TimerTask() {
-    @Override
-    public void run() {
-    Message message = timerhandler_kitchenprinting.obtainMessage();
-    timerhandler_kitchenprinting.sendMessage(message);
-    }
-    };
-
-     /////////// / Timer 생성 //////////////
-     Timer timer = new Timer();
-     timer.schedule(tt_checkweborder, 0, 10000);
-     //////////////////////////////////////
-     // ----------------------------------------------------------------------------------------
-     }
-
-     public static final Handler timerhandler_kitchenprinting = new Handler() {
-     public void handleMessage(Message msg)
-     {
-     Context timerContext = MainActivity.mContext;
-     String getDatas = GlobalMemberValues.getDataForKitchenPrinting(timerContext);
-
-     if (!GlobalMemberValues.isStrEmpty(getDatas)) {
-     String getDataArr[] = getDatas.split("-JJJWHY-");
-     String tempIdx = "";
-     String tempJsonData = "";
-     if (getDataArr.length > 0) {
-     tempIdx = getDataArr[0];
-     }
-     if (getDataArr.length > 1) {
-     tempJsonData = getDataArr[1];
-     }
-
-     if (!GlobalMemberValues.isStrEmpty(tempJsonData)) {
-     JSONObject jsondata = null;
-     try {
-     jsondata = new JSONObject(tempJsonData);
-     } catch (JSONException e) {
-     e.printStackTrace();
-     }
-     GlobalMemberValues.printGateByKitchen(jsondata, timerContext, "kitchen1");
-
-     // 프린팅 처리
-     GlobalMemberValues.setPrintedKitchenPrinting(timerContext, tempIdx);
-     }
-     }
-
-     }
-     };
-     // 키친프린팅 타이머 끝 ------------------------------------------------------------------------------------------------------------------------
+     * // 키친프린팅 타이머 시작 ------------------------------------------------------------------------------------------------------------------------
+     * public static void runTimer_kitchenprinting() {
+     * // 30초마다 타이머를 돌린다. ----------------------------------------------------------------
+     * TimerTask tt_checkweborder = new TimerTask() {
+     *
+     * @Override public void run() {
+     * Message message = timerhandler_kitchenprinting.obtainMessage();
+     * timerhandler_kitchenprinting.sendMessage(message);
+     * }
+     * };
+     * <p>
+     * /////////// / Timer 생성 //////////////
+     * Timer timer = new Timer();
+     * timer.schedule(tt_checkweborder, 0, 10000);
+     * //////////////////////////////////////
+     * // ----------------------------------------------------------------------------------------
+     * }
+     * <p>
+     * public static final Handler timerhandler_kitchenprinting = new Handler() {
+     * public void handleMessage(Message msg)
+     * {
+     * Context timerContext = MainActivity.mContext;
+     * String getDatas = GlobalMemberValues.getDataForKitchenPrinting(timerContext);
+     * <p>
+     * if (!GlobalMemberValues.isStrEmpty(getDatas)) {
+     * String getDataArr[] = getDatas.split("-JJJWHY-");
+     * String tempIdx = "";
+     * String tempJsonData = "";
+     * if (getDataArr.length > 0) {
+     * tempIdx = getDataArr[0];
+     * }
+     * if (getDataArr.length > 1) {
+     * tempJsonData = getDataArr[1];
+     * }
+     * <p>
+     * if (!GlobalMemberValues.isStrEmpty(tempJsonData)) {
+     * JSONObject jsondata = null;
+     * try {
+     * jsondata = new JSONObject(tempJsonData);
+     * } catch (JSONException e) {
+     * e.printStackTrace();
+     * }
+     * GlobalMemberValues.printGateByKitchen(jsondata, timerContext, "kitchen1");
+     * <p>
+     * // 프린팅 처리
+     * GlobalMemberValues.setPrintedKitchenPrinting(timerContext, tempIdx);
+     * }
+     * }
+     * <p>
+     * }
+     * };
+     * // 키친프린팅 타이머 끝 ------------------------------------------------------------------------------------------------------------------------
      **/
 
 
     public static void setPrintedKitchenPrinting(Context paramContext, String paramIdx) {
         if (!GlobalMemberValues.isStrEmpty(paramIdx)) {
-            String strQuery =  "";
+            String strQuery = "";
             DatabaseInit dbInit = new DatabaseInit(paramContext);
             String returnResult = "";
             Vector<String> strInsertQueryVec = new Vector<String>();
@@ -15028,13 +15052,12 @@ public class GlobalMemberValues {
 
         try {
             for (int i = 0; i < instApps.size(); i++) {
-                if(instApps.get(i).activityInfo.packageName.startsWith(paramPackageName)){
+                if (instApps.get(i).activityInfo.packageName.startsWith(paramPackageName)) {
                     isExist = true;
                     break;
                 }
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             isExist = false;
         }
 
@@ -15045,14 +15068,14 @@ public class GlobalMemberValues {
     public static boolean isRunTheApp(Context paramContext, String paramPackageName) {
         boolean returnValue = false;
 
-        ActivityManager am = (ActivityManager)paramContext.getSystemService(Activity.ACTIVITY_SERVICE);
+        ActivityManager am = (ActivityManager) paramContext.getSystemService(Activity.ACTIVITY_SERVICE);
         String strPackage = "";
         List<ActivityManager.RunningAppProcessInfo> proceses = null;
         proceses = am.getRunningAppProcesses();
 
         //프로세서 전체를 반복
         for (ActivityManager.RunningAppProcessInfo process : proceses) {
-            if(process.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND) {
+            if (process.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND) {
                 strPackage = process.processName;
                 // package 이름과 동일하다면
                 if (strPackage.equals(paramPackageName)) {
@@ -15131,7 +15154,7 @@ public class GlobalMemberValues {
                 if (returnResult == "N" || returnResult == "") {
                     GlobalMemberValues.displayDialog(MainActivity.mContext, "Warning", "Database Error", "Close");
                 } else {
-                    GlobalMemberValues.logWrite("setSaveConnectedBluetoothDeviceInfolog","연결된 블루투스 정보 저장완료" + "\n");
+                    GlobalMemberValues.logWrite("setSaveConnectedBluetoothDeviceInfolog", "연결된 블루투스 정보 저장완료" + "\n");
                 }
             }
         }
@@ -15189,19 +15212,19 @@ public class GlobalMemberValues {
 
     public static void downloadImageFromCloud(String paramItemGroup) {
         switch (paramItemGroup) {
-            case "store" : {
+            case "store": {
                 // 스토어 데이터 다운로드일 경우 스토어정보를 초기화한다.
                 MainActivity.setStoreInformationInit();
                 break;
             }
-            case "service" : {
+            case "service": {
                 // 서비스/카테고리 데이터 다운로드일 경우 이미지를 다운로드한다.
                 GlobalMemberValues.logWrite("InGettingQuery", "여기 실행이오...1" + "\n");
                 ImageDownload imgDownload = new ImageDownload();
                 imgDownload.getDownloadCloudFiles("service");
                 GlobalMemberValues.logWrite("InGettingQuery", "여기 실행이오...2" + "\n");
             }
-            case "member" : {
+            case "member": {
                 try {
                     Thread.sleep(GlobalMemberValues.API_THREAD_TIME * GlobalMemberValues.WAITSECAFTERDOWNLOAD);
                 } catch (InterruptedException e) {
@@ -15308,9 +15331,9 @@ public class GlobalMemberValues {
                 }
             }
 
-            returnValue = new String[] {mStartTxt, aStartTxt, eStartTxt, nStartTxt};
+            returnValue = new String[]{mStartTxt, aStartTxt, eStartTxt, nStartTxt};
         } else {
-            returnValue = new String[] {"0600", "1200", "1800", "0000"};
+            returnValue = new String[]{"0600", "1200", "1800", "0000"};
         }
 
         return returnValue;
@@ -15428,7 +15451,7 @@ public class GlobalMemberValues {
                 String boxkinds = GlobalMemberValues.getDBTextAfterChecked(dataCursor.getString(10), 1);
                 String size = GlobalMemberValues.getDBTextAfterChecked(dataCursor.getString(11), 1);
 
-                String tempHoldCode = TableSaleMain.getHoldCodeByTableidx("T"+idx, TableSaleMain.mSubTableNum);
+                String tempHoldCode = TableSaleMain.getHoldCodeByTableidx("T" + idx, TableSaleMain.mSubTableNum);
                 String customerName = MssqlDatabase.getResultSetValueToString(
                         " select customerName from temp_salecart_deliveryinfo where holdcode = '" + tempHoldCode + "' "
                 );
@@ -15486,7 +15509,7 @@ public class GlobalMemberValues {
                 String boxtype = GlobalMemberValues.getDBTextAfterChecked(dataCursor.getString(9), 1);
                 String boxkinds = GlobalMemberValues.getDBTextAfterChecked(dataCursor.getString(10), 1);
 
-                String tempHoldCode = TableSaleMain.getHoldCodeByTableidx("T"+idx, TableSaleMain.mSubTableNum);
+                String tempHoldCode = TableSaleMain.getHoldCodeByTableidx("T" + idx, TableSaleMain.mSubTableNum);
                 String customerName = MssqlDatabase.getResultSetValueToString(
                         " select customerName from temp_salecart_deliveryinfo where holdcode = '" + tempHoldCode + "' "
                 );
@@ -15521,7 +15544,7 @@ public class GlobalMemberValues {
                     }
                 }
 
-                if (mTableAmount > 0.00){
+                if (mTableAmount > 0.00) {
                     getArr[tableCount] = idx + "-JJJ-" + tablename + "-JJJ-" + capacity + "-JJJ-" + colorvalue + "-JJJ-" + tabletype +
                             "-JJJ-" + chargeridx + "-JJJ-" + pagernum + "-JJJ-" + xvaluerate + "-JJJ-" + yvaluerate +
                             "-JJJ-" + boxtype + "-JJJ-" + boxkinds + "-JJJ-" + customerName + "-JJJ-" + customerPhone + "-JJJ-" + "END";
@@ -15535,7 +15558,7 @@ public class GlobalMemberValues {
 
             String[] new_getArr = new String[tableCount];
 
-            for (int i = 0; new_getArr.length > i ; i++){
+            for (int i = 0; new_getArr.length > i; i++) {
                 new_getArr[i] = getArr[i];
             }
 
@@ -15578,7 +15601,7 @@ public class GlobalMemberValues {
                 String boxtype = GlobalMemberValues.getDBTextAfterChecked(dataCursor.getString(9), 1);
                 String boxkinds = GlobalMemberValues.getDBTextAfterChecked(dataCursor.getString(10), 1);
 
-                String tempHoldCode = TableSaleMain.getHoldCodeByTableidx("T"+idx, TableSaleMain.mSubTableNum);
+                String tempHoldCode = TableSaleMain.getHoldCodeByTableidx("T" + idx, TableSaleMain.mSubTableNum);
                 String customerName = MssqlDatabase.getResultSetValueToString(
                         " select customerName from temp_salecart_deliveryinfo where holdcode = '" + tempHoldCode + "' "
                 );
@@ -15588,7 +15611,7 @@ public class GlobalMemberValues {
 
                 getArr[tableCount] = idx + "-JJJ-" + tablename + "-JJJ-" + capacity + "-JJJ-" + colorvalue + "-JJJ-" + tabletype +
                         "-JJJ-" + chargeridx + "-JJJ-" + pagernum + "-JJJ-" + xvaluerate + "-JJJ-" + yvaluerate +
-                        "-JJJ-" + boxtype + "-JJJ-" + boxkinds  + "-JJJ-" + customerName  + "-JJJ-" + customerPhone + "-JJJ-" + "END";
+                        "-JJJ-" + boxtype + "-JJJ-" + boxkinds + "-JJJ-" + customerName + "-JJJ-" + customerPhone + "-JJJ-" + "END";
 
                 GlobalMemberValues.logWrite("tablejjjlog", "arr : " + getArr[tableCount] + "\n");
 
@@ -15634,7 +15657,7 @@ public class GlobalMemberValues {
                 String boxtype = GlobalMemberValues.getDBTextAfterChecked(dataCursor.getString(9), 1);
                 String boxkinds = GlobalMemberValues.getDBTextAfterChecked(dataCursor.getString(10), 1);
 
-                String tempHoldCode = TableSaleMain.getHoldCodeByTableidx("T"+idx, TableSaleMain.mSubTableNum);
+                String tempHoldCode = TableSaleMain.getHoldCodeByTableidx("T" + idx, TableSaleMain.mSubTableNum);
                 String customerName = MssqlDatabase.getResultSetValueToString(
                         " select customerName from temp_salecart_deliveryinfo where holdcode = '" + tempHoldCode + "' "
                 );
@@ -15669,10 +15692,10 @@ public class GlobalMemberValues {
                     }
                 }
 
-                if (mTableAmount > 0.00){
+                if (mTableAmount > 0.00) {
                     getArr[tableCount] = idx + "-JJJ-" + tablename + "-JJJ-" + capacity + "-JJJ-" + colorvalue + "-JJJ-" + tabletype +
                             "-JJJ-" + chargeridx + "-JJJ-" + pagernum + "-JJJ-" + xvaluerate + "-JJJ-" + yvaluerate +
-                            "-JJJ-" + boxtype + "-JJJ-" + boxkinds  + "-JJJ-" + customerName  + "-JJJ-" + customerPhone + "-JJJ-" + "END";
+                            "-JJJ-" + boxtype + "-JJJ-" + boxkinds + "-JJJ-" + customerName + "-JJJ-" + customerPhone + "-JJJ-" + "END";
 
                     GlobalMemberValues.logWrite("tablejjjlog", "arr : " + getArr[tableCount] + "\n");
 
@@ -15682,7 +15705,7 @@ public class GlobalMemberValues {
 
             String[] new_getArr = new String[tableCount];
 
-            for (int i = 0; new_getArr.length > i ; i++){
+            for (int i = 0; new_getArr.length > i; i++) {
                 new_getArr[i] = getArr[i];
             }
 
@@ -15698,7 +15721,7 @@ public class GlobalMemberValues {
     public static String mGlobal_selectedZoneIdx = null;
 
     // jihun park progressbar
-    public static void loadingProgressBarUpdate(final int contentSizeMax, final int contentSizeState){
+    public static void loadingProgressBarUpdate(final int contentSizeMax, final int contentSizeState) {
 //        if (LoadingIntent.mProgressBar != null){
 //            LoadingIntent.mProgressBar_handler.post(new Runnable() {
 //                @Override
@@ -15712,14 +15735,14 @@ public class GlobalMemberValues {
 //            });
 //        }
 
-        if (GlobalMemberValues.progressBarDialog != null){
+        if (GlobalMemberValues.progressBarDialog != null) {
             ProgressBarDialog.mProgressBar_handler.post(new Runnable() {
                 @Override
                 public void run() {
-                    final int f_contentSizeMax = contentSizeMax -1;
-                    progressBarDialog.setProgress((int)((double)contentSizeState/ (double)f_contentSizeMax * 100.0 ));
-                    Log.e("jihunpark","" + ((double)contentSizeState/ (double)f_contentSizeMax * 100.0 ));
-                    Log.e("jihunpark","" + (f_contentSizeMax) + "    " + contentSizeState);
+                    final int f_contentSizeMax = contentSizeMax - 1;
+                    progressBarDialog.setProgress((int) ((double) contentSizeState / (double) f_contentSizeMax * 100.0));
+                    Log.e("jihunpark", "" + ((double) contentSizeState / (double) f_contentSizeMax * 100.0));
+                    Log.e("jihunpark", "" + (f_contentSizeMax) + "    " + contentSizeState);
                     // Show the progress on TextView
                 }
             });
@@ -15739,7 +15762,8 @@ public class GlobalMemberValues {
 
             GlobalMemberValues.logWrite("opencountjjjlog", "count : " + GlobalMemberValues.mOpenTableMainCount + "\n");
 
-            if (GlobalMemberValues.getStationType().toUpperCase() == "R" || GlobalMemberValues.getStationType().toUpperCase().equals("R")) {
+            //07252025
+            if (GlobalMemberValues.isQSRPOSonRestaurantPOS || GlobalMemberValues.getStationType().toUpperCase() == "R" || GlobalMemberValues.getStationType().toUpperCase().equals("R")) {
                 isopen = true;
             } else {
                 if (GlobalMemberValues.mOpenTableMainCount == 0) {
@@ -15758,7 +15782,7 @@ public class GlobalMemberValues {
                     MainActivity.mActivity.overridePendingTransition(R.anim.act_in_bottom, R.anim.act_out_bottom);
                 }
                 if (MainMiddleService.mGeneralArrayList != null
-                        && GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINLISTVIEW != null){
+                        && GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINLISTVIEW != null) {
                     MainMiddleService.initList();
                 }
 
@@ -15766,7 +15790,7 @@ public class GlobalMemberValues {
 
             }
 
-            GlobalMemberValues.mOpenTableMainCount++     ;
+            GlobalMemberValues.mOpenTableMainCount++;
         }
     }
 
@@ -15779,7 +15803,7 @@ public class GlobalMemberValues {
         return returnValue;
     }
 
-    public boolean isPOSWebPay()  {
+    public boolean isPOSWebPay() {
         boolean returnValue = false;
 //        String returnData = getDBTextAfterChecked(MainActivity.mDbInit.dbExecuteReadReturnString(
 //                " select webpayuseyn from salon_storegeneral "), 1);
@@ -15849,9 +15873,9 @@ public class GlobalMemberValues {
         return returnValue;
     }
 
-    public static Bitmap generateRQCode(String contents){
+    public static Bitmap generateRQCode(String contents) {
 
-        Bitmap bitmap = null ;
+        Bitmap bitmap = null;
 
         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
         try {
@@ -15859,7 +15883,7 @@ public class GlobalMemberValues {
             Hashtable hints = new Hashtable();
             hints.put(EncodeHintType.CHARACTER_SET, "utf-8");
 
-            BitMatrix bitMatrix = multiFormatWriter.encode(contents, BarcodeFormat.QR_CODE,300,300, hints);
+            BitMatrix bitMatrix = multiFormatWriter.encode(contents, BarcodeFormat.QR_CODE, 300, 300, hints);
             BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
             bitmap = barcodeEncoder.createBitmap(bitMatrix);
 
@@ -15897,14 +15921,18 @@ public class GlobalMemberValues {
     }
 
 
-
-
     // mssql 관련 method ==============================================================================
     public static boolean isPossibleMssqlInfo() {
         if (GlobalMemberValues.mssql_useyn == "Y" || GlobalMemberValues.mssql_useyn.equals("Y")) {
             if (GlobalMemberValues.isStrEmpty(mssql_ip)) {
                 return false;
             }
+
+            if (mssql_ip.equals("0.0.0.0")){
+                GlobalMemberValues.logWrite("mssqljjjlog", "mssql_ip == 0.0.0.0" + "\n");
+                return false;
+            }
+
             if (GlobalMemberValues.isStrEmpty(mssql_db)) {
                 return false;
             }
@@ -15921,7 +15949,7 @@ public class GlobalMemberValues {
     }
 
     public static boolean setConnectMssql() {
-        if( MssqlDatabase.tryConnect(true) ){
+        if (MssqlDatabase.tryConnect(true)) {
             return true;
         } else {
             return false;
@@ -15929,19 +15957,19 @@ public class GlobalMemberValues {
     }
 
     public static void setConnectMSSQL() {
-        if (GlobalMemberValues.setConnectMssql()) {
-            //Toast.makeText(MainActivity.mContext.getApplicationContext(), "-------------- MSSQL Success --------------", Toast.LENGTH_SHORT).show();
-        } else {
-            //Toast.makeText(MainActivity.mContext.getApplicationContext(), "-------------- MSSQL faliure --------------", Toast.LENGTH_SHORT).show();
-        }
+//        if (GlobalMemberValues.setConnectMssql()) {
+//            //Toast.makeText(MainActivity.mContext.getApplicationContext(), "-------------- MSSQL Success --------------", Toast.LENGTH_SHORT).show();
+//        } else {
+//            //Toast.makeText(MainActivity.mContext.getApplicationContext(), "-------------- MSSQL faliure --------------", Toast.LENGTH_SHORT).show();
+//        }
     }
 
-    public static Long getFileSize(String filepath){
+    public static Long getFileSize(String filepath) {
         String size = "";
         Long l_size = 0l;
 
         File mfile = new File(filepath);
-        if (mfile.exists()){
+        if (mfile.exists()) {
             long lFileSize = mfile.length();
             size = Long.toString(lFileSize) + "bytes";
             l_size = lFileSize;
@@ -16077,25 +16105,25 @@ public class GlobalMemberValues {
 
     }
 
-    public static void closeProgress(){
+    public static void closeProgress() {
         if (!MainActivity.mActivity.isFinishing()) {
             Toast.makeText(MainActivity.mContext, "Database backup is failed", Toast.LENGTH_SHORT).show();
         }
-        if (CashInOutPopup.mProgressDialog != null){
+        if (CashInOutPopup.mProgressDialog != null) {
             CashInOutPopup.mProgressDialog.dismiss();
         }
-        if (Employee_Login.mProgressDialog != null){
+        if (Employee_Login.mProgressDialog != null) {
             Employee_Login.mProgressDialog.dismiss();
         }
 
     }
 
-    public static boolean isDataBase5mb(){
+    public static boolean isDataBase5mb() {
         String tempPackagename = MainActivity.mContext.getPackageName();
         File tempFile = MainActivity.mContext.getDatabasePath(GlobalMemberValues.DATABASE_NAME);
         String tempDbPath = tempFile.getPath();
         Long l_dbsize = getFileSize(tempDbPath);
-        Log.e("databaseSize",l_dbsize + "");
+        Log.e("databaseSize", l_dbsize + "");
         GlobalMemberValues.init_capacity_db = GlobalMemberValues.getInitDatabseCapacity();
         boolean b_return = false;
 
@@ -16122,34 +16150,36 @@ public class GlobalMemberValues {
         // ===============================================================================================================
     }
 
-    public static String resultDB_checkNull_string(ResultSet rs, int c){
+    public static String resultDB_checkNull_string(ResultSet rs, int c) {
         String str_return = "";
 
-        try{
+        try {
             str_return = rs.getString(c + 1);
-        }catch (Exception e){
+        } catch (Exception e) {
             str_return = "";
         }
 
         return str_return;
     }
-    public static int resultDB_checkNull_int(ResultSet rs, int c){
+
+    public static int resultDB_checkNull_int(ResultSet rs, int c) {
         int i_return = 0;
 
-        try{
+        try {
             i_return = rs.getInt(c + 1);
-        }catch (Exception e){
+        } catch (Exception e) {
             i_return = 0;
         }
 
         return i_return;
     }
-    public static double resultDB_checkNull_double(ResultSet rs, int c){
+
+    public static double resultDB_checkNull_double(ResultSet rs, int c) {
         double i_return = 0;
 
-        try{
+        try {
             i_return = rs.getDouble(c + 1);
-        }catch (Exception e){
+        } catch (Exception e) {
             i_return = 0;
         }
 
@@ -16189,15 +16219,17 @@ public class GlobalMemberValues {
         returnValue = GlobalMemberValues.getIntAtString(tempGetValue);
         return returnValue;
     }
-    public static String getCustomerPointRemaining(Double usePoint){
+
+    public static String getCustomerPointRemaining(Double usePoint) {
         Double chargePoint = 0.0;
-        if (usePoint == 0){
+        if (usePoint == 0) {
             chargePoint = getDoubleAtString(GLOBAL_CUSTOMERINFO.memMileage) + GlobalMemberValues.POINT_EARNED;
         } else {
             chargePoint = getDoubleAtString(GLOBAL_CUSTOMERINFO.memMileage) - usePoint;
         }
         return getCommaStringForDouble(String.valueOf(chargePoint));
     }
+
     public static boolean getQtyaddupYN() {
         boolean returnValue = true;
         String temp_qtyaddupyn = MainActivity.mDbInit.dbExecuteReadReturnString(
@@ -16206,7 +16238,7 @@ public class GlobalMemberValues {
         if (GlobalMemberValues.isStrEmpty(temp_qtyaddupyn)) {
             returnValue = true;
         } else {
-            if (temp_qtyaddupyn.equals("Y")){
+            if (temp_qtyaddupyn.equals("Y")) {
                 returnValue = true;
             } else {
                 returnValue = false;
@@ -16215,6 +16247,7 @@ public class GlobalMemberValues {
 
         return returnValue;
     }
+
     public static boolean getTipaddSalehistoryYN() {
         boolean returnValue = true;
         String temp_tipaddsalehistoryyn = MainActivity.mDbInit.dbExecuteReadReturnString(
@@ -16223,7 +16256,7 @@ public class GlobalMemberValues {
         if (GlobalMemberValues.isStrEmpty(temp_tipaddsalehistoryyn)) {
             returnValue = true;
         } else {
-            if (temp_tipaddsalehistoryyn.equals("Y")){
+            if (temp_tipaddsalehistoryyn.equals("Y")) {
                 returnValue = true;
             } else {
                 returnValue = false;
@@ -16232,6 +16265,7 @@ public class GlobalMemberValues {
 
         return returnValue;
     }
+
     public static double getTax3InStoreGeneral() {
         double returnValue = 0.0;
         DatabaseInit dbInit = new DatabaseInit(MainActivity.mContext);   // DatabaseInit 객체 생성
@@ -16268,22 +16302,22 @@ public class GlobalMemberValues {
         return returnValue;
     }
 
-    public static String setUniCodeStringReplace(String str){
+    public static String setUniCodeStringReplace(String str) {
         if (str == null) return "";
-        if (str.contains("&#37;")){
-            str = str.replace("&#37;","%");
+        if (str.contains("&#37;")) {
+            str = str.replace("&#37;", "%");
         }
-        if (str.contains("&#33;")){
-            str = str.replace("&#33;","!");
+        if (str.contains("&#33;")) {
+            str = str.replace("&#33;", "!");
         }
-        if (str.contains("&#35;")){
-            str = str.replace("&#35;","#");
+        if (str.contains("&#35;")) {
+            str = str.replace("&#35;", "#");
         }
-        if (str.contains("&#36;")){
-            str = str.replace("&#36;","$");
+        if (str.contains("&#36;")) {
+            str = str.replace("&#36;", "$");
         }
-        if (str.contains("&#37;")){
-            str = str.replace("&#37;","%");
+        if (str.contains("&#37;")) {
+            str = str.replace("&#37;", "%");
         }
 
         return str;
@@ -16292,7 +16326,7 @@ public class GlobalMemberValues {
     public static void setPasswordyninmod() {
         String tempValue = "";
         String tempSqlQuery = "select passwordyninmod from salon_storestationsettings_system";
-        if (MainActivity.mDbInit == null){
+        if (MainActivity.mDbInit == null) {
         } else {
             tempValue = MainActivity.mDbInit.dbExecuteReadReturnString(tempSqlQuery);
         }
@@ -16302,7 +16336,7 @@ public class GlobalMemberValues {
         GlobalMemberValues.mPasswordYN_inMod = tempValue;
     }
 
-    public static String setDoubleToString(Double aDouble, int i_decimal){
+    public static String setDoubleToString(Double aDouble, int i_decimal) {
         BigDecimal bigDecimal = new BigDecimal(aDouble).setScale(i_decimal, RoundingMode.HALF_EVEN);
         String str_double = bigDecimal.toString();
 
@@ -16371,6 +16405,7 @@ public class GlobalMemberValues {
 
         return returnValue;
     }
+
     public static boolean isShowOrderNumberOnExchangeReceipt() {
         boolean returnValue = false;
 
@@ -16594,7 +16629,7 @@ public class GlobalMemberValues {
         if (TableSaleMain.mTableIdxArrList != null && TableSaleMain.mTableIdxArrList.size() > 0) {
             String tableIdx = TableSaleMain.mTableIdxArrList.get(0).toString();
             if (!GlobalMemberValues.isStrEmpty(tableIdx)) {
-                tableIdx = tableIdx.replace("T","");
+                tableIdx = tableIdx.replace("T", "");
                 returnValue = MainActivity.mDbInit.dbExecuteReadReturnString(
                         " select tablename from salon_store_restaurant_table where idx = '" + tableIdx + "' ");
             }
@@ -16627,11 +16662,11 @@ public class GlobalMemberValues {
         boolean returnValue = false;
         String temp_stationcode = GlobalMemberValues.getStationCode();
         String tempValue = "";
-        if (temp_stationcode.isEmpty()){
+        if (temp_stationcode.isEmpty()) {
             tempValue = MainActivity.mDbInit.dbExecuteReadReturnString(
                     "select cashinoutyn from salon_storestationinfo"
             );
-        }else {
+        } else {
             tempValue = MainActivity.mDbInit.dbExecuteReadReturnString(
                     "select cashinoutyn from salon_storestationinfo where stcode = '" + temp_stationcode + "'"
             );
@@ -16694,6 +16729,7 @@ public class GlobalMemberValues {
 
         return returnValue;
     }
+
     // boolean 에서 String 으로 변경함. jihun 210826
     public static String isPaymentPossibleByTypeToString() {
 //        boolean returnValue = false;
@@ -16842,11 +16878,25 @@ public class GlobalMemberValues {
 
                 if (tempCustomerCnt >= tempGratuitycustomercount) {
                     // 장바구니에 common gratuity 가 담겨져 있지 않는 경우에만 아래 실행
+
+                    // 07232024
+                    double notGratuityItemPrice = 0.0;
+
                     int tempCnt = 0;
                     for (TemporarySaleCart tempSaleCart : MainMiddleService.mGeneralArrayList) {
                         String tempItemName = tempSaleCart.mSvcName;
                         if (tempItemName.equals(GlobalMemberValues.mCommonGratuityName)) {
                             tempCnt++;
+                        } else {
+                            // 07232024 -------------------------------------------
+                            double tempPrice = 0;
+                            if (GlobalMemberValues.getCommonGratuityType().equals("AT")) {
+                                tempPrice = GlobalMemberValues.getDoubleAtString(tempSaleCart.mSTotalAmount);
+                            } else {
+                                tempPrice = GlobalMemberValues.getDoubleAtString(tempSaleCart.mSPriceAmount);
+                            }
+                            notGratuityItemPrice += tempPrice;
+                            // 07232024 -------------------------------------------
                         }
                     }
 //                tempCnt = GlobalMemberValues.getIntAtString(
@@ -16900,6 +16950,9 @@ public class GlobalMemberValues {
                         GlobalMemberValues.logWrite("gratuitylogjjj", "여기..2 : " + tempTotalValue + "\n");
                     }
 
+                    // 07232024
+                    tempTotalValue = (GlobalMemberValues.getDoubleAtString(tempTotalValue) - notGratuityItemPrice) + "";
+
                     String gratuity_val = "";
                     if (tempGratuitytype.equals("$")) {
                         gratuity_val = tempGratuityvalue + "";
@@ -16923,7 +16976,7 @@ public class GlobalMemberValues {
                     MainMiddleService.mQuickSaleYN = "Y";
 
                     // 09262023
-                    if (TableSaleMain.isAfterMerge || MainMiddleService.mGeneralArrayList.size() > 0){
+                    if (TableSaleMain.isAfterMerge || MainMiddleService.mGeneralArrayList.size() > 0) {
                         GlobalMemberValues.logWrite("gratuitylogjjj55555", "여기.1 : " + "\n");
                         MainMiddleService.insertTempSaleCart(paramsString);
                     }
@@ -17055,7 +17108,7 @@ public class GlobalMemberValues {
         String returnResult = "";
         Vector<String> vec = new Vector<String>();
 
-        String strQuery = "select count(*) from salon_storestationsettings_system_receipt where receipt_type = "+ " '" + paramPrintingtype + "' ";
+        String strQuery = "select count(*) from salon_storestationsettings_system_receipt where receipt_type = " + " '" + paramPrintingtype + "' ";
         String tempCnt = MainActivity.mDbInit.dbExecuteReadReturnString(strQuery);
         if (GlobalMemberValues.getIntAtString(tempCnt) == 0) {
             strQuery = "insert into salon_storestationsettings_system_receipt (" +
@@ -17070,7 +17123,7 @@ public class GlobalMemberValues {
         }
 
         strQuery = " update salon_storestationsettings_system_receipt set " +
-                paramColumn + " = '" + paramValue + "' where receipt_type = "+ " '" + paramPrintingtype + "' ";
+                paramColumn + " = '" + paramValue + "' where receipt_type = " + " '" + paramPrintingtype + "' ";
         vec.addElement(strQuery);
         for (String tempQuery : vec) {
             GlobalMemberValues.logWrite("setValueOnReceiptSettinglog", "query : " + tempQuery + "\n");
@@ -17084,11 +17137,11 @@ public class GlobalMemberValues {
         }
     }
 
-    public static boolean getValueOnReceiptMerCusShowYN(String paramColumn, String strMerCus){
+    public static boolean getValueOnReceiptMerCusShowYN(String paramColumn, String strMerCus) {
         boolean b_return = false;
 
         String paramPrintingtype = "";
-        if (strMerCus.equals("customer")){
+        if (strMerCus.equals("customer")) {
             paramPrintingtype = "1";
         } else {
             paramPrintingtype = "2";
@@ -17097,18 +17150,18 @@ public class GlobalMemberValues {
         String returnValue = getDBTextAfterChecked(MainActivity.mDbInit.dbExecuteReadReturnString(
                 "select " + paramColumn + " from salon_storestationsettings_system_receipt " +
                         " where receipt_type = '" + paramPrintingtype + "' "), 1);
-        if (!returnValue.isEmpty()){
-            switch (returnValue){
-                case "Y" :
+        if (!returnValue.isEmpty()) {
+            switch (returnValue) {
+                case "Y":
                     b_return = true;
                     break;
-                case "N" :
+                case "N":
                     b_return = false;
                     break;
-                case "T" :
+                case "T":
                     b_return = true;
                     break;
-                case "B" :
+                case "B":
                     b_return = false;
                     break;
             }
@@ -17152,7 +17205,7 @@ public class GlobalMemberValues {
         GlobalMemberValues.API_WEBORDER_URL = GlobalMemberValues.API_WEB + "API_Orders_ForAndroid.asp";
     }
 
-    public static ArrayList<String> getTipPersents(){
+    public static ArrayList<String> getTipPersents() {
         ArrayList<String> ret_str = new ArrayList<String>();
         String str_tip1 = "";
         String str_tip2 = "";
@@ -17230,12 +17283,12 @@ public class GlobalMemberValues {
         return returnValue;
     }
 
-    public static boolean isCustomer_info_here_yn(){
+    public static boolean isCustomer_info_here_yn() {
         boolean temp_b = false;
         String temp_yn = MainActivity.mDbInit.dbExecuteReadReturnString(
                 " select customer_info_here_yn from salon_storestationsettings_system "
         );
-        if (temp_yn.equals("Y")){
+        if (temp_yn.equals("Y")) {
             temp_b = true;
         } else {
             temp_b = false;
@@ -17244,12 +17297,12 @@ public class GlobalMemberValues {
         return temp_b;
     }
 
-    public static boolean isCustomer_info_togo_yn(){
+    public static boolean isCustomer_info_togo_yn() {
         boolean temp_b = false;
         String temp_yn = MainActivity.mDbInit.dbExecuteReadReturnString(
                 " select customer_info_togo_yn from salon_storestationsettings_system "
         );
-        if (temp_yn.equals("Y")){
+        if (temp_yn.equals("Y")) {
             temp_b = true;
         } else {
             temp_b = false;
@@ -17258,12 +17311,12 @@ public class GlobalMemberValues {
         return temp_b;
     }
 
-    public static boolean isCustomer_info_delivery_yn(){
+    public static boolean isCustomer_info_delivery_yn() {
         boolean temp_b = false;
         String temp_yn = MainActivity.mDbInit.dbExecuteReadReturnString(
                 " select customer_info_delivery_yn from salon_storestationsettings_system "
         );
-        if (temp_yn.equals("Y")){
+        if (temp_yn.equals("Y")) {
             temp_b = true;
         } else {
             temp_b = false;
@@ -17272,12 +17325,12 @@ public class GlobalMemberValues {
         return temp_b;
     }
 
-    public static boolean isUseDividerLine(){
+    public static boolean isUseDividerLine() {
         boolean temp_b = false;
         String temp_yn = MainActivity.mDbInit.dbExecuteReadReturnString(
                 " select divideruseyn from salon_storegeneral "
         );
-        if (temp_yn.equals("Y")){
+        if (temp_yn.equals("Y")) {
             temp_b = true;
         } else {
             temp_b = false;
@@ -17337,7 +17390,7 @@ public class GlobalMemberValues {
     }
 
 
-    public static JSONArray labelPrint_menuSplit(JSONObject jsonObject){
+    public static JSONArray labelPrint_menuSplit(JSONObject jsonObject) {
 
         JSONArray jsonArray_split_object = new JSONArray();
         JSONArray jsonArray_saleitemlist = new JSONArray();
@@ -17346,11 +17399,11 @@ public class GlobalMemberValues {
             if (jsonObject.getJSONArray("saleitemlist") != null) {
                 jsonArray_saleitemlist = jsonObject.getJSONArray("saleitemlist");
                 JSONArray temp_array = new JSONArray();
-                for (int l = 0 ; l < jsonArray_saleitemlist.length() ; l++){
+                for (int l = 0; l < jsonArray_saleitemlist.length(); l++) {
                     String temp_str = "";
-                    if (jsonArray_saleitemlist.getJSONObject(l).toString().contains("itemsvcidx")){
+                    if (jsonArray_saleitemlist.getJSONObject(l).toString().contains("itemsvcidx")) {
                         temp_str = jsonArray_saleitemlist.getJSONObject(l).getString("itemsvcidx");
-                    } else if (jsonArray_saleitemlist.getJSONObject(l).toString().contains("itemcartidx")){
+                    } else if (jsonArray_saleitemlist.getJSONObject(l).toString().contains("itemcartidx")) {
                         temp_str = jsonArray_saleitemlist.getJSONObject(l).getString("itemcartidx");
                     } else {
                         temp_str = jsonArray_saleitemlist.getJSONObject(l).getString("itemidx");
@@ -17363,17 +17416,17 @@ public class GlobalMemberValues {
                         getPrinterNum = getLabelPrinterNumForQuickSale(tempCateIdx);
                     }
 
-                    if (isLabelPrinting(temp_str) || !getPrinterNum.equals("")){
+                    if (isLabelPrinting(temp_str) || !getPrinterNum.equals("")) {
                         // labelPrinting 가 Y 일 경우에만 Label Printing 함..
                         String temp_labelprintedyn = "";
-                        if (jsonArray_saleitemlist.getJSONObject(l).toString().contains("labelprintedyn")){
+                        if (jsonArray_saleitemlist.getJSONObject(l).toString().contains("labelprintedyn")) {
                             temp_labelprintedyn = jsonArray_saleitemlist.getJSONObject(l).getString("labelprintedyn");
                         }
 
-                        if (temp_labelprintedyn.equals("Y")){
+                        if (temp_labelprintedyn.equals("Y")) {
 
                         } else {
-                            if (jsonArray_saleitemlist.getJSONObject(l).getString("itemname").equals(GlobalMemberValues.mCommonGratuityName)){
+                            if (jsonArray_saleitemlist.getJSONObject(l).getString("itemname").equals(GlobalMemberValues.mCommonGratuityName)) {
 
                             } else {
                                 jsonArray_saleitemlist.getJSONObject(l).put("labelprintedyn", "Y");
@@ -17402,18 +17455,18 @@ public class GlobalMemberValues {
                     JSONObject dic_item = jsonArray_saleitemlist.getJSONObject(i);
 
                     String item_cnt = dic_item.getString("itemqty");
-                    for (int z = 0; z < Integer.parseInt(item_cnt); z++){
+                    for (int z = 0; z < Integer.parseInt(item_cnt); z++) {
                         JSONObject temp_jsonObject_newitem = new JSONObject(jsonObject.toString());
                         temp_jsonObject_newitem.remove("saleitemlist");
                         JSONArray temp_jsonArray = new JSONArray();
                         temp_jsonArray.put(dic_item);
-                        temp_jsonObject_newitem.put("saleitemlist",temp_jsonArray);
+                        temp_jsonObject_newitem.put("saleitemlist", temp_jsonArray);
                         String itemcnt = (item_number + 1) + "";
                         temp_jsonObject_newitem.put("item_num_forLabel", itemcnt);
                         temp_jsonObject_newitem.put("item_total_num_forLabel", cnt + "");
 
-                        if (jsonObject.toString().contains("deliverydate")){
-                            temp_jsonObject_newitem.put("deliverydate",jsonObject.get("deliverydate"));
+                        if (jsonObject.toString().contains("deliverydate")) {
+                            temp_jsonObject_newitem.put("deliverydate", jsonObject.get("deliverydate"));
                         }
                         //str_itemqty = dic_item.getString("itemqty");
 
@@ -17425,7 +17478,7 @@ public class GlobalMemberValues {
                 }
             }
 
-            for (int j = 0; j < jsonArray_split_object.length(); j++){
+            for (int j = 0; j < jsonArray_split_object.length(); j++) {
                 try {
                     JSONObject temp = jsonArray_split_object.getJSONObject(j);
                     temp.put("item_total_num_forLabel", jsonArray_split_object.length() + "");
@@ -17440,7 +17493,7 @@ public class GlobalMemberValues {
         return jsonArray_split_object_return;
     }
 
-    public static JSONArray labelPrint_printNumber(JSONArray jsonArray_saleitemlist, String printerNumber){
+    public static JSONArray labelPrint_printNumber(JSONArray jsonArray_saleitemlist, String printerNumber) {
         JSONArray jsonArray_split_object_return = new JSONArray();
         if (jsonArray_saleitemlist.length() != 0) {
             int cnt = jsonArray_saleitemlist.length();
@@ -17454,9 +17507,9 @@ public class GlobalMemberValues {
 
                     String itemsvcidx = "";//itemJsonobject.getString("itemcartidx");
 
-                    if (itemJsonobject.toString().contains("itemsvcidx")){
+                    if (itemJsonobject.toString().contains("itemsvcidx")) {
                         itemsvcidx = itemJsonobject.getString("itemsvcidx");
-                    } else if (itemJsonobject.toString().contains("itemcartidx")){
+                    } else if (itemJsonobject.toString().contains("itemcartidx")) {
                         itemsvcidx = itemJsonobject.getString("itemcartidx");
                     } else {
                         itemsvcidx = itemJsonobject.getString("itemidx");
@@ -17471,7 +17524,7 @@ public class GlobalMemberValues {
                     }
 
 //                    String getPrinterNum = getLabelPrinterNum(itemsvcidx);
-                    if (printerNumber.equals(getPrinterNum)){
+                    if (printerNumber.equals(getPrinterNum)) {
                         jsonArray_split_object_return.put(dic_item);
                     }
                 } catch (JSONException e) {
@@ -17924,6 +17977,7 @@ public class GlobalMemberValues {
         ));
         if (tempCnt == 0) {
             MainActivity.mDbInit.dbExecuteWriteReturnValue(" insert into temp_salecart_ordered select * from temp_salecart where idx = '" + paramIdx + "' ");
+            GlobalMemberValues.logWrite("jjjorderedtemplog", "여기..");
         }
     }
 
@@ -17934,7 +17988,7 @@ public class GlobalMemberValues {
             String tempTableIdx = MssqlDatabase.getResultSetValueToString(" select tableidx from salon_sales_detail where salesCode = '" + paramSalesCode + "' ");
             String tempPeopleCnt = MssqlDatabase.getResultSetValueToString(" select tablepeoplecnt from salon_sales where salescode = '" + paramSalesCode + "' ");
             double tempPeopleCnt_dbl = GlobalMemberValues.getDoubleAtString(tempPeopleCnt);
-            int tempPeopleCnt_int = (int)Math.round(tempPeopleCnt_dbl);
+            int tempPeopleCnt_int = (int) Math.round(tempPeopleCnt_dbl);
             GlobalMemberValues.logWrite("splitsqllog", "tempPeopleCnt0 : " + tempPeopleCnt_int + "\n");
 
             Vector<String> strInsertQueryVec = new Vector<String>();
@@ -17948,9 +18002,11 @@ public class GlobalMemberValues {
                     " discountbuttonname, modifieridx, modifiercode, sPriceBalAmount_org, sTaxAmount_org, sTotalAmount_org, sCommissionAmount_org, sPointAmount_org, " +
                     " tableidx, billtag, mergednum, subtablenum, billnum, kitchenprintedyn, isCloudUpload, cardtryyn, dcextratype, dcextravalue, togodelitype, labelprintedyn, togotype, " +
                     " pastholdcode, billprintedyn," +
+                    // 05182023
                     " billidx_byitemsplit, " +
                     // 03192024
                     " tordercode ";
+
             String tempSql = " insert into temp_salecart (" + tempStr + ") " +
                     " select " + tempStr + " from temp_salecart_ordered where holdcode = '" + tempHoldCode + "' ";
             strInsertQueryVec.addElement(tempSql);
@@ -17968,7 +18024,6 @@ public class GlobalMemberValues {
             // 05182023
             tempSql = " delete from bill_list_paid where holdcode = '" + tempHoldCode + "' ";
             strInsertQueryVec.addElement(tempSql);
-
 
 
             for (String tempQuery : strInsertQueryVec) {
@@ -18004,7 +18059,6 @@ public class GlobalMemberValues {
 //                payment.setPaymentView();
 
 
-
                 // 05182023 ----------------------------------------------------------------------------------------
                 String tempSaleCartIdx, billidx_byitemsplit;
                 String getCartIdxs = "";
@@ -18033,7 +18087,6 @@ public class GlobalMemberValues {
                 } catch (Exception e) {
                 }
                 // 05182023 ----------------------------------------------------------------------------------------
-
 
 
             }
@@ -18525,11 +18578,11 @@ public class GlobalMemberValues {
         boolean returnValue = false;
         String temp_stationcode = GlobalMemberValues.getStationCode();
         String tempValue = "";
-        if (temp_stationcode.isEmpty()){
+        if (temp_stationcode.isEmpty()) {
             tempValue = MainActivity.mDbInit.dbExecuteReadReturnString(
                     "select eodyn from salon_storestationinfo"
             );
-        }else {
+        } else {
             tempValue = MainActivity.mDbInit.dbExecuteReadReturnString(
                     "select eodyn from salon_storestationinfo where stcode = '" + temp_stationcode + "'"
             );
@@ -18549,7 +18602,7 @@ public class GlobalMemberValues {
         String temp = "";
         DatabaseInit dbInit = new DatabaseInit(paramContext);
         String tempSqlQuery = "select masteruseyn from salon_storestationsettings_deviceprinter_master";
-        if (MainActivity.mDbInit == null){
+        if (MainActivity.mDbInit == null) {
             temp = dbInit.dbExecuteReadReturnString(tempSqlQuery);
         } else {
             temp = MainActivity.mDbInit.dbExecuteReadReturnString(tempSqlQuery);
@@ -18558,29 +18611,29 @@ public class GlobalMemberValues {
         return temp;
     }
 
-    public static boolean selectPhoneOrderGetFoodType(){
+    public static boolean selectPhoneOrderGetFoodType() {
         boolean b_return = false;
 
         return true;
     }
 
-    public static JSONArray edit_equl_array_item_merge(JSONArray jsonArray){
+    public static JSONArray edit_equl_array_item_merge(JSONArray jsonArray) {
         JSONArray temp_jsonArray = new JSONArray();
         JSONArray newJSONArray = new JSONArray();
 
-        if (jsonArray != null && jsonArray.length() >= 0){
+        if (jsonArray != null && jsonArray.length() >= 0) {
             for (int z = 0; z < jsonArray.length(); z++) {
                 try {
                     JSONObject original = jsonArray.getJSONObject(z);
                     JSONObject clone = new JSONObject();
 
-                    for ( Iterator<String> iterator = original.keys(); iterator.hasNext(); ) {
-                        String      key     = iterator.next();
-                        Object      value   = original.opt(key);
+                    for (Iterator<String> iterator = original.keys(); iterator.hasNext(); ) {
+                        String key = iterator.next();
+                        Object value = original.opt(key);
 
                         try {
                             clone.put(key, value);
-                        } catch ( JSONException e ) {
+                        } catch (JSONException e) {
                             //TODO process exception
                         }
                     }
@@ -18594,7 +18647,7 @@ public class GlobalMemberValues {
 
 
         boolean is_add_item = true;
-        if (jsonArray != null && jsonArray.length() >= 0){
+        if (jsonArray != null && jsonArray.length() >= 0) {
 
             try {
                 for (int z = 0; z < jsonArray.length(); z++) {
@@ -18645,9 +18698,9 @@ public class GlobalMemberValues {
                                             temp1_optname.equals(temp2_optname) &&
                                             temp1_additionaltxt1.equals(temp2_additionaltxt1) &&
                                             temp1_additionaltxt2.equals(temp2_additionaltxt2) &&
-                                            temp1_kitchenmemo.equals(temp2_kitchenmemo)){
+                                            temp1_kitchenmemo.equals(temp2_kitchenmemo)) {
 
-                                if (z > j){
+                                if (z > j) {
                                     // 아이템 중복 방지.
                                     is_add_item = false;
                                 } else {
@@ -18670,12 +18723,12 @@ public class GlobalMemberValues {
                                     double item_itemdcextraprice = GlobalMemberValues.getDoubleAtString(temp2_itemdcextraprice) + GlobalMemberValues.getDoubleAtString(origin_itemdcextraprice);
 
                                     String sub_qty_str = String.valueOf(i_item_qty + i_item2_qty);
-                                    String sub_price_str = GlobalMemberValues.setDoubleToString(item_price,2);
-                                    String sub_amount_str = GlobalMemberValues.setDoubleToString(item_amount,2);
-                                    String sub_optprice_str = GlobalMemberValues.setDoubleToString(item_optprice,2);
-                                    String sub_addprice1_str = GlobalMemberValues.setDoubleToString(item_addprice1,2);
-                                    String sub_addprice2_str = GlobalMemberValues.setDoubleToString(item_addprice2,2);
-                                    String sub_itemdcextraprice_str = GlobalMemberValues.setDoubleToString(item_itemdcextraprice,2);
+                                    String sub_price_str = GlobalMemberValues.setDoubleToString(item_price, 2);
+                                    String sub_amount_str = GlobalMemberValues.setDoubleToString(item_amount, 2);
+                                    String sub_optprice_str = GlobalMemberValues.setDoubleToString(item_optprice, 2);
+                                    String sub_addprice1_str = GlobalMemberValues.setDoubleToString(item_addprice1, 2);
+                                    String sub_addprice2_str = GlobalMemberValues.setDoubleToString(item_addprice2, 2);
+                                    String sub_itemdcextraprice_str = GlobalMemberValues.setDoubleToString(item_itemdcextraprice, 2);
 
                                     orign_dic_item.put("itemqty", sub_qty_str);
                                     orign_dic_item.put("itemprice", sub_price_str);
@@ -18690,7 +18743,7 @@ public class GlobalMemberValues {
                             }
                         }
                     }
-                    if (is_add_item){
+                    if (is_add_item) {
                         temp_jsonArray.put(orign_dic_item);
                     }
 
@@ -18700,7 +18753,7 @@ public class GlobalMemberValues {
             }
         }
 
-        if (temp_jsonArray == null || temp_jsonArray.length() == 0){
+        if (temp_jsonArray == null || temp_jsonArray.length() == 0) {
             return jsonArray;
         } else {
             return temp_jsonArray;
@@ -18708,11 +18761,11 @@ public class GlobalMemberValues {
 
     }
 
-    public static JSONArray edit_equl_array_item_merge_stringarray(JSONArray jsonArray){
+    public static JSONArray edit_equl_array_item_merge_stringarray(JSONArray jsonArray) {
         JSONArray temp_jsonArray = new JSONArray();
         JSONArray newJSONArray = new JSONArray();
 
-        if (jsonArray != null && jsonArray.length() >= 0){
+        if (jsonArray != null && jsonArray.length() >= 0) {
             for (int z = 0; z < jsonArray.length(); z++) {
                 try {
                     String original = jsonArray.getString(z);
@@ -18727,7 +18780,7 @@ public class GlobalMemberValues {
 
 
         boolean is_add_item = true;
-        if (jsonArray != null && jsonArray.length() >= 0){
+        if (jsonArray != null && jsonArray.length() >= 0) {
 
             try {
                 for (int z = 0; z < jsonArray.length(); z++) {
@@ -18847,9 +18900,9 @@ public class GlobalMemberValues {
                                     tempPriceAmount.equals(orign_tempPriceAmount) &&
                                     tempOptionPrice.equals(orign_tempOptionPrice) &&
                                     temptemp_additionalprice1.equals(orign_temptemp_additionalprice1) &&
-                                    temptemp_additionalprice2.equals(orign_temptemp_additionalprice2)){
+                                    temptemp_additionalprice2.equals(orign_temptemp_additionalprice2)) {
 
-                                if (z > j){
+                                if (z > j) {
                                     // 아이템 중복 방지.
                                     is_add_item = false;
                                 } else {
@@ -18866,13 +18919,13 @@ public class GlobalMemberValues {
 
 
                                     String sub_qty_str = String.valueOf(i_item_qty + i_item2_qty);
-                                    String sub_price_str = GlobalMemberValues.setDoubleToString(item_price,2);
-                                    String sub_amount_str = GlobalMemberValues.setDoubleToString(item_amount,2);
-                                    String sub_optprice_str = GlobalMemberValues.setDoubleToString(item_optprice,2);
-                                    String sub_addprice1_str = GlobalMemberValues.setDoubleToString(item_addprice1,2);
-                                    String sub_addprice2_str = GlobalMemberValues.setDoubleToString(item_addprice2,2);
-                                    String sub_item_TotalAmount = GlobalMemberValues.setDoubleToString(item_TotalAmount,2);
-                                    String sub_item_tax = GlobalMemberValues.setDoubleToString(item_tax,2);
+                                    String sub_price_str = GlobalMemberValues.setDoubleToString(item_price, 2);
+                                    String sub_amount_str = GlobalMemberValues.setDoubleToString(item_amount, 2);
+                                    String sub_optprice_str = GlobalMemberValues.setDoubleToString(item_optprice, 2);
+                                    String sub_addprice1_str = GlobalMemberValues.setDoubleToString(item_addprice1, 2);
+                                    String sub_addprice2_str = GlobalMemberValues.setDoubleToString(item_addprice2, 2);
+                                    String sub_item_TotalAmount = GlobalMemberValues.setDoubleToString(item_TotalAmount, 2);
+                                    String sub_item_tax = GlobalMemberValues.setDoubleToString(item_tax, 2);
 
 
                                     String temp = orign_strItemNAmeOptionAdd[0] + GlobalMemberValues.STRSPLITTER_ORDERITEM3
@@ -18912,7 +18965,7 @@ public class GlobalMemberValues {
                             }
                         }
                     }
-                    if (is_add_item){
+                    if (is_add_item) {
                         temp_jsonArray.put(orign_strOrderItems);
                     }
 
@@ -18928,7 +18981,8 @@ public class GlobalMemberValues {
     public static void deleteSignature(Context paramContext) {
         String returnResult = "";
 
-        DatabaseInit dbInit = new DatabaseInit(paramContext);;
+        DatabaseInit dbInit = new DatabaseInit(paramContext);
+        ;
         String strQuery = "select idx, signedimgdir from salon_sales_signedimg ";
 
         GlobalMemberValues.logWrite("Globalmembervalues", "select query : " + strQuery + "\n");
@@ -18967,17 +19021,17 @@ public class GlobalMemberValues {
         File directory = new File(strFilePath);
         File[] files = directory.listFiles();
 
-        Thread thread = new Thread(){
+        Thread thread = new Thread() {
             @Override
             public void run() {
                 super.run();
 
-                for (int i=0; i< files.length; i++) {
-                    if (files[i].getName().contains("sign_") && files[i].getName().endsWith(".png")){
+                for (int i = 0; i < files.length; i++) {
+                    if (files[i].getName().contains("sign_") && files[i].getName().endsWith(".png")) {
                         String del_name = strFilePath + files[i].getName();
-                        try{
+                        try {
                             new File(del_name).delete();
-                        }catch (Exception e){
+                        } catch (Exception e) {
                             e.printStackTrace();
                         }
                     }
@@ -19020,7 +19074,7 @@ public class GlobalMemberValues {
     }
 
     // 20230204
-    public static String getPaymentResultKitchenPrinted(Context context, String mReceiptNum){
+    public static String getPaymentResultKitchenPrinted(Context context, String mReceiptNum) {
 
 
 //        if (MainMiddleService.mGeneralArrayList_copy != null){
@@ -19066,7 +19120,7 @@ public class GlobalMemberValues {
 
         // 세일정보 가져오기 (GetDataAtSQLite 클래스의 getSaleHistory 메소드를 통해 가져온다)
         GetDataAtSQLite dataAtSqlite = new GetDataAtSQLite(context);
-        salonSalesCursor = dataAtSqlite.getSaleHistory(saleHistorySearchQuery, "","");
+        salonSalesCursor = dataAtSqlite.getSaleHistory(saleHistorySearchQuery, "", "");
 
 
         try {
@@ -19078,8 +19132,8 @@ public class GlobalMemberValues {
                 }
             }
             salonSalesCursor.close();
-        }catch (Exception e){
-            Log.e("",e.toString());
+        } catch (Exception e) {
+            Log.e("", e.toString());
         }
         return salonSalesKitchenPrintedYN;
     }
@@ -19089,8 +19143,8 @@ public class GlobalMemberValues {
         ResultSet tempSaleCartCursor = MssqlDatabase.getResultSetValue("select kitchenPrintedYN from salon_sales_detail where holdcode = '" + paramSalesCode + "'");
         try {
             while (tempSaleCartCursor.next()) {
-                String isPrinted = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,0), 1);
-                if (isPrinted.equals("Y")){
+                String isPrinted = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 0), 1);
+                if (isPrinted.equals("Y")) {
                     return true;
                 }
             }
@@ -19107,8 +19161,8 @@ public class GlobalMemberValues {
         ResultSet tempSaleCartCursor = MssqlDatabase.getResultSetValue("select labelPrintedYN from salon_sales_detail where holdcode = '" + paramSalesCode + "'");
         try {
             while (tempSaleCartCursor.next()) {
-                String isPrinted = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor,0), 1);
-                if (isPrinted.equals("Y")){
+                String isPrinted = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(tempSaleCartCursor, 0), 1);
+                if (isPrinted.equals("Y")) {
                     return true;
                 }
             }
@@ -19160,6 +19214,7 @@ public class GlobalMemberValues {
 
         return returnValue;
     }
+
     // 04.14.2023 - add pay name
     public static String getAddPayName() {
         String returnValue = "";
@@ -19184,7 +19239,7 @@ public class GlobalMemberValues {
 
     // 04222023
     public static void setChangeBillPrintedStatus(String paramTableidx, String paramSubTableNum, boolean paramRefresh) {
-        String strQuery =  "";
+        String strQuery = "";
 
         if (!GlobalMemberValues.isStrEmpty(paramTableidx)) {
             paramTableidx = GlobalMemberValues.getReplaceText(paramTableidx, "T", "");
@@ -19365,11 +19420,11 @@ public class GlobalMemberValues {
                 int wmcnt = 0;
                 try {
                     while (wmcursor.next()) {
-                        idx = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(wmcursor,0), 1);
-                        qty = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(wmcursor,1), 1);
-                        optiontxt = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(wmcursor,2), 1);
+                        idx = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(wmcursor, 0), 1);
+                        qty = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(wmcursor, 1), 1);
+                        optiontxt = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(wmcursor, 2), 1);
 
-                        salescode = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(wmcursor,3), 1);
+                        salescode = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(wmcursor, 3), 1);
 
                         GlobalMemberValues.logWrite("wingmanlogjjj", "optiontxt : " + optiontxt + "\n");
 
@@ -19492,7 +19547,7 @@ public class GlobalMemberValues {
                         }
                     }
                     wmcursor.close();
-                } catch (Exception e){
+                } catch (Exception e) {
                 }
 
                 for (String tempQuery : wmvec) {
@@ -19610,7 +19665,6 @@ public class GlobalMemberValues {
     }
 
 
-
     // 05152023 - 라벨프린팅 됐는지 여부
     public static boolean isPossibleLabelPrintingByJson(JSONObject paramJson) {
         boolean returnValue = false;
@@ -19686,7 +19740,7 @@ public class GlobalMemberValues {
         return returnValue;
     }
 
-    public static int get_web_push_realtime_n_cnt(){
+    public static int get_web_push_realtime_n_cnt() {
 
         int temp_cnt = 0;
         try {
@@ -19730,9 +19784,9 @@ public class GlobalMemberValues {
 
     // 06212023
     // Label Buzzer Count
-    public static int getLabelPrinterBuzzerCount(){
+    public static int getLabelPrinterBuzzerCount() {
         SharedPreferences pref = MainActivity.mContext.getSharedPreferences("labelprinter_info", MODE_PRIVATE);
-        String temp_printer_buzzer_count = pref.getString("labelprinter_info_printer_buzzer_count","1");
+        String temp_printer_buzzer_count = pref.getString("labelprinter_info_printer_buzzer_count", "1");
         return Integer.parseInt(temp_printer_buzzer_count);
     }
 
@@ -19741,15 +19795,15 @@ public class GlobalMemberValues {
         String returnValue = "";
 
         switch (GlobalMemberValues.isShowItemPriceOnReceiptForAddPay()) {
-            case "N" : {
+            case "N": {
                 returnValue = "";
                 break;
             }
-            case "Y" : {
+            case "Y": {
                 returnValue = paramValue;
                 break;
             }
-            case "A" : {
+            case "A": {
 
                 if (GlobalMemberValues.isShowCashDCValue()) {
                     returnValue = paramValue;
@@ -19792,7 +19846,6 @@ public class GlobalMemberValues {
                         }
                     }
                 }
-
 
 
                 break;
@@ -19857,6 +19910,7 @@ public class GlobalMemberValues {
 
         return returnValue;
     }
+
     public static boolean isShowCashDCValue() {
         boolean returnValue = true;
 
@@ -19890,6 +19944,7 @@ public class GlobalMemberValues {
 
         return returnValue;
     }
+
     public static boolean isShowTaxValue() {
         boolean returnValue = true;
 
@@ -19924,6 +19979,7 @@ public class GlobalMemberValues {
 
         return returnValue;
     }
+
     public static String getCashDCValue() {
         String returnValue = "";
 
@@ -19941,6 +19997,7 @@ public class GlobalMemberValues {
 
         return returnValue;
     }
+
     public static boolean isDeleteGratuity() {
         boolean returnValue = false;
 
@@ -19971,7 +20028,6 @@ public class GlobalMemberValues {
     }
 
 
-
     public static String getALTServiceName(String paramItemIdx) {
         String returnvalue = "";
 
@@ -19989,18 +20045,18 @@ public class GlobalMemberValues {
         return returnvalue;
     }
 
-    public static void setMainTotalOrderCountTextview(){
+    public static void setMainTotalOrderCountTextview() {
 
         String returnCode = MssqlDatabase.getResultSetValueToString("select sum(sQty) from temp_salecart where holdcode = '" + MainMiddleService.mHoldCode + "' and not(svcIdx = '0') and not(svcName LIKE '%=======%')");
 
-        if (GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAIN_TOP_LEFT_TOTAL_ORDER_QTY != null){
+        if (GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAIN_TOP_LEFT_TOTAL_ORDER_QTY != null) {
             GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAIN_TOP_LEFT_TOTAL_ORDER_QTY.setText(returnCode);
         }
     }
 
-    public static void getMainCustomerPeopleCnt(String mHoldCode){
+    public static void getMainCustomerPeopleCnt(String mHoldCode) {
         String returnCode = MssqlDatabase.getResultSetValueToString("select peoplecnt from salon_store_restaurant_table_peoplecnt where holdcode = '" + mHoldCode + "'");
-        if (GlobalMemberValues.GLOBAL_MAINPEOPLECNTTV != null){
+        if (GlobalMemberValues.GLOBAL_MAINPEOPLECNTTV != null) {
             GlobalMemberValues.GLOBAL_MAINPEOPLECNTTV.setText(returnCode);
         }
     }
@@ -20165,6 +20221,26 @@ public class GlobalMemberValues {
         return returnValue;
     }
 
+    public static String getPaymentGateway() {
+        String temp = "select paymentgateway from salon_storestationsettings_paymentgateway";
+        DatabaseInit dbInit = new DatabaseInit(MainActivity.mContext);   // DatabaseInit 객체 생성
+        String str_return = dbInit.dbExecuteReadReturnString(temp);
+
+        if (GlobalMemberValues.isStrEmpty(str_return)) {
+            str_return = "0";
+        }
+
+        return str_return;
+    }
+
+
+    // 03042024
+    // split void return 관련
+    public static String makeVoidCode() {
+        String returnVoidCode = "";
+        returnVoidCode = "V" + makeSalesCode();
+        return returnVoidCode;
+    }
 
 
     // 0325204
@@ -20179,6 +20255,7 @@ public class GlobalMemberValues {
         }
         return returnValue;
     }
+
     // T-Order Partner Key
     public String getTOrderKey() {
         String returnData = "";
@@ -20190,7 +20267,6 @@ public class GlobalMemberValues {
         return returnData;
     }
 
-    // 05292024
     // 05292024
     public static String makeStoreCodeForTOrder() {
         String returnValue = "";
@@ -20259,7 +20335,7 @@ public class GlobalMemberValues {
     }
 
     //API call when restuarant program has finished
-    //event code: P0101
+    //event code: P0102
     public static void sendTOrderAPIProgramFinish() {
         String code = "P0102";
         String storeId = GlobalMemberValues.makeStoreCodeForTOrder();
@@ -20424,6 +20500,10 @@ public class GlobalMemberValues {
     //API call when a order is made/updated (Sent to kitchen)
     //event code: P0401
     public static void sendTOrderAPIOrderData(String paramPrintingType) {
+        GlobalMemberValues.logWrite("TORDERAPIJJJLOG", "여기실행됨...1" + "\n");
+
+        GlobalMemberValues.logWrite("API_torder_programstart", "sendTOrderAPIOrderData running");
+
         String code = "P0401";
         String storeId = GlobalMemberValues.makeStoreCodeForTOrder();
         String tableId = "";
@@ -20468,6 +20548,14 @@ public class GlobalMemberValues {
 
         //create order data
         JSONArray posOrders = new JSONArray();
+
+        //05162024 check if 'modifier qty view' setting is being used.
+        String tempModifierqtyviewyn = MainActivity.mDbInit.dbExecuteReadReturnString(
+                " select modifierqtyviewyn from salon_storestationsettings_system "
+        );
+        if (GlobalMemberValues.isStrEmpty(tempModifierqtyviewyn)) {
+            tempModifierqtyviewyn = "Y";
+        }
 
         //Per holdcode(Table order) create an posOrder object.
         for (int x = 0; x < holdCodeArrayList.size(); x++) {
@@ -20658,7 +20746,7 @@ public class GlobalMemberValues {
                     //Format the tempOptionTxt so that an object can be made of it.
                     String[] paramTxtArr = tempOptionTxt.split(", ");
                     //processing posOrderGoodsOption data
-                    if(!Objects.equals(paramTxtArr[0], "") && paramTxtArr[0] != null) {
+                    if (!Objects.equals(paramTxtArr[0], "") && paramTxtArr[0] != null) {
                         for (int j = 0; j < paramTxtArr.length; j++) {
 
                             //Create a posOrderGoodsOption object
@@ -20786,12 +20874,16 @@ public class GlobalMemberValues {
         } catch (InterruptedException e) {
             GlobalMemberValues.logWrite("TORDERAPI", "Thread Error : " + e.getMessage() + "\n");
         }
+
+
+        GlobalMemberValues.logWrite("TORDERAPIJJJLOG", "여기실행됨...2" + "\n");
+        GlobalMemberValues.logWrite("TORDERAPIJJJLOG", "cloudSentResult : " + cloudSentResult + "\n");
     }
 
     //API call when a table is cleared
     //event code: P0402
     public static void sendTOrderAPITableClear(String tableid) {
-        String code = "P0501";
+        String code = "P0402";
         String storeId = GlobalMemberValues.makeStoreCodeForTOrder();
         String tableId = tableid;
         String message = "Table" + tableId + "cleared";
@@ -20833,6 +20925,7 @@ public class GlobalMemberValues {
         }
     }
 
+
     // 04192024
     // 온라인 주문 개선관련
     public static boolean isUseOnlinePopupOpen() {
@@ -20850,6 +20943,7 @@ public class GlobalMemberValues {
 
         return returnValue;
     }
+
 
 
     // 05202024
@@ -20897,6 +20991,68 @@ public class GlobalMemberValues {
         return returnData;
     }
 
+
+
+    // 07182024 ------------------------------------------------------------------------------------
+    // 카드결제 기기등록관련
+    public static String getPGIP(String paramDeviceNum) {
+        String returnValue = "";
+
+        DatabaseInit dbInit = new DatabaseInit(MainActivity.mContext);   // DatabaseInit 객체 생성
+        String strQuery = "select networkip1, networkip2, networkip3, networkip4 " +
+                " from salon_storestationsettings_paymentgateway ";
+        Cursor pgCursor = dbInit.dbExecuteRead(strQuery);
+        String networkip = "";
+        if (pgCursor != null && pgCursor.getCount() > 0 && pgCursor.moveToFirst()) {
+            String tempIp1 = GlobalMemberValues.getDBTextAfterChecked(pgCursor.getString(0), 1);
+            String tempIp2 = GlobalMemberValues.getDBTextAfterChecked(pgCursor.getString(1), 1);
+            String tempIp3 = GlobalMemberValues.getDBTextAfterChecked(pgCursor.getString(2), 1);
+            String tempIp4 = GlobalMemberValues.getDBTextAfterChecked(pgCursor.getString(3), 1);
+            networkip = tempIp1 + "." + tempIp2 + "." + tempIp3 + "." + tempIp4;
+        }
+
+        strQuery = " select networkip from salon_pgip where pgdevicenum = '" + paramDeviceNum + "' ";
+        String networkip2 = MssqlDatabase.getResultSetValueToString(strQuery);
+
+        returnValue = networkip;
+        if (!GlobalMemberValues.isStrEmpty(networkip2)) {
+            returnValue = networkip2;
+        }
+
+        return returnValue;
+    }
+
+    public static String getPGPort(String paramDeviceNum) {
+        String returnValue = "";
+
+        String strQuery = "select networkport from salon_storestationsettings_paymentgateway ";
+        String networkport = MainActivity.mDbInit.dbExecuteReadReturnString(strQuery);
+
+
+        strQuery = " select networkport from salon_pgip where pgdevicenum = '" + paramDeviceNum + "' ";
+        String networkport2 = MssqlDatabase.getResultSetValueToString(strQuery);
+
+        returnValue = networkport;
+        if (!GlobalMemberValues.isStrEmpty(networkport2)) {
+            returnValue = networkport2;
+        }
+
+        return returnValue;
+    }
+
+    public static String getPGDeviceNum() {
+        String returnValue = "";
+
+        String strQuery = "select pgdevicenum from salon_storestationsettings_paymentgateway ";
+        String pgdevicenum = MainActivity.mDbInit.dbExecuteReadReturnString(strQuery);
+
+        if (!GlobalMemberValues.isStrEmpty(pgdevicenum)) {
+            returnValue = pgdevicenum;
+        }
+
+        return returnValue;
+    }
+    // 07182024 ------------------------------------------------------------------------------------
 
 
     // 07202024

@@ -537,7 +537,6 @@ public class SaleHistoryReturnCreditCard extends Activity {
         returnCreditCardPaidTextView = (TextView)parentLn
                 .findViewWithTag("returnCreditCardPaidTextViewTag");
         /***********************************************************************************************************/
-
         // 객체 및 색상 초기화
         setInit();
 
@@ -545,6 +544,9 @@ public class SaleHistoryReturnCreditCard extends Activity {
         returnCreditCardAmountTextView.setText(mBalanceAmountValue);
         returnCreditCardBalanceTextView.setText(mBalanceAmountValue);
         /***********************************************************************************************************/
+
+        // card 금액 미리 지정해주기.
+        returnCreditCardProcessingAmountTextView.setText(returnCreditCardAmountTextView.getText().toString());
 
         // ScrollView 에 속한 첫번째 LinearLayout 객체
         returnCreditCardProcessingCardListLinearLayout = (LinearLayout)findViewById(R.id.returnCreditCardProcessingCardListLinearLayout);
@@ -678,7 +680,6 @@ public class SaleHistoryReturnCreditCard extends Activity {
                     " select employeeName from salon_sales_card where salesCode = 'K" + insSalesCode.substring(1) + "' "
             );
 
-
             // 05302024
             // 리턴시 원래 tip 금액 저장
             String tempOrgTip = MssqlDatabase.getResultSetValueToString(
@@ -687,7 +688,6 @@ public class SaleHistoryReturnCreditCard extends Activity {
             if (GlobalMemberValues.getDoubleAtString(tempOrgTip) == 0) {
                 tempOrgTip = "0.0";
             }
-
 
             strInsSqlQuery = "insert into salon_sales_card (" +
                     " salesCode, tid, sidx, stcode, cardCom, priceAmount, insertSwipeKeyin, status, " +
@@ -861,6 +861,15 @@ public class SaleHistoryReturnCreditCard extends Activity {
 
                 SaleHistoryReturn.mJsonList.put(jsontmp);
                 // ----------------------------------------------------------------------------------------------
+
+                // 카드 프로세싱 성공 후 값 비교
+                // 남은 금액이 0.0 이면 자동 성공처리
+                double tempBalanceValue = GlobalMemberValues.getDoubleAtString(returnCreditCardBalanceTextView.getText().toString());
+                if (tempBalanceValue == 0 || tempBalanceValue == 0.0) {
+                    finishCreditCardProcessing();
+                }
+
+
             }
             // --------------------------------------------------------------------------------------------
         } else {     // 카드프로세싱이 실패했을 경우에
@@ -1090,22 +1099,23 @@ public class SaleHistoryReturnCreditCard extends Activity {
                 case R.id.returnCreditCardVButton : {
                     double tempBalanceValue = GlobalMemberValues.getDoubleAtString(returnCreditCardBalanceTextView.getText().toString());
                     if (tempBalanceValue == 0 || tempBalanceValue == 0.0) {
-                        new AlertDialog.Builder(context)
-                                .setTitle("Item Delete")
-                                .setMessage("Are you sure you want to return?")
-                                        //.setIcon(R.drawable.ic_launcher)
-                                .setPositiveButton("Yes",
-                                        new DialogInterface.OnClickListener() {
-                                            public void onClick(DialogInterface dialog, int which) {
-                                                finishCreditCardProcessing();
-                                            }
-                                        })
-                                .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        //
-                                    }
-                                })
-                                .show();
+                        finishCreditCardProcessing();
+//                        new AlertDialog.Builder(context)
+//                                .setTitle("Item Delete")
+//                                .setMessage("Are you sure you want to return?")
+//                                        //.setIcon(R.drawable.ic_launcher)
+//                                .setPositiveButton("Yes",
+//                                        new DialogInterface.OnClickListener() {
+//                                            public void onClick(DialogInterface dialog, int which) {
+//                                                finishCreditCardProcessing();
+//                                            }
+//                                        })
+//                                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+//                                    public void onClick(DialogInterface dialog, int which) {
+//                                        //
+//                                    }
+//                                })
+//                                .show();
                     } else {
                         GlobalMemberValues.displayDialog(SaleHistoryReturnCreditCard.this, "Warning",
                                 "Payment has not been completed\nYou have to pay $" + tempBalanceValue + "", "Close");
@@ -1287,11 +1297,12 @@ public class SaleHistoryReturnCreditCard extends Activity {
         }
     }
 
-    private void finishCreditCardProcessing() {
+    private static void finishCreditCardProcessing() {
         SaleHistoryReturn.saleHistoryReturnCardEditText.setText(mBalanceAmountValue);
         SaleHistoryReturn.setSaleHistoryReturnPrice();
         SaleHistoryReturn.setReturnFinishProcess(1);
-        this.finish();
+//        this.finish();
+        mActivity.finish();
         if (GlobalMemberValues.isUseFadeInOut()) {
             mActivity.overridePendingTransition(R.anim.act_in_top, R.anim.act_out_top);
         }

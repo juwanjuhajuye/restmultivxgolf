@@ -130,7 +130,12 @@ public class SqlStatements_mssql {
                     "wmuseyn nvarchar(2) DEFAULT 'N', " +
                     // 09142023
                     "wmtype nvarchar(2) DEFAULT '', " +
-                    "wmbean nvarchar(200) DEFAULT '' " +
+                    "wmbean nvarchar(200) DEFAULT '', " +
+
+                    // 07232024
+                    "gratuityuseyn nvarchar(2) DEFAULT 'Y', " +
+                    "bayyn nvarchar(2) DEFAULT 'Y' " +
+
                     ")";
 
 
@@ -1031,7 +1036,7 @@ public class SqlStatements_mssql {
                     // 02032024
                     "tordercode nvarchar(100) DEFAULT '' " +                        // Torder 에서 받은 주문은 T 로 시작 포스에서 주문은 P 로 시작
 
-                    ")";
+                    ")";                                                        // ★★★★★★★★★ temp_salecart_ordered 에도 동일하게 수정할 것 ★★★★★★★★★
 
 
     // 테이블 temp_salecart_ordered 생성쿼리
@@ -1462,7 +1467,12 @@ public class SqlStatements_mssql {
 
                     "cancelreason ntext DEFAULT '', " +              // void 일 경우 void 사유
 
-                    "togotype nvarchar(2) DEFAULT '' " +                       // to go 주문시 타입 (C : CALL IN    W : WALK IN)
+                    "togotype nvarchar(2) DEFAULT '', " +                       // to go 주문시 타입 (C : CALL IN    W : WALK IN)
+
+                    // 07182024
+                    // 카드결제 기기등록관련
+                    "pgdevicenum nvarchar(20) DEFAULT '' " +
+
 
                     ")";
 
@@ -1758,7 +1768,6 @@ public class SqlStatements_mssql {
                     // 01172024
                     "tableorderuseyn nvarchar(2) DEFAULT 'N', " +        //  테이블 오더 사용 여부
 
-
                     // 04192024
                     // 온라인 주문 개선관련
                     "pushpopupopenyn nvarchar(2) DEFAULT 'N'" +                   // push popup 창 오픈 여부
@@ -2019,7 +2028,12 @@ public class SqlStatements_mssql {
                     "keyinyn nvarchar(2) DEFAULT 'N', " +                            // key in 가능여부
                     "tipprocessingyn nvarchar(2) DEFAULT 'N', " +                    // 결제시 Tip 프로세싱을 할 경우 (Y : 결제시 팁프로세싱,   N : Batch 시 팁프로세싱)
                     "timeout nvarchar(2) DEFAULT '1', " +                            // 결제시 pax 연결제한시간
-                    "mdate datetime DEFAULT getdate()"+
+
+                    // 07182024
+                    // 카드결제 기기등록관련
+                    "pgdevicenum nvarchar(20) DEFAULT ''," +
+
+                    "mdate datetime DEFAULT getdate() " +
                     ")";
 
 
@@ -3752,7 +3766,41 @@ public class SqlStatements_mssql {
 
                     ")";
 
+    //07102024
+    // Table to store download data JSON for TOrder
+    public static final String SQL_CREATE_TORDERJSONDATA =
+            " IF NOT EXISTS " +
+                    " (SELECT * FROM INFORMATION_SCHEMA.tables WITH(NOLOCK) WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'torder_json_data') " +
+
+                    "CREATE TABLE torder_json_data ( " +
+                    "idx INTEGER PRIMARY KEY identity, " +
+                    "tableinfojson ntext," +
+                    "menucategoryinfojson ntext, " +
+                    "menuinfojson ntext " +
+                    ")";
+
+
+
+    // 07182024
+    // 카드결제 기기등록관련
+    // 테이블 salon_pgip 생성쿼리
+    public static final String SQL_CREATE_SALONPGIP =
+            " IF NOT EXISTS " +
+                    " (SELECT * FROM INFORMATION_SCHEMA.tables WITH(NOLOCK) WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'salon_pgip') " +
+
+                    "CREATE TABLE salon_pgip ( " +
+                    "idx INTEGER PRIMARY KEY identity, " +
+                    "scode nvarchar(50), " +
+                    "sidx int NULL," +
+                    "pgdevicenum nvarchar(20) NULL," +
+                    "networkip nvarchar(50) NULL," +
+                    "networkport nvarchar(10) NULL," +
+                    "mdate datetime DEFAULT getdate() "+
+                    ")";
+
+
 
 
 /******************************************************************************************/
 }
+

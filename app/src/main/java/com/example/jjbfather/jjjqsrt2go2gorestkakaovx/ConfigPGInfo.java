@@ -27,9 +27,15 @@ public class ConfigPGInfo {
 
 
     public ConfigPGInfo() {
+
         DatabaseInit dbInit = new DatabaseInit(MainActivity.mContext);   // DatabaseInit 객체 생성
         String strQuery = "select cardchargesystemuse, paymentgateway, paymentgatewayid, paymentgatewaypwd, tipuse, " +
-                " networkip1, networkip2, networkip3, networkip4, networkport, commtype " +
+                " networkip1, networkip2, networkip3, networkip4, networkport, commtype, " +
+
+                // 07182024
+                // 카드결제 기기등록관련
+                " pgdevicenum " +
+
                 " from salon_storestationsettings_paymentgateway ";
         Cursor pgCursor = dbInit.dbExecuteRead(strQuery);
         if (pgCursor != null && pgCursor.getCount() > 0 && pgCursor.moveToFirst()) {
@@ -53,6 +59,29 @@ public class ConfigPGInfo {
             }
             cfcommtype = GlobalMemberValues.COMMTYPE[tempCommtypeInt];
             GlobalMemberValues.logWrite("paxcommsettinglog", "cfcommtype : " + cfcommtype + "\n");
+
+
+            // 07182024 ----------------------------------------------------------------------------------
+            // 카드결제 기기등록관련
+            String pgdevicenum = GlobalMemberValues.getDBTextAfterChecked(pgCursor.getString(11), 1);
+            String tempPGIP = "";
+            String tempPGPort = "";
+            if (!GlobalMemberValues.isStrEmpty(pgdevicenum)) {
+                tempPGIP = GlobalMemberValues.getPGIP(pgdevicenum);
+                tempPGPort = GlobalMemberValues.getPGPort(pgdevicenum);
+            }
+            if (!GlobalMemberValues.isStrEmpty(tempPGIP)) {
+                cfnetworkip = tempPGIP;
+            }
+
+            if (!GlobalMemberValues.isStrEmpty(tempPGPort)) {
+                cfnetworkport = tempPGPort;
+            }
+            // 07182024 ----------------------------------------------------------------------------------
+
+            GlobalMemberValues.logWrite("paxcommsettinglogjjj", "cfnetworkip : " + cfnetworkip + "\n");
+            GlobalMemberValues.logWrite("paxcommsettinglogjjj", "cfnetworkport : " + cfnetworkport + "\n");
+
         }
     }
 }

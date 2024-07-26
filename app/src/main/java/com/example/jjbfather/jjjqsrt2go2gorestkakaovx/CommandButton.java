@@ -28,6 +28,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.nio.channels.FileChannel;
+import java.util.Vector;
 
 /**
  * Created by BCS_RTBS_JJFATHER on 2015-11-19.
@@ -421,7 +422,6 @@ public class CommandButton {
             commandButton_togo_table.setVisibility(View.VISIBLE);
         } else {
             closeBtn.setVisibility(View.VISIBLE);
-            downloadCommandButton.setVisibility(View.INVISIBLE);
 
             // 04302024
             if (!GlobalMemberValues.isQSRPOSonRestaurantPOS) {
@@ -897,20 +897,35 @@ public class CommandButton {
                 }
                 case R.id.commandButton_togo_table : {
                     if (MainMiddleService.mGeneralArrayList.size() > 0) {
-                        if ((MainMiddleService.mGeneralArrayList.toString().equals(MainActivity.temp_str_salecart))) {
+                        //07182024 adjust way of getting string value of mGeneralArrayList
+                        StringBuilder mGeneralArrayListString = new StringBuilder();
+//                        for(TemporarySaleCart tempSaleCart : MainMiddleService.mGeneralArrayList){
+//                            mGeneralArrayListString.append(tempSaleCart.returnTempCartString());
+//                        }
+                        for(TemporarySaleCart tempSaleCart : MainMiddleService.mGeneralArrayList) {
+                            if (tempSaleCart.returnTempCartString().toLowerCase().contains("discount") ||
+                                    tempSaleCart.returnTempCartString().toLowerCase().contains(GlobalMemberValues.mCommonGratuityName.toLowerCase())) {
+                            } else {
+                                mGeneralArrayListString.append(tempSaleCart.returnTempCartString());
+                            }
+                        }
+
+                        if(mGeneralArrayListString.toString().equals(MainActivity.temp_str_salecart)){
+                        //if ((MainMiddleService.mGeneralArrayList.toString().equals(MainActivity.temp_str_salecart))) {
                             MainMiddleService.initList();
                             GlobalMemberValues.openRestaurantTable();
                         } else {
-                            if (MainActivity.temp_str_salecart_cnt > 0) {
-                                if (MainActivity.temp_str_salecart_cnt == MainMiddleService.mGeneralArrayList.size()) {
-                                    MainMiddleService.initList();
-                                    GlobalMemberValues.openRestaurantTable();
-                                } else {
-                                    GlobalMemberValues.displayDialog(MainActivity.mContext, "Warning",
-                                            "There is an added menu\nPlease print the kitchen or delete the added menu", "Close");
-                                }
-                                return;
-                            }
+                            //07182024 this part isn't needed anymore?
+//                            if (MainActivity.temp_str_salecart_cnt > 0) {
+//                                if (MainActivity.temp_str_salecart_cnt == MainMiddleService.mGeneralArrayList.size()) {
+//                                    MainMiddleService.initList();
+//                                    GlobalMemberValues.openRestaurantTable();
+//                                } else {
+//                                    GlobalMemberValues.displayDialog(MainActivity.mContext, "Warning",
+//                                            "There is an added menu\nPlease print the kitchen or delete the added menu", "Close");
+//                                }
+//                                return;
+//                            }
 
                             Popup_to_go_table_3btn popup_to_go_table = new Popup_to_go_table_3btn(
                                     MainActivity.mContext, "","There is an ordered menu. Would you like to print into the kitchen?", new CustomDialogClickListener() {
@@ -1221,6 +1236,7 @@ public class CommandButton {
             File data = Environment.getDataDirectory();
 
             if (sd.canWrite()) {
+
                 File backupDB = new File(
                         data, "//data//" + tempPackagename + "//databases//" + GlobalMemberValues.DATABASE_NAME);
                 File backupDBWal = new File(
@@ -1248,14 +1264,11 @@ public class CommandButton {
                 dst.close();
 
                 //06272024 only if the device is using wal mode, restore the -wal and -shm file
-                if (backupDBWal.exists()){
+                if (backupDBWal.exists() && currentDBWal.exists()) {
                     FileChannel srcWal = new FileInputStream(currentDBWal).getChannel();
                     FileChannel dstWal = new FileOutputStream(backupDBWal).getChannel();
 
-                    FileChannel srcShm = new FileInputStream(currentDBShm).getChannel();
-                    FileChannel dstShm = new FileOutputStream(backupDBShm).getChannel();
-
-                    for(long count = currentDBWal.length(); count > 0L;){
+                    for (long count = currentDBWal.length(); count > 0L; ) {
                         final long transferred = dstWal.transferFrom(
                                 srcWal, dstWal.position(), count);
                         dstWal.position(dstWal.position() + transferred);
@@ -1264,6 +1277,11 @@ public class CommandButton {
 
                     srcWal.close();
                     dstWal.close();
+                }
+                if (backupDBShm.exists() && currentDBShm.exists()){
+
+                    FileChannel srcShm = new FileInputStream(currentDBShm).getChannel();
+                    FileChannel dstShm = new FileOutputStream(backupDBShm).getChannel();
 
                     for(long count = currentDBShm.length(); count > 0L;){
                         final long transferred = dstShm.transferFrom(
@@ -1297,7 +1315,6 @@ public class CommandButton {
             GlobalMemberValues.logWrite("commandButtonDatabase", "에러메시지 : " + e.getMessage().toString() + "\n");
         }
     }
-
 
     public static void backupDatabase(boolean paramOpenDialog) {
         // 패키지명 가져오기
@@ -1367,6 +1384,7 @@ public class CommandButton {
                     dst.position(dst.position() + transferred);
                     count -= transferred;
                 }
+
                 src.close();
                 dst.close();
 

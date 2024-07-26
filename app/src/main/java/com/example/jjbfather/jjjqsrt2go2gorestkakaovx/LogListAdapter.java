@@ -49,12 +49,16 @@ public class LogListAdapter extends BaseAdapter {
 
         TextView tv_loglist_row_salescode = convertView.findViewById(R.id.loglist_row_salescode);
 
+        TextView tv_row_stcode = convertView.findViewById(R.id.loglist_row_stcode);
+
         tv_date.setText((CharSequence) arrayList.get(position).get(9));
         tv_emp_name.setText((CharSequence) arrayList.get(position).get(8));
         tv_btn_name.setText((CharSequence) arrayList.get(position).get(4));
         tv_btn_text.setText((CharSequence) arrayList.get(position).get(6));
 
         tv_loglist_row_salescode.setText((CharSequence) arrayList.get(position).get(10));
+
+        tv_row_stcode.setText((CharSequence) arrayList.get(position).get(2));
 
         return convertView;
     }

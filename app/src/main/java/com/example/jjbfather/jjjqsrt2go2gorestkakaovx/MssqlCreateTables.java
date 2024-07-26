@@ -219,6 +219,13 @@ public class MssqlCreateTables {
         // 05302024
         vec.addElement(SqlStatements_mssql.SQL_CREATE_SALONSALESTOGODELIVERYFEE);
 
+        // 07102024
+        vec.addElement(SqlStatements_mssql.SQL_CREATE_TORDERJSONDATA);
+
+
+        // 07182024
+        // 카드결제 기기등록관련
+        vec.addElement(SqlStatements_mssql.SQL_CREATE_SALONPGIP);
 
 
         MssqlDatabase.executeTransaction(vec);

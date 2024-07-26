@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -44,6 +46,12 @@ public class SettingsPaymentGateway extends Activity {
     private TextView settingsPaymentGatewayTitleTextView11, settingsPaymentGatewayTitleTextView12;
     private TextView settingsPaymentGatewayTitleTextView13, settingsPaymentGatewayTitleTextView14;
     private TextView settingsPaymentGatewayTitleTextView15;
+
+    // 07182024
+    // 카드결제 기기등록관련
+    private TextView settingsPaymentGatewayTitleTextView16;
+    public static TextView devicenumTextView;
+    private Button devicenumTextBtn;
 
     private EditText networkIpTextView1, networkIpTextView2, networkIpTextView3, networkIpTextView4;
     private EditText networkPortTextView;
@@ -452,6 +460,32 @@ public class SettingsPaymentGateway extends Activity {
         settingsPaymentGatewayTitleTextView15 = (TextView)findViewById(R.id.settingsPaymentGatewayTitleTextView15);
         settingsPaymentGatewayTitleTextView15.setTextSize(settingsPaymentGatewayTitleTextView15.getTextSize() * GlobalMemberValues.getGlobalFontSize());
 
+
+
+        // 07182024 ----------------------------------------------------------------------------------------------
+        // 카드결제 기기등록관련
+        settingsPaymentGatewayTitleTextView16 = (TextView)findViewById(R.id.settingsPaymentGatewayTitleTextView16);
+        settingsPaymentGatewayTitleTextView16.setTextSize(settingsPaymentGatewayTitleTextView16.getTextSize() * GlobalMemberValues.getGlobalFontSize());
+
+        devicenumTextView = (TextView)findViewById(R.id.devicenumTextView);
+        devicenumTextView.setTextSize(devicenumTextView.getTextSize() * GlobalMemberValues.getGlobalFontSize());
+
+        devicenumTextBtn = (Button)findViewById(R.id.devicenumTextBtn);
+        devicenumTextBtn.setOnClickListener(mButtonClick);
+//        devicenumTextBtn.setTextSize(
+//                devicenumTextBtn.getTextSize()
+//                        * GlobalMemberValues.getGlobalFontSize()
+//        );
+
+        String deviceNumPGIP = "";
+        if (!GlobalMemberValues.isStrEmpty(GlobalMemberValues.getPGDeviceNum())) {
+            deviceNumPGIP = GlobalMemberValues.getPGDeviceNum() + " (IP : " + GlobalMemberValues.getPGIP(GlobalMemberValues.getPGDeviceNum()) + ") ";
+        }
+
+        devicenumTextView.setText(deviceNumPGIP);
+        // 07182024 ----------------------------------------------------------------------------------------------
+
+
         settingsPaymentGatewaySubTitleTextView1 = (TextView)findViewById(R.id.settingsPaymentGatewaySubTitleTextView1);
         settingsPaymentGatewaySubTitleTextView1.setTextSize(settingsPaymentGatewaySubTitleTextView1.getTextSize() * GlobalMemberValues.getGlobalFontSize());
 
@@ -465,6 +499,15 @@ public class SettingsPaymentGateway extends Activity {
 
         signatureimagedeletedaysagoEv_del_btn = (Button) findViewById(R.id.signatureimagedeletedaysagoEv_del_btn);
         signatureimagedeletedaysagoEv_del_btn.setOnClickListener(msignatureimagedeletedaysagoEv_del_btn);
+
+
+
+        // 07242026 ------------------------------
+        LinearLayout networkipLn1 = (LinearLayout) findViewById(R.id.networkipLn1);
+        networkipLn1.setVisibility(View.GONE);
+        LinearLayout networkipLn2 = (LinearLayout) findViewById(R.id.networkipLn2);
+        networkipLn2.setVisibility(View.GONE);
+        // 07242026 ------------------------------
     }
 
     View.OnClickListener mButtonClick = new View.OnClickListener() {
@@ -478,6 +521,18 @@ public class SettingsPaymentGateway extends Activity {
                     } else {
                         GlobalMemberValues.displayDialog(context, "Settings - Payment Gateway", "Update Failure", "Close");
                     }
+
+                    break;
+                }
+                case R.id.devicenumTextBtn : {
+
+                    Intent pgDeviceIntent = new Intent(MainActivity.mContext, SettingsPaymentGatewayDevices.class);
+                    mActivity.startActivity(pgDeviceIntent);
+                    if (GlobalMemberValues.isUseFadeInOut()) {
+                        mActivity.overridePendingTransition(R.anim.act_in_left, R.anim.act_out_left);
+                    }
+
+                    break;
                 }
             }
         }
@@ -633,73 +688,70 @@ public class SettingsPaymentGateway extends Activity {
 
         // PG 가 PAX POSLink 이면 port 값을 반드시 입력받도록 한다.
         if (insPaymentgateway == 1) {
-            if (selectedCommtypeSpinner == 1 && GlobalMemberValues.isStrEmpty(insNetworkport)) {
-                GlobalMemberValues.displayDialog(context, "Warning", "Enter port number", "Close");
-            } else {
-                // 쿼리문자열을 담을 벡터 변수생성
-                Vector<String> strUpdateQueryVec = new Vector<String>();
-                String updStrQuery = "update salon_storestationsettings_paymentgateway set " +
-                        " cardchargesystemuse = '" + insCardchargesystemuse + "', " +
-                        " paymentgateway = '" + insPaymentgateway + "', " +
-                        " paymentgatewayid = '" + insPaymentgatewayid + "', " +
-                        " paymentgatewaypwd = '" + insPaymentgatewaypwd + "', " +
-                        " tipuse = '" + insTipuse + "', " +
-                        " networkip1 = '" + insNetworkip1 + "', " +
-                        " networkip2 = '" + insNetworkip2 + "', " +
-                        " networkip3 = '" + insNetworkip3 + "', " +
-                        " networkip4 = '" + insNetworkip4 + "', " +
-                        " networkport = '" + insNetworkport + "', " +
-                        " signpaduseyn = '" + insSignaturePad + "', " +
-                        " tipselectonsignature = '" + insTipselectonsignature + "', " +
-                        " tipselect1 = '" + insTipSelect1 + "', " +
-                        " tipselect2 = '" + insTipSelect2 + "', " +
-                        " tipselect3 = '" + insTipSelect3 + "', " +
-                        " tipselect4 = '" + insTipSelect4 + "', " +
-                        " tiplineonreceipt = '" + insTiplineOntheReceipt + "', " +
-                        " signatureimagedeletedaysago = '" + insSignatureimagedeletedaysago + "', " +
-                        " ischeckbeforecardpay = '" + insIscheckbeforecardpay + "', " +
-                        " commtype = '" + insCommtype + "', " +
-                        " keyinyn = '" + insKeyinyn + "', " +
-                        " tipprocessingyn = '" + insTipprocessingyn + "', " +
-                        " timeout = '" + insTimeout + "', " +
-                        " mdate = datetime('now') ";
-                strUpdateQueryVec.addElement(updStrQuery);
 
-                for (String tempQuery : strUpdateQueryVec) {
-                    GlobalMemberValues.logWrite("SettingsSystemLog", "query : " + tempQuery + "\n");
-                }
+            // 쿼리문자열을 담을 벡터 변수생성
+            Vector<String> strUpdateQueryVec = new Vector<String>();
+            String updStrQuery = "update salon_storestationsettings_paymentgateway set " +
+                    " cardchargesystemuse = '" + insCardchargesystemuse + "', " +
+                    " paymentgateway = '" + insPaymentgateway + "', " +
+                    " paymentgatewayid = '" + insPaymentgatewayid + "', " +
+                    " paymentgatewaypwd = '" + insPaymentgatewaypwd + "', " +
+                    " tipuse = '" + insTipuse + "', " +
+                    " networkip1 = '" + insNetworkip1 + "', " +
+                    " networkip2 = '" + insNetworkip2 + "', " +
+                    " networkip3 = '" + insNetworkip3 + "', " +
+                    " networkip4 = '" + insNetworkip4 + "', " +
+                    " networkport = '" + insNetworkport + "', " +
+                    " signpaduseyn = '" + insSignaturePad + "', " +
+                    " tipselectonsignature = '" + insTipselectonsignature + "', " +
+                    " tipselect1 = '" + insTipSelect1 + "', " +
+                    " tipselect2 = '" + insTipSelect2 + "', " +
+                    " tipselect3 = '" + insTipSelect3 + "', " +
+                    " tipselect4 = '" + insTipSelect4 + "', " +
+                    " tiplineonreceipt = '" + insTiplineOntheReceipt + "', " +
+                    " signatureimagedeletedaysago = '" + insSignatureimagedeletedaysago + "', " +
+                    " ischeckbeforecardpay = '" + insIscheckbeforecardpay + "', " +
+                    " commtype = '" + insCommtype + "', " +
+                    " keyinyn = '" + insKeyinyn + "', " +
+                    " tipprocessingyn = '" + insTipprocessingyn + "', " +
+                    " timeout = '" + insTimeout + "', " +
+                    " mdate = datetime('now') ";
+            strUpdateQueryVec.addElement(updStrQuery);
 
-                if (strUpdateQueryVec.size() > 0) {
-                    // 트랜잭션으로 DB 처리한다.
-                    String returnResult = dbInit.dbExecuteWriteForTransactionReturnResult(strUpdateQueryVec);
-                    if (returnResult == "N" || returnResult == "") {
-                        returnValue = 0;
-                    } else {
-                        returnValue = 1;
-                    }
-                } else {
+            for (String tempQuery : strUpdateQueryVec) {
+                GlobalMemberValues.logWrite("SettingsSystemLog", "query : " + tempQuery + "\n");
+            }
+
+            if (strUpdateQueryVec.size() > 0) {
+                // 트랜잭션으로 DB 처리한다.
+                String returnResult = dbInit.dbExecuteWriteForTransactionReturnResult(strUpdateQueryVec);
+                if (returnResult == "N" || returnResult == "") {
                     returnValue = 0;
+                } else {
+                    returnValue = 1;
+                }
+            } else {
+                returnValue = 0;
+            }
+
+            // Global Static 변수에 저장해야 할 경우 아래에 코딩.....
+            if (returnValue > 0) {
+                if (insIscheckbeforecardpay == "Y" || insIscheckbeforecardpay.equals("Y")) {
+                    GlobalMemberValues.ISCHECK_BEFORE_CARDPAY = true;
+                } else {
+                    GlobalMemberValues.ISCHECK_BEFORE_CARDPAY = false;
                 }
 
-                // Global Static 변수에 저장해야 할 경우 아래에 코딩.....
-                if (returnValue > 0) {
-                    if (insIscheckbeforecardpay == "Y" || insIscheckbeforecardpay.equals("Y")) {
-                        GlobalMemberValues.ISCHECK_BEFORE_CARDPAY = true;
-                    } else {
-                        GlobalMemberValues.ISCHECK_BEFORE_CARDPAY = false;
-                    }
+                if (insKeyinyn == "Y" || insKeyinyn.equals("Y")) {
+                    GlobalMemberValues.CARD_KEY_IN = true;
+                } else {
+                    GlobalMemberValues.CARD_KEY_IN = false;
+                }
 
-                    if (insKeyinyn == "Y" || insKeyinyn.equals("Y")) {
-                        GlobalMemberValues.CARD_KEY_IN = true;
-                    } else {
-                        GlobalMemberValues.CARD_KEY_IN = false;
-                    }
-
-                    if (insTipprocessingyn == "Y" || insTipprocessingyn.equals("Y")) {
-                        GlobalMemberValues.CARD_TIP_PROCESSING = true;
-                    } else {
-                        GlobalMemberValues.CARD_TIP_PROCESSING = false;
-                    }
+                if (insTipprocessingyn == "Y" || insTipprocessingyn.equals("Y")) {
+                    GlobalMemberValues.CARD_TIP_PROCESSING = true;
+                } else {
+                    GlobalMemberValues.CARD_TIP_PROCESSING = false;
                 }
             }
         }

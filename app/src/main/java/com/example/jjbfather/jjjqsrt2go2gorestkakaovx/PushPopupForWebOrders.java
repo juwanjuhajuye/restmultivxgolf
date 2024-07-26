@@ -8,6 +8,8 @@ import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -16,6 +18,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -78,10 +81,10 @@ public class PushPopupForWebOrders extends Activity {
         // DatabaseInit 객체 생성
         dbInit = new DatabaseInit(this);
 
-        int parentLnWidth = (GlobalMemberValues.getDisplayWidth(this) / 100) * 60;
-        int parentLnHeight = (GlobalMemberValues.getDisplayHeiheight(this) / 100) * 70;
+        int parentLnWidth = (GlobalMemberValues.getDisplayWidth(this) / 100) * 40;
+        int parentLnHeight = (GlobalMemberValues.getDisplayHeiheight(this) / 100) * 50;
         if (GlobalMemberValues.thisTabletRealHeight < 800) {
-            parentLnHeight = (GlobalMemberValues.getDisplayHeiheight(this) / 100) * 70;
+            parentLnHeight = (GlobalMemberValues.getDisplayHeiheight(this) / 100) * 50;
         }
         LinearLayout.LayoutParams parentLnParams
                 = new LinearLayout.LayoutParams(parentLnWidth, parentLnHeight);
@@ -203,6 +206,7 @@ public class PushPopupForWebOrders extends Activity {
         }
 
 
+
         // 08302023
         pushForWebOrderOnlineType_ln = (LinearLayout)findViewById(R.id.pushForWebOrderOnlineType_ln);
         pushForWebOrderOnlineType = (TextView)findViewById(R.id.pushForWebOrderOnlineType);
@@ -236,6 +240,7 @@ public class PushPopupForWebOrders extends Activity {
             }
         }
         pushForWebOrderOnlineType.setText(webOrdersOnlineType_str);
+
 
 
 
@@ -284,7 +289,6 @@ public class PushPopupForWebOrders extends Activity {
                     tempMainYN = MainActivity.mDbInit.dbExecuteReadReturnString("select mainYN from salon_storestationinfo where stcode = '" + GlobalMemberValues.STATION_CODE + "' ");
                 }
             }
-
         }
         if (GlobalMemberValues.isStrEmpty(tempMainYN)) {
             tempMainYN = "N";
@@ -316,13 +320,65 @@ public class PushPopupForWebOrders extends Activity {
                     e.printStackTrace();
                 }
 
+
+
+
+
+                Vector<String> updateVec = new Vector<String>();
+
                 if (!GlobalMemberValues.isStrEmpty(jsonroot_kitchen.toString())) {
-                    GlobalMemberValues.KITCHENPRINT_FROM_PUSH_FOR_ELO = "Y";
-                    GlobalMemberValues.printGateByKitchen(jsonroot_kitchen, mContext, "kitchen1");
+                    int tempKtprintedynCnt = 0;
+                    tempKtprintedynCnt = GlobalMemberValues.getIntAtString(MssqlDatabase.getResultSetValueToString(
+                            " select count(*) from salon_sales_web_push_realtime " +
+                                    " where salescode = '" + webOrdersSalesCode + "' and kitchenprintedyn = 'Y' "));
+
+                    if (tempKtprintedynCnt == 0) {
+                        GlobalMemberValues.KITCHENPRINT_FROM_PUSH_FOR_ELO = "Y";
+                        GlobalMemberValues.printGateByKitchen(jsonroot_kitchen, mContext, "kitchen1");
+
+
+
+                        // 09152023
+                        String strQuery = " update salon_sales_web_push_realtime set " +
+                                " kitchenprintedyn = 'Y' " +
+                                " where salescode = '" + webOrdersSalesCode + "' ";
+
+                        updateVec.addElement(strQuery);
+                    }
+
                 }
                 if (GlobalMemberValues.isOnlineOrderAutoReceiptPrinting()){
-                    // printReceipt();
+                    int tempRtprintedynCnt = 0;
+                    tempRtprintedynCnt = GlobalMemberValues.getIntAtString(MssqlDatabase.getResultSetValueToString(
+                            " select count(*) from salon_sales_web_push_realtime " +
+                                    " where salescode = '" + webOrdersSalesCode + "' and receiptprintedyn = 'Y' "));
+
+                    if (tempRtprintedynCnt == 0) {
+                        printReceipt();
+
+                        // 09152023
+                        String strQuery = " update salon_sales_web_push_realtime set " +
+                                " receiptprintedyn = 'Y' " +
+                                " where salescode = '" + webOrdersSalesCode + "' ";
+
+                        updateVec.addElement(strQuery);
+                    }
                 }
+
+                if (updateVec != null && updateVec.size() > 0) {
+                    String returnResult = "";
+                    returnResult = dbInit.dbExecuteWriteForTransactionReturnResult(updateVec);
+                    if (returnResult == "N" || returnResult == "") {
+                        //
+                    } else {
+                    }
+                }
+
+
+
+
+
+
             }
         }
         // -----------------------------------------------------------------------------------
@@ -419,96 +475,91 @@ public class PushPopupForWebOrders extends Activity {
         popup_sound_handler.removeMessages(1);
     }
 
+    public void printReceipt() {
+        GlobalMemberValues.logWrite("LogAboutreceiptJson", "여기실행.. " + "\n");
 
+        if (GlobalMemberValues.isStrEmpty(webOrdersSalesCode)) {
+            return;
+        }
 
+        Thread thread = new Thread(new Runnable() {
+            public void run() {
+                // 1. 처리가 오래걸리는 부분 실행 --------------------------------------------------
+                if (GlobalMemberValues.GLOBALNETWORKSTATUS > 0) {
+                    if (!GlobalMemberValues.isOnline().equals("00")) {
+//                        GlobalMemberValues.showDialogNoInternet(context);
+                    } else {
+                        API_download_weborders_receiptjson apiWebOrdersReceiptJson = new API_download_weborders_receiptjson(webOrdersSalesCode);
+                        apiWebOrdersReceiptJson.execute(null, null, null);
+                        try {
+                            Thread.sleep(GlobalMemberValues.API_THREAD_TIME); //1초마다 실행
+                            if (apiWebOrdersReceiptJson.mFlag) {
+                                mSelectedReceiptJsonStr = apiWebOrdersReceiptJson.mReturnValue;
+                            }
+                        } catch (InterruptedException e) {
+                            mSelectedReceiptJsonStr = "";
+                        }
+                    }
+                }
+                // ---------------------------------------------------------------------------------
+                // 2. 작업이 끝나면 이 핸들러를 호출 -----------------------------------------------
+                receiptJsonHandler.sendEmptyMessage(0);
+                // ---------------------------------------------------------------------------------
+            }
+        });
+        thread.start();
+    }
 
+    public static Handler receiptJsonHandler = new Handler() {
+        public void handleMessage(Message msg) {
+            if (!GlobalMemberValues.isStrEmpty(mSelectedReceiptJsonStr)) {
+                // 1. 이곳에 시간이 걸리는 작업이 끝난후 처리해야할 부분을 넣음.
+                String receiptJson = mSelectedReceiptJsonStr;
+                GlobalMemberValues.logWrite("LogAboutreceiptJson", "receiptJson : " + receiptJson + "\n");
 
-//
-//    public void printReceipt() {
-//        GlobalMemberValues.logWrite("LogAboutreceiptJson", "여기실행.. " + "\n");
-//
-//        if (GlobalMemberValues.isStrEmpty(webOrdersSalesCode)) {
-//            return;
-//        }
-//
-//        Thread thread = new Thread(new Runnable() {
-//            public void run() {
-//                // 1. 처리가 오래걸리는 부분 실행 --------------------------------------------------
-//                if (GlobalMemberValues.GLOBALNETWORKSTATUS > 0) {
-//                    if (!GlobalMemberValues.isOnline().equals("00")) {
-////                        GlobalMemberValues.showDialogNoInternet(context);
-//                    } else {
-//                        API_download_weborders_receiptjson apiWebOrdersReceiptJson = new API_download_weborders_receiptjson(webOrdersSalesCode);
-//                        apiWebOrdersReceiptJson.execute(null, null, null);
-//                        try {
-//                            Thread.sleep(GlobalMemberValues.API_THREAD_TIME); //1초마다 실행
-//                            if (apiWebOrdersReceiptJson.mFlag) {
-//                                mSelectedReceiptJsonStr = apiWebOrdersReceiptJson.mReturnValue;
-//                            }
-//                        } catch (InterruptedException e) {
-//                            mSelectedReceiptJsonStr = "";
+                if (!GlobalMemberValues.isStrEmpty(receiptJson)) {
+                    JSONObject jsonroot = null;
+                    try {
+                        jsonroot = new JSONObject(receiptJson);
+                        jsonroot.put("reprintyn", "N");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                    // Label print
+//                    if (GlobalMemberValues.isUseLabelPrinter()){
+//                        // json 쪼개기..
+//                        JSONArray temp_array = new JSONArray();
+//                        temp_array = GlobalMemberValues.labelPrint_menuSplit(jsonroot);
+//                        if (temp_array != null && temp_array.length() != 0){
+////                            EpsonLabelPrinter epsonLabelPrinter = new EpsonLabelPrinter(MainActivity.mContext);
+////                            epsonLabelPrinter.runPrintReceiptSequence_array(temp_array, "USB:");
+//                            GlobalMemberValues.printLabel1to5(temp_array);
 //                        }
 //                    }
-//                }
-//                // ---------------------------------------------------------------------------------
-//                // 2. 작업이 끝나면 이 핸들러를 호출 -----------------------------------------------
-//                receiptJsonHandler.sendEmptyMessage(0);
-//                // ---------------------------------------------------------------------------------
-//            }
-//        });
-//        thread.start();
-//    }
-//
-//    public static Handler receiptJsonHandler = new Handler() {
-//        public void handleMessage(Message msg) {
-//            if (!GlobalMemberValues.isStrEmpty(mSelectedReceiptJsonStr)) {
-//                // 1. 이곳에 시간이 걸리는 작업이 끝난후 처리해야할 부분을 넣음.
-//                String receiptJson = mSelectedReceiptJsonStr;
-//                GlobalMemberValues.logWrite("LogAboutreceiptJson", "receiptJson : " + receiptJson + "\n");
-//
-//                if (!GlobalMemberValues.isStrEmpty(receiptJson)) {
-//                    JSONObject jsonroot = null;
-//                    try {
-//                        jsonroot = new JSONObject(receiptJson);
-//                        jsonroot.put("reprintyn", "N");
-//                    } catch (JSONException e) {
-//                        e.printStackTrace();
-//                    }
-//
-//                    // Label print
-////                    if (GlobalMemberValues.isUseLabelPrinter()){
-////                        // json 쪼개기..
-////                        JSONArray temp_array = new JSONArray();
-////                        temp_array = GlobalMemberValues.labelPrint_menuSplit(jsonroot);
-////                        if (temp_array != null && temp_array.length() != 0){
-//////                            EpsonLabelPrinter epsonLabelPrinter = new EpsonLabelPrinter(MainActivity.mContext);
-//////                            epsonLabelPrinter.runPrintReceiptSequence_array(temp_array, "USB:");
-////                            GlobalMemberValues.printLabel1to5(temp_array);
-////                        }
-////                    }
-////                    // Label print
-//
-//                    if (jsonroot != null) {
-//                        GlobalMemberValues.mReReceiptprintYN = "Y";
-//                        GlobalMemberValues.mOnlineOrder = "Y";
-//                        // Merchant 영수증 프린트 ----------------------------------------------------------------------------------------------------------------------------
-//                        if (GlobalMemberValues.RECEIPTPRINTTYPE == "" || GlobalMemberValues.RECEIPTPRINTTYPE.equals("merchant") || GlobalMemberValues.RECEIPTPRINTTYPE.equals("custmerc")) {
-//                            GlobalMemberValues.RECEIPTPRINTTYPE = "merchant";
-//                            GlobalMemberValues.printReceiptByJHP(jsonroot, MainActivity.mContext, "payment");
-//                        }
-//                        // Customer 영수증 프린트 ----------------------------------------------------------------------------------------------------------------------------
-//                        if (GlobalMemberValues.ONLY_MERCHANTRECEIPT_PRINT == "N" || GlobalMemberValues.ONLY_MERCHANTRECEIPT_PRINT.equals("N")) {
-//                            if (GlobalMemberValues.RECEIPTPRINTTYPE == "" || GlobalMemberValues.RECEIPTPRINTTYPE.equals("customer") || GlobalMemberValues.RECEIPTPRINTTYPE.equals("custmerc")) {
-//                                GlobalMemberValues.RECEIPTPRINTTYPE = "customer";
-//                                GlobalMemberValues.printReceiptByJHP(jsonroot, MainActivity.mContext, "payment");
-//                            }
-//                        }
-//                    }
-//                } else {
-//                    GlobalMemberValues.displayDialog(MainActivity.mContext, "Waraning", "There is no data to reprint", "Close");
-//                }
-//            }
-//        }
-//    };
+                    // Label print
+
+                    if (jsonroot != null) {
+                        GlobalMemberValues.mReReceiptprintYN = "Y";
+                        GlobalMemberValues.mOnlineOrder = "Y";
+                        // Merchant 영수증 프린트 ----------------------------------------------------------------------------------------------------------------------------
+                        if (GlobalMemberValues.RECEIPTPRINTTYPE == "" || GlobalMemberValues.RECEIPTPRINTTYPE.equals("merchant") || GlobalMemberValues.RECEIPTPRINTTYPE.equals("custmerc")) {
+                            GlobalMemberValues.RECEIPTPRINTTYPE = "merchant";
+                            GlobalMemberValues.printReceiptByJHP(jsonroot, MainActivity.mContext, "payment");
+                        }
+                        // Customer 영수증 프린트 ----------------------------------------------------------------------------------------------------------------------------
+                        if (GlobalMemberValues.ONLY_MERCHANTRECEIPT_PRINT == "N" || GlobalMemberValues.ONLY_MERCHANTRECEIPT_PRINT.equals("N")) {
+                            if (GlobalMemberValues.RECEIPTPRINTTYPE == "" || GlobalMemberValues.RECEIPTPRINTTYPE.equals("customer") || GlobalMemberValues.RECEIPTPRINTTYPE.equals("custmerc")) {
+                                GlobalMemberValues.RECEIPTPRINTTYPE = "customer";
+                                GlobalMemberValues.printReceiptByJHP(jsonroot, MainActivity.mContext, "payment");
+                            }
+                        }
+                    }
+                } else {
+                    GlobalMemberValues.displayDialog(MainActivity.mContext, "Waraning", "There is no data to reprint", "Close");
+                }
+            }
+        }
+    };
 
 }

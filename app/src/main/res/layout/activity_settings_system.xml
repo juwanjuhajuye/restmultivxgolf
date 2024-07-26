@@ -2288,7 +2288,6 @@
 
 
 
-
                         <!-- 04192024 온라인 주문 개선관련 -->
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -2339,6 +2338,9 @@
                             </LinearLayout>
 
                         </LinearLayout>
+
+
+
 
 
 
@@ -5326,7 +5328,21 @@
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
                                     android:layout_weight="0.9"
+                                    android:paddingTop="5dp"
+                                    android:paddingBottom="5dp"
                                     android:orientation="horizontal">
+                                    <Button
+                                        android:id="@+id/transdata"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:background="@drawable/button_selector_giftcard_search"
+                                        android:gravity="center_horizontal|center_vertical"
+                                        android:text="TRANS. DATA"
+                                        android:textSize="15dp"
+                                        android:textStyle="bold"
+                                        android:layout_marginRight="10dp"
+                                        android:textColor="#ffffff"
+                                        android:visibility="visible"/>
                                 </LinearLayout>
 
                             </LinearLayout>

@@ -171,6 +171,10 @@ public class PaymentCustomerSelectReceipt extends Activity {
     }
 
     public void setContents() {
+        // 07212024 - TOrder Send Data
+        // GlobalMemberValues.sendDataToTOrderService(MainActivity.mContext, MainActivity.mActivity);
+
+
         // 102022 이곳에
         GlobalMemberValues.setGoneForCardCashPayView();
 

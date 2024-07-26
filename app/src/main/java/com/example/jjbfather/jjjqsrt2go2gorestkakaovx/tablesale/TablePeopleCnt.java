@@ -18,6 +18,8 @@ import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.GlobalMemberValues;
 import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.MainActivity;
 import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.MssqlDatabase;
 import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.R;
+import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.Discount;
+import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.MainMiddleService;
 
 import java.util.ArrayList;
 import java.util.Vector;

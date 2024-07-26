@@ -33,6 +33,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SimpleItemAnimator;
+
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
@@ -217,7 +218,7 @@ public class MainActivity extends Activity {
 
     private PopupIpInput popupIpInput;
 
-    static String temp_str_salecart = null;
+    static String temp_str_salecart = "";
     static int temp_str_salecart_cnt = 0;
 
     static boolean b_customer_place_to_order = false;
@@ -227,7 +228,7 @@ public class MainActivity extends Activity {
     LinearLayout main_grid_relative_view_loading;
     Animation Quick_LeftAnim;
     Animation Quick_RightAnim;
-    public RecyclerView quick_table_grid_list;    
+    public RecyclerView quick_table_grid_list;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -317,8 +318,6 @@ public class MainActivity extends Activity {
                     MssqlAlterTables.alterTablesForMSSQL();
                 }
             }
-
-
 
         }
         // --------------------------------------------------------------------------------------------------
@@ -439,6 +438,20 @@ public class MainActivity extends Activity {
         // 타임메뉴 셋
         timeMenu_getServiceTime();
 
+        //07032024 before connection set database ip address
+        String tempSqlQuery = "select mssqldbip, databasename, databasepass, mobilehost, cloudhost from salon_storestationsettings_system";
+        Cursor settingsSystemCursor = MainActivity.mDbInit.dbExecuteRead(tempSqlQuery);
+        String tempIp = "";
+        if (settingsSystemCursor.getCount() > 0 && settingsSystemCursor.moveToFirst()) {
+            tempIp = GlobalMemberValues.getDBTextAfterChecked(settingsSystemCursor.getString(0), 1);
+
+            if (GlobalMemberValues.isStrEmpty(tempIp)) {
+                tempIp = "0.0.0.0";
+            } else {
+                GlobalMemberValues.mssql_ip = tempIp;
+            }
+        }
+
         // 092022
         // 로그 DB 특정기간 삭제
         LogsSave.setInitDB();
@@ -461,7 +474,6 @@ public class MainActivity extends Activity {
         Quick_LeftAnim.setAnimationListener(slidingTogoViewAnimationListener);
         Quick_RightAnim.setAnimationListener(slidingTogoViewAnimationListener);
         quick_table_grid_list = (RecyclerView)findViewById(R.id.main_quick_table_gridview);
-
     }
 
     public static void setEloInit() {
@@ -616,6 +628,7 @@ public class MainActivity extends Activity {
     private Handler handler = new Handler() {
         public void handleMessage(Message msg) {
             if (mTempFlag == 0) {
+                GlobalMemberValues.logWrite("SendDataToTOrderEvent", "api download done!");
                 // 1. 이곳에 시간이 걸리는 작업이 끝난후 처리해야할 부분을 넣음. -----------------------
                 setCommonInit();
                 // -------------------------------------------------------------------------------------
@@ -643,7 +656,6 @@ public class MainActivity extends Activity {
                     SendDataToTOrderEvent tOrderDataSender = new SendDataToTOrderEvent();
                     tOrderDataSender.execute();
                 }
-
             }
         }
     };
@@ -688,7 +700,7 @@ public class MainActivity extends Activity {
         if (GlobalMemberValues.isOnlineOrderUseYN()) {
             runTimer_newWebOrder();
         }
-        
+
         // 01172024
         // 신규 테이블오더 체크
         if (GlobalMemberValues.isTableOrderUseYN()) {
@@ -899,7 +911,7 @@ public class MainActivity extends Activity {
             };
             ///////// / Timer 생성 //////////////
             Timer timer = new Timer();
-            timer.schedule(tt_checktableorder, 0, 30000);
+            timer.schedule(tt_checktableorder, 0, 10000);
             ////////////////////////////////////
         }
 
@@ -1991,7 +2003,6 @@ public class MainActivity extends Activity {
         GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINLISTVIEW = (ListView)findViewById(R.id.mainSaleCartList);
 
 
-
         // 메인 리스트뷰 아래 Sub Total 타이틀 객체 생성
         TextView mainSubTotalTitleTextView = (TextView)findViewById(R.id.mainSubTotalTitleTextView);
         mainSubTotalTitleTextView.setTextSize(30 * GlobalMemberValues.getGlobalFontSize() + GlobalMemberValues.globalAddFontSizeForPAX());
@@ -2520,7 +2531,7 @@ public class MainActivity extends Activity {
         GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAIN_TOP_LEFT_CUSTOMER_INFO_ONLINE_SHOW = (TextView)findViewById(R.id.main_top_left_customer_info_online_order_kind);
 
         GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAIN_TOP_LEFT_CUSTOMER_INFO3 = (LinearLayout)findViewById(R.id.main_top_left_customer_info_ln3);
-        GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAIN_TOP_LEFT_ORDER_LIST = (Button)findViewById(R.id.main_top_left_order_list);        
+        GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAIN_TOP_LEFT_ORDER_LIST = (Button)findViewById(R.id.main_top_left_order_list);
 
         GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAIN_TOP_LEFT_CUSTOMER_INFO_NAME.setTextSize(30 * GlobalMemberValues.getGlobalFontSize() + GlobalMemberValues.globalAddFontSizeForPAX());
         GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAIN_TOP_LEFT_CUSTOMER_INFO_PHONE.setTextSize(30 * GlobalMemberValues.getGlobalFontSize() + GlobalMemberValues.globalAddFontSizeForPAX());
@@ -2918,25 +2929,47 @@ public class MainActivity extends Activity {
                     Payment.openGetFoodTypeIntent("");
                     //clickSendToKitchen();
                     TableSaleMain.mSelectedTablesArrList.clear();
+
+
+                    // 07212024 - TOrder Send Data
+                    // GlobalMemberValues.sendDataToTOrderService(MainActivity.mContext, MainActivity.mActivity);
+
+
                     break;
                 }
                 case R.id.button_main_side_table : {
                     LogsSave.saveLogsInDB(100);
                     if (MainMiddleService.mGeneralArrayList.size() > 0) {
-                        if ((MainMiddleService.mGeneralArrayList.toString().equals(temp_str_salecart))) {
+                        //07182024 adjust way of getting string value of mGeneralArrayList
+                        StringBuilder mGeneralArrayListString = new StringBuilder();
+//                        for(TemporarySaleCart tempSaleCart : MainMiddleService.mGeneralArrayList){
+//                            mGeneralArrayListString.append(tempSaleCart.returnTempCartString());
+//                        }
+
+                        for(TemporarySaleCart tempSaleCart : MainMiddleService.mGeneralArrayList) {
+                            if (tempSaleCart.returnTempCartString().toLowerCase().contains("discount") ||
+                                    tempSaleCart.returnTempCartString().toLowerCase().contains(GlobalMemberValues.mCommonGratuityName.toLowerCase())) {
+                            } else {
+                                mGeneralArrayListString.append(tempSaleCart.returnTempCartString());
+                            }
+                        }
+
+                        if(mGeneralArrayListString.toString().equals(MainActivity.temp_str_salecart)){
+                        //if ((MainMiddleService.mGeneralArrayList.toString().equals(temp_str_salecart))) {
                             MainMiddleService.initList();
                             GlobalMemberValues.openRestaurantTable();
                         } else {
-                            if (temp_str_salecart_cnt > 0) {
-                                if (temp_str_salecart_cnt == MainMiddleService.mGeneralArrayList.size()) {
-                                    MainMiddleService.initList();
-                                    GlobalMemberValues.openRestaurantTable();
-                                } else {
-                                    GlobalMemberValues.displayDialog(mContext, "Warning",
-                                            "There is an added menu\nPlease print the kitchen or delete the added menu", "Close");
-                                }
-                                return;
-                            }
+                            //07182024 this part isn't needed anymore.
+//                            if (temp_str_salecart_cnt > 0) {
+//                                if (temp_str_salecart_cnt == MainMiddleService.mGeneralArrayList.size()) {
+//                                    MainMiddleService.initList();
+//                                    GlobalMemberValues.openRestaurantTable();
+//                                } else {
+//                                    GlobalMemberValues.displayDialog(mContext, "Warning",
+//                                            "There is an added menu\nPlease print the kitchen or delete the added menu", "Close");
+//                                }
+//                                return;
+//                            }
 
                             Popup_to_go_table_3btn popup_to_go_table = new Popup_to_go_table_3btn(
                                     mContext, "","There is an ordered menu. Would you like to print into the kitchen?", new CustomDialogClickListener() {
@@ -3013,7 +3046,14 @@ public class MainActivity extends Activity {
                         GlobalMemberValues.openRestaurantTable();
                     }
 
+
+
                     TableSaleMain.isClickCommandOnTable = false;
+
+
+                    // 07212024 - TOrder Send Data
+                    // GlobalMemberValues.sendDataToTOrderService(MainActivity.mContext, MainActivity.mActivity);
+
 
                     break;
                 }
@@ -3547,29 +3587,31 @@ public class MainActivity extends Activity {
 
 
 
+
         // 장바구니 메뉴가 담길때만 send to kitchen 보이게
         if (MainMiddleService.mSaleCartAdapter == null){
             if (GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINBUTTONSAVEORDER != null)
                 GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINBUTTONSAVEORDER.setVisibility(View.INVISIBLE);
-            if (GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINBUTTON_BILLPRINT != null)
-                GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINBUTTON_BILLPRINT.setVisibility(View.INVISIBLE);
+//            if (GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINBUTTON_BILLPRINT != null)
+//                GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINBUTTON_BILLPRINT.setVisibility(View.INVISIBLE);
         } else {
             if (MainMiddleService.mGeneralArrayList != null){
+                //07182024 stop changing bill print button visibility
                 if (MainMiddleService.mGeneralArrayList.size() == 0) {
                     if (GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINBUTTONSAVEORDER != null)
                         GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINBUTTONSAVEORDER.setVisibility(View.INVISIBLE);
-                    if (GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINBUTTON_BILLPRINT != null)
-                        GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINBUTTON_BILLPRINT.setVisibility(View.INVISIBLE);
+                    //if (GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINBUTTON_BILLPRINT != null)
+                        //GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINBUTTON_BILLPRINT.setVisibility(View.INVISIBLE);
                 } else {
                     if (GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINBUTTONSAVEORDER != null) GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINBUTTONSAVEORDER.setVisibility(View.VISIBLE);
-                    if (GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINBUTTON_BILLPRINT != null)
-                        GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINBUTTON_BILLPRINT.setVisibility(View.VISIBLE);
+                    //if (GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINBUTTON_BILLPRINT != null)
+                        //GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINBUTTON_BILLPRINT.setVisibility(View.VISIBLE);
                 }
             } else {
                 if (GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINBUTTONSAVEORDER != null)
                     GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINBUTTONSAVEORDER.setVisibility(View.INVISIBLE);
-                if (GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINBUTTON_BILLPRINT != null)
-                    GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINBUTTON_BILLPRINT.setVisibility(View.INVISIBLE);
+                //if (GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINBUTTON_BILLPRINT != null)
+                    //GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINBUTTON_BILLPRINT.setVisibility(View.INVISIBLE);
             }
         }
 
@@ -3860,7 +3902,7 @@ public class MainActivity extends Activity {
         GlobalMemberValues.STR_NOW_DATE = DateMethodClass.nowMonthGet() + "-" + DateMethodClass.nowDayGet() + "-" + DateMethodClass.nowYearGet();
 
         // 네트워크 상태 체크
-        // GlobalMemberValues.checkOnlineService(mContext, mActivity);
+//        GlobalMemberValues.checkOnlineService(mContext, mActivity);
 
         if (ProductList.onProductListYN == "Y" || ProductList.onProductListYN.equals("Y")) {
             // 키보드 안보이게 --------------------------------------------------------------------------------------
@@ -3928,8 +3970,8 @@ public class MainActivity extends Activity {
 
         mAsset = getAssets();
 
-        // 프렌차이즈인지 여부를 설정한다.
-        GlobalMemberValues.setComFranchise();
+//        // 프렌차이즈인지 여부를 설정한다.
+//        GlobalMemberValues.setComFranchise();
 
         // Download 다운로드시 화면재개 지연시간 초기화
         //GlobalMemberValues.RESTARTSCREEN_DELYTIME = "0";
@@ -4029,7 +4071,6 @@ public class MainActivity extends Activity {
         String tempSqlQuery = "";
         String tempValue = "";
 
-
         // 04302024
         // 레스토랑 포스에서 QSR POS 로 사용할지 여부
         tempSqlQuery = "select qsronrestaurantyn from salon_storegeneral";
@@ -4042,7 +4083,6 @@ public class MainActivity extends Activity {
         } else {
             GlobalMemberValues.isQSRPOSonRestaurantPOS = false;
         }
-
 
         // 아이템(메뉴) 추가시 애니메이션 사용여부
         tempSqlQuery = "select itemanimationyn from salon_storestationsettings_system";
@@ -4301,6 +4341,8 @@ public class MainActivity extends Activity {
                         GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINBUTTON_DELIVERY_TOGO_LN.setVisibility(View.VISIBLE);
 
                         if (GlobalMemberValues.isQSRPOSonRestaurantPOS){
+                            //05172024
+                            GlobalMemberValues.GLOBAL_BUTTON_MAIN_SIDE_TABLE.setVisibility(View.GONE);
                             GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAIN_TOP_LEFT_CUSTOMER_INFO1.setVisibility(View.GONE);
                             GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAIN_TOP_LEFT_CUSTOMER_INFO3.setVisibility(View.VISIBLE);
                             GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAIN_TOP_LEFT_ORDER_LIST.setOnClickListener(new View.OnClickListener() {
@@ -4415,13 +4457,32 @@ public class MainActivity extends Activity {
         TableSaleMain.mSelected_index_for_isCheckedConfrim = null;
         // ---------------------------------------------------------
 
-        if (MainMiddleService.mGeneralArrayList != null) {
-            temp_str_salecart = MainMiddleService.mGeneralArrayList.toString();
-            temp_str_salecart_cnt = MainMiddleService.mGeneralArrayList.size();
+        //THIS IS TO STOP MODIFER SCREEN ENTERING AND BACK TO STOP UPDATING THE ORIGINAL... need better implementaion
+        if (GlobalMemberValues.is_modifier_add){
+            GlobalMemberValues.is_modifier_add = false;
         } else {
-            temp_str_salecart = null;
-            temp_str_salecart_cnt = 0;
+            if (MainMiddleService.mGeneralArrayList != null) {
+                //07182024 fix bug, this toString method doesn't actually return a comparable to String,
+                //it returns an array of tempSaleCart object, so if the tempSaleCart changes, it doesn't
+                //actually reflect that, only when an entire tempSaleCart is added or deleted.
+                //temp_str_salecart = MainMiddleService.mGeneralArrayList.toString();
+                temp_str_salecart = "";
+                for(TemporarySaleCart tempSaleCart : MainMiddleService.mGeneralArrayList){
+                    // discount, commonGratuity 제외함 072227
+                    if (tempSaleCart.returnTempCartString().toLowerCase().contains("discount") ||
+                            tempSaleCart.returnTempCartString().toLowerCase().contains(GlobalMemberValues.mCommonGratuityName.toLowerCase())) {
+                    } else {
+                        temp_str_salecart = temp_str_salecart + tempSaleCart.returnTempCartString();
+                    }
+//                    temp_str_salecart = temp_str_salecart + tempSaleCart.returnTempCartString();
+                }
+                temp_str_salecart_cnt = MainMiddleService.mGeneralArrayList.size();
+            } else {
+                temp_str_salecart = "";
+                temp_str_salecart_cnt = 0;
+            }
         }
+
 
         // 06.03.2022 ----------------------------------------------------------------------------------------
         if (GlobalMemberValues.isOpenPayment) {
@@ -5103,7 +5164,7 @@ public class MainActivity extends Activity {
                 }
             }
         });
-    }    
+    }
 
     public static void setMainBillPrintButtonVisible(boolean is_visible){
         if (GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINBUTTON_BILLPRINT == null) return;
@@ -5117,7 +5178,6 @@ public class MainActivity extends Activity {
                 }
             }
         });
-
     }
 
     private class SlidingTogoViewAnimationListener implements Animation.AnimationListener{
@@ -5192,6 +5252,9 @@ public class MainActivity extends Activity {
     }
 
     public class QuickViewHolder extends RecyclerView.Adapter<MainActivity.QuickViewHolder.ViewHolder> {
+
+        boolean is_last_in_order = false;
+        boolean b = false;
 
         private String[] mData = new String[0];
         private LayoutInflater mInflater;
@@ -5445,8 +5508,12 @@ public class MainActivity extends Activity {
 //                GlobalMemberValues.getIntAtString(tableordercnt);
                 GlobalMemberValues.logWrite("jjjtableinfolog", "tableordercnt : " + tableordercnt + "\n");
 
+                is_last_in_order = true;
+
             } else {
+                is_last_in_order = false;
                 holder.qt_row.setBackgroundResource(R.drawable.roundlayout_quick_grid_not_sel);
+
             }
 
 
@@ -5460,21 +5527,49 @@ public class MainActivity extends Activity {
             final String finalTablename = tablename;
             final String finalTableidx = tableidx;
             final String finalTableTxtColor = tableTxtColor;
-            holder.qt_row.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    BillSplitMerge.setInitValuesForBillPay();
+            boolean is_useable = false;
 
-                    tableCell_singleClick(view, holder.qt_row, holder.qt_row, finalTableidx,
-                            finalTablename, finalTableTxtColor, tableordercnt_int, "Q");
-
-                    if (GlobalMemberValues.ISDUALDISPLAYPOSSIBLE) {
-                        //jihun park sub display
-                        PaxPresentation.unSetLogo();
-                        MainActivity.updatePresentation();
-                    }
+            if (is_last_in_order){
+                is_useable = true;
+            } else {
+                if (b){
+                    is_useable = false;
+                } else {
+                    b = true;
+                    is_useable = true;
                 }
-            });
+            }
+
+
+            if (is_useable){
+                holder.qt_row.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (true){
+                            // 빈 칸 선택시
+
+                            if (true){
+                                // 선택한 셀이 첫번째 셀인지.
+                            } else {
+                                return;
+                            }
+                        }
+                        BillSplitMerge.setInitValuesForBillPay();
+
+                        tableCell_singleClick(view, holder.qt_row, holder.qt_row, finalTableidx,
+                                finalTablename, finalTableTxtColor, tableordercnt_int, "Q");
+
+                        if (GlobalMemberValues.ISDUALDISPLAYPOSSIBLE) {
+                            //jihun park sub display
+                            PaxPresentation.unSetLogo();
+                            MainActivity.updatePresentation();
+                        }
+                    }
+                });
+            } else {
+
+            }
+
 
             // table double touch
 

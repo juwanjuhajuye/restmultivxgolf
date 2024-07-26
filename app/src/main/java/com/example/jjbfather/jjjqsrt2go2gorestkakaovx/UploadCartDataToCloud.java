@@ -86,7 +86,7 @@ public class UploadCartDataToCloud extends Service implements Runnable {
 
                     " and sidx = '" + GlobalMemberValues.STORE_INDEX + "' " +
                     " order by idx asc";
-            GlobalMemberValues.logWrite("uploadcartdatalogjjjlllooo", "sql111jjj : " + strQueryString + "\n");
+            GlobalMemberValues.logWrite("uploadcartdatalog", "sql : " + strQueryString + "\n");
 
 //            Cursor cartCursor = dbInitForUploadCloud.dbExecuteRead(strQueryString);
             ResultSet cartCursor = MssqlDatabase.getResultSetValue(strQueryString);
@@ -109,7 +109,6 @@ public class UploadCartDataToCloud extends Service implements Runnable {
                     String tableidx = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(cartCursor,14), 1);
                     String tordercode = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(cartCursor,15), 1);
                     String saledate = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(cartCursor,16), 1);
-
 
                     // 07112024 -----------------------------------------
                     String taxAmount = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(cartCursor,17), 1);
@@ -145,6 +144,7 @@ public class UploadCartDataToCloud extends Service implements Runnable {
                     // 07112024 -----------------------------------------
 
 
+
                     // 02242024 - 추가작업 ---------------------------------------------------------------------
                     if (GlobalMemberValues.isStrEmpty(tableidx) && !GlobalMemberValues.isStrEmpty(holdcodefrompos)) {
                         tableidx = MssqlDatabase.getResultSetValueToString(
@@ -172,7 +172,6 @@ public class UploadCartDataToCloud extends Service implements Runnable {
                     if (GlobalMemberValues.isStrEmpty(tax)) {
                         tax = "0";
                     }
-
 
                     // 07112024 ----------------------------------------
                     if (GlobalMemberValues.isStrEmpty(taxAmount)) {
@@ -246,10 +245,11 @@ public class UploadCartDataToCloud extends Service implements Runnable {
                             "&tmergeyn=" + tmergeyn +
                             "&tmergevalue=" + tmergevalue;
 
-                            strUpdateQuery = "update temp_salecart set isCloudUpload = 1 " +
+
+                    strUpdateQuery = "update temp_salecart set isCloudUpload = 1 " +
                             " where idx = '" + posidx + "' ";
                     apiVec.addElement(apiParametersStr + "|||" + strUpdateQuery);
-                    GlobalMemberValues.logWrite("uploadcartdataloglllllogjjj", "data string : " + apiParametersStr + "\n");
+                    GlobalMemberValues.logWrite("uploadcartdatalog", "data string : " + apiParametersStr + "\n");
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -263,7 +263,6 @@ public class UploadCartDataToCloud extends Service implements Runnable {
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-
 
 
             if (apiVec.size() > 0) {
@@ -285,7 +284,7 @@ public class UploadCartDataToCloud extends Service implements Runnable {
                 }
 
                 for (String strQuery : apiUpdateQueryVec) {
-                    GlobalMemberValues.logWrite("uploadcartdatalog1111111", "query : " + strQuery + "\n");
+                    GlobalMemberValues.logWrite("uploadcartdatalog", "query : " + strQuery + "\n");
                 }
                 String returnResult = "";
                 // 트랜잭션으로 DB 처리한다.
@@ -300,11 +299,6 @@ public class UploadCartDataToCloud extends Service implements Runnable {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-
-                    // 07192024
-//                    if (GlobalMemberValues.isTOrderUse()){
-//                        GlobalMemberValues.sendTOrderAPIOrderData("K");
-//                    }
                 }
             }
         }

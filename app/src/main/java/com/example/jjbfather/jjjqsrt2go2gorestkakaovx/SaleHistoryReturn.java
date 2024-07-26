@@ -811,7 +811,7 @@ public class SaleHistoryReturn extends Activity {
 
         double dblThrowAmount = GlobalMemberValues.getDoubleAtString(strThrowAmount);
         double dblUsedCardAmount = GlobalMemberValues.getDoubleAtString(strUsedCardAmount);
-
+        dblUsedCardAmount = dblUsedCardAmount + mTotalTipAmount;
         if (dblThrowAmount > dblUsedCardAmount) {
             GlobalMemberValues.displayDialog(context, "Waraning", "The amount to return is $" + dblThrowAmount + "\n"
                     + "There is more than the amount paid by credit card", "Close");
@@ -1600,6 +1600,7 @@ public class SaleHistoryReturn extends Activity {
             } catch (Exception e){
 
             }
+
             //07052024 close resultset
             try {
                 if(!salonSalesCursor.isClosed()){
@@ -2167,7 +2168,7 @@ public class SaleHistoryReturn extends Activity {
             GlobalMemberValues.logWrite("SalehistoryCalc22", "tempNowBalance : " + tempNowBalance + "\n");
             GlobalMemberValues.logWrite("SalehistoryCalc22", "----------------------------------------\n");
 
-            if (tempUsedAmount <= tempNowBalance) {
+            if (tempUsedAmount < tempNowBalance) {
                 if (GlobalMemberValues.getDoubleAtString(inputSu) > (tempUsedAmount)) {
                     GlobalMemberValues.displayDialog(context, "Warning", "Invalid Amount", "Close");
                     inputSu = "";

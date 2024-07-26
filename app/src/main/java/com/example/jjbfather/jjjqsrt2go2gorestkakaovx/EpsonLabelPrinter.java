@@ -6,9 +6,14 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 
 import com.epson.epos2.Epos2Exception;
 import com.epson.epos2.cashchanger.CashChanger;
@@ -19,6 +24,8 @@ import com.epson.epos2.printer.ReceiveListener;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 import static android.content.Context.MODE_PRIVATE;
 

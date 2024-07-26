@@ -1,7 +1,9 @@
 package com.example.jjbfather.jjjqsrt2go2gorestkakaovx;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -14,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 
 public class CashinOutPopup_TypeInput extends Activity {
     final String TAG = "CashinOutPopup_TypeInput";

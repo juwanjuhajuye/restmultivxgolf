@@ -9,6 +9,7 @@ import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Properties;
 
 public class MssqlConnection {
     public static Statement mStmt = null;
@@ -24,7 +25,11 @@ public class MssqlConnection {
         try
         {
             DriverManager.registerDriver((Driver) Class.forName("net.sourceforge.jtds.jdbc.Driver").newInstance());
-            ConnectionURL = "jdbc:jtds:sqlserver://" + server + "/" + database + ";user=" + user+ ";password=" + password + ";";
+            //07032024 set socket timeout in url
+            ConnectionURL = "jdbc:jtds:sqlserver://" + server + "/" + database + ";user=" + user+ ";password=" + password + ";"
+                + "socketTimeout=5";
+            //07032024 set database connection timeout
+            DriverManager.setLoginTimeout(5);
             connection = DriverManager.getConnection(ConnectionURL);
             mStmt = connection.createStatement();
             Log.d("#DB", "after connection");
@@ -46,6 +51,11 @@ public class MssqlConnection {
         {
             Log.e("error here 3 : ", e.getMessage());
             Log.i("DBCONNECTLOG", "error here 3 : " + e.getMessage() + "\n");
+            errMsg = e.getMessage();
+        }
+        catch (Throwable e){
+            Log.e("error here 4 : ", e.getMessage());
+            Log.i("DBCONNECTLOG", "error here 4 : " + e.getMessage() + "\n");
             errMsg = e.getMessage();
         }
         return connection;

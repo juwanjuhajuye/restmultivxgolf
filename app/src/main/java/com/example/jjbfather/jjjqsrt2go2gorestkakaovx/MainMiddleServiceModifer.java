@@ -1634,11 +1634,19 @@ public class MainMiddleServiceModifer extends Activity {
         String checkOptionItemQuery = "";
         int checkItemCount = 0;
 
+        //01102024
+        //Get the name of the extra modifier for the option that is about to be added.
+        String[] selectedModifierButtonValueArr = null;
+        selectedModifierButtonValueArr = mSelectedModifierButtonTagValue.split("-JJJ-");
+        String selectedModifierName = selectedModifierButtonValueArr[0];
+
         // 한 옵션에서 중복되어 선택된 것이 있는지 확인
         // 있으면 삭제
         checkOptionItemQuery = " select idx from temp_salecart_optionadd_imsi " +
                 //" where holdcode = '" + MainMiddleService.mHoldCode + "' and svcIdx = '" + mServiceIdx + "' " +
                 " where modifiercode = '" + mModifierCode + "' " +
+                //01102024 also check if the option has the same modifier
+                " and modifiername = '" + selectedModifierName + "' " +
                 " and optioncategoryidx = '" + mSelectedOptionCategoryIdxValue + "' and optionitemidx = '" + mSelectedOptionItemIdxValue + "' ";
         String tempImsiIdx = dbInit.dbExecuteReadReturnString(checkOptionItemQuery);
         if (!GlobalMemberValues.isStrEmpty(tempImsiIdx)) {
@@ -1653,6 +1661,29 @@ public class MainMiddleServiceModifer extends Activity {
 //            setAddMInusDbItem(tempImsiIdx, "A");
 
         } else {
+            //01102024  Check how many OPTIONS ITEMS are currently selected for the OPTION
+            String checkOptionItemCountQuery = " select COUNT(idx) from temp_salecart_optionadd_imsi " +
+                    " where modifiercode = '" + mModifierCode + "' " +
+                    " and optioncategoryidx = '" + mSelectedOptionCategoryIdxValue + "'";
+            String tempOptionItemCount = dbInit.dbExecuteReadReturnString(checkOptionItemCountQuery);
+
+            String checkOptionItemLimitQuery = " select maxval from salon_storeservice_option " +
+                    " where idx = '" + mSelectedOptionCategoryIdxValue + "' " +
+                    " and optionuseyn = 'Y'";
+            Cursor optionCursor = dbInit.dbExecuteRead(checkOptionItemLimitQuery);
+            int tempOptionItemLimitCount = 100;
+            while (optionCursor.moveToNext()) {
+                tempOptionItemLimitCount = optionCursor.getInt(0);
+            }
+
+            if(Integer.parseInt(tempOptionItemCount) >= tempOptionItemLimitCount){
+                String msgContents = "in <" + selectedModifierName + ">, You can select up to " + tempOptionItemLimitCount + " in total";
+                GlobalMemberValues.displayDialog(mContext, "Warning",
+                        msgContents, "Close");
+                return;
+            }
+
+
             // single 타입의 옵션에서 멀티로 선택하는지 체크
             String tempOptiontype = MainActivity.mDbInit.dbExecuteReadReturnString(
                     " select optiontype from salon_storeservice_option where idx = '" + mSelectedOptionCategoryIdxValue + "' "
@@ -1743,7 +1774,8 @@ public class MainMiddleServiceModifer extends Activity {
 
             if (!GlobalMemberValues.isStrEmpty(selectedModifierButtonName)
                     && !GlobalMemberValues.isStrEmpty(selectedOptionAddButtonName)) {
-                tempSelectedModOptionAddName = selectedModifierButtonNamePrice + " + " + selectedOptionAddButtonNamePrice;
+                //01102024 swap order of option and modifier, so OPTION comes first
+                tempSelectedModOptionAddName = selectedOptionAddButtonNamePrice + " + " + selectedModifierButtonNamePrice;
             } else {
                 if (!GlobalMemberValues.isStrEmpty(selectedModifierButtonName)
                         && GlobalMemberValues.isStrEmpty(selectedOptionAddButtonName)) {

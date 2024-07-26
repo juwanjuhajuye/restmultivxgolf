@@ -4,8 +4,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.os.Environment;
 import android.os.Bundle;
 import androidx.annotation.IdRes;
 import android.text.Spannable;
@@ -27,6 +30,7 @@ import android.widget.TextView;
 
 import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.R;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Vector;
 

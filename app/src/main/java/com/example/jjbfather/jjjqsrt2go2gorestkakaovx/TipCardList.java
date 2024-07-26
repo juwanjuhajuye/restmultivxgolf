@@ -3,6 +3,7 @@ package com.example.jjbfather.jjjqsrt2go2gorestkakaovx;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;

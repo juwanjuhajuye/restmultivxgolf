@@ -218,144 +218,144 @@ public class Discount {
         discountSuButton1 = (Button)GlobalMemberValues.GLOBAL_LAYOUTMEMBER_FRAMELAYOUT_DISCOUNT
                 .findViewWithTag("discountSuButtonTag1");
         if (GlobalMemberValues.IMAGEBUTTONYN == 0) {
-            discountSuButton1.setTextSize(GlobalMemberValues.globalAddFontSize() + 
+            discountSuButton1.setTextSize(GlobalMemberValues.globalAddFontSize() +
                     GlobalMemberValues.BASICNUMBERTEXTSIZE
                             * 1.8f
             );
             discountSuButton1.setTextColor(Color.parseColor(GlobalMemberValues.GLOBAL_NUMBERBUTTON_COLOR));
             discountSuButton1.setBackgroundResource(numberBackground);
         } else {
-            discountSuButton1.setTextSize(GlobalMemberValues.globalAddFontSize() + 
+            discountSuButton1.setTextSize(GlobalMemberValues.globalAddFontSize() +
                     GlobalMemberValues.BASICNUMBERTEXTSIZE
             );
         }
         discountSuButton2 = (Button)GlobalMemberValues.GLOBAL_LAYOUTMEMBER_FRAMELAYOUT_DISCOUNT
                 .findViewWithTag("discountSuButtonTag2");
         if (GlobalMemberValues.IMAGEBUTTONYN == 0) {
-            discountSuButton2.setTextSize(GlobalMemberValues.globalAddFontSize() + 
+            discountSuButton2.setTextSize(GlobalMemberValues.globalAddFontSize() +
                     GlobalMemberValues.BASICNUMBERTEXTSIZE * 1.8f
             );
             discountSuButton2.setTextColor(Color.parseColor(GlobalMemberValues.GLOBAL_NUMBERBUTTON_COLOR));
             discountSuButton2.setBackgroundResource(numberBackground);
         } else {
-            discountSuButton2.setTextSize(GlobalMemberValues.globalAddFontSize() + 
+            discountSuButton2.setTextSize(GlobalMemberValues.globalAddFontSize() +
                     GlobalMemberValues.BASICNUMBERTEXTSIZE
             );
         }
         discountSuButton3 = (Button)GlobalMemberValues.GLOBAL_LAYOUTMEMBER_FRAMELAYOUT_DISCOUNT
                 .findViewWithTag("discountSuButtonTag3");
         if (GlobalMemberValues.IMAGEBUTTONYN == 0) {
-            discountSuButton3.setTextSize(GlobalMemberValues.globalAddFontSize() + 
+            discountSuButton3.setTextSize(GlobalMemberValues.globalAddFontSize() +
                     GlobalMemberValues.BASICNUMBERTEXTSIZE * 1.8f
             );
             discountSuButton3.setTextColor(Color.parseColor(GlobalMemberValues.GLOBAL_NUMBERBUTTON_COLOR));
             discountSuButton3.setBackgroundResource(numberBackground);
         } else {
-            discountSuButton3.setTextSize(GlobalMemberValues.globalAddFontSize() + 
+            discountSuButton3.setTextSize(GlobalMemberValues.globalAddFontSize() +
                     GlobalMemberValues.BASICNUMBERTEXTSIZE
             );
         }
         discountSuButton4 = (Button)GlobalMemberValues.GLOBAL_LAYOUTMEMBER_FRAMELAYOUT_DISCOUNT
                 .findViewWithTag("discountSuButtonTag4");
         if (GlobalMemberValues.IMAGEBUTTONYN == 0) {
-            discountSuButton4.setTextSize(GlobalMemberValues.globalAddFontSize() + 
+            discountSuButton4.setTextSize(GlobalMemberValues.globalAddFontSize() +
                     GlobalMemberValues.BASICNUMBERTEXTSIZE * 1.8f
             );
             discountSuButton4.setTextColor(Color.parseColor(GlobalMemberValues.GLOBAL_NUMBERBUTTON_COLOR));
             discountSuButton4.setBackgroundResource(numberBackground);
         } else {
-            discountSuButton4.setTextSize(GlobalMemberValues.globalAddFontSize() + 
+            discountSuButton4.setTextSize(GlobalMemberValues.globalAddFontSize() +
                     GlobalMemberValues.BASICNUMBERTEXTSIZE
             );
         }
         discountSuButton5 = (Button)GlobalMemberValues.GLOBAL_LAYOUTMEMBER_FRAMELAYOUT_DISCOUNT
                 .findViewWithTag("discountSuButtonTag5");
         if (GlobalMemberValues.IMAGEBUTTONYN == 0) {
-            discountSuButton5.setTextSize(GlobalMemberValues.globalAddFontSize() + 
+            discountSuButton5.setTextSize(GlobalMemberValues.globalAddFontSize() +
                     GlobalMemberValues.BASICNUMBERTEXTSIZE * 1.8f
             );
             discountSuButton5.setTextColor(Color.parseColor(GlobalMemberValues.GLOBAL_NUMBERBUTTON_COLOR));
             discountSuButton5.setBackgroundResource(numberBackground);
         } else {
-            discountSuButton5.setTextSize(GlobalMemberValues.globalAddFontSize() + 
+            discountSuButton5.setTextSize(GlobalMemberValues.globalAddFontSize() +
                     GlobalMemberValues.BASICNUMBERTEXTSIZE
             );
         }
         discountSuButton6 = (Button)GlobalMemberValues.GLOBAL_LAYOUTMEMBER_FRAMELAYOUT_DISCOUNT
                 .findViewWithTag("discountSuButtonTag6");
         if (GlobalMemberValues.IMAGEBUTTONYN == 0) {
-            discountSuButton6.setTextSize(GlobalMemberValues.globalAddFontSize() + 
+            discountSuButton6.setTextSize(GlobalMemberValues.globalAddFontSize() +
                     GlobalMemberValues.BASICNUMBERTEXTSIZE * 1.8f
             );
             discountSuButton6.setTextColor(Color.parseColor(GlobalMemberValues.GLOBAL_NUMBERBUTTON_COLOR));
             discountSuButton6.setBackgroundResource(numberBackground);
         } else {
-            discountSuButton6.setTextSize(GlobalMemberValues.globalAddFontSize() + 
+            discountSuButton6.setTextSize(GlobalMemberValues.globalAddFontSize() +
                     GlobalMemberValues.BASICNUMBERTEXTSIZE
             );
         }
         discountSuButton7 = (Button)GlobalMemberValues.GLOBAL_LAYOUTMEMBER_FRAMELAYOUT_DISCOUNT
                 .findViewWithTag("discountSuButtonTag7");
         if (GlobalMemberValues.IMAGEBUTTONYN == 0) {
-            discountSuButton7.setTextSize(GlobalMemberValues.globalAddFontSize() + 
+            discountSuButton7.setTextSize(GlobalMemberValues.globalAddFontSize() +
                     GlobalMemberValues.BASICNUMBERTEXTSIZE * 1.8f
             );
             discountSuButton7.setTextColor(Color.parseColor(GlobalMemberValues.GLOBAL_NUMBERBUTTON_COLOR));
             discountSuButton7.setBackgroundResource(numberBackground);
         } else {
-            discountSuButton7.setTextSize(GlobalMemberValues.globalAddFontSize() + 
+            discountSuButton7.setTextSize(GlobalMemberValues.globalAddFontSize() +
                     GlobalMemberValues.BASICNUMBERTEXTSIZE
             );
         }
         discountSuButton8 = (Button)GlobalMemberValues.GLOBAL_LAYOUTMEMBER_FRAMELAYOUT_DISCOUNT
                 .findViewWithTag("discountSuButtonTag8");
         if (GlobalMemberValues.IMAGEBUTTONYN == 0) {
-            discountSuButton8.setTextSize(GlobalMemberValues.globalAddFontSize() + 
+            discountSuButton8.setTextSize(GlobalMemberValues.globalAddFontSize() +
                     GlobalMemberValues.BASICNUMBERTEXTSIZE * 1.8f
             );
             discountSuButton8.setTextColor(Color.parseColor(GlobalMemberValues.GLOBAL_NUMBERBUTTON_COLOR));
             discountSuButton8.setBackgroundResource(numberBackground);
         } else {
-            discountSuButton8.setTextSize(GlobalMemberValues.globalAddFontSize() + 
+            discountSuButton8.setTextSize(GlobalMemberValues.globalAddFontSize() +
                     GlobalMemberValues.BASICNUMBERTEXTSIZE
             );
         }
         discountSuButton9 = (Button)GlobalMemberValues.GLOBAL_LAYOUTMEMBER_FRAMELAYOUT_DISCOUNT
                 .findViewWithTag("discountSuButtonTag9");
         if (GlobalMemberValues.IMAGEBUTTONYN == 0) {
-            discountSuButton9.setTextSize(GlobalMemberValues.globalAddFontSize() + 
+            discountSuButton9.setTextSize(GlobalMemberValues.globalAddFontSize() +
                     GlobalMemberValues.BASICNUMBERTEXTSIZE * 1.8f
             );
             discountSuButton9.setTextColor(Color.parseColor(GlobalMemberValues.GLOBAL_NUMBERBUTTON_COLOR));
             discountSuButton9.setBackgroundResource(numberBackground);
         } else {
-            discountSuButton9.setTextSize(GlobalMemberValues.globalAddFontSize() + 
+            discountSuButton9.setTextSize(GlobalMemberValues.globalAddFontSize() +
                     GlobalMemberValues.BASICNUMBERTEXTSIZE
             );
         }
         discountSuButton0 = (Button)GlobalMemberValues.GLOBAL_LAYOUTMEMBER_FRAMELAYOUT_DISCOUNT
                 .findViewWithTag("discountSuButtonTag0");
         if (GlobalMemberValues.IMAGEBUTTONYN == 0) {
-            discountSuButton0.setTextSize(GlobalMemberValues.globalAddFontSize() + 
+            discountSuButton0.setTextSize(GlobalMemberValues.globalAddFontSize() +
                     GlobalMemberValues.BASICNUMBERTEXTSIZE * 1.8f
             );
             discountSuButton0.setTextColor(Color.parseColor(GlobalMemberValues.GLOBAL_NUMBERBUTTON_COLOR));
             discountSuButton0.setBackgroundResource(numberBackground);
         } else {
-            discountSuButton0.setTextSize(GlobalMemberValues.globalAddFontSize() + 
+            discountSuButton0.setTextSize(GlobalMemberValues.globalAddFontSize() +
                     GlobalMemberValues.BASICNUMBERTEXTSIZE
             );
         }
         discountSuButton00 = (Button)GlobalMemberValues.GLOBAL_LAYOUTMEMBER_FRAMELAYOUT_DISCOUNT
                 .findViewWithTag("discountSuButtonTag00");
         if (GlobalMemberValues.IMAGEBUTTONYN == 0) {
-            discountSuButton00.setTextSize(GlobalMemberValues.globalAddFontSize() + 
+            discountSuButton00.setTextSize(GlobalMemberValues.globalAddFontSize() +
                     GlobalMemberValues.BASICNUMBERTEXTSIZE * 1.8f
             );
             discountSuButton00.setTextColor(Color.parseColor(GlobalMemberValues.GLOBAL_NUMBERBUTTON_COLOR));
             discountSuButton00.setBackgroundResource(numberBackground);
         } else {
-            discountSuButton00.setTextSize(GlobalMemberValues.globalAddFontSize() + 
+            discountSuButton00.setTextSize(GlobalMemberValues.globalAddFontSize() +
                     GlobalMemberValues.BASICNUMBERTEXTSIZE
             );
         }
@@ -1092,9 +1092,9 @@ public class Discount {
         if (CouponDetail.openCount == 0) {
             // 프로그래스 바를 실행~
             /**
-            checkingProDial = ProgressDialog.show(
-                    MainActivity.mContext, " Checking Coupon","Checking the coupon...(No." + mCouponNumber + ")", true, false
-            );
+             checkingProDial = ProgressDialog.show(
+             MainActivity.mContext, " Checking Coupon","Checking the coupon...(No." + mCouponNumber + ")", true, false
+             );
              **/
             checkingProDial = new JJJCustomAnimationDialog(mActivity);
             checkingProDial.show();
@@ -1115,10 +1115,10 @@ public class Discount {
             thread.start();
 
             /**
-            Intent couponDetailIntent = new Intent(MainActivity.mContext.getApplicationContext(), CouponDetail.class);
-            couponDetailIntent.putExtra("couponnumber", tempDiscountCouponNumber);
-            mActivity.startActivity(couponDetailIntent);
-            mActivity.overridePendingTransition(R.anim.act_in_bottom, R.anim.act_out_bottom);
+             Intent couponDetailIntent = new Intent(MainActivity.mContext.getApplicationContext(), CouponDetail.class);
+             couponDetailIntent.putExtra("couponnumber", tempDiscountCouponNumber);
+             mActivity.startActivity(couponDetailIntent);
+             mActivity.overridePendingTransition(R.anim.act_in_bottom, R.anim.act_out_bottom);
              **/
         }
     }
@@ -1344,8 +1344,8 @@ public class Discount {
     }
 
     private static void setDiscountExtraPrev(String paramTempRate, String paramTempRateType,
-                                      String paramTempDcExtraType, String paramTempDcExtraStr, String paramTempMSaveType,
-                                      String paramTempDcExtraAllEach) {
+                                             String paramTempDcExtraType, String paramTempDcExtraStr, String paramTempMSaveType,
+                                             String paramTempDcExtraAllEach) {
 
         if (GlobalMemberValues.isMultiCheckOnCart()) {
             int tempSize = MainMiddleService.mGeneralArrayList.size();
@@ -1397,8 +1397,8 @@ public class Discount {
     }
 
     public static void setDiscountExtraItem(String paramTempRate, String paramTempRateType,
-                                             String paramTempDcExtraType, String paramTempDcExtraStr, String paramTempMSaveType,
-                                             String paramTempDcExtraAllEach, int paramPosition) {
+                                            String paramTempDcExtraType, String paramTempDcExtraStr, String paramTempMSaveType,
+                                            String paramTempDcExtraAllEach, int paramPosition) {
         if (!GlobalMemberValues.isStrEmpty(paramPosition + "") && paramPosition != -1) {
             TemporarySaleCart tempTempSaleCart
                     = MainMiddleService.mGeneralArrayList.get(paramPosition);
@@ -1549,9 +1549,9 @@ public class Discount {
 
 
     public static void setDiscountExtra(TemporarySaleCart paramTempSaleCart,
-                                 String paramMCouponNumber, String paramTempRate, String paramTempRateType,
-                                 String paramTempDcExtraType, String paramTempDcExtraStr, String paramTempMSaveType,
-                                 String paramTempDcExtraAllEach, String paramTotalAmount, int paramAddLvFlag, int paramAddPosition) {
+                                        String paramMCouponNumber, String paramTempRate, String paramTempRateType,
+                                        String paramTempDcExtraType, String paramTempDcExtraStr, String paramTempMSaveType,
+                                        String paramTempDcExtraAllEach, String paramTotalAmount, int paramAddLvFlag, int paramAddPosition) {
         String tempCouponNumber = paramMCouponNumber;                   // 쿠폰번호
         String tempRate = paramTempRate;                                // 할인/추가 비율 또는 금액
         String tempRateType = paramTempRateType;                        // 할인/추가 타입 (비율, 금액)
@@ -1753,7 +1753,8 @@ public class Discount {
                     " couponNumber = '" + tempCouponNumber + "', " +
                     " discountbuttonname = '" + tempDiscountButtonName + "', " +         // Discount Button 추가 관련
                     " dcextratype = '" + tempRateType + "', " +                          // Discount 관련처리
-                    " dcextravalue = '" + tempRateDouble + "' " +                        // Discount 관련처리
+                    " dcextravalue = '" + tempRateDouble + "', " +                        // Discount 관련처리
+                    " isCloudUpload = 0 " +
                     " where idx = '" + tempSaleCartidx + "' ";
             GlobalMemberValues.logWrite("pointchecklog", "query : " + strUpdateQuery + "\n");
             GlobalMemberValues.logWrite("pointchecklog", "mCouponNumberVec : " + mCouponNumberVec.toString() + "\n");
@@ -1875,16 +1876,16 @@ public class Discount {
 
                             // addup jihun
                             /**
-                            for (int i = 0; i < MainMiddleService.mGeneralArrayList.size(); i++) {
-                                TemporarySaleCart tempTempSaleCart2 = MainMiddleService.mGeneralArrayList.get(i);
+                             for (int i = 0; i < MainMiddleService.mGeneralArrayList.size(); i++) {
+                             TemporarySaleCart tempTempSaleCart2 = MainMiddleService.mGeneralArrayList.get(i);
 
-                                double item_amount = GlobalMemberValues.getDoubleAtString(tempTempSaleCart2.mSPrice);
+                             double item_amount = GlobalMemberValues.getDoubleAtString(tempTempSaleCart2.mSPrice);
 
-                                double temp_item_amount = item_amount * tempRateDouble * 0.01;
+                             double temp_item_amount = item_amount * tempRateDouble * 0.01;
 
-                                //discountExtraPriceForDisplay += Math.round(temp_item_amount * 100)/100.0;
-                                discountExtraPriceForDisplay += GlobalMemberValues.getDoubleAtString(GlobalMemberValues.getStringFormatNumber(temp_item_amount, "2"));
-                            }
+                             //discountExtraPriceForDisplay += Math.round(temp_item_amount * 100)/100.0;
+                             discountExtraPriceForDisplay += GlobalMemberValues.getDoubleAtString(GlobalMemberValues.getStringFormatNumber(temp_item_amount, "2"));
+                             }
                              **/
                         } else {
                             discountExtraPriceForDisplay = tempRateDouble;
@@ -2080,7 +2081,8 @@ public class Discount {
                     " selectedDcExtraPrice = 0, " +
                     " selectedDcExtraType = '', " +
                     " selectedDcExtraAllEach = '', " +
-                    " dcextravalue = 0 " +
+                    " dcextravalue = 0, " +
+                    " isCloudUpload = 0 " +
                     " where " + tempSearchQuery;
 
             // salon_sales_detail 입력쿼리를 백터 strQueryVec 에 담는다.

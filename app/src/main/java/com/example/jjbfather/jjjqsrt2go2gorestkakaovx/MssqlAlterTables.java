@@ -82,6 +82,24 @@ public class MssqlAlterTables {
         altTableName = "salon_sales_return";
         alterDatabaseTableColumn(altTableName, "wdate", "datetime", "NULL");
 
+        // 070324
+//        // salon_sales_card 테이블 칼럼 추가
+//        // 21.01.20 amountdue 추가
+        altTableName = "salon_sales_card";
+        alterDatabaseTableColumn(altTableName, "amountdue", "nvarchar(20)", "DEFAULT ''");
+
+        // 070324
+//        // salon_storestationsettings_system 테이블 컬럼 추가
+//        // 21.01.26 qtyaddupyn 컬럼 추가
+        altTableName = "salon_storestationsettings_system";
+        alterDatabaseTableColumn(altTableName, "qtyaddupyn", "nvarchar(2)", "DEFAULT 'Y'");
+
+        // 070324
+//        // salon_storestationsettings_system 테이블 컬럼 추가
+//        // 21.02.04, tipaddhistoryvisibleyn 컬럼 추가
+        altTableName = "salon_storestationsettings_system";
+        alterDatabaseTableColumn(altTableName, "tipaddhistoryvisibleyn", "nvarchar(2)", "DEFAULT 'Y'");
+
         // salon_sales_cashout_json 테이블 컬럼 추가
         // 4.6.2021, isCloudUpload 컬럼 추가
         altTableName = "salon_sales_cashout_json";
@@ -263,56 +281,61 @@ public class MssqlAlterTables {
         altTableName = "salon_storestationinfo";
         alterDatabaseTableColumn(altTableName, "paymentyn", "nvarchar(2)", "DEFAULT 'Y'");
 
+        // 070324
         // salon_storestationinfo 테이블 컬럼 추가
         // 8.17.2021, cashinoutyn 컬럼 추가
         altTableName = "salon_storestationinfo";
-        alterDatabaseTableColumn(altTableName, "cashinoutyn", "nvarchar(200)", "DEFAULT 'cash,creditcard,giftcard,point,other' ");
+        alterDatabaseTableColumn(altTableName, "cashinoutyn", "nvarchar(2)", "DEFAULT 'Y'");
+//        // salon_storestationinfo 테이블 컬럼 추가
+//        // 8.17.2021, paymenttype 컬럼 추가
+        altTableName = "salon_storestationinfo";
+        alterDatabaseTableColumn(altTableName, "paymenttype", "nvarchar(2)", "DEFAULT 'cash,creditcard,giftcard,point,other' ");
 
         // temp_salecart 테이블 컬럼 추가
         // 8.17.2021, togodelitype  컬럼 추가
         altTableName = "temp_salecart";
-        alterDatabaseTableColumn(altTableName, "togodelitype ", "nvarchar(2)", "DEFAULT 'H'");
+        alterDatabaseTableColumn(altTableName, "togodelitype", "nvarchar(2)", "DEFAULT 'H'");
 
         // salon_sales_detail 테이블 컬럼 추가
         // 8.17.2021, togodelitype  컬럼 추가
         altTableName = "salon_sales_detail";
-        alterDatabaseTableColumn(altTableName, "togodelitype ", "nvarchar(2)", "DEFAULT 'H'");
+        alterDatabaseTableColumn(altTableName, "togodelitype", "nvarchar(2)", "DEFAULT 'H'");
 
 
         // salon_storegeneral 테이블 컬럼 추가
         // 8.19.2021, gratuityuseyn  컬럼 추가
         altTableName = "salon_storegeneral";
-        alterDatabaseTableColumn(altTableName, "gratuityuseyn ", "nvarchar(2)", "DEFAULT 'N'");
+        alterDatabaseTableColumn(altTableName, "gratuityuseyn", "nvarchar(2)", "DEFAULT 'N'");
 
         // salon_storegeneral 테이블 컬럼 추가
         // 8.19.2021, gratuitytype  컬럼 추가
         altTableName = "salon_storegeneral";
-        alterDatabaseTableColumn(altTableName, "gratuitytype ", "nvarchar(4)", "DEFAULT '%'");
+        alterDatabaseTableColumn(altTableName, "gratuitytype", "nvarchar(4)", "DEFAULT '%'");
 
         // salon_storegeneral 테이블 컬럼 추가
         // 8.19.2021, gratuityvalue  컬럼 추가
         altTableName = "salon_storegeneral";
-        alterDatabaseTableColumn(altTableName, "gratuityvalue ", "money", "DEFAULT 0.0");
+        alterDatabaseTableColumn(altTableName, "gratuityvalue", "money", "DEFAULT 0.0");
 
         // salon_storegeneral 테이블 컬럼 추가
         // 8.20.2021, gratuitycustomercount  컬럼 추가
         altTableName = "salon_storegeneral";
-        alterDatabaseTableColumn(altTableName, "gratuitycustomercount ", "money", "DEFAULT 1");
+        alterDatabaseTableColumn(altTableName, "gratuitycustomercount", "money", "DEFAULT 1");
 
         // salon_storeservice_option 테이블 컬럼 추가
         // 8.20.2021, minval  컬럼 추가
         altTableName = "salon_storeservice_option";
-        alterDatabaseTableColumn(altTableName, "minval ", "smallint", "DEFAULT 0");
+        alterDatabaseTableColumn(altTableName, "minval", "smallint", "DEFAULT 0");
 
         // salon_storeservice_option 테이블 컬럼 추가
         // 8.20.2021, maxval  컬럼 추가
         altTableName = "salon_storeservice_option";
-        alterDatabaseTableColumn(altTableName, "maxval ", "smallint", "DEFAULT 1");
+        alterDatabaseTableColumn(altTableName, "maxval", "smallint", "DEFAULT 1");
 
         // salon_storeservice_option 테이블 컬럼 추가
         // 8.20.2021, maxsumval  컬럼 추가
         altTableName = "salon_storeservice_option";
-        alterDatabaseTableColumn(altTableName, "maxsumval ", "smallint", "DEFAULT 1");
+        alterDatabaseTableColumn(altTableName, "maxsumval", "smallint", "DEFAULT 1");
 
         // salon_storestationsettings_system 테이블 컬럼 추가
         // 10.21.2021, mssqldbip 컬럼 추가
@@ -602,6 +625,12 @@ public class MssqlAlterTables {
         altTableName = "salon_storestationinfo";
         alterDatabaseTableColumn(altTableName, "eodyn", "nvarchar(2)", "DEFAULT 'Y'");
 
+        // 070324
+//        // salon_storestationsettings_deviceprinter_master 테이블 컬럼 추가
+//        // 09.16.2022, masteruseyn 컬럼 추가
+        altTableName = "salon_storestationsettings_deviceprinter_master";
+        alterDatabaseTableColumn(altTableName, "masteruseyn", "smallint", "DEFAULT 0");
+
         // salon_storestationsettings_system 테이블 컬럼 추가
         // 9.30.2022, startpagernum 컬럼 추가
         altTableName = "salon_storestationsettings_system";
@@ -647,15 +676,15 @@ public class MssqlAlterTables {
         altTableName = "salon_sales";
         alterDatabaseTableColumn(altTableName, "cancelreason", "ntext", "DEFAULT ''");
 
-        // salon_store_restaurant_table 테이블 컬럼 추가
-        // 1.11.2023, size 컬럼 추가
-        altTableName = "salon_store_restaurant_table";
-        alterDatabaseTableColumn(altTableName, "size", "nvarchar(2)", "DEFAULT 'M'");
-
         // bill_list_paid 테이블 컬럼 추가
         // 1.5.2023, billcode 컬럼 추가
         altTableName = "bill_list_paid";
         alterDatabaseTableColumn(altTableName, "billcode", "nvarchar(100)", "DEFAULT ''");
+
+        // salon_store_restaurant_table 테이블 컬럼 추가
+        // 1.11.2023, size 컬럼 추가
+        altTableName = "salon_store_restaurant_table";
+        alterDatabaseTableColumn(altTableName, "size", "nvarchar(2)", "DEFAULT 'M'");
 
         // btn_logs 테이블 컬럼 추가
         // 1.12.2023, holdcode 컬럼 추가
@@ -829,6 +858,11 @@ public class MssqlAlterTables {
         altTableName = "temp_salecart_ordered";
         alterDatabaseTableColumn(altTableName, "billidx_byitemsplit", "nvarchar(20)", "DEFAULT ''");
 
+        //070324 추가.
+        // salon_storeinfo 테이블 컬럼 추가
+        // 6.20.2023, name_en 컬럼 추가
+        altTableName = "salon_storeinfo";
+        alterDatabaseTableColumn(altTableName, "name_en", "nvarchar(200)", "DEFAULT ''");
 
         // salon_storegeneral 테이블 컬럼 추가
         // 6.21.2023, addpayitempriceshowyn 컬럼 추가
@@ -869,6 +903,13 @@ public class MssqlAlterTables {
         // 8.30.2023, onlinetype 컬럼 추가
         altTableName = "salon_sales_web_push_realtime";
         alterDatabaseTableColumn(altTableName, "onlinetype", "nvarchar(2)", "DEFAULT 'W'");
+
+
+        // 070324 추가.
+        // salon_storeinfo 테이블 컬럼 추가
+        // 9.1.2023, name2 컬럼 추가
+        altTableName = "salon_storeinfo";
+        alterDatabaseTableColumn(altTableName, "name2", "nvarchar(200)", "DEFAULT ''");
 
 
 
@@ -913,6 +954,14 @@ public class MssqlAlterTables {
         // 10.27.2023, itemdeletereasonyn 컬럼 추가
         altTableName = "salon_storestationsettings_system";
         alterDatabaseTableColumn(altTableName, "itemdeletereasonyn", "nvarchar(2)", "DEFAULT 'N'");
+
+
+//        // 070324 추가
+//        // salon_storestationsettings_system_receipt 테이블 컬럼 추가
+//        // 11.1.2023 bottomfeedrowcount_yn 추가
+//        altTableName = "salon_storestationsettings_system_receipt";
+//        alterDatabaseTableColumn(altTableName, "bottomfeedrowcount_yn", "nvarchar(2)", "DEFAULT '1'");
+
 
         // salon_storestationsettings_system 테이블 컬럼 추가
         // 1.17.2024, tableorderuseyn 컬럼 추가
@@ -992,6 +1041,35 @@ public class MssqlAlterTables {
         altTableName = "salon_sales_card";
         alterDatabaseTableColumn(altTableName, "orgTip", "money", "DEFAULT 0.0");
 
+
+
+        // 07182024 -----------------------------------------------------------------
+        // 카드결제 기기등록관련
+        // 테이블 salon_pgip 생성쿼리
+
+        // salon_sales 테이블 컬럼 추가
+        // 7.18.2024, pgdevicenum 컬럼 추가
+        altTableName = "salon_sales";
+        alterDatabaseTableColumn(altTableName, "pgdevicenum", "nvarchar(20)", "DEFAULT ''");
+
+        // salon_storestationsettings_paymentgateway 테이블 컬럼 추가
+        // 7.18.2024, pgdevicenum 컬럼 추가
+        altTableName = "salon_storestationsettings_paymentgateway";
+        alterDatabaseTableColumn(altTableName, "pgdevicenum", "nvarchar(20)", "DEFAULT ''");
+        // 07182024 -----------------------------------------------------------------
+
+
+
+        // salon_storeservice_sub 테이블 컬럼 추가
+        // 7.24.2024, gratuityuseyn 컬럼 추가
+        altTableName = "salon_storeservice_sub";
+        alterDatabaseTableColumn(altTableName, "gratuityuseyn", "nvarchar(2)", "DEFAULT 'Y'");
+        // salon_storeservice_sub 테이블 컬럼 추가
+        // 7.24.2024, bayyn 컬럼 추가
+        altTableName = "salon_storeservice_sub";
+        alterDatabaseTableColumn(altTableName, "bayyn", "nvarchar(2)", "DEFAULT 'Y'");
+
+
     }
 
     public static void alterTableColumnType() {
@@ -1036,3 +1114,4 @@ public class MssqlAlterTables {
         MssqlDatabase.executeTransaction(vec);
     }
 }
+

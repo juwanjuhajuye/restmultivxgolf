@@ -13,6 +13,7 @@ import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -250,7 +251,19 @@ public class CreditCardStatusActivity extends Activity {
                     if (mActivity != null){
                         mActivity.finish();
                     }
-                    PaymentCreditCard.setFinishActivity();
+                    if (Payment.paymentChangeEditText != null){
+                        String tempChange = Payment.paymentChangeEditText.getText().toString();
+                        if (GlobalMemberValues.isStrEmpty(tempChange)
+                                || GlobalMemberValues.getDoubleAtString(tempChange) < 0) {
+                            PaymentCreditCard.setFinishActivity();
+                        } else {
+                            PaymentCreditCard.setFinishActivity();
+                        }
+                    } else {
+                        PaymentCreditCard.setFinishActivity();
+                    }
+
+
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

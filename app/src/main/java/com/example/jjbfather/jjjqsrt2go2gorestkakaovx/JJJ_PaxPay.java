@@ -91,6 +91,10 @@ public class JJJ_PaxPay extends BaseFragmentActivity implements View.OnClickList
     String mGetGroupVoidCount = "";
     String mGetGroupVoidYN = "N";
 
+    // 07222024
+    String sales_pgip = "";
+    String sales_pgport = "";
+
     // force
     String mForce = "";
     //
@@ -256,6 +260,14 @@ public class JJJ_PaxPay extends BaseFragmentActivity implements View.OnClickList
             // force
             mForce = mIntent.getStringExtra("set_force");
 
+
+
+            // 07222024
+            sales_pgip = mIntent.getStringExtra("sales_pgip");
+            sales_pgport = mIntent.getStringExtra("sales_pgport");
+
+
+
             GlobalMemberValues.logWrite("onetimetipadjustmentlog", "여기실행4" + "\n");
 
             GlobalMemberValues.logWrite("onetimetipadjustmentlog", "mGettiponetimeyn : " + mGettiponetimeyn + "\n");
@@ -404,6 +416,18 @@ public class JJJ_PaxPay extends BaseFragmentActivity implements View.OnClickList
             tempProxyValue = true;
         }
 
+
+        // 07222024 ---------------------------------------
+        if (!GlobalMemberValues.isStrEmpty(sales_pgip)) {
+            tempNetworkIP = sales_pgip;
+
+            if (!GlobalMemberValues.isStrEmpty(sales_pgport)) {
+                tempNetworkPort = sales_pgport;
+            }
+        }
+        // 07222024 ---------------------------------------
+
+
         GlobalMemberValues.logWrite("paxcommsettinglog", "commtype : " + commtype + "\n");
         GlobalMemberValues.logWrite("paxcommsettinglog", "tempSerialPort : " + tempSerialPort + "\n");
         GlobalMemberValues.logWrite("paxcommsettinglog", "tempBaudRate : " + tempBaudRate + "\n");
@@ -418,6 +442,7 @@ public class JJJ_PaxPay extends BaseFragmentActivity implements View.OnClickList
         commset.setType(commtype);
 
         commset.setTimeOut("60000");
+
 
         //commset.setSerialPort("COM1");
         //commset.setSerialPort("");

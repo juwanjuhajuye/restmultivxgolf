@@ -1,0 +1,1031 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp">
+
+    <LinearLayout
+        android:id="@+id/settingsSystemLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="Pamenty Devices Info"
+                android:textSize="22dp"
+                android:textColor="#ffffff" />
+
+            <Button
+                android:id="@+id/activityCloseBtn"
+                android:tag="activityCloseBtnTag"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:gravity="center"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp"
+                android:background="@drawable/button_selector_white2"
+                android:text=" X "/>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/settingsSystemLn"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="8.5"
+            android:padding="10dp"
+            android:orientation="vertical">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="10dp"
+                        android:orientation="vertical"
+                        android:background="@drawable/roundlayout_background_settings_sub">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:orientation="horizontal">
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+                                <TextView
+                                    android:id="@+id/pgTitleTextView01"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:textSize="20dp"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="bold"
+                                    android:text="Device #01 IP"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1">
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2"
+                                android:orientation="horizontal" >
+
+                                <EditText
+                                    android:id="@+id/pgip01"
+                                    android:tag="pgipTag01"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="4"
+                                    android:gravity="center"
+                                    android:background="@drawable/roundlayout_background_settings_textview"
+                                    android:padding="8dp"
+                                    android:inputType="text"
+                                    android:textSize="24dp"
+                                    android:textColor="#3f3e3a"
+                                    android:text=""/>
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.2"
+                                    android:gravity="center"
+                                    android:textSize="24dp"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="bold"
+                                    android:text=":"/>
+
+                                <EditText
+                                    android:id="@+id/pgport01"
+                                    android:tag="pgportTag01"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1.5"
+                                    android:gravity="center"
+                                    android:background="@drawable/roundlayout_background_settings_textview"
+                                    android:padding="8dp"
+                                    android:inputType="text"
+                                    android:textSize="24dp"
+                                    android:textColor="#3f3e3a"
+                                    android:text=""/>
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"/>
+
+                                <Button
+                                    android:id="@+id/pgbtn01"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2"
+                                    android:text="selected" />
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:orientation="horizontal">
+                        </LinearLayout>
+
+
+
+
+
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:orientation="horizontal">
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+                                <TextView
+                                    android:id="@+id/pgTitleTextView02"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:textSize="20dp"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="bold"
+                                    android:text="Device #02 IP"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1">
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2"
+                                android:orientation="horizontal" >
+
+                                <EditText
+                                    android:id="@+id/pgip02"
+                                    android:tag="pgipTag02"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="4"
+                                    android:gravity="center"
+                                    android:background="@drawable/roundlayout_background_settings_textview"
+                                    android:padding="8dp"
+                                    android:inputType="text"
+                                    android:textSize="24dp"
+                                    android:textColor="#3f3e3a"
+                                    android:text=""/>
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.2"
+                                    android:gravity="center"
+                                    android:textSize="24dp"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="bold"
+                                    android:text=":"/>
+
+                                <EditText
+                                    android:id="@+id/pgport02"
+                                    android:tag="pgportTag02"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1.5"
+                                    android:gravity="center"
+                                    android:background="@drawable/roundlayout_background_settings_textview"
+                                    android:padding="8dp"
+                                    android:inputType="text"
+                                    android:textSize="24dp"
+                                    android:textColor="#3f3e3a"
+                                    android:text=""/>
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"/>
+
+                                <Button
+                                    android:id="@+id/pgbtn02"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2"
+                                    android:text="selected"/>
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:orientation="horizontal">
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:orientation="horizontal">
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+                                <TextView
+                                    android:id="@+id/pgTitleTextView03"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:textSize="20dp"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="bold"
+                                    android:text="Device #03 IP"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1">
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2"
+                                android:orientation="horizontal" >
+
+                                <EditText
+                                    android:id="@+id/pgip03"
+                                    android:tag="pgipTag03"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="4"
+                                    android:gravity="center"
+                                    android:background="@drawable/roundlayout_background_settings_textview"
+                                    android:padding="8dp"
+                                    android:inputType="text"
+                                    android:textSize="24dp"
+                                    android:textColor="#3f3e3a"
+                                    android:text=""/>
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.2"
+                                    android:gravity="center"
+                                    android:textSize="24dp"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="bold"
+                                    android:text=":"/>
+
+                                <EditText
+                                    android:id="@+id/pgport03"
+                                    android:tag="pgportTag03"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1.5"
+                                    android:gravity="center"
+                                    android:background="@drawable/roundlayout_background_settings_textview"
+                                    android:padding="8dp"
+                                    android:inputType="text"
+                                    android:textSize="24dp"
+                                    android:textColor="#3f3e3a"
+                                    android:text=""/>
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"/>
+
+                                <Button
+                                    android:id="@+id/pgbtn03"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2"
+                                    android:text="selected"/>
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:orientation="horizontal">
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:orientation="horizontal">
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+                                <TextView
+                                    android:id="@+id/pgTitleTextView04"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:textSize="20dp"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="bold"
+                                    android:text="Device #04 IP"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1">
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2"
+                                android:orientation="horizontal" >
+
+                                <EditText
+                                    android:id="@+id/pgip04"
+                                    android:tag="pgipTag04"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="4"
+                                    android:gravity="center"
+                                    android:background="@drawable/roundlayout_background_settings_textview"
+                                    android:padding="8dp"
+                                    android:inputType="text"
+                                    android:textSize="24dp"
+                                    android:textColor="#3f3e3a"
+                                    android:text=""/>
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.2"
+                                    android:gravity="center"
+                                    android:textSize="24dp"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="bold"
+                                    android:text=":"/>
+
+                                <EditText
+                                    android:id="@+id/pgport04"
+                                    android:tag="pgportTag04"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1.5"
+                                    android:gravity="center"
+                                    android:background="@drawable/roundlayout_background_settings_textview"
+                                    android:padding="8dp"
+                                    android:inputType="text"
+                                    android:textSize="24dp"
+                                    android:textColor="#3f3e3a"
+                                    android:text=""/>
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"/>
+
+                                <Button
+                                    android:id="@+id/pgbtn04"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2"
+                                    android:text="selected"/>
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:orientation="horizontal">
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:orientation="horizontal">
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+                                <TextView
+                                    android:id="@+id/pgTitleTextView05"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:textSize="20dp"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="bold"
+                                    android:text="Device #05 IP"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1">
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2"
+                                android:orientation="horizontal" >
+
+                                <EditText
+                                    android:id="@+id/pgip05"
+                                    android:tag="pgipTag05"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="4"
+                                    android:gravity="center"
+                                    android:background="@drawable/roundlayout_background_settings_textview"
+                                    android:padding="8dp"
+                                    android:inputType="text"
+                                    android:textSize="24dp"
+                                    android:textColor="#3f3e3a"
+                                    android:text=""/>
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.2"
+                                    android:gravity="center"
+                                    android:textSize="24dp"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="bold"
+                                    android:text=":"/>
+
+                                <EditText
+                                    android:id="@+id/pgport05"
+                                    android:tag="pgportTag05"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1.5"
+                                    android:gravity="center"
+                                    android:background="@drawable/roundlayout_background_settings_textview"
+                                    android:padding="8dp"
+                                    android:inputType="text"
+                                    android:textSize="24dp"
+                                    android:textColor="#3f3e3a"
+                                    android:text=""/>
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"/>
+
+                                <Button
+                                    android:id="@+id/pgbtn05"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2"
+                                    android:text="selected"/>
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:orientation="horizontal">
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:orientation="horizontal">
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+                                <TextView
+                                    android:id="@+id/pgTitleTextView06"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:textSize="20dp"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="bold"
+                                    android:text="Device #06 IP"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1">
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2"
+                                android:orientation="horizontal" >
+
+                                <EditText
+                                    android:id="@+id/pgip06"
+                                    android:tag="pgipTag06"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="4"
+                                    android:gravity="center"
+                                    android:background="@drawable/roundlayout_background_settings_textview"
+                                    android:padding="8dp"
+                                    android:inputType="text"
+                                    android:textSize="24dp"
+                                    android:textColor="#3f3e3a"
+                                    android:text=""/>
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.2"
+                                    android:gravity="center"
+                                    android:textSize="24dp"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="bold"
+                                    android:text=":"/>
+
+                                <EditText
+                                    android:id="@+id/pgport06"
+                                    android:tag="pgportTag06"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1.5"
+                                    android:gravity="center"
+                                    android:background="@drawable/roundlayout_background_settings_textview"
+                                    android:padding="8dp"
+                                    android:inputType="text"
+                                    android:textSize="24dp"
+                                    android:textColor="#3f3e3a"
+                                    android:text=""/>
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"/>
+
+                                <Button
+                                    android:id="@+id/pgbtn06"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2"
+                                    android:text="selected"/>
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:orientation="horizontal">
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:orientation="horizontal">
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+                                <TextView
+                                    android:id="@+id/pgTitleTextView07"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:textSize="20dp"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="bold"
+                                    android:text="Device #07 IP"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1">
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2"
+                                android:orientation="horizontal" >
+
+                                <EditText
+                                    android:id="@+id/pgip07"
+                                    android:tag="pgipTag07"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="4"
+                                    android:gravity="center"
+                                    android:background="@drawable/roundlayout_background_settings_textview"
+                                    android:padding="8dp"
+                                    android:inputType="text"
+                                    android:textSize="24dp"
+                                    android:textColor="#3f3e3a"
+                                    android:text=""/>
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.2"
+                                    android:gravity="center"
+                                    android:textSize="24dp"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="bold"
+                                    android:text=":"/>
+
+                                <EditText
+                                    android:id="@+id/pgport07"
+                                    android:tag="pgportTag07"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1.5"
+                                    android:gravity="center"
+                                    android:background="@drawable/roundlayout_background_settings_textview"
+                                    android:padding="8dp"
+                                    android:inputType="text"
+                                    android:textSize="24dp"
+                                    android:textColor="#3f3e3a"
+                                    android:text=""/>
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"/>
+
+                                <Button
+                                    android:id="@+id/pgbtn07"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2"
+                                    android:text="selected"/>
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:orientation="horizontal">
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:orientation="horizontal">
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+                                <TextView
+                                    android:id="@+id/pgTitleTextView08"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:textSize="20dp"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="bold"
+                                    android:text="Device #08 IP"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1">
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2"
+                                android:orientation="horizontal" >
+
+                                <EditText
+                                    android:id="@+id/pgip08"
+                                    android:tag="pgipTag08"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="4"
+                                    android:gravity="center"
+                                    android:background="@drawable/roundlayout_background_settings_textview"
+                                    android:padding="8dp"
+                                    android:inputType="text"
+                                    android:textSize="24dp"
+                                    android:textColor="#3f3e3a"
+                                    android:text=""/>
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.2"
+                                    android:gravity="center"
+                                    android:textSize="24dp"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="bold"
+                                    android:text=":"/>
+
+                                <EditText
+                                    android:id="@+id/pgport08"
+                                    android:tag="pgportTag08"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1.5"
+                                    android:gravity="center"
+                                    android:background="@drawable/roundlayout_background_settings_textview"
+                                    android:padding="8dp"
+                                    android:inputType="text"
+                                    android:textSize="24dp"
+                                    android:textColor="#3f3e3a"
+                                    android:text=""/>
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"/>
+
+                                <Button
+                                    android:id="@+id/pgbtn08"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2"
+                                    android:text="selected"/>
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:orientation="horizontal">
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:orientation="horizontal">
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+                                <TextView
+                                    android:id="@+id/pgTitleTextView09"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:textSize="20dp"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="bold"
+                                    android:text="Device #09 IP"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1">
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2"
+                                android:orientation="horizontal" >
+
+                                <EditText
+                                    android:id="@+id/pgip09"
+                                    android:tag="pgipTag09"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="4"
+                                    android:gravity="center"
+                                    android:background="@drawable/roundlayout_background_settings_textview"
+                                    android:padding="8dp"
+                                    android:inputType="text"
+                                    android:textSize="24dp"
+                                    android:textColor="#3f3e3a"
+                                    android:text=""/>
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.2"
+                                    android:gravity="center"
+                                    android:textSize="24dp"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="bold"
+                                    android:text=":"/>
+
+                                <EditText
+                                    android:id="@+id/pgport09"
+                                    android:tag="pgportTag09"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1.5"
+                                    android:gravity="center"
+                                    android:background="@drawable/roundlayout_background_settings_textview"
+                                    android:padding="8dp"
+                                    android:inputType="text"
+                                    android:textSize="24dp"
+                                    android:textColor="#3f3e3a"
+                                    android:text=""/>
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"/>
+
+                                <Button
+                                    android:id="@+id/pgbtn09"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2"
+                                    android:text="selected"/>
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:orientation="horizontal">
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:orientation="horizontal">
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+                                <TextView
+                                    android:id="@+id/pgTitleTextView10"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:textSize="20dp"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="bold"
+                                    android:text="Device #10 IP"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1">
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2"
+                                android:orientation="horizontal" >
+
+                                <EditText
+                                    android:id="@+id/pgip10"
+                                    android:tag="pgipTag10"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="4"
+                                    android:gravity="center"
+                                    android:background="@drawable/roundlayout_background_settings_textview"
+                                    android:padding="8dp"
+                                    android:inputType="text"
+                                    android:textSize="24dp"
+                                    android:textColor="#3f3e3a"
+                                    android:text=""/>
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.2"
+                                    android:gravity="center"
+                                    android:textSize="24dp"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="bold"
+                                    android:text=":"/>
+
+                                <EditText
+                                    android:id="@+id/pgport10"
+                                    android:tag="pgportTag10"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1.5"
+                                    android:gravity="center"
+                                    android:background="@drawable/roundlayout_background_settings_textview"
+                                    android:padding="8dp"
+                                    android:inputType="text"
+                                    android:textSize="24dp"
+                                    android:textColor="#3f3e3a"
+                                    android:text=""/>
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"/>
+
+                                <Button
+                                    android:id="@+id/pgbtn10"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2"
+                                    android:text="selected"/>
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:orientation="horizontal">
+                        </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="3"
+                                android:orientation="horizontal">
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.9"
+                                android:orientation="horizontal">
+                                <Button
+                                    android:id="@+id/pgipbtn"
+                                    android:tag="pgipbtnTag"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:padding="10dp"
+                                    android:background="@drawable/button_selector_settings_v"
+                                    android:textSize="24dp"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="bold"
+                                    android:text="V"/>
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.1"
+                            android:orientation="horizontal">
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </ScrollView>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

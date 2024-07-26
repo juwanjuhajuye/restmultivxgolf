@@ -8,11 +8,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.text.InputType;
 import android.view.View;
 import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
@@ -260,6 +262,11 @@ public class Employee_Login extends Activity {
         emplogin_number_done.setOnClickListener(login_numberClicklistener);
 
         setInit();
+
+
+        // 07182024
+        // 카드결제 기기등록관련
+        pgIpDataMake();
     }
 
     View.OnClickListener loginBtnClickListener = new View.OnClickListener() {
@@ -689,6 +696,9 @@ public class Employee_Login extends Activity {
                 openCashInOutPopup();
             }
 
+            // 프렌차이즈인지 여부를 설정한다.
+            GlobalMemberValues.setComFranchise();
+
         }
     }
 
@@ -833,7 +843,7 @@ public class Employee_Login extends Activity {
     }
 
     public static void login_Db_Compack(){
-        LogsSave.saveLogsInDB(14);
+
         // back dialog
         mProgressDialog = ProgressDialog.show(
                 mContext, "DB Compact", "Please wait until database backup is completed", true, false);
@@ -846,6 +856,7 @@ public class Employee_Login extends Activity {
                 .setPositiveButton("Yes",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
+                                LogsSave.saveLogsInDB(14);
                                 Thread thread = new Thread(new Runnable() {
                                     public void run() {
                                         // 1. 처리가 오래걸리는 부분 실행 --------------------------------------------------
@@ -1142,4 +1153,51 @@ public class Employee_Login extends Activity {
             mServerNum = "";
         }
     }
+
+
+
+
+    // 07182024
+    // 카드결제 기기등록관련
+    public void pgIpDataMake() {
+        // salon_storestationsettings_system
+        int pgipTableCnt = MainActivity.mDbInit.checkTable("salon_pgip");
+        if (pgipTableCnt > 0) {
+            String strQuery = "select count(*) from salon_pgip";
+            int pgIpCnt = GlobalMemberValues.getIntAtString(MssqlDatabase.getResultSetValueToString(strQuery));
+            if (pgIpCnt == 0) {
+                String pgdevicenum = "";
+                Vector<String> strInsertQueryVec = new Vector<String>();
+                for (int i = 0; i < 10; i++) {
+                    if (i < 9) {
+                        pgdevicenum = "PG0" + (i + 1);
+                    } else {
+                        pgdevicenum = "PG" + (i + 1);
+                    }
+
+                    strQuery = " insert into salon_pgip (scode, sidx, pgdevicenum, networkip, networkport) values ( " +
+                            " '" + GlobalMemberValues.SALON_CODE + "', " +
+                            " '" + GlobalMemberValues.STORE_INDEX + "', " +
+                            " '" + pgdevicenum + "', " +
+                            " '', " +
+                            " '' " +
+                            " ) ";
+                    strInsertQueryVec.addElement(strQuery);
+                }
+
+                for (String tempQuery : strInsertQueryVec) {
+                    GlobalMemberValues.logWrite("salonpgiplogjjj", "query : " + tempQuery + "\n");
+                }
+
+                String returnResult = MssqlDatabase.executeTransaction(strInsertQueryVec);
+                GlobalMemberValues.logWrite("salonpgiplogjjj", "returnResult : " + returnResult + "\n");
+                if (returnResult == "N" || returnResult == "") {
+                    GlobalMemberValues.displayDialog(MainActivity.mContext, "Warning", "Database Error", "Close");
+                } else {
+                }
+
+            }
+        }
+    }
+
 }

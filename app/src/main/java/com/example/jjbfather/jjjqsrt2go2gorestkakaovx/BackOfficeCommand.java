@@ -488,6 +488,7 @@ public class BackOfficeCommand extends Activity {
             File data = Environment.getDataDirectory();
 
             if (sd.canWrite()) {
+
                 File backupDB = new File(
                         data, "//data//" + tempPackagename + "//databases//" + GlobalMemberValues.DATABASE_NAME);
                 File backupDBWal = new File(
@@ -515,14 +516,11 @@ public class BackOfficeCommand extends Activity {
                 dst.close();
 
                 //06272024 only if the device is using wal mode, restore the -wal and -shm file
-                if (backupDBWal.exists()){
+                if (backupDBWal.exists() && currentDBWal.exists()) {
                     FileChannel srcWal = new FileInputStream(currentDBWal).getChannel();
                     FileChannel dstWal = new FileOutputStream(backupDBWal).getChannel();
 
-                    FileChannel srcShm = new FileInputStream(currentDBShm).getChannel();
-                    FileChannel dstShm = new FileOutputStream(backupDBShm).getChannel();
-
-                    for(long count = currentDBWal.length(); count > 0L;){
+                    for (long count = currentDBWal.length(); count > 0L; ) {
                         final long transferred = dstWal.transferFrom(
                                 srcWal, dstWal.position(), count);
                         dstWal.position(dstWal.position() + transferred);
@@ -531,6 +529,11 @@ public class BackOfficeCommand extends Activity {
 
                     srcWal.close();
                     dstWal.close();
+                }
+                if (backupDBShm.exists() && currentDBShm.exists()){
+
+                    FileChannel srcShm = new FileInputStream(currentDBShm).getChannel();
+                    FileChannel dstShm = new FileOutputStream(backupDBShm).getChannel();
 
                     for(long count = currentDBShm.length(); count > 0L;){
                         final long transferred = dstShm.transferFrom(
@@ -542,8 +545,6 @@ public class BackOfficeCommand extends Activity {
                     srcShm.close();
                     dstShm.close();
                 }
-
-                //GlobalMemberValues.setCloseAndroidAppMethod(MainActivity.mActivity);
 
                 dbInit.openDBHandler();
 

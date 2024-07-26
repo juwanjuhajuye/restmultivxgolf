@@ -141,6 +141,7 @@ public class TableDetailInfo extends Activity {
             }
         } catch (Exception e) {
         }
+
         //07052024 close resultset
         try {
             if(!timeCursor.isClosed()){

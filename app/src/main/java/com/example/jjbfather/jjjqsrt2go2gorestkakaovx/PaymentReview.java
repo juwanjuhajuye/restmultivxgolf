@@ -34,6 +34,7 @@ import org.json.JSONObject;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Timer;
+import java.util.TimerTask;
 import java.util.Vector;
 
 public class PaymentReview extends Activity {
@@ -192,6 +193,9 @@ public class PaymentReview extends Activity {
     }
 
     public void setContents() {
+        // 07212024 - TOrder Send Data
+        // GlobalMemberValues.sendDataToTOrderService(MainActivity.mContext, MainActivity.mActivity);
+
         // 102022 이곳에
         GlobalMemberValues.setGoneForCardCashPayView();
 

@@ -44,6 +44,7 @@ public class API_torder_programstart extends AsyncTask {
     protected Object doInBackground(Object[] params) {
         try {
             GlobalMemberValues.logWrite(TAG, "url :" + mStrUrl + "\n");
+            //GlobalMemberValues.logWrite(TAG, "requestbody :" + JsonMsg + "\n");
 
             OutputStream os = null;
             InputStream is = null;

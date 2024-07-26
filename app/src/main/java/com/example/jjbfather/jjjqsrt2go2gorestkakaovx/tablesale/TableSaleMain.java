@@ -58,6 +58,8 @@ import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.Payment;
 import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.R;
 import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.Recall;
 import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.VerticalTextView;
+import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.WingmanTask;
+import com.google.android.material.tabs.TabLayout;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -74,6 +76,7 @@ import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.Vector;
+import java.util.concurrent.ExecutionException;
 
 public class TableSaleMain extends Activity {
     final String TAG = "TableSaleMainLog";
@@ -555,7 +558,6 @@ public class TableSaleMain extends Activity {
     }
 
 
-
     private void setContent2() {
         // 테이블 보드에 적용된 장바구니(temp_salecart)의 idx 최대값을 구한다.
         mLastCheckCartIdx = MssqlDatabase.getResultSetValueToString(
@@ -674,6 +676,7 @@ public class TableSaleMain extends Activity {
                 if (mSubTableCount > 0 && mSubTableCount > 1) {         // 테이블이 split 되어 있을 경우
                     openSplittedTableList("order");
                 } else {
+                    GlobalMemberValues.logWrite("jjjcustjjjlog", "goSalesMain 에서 시작" + "\n");
                     setOrderStart(mSelectedTablesArrList, false, false);
                 }
             }
@@ -2577,6 +2580,7 @@ public class TableSaleMain extends Activity {
                 if (mSubTableCount > 0 && mSubTableCount > 1) {         // 테이블이 split 되어 있을 경우
                     openSplittedTableList("order");
                 } else {
+                    GlobalMemberValues.logWrite("jjjcustjjjlog", "startOrderPayment 에서 시작" + "\n");
                     setOrderStart(mSelectedTablesArrList, false, false);
                 }
             }
@@ -4878,7 +4882,7 @@ public class TableSaleMain extends Activity {
                     " additionalTxt1, additionalprice1, additionalTxt2, additionalprice2, modifieridx, " +
                     " modifiercode, memoToKitchen, " +
                     " sPriceBalAmount_org, sTaxAmount_org, sTotalAmount_org, sCommissionAmount_org, sPointAmount_org, " +
-                    " tableidx, subtablenum, billnum, kitchenprintedyn, togotype, " +
+                    " tableidx, subtablenum, billnum, kitchenprintedyn, togotype, wdate, " +
                     // 05312024
                     " tordercode, iscloudupload " +
                     " ) " +
@@ -4896,7 +4900,7 @@ public class TableSaleMain extends Activity {
                     " modifiercode, memoToKitchen, " +
                     " sPriceBalAmount_org, sTaxAmount_org, sTotalAmount_org, sCommissionAmount_org, sPointAmount_org, " +
                     " '" + paramNextTableIdx + "', " +
-                    " subtablenum, billnum, kitchenprintedyn, togotype, " +
+                    " subtablenum, billnum, kitchenprintedyn, togotype, wdate, " +
                     // 05312024
                     " tordercode, 0 " +
                     " from temp_salecart " +
@@ -4954,6 +4958,13 @@ public class TableSaleMain extends Activity {
                 viewTableSettigns(mSelectedZoneIdx);
                 uploadTableDataCloudExe();
             }
+
+            //06032024 if using torder send data to torder API
+            // 07172024
+            // 아래 주석처리
+//            if (GlobalMemberValues.isTOrderUse()){
+//                GlobalMemberValues.sendTOrderAPIOrderData("K");
+//            }
 
         }
     }
@@ -5116,6 +5127,31 @@ public class TableSaleMain extends Activity {
             if (GlobalMemberValues.isUseFadeInOut()) {
                 mActivity.overridePendingTransition(R.anim.act_in_bottom, R.anim.act_out_bottom);
             }
+            //05172024 if using QSR Mode, ignore tableidx concept
+        } else if (GlobalMemberValues.isQSRPOSonRestaurantPOS){
+//            Intent intent = new Intent(MainActivity.mContext,BillSplitMerge.class);
+//            intent.putExtra("selectedTableIdx", "");
+//            intent.putExtra("selectedSubTableNum", mSubTableNum);
+//            intent.putExtra("currentHoldCode", MainMiddleService.mHoldCode);
+//            MainActivity.mActivity.startActivity(intent);
+//            if (GlobalMemberValues.isUseFadeInOut()) {
+//                MainActivity.mActivity.overridePendingTransition(R.anim.act_in_bottom, R.anim.act_out_bottom);
+//            }
+        }
+    }
+
+    public static void openBillSplitMerge_in_QSRMode(){
+
+        // 주문이 있는 테이블만 처리하도록
+        if (GlobalMemberValues.mSelectedTableIdx.isEmpty()) return;
+
+        Intent intent = new Intent(MainActivity.mContext,BillSplitMerge.class);
+        intent.putExtra("selectedTableIdx", GlobalMemberValues.mSelectedTableIdx);
+        intent.putExtra("selectedSubTableNum", mSubTableNum);
+        intent.putExtra("currentHoldCode", MainMiddleService.mHoldCode);
+        MainActivity.mActivity.startActivity(intent);
+        if (GlobalMemberValues.isUseFadeInOut()) {
+            MainActivity.mActivity.overridePendingTransition(R.anim.act_in_bottom, R.anim.act_out_bottom);
         }
     }
 
@@ -5314,6 +5350,13 @@ public class TableSaleMain extends Activity {
 
         try {
             GlobalMemberValues.phoneorderPrinting(paramHoldCode, "K", get_tableInfos);
+
+            // 07172024
+            // 아래 주석처리
+//            if (GlobalMemberValues.isTOrderUse()){
+//                GlobalMemberValues.sendTOrderAPIOrderData("K");
+//            }
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -5353,6 +5396,8 @@ public class TableSaleMain extends Activity {
     }
 
     public static void setOrderStart(ArrayList<String> paramArr, boolean b_emp_selected, boolean isOpenAtPeopleCnt) {
+        GlobalMemberValues.logWrite("jjjcustjjjlog", "setOrderStart 시작" + "\n");
+
         // isOpenAtPeopleCnt 가 false 일 경우, 즉 TablePeopleCnt 클래스에서 오픈한 경우가 아닐 때에만 ---------------------------
         // 선택한 테이블에 저장된 메뉴가 없으면 선택된 테이블의 idx 에 해당되는 holdcode 로
         // salon_store_restaurant_table_peoplecnt 에 저장되어 있을지 모르는 데이터를 삭제한다.
@@ -5429,7 +5474,6 @@ public class TableSaleMain extends Activity {
         mTableIdxArrList = paramArr;
 //            GlobalMemberValues.logWrite("jjjsaletablelog", "selected table idx : " + mTableIdxArrList + "\n");
 
-
         if (GlobalMemberValues.isQSRPOSonRestaurantPOS) {
             if (GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAIN_TOP_LEFT_ORDER_LIST.isSelected()) GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAIN_TOP_LEFT_ORDER_LIST.callOnClick();
             setCloseActivity(false);
@@ -5455,7 +5499,6 @@ public class TableSaleMain extends Activity {
                 setCloseActivity(false);
             }
         }
-
     }
 
     public static int getTableSplitCount(String paramTableIdx) {
@@ -5511,7 +5554,7 @@ public class TableSaleMain extends Activity {
                 if (temp_holdcode.isEmpty()){
                     temp_holdcode = getHoldCodeByTableidx_byQSR(mTableIdxArrList.get(0).toString(), TableSaleMain.mSubTableNum);
                 }
-            }            
+            }
 
             // 06.02.2022 ------------------------------------------------------------------
             if (!GlobalMemberValues.isStrEmpty(GlobalMemberValues.mHoldCode_byRepay)) {
@@ -5774,7 +5817,12 @@ public class TableSaleMain extends Activity {
         mSelectedIdxArrListInCart = null;
         GlobalMemberValues.mCancelKitchenPrinting = "N";
 
-        GlobalMemberValues.mSelectedTableIdx = "";
+        if (GlobalMemberValues.isQSRPOSonRestaurantPOS){
+
+        } else {
+            GlobalMemberValues.mSelectedTableIdx = "";
+        }
+
         GlobalMemberValues.mDeletedSaleCartIdx = "";
     }
 
@@ -5872,6 +5920,12 @@ public class TableSaleMain extends Activity {
             GlobalMemberValues.setTableIdxInCloud(mContext, mActivity);
         }
 
+
+        // 072424
+        // SERVER IDX, NAME 초기화
+        GlobalMemberValues.SERVER_IDX = "";
+        GlobalMemberValues.SERVER_NAME = "";
+        GlobalMemberValues.SERVER_ID = "";
 
 
     }
@@ -6603,6 +6657,7 @@ public class TableSaleMain extends Activity {
         }
     }
 
+
     public static String getHoldCodeByTableidx_byQSR(String paramTableIdx, String paramSubTableNum) {
         if (GlobalMemberValues.isStrEmpty(paramSubTableNum)) {
             paramSubTableNum = "1";
@@ -6613,7 +6668,6 @@ public class TableSaleMain extends Activity {
         );
 
         return temp_holdcode;
-    }    
-
+    }
 
 }

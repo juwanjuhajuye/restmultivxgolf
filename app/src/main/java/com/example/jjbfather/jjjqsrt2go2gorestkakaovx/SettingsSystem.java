@@ -36,6 +36,10 @@ import android.widget.Toast;
 
 //import androidx.multidex.BuildConfig;
 
+import androidx.multidex.BuildConfig;
+
+import org.jsoup.helper.StringUtil;
+
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -88,6 +92,8 @@ public class SettingsSystem extends Activity {
     private Switch pickuptypepopupuseynSwitch;
     private Switch printingcategoryynSwitch;
     private Switch billprintpopupynSwitch;
+
+    private Switch pushpopupopenynSwitch;
 
     private Switch openmsgwhendeletemenu_ynSwitch;
     private Switch otherpayprinting_ynSwitch;
@@ -250,6 +256,8 @@ public class SettingsSystem extends Activity {
 
     LinearLayout customerinfoviewSwitch_type_ln;
     CheckBox customerinfoviewSwitch_type_here, customerinfoviewSwitch_type_togo, customerinfoviewSwitch_type_delivery;
+
+    Button btn_transdata;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -424,6 +432,8 @@ public class SettingsSystem extends Activity {
 
         String vSaledatauploadpauseyn = "N";
 
+        String vPushpopupopenyn = "N";
+
         String vTimeviewontableyn = "N";
 
         // 102720231
@@ -451,7 +461,9 @@ public class SettingsSystem extends Activity {
                 " itemdeletereasonyn, " +
 
                 // 01172024
-                " tableorderuseyn " +
+                " tableorderuseyn, " +
+
+                " pushpopupopenyn " +
 
                 " from salon_storestationsettings_system ";
         Cursor settingsSystemCursor = dbInit.dbExecuteRead(strQuery);
@@ -556,6 +568,8 @@ public class SettingsSystem extends Activity {
 
             // 01172024
             String tempTableorderuseyn = GlobalMemberValues.getDBTextAfterChecked(settingsSystemCursor.getString(87), 1);
+
+            String tempPushpopupopenyn = GlobalMemberValues.getDBTextAfterChecked(settingsSystemCursor.getString(88), 1);
 
             GlobalMemberValues.logWrite("settingslog", "tempReceipttypeonnoselect : " + tempReceipttypeonnoselect + "\n");
 
@@ -1034,6 +1048,12 @@ public class SettingsSystem extends Activity {
                 vTableorderuseyn = "N";
             }
 
+
+            if (!GlobalMemberValues.isStrEmpty(tempPushpopupopenyn)) {
+                vPushpopupopenyn = tempPushpopupopenyn;
+            } else {
+                vPushpopupopenyn = "N";
+            }
 
 
             orgin_timeMenuAutoReload = vTimemenuautoreload;
@@ -1587,6 +1607,13 @@ public class SettingsSystem extends Activity {
             tableorderuseynSwitch.setChecked(false);
         }
 
+
+        pushpopupopenynSwitch = (Switch)findViewById(R.id.pushpopupopenynSwitch);
+        if (vPushpopupopenyn == "Y" || vPushpopupopenyn.equals("Y")){
+            pushpopupopenynSwitch.setChecked(true);
+        }else{
+            pushpopupopenynSwitch.setChecked(false);
+        }
 
 
         dualdpadlocalpathBtn = (Button) findViewById(R.id.dualdpadlocalpathBtn);
@@ -2259,6 +2286,9 @@ public class SettingsSystem extends Activity {
         img_button_info = (ImageButton)findViewById(R.id.system_info_btn);
         img_button_info.setOnClickListener(infomation_btn_listener);
 
+        btn_transdata = findViewById(R.id.transdata);
+        btn_transdata.setOnClickListener(mButtonClick);
+
     }
 
     CompoundButton.OnCheckedChangeListener setCheckCustomerSelectReceipt = new CompoundButton.OnCheckedChangeListener() {
@@ -2434,6 +2464,32 @@ public class SettingsSystem extends Activity {
                     }
                     break;
                 }
+                case R.id.transdata: {
+
+                    // popup
+                    if ((mActivity != null) && (!mActivity.isFinishing())) {
+                        new AlertDialog.Builder(mActivity)
+                                .setTitle("Trans. DATABASE")
+                                .setMessage("Are you sure to transfer data from POS to SERVER?\n" +
+                                        "If you have data on your server, it may be duplicated")
+                                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                    }
+                                })
+                                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        // 해당 기능 실행
+                                        TransDatasForSales transDatasForSales = new TransDatasForSales();
+                                        transDatasForSales.transDatas();
+                                    }
+                                }).show();
+                    }
+
+
+                    break;
+                }
             }
         }
     };
@@ -2546,6 +2602,8 @@ public class SettingsSystem extends Activity {
 
         // 01172024
         String insTableorderuseyn = "N";
+
+        String insPushpopupopenyn = "N";
 
         if (splashUseSwitch.isChecked()) {
             insSplashUse = 0;
@@ -2945,6 +3003,12 @@ public class SettingsSystem extends Activity {
             insServerPasswordUseYn = "N";
         }
 
+        if (pushpopupopenynSwitch.isChecked()){
+            insPushpopupopenyn = "Y";
+        } else {
+            insPushpopupopenyn = "N";
+        }
+
         if (!receipttypeonnoselectCb1.isChecked() && !receipttypeonnoselectCb2.isChecked()) {
             insReceipttypeonnoselect = "E";
         } else {
@@ -3145,6 +3209,8 @@ public class SettingsSystem extends Activity {
 
                 // 01172024
                 " tableorderuseyn = '" + insTableorderuseyn + "', " +
+
+                " pushpopupopenyn = '" + insPushpopupopenyn + "', " +
 
                 " mdate = datetime('now') ";
 

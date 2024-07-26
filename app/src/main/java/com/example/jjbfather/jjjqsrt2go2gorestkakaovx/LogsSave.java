@@ -347,20 +347,38 @@ public class LogsSave {
             }
             // 20230112 추가
 
+
             // 20231017 추가
             String str_empIdx = "";
             String str_empName = "";
-            if (GlobalMemberValues.GLOBAL_EMPLOYEEINFO != null){
-                if (GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx.equals("") || GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx == null){
-                } else {
-                    str_empIdx = GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx;
-                }
 
-                if (GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName.equals("") || GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName == null){
-                } else {
-                    str_empName = GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName;
+            // 먼저 Server 확인
+            if (!GlobalMemberValues.SERVER_IDX.isEmpty()){
+                str_empIdx = GlobalMemberValues.SERVER_IDX;
+            }
+            if (!GlobalMemberValues.SERVER_NAME.isEmpty()){
+                str_empName = GlobalMemberValues.SERVER_NAME;
+            }
+            if (str_empIdx.isEmpty()){
+                if (GlobalMemberValues.GLOBAL_EMPLOYEEINFO != null){
+                    if (GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx.equals("") || GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx == null){
+                    } else {
+                        str_empIdx = GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx;
+                    }
                 }
             }
+            if (str_empName.isEmpty()){
+                if (GlobalMemberValues.GLOBAL_EMPLOYEEINFO != null){
+                    if (GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName.equals("") || GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName == null){
+                    } else {
+                        str_empName = GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName;
+                    }
+                }
+            }
+
+
+
+
 
 
             // 20231017 추가
@@ -387,7 +405,7 @@ public class LogsSave {
                 GlobalMemberValues.logWrite("logsavesjjjlog", "query : " + tempQuery + "\n");
             }
             // 트랜잭션으로 DB 처리한다.
-            String returnResult = MainActivity.mDbInit.dbExecuteWriteForTransactionReturnResultOnlySqllite(strInsertQueryVec);
+            String returnResult = MainActivity.mDbInit.dbExecuteWriteForTransactionReturnResult(strInsertQueryVec);
             if (returnResult == "N" || returnResult == "") {
                 //GlobalMemberValues.displayDialog(MainActivity.mContext, "Warning", "Database Error", "Close");
             } else {
@@ -446,17 +464,44 @@ public class LogsSave {
             // 20231017 추가
             String str_empIdx = "";
             String str_empName = "";
-            if (GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx.equals("") || GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx == null){
-            } else {
-                str_empIdx = GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx;
-            }
-
-            if (GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName.equals("") || GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName == null){
-            } else {
-                str_empName = GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName;
-            }
+//            if (GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx.equals("") || GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx == null){
+//            } else {
+//                str_empIdx = GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx;
+//            }
+//
+//            if (GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName.equals("") || GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName == null){
+//            } else {
+//                str_empName = GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName;
+//            }
 
             // 20231017 추가
+
+            // 20240724 변경
+            // 먼저 Server 확인
+            if (!GlobalMemberValues.SERVER_IDX.isEmpty()){
+                str_empIdx = GlobalMemberValues.SERVER_IDX;
+            }
+            if (GlobalMemberValues.SERVER_NAME.isEmpty()){
+                str_empName = GlobalMemberValues.SERVER_NAME;
+            }
+            if (str_empIdx.isEmpty()){
+                if (GlobalMemberValues.GLOBAL_EMPLOYEEINFO != null){
+                    if (GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx.equals("") || GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx == null){
+                    } else {
+                        str_empIdx = GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx;
+                    }
+                }
+            }
+            if (str_empName.isEmpty()){
+                if (GlobalMemberValues.GLOBAL_EMPLOYEEINFO != null){
+                    if (GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName.equals("") || GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName == null){
+                    } else {
+                        str_empName = GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName;
+                    }
+                }
+            }
+            // 20240724 변경
+
 
             Vector<String> strInsertQueryVec = new Vector<String>();
             String strQuery = "";
@@ -481,7 +526,7 @@ public class LogsSave {
                 GlobalMemberValues.logWrite("logsavesjjjlog", "query : " + tempQuery + "\n");
             }
             // 트랜잭션으로 DB 처리한다.
-            String returnResult = MainActivity.mDbInit.dbExecuteWriteForTransactionReturnResultOnlySqllite(strInsertQueryVec);
+            String returnResult = MainActivity.mDbInit.dbExecuteWriteForTransactionReturnResult(strInsertQueryVec);
             if (returnResult == "N" || returnResult == "") {
                 //GlobalMemberValues.displayDialog(MainActivity.mContext, "Warning", "Database Error", "Close");
             } else {

@@ -504,11 +504,11 @@ public class APIDownLoad_salon_storegeneral extends AsyncTask {
                             torderkey = xpp.getText();
                         }
 
-
                         // 04302024
                         if (tagName.equals("qsronrestaurantyn")) {
                             qsronrestaurantyn = xpp.getText();
                         }
+
 
                         // 05302024
                         if (tagName.equals("torderapikey")) {
@@ -520,7 +520,6 @@ public class APIDownLoad_salon_storegeneral extends AsyncTask {
                         if (tagName.equals("torderapiurl")) {
                             torderapiurl = xpp.getText();
                         }
-
 
 
                         if (tagName.equals("totaloptionitem")) {
@@ -559,7 +558,7 @@ public class APIDownLoad_salon_storegeneral extends AsyncTask {
                                 // 08012023
                                 " gratuitydelyn, crmuseyn, cashdcshowonreceiptyn, cashdctaxshowyn, " +
                                 // 03252024
-                                " torderuseyn, torderkey, qsronrestaurantyn,  " +
+                                " torderuseyn, torderkey, qsronrestaurantyn, " +
                                 // 05302024
                                 " torderapikey, torderpartnerid, torderapiurl " +
                                 " ) " +

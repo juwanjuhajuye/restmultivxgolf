@@ -696,7 +696,9 @@ public class SaleCartAdapter extends BaseAdapter {
 
         if (mArSrc.get(position).mSaveType == "8" || mArSrc.get(position).mSaveType == "9"){
             kitchenprintingmsgLn.setVisibility(View.GONE);
+            tv_kitchenPrintedyn.setVisibility(View.GONE);
         } else {
+            tv_kitchenPrintedyn.setVisibility(View.VISIBLE);
             kitchenprintingmsgLn.setVisibility(View.VISIBLE);
             TextView mainSaleCartList_orderkind_Tv = convertView.findViewById(R.id.mainSaleCartList_orderkind_Tv);
             mainSaleCartList_orderkind_Tv.setText(mArSrc.get(position).mServiceType);
@@ -753,6 +755,7 @@ public class SaleCartAdapter extends BaseAdapter {
             if (kitchenMemoLn != null) {
                 kitchenMemoLn.setVisibility(View.GONE);
             }
+            tv_kitchenPrintedyn.setVisibility(View.GONE);
             kitchenprintingmsgLn.setVisibility(View.GONE);
             tvQty.setVisibility(View.GONE);
             tvEach.setVisibility(View.GONE);
@@ -917,5 +920,6 @@ public class SaleCartAdapter extends BaseAdapter {
         CheckBox cBox = null;
         LinearLayout ln_background = null;
     }
+
 
 }

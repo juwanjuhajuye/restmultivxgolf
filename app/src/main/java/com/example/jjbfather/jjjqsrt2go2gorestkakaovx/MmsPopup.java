@@ -17,6 +17,9 @@ import android.widget.TextView;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class MmsPopup extends Dialog {
 
     private ImageButton mms_popup_close_btn, mms_popup_send_btn;

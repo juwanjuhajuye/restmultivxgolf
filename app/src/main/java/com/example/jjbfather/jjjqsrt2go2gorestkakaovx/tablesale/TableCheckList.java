@@ -51,7 +51,9 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.Vector;
+import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class TableCheckList extends Activity {
     public static Activity mActivity;
@@ -542,8 +544,8 @@ public class TableCheckList extends Activity {
 
             // "listview_item" Layout을 inflate하여 convertView 참조 획득.
 //            if (convertView == null) {
-                LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                convertView = inflater.inflate(R.layout.checklist_row, parent, false);
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = inflater.inflate(R.layout.checklist_row, parent, false);
 //            }
 
             String[] tablearr = null;
@@ -609,8 +611,7 @@ public class TableCheckList extends Activity {
             }
 
             TextView TV_tablename = convertView.findViewById(R.id.checklist_row_tablename);
-            if (tablename != null)
-            TV_tablename.setText(tablename);
+            if (tablename != null) TV_tablename.setText(tablename);
 
             String tempEmpname = MssqlDatabase.getResultSetValueToString("select empName from temp_salecart where tableidx = 'T" + tableidx + "' ");
 
@@ -882,6 +883,26 @@ public class TableCheckList extends Activity {
                     // --------------------------------------------------------
                 }
             });
+
+
+            if (mSelectedCheck != null && mSelectedCheck.size() > 0) {
+                boolean is_checked = false;
+                for (String jjjvalue : mSelectedCheck) {
+                    if (jjjvalue.equals(checkBoxValue)) {
+                        // 있음.
+                        is_checked = true;
+                    } else {
+
+                    }
+                }
+
+                if (is_checked){
+                    checkBox.setChecked(true);
+                } else {
+                    checkBox.setChecked(false);
+                }
+            }
+
 
             return convertView;
         }
@@ -1875,7 +1896,12 @@ public class TableCheckList extends Activity {
                 " serverIdx, serverName, " +
                 " deliverypickupfee, " +
                 " checkcompany, phoneorder, customerordernumber, customerpagernumber, " +
-                " tablename, tablepeoplecnt, salepg_ip, togotype " + sqlQuery_add1 +
+                " tablename, tablepeoplecnt, salepg_ip, togotype, " +
+
+                // 07202024
+                " pgdevicenum " +
+
+                " " + sqlQuery_add1 +
                 " ) values ( " +
 
                 " '" + mSalesCode + "', " +
@@ -1971,7 +1997,10 @@ public class TableCheckList extends Activity {
 
                 " '" + GlobalMemberValues.getDBTextAfterChecked(salepg_ip,0) + "', " +
 
-                " '" + tempTogoType + "' " +
+                " '" + tempTogoType + "', " +
+
+                // 07202024
+                " '" + GlobalMemberValues.getPGDeviceNum() + "' " +
 
                 sqlQuery_add2 +
                 ")";

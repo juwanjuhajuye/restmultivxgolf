@@ -539,7 +539,7 @@
                                 android:background="@drawable/roundlayout_salehistory_button_blue"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"/>
-                        </LinearLayout>                        
+                        </LinearLayout>
 
 
 
@@ -1731,6 +1731,8 @@
             </LinearLayout>
             <!-- 하단 고정 바 끝 -->
 
+
+
         </LinearLayout>
 
         <ProgressBar
@@ -1774,7 +1776,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"/>
             </LinearLayout>
-        </RelativeLayout>            
+        </RelativeLayout>
 
     </RelativeLayout>
 

@@ -1,13 +1,17 @@
 package com.example.jjbfather.jjjqsrt2go2gorestkakaovx;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.opengl.EGLObjectHandle;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -612,6 +616,10 @@ public class PaymentCreditCard extends Activity {
             insertswipekeyinLinearLayout.setVisibility(View.GONE);
         }
 
+        if (GlobalMemberValues.getPaymentGateway().equals("1")){
+            insertswipekeyinLinearLayout.setVisibility(View.GONE);
+        }
+
         paymentCreditCardProcessingCardListLinearLayout = (LinearLayout)findViewById(R.id.paymentCreditCardProcessingCardListLinearLayout);
 
         linearLayout_frameMain = (LinearLayout)findViewById(R.id.linearLayout_frameMain);
@@ -786,6 +794,8 @@ public class PaymentCreditCard extends Activity {
 
         if (returnCodeFromCardModule == "00" || returnCodeFromCardModule.equals("00")) {     // 카드프로세싱이 성공했을 경우에
             GlobalMemberValues.logWrite("paymentcreditcardlog", "여기까지2\n");
+
+            GlobalMemberValues.mSplit_transaction_id = GlobalMemberValues.makeSplitTransactionCode();
 
             // salon_sales_card 테이블에 저장한다. ----------------------------------------------------------
             Vector<String> strInsertQueryVec = new Vector<String>();

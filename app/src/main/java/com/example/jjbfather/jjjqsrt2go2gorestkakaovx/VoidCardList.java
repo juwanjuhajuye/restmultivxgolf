@@ -29,7 +29,9 @@ public class VoidCardList extends Activity {
     public static Context context;
 
     // DB 객체 선언
-    DatabaseInit dbInit;
+    // 0304204 static 으로 수정
+    static DatabaseInit dbInit;
+
 
     private LinearLayout parentLn;
 
@@ -353,6 +355,15 @@ public class VoidCardList extends Activity {
 
         String tempSalesCode = MssqlDatabase.getResultSetValueToString("select salesCode from bill_list_paid where idx = '" + tempBillPaidIdx + "' ");
 
+
+        // 03042024
+        // split void return 관련
+        String tempPaidAmount = MssqlDatabase.getResultSetValueToString("select paidAmount from bill_list_paid where idx = '" + tempBillPaidIdx + "' ");
+        if (GlobalMemberValues.isStrEmpty(tempPaidAmount)) {
+            tempPaidAmount = "0";
+        }
+
+
         Vector<String> strUpdateQueryVec = new Vector<String>();
         String strDeleteQuery = "";
 
@@ -366,6 +377,13 @@ public class VoidCardList extends Activity {
                 GlobalMemberValues.displayDialog(context, "Warning", "Database Error. Try Again", "Close");
             }
         } else {
+
+            // 03042024
+            // split void return 관련
+            SaleDataIns mpvr = new SaleDataIns(mActivity, context, dbInit);
+            mpvr.setVoidReturnDataIns("V", tempSalesCode, tempHoldCode, tempPaidAmount, "CASH", tempBillPaidIdx);
+
+
             if (getBillListPaidCntAfterAllVoidCheck() > 0) {
                 if (SaleHistory.mActivity != null) {
                     SaleHistory.mActivity.recreate();
@@ -486,6 +504,15 @@ public class VoidCardList extends Activity {
 
             String tempSalesCode = MssqlDatabase.getResultSetValueToString("select salesCode from salon_sales_card where idx = '" + paramSalonSalesCardIdx + "' ");
 
+
+            // 03042024
+            // split void return 관련
+            String tempPaidAmount = MssqlDatabase.getResultSetValueToString("select paidAmount from bill_list_paid where idx = '" + tempBillPaidIdx + "' ");
+            if (GlobalMemberValues.isStrEmpty(tempPaidAmount)) {
+                tempPaidAmount = "0";
+            }
+
+
             Vector<String> strUpdateQueryVec = new Vector<String>();
             String strDeleteQuery = "";
 
@@ -516,7 +543,16 @@ public class VoidCardList extends Activity {
                 }
             } else {                                                // DB (salon_sales_card 테이블) 입력성공
                 // 092022
-                GlobalMemberValues.serviceStartSendDataToCloud(context, mActivity);
+                // 03042024
+                // split void return 관련
+                // 아래부분 주석처리
+                // GlobalMemberValues.serviceStartSendDataToCloud(context, mActivity);
+
+                // 03042024
+                // split void return 관련
+                SaleDataIns mpvr = new SaleDataIns(mActivity, context, dbInit);
+                mpvr.setVoidReturnDataIns("V", tempSalesCode, tempHoldCode, tempPaidAmount, "CARD", tempBillPaidIdx);
+
 
                 if (getBillListPaidCntAfterAllVoidCheck() > 0) {
                     if (SaleHistory.mActivity != null) {

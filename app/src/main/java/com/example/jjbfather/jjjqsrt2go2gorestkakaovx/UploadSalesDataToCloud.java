@@ -91,7 +91,12 @@ public class UploadSalesDataToCloud extends Service implements Runnable {
                 addSqlStr = " and salesCode = '" + GlobalMemberValues.RECEIPTNOFORUPLOAD + "' ";
             }
 
-            String strSalonSalesDetailSalesCode = "select salesCode, parentSalesCode, status, idx, parentSalesIdx, returnCode, holdcode, frommssql " +
+            String strSalonSalesDetailSalesCode = "select salesCode, parentSalesCode, status, idx, parentSalesIdx, returnCode, holdcode, frommssql, " +
+
+                    // 03042024
+                    // split void return 관련
+                    " itemname " +
+
                     " from salon_sales_detail " +
                     " where isCloudUpload = 0 " +
                     " and " + schDateStr + addSqlStr +
@@ -108,6 +113,10 @@ public class UploadSalesDataToCloud extends Service implements Runnable {
                 String tempReturnCode = GlobalMemberValues.getDBTextAfterChecked(salonSalesDetailSalesCodeCursor.getString(5), 1);
                 String tempHoldCode = GlobalMemberValues.getDBTextAfterChecked(salonSalesDetailSalesCodeCursor.getString(6), 1);
                 String tempFrommssql  = GlobalMemberValues.getDBTextAfterChecked(salonSalesDetailSalesCodeCursor.getString(7), 1);
+
+                // 03042024
+                // split void return 관련
+                String tempItemName = GlobalMemberValues.getDBTextAfterChecked(salonSalesDetailSalesCodeCursor.getString(8), 1);
 
                 String tempSchSalesCode = tempSalesCode;
                 String tempSchSalesidx = tempSalesDetailIdx;
@@ -131,6 +140,17 @@ public class UploadSalesDataToCloud extends Service implements Runnable {
                     }
                     GlobalMemberValues.logWrite("tempParentSalesCode", "tempParentSalesIdx : " + tempParentSalesIdx + "\n");
                 }
+
+
+                // 03042024
+                // split void return 관련
+                if (tempItemName.equals("PARTIAL VOID")) {
+                    tempSchSalesCode = tempSalesCode;
+                    tempSchSalesidx = tempSalesDetailIdx;
+                    mathFlag = "";
+                }
+
+
                 if (!GlobalMemberValues.isStrEmpty(tempSalesCode)) {
                     Vector<String> apiVec = new Vector<String>();
 
@@ -160,6 +180,15 @@ public class UploadSalesDataToCloud extends Service implements Runnable {
                     GlobalMemberValues.logWrite("ApiMStrUrlUpdateLogJJJ", "tempSalesCode : " + tempSalesCode + "\n");
                     if (tempSalesCode.substring(0, 1).equals("V")) {
                         String temp_SalesCode = "K" + tempSalesCode.substring(1);
+
+
+                        // 03042024
+                        // split void return 관련
+                        if (tempItemName.equals("PARTIAL VOID")) {
+                            temp_SalesCode = tempSalesCode;
+                        }
+
+
                         GlobalMemberValues.logWrite("ApiMStrUrlUpdateLogJJJ", "temp_SalesCode : " + temp_SalesCode + "\n");
                         tempApi_cancelreason = dbInitForUploadCloud.dbExecuteReadReturnString(
                                 "select cancelreason from salon_sales where salesCode = '" + temp_SalesCode + "' and not(cancelreason = '' or cancelreason is null) " );
@@ -235,6 +264,15 @@ public class UploadSalesDataToCloud extends Service implements Runnable {
                     GlobalMemberValues.logWrite("paymethodsql", "tempSalesCode : " + tempSalesCode + "\n");
 
                     String tempSalesCodeK = "K" + tempSalesCode.substring(1);
+
+
+                    // 03042024
+                    // split void return 관련
+                    if (tempItemName.equals("PARTIAL VOID")) {
+                        tempSalesCodeK = tempSalesCode;
+                    }
+
+
                     String tempHeadOfSalesCode = tempSalesCode.substring(0, 1);
 
 
@@ -991,6 +1029,15 @@ public class UploadSalesDataToCloud extends Service implements Runnable {
                         // 11082023 -------------------------------------------------------------------------------------------
 
 
+                        // 03042024
+                        // split void return 관련
+                        String paramPARENTSALESCODE = "";
+                        if (tempItemName.equals("PARTIAL VOID")) {
+                            paramPARENTSALESCODE = tempParentSalesCode;
+                        }
+
+
+
                         // 06142024 ---------------------------------------------------------------------------------------------
                         // 리턴시 discount 문제관련
                         tempDcExtraForReturn = MssqlDatabase.getResultSetValueToString(
@@ -1092,7 +1139,11 @@ public class UploadSalesDataToCloud extends Service implements Runnable {
                                 "&TOGODELITYPE=" + GlobalMemberValues.getEncoderUtf8(tempTogodelitype) +
                                 "&TOT_TOT=" + getNumericChangeValue(mathFlag + tempApi_TOT_TOT) +
                                 // 11082023
-                                "&DELETEREASON=" + deleteReasonStr;
+                                "&DELETEREASON=" + deleteReasonStr +
+
+                                // 03042024
+                                // split void return 관련
+                                "&PARENTSALESCODE=" + paramPARENTSALESCODE;
 
                         salonSalesDetailUpdQuery = "update salon_sales_detail set isCloudUpload = 1 " +
                                 " where idx = '" + tempSalesDetailIdx + "' ";

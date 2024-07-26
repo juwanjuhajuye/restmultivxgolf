@@ -271,6 +271,12 @@ public class DatabaseInit {
         // 05302024
         strCreateTableVec.addElement(SqlStatements.SQL_CREATE_SALONSALESTOGODELIVERYFEE);
 
+        // 07102024
+        strCreateTableVec.addElement(SqlStatements.SQL_CREATE_TORDERJSONDATA);
+
+        // 07182024
+        // 카드결제 기기등록관련
+        strCreateTableVec.addElement(SqlStatements.SQL_CREATE_SALONPGIP);
 
         // 테이블 컬럼 수정, 삭제 등 처리
         // ...................................
@@ -2484,6 +2490,8 @@ public class DatabaseInit {
             alterDatabaseTableColumn(altTableName, "tipaddhistoryvisibleyn", "nvarchar(2)", "DEFAULT 'Y'", 0);
         }
 
+
+
         // salon_sales_cashout_json 테이블 컬럼 추가
         // 4.6.2021, isCloudUpload 컬럼 추가
         altTableName = "salon_sales_cashout_json";
@@ -3212,6 +3220,12 @@ public class DatabaseInit {
             alterDatabaseTableColumn(altTableName, "salescode", "nvarchar(100)", "DEFAULT ''", 0);
         }
 
+//        // btn_logs 테이블 컬럼 추가
+//        // 10.27.2022, scode 컬럼 추가
+//        altTableName = "btn_logs";
+//        alterDatabaseTableColumn(altTableName, "scode", "nvarchar(500)", "DEFAULT ''");
+
+
         // temp_salecart 테이블 컬럼 추가
         // 11.18.2022, togotype 컬럼 추가
         altTableName = "temp_salecart";
@@ -3551,6 +3565,7 @@ public class DatabaseInit {
         if (checkTable(altTableName) > 0) {
             alterDatabaseTableColumn(altTableName, "name_en", "nvarchar(200)", "DEFAULT ''", 0);
         }
+
         // salon_storegeneral 테이블 컬럼 추가
         // 6.21.2023, addpayitempriceshowyn 컬럼 추가
         altTableName = "salon_storegeneral";
@@ -3755,12 +3770,14 @@ public class DatabaseInit {
         }
 
 
+
         // salon_storegeneral 테이블 컬럼 추가
         // 4.30.2024, qsronrestaurantyn 컬럼 추가
         altTableName = "salon_storegeneral";
         if (checkTable(altTableName) > 0) {
             alterDatabaseTableColumn(altTableName, "qsronrestaurantyn", "nvarchar(2)", "DEFAULT 'N'", 0);
         }
+
 
 
         // salon_storegeneral 테이블 컬럼 추가
@@ -3790,6 +3807,39 @@ public class DatabaseInit {
             alterDatabaseTableColumn(altTableName, "orgTip", "money", "DEFAULT 0.0", 0);
         }
 
+
+        // 07182024 -----------------------------------------------------------------
+        // 카드결제 기기등록관련
+        // 테이블 salon_pgip 생성쿼리
+
+        // salon_sales 테이블 컬럼 추가
+        // 7.18.2024, pgdevicenum 컬럼 추가
+        altTableName = "salon_sales";
+        if (checkTable(altTableName) > 0) {
+            alterDatabaseTableColumn(altTableName, "pgdevicenum", "nvarchar(20)", "DEFAULT ''", 0);
+        }
+        // salon_storestationsettings_paymentgateway 테이블 컬럼 추가
+        // 7.18.2024, pgdevicenum 컬럼 추가
+        altTableName = "salon_storestationsettings_paymentgateway";
+        if (checkTable(altTableName) > 0) {
+            alterDatabaseTableColumn(altTableName, "pgdevicenum", "nvarchar(20)", "DEFAULT ''", 0);
+        }
+        // 07182024 -----------------------------------------------------------------
+
+
+
+        // salon_storeservice_sub 테이블 컬럼 추가
+        // 7.24.2024, gratuityuseyn 컬럼 추가
+        altTableName = "salon_storeservice_sub";
+        if (checkTable(altTableName) > 0) {
+            alterDatabaseTableColumn(altTableName, "gratuityuseyn", "nvarchar(2)", "DEFAULT 'Y'", 0);
+        }
+        // salon_storeservice_sub 테이블 컬럼 추가
+        // 7.24.2024, bayyn 컬럼 추가
+        altTableName = "salon_storeservice_sub";
+        if (checkTable(altTableName) > 0) {
+            alterDatabaseTableColumn(altTableName, "bayyn", "nvarchar(2)", "DEFAULT 'Y'", 0);
+        }
 
         /****************************************************************************/
     }

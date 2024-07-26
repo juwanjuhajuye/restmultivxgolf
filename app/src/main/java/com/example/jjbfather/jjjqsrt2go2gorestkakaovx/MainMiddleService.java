@@ -10,11 +10,14 @@ import android.database.DataSetObserver;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Environment;
+import android.text.Html;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
@@ -247,6 +250,8 @@ public class MainMiddleService {
         }
 
         ScrollView tempServiceScrollView60 = (ScrollView)GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINMIDDLESERVICEPARENT.findViewWithTag("serviceLayoutTag60");
+        ScrollView tempServiceScrollView65 = (ScrollView)GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINMIDDLESERVICEPARENT.findViewWithTag("serviceLayoutTag65");  // 3x
+        ScrollView tempServiceScrollView68 = (ScrollView)GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINMIDDLESERVICEPARENT.findViewWithTag("serviceLayoutTag68");  // 4x
         ScrollView tempServiceScrollView72 = (ScrollView)GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINMIDDLESERVICEPARENT.findViewWithTag("serviceLayoutTag72");
         ScrollView temp_customer_serviceScrollView60 = (ScrollView)GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINMIDDLESERVICEPARENT.findViewWithTag("customer_servicemenulayout_60");
         if (GlobalMemberValues.is_customerMain){
@@ -262,9 +267,16 @@ public class MainMiddleService {
         tempServiceScrollView60.fullScroll(ScrollView.FOCUS_UP);
         tempServiceScrollView72.fullScroll(ScrollView.FOCUS_UP);
 
+        tempServiceScrollView65.fullScroll(ScrollView.FOCUS_UP);
+        tempServiceScrollView68.fullScroll(ScrollView.FOCUS_UP);
+
+
 
         tempServiceScrollView60.setVisibility(View.GONE);
         tempServiceScrollView72.setVisibility(View.GONE);
+
+        tempServiceScrollView65.setVisibility(View.GONE);
+        tempServiceScrollView68.setVisibility(View.GONE);
 
 
         Animation animation1;
@@ -300,6 +312,24 @@ public class MainMiddleService {
                 tempServiceScrollView72.setAnimation(animation1);
 
                 tempSelectedSV = tempServiceScrollView72;
+
+                GlobalMemberValues.logWrite("categorymenusulog", "여기열림 : 72" + "\n");
+                break;
+            }
+            case 36 : {
+                tempServiceScrollView65.setVisibility(View.VISIBLE);
+                tempServiceScrollView65.setAnimation(animation1);
+
+                tempSelectedSV = tempServiceScrollView65;
+
+                GlobalMemberValues.logWrite("categorymenusulog", "여기열림 : 72" + "\n");
+                break;
+            }
+            case 48 : {
+                tempServiceScrollView68.setVisibility(View.VISIBLE);
+                tempServiceScrollView68.setAnimation(animation1);
+
+                tempSelectedSV = tempServiceScrollView68;
 
                 GlobalMemberValues.logWrite("categorymenusulog", "여기열림 : 72" + "\n");
                 break;
@@ -404,6 +434,24 @@ public class MainMiddleService {
                 }
                 break;
             }
+            case 36 : {
+                totalLinesu = 22;
+                line_menu_su = 3;
+                linesu = (tempServiceSuInCategory_in_use / 3 );
+                if (tempServiceSuInCategory_in_use % 3 > 0) {
+                    linesu = linesu + 1;
+                }
+                break;
+            }
+            case 48 : {
+                totalLinesu = 17;
+                line_menu_su = 4;
+                linesu = (tempServiceSuInCategory_in_use / 4 );
+                if (tempServiceSuInCategory_in_use % 4 > 0) {
+                    linesu = linesu + 1;
+                }
+                break;
+            }
             default : {
                 totalLinesu = 14;
                 line_menu_su = 5;
@@ -430,6 +478,7 @@ public class MainMiddleService {
 
         GlobalMemberValues.logWrite("mmlogjjj", "templinecunt : " + templinecunt + "\n");
         int tempIndex = 0;
+        if (strArrService.length < templinecunt) templinecunt = strArrService.length;
         for (int i = 0; i < templinecunt; i++) {
             if (strArrService[i] != null && strArrService[i] != "" && !strArrService[i].equals("")) {
                 strServiceInfo = strArrService[i];
@@ -718,7 +767,7 @@ public class MainMiddleService {
         @Override
         public void onClick(View v) {
             // 네트워크 상태 체크
-            // GlobalMemberValues.checkOnlineService(MainActivity.mContext, MainActivity.mActivity);
+//            GlobalMemberValues.checkOnlineService(MainActivity.mContext, MainActivity.mActivity);
 
             // All Discount / Extra 가 실행된지 체크후 -------------------------------
             // 실행후라면 이후의 코드를 실행하지 않는다.
@@ -779,6 +828,14 @@ public class MainMiddleService {
                     tempServiceScrollView = (ScrollView)GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINMIDDLESERVICEPARENT.findViewWithTag("serviceLayoutTag72");
                     break;
                 }
+                case 36 : {
+                    tempServiceScrollView = (ScrollView)GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINMIDDLESERVICEPARENT.findViewWithTag("serviceLayoutTag65");
+                    break;
+                }
+                case 48 : {
+                    tempServiceScrollView = (ScrollView)GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINMIDDLESERVICEPARENT.findViewWithTag("serviceLayoutTag68");
+                    break;
+                }
                 default : {
                     if (GlobalMemberValues.is_customerMain){
                         tempServiceScrollView = (ScrollView)GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINMIDDLESERVICEPARENT.findViewWithTag("customer_servicemenulayout_60");
@@ -822,6 +879,14 @@ public class MainMiddleService {
                 }
                 case 72 : {
                     tempServiceScrollView = (ScrollView)GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINMIDDLESERVICEPARENT.findViewWithTag("serviceLayoutTag72");
+                    break;
+                }
+                case 36 : {
+                    tempServiceScrollView = (ScrollView)GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINMIDDLESERVICEPARENT.findViewWithTag("serviceLayoutTag65");
+                    break;
+                }
+                case 48 : {
+                    tempServiceScrollView = (ScrollView)GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINMIDDLESERVICEPARENT.findViewWithTag("serviceLayoutTag68");
                     break;
                 }
                 default : {
@@ -1150,6 +1215,9 @@ public class MainMiddleService {
         String upQueryStr = " delete from salon_billprinted where holdcode = '" + mHoldCode + "' ";
         MssqlDatabase.executeTransactionByQuery(upQueryStr);
         // 0501 -------------------------------------------------------------------------------------------------------
+
+        // 071224 아이템 추가 완료시점
+        GlobalMemberValues.is_modifier_add = true;
     }
 
     public static void setInsertCartNoAnimation(String[] paramsString) {
@@ -1581,8 +1649,12 @@ public class MainMiddleService {
                 } else {
                     tableIdx = "";
                 }
+                if (GlobalMemberValues.isQSRPOSonRestaurantPOS){
+                    tableIdx = GlobalMemberValues.mSelectedTableIdx;
+                } else {
+                    GlobalMemberValues.mSelectedTableIdx = tableIdx;
+                }
 
-                GlobalMemberValues.mSelectedTableIdx = tableIdx;
                 mTableIdx = tableIdx;
 
 
@@ -1942,13 +2014,14 @@ public class MainMiddleService {
                     } else {
                         mSaleCartAdapter = new SaleCartAdapter(context, R.layout.main_salecart_list, mGeneralArrayList);
 
-                        mSaleCartAdapter.registerDataSetObserver(new DataSetObserver() {
-                            @Override
-                            public void onChanged() {
-                                super.onChanged();
-                                MainActivity.setMainBillPrintButtonVisible(false);
-                            }
-                        });
+                        //07182024 stop channging bill print button visibility
+//                        mSaleCartAdapter.registerDataSetObserver(new DataSetObserver() {
+//                            @Override
+//                            public void onChanged() {
+//                                super.onChanged();
+//                                MainActivity.setMainBillPrintButtonVisible(false);
+//                            }
+//                        });
 
                         if (GlobalMemberValues.ISDUALDISPLAYPOSSIBLE) {
                             mPresentationCartAdapter = new PresentationCartAdapter(context, R.layout.presentation_list_item, mGeneralArrayList);
@@ -2666,19 +2739,64 @@ public class MainMiddleService {
                     break;
 
                 case R.id.mainSaleCartButton_billprint : {
-                    //03112024 check if item has been added before bill print
-                    //if item has been added, prompt user to print to kitchen first.
-                    if (MainActivity.temp_str_salecart_cnt == MainMiddleService.mGeneralArrayList.size()) {
-                        LogsSave.saveLogsInDB(90);
-                        TableSaleMain.openBillPrint("Y");
-                        if (GlobalMemberValues.isBillPrintPopupOpen()){
+                    //07182024 various checks to see if the bill print should go through
+                    String whatTheHell = MainMiddleService.mGeneralArrayList.toString();
 
-                        } else {
-                            MainMiddleService.initList();
-                        }
-                    } else {
+                    //if there is no item, don't print bill
+                    if (MainMiddleService.mGeneralArrayList.size() == 0){
                         GlobalMemberValues.displayDialog(MainActivity.mContext, "Warning",
-                                "There is an added menu\nPlease print the kitchen or delete the added menu", "Close");
+                                "The cart is empty\nPlease add items and print the order to the kitchen before printing the bill", "Close");
+                    }
+                    //if item has been added, prompt user to print to kitchen first.
+                    else if (MainActivity.temp_str_salecart_cnt != MainMiddleService.mGeneralArrayList.size()) {
+                        //if the item added is simply discount item, allow bill to be printed.
+                        int discountCount = 0;
+                        for(TemporarySaleCart tempCart : MainMiddleService.mGeneralArrayList){
+                            //check if its discount by checking tempSaleCartIdx, discounts don't have this value
+                            if(tempCart.tempSaleCartIdx == null || tempCart.tempSaleCartIdx.equals("")){
+                                discountCount++;
+                            }
+                        }
+
+                        //if the discount items and menu items don't add up to match the mGeneralArrayList size, that
+                        //means other items were added, so don't let user go to payment.
+                        if(discountCount + MainActivity.temp_str_salecart_cnt !=  MainMiddleService.mGeneralArrayList.size()){
+                            GlobalMemberValues.displayDialog(MainActivity.mContext, "Warning",
+                                    "An item has been added.\nPlease print to kitchen the changes first", "Close");
+                        } else {
+                            LogsSave.saveLogsInDB(90);
+                            TableSaleMain.openBillPrint("Y");
+                            if (GlobalMemberValues.isBillPrintPopupOpen()){
+
+                            } else {
+                                MainMiddleService.initList();
+                            }
+                        }
+                    }
+                    else {
+                        StringBuilder mGeneralArrayListString = new StringBuilder();
+                        for(TemporarySaleCart tempSaleCart : MainMiddleService.mGeneralArrayList){
+                            mGeneralArrayListString.append(tempSaleCart.returnTempCartString());
+                        }
+
+                        //if the stringfied version of the current generalarraylist that contains TemporarySaleCart items
+                        //matches the one copied at the start of the user entering the table cart, let the bill print go through.
+                        if(mGeneralArrayListString.toString().equals(MainActivity.temp_str_salecart)){
+                            LogsSave.saveLogsInDB(90);
+                            TableSaleMain.openBillPrint("Y");
+                            if (GlobalMemberValues.isBillPrintPopupOpen()){
+
+                            } else {
+                                MainMiddleService.initList();
+                            }
+                        }
+                        //An item was modified like qty changing, etc.
+                        else {
+                            GlobalMemberValues.displayDialog(MainActivity.mContext, "Warning",
+                                    "An item was modified.\nPlease print to kitchen the changes first", "Close");
+                        }
+
+
                     }
 
                     break;
@@ -2691,6 +2809,13 @@ public class MainMiddleService {
         if (!paramFromMain) {
             // POS 타입이 레스토랑일 경우 테이블 메인을 띄운다.
             GlobalMemberValues globalMemberValues = new GlobalMemberValues();
+            //05202024 add addtional check to see if app is running in QSR version.
+            //Dont exit to table if it is running in QSR Version.
+            if( GlobalMemberValues.isQSRPOSonRestaurantPOS){
+                clearListExe();
+                return;
+            }
+
             if (globalMemberValues.getPOSType().toUpperCase() == "R" || globalMemberValues.getPOSType().toUpperCase().equals("R")) {
                 if (!GlobalMemberValues.now_saletypeisrestaurant) {
 //                    AppTopBar.btn_table_sale.setVisibility(View.VISIBLE);
@@ -4093,6 +4218,9 @@ public class MainMiddleService {
         listViewCount = 0;                  // 리스트뷰에 있는 항목수를 0 으로 초기화
         mTempSaleCart = null;               // TemporarySaleCart 객체 초기화
         mGeneralArrayList.clear();          // ArrayList 초기화
+
+        //07182024 reset is_modifier_add so it doesn't carry over to next interaction
+        GlobalMemberValues.is_modifier_add = false;
 
         if (GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINLISTVIEW != null) {
             try {

@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
 public class LogHistory extends Activity {
@@ -77,38 +78,76 @@ public class LogHistory extends Activity {
       arr_list = new ArrayList<>();
 
       String strQuery = "select scode, sidx, stcode, btnpagename, btnname, btnlogkor, btnlogeng, employeeIdx, employeeName, wdate, salescode from btn_logs order by wdate desc";
-      Cursor cursor = MainActivity.mDbInit.dbExecuteRead(strQuery);
-      while (cursor.moveToNext()) {
-         String tempscode = GlobalMemberValues.getDBTextAfterChecked(cursor.getString(0), 1);
-         String tempsidx = GlobalMemberValues.getDBTextAfterChecked(cursor.getString(1), 1);
-         String tempstcode = GlobalMemberValues.getDBTextAfterChecked(cursor.getString(2), 1);
-         String tempbtnpagename = GlobalMemberValues.getDBTextAfterChecked(cursor.getString(3), 1);
-         String tempbtnname = GlobalMemberValues.getDBTextAfterChecked(cursor.getString(4), 1);
-         String tempbtnlogkor = GlobalMemberValues.getDBTextAfterChecked(cursor.getString(5), 1);
-         String tempbtnlogeng = GlobalMemberValues.getDBTextAfterChecked(cursor.getString(6), 1);
-         String tempemployeeIdx = GlobalMemberValues.getDBTextAfterChecked(cursor.getString(7), 1);
-         String tempemployeeName = GlobalMemberValues.getDBTextAfterChecked(cursor.getString(8), 1);
-         String tempwdate = GlobalMemberValues.getDBTextAfterChecked(cursor.getString(9), 1);
-         String tempSalesCode = GlobalMemberValues.getDBTextAfterChecked(cursor.getString(10), 1);
+      ResultSet resultSet = MssqlDatabase.getResultSetValue(strQuery);
+      try {
+         while (resultSet.next()){
+            String tempscode = GlobalMemberValues.resultDB_checkNull_string(resultSet,0);
+            String tempsidx = GlobalMemberValues.resultDB_checkNull_string(resultSet,1);
+            String tempstcode = GlobalMemberValues.resultDB_checkNull_string(resultSet,2);
+            String tempbtnpagename = GlobalMemberValues.resultDB_checkNull_string(resultSet,3);
+            String tempbtnname = GlobalMemberValues.resultDB_checkNull_string(resultSet,4);
+            String tempbtnlogkor = GlobalMemberValues.resultDB_checkNull_string(resultSet,5);
+            String tempbtnlogeng = GlobalMemberValues.resultDB_checkNull_string(resultSet,6);
+            String tempemployeeIdx = GlobalMemberValues.resultDB_checkNull_string(resultSet,7);
+            String tempemployeeName = GlobalMemberValues.resultDB_checkNull_string(resultSet,8);
+            String tempwdate = GlobalMemberValues.resultDB_checkNull_string(resultSet,9);
+            String tempSalesCode = GlobalMemberValues.resultDB_checkNull_string(resultSet,10);
 
-         ArrayList<String> temp_arr = new ArrayList<>();
-         if (tempscode != null) temp_arr.add(tempscode);
-         if (tempsidx != null) temp_arr.add(tempsidx);
-         if (tempstcode != null) temp_arr.add(tempstcode);
-         if (tempbtnpagename != null) temp_arr.add(tempbtnpagename);
-         if (tempbtnname != null) temp_arr.add(tempbtnname);
-         if (tempbtnlogkor != null) temp_arr.add(tempbtnlogkor);
-         if (tempbtnlogeng != null) temp_arr.add(tempbtnlogeng);
-         if (tempemployeeIdx != null) temp_arr.add(tempemployeeIdx);
-         if (tempemployeeName != null) temp_arr.add(tempemployeeName);
-         if (tempwdate != null) temp_arr.add(tempwdate);
-         if (tempSalesCode != null) temp_arr.add(tempSalesCode);
+            ArrayList<String> temp_arr = new ArrayList<>();
+            if (tempscode != null) temp_arr.add(tempscode);
+            if (tempsidx != null) temp_arr.add(tempsidx);
+            if (tempstcode != null) temp_arr.add(tempstcode);
+            if (tempbtnpagename != null) temp_arr.add(tempbtnpagename);
+            if (tempbtnname != null) temp_arr.add(tempbtnname);
+            if (tempbtnlogkor != null) temp_arr.add(tempbtnlogkor);
+            if (tempbtnlogeng != null) temp_arr.add(tempbtnlogeng);
+            if (tempemployeeIdx != null) temp_arr.add(tempemployeeIdx);
+            if (tempemployeeName != null) temp_arr.add(tempemployeeName);
+            if (tempwdate != null) temp_arr.add(tempwdate);
+            if (tempSalesCode != null) temp_arr.add(tempSalesCode);
 
-         if (!temp_arr.isEmpty()){
-            arr_list.add(temp_arr);
+            if (!temp_arr.isEmpty()){
+               arr_list.add(temp_arr);
+            }
+
          }
+      }catch (Exception e){
 
       }
+
+
+//      Cursor cursor = MainActivity.mDbInit.dbExecuteRead(strQuery);
+//      while (cursor.moveToNext()) {
+//         String tempscode = GlobalMemberValues.getDBTextAfterChecked(cursor.getString(0), 1);
+//         String tempsidx = GlobalMemberValues.getDBTextAfterChecked(cursor.getString(1), 1);
+//         String tempstcode = GlobalMemberValues.getDBTextAfterChecked(cursor.getString(2), 1);
+//         String tempbtnpagename = GlobalMemberValues.getDBTextAfterChecked(cursor.getString(3), 1);
+//         String tempbtnname = GlobalMemberValues.getDBTextAfterChecked(cursor.getString(4), 1);
+//         String tempbtnlogkor = GlobalMemberValues.getDBTextAfterChecked(cursor.getString(5), 1);
+//         String tempbtnlogeng = GlobalMemberValues.getDBTextAfterChecked(cursor.getString(6), 1);
+//         String tempemployeeIdx = GlobalMemberValues.getDBTextAfterChecked(cursor.getString(7), 1);
+//         String tempemployeeName = GlobalMemberValues.getDBTextAfterChecked(cursor.getString(8), 1);
+//         String tempwdate = GlobalMemberValues.getDBTextAfterChecked(cursor.getString(9), 1);
+//         String tempSalesCode = GlobalMemberValues.getDBTextAfterChecked(cursor.getString(10), 1);
+//
+//         ArrayList<String> temp_arr = new ArrayList<>();
+//         if (tempscode != null) temp_arr.add(tempscode);
+//         if (tempsidx != null) temp_arr.add(tempsidx);
+//         if (tempstcode != null) temp_arr.add(tempstcode);
+//         if (tempbtnpagename != null) temp_arr.add(tempbtnpagename);
+//         if (tempbtnname != null) temp_arr.add(tempbtnname);
+//         if (tempbtnlogkor != null) temp_arr.add(tempbtnlogkor);
+//         if (tempbtnlogeng != null) temp_arr.add(tempbtnlogeng);
+//         if (tempemployeeIdx != null) temp_arr.add(tempemployeeIdx);
+//         if (tempemployeeName != null) temp_arr.add(tempemployeeName);
+//         if (tempwdate != null) temp_arr.add(tempwdate);
+//         if (tempSalesCode != null) temp_arr.add(tempSalesCode);
+//
+//         if (!temp_arr.isEmpty()){
+//            arr_list.add(temp_arr);
+//         }
+//
+//      }
 
       logListAdapter = new LogListAdapter(this.getApplicationContext(),arr_list);
       log_list.setAdapter(logListAdapter);
@@ -138,7 +177,8 @@ public class LogHistory extends Activity {
          txt_date.setText(tempYear + "-" + tempMonth + "-" + tempDay);
 
          if (txt_date.getText().length() != 0){
-            String query = "select scode, sidx, stcode, btnpagename, btnname, btnlogkor, btnlogeng, employeeIdx, employeeName, wdate, salescode from btn_logs WHERE wdate BETWEEN '" + txt_date.getText() + "' AND date('" + txt_date.getText() +"', '+1 days' ) order by wdate desc";
+//            String query = "select scode, sidx, stcode, btnpagename, btnname, btnlogkor, btnlogeng, employeeIdx, employeeName, wdate, salescode from btn_logs WHERE wdate BETWEEN '" + txt_date.getText() + "' AND date('" + txt_date.getText() +"', '+1 days' ) order by wdate desc";
+            String query = "select scode, sidx, stcode, btnpagename, btnname, btnlogkor, btnlogeng, employeeIdx, employeeName, wdate, salescode from btn_logs WHERE wdate BETWEEN '" + txt_date.getText() + "' AND DATEADD(DAY, 1, '" + txt_date.getText() +"') order by wdate desc";
             setListviewSearch(query);
          }
 
@@ -150,38 +190,73 @@ public class LogHistory extends Activity {
 
       arr_list = new ArrayList<>();
 
-      Cursor cursor = MainActivity.mDbInit.dbExecuteRead(strQuery);
-      while (cursor.moveToNext()) {
-         String tempscode = GlobalMemberValues.getDBTextAfterChecked(cursor.getString(0), 1);
-         String tempsidx = GlobalMemberValues.getDBTextAfterChecked(cursor.getString(1), 1);
-         String tempstcode = GlobalMemberValues.getDBTextAfterChecked(cursor.getString(2), 1);
-         String tempbtnpagename = GlobalMemberValues.getDBTextAfterChecked(cursor.getString(3), 1);
-         String tempbtnname = GlobalMemberValues.getDBTextAfterChecked(cursor.getString(4), 1);
-         String tempbtnlogkor = GlobalMemberValues.getDBTextAfterChecked(cursor.getString(5), 1);
-         String tempbtnlogeng = GlobalMemberValues.getDBTextAfterChecked(cursor.getString(6), 1);
-         String tempemployeeIdx = GlobalMemberValues.getDBTextAfterChecked(cursor.getString(7), 1);
-         String tempemployeeName = GlobalMemberValues.getDBTextAfterChecked(cursor.getString(8), 1);
-         String tempwdate = GlobalMemberValues.getDBTextAfterChecked(cursor.getString(9), 1);
-         String tempsalesCode = GlobalMemberValues.getDBTextAfterChecked(cursor.getString(10), 1);
+      ResultSet resultSet = MssqlDatabase.getResultSetValue(strQuery);
+      try {
+         while (resultSet.next()) {
+            String tempscode = GlobalMemberValues.resultDB_checkNull_string(resultSet, 0);
+            String tempsidx = GlobalMemberValues.resultDB_checkNull_string(resultSet, 1);
+            String tempstcode = GlobalMemberValues.resultDB_checkNull_string(resultSet, 2);
+            String tempbtnpagename = GlobalMemberValues.resultDB_checkNull_string(resultSet, 3);
+            String tempbtnname = GlobalMemberValues.resultDB_checkNull_string(resultSet, 4);
+            String tempbtnlogkor = GlobalMemberValues.resultDB_checkNull_string(resultSet, 5);
+            String tempbtnlogeng = GlobalMemberValues.resultDB_checkNull_string(resultSet, 6);
+            String tempemployeeIdx = GlobalMemberValues.resultDB_checkNull_string(resultSet, 7);
+            String tempemployeeName = GlobalMemberValues.resultDB_checkNull_string(resultSet, 8);
+            String tempwdate = GlobalMemberValues.resultDB_checkNull_string(resultSet, 9);
+            String tempSalesCode = GlobalMemberValues.resultDB_checkNull_string(resultSet, 10);
 
-         ArrayList<String> temp_arr = new ArrayList<>();
-         if (tempscode != null) temp_arr.add(tempscode);
-         if (tempsidx != null) temp_arr.add(tempsidx);
-         if (tempstcode != null) temp_arr.add(tempstcode);
-         if (tempbtnpagename != null) temp_arr.add(tempbtnpagename);
-         if (tempbtnname != null) temp_arr.add(tempbtnname);
-         if (tempbtnlogkor != null) temp_arr.add(tempbtnlogkor);
-         if (tempbtnlogeng != null) temp_arr.add(tempbtnlogeng);
-         if (tempemployeeIdx != null) temp_arr.add(tempemployeeIdx);
-         if (tempemployeeName != null) temp_arr.add(tempemployeeName);
-         if (tempwdate != null) temp_arr.add(tempwdate);
-         if (tempsalesCode != null) temp_arr.add(tempsalesCode);
+            ArrayList<String> temp_arr = new ArrayList<>();
+            if (tempscode != null) temp_arr.add(tempscode);
+            if (tempsidx != null) temp_arr.add(tempsidx);
+            if (tempstcode != null) temp_arr.add(tempstcode);
+            if (tempbtnpagename != null) temp_arr.add(tempbtnpagename);
+            if (tempbtnname != null) temp_arr.add(tempbtnname);
+            if (tempbtnlogkor != null) temp_arr.add(tempbtnlogkor);
+            if (tempbtnlogeng != null) temp_arr.add(tempbtnlogeng);
+            if (tempemployeeIdx != null) temp_arr.add(tempemployeeIdx);
+            if (tempemployeeName != null) temp_arr.add(tempemployeeName);
+            if (tempwdate != null) temp_arr.add(tempwdate);
+            if (tempSalesCode != null) temp_arr.add(tempSalesCode);
 
-         if (!temp_arr.isEmpty()) {
-            arr_list.add(temp_arr);
+            if (!temp_arr.isEmpty()) {
+               arr_list.add(temp_arr);
+            }
          }
+      } catch (Exception e){
 
       }
+
+//            Cursor cursor = MainActivity.mDbInit.dbExecuteRead(strQuery);
+//      while (cursor.moveToNext()) {
+//         String tempscode = GlobalMemberValues.getDBTextAfterChecked(cursor.getString(0), 1);
+//         String tempsidx = GlobalMemberValues.getDBTextAfterChecked(cursor.getString(1), 1);
+//         String tempstcode = GlobalMemberValues.getDBTextAfterChecked(cursor.getString(2), 1);
+//         String tempbtnpagename = GlobalMemberValues.getDBTextAfterChecked(cursor.getString(3), 1);
+//         String tempbtnname = GlobalMemberValues.getDBTextAfterChecked(cursor.getString(4), 1);
+//         String tempbtnlogkor = GlobalMemberValues.getDBTextAfterChecked(cursor.getString(5), 1);
+//         String tempbtnlogeng = GlobalMemberValues.getDBTextAfterChecked(cursor.getString(6), 1);
+//         String tempemployeeIdx = GlobalMemberValues.getDBTextAfterChecked(cursor.getString(7), 1);
+//         String tempemployeeName = GlobalMemberValues.getDBTextAfterChecked(cursor.getString(8), 1);
+//         String tempwdate = GlobalMemberValues.getDBTextAfterChecked(cursor.getString(9), 1);
+//         String tempsalesCode = GlobalMemberValues.getDBTextAfterChecked(cursor.getString(10), 1);
+//
+//         ArrayList<String> temp_arr = new ArrayList<>();
+//         if (tempscode != null) temp_arr.add(tempscode);
+//         if (tempsidx != null) temp_arr.add(tempsidx);
+//         if (tempstcode != null) temp_arr.add(tempstcode);
+//         if (tempbtnpagename != null) temp_arr.add(tempbtnpagename);
+//         if (tempbtnname != null) temp_arr.add(tempbtnname);
+//         if (tempbtnlogkor != null) temp_arr.add(tempbtnlogkor);
+//         if (tempbtnlogeng != null) temp_arr.add(tempbtnlogeng);
+//         if (tempemployeeIdx != null) temp_arr.add(tempemployeeIdx);
+//         if (tempemployeeName != null) temp_arr.add(tempemployeeName);
+//         if (tempwdate != null) temp_arr.add(tempwdate);
+//         if (tempsalesCode != null) temp_arr.add(tempsalesCode);
+//
+//         if (!temp_arr.isEmpty()) {
+//            arr_list.add(temp_arr);
+//         }
+//      }
 
       logListAdapter = new LogListAdapter(this.getApplicationContext(),arr_list);
       log_list.setAdapter(logListAdapter);
@@ -194,7 +269,8 @@ public class LogHistory extends Activity {
 
             String date = "";
             if (txt_date.getText().length() != 0){
-               date = "wdate BETWEEN '" + txt_date.getText() + "' AND date('" + txt_date.getText() +"', '+1 days' ) and ";
+//               date = "wdate BETWEEN '" + txt_date.getText() + "' AND date('" + txt_date.getText() +"', '+1 days' ) and ";
+               date = "wdate BETWEEN '" + txt_date.getText() + "' AND DATEADD(DAY, 1, '" + txt_date.getText() +"') and ";
             }
 
             String paramSearchValue = etxt_search_txt.getText().toString();

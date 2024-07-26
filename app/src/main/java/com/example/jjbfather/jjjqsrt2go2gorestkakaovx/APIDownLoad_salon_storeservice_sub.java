@@ -88,6 +88,12 @@ public class APIDownLoad_salon_storeservice_sub extends AsyncTask {
     String labelprintnum = "";
 
     String wmuseyn = "";
+
+    // 07232024
+    String wmtype = "";
+    String wmbean = "";
+    String gratuityuseyn = "";
+    String bayyn = "";
     /**********************************************************/
 
     String mInsertSqlQuery = "";
@@ -355,6 +361,20 @@ public class APIDownLoad_salon_storeservice_sub extends AsyncTask {
                             wmuseyn = xpp.getText();
                         }
 
+                        // 07232024
+                        if (tagName.equals("wmtype")) {
+                            wmtype = xpp.getText();
+                        }
+                        if (tagName.equals("wmbean")) {
+                            wmbean = xpp.getText();
+                        }
+                        if (tagName.equals("gratuityuseyn")) {
+                            gratuityuseyn = xpp.getText();
+                        }
+                        if (tagName.equals("bayyn")) {
+                            bayyn = xpp.getText();
+                        }
+
                     }
 
                 } else if (eventType == XmlPullParser.END_TAG) {
@@ -374,7 +394,9 @@ public class APIDownLoad_salon_storeservice_sub extends AsyncTask {
                                 " servicename2, servicename3, servicenamealt, colorNo, taxtype, taxvalues, taxexemptvalues, " +
                                 " scaleuseyn, tareidx, tareweight, tareqty, taretotalweight, perweight, dynamicpriceyn, barcode, divideryn, nameforlabel, imageusezone, menuusezone, mdforceyn, " +
                                 " showynifzero_m, showynifzero_k, labelprintyn, labelprintnum, " +
-                                " wmuseyn " +
+                                " wmuseyn, " +
+                                // 07232024
+                                " wmtype, wmbean, gratuityuseyn, bayyn " +
                                 " ) " +
                                 " values (" +
                                 "'" + GlobalMemberValues.getDBTextAfterChecked(idx, 0) + "', " +
@@ -446,7 +468,13 @@ public class APIDownLoad_salon_storeservice_sub extends AsyncTask {
                                 "'" + GlobalMemberValues.getDBTextAfterChecked(labelprintyn, 0) + "', " +
                                 "'" + GlobalMemberValues.getDBTextAfterChecked(labelprintnum, 0) + "', " +
 
-                                "'" + GlobalMemberValues.getDBTextAfterChecked(wmuseyn, 0) + "' " +
+                                "'" + GlobalMemberValues.getDBTextAfterChecked(wmuseyn, 0) + "', " +
+
+                                // 07232024
+                                "'" + GlobalMemberValues.getDBTextAfterChecked(wmtype, 0) + "', " +
+                                "'" + GlobalMemberValues.getDBTextAfterChecked(wmbean, 0) + "', " +
+                                "'" + GlobalMemberValues.getDBTextAfterChecked(gratuityuseyn, 0) + "', " +
+                                "'" + GlobalMemberValues.getDBTextAfterChecked(bayyn, 0) + "' " +
 
                                 ")";
 
@@ -521,7 +549,13 @@ public class APIDownLoad_salon_storeservice_sub extends AsyncTask {
                                 " labelprintyn = '" + GlobalMemberValues.getDBTextAfterChecked(labelprintyn, 0) + "', " +
                                 " labelprintnum = '" + GlobalMemberValues.getDBTextAfterChecked(labelprintnum, 0) + "', " +
 
-                                " wmuseyn = '" + GlobalMemberValues.getDBTextAfterChecked(wmuseyn, 0) + "' " +
+                                " wmuseyn = '" + GlobalMemberValues.getDBTextAfterChecked(wmuseyn, 0) + "', " +
+
+                                // 07232024
+                                " wmtype = '" + GlobalMemberValues.getDBTextAfterChecked(wmtype, 0) + "', " +
+                                " wmbean = '" + GlobalMemberValues.getDBTextAfterChecked(wmbean, 0) + "', " +
+                                " gratuityuseyn = '" + GlobalMemberValues.getDBTextAfterChecked(gratuityuseyn, 0) + "', " +
+                                " bayyn = '" + GlobalMemberValues.getDBTextAfterChecked(bayyn, 0) + "' " +
 
                                 " where idx = " + idx;
 
@@ -618,6 +652,12 @@ public class APIDownLoad_salon_storeservice_sub extends AsyncTask {
                         labelprintnum = "";
 
                         wmuseyn = "";
+
+                        // 07232024
+                        wmtype = "";
+                        wmbean = "";
+                        gratuityuseyn = "";
+                        bayyn = "";
                         /***********************************************/
                     }
                 }

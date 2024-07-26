@@ -168,6 +168,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:visibility="gone"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1.2"
@@ -230,6 +231,8 @@
                             android:background="#f0f0f0"
                             android:gravity="center"
                             android:textSize="18dp"
+                            android:inputType="none"
+                            android:enabled="false"
                             android:textStyle="bold"
                             android:textColor="#3e3d42"
                             android:cursorVisible="false" />

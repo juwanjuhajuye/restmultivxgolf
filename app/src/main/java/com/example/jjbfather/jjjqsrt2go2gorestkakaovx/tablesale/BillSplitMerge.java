@@ -94,6 +94,9 @@ public class BillSplitMerge extends Activity {
     public String str_holdCode = "";
     public static double d_TotalAmount = 0.00;
 
+    // 07252024 (new)
+    public static double d_TotalAmount_org = 0.00;
+
     public static String str_Billsplit_Type = "0";
 
     public static ArrayList<String> mSelectedBillBoxValue;
@@ -410,11 +413,15 @@ public class BillSplitMerge extends Activity {
         d_TotalAmount = GlobalMemberValues.getDoubleAtString(MssqlDatabase.getResultSetValueToString(
                 " select sum(sTotalAmount) from temp_salecart where holdcode = '" + str_holdCode + "' "));
 
+        // 07252024 (new)
+        d_TotalAmount_org = d_TotalAmount;
 
         setBalanceSubtotal_byCustomAmount();
 
         // 230817 이전 split 테이블이 있으면 갯수 카운팅해서 표시.
-        if (arrayList_list == null && arrayList_list.isEmpty()) {
+        // 05172024 null object reference correction
+        if (arrayList_list == null || arrayList_list.isEmpty()) {
+        //if (arrayList_list == null && arrayList_list.isEmpty()) {
             tablesale_split_evenly_txt2.setText("1");
         } else {
             String str_arrayList_list_count = String.valueOf(arrayList_list.size());
@@ -1097,7 +1104,10 @@ public class BillSplitMerge extends Activity {
 
             GlobalMemberValues.mBill_Idx = bill_idx;
 
-            GlobalMemberValues.mPayTotalAmountOnBill = d_TotalAmount;
+            // 07252024 (edit)
+            // GlobalMemberValues.mPayTotalAmountOnBill = d_TotalAmount;
+            GlobalMemberValues.mPayTotalAmountOnBill = d_TotalAmount_org;
+
             GlobalMemberValues.mPayAmountOnBill = GlobalMemberValues.getDoubleAtString(get_billamount);
 
             GlobalMemberValues.logWrite("billpaylog", "holdcode : " + GlobalMemberValues.mSelectedHoldCodeForBillPay + "\n");
@@ -1387,7 +1397,13 @@ public class BillSplitMerge extends Activity {
                 String[] str_split_item = temp.split("-JJJ-");
                 d_split_subtotal = GlobalMemberValues.getDoubleAtString(str_split_item[2]);
             }
+
+            GlobalMemberValues.logWrite("splittotalamtlog", "d_TotalAmount : " + d_TotalAmount + "\n");
+            GlobalMemberValues.logWrite("splittotalamtlog", "d_split_subtotal : " + d_split_subtotal + "\n");
+
             d_split_price = d_TotalAmount - d_split_subtotal;
+
+            GlobalMemberValues.logWrite("splittotalamtlog", "d_split_price : " + d_split_price + "\n");
 
             setBalanceSubtotal_byCustomAmount();
 

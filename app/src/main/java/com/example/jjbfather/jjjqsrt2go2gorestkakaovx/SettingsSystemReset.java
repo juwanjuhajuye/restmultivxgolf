@@ -394,6 +394,7 @@ public class SettingsSystemReset extends Activity {
         strInsertQueryVec.addElement(tempDeleteDataSql_J01);
 
 
+
         return strInsertQueryVec;
     }
 

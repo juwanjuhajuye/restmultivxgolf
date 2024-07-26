@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -437,6 +438,12 @@ public class HereToGoInfo extends Activity {
                 if (GlobalMemberValues.GLOBAL_CUSTOMERINFO == null) {
                     if (GlobalMemberValues.isStrEmpty(tempStr)) {
                         customerIdEditText.setText("Walk In");
+                    }
+                }
+
+                if (!GlobalMemberValues.isQSRPOSonRestaurantPOS){
+                    if (GlobalMemberValues.mToGoType.equals("C") || GlobalMemberValues.mToGoType.equals("W")){
+                        if (GlobalMemberValues.isCustomerInfoShow()) return;
                     }
                 }
                 hereToGoSubmit();

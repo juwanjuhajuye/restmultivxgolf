@@ -573,7 +573,9 @@ public class CustomerSearch {
     // 프렌차이즈 관련
     public void viewCustomerSearch() {
         // Pay 버튼 클릭여부 체크하여 클릭했을 경우 기능 못하게 ----------------
-        if (GlobalMemberValues.GLOBAL_PAYBUTTONCLICKED == "Y") return;
+        // 07252024 (edit)
+        // if (GlobalMemberValues.GLOBAL_PAYBUTTONCLICKED == "Y") return;
+        if (GlobalMemberValues.GLOBAL_PAYBUTTONCLICKED == "Y" && !GlobalMemberValues.isPaymentByBills) return;
         // ------------------------------------------------------------
         if (GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINTEXTVIEWCUSTOMERNAME.getText().toString().equals("Walk In")
                 || GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINTEXTVIEWCUSTOMERNAME.getText().toString() == "Walk In") {
