@@ -32,6 +32,9 @@ public class APIDownLoad_salon_storeservice_commonmodifier extends AsyncTask {
     String minval = "";
     String maxval = "";
     String maxsumval = "";
+
+    // 08072024
+    String minsumval = "";
     /**********************************************************/
 
     String mInsertSqlQuery = "";
@@ -151,6 +154,11 @@ public class APIDownLoad_salon_storeservice_commonmodifier extends AsyncTask {
                         if (tagName.equals("maxsumval")) {
                             maxsumval = xpp.getText();
                         }
+
+                        // 08072024
+                        if (tagName.equals("minsumval")) {
+                            minsumval = xpp.getText();
+                        }
                     }
 
 
@@ -166,7 +174,11 @@ public class APIDownLoad_salon_storeservice_commonmodifier extends AsyncTask {
                         mInsertSqlQuery = "insert into " + mDbTableName +
                                 " ( " +
                                 " idx, scode, sidx, optionname, optiontype, optionpilsuyn, " +
-                                " optionuseyn, autoviewinposyn, sortnum, wdate, mdate, minval, maxval, maxsumval " +
+                                " optionuseyn, autoviewinposyn, sortnum, wdate, mdate, minval, maxval, maxsumval, " +
+
+                                // 08072024
+                                " minsumval " +
+
                                 " ) " +
                                 " values (" +
                                 "'" + GlobalMemberValues.getDBTextAfterChecked(idx, 0) + "', " +
@@ -182,7 +194,11 @@ public class APIDownLoad_salon_storeservice_commonmodifier extends AsyncTask {
                                 "'" + GlobalMemberValues.getDBTextAfterChecked(mdate, 0) + "', " +
                                 "'" + GlobalMemberValues.getDBTextAfterChecked(minval, 0) + "', " +
                                 "'" + GlobalMemberValues.getDBTextAfterChecked(maxval, 0) + "', " +
-                                "'" + GlobalMemberValues.getDBTextAfterChecked(maxsumval, 0) + "' " +
+                                "'" + GlobalMemberValues.getDBTextAfterChecked(maxsumval, 0) + "', " +
+
+                                // 08072024
+                                "'" + GlobalMemberValues.getDBTextAfterChecked(minsumval, 0) + "' " +
+
                                 ")";
 
 
@@ -200,7 +216,11 @@ public class APIDownLoad_salon_storeservice_commonmodifier extends AsyncTask {
                                 " mdate = '" + GlobalMemberValues.getDBTextAfterChecked(mdate, 0) + "', " +
                                 " minval = '" + GlobalMemberValues.getDBTextAfterChecked(minval, 0) + "', " +
                                 " maxval = '" + GlobalMemberValues.getDBTextAfterChecked(maxval, 0) + "', " +
-                                " maxsumval = '" + GlobalMemberValues.getDBTextAfterChecked(maxsumval, 0) + "' " +
+                                " maxsumval = '" + GlobalMemberValues.getDBTextAfterChecked(maxsumval, 0) + "', " +
+
+                                // 08072024
+                                " minsumval = '" + GlobalMemberValues.getDBTextAfterChecked(minsumval, 0) + "' " +
+
                                 " where idx = " + idx;
 
                         sqlQueryVecIns.add(mInsertSqlQuery);
@@ -240,6 +260,9 @@ public class APIDownLoad_salon_storeservice_commonmodifier extends AsyncTask {
                         minval = "";
                         maxval = "";
                         maxsumval = "";
+
+                        // 08072024
+                        minsumval = "";
                         /***********************************************/
                     }
                 }

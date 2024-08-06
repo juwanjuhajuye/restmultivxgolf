@@ -2084,6 +2084,18 @@ public class CashInOutPopup extends Activity {
                     " and stcode = '" + GlobalMemberValues.STATION_CODE + "' ";
             insUpdDelVec.addElement(insUpdDelQuery);
 
+
+
+            // 08062024 ----------------------------------------------------------
+            insUpdDelQuery = " update salon_sales_customerordernumber " +
+                    " set " +
+                    " cashoutnum = '" + newCashOutNum + "', endofdayNum = '" + newEndofdayNum + "' " +
+                    " where cashoutNum = 0 ";
+            insUpdDelVec.addElement(insUpdDelQuery);
+            // 08062024 ----------------------------------------------------------
+
+
+
             if (!GlobalMemberValues.isStrEmpty(maxIdx_salon_sales_cashout_emp)) {
                 insUpdDelQuery = " update salon_sales_cashout_emp " +
                         " set " +

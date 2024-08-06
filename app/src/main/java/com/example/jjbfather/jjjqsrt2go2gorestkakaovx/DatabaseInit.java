@@ -3841,6 +3841,42 @@ public class DatabaseInit {
             alterDatabaseTableColumn(altTableName, "bayyn", "nvarchar(2)", "DEFAULT 'Y'", 0);
         }
 
+
+
+        // 08062024 ----------------------------------------------
+        // salon_sales_customerordernumber 테이블 컬럼 추가
+        // 8.6.2024, cashoutNum 컬럼 추가
+        altTableName = "salon_sales_customerordernumber";
+        if (checkTable(altTableName) > 0) {
+            alterDatabaseTableColumn(altTableName, "cashoutNum", "int", "DEFAULT 0", 0);
+        }
+        // salon_sales_customerordernumber 테이블 컬럼 추가
+        // 8.6.2024, endofdayNum 컬럼 추가
+        altTableName = "salon_sales_customerordernumber";
+        if (checkTable(altTableName) > 0) {
+            alterDatabaseTableColumn(altTableName, "endofdayNum", "int", "DEFAULT 0", 0);
+        }
+        // 08062024 ----------------------------------------------
+
+
+
+        // 08072024 -------------------------------------------------------------------
+        // salon_storeservice_option 테이블 컬럼 추가
+        // 08.07.2024, minsumval 컬럼 추가
+        altTableName = "salon_storeservice_option";
+        if (checkTable(altTableName) > 0) {
+            alterDatabaseTableColumn(altTableName, "minsumval", "smallint", "DEFAULT 0", 0);
+        }
+
+        // salon_storeservice_commonmodifier 테이블 컬럼 추가
+        // 08.07.2024, minsumval 컬럼 추가
+        altTableName = "salon_storeservice_commonmodifier";
+        if (checkTable(altTableName) > 0) {
+            alterDatabaseTableColumn(altTableName, "minsumval", "smallint", "DEFAULT 0", 0);
+        }
+        // 08072024 -------------------------------------------------------------------
+
+
         /****************************************************************************/
     }
 

@@ -2248,7 +2248,9 @@ public class SqlStatements_mssql {
                     "mdate datetime, " +
                     "minval smallint DEFAULT 0, " +
                     "maxval smallint DEFAULT 1, " +
-                    "maxsumval smallint DEFAULT 1 " +
+                    "maxsumval smallint DEFAULT 1, " +
+                    // 08072024
+                    "minsumval smallint DEFAULT 0 " +
                     ")";
 
     // 테이블 salon_storeservice_option_item 생성쿼리
@@ -2309,7 +2311,9 @@ public class SqlStatements_mssql {
                     "mdate datetime, " +
                     "minval smallint DEFAULT 0, " +
                     "maxval smallint DEFAULT 1, " +
-                    "maxsumval smallint DEFAULT 1 " +
+                    "maxsumval smallint DEFAULT 1, " +
+                    // 08072024
+                    "minsumval smallint DEFAULT 0 " +
                     ")";
 
     // 테이블 salon_storeservice_commonmodifier_item 생성쿼리
@@ -2423,7 +2427,12 @@ public class SqlStatements_mssql {
                     "stcode nvarchar(20), " +
                     "salesCode nvarchar(100), " +                         // 세일코드
                     "customerordernumber nvarchar(4) DEFAULT ''," +       // 고객용 주문번호
-                    "wdate datetime DEFAULT getdate()"+
+                    "wdate datetime DEFAULT getdate(), "+
+
+                    // 08062024
+                    "cashoutNum int DEFAULT 0, " +                             // cash out 여부
+                    "endofdayNum int DEFAULT 0 " +                             // End of Day 여부
+
                     ")";
 
     // 테이블 salon_sales_customerpagernumber 생성쿼리

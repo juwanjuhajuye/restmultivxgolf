@@ -7566,7 +7566,11 @@ public class GlobalMemberValues {
          // "' and '" + DateMethodClass.getCustomEditDate(searchEndDate, 0, 0, 1) + "' ";
          " and '" + GlobalMemberValues.STR_NOW_DATE + "' ";
          **/
-        String dateSearchQuery = " strftime('%m-%d-%Y', wdate) = '" + DateMethodClass.nowMonthGet() + "-" + DateMethodClass.nowDayGet() + "-" + DateMethodClass.nowYearGet() + "' ";
+
+        // 08062024
+        // String dateSearchQuery = " strftime('%m-%d-%Y', wdate) = '" + DateMethodClass.nowMonthGet() + "-" + DateMethodClass.nowDayGet() + "-" + DateMethodClass.nowYearGet() + "' ";
+        String dateSearchQuery = " cashoutNum = 0 ";
+
 
         // 오늘날짜의 최대 Customer Order Number 구하기
         strQuery = " select customerordernumber from salon_sales_customerordernumber " +
