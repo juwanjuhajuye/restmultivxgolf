@@ -354,6 +354,12 @@ public class SelectGetFoodType extends Activity {
                 if (GlobalMemberValues.isPickupTypeDelivery()) {
                     openDeliveryInfoIntent();
                 }
+            } else {
+                if (GlobalMemberValues.mToGoType == "C" && !GlobalMemberValues.isCustomerInfoShow()){
+                    openHereToGoInfoIntent("T");
+                } else if (GlobalMemberValues.mToGoType == "W" && !GlobalMemberValues.isCustomerInfoShow()){
+                    openHereToGoInfoIntent("T");
+                }
             }
         }
     }

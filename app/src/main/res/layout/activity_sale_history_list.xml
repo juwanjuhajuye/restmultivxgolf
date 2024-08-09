@@ -63,11 +63,22 @@
                             android:orientation="horizontal"
                             android:paddingRight="10dp"
                             android:paddingLeft="10dp">
+
+                            <ImageButton
+                                android:id="@+id/salehistory_list_ref_imgbutton"
+                                android:background="@color/zxing_transparent"
+                                android:src="@drawable/button_selector_table_refresh"
+                                android:scaleType="fitCenter"
+                                android:layout_marginRight="10dp"
+                                android:layout_weight=".4"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"/>
+
                             <TextView
                                 android:id="@+id/salehistory_list_StartDateEditText"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1"
+                                android:layout_weight=".6"
                                 android:gravity="center"
                                 android:textColor="#3e3d42"
                                 android:textStyle="bold"
@@ -93,7 +104,7 @@
                                 android:id="@+id/salehistory_list_EndDateEditText"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1"
+                                android:layout_weight=".6"
                                 android:gravity="center"
                                 android:textColor="#3e3d42"
                                 android:textStyle="bold"
@@ -146,6 +157,7 @@
                                     android:checked="true" />
 
                             </RadioGroup>
+
 
                             <EditText
                                 android:id="@+id/shlSearchEv"

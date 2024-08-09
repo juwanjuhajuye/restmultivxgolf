@@ -2939,112 +2939,137 @@ public class MainActivity extends Activity {
                 }
                 case R.id.button_main_side_table : {
                     LogsSave.saveLogsInDB(100);
+
                     if (MainMiddleService.mGeneralArrayList.size() > 0) {
-                        //07182024 adjust way of getting string value of mGeneralArrayList
-                        StringBuilder mGeneralArrayListString = new StringBuilder();
-//                        for(TemporarySaleCart tempSaleCart : MainMiddleService.mGeneralArrayList){
-//                            mGeneralArrayListString.append(tempSaleCart.returnTempCartString());
-//                        }
-
-                        for(TemporarySaleCart tempSaleCart : MainMiddleService.mGeneralArrayList) {
-                            if (tempSaleCart.returnTempCartString().toLowerCase().contains("discount") ||
-                                    tempSaleCart.returnTempCartString().toLowerCase().contains(GlobalMemberValues.mCommonGratuityName.toLowerCase())) {
-                            } else {
-                                mGeneralArrayListString.append(tempSaleCart.returnTempCartString());
-                            }
-                        }
-
-                        if(mGeneralArrayListString.toString().equals(MainActivity.temp_str_salecart)){
-                        //if ((MainMiddleService.mGeneralArrayList.toString().equals(temp_str_salecart))) {
-                            MainMiddleService.initList();
-                            GlobalMemberValues.openRestaurantTable();
-                        } else {
-                            //07182024 this part isn't needed anymore.
-//                            if (temp_str_salecart_cnt > 0) {
-//                                if (temp_str_salecart_cnt == MainMiddleService.mGeneralArrayList.size()) {
-//                                    MainMiddleService.initList();
-//                                    GlobalMemberValues.openRestaurantTable();
-//                                } else {
-//                                    GlobalMemberValues.displayDialog(mContext, "Warning",
-//                                            "There is an added menu\nPlease print the kitchen or delete the added menu", "Close");
-//                                }
-//                                return;
-//                            }
-
-                            Popup_to_go_table_3btn popup_to_go_table = new Popup_to_go_table_3btn(
-                                    mContext, "","There is an ordered menu. Would you like to print into the kitchen?", new CustomDialogClickListener() {
-                                @Override
-                                public void onPositiveClick() {
-                                    String tempHoldCode = MainMiddleService.mHoldCode;
-                                    CommandButton.setHoldSales("");
-                                    // bill 프린팅 여부
-                                    GlobalMemberValues.openRestaurantTable();
-                                    // 키친 프린팅 실행
-                                    TableSaleMain.kitchenPrint(tempHoldCode, false);
-                                }
-
-                                @Override
-                                public void onMiddClick() {
-
-                                    String tempHoldCode = MainMiddleService.mHoldCode;
-                                    CommandButton.setHoldSales("");
-                                    // bill 프린팅 여부
-                                    GlobalMemberValues.openRestaurantTable();
-
-                                    //////
-
-//                            GlobalMemberValues.mCancelBtnClickYN = "Y";
-//                            setEmptyInSaleCart(false);
-                                }
-
-                                @Override
-                                public void onNegativeClick() {
-                                    GlobalMemberValues.mCancelBtnClickYN = "Y";
-                                    MainMiddleService.setEmptyInSaleCart(false);
-                                }
-                            });
-                            popup_to_go_table.setCanceledOnTouchOutside(true);
-                            popup_to_go_table.setCancelable(true);
-                            popup_to_go_table.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
-                            popup_to_go_table.show();
-
-                        }
-//                    if (false) {
-//                        new AlertDialog.Builder(mActivity)
-//                                .setTitle("There is an ordered menu")
-//                                .setMessage("Would you like to go to the table board?")
-//                                .setNegativeButton("No", null)
-//                                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-//                                    @Override
-//                                    public void onClick(DialogInterface dialog, int which) {
-//
-//
-//                                        String tempHoldCode = MainMiddleService.mHoldCode;
-//
-//                                        CommandButton.setHoldSales("");
-//
-//                                        // bill 프린팅 여부
-//                                        setBillKitchenPrintingInSaveOrder(tempHoldCode);
-//
-//                                        // 키친 프린팅 실행
-//                                        TableSaleMain.kitchenPrint(tempHoldCode, false);
-//
-////                                        MainMiddleService.clearOnlyListView();
-//
-////                                        Intent intent = new Intent(MainActivity.mContext, TableSaleMain.class);
-////                                        mActivity.startActivity(intent);
-////                                        mActivity.overridePendingTransition(R.anim.act_in_bottom, R.anim.act_out_bottom);
-//
-//                                    }
-//                                }).show();
-
-
-
+                        // 07282024 --------------------------------------
+                        //SelectGetFoodType.openHereToGoInfoIntent("T");
+                        GlobalMemberValues.mIsClickSendToKitchen = true;
+                        Payment.openGetFoodTypeIntent("");
+                        //clickSendToKitchen();
+                        TableSaleMain.mSelectedTablesArrList.clear();
+                        // 07282024 --------------------------------------
                     } else {
                         // 메인 뷰에서 테이블 Close 후 다른 새 테이블로 들어왔을때 Cart List 가 초기화되지 않는 현상이 있어 추가함.
                         MainMiddleService.initList();
                         GlobalMemberValues.openRestaurantTable();
+
                     }
+
+
+                    // 07282024
+                    // 아래 if 구문을 모두 주석처리
+
+/**
+ if (MainMiddleService.mGeneralArrayList.size() > 0) {
+ //07182024 adjust way of getting string value of mGeneralArrayList
+ StringBuilder mGeneralArrayListString = new StringBuilder();
+ //                        for(TemporarySaleCart tempSaleCart : MainMiddleService.mGeneralArrayList){
+ //                            mGeneralArrayListString.append(tempSaleCart.returnTempCartString());
+ //                        }
+
+ for(TemporarySaleCart tempSaleCart : MainMiddleService.mGeneralArrayList) {
+ if (tempSaleCart.returnTempCartString().toLowerCase().contains("discount") ||
+ tempSaleCart.returnTempCartString().toLowerCase().contains(GlobalMemberValues.mCommonGratuityName.toLowerCase())) {
+ } else {
+ mGeneralArrayListString.append(tempSaleCart.returnTempCartString());
+ }
+ }
+
+ if(mGeneralArrayListString.toString().equals(MainActivity.temp_str_salecart)){
+ //if ((MainMiddleService.mGeneralArrayList.toString().equals(temp_str_salecart))) {
+ MainMiddleService.initList();
+ GlobalMemberValues.openRestaurantTable();
+ } else {
+ //07182024 this part isn't needed anymore.
+ //                            if (temp_str_salecart_cnt > 0) {
+ //                                if (temp_str_salecart_cnt == MainMiddleService.mGeneralArrayList.size()) {
+ //                                    MainMiddleService.initList();
+ //                                    GlobalMemberValues.openRestaurantTable();
+ //                                } else {
+ //                                    GlobalMemberValues.displayDialog(mContext, "Warning",
+ //                                            "There is an added menu\nPlease print the kitchen or delete the added menu", "Close");
+ //                                }
+ //                                return;
+ //                            }
+
+ Popup_to_go_table_3btn popup_to_go_table = new Popup_to_go_table_3btn(
+ mContext, "","There is an ordered menu. Would you like to print into the kitchen?", new CustomDialogClickListener() {
+@Override
+public void onPositiveClick() {
+String tempHoldCode = MainMiddleService.mHoldCode;
+CommandButton.setHoldSales("");
+// bill 프린팅 여부
+GlobalMemberValues.openRestaurantTable();
+// 키친 프린팅 실행
+TableSaleMain.kitchenPrint(tempHoldCode, false);
+}
+
+@Override
+public void onMiddClick() {
+
+String tempHoldCode = MainMiddleService.mHoldCode;
+CommandButton.setHoldSales("");
+// bill 프린팅 여부
+GlobalMemberValues.openRestaurantTable();
+
+//////
+
+//                            GlobalMemberValues.mCancelBtnClickYN = "Y";
+//                            setEmptyInSaleCart(false);
+}
+
+@Override
+public void onNegativeClick() {
+GlobalMemberValues.mCancelBtnClickYN = "Y";
+MainMiddleService.setEmptyInSaleCart(false);
+}
+});
+ popup_to_go_table.setCanceledOnTouchOutside(true);
+ popup_to_go_table.setCancelable(true);
+ popup_to_go_table.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
+ popup_to_go_table.show();
+
+ }
+ //                    if (false) {
+ //                        new AlertDialog.Builder(mActivity)
+ //                                .setTitle("There is an ordered menu")
+ //                                .setMessage("Would you like to go to the table board?")
+ //                                .setNegativeButton("No", null)
+ //                                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+ //                                    @Override
+ //                                    public void onClick(DialogInterface dialog, int which) {
+ //
+ //
+ //                                        String tempHoldCode = MainMiddleService.mHoldCode;
+ //
+ //                                        CommandButton.setHoldSales("");
+ //
+ //                                        // bill 프린팅 여부
+ //                                        setBillKitchenPrintingInSaveOrder(tempHoldCode);
+ //
+ //                                        // 키친 프린팅 실행
+ //                                        TableSaleMain.kitchenPrint(tempHoldCode, false);
+ //
+ ////                                        MainMiddleService.clearOnlyListView();
+ //
+ ////                                        Intent intent = new Intent(MainActivity.mContext, TableSaleMain.class);
+ ////                                        mActivity.startActivity(intent);
+ ////                                        mActivity.overridePendingTransition(R.anim.act_in_bottom, R.anim.act_out_bottom);
+ //
+ //                                    }
+ //                                }).show();
+
+
+
+ } else {
+ // 메인 뷰에서 테이블 Close 후 다른 새 테이블로 들어왔을때 Cart List 가 초기화되지 않는 현상이 있어 추가함.
+ MainMiddleService.initList();
+ GlobalMemberValues.openRestaurantTable();
+ }
+
+ **/
+
+
 
 
 

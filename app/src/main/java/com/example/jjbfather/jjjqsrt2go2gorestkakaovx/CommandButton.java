@@ -60,6 +60,8 @@ public class CommandButton {
     //private Button cashinoutCommandButton;
     private Button commandButton_togo_table;
 
+    private Button bayReservationWindowButton;
+
     static TemporarySaleCart parentTemporarySaleCart;
 
     public static ProgressDialog itemProDial;
@@ -382,6 +384,8 @@ public class CommandButton {
         //cashinoutCommandButton = (Button)GlobalMemberValues.GLOBAL_LAYOUTMEMBER_FRAMELAYOUT_COMMANDBUTTON.findViewWithTag("cashinoutCommandButtonTag");
         //backOfficeMainCommandButton = (Button)GlobalMemberValues.GLOBAL_LAYOUTMEMBER_FRAMELAYOUT_COMMANDBUTTON.findViewWithTag("backOfficeMainCommandButtonTag");
 
+        //07082024 set bayReservationWindow button
+        bayReservationWindowButton = (Button) GlobalMemberValues.GLOBAL_LAYOUTMEMBER_FRAMELAYOUT_COMMANDBUTTON.findViewWithTag("bayReservationCheckButtonTag");
 
         salehistoryCommandButton.setOnClickListener(commandButtonClickListener);
         taxexemptCommandButton.setOnClickListener(commandButtonClickListener);
@@ -407,6 +411,9 @@ public class CommandButton {
 
         commandButton_togo_table.setOnClickListener(commandButtonClickListener);
 
+        //07082024 set onclicklistener for bayReservationWindow Button
+        bayReservationWindowButton.setOnClickListener(commandButtonClickListener);
+
         // Lite 버전 관련
         if (GlobalMemberValues.isLiteVersion()) {
             settingsCommandButton.setOnClickListener(commandButtonClickListener);
@@ -422,6 +429,7 @@ public class CommandButton {
             commandButton_togo_table.setVisibility(View.VISIBLE);
         } else {
             closeBtn.setVisibility(View.VISIBLE);
+            downloadCommandButton.setVisibility(View.INVISIBLE);
 
             // 04302024
             if (!GlobalMemberValues.isQSRPOSonRestaurantPOS) {
@@ -969,6 +977,20 @@ public class CommandButton {
                         // 메인 뷰에서 테이블 Close 후 다른 새 테이블로 들어왔을때 Cart List 가 초기화되지 않는 현상이 있어 추가함.
                         MainMiddleService.initList();
                         GlobalMemberValues.openRestaurantTable();
+                    }
+                    break;
+                }
+
+                //07082024 add button to open Bay Reservation Window
+                case R.id.bayReservationCheckButton: {
+                    Intent bayReservationWindowIntent = new Intent(MainActivity.mContext.getApplicationContext(), BayReservationViewer.class);
+                    //saleHistoryIntent.putExtra("saleHistoryTagValue", "");
+                    // 03102018
+                    // -------------------------------------------------------------------------------------
+                    insContext = context;       // Dialog 에서 임시로 사용할 context 에 MainActivity 의 context 를 할당한다.
+                    mActivity.startActivity(bayReservationWindowIntent);
+                    if (GlobalMemberValues.isUseFadeInOut()) {
+                        mActivity.overridePendingTransition(R.anim.act_in_bottom, R.anim.act_out_bottom);
                     }
                     break;
                 }

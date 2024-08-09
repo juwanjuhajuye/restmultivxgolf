@@ -1,9 +1,11 @@
 package com.example.jjbfather.jjjqsrt2go2gorestkakaovx;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
@@ -73,6 +75,8 @@ public class SaleHistoryList extends Activity {
 
     private SaleHistoryListReceiver receiver;
 
+    private ImageButton salehistory_list_ref_imgbutton;
+
     public class SaleHistoryListReceiver extends BroadcastReceiver {
         public static final String ACTION = "com.example.jjbfather.jjjqsrt2go2gorest.SaleHistoryList";
         @Override
@@ -118,28 +122,17 @@ public class SaleHistoryList extends Activity {
         // 세일 리스트 오픈전에 내부 DB 와 mssql 을 비교해서
         // mssql 에 없는 세일 데이터를 insert 한다.
 
+        // wanhaye 08232023 ---------------------------------------------------------------------------
+        // 세일 리스트 오픈전에 내부 DB 와 mssql 을 비교해서
+        // mssql 에 없는 세일 데이터를 insert 한다.
+
         //setContents();
 
-        Thread thread = new Thread(new Runnable() {
-            public void run() {
 
-                // 1. 처리가 오래걸리는 부분 실행 --------------------------------------------------
-                InsertSaleDataInServer insDB = new InsertSaleDataInServer();
-                insDB.insDataInServer();
-                // ---------------------------------------------------------------------------------
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
-                // 2. 작업이 끝나면 이 핸들러를 호출 -----------------------------------------------
-                handler.sendEmptyMessage(0);
-                // ---------------------------------------------------------------------------------
-            }
-        });
-        thread.start();
+        // 072824 생성만 하는것으로 변경 이후 버튼으로 실행.
+//        thread_saledata_transfer.start();
         // wanhaye 08232023 ---------------------------------------------------------------------------
+        setContents();
     }
 
 
@@ -319,6 +312,50 @@ public class SaleHistoryList extends Activity {
 
         btn_loglist = findViewById(R.id.salehistory_list_loglist);
         btn_loglist.setOnClickListener(btn_clockListener);
+
+        salehistory_list_ref_imgbutton = findViewById(R.id.salehistory_list_ref_imgbutton);
+
+
+        salehistory_list_ref_imgbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                thread_saledata_transfer.start();
+
+                // alert
+                AlertDialog alertDialog = new AlertDialog.Builder(mActivity)
+                        .setTitle("Data Transfer")
+                        .setMessage("Are you sure you want to transfer data to server? It may take some time to transfer it, and you will not be able to do anything else")
+                        //.setIcon(R.drawable.ic_launcher)
+                        .setPositiveButton("YES",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        // 1. 처리가 오래걸리는 부분 실행 --------------------------------------------------
+                                        InsertSaleDataInServer insDB = new InsertSaleDataInServer();
+                                        insDB.insDataInServer();
+                                        // ---------------------------------------------------------------------------------
+                                        try {
+                                            Thread.sleep(1000);
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
+                                        }
+
+                                        // 2. 작업이 끝나면 이 핸들러를 호출 -----------------------------------------------
+                                        handler.sendEmptyMessage(0);
+                                        // ---------------------------------------------------------------------------------
+
+                                    }
+                                })
+                        .setNegativeButton("NO",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                                    }
+                                })
+                        .show();
+
+            }
+        });
     }
 
     public ArrayList<String> getSaleHistoryList(String paramStartDate, String paramEndDate, String paramPickUpType, String paramSearchValue, int paramPage) {

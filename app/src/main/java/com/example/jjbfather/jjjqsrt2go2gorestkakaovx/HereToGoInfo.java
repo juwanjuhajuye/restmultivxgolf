@@ -343,7 +343,7 @@ public class HereToGoInfo extends Activity {
         GlobalMemberValues.logWrite("jjjwhylogjjj", "여기...0" + "\n");
 
         // Customer Info Show 가 No 일 경우 바로 다음 스텝으로..
-        if (!GlobalMemberValues.isCustomerInfoShow()) {
+        if (!GlobalMemberValues.isCustomerInfoShow() && (!GlobalMemberValues.mToGoType.equals("C") && !GlobalMemberValues.mToGoType.equals("W"))) {
             GlobalMemberValues.logWrite("jjjwhylogjjj", "여기...1" + "\n");
 
             String tempStr = customerIdEditText.getText().toString();
@@ -612,8 +612,8 @@ public class HereToGoInfo extends Activity {
 
         if (GlobalMemberValues.isStrEmpty(memUid)) {
             if (!GlobalMemberValues.isCustomer_info_here_yn() &&
-            !GlobalMemberValues.isCustomer_info_togo_yn() &&
-            !GlobalMemberValues.isCustomer_info_delivery_yn()){
+                    !GlobalMemberValues.isCustomer_info_togo_yn() &&
+                    !GlobalMemberValues.isCustomer_info_delivery_yn()){
                 // Customer Info Show off 상태. 또는 Here, Togo, Delivery 모두 off 상태
             } else {
                 GlobalMemberValues.displayDialog(context, "Waraning", "Please enter your phone number (customer ID)", "Close");
@@ -659,7 +659,7 @@ public class HereToGoInfo extends Activity {
                     break;
                 }
                 case R.id.customerWalkInButotn : {
-                    customerIdEditText.setText("TO GO");
+                    customerIdEditText.setText("WALK IN");
                     break;
                 }
                 case R.id.onlinebtn : {

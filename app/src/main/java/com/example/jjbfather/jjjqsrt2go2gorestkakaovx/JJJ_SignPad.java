@@ -129,11 +129,11 @@ public class JJJ_SignPad extends Activity {
         } else {
             setContentView(R.layout.activity_jjj_sign_pad3);
             /**
-            if (GlobalMemberValues.ISDUALDISPLAYPOSSIBLE) {
-                setContentView(R.layout.activity_jjj_sign_pad3);
-            } else {
-                setContentView(R.layout.activity_jjj_sign_pad);
-            }
+             if (GlobalMemberValues.ISDUALDISPLAYPOSSIBLE) {
+             setContentView(R.layout.activity_jjj_sign_pad3);
+             } else {
+             setContentView(R.layout.activity_jjj_sign_pad);
+             }
              **/
         }
         this.setFinishOnTouchOutside(false);
@@ -198,6 +198,13 @@ public class JJJ_SignPad extends Activity {
         setContents();
         setContents2();
         setContents3();
+
+        String str_before_tip = MainActivity.mDbInit.dbExecuteReadReturnString(" select beforetippricessingyn from salon_storestationsettings_paymentgateway ");
+        if (str_before_tip.equals("Y")){
+            mTipAmount = GlobalMemberValues.getDoubleAtString(GlobalMemberValues.str_before_tip_amount);
+            setCardAndTipAmountTv(GlobalMemberValues.str_before_tip_amount);
+            setFrameLayount("0",tipSuggestLn6);
+        }
 
         // 전자서명 최소결제금액 이하이고 셋팅에서 tip use 가 no 일 경우 ---------------------
         // 바로 결제완료로 진행한다.
@@ -442,154 +449,154 @@ public class JJJ_SignPad extends Activity {
 
         tipinsertkeypad_suButton1 = (Button)findViewById(R.id.tipinsertkeypad_suButton1);
         if (GlobalMemberValues.IMAGEBUTTONYN == 0) {
-            tipinsertkeypad_suButton1.setTextSize(GlobalMemberValues.globalAddFontSizeForPAX() + 
+            tipinsertkeypad_suButton1.setTextSize(GlobalMemberValues.globalAddFontSizeForPAX() +
                     tipinsertkeypad_suButton1.getTextSize()
                             * GlobalMemberValues.getGlobalFontSize() * 1.3f
             );
             tipinsertkeypad_suButton1.setTextColor(Color.parseColor(GlobalMemberValues.GLOBAL_NUMBERBUTTON_COLOR));
             tipinsertkeypad_suButton1.setBackgroundResource(R.drawable.ab_imagebutton_qty_number);
         } else {
-            tipinsertkeypad_suButton1.setTextSize(GlobalMemberValues.globalAddFontSizeForPAX() + 
+            tipinsertkeypad_suButton1.setTextSize(GlobalMemberValues.globalAddFontSizeForPAX() +
                     tipinsertkeypad_suButton1.getTextSize()
                             * GlobalMemberValues.getGlobalFontSize()
             );
         }
         tipinsertkeypad_suButton2 = (Button)findViewById(R.id.tipinsertkeypad_suButton2);
         if (GlobalMemberValues.IMAGEBUTTONYN == 0) {
-            tipinsertkeypad_suButton2.setTextSize(GlobalMemberValues.globalAddFontSizeForPAX() + 
+            tipinsertkeypad_suButton2.setTextSize(GlobalMemberValues.globalAddFontSizeForPAX() +
                     tipinsertkeypad_suButton2.getTextSize()
                             * GlobalMemberValues.getGlobalFontSize() * 1.3f
             );
             tipinsertkeypad_suButton2.setTextColor(Color.parseColor(GlobalMemberValues.GLOBAL_NUMBERBUTTON_COLOR));
             tipinsertkeypad_suButton2.setBackgroundResource(R.drawable.ab_imagebutton_qty_number);
         } else {
-            tipinsertkeypad_suButton2.setTextSize(GlobalMemberValues.globalAddFontSizeForPAX() + 
+            tipinsertkeypad_suButton2.setTextSize(GlobalMemberValues.globalAddFontSizeForPAX() +
                     tipinsertkeypad_suButton2.getTextSize()
                             * GlobalMemberValues.getGlobalFontSize()
             );
         }
         tipinsertkeypad_suButton3 = (Button)findViewById(R.id.tipinsertkeypad_suButton3);
         if (GlobalMemberValues.IMAGEBUTTONYN == 0) {
-            tipinsertkeypad_suButton3.setTextSize(GlobalMemberValues.globalAddFontSizeForPAX() + 
+            tipinsertkeypad_suButton3.setTextSize(GlobalMemberValues.globalAddFontSizeForPAX() +
                     tipinsertkeypad_suButton3.getTextSize()
                             * GlobalMemberValues.getGlobalFontSize() * 1.3f
             );
             tipinsertkeypad_suButton3.setTextColor(Color.parseColor(GlobalMemberValues.GLOBAL_NUMBERBUTTON_COLOR));
             tipinsertkeypad_suButton3.setBackgroundResource(R.drawable.ab_imagebutton_qty_number);
         } else {
-            tipinsertkeypad_suButton3.setTextSize(GlobalMemberValues.globalAddFontSizeForPAX() + 
+            tipinsertkeypad_suButton3.setTextSize(GlobalMemberValues.globalAddFontSizeForPAX() +
                     tipinsertkeypad_suButton3.getTextSize()
                             * GlobalMemberValues.getGlobalFontSize()
             );
         }
         tipinsertkeypad_suButton4 = (Button)findViewById(R.id.tipinsertkeypad_suButton4);
         if (GlobalMemberValues.IMAGEBUTTONYN == 0) {
-            tipinsertkeypad_suButton4.setTextSize(GlobalMemberValues.globalAddFontSizeForPAX() + 
+            tipinsertkeypad_suButton4.setTextSize(GlobalMemberValues.globalAddFontSizeForPAX() +
                     tipinsertkeypad_suButton4.getTextSize()
                             * GlobalMemberValues.getGlobalFontSize() * 1.3f
             );
             tipinsertkeypad_suButton4.setTextColor(Color.parseColor(GlobalMemberValues.GLOBAL_NUMBERBUTTON_COLOR));
             tipinsertkeypad_suButton4.setBackgroundResource(R.drawable.ab_imagebutton_qty_number);
         } else {
-            tipinsertkeypad_suButton4.setTextSize(GlobalMemberValues.globalAddFontSizeForPAX() + 
+            tipinsertkeypad_suButton4.setTextSize(GlobalMemberValues.globalAddFontSizeForPAX() +
                     tipinsertkeypad_suButton4.getTextSize()
                             * GlobalMemberValues.getGlobalFontSize()
             );
         }
         tipinsertkeypad_suButton5 = (Button)findViewById(R.id.tipinsertkeypad_suButton5);
         if (GlobalMemberValues.IMAGEBUTTONYN == 0) {
-            tipinsertkeypad_suButton5.setTextSize(GlobalMemberValues.globalAddFontSizeForPAX() + 
+            tipinsertkeypad_suButton5.setTextSize(GlobalMemberValues.globalAddFontSizeForPAX() +
                     tipinsertkeypad_suButton5.getTextSize()
                             * GlobalMemberValues.getGlobalFontSize() * 1.3f
             );
             tipinsertkeypad_suButton5.setTextColor(Color.parseColor(GlobalMemberValues.GLOBAL_NUMBERBUTTON_COLOR));
             tipinsertkeypad_suButton5.setBackgroundResource(R.drawable.ab_imagebutton_qty_number);
         } else {
-            tipinsertkeypad_suButton5.setTextSize(GlobalMemberValues.globalAddFontSizeForPAX() + 
+            tipinsertkeypad_suButton5.setTextSize(GlobalMemberValues.globalAddFontSizeForPAX() +
                     tipinsertkeypad_suButton5.getTextSize()
                             * GlobalMemberValues.getGlobalFontSize()
             );
         }
         tipinsertkeypad_suButton6 = (Button)findViewById(R.id.tipinsertkeypad_suButton6);
         if (GlobalMemberValues.IMAGEBUTTONYN == 0) {
-            tipinsertkeypad_suButton6.setTextSize(GlobalMemberValues.globalAddFontSizeForPAX() + 
+            tipinsertkeypad_suButton6.setTextSize(GlobalMemberValues.globalAddFontSizeForPAX() +
                     tipinsertkeypad_suButton6.getTextSize()
                             * GlobalMemberValues.getGlobalFontSize() * 1.3f
             );
             tipinsertkeypad_suButton6.setTextColor(Color.parseColor(GlobalMemberValues.GLOBAL_NUMBERBUTTON_COLOR));
             tipinsertkeypad_suButton6.setBackgroundResource(R.drawable.ab_imagebutton_qty_number);
         } else {
-            tipinsertkeypad_suButton6.setTextSize(GlobalMemberValues.globalAddFontSizeForPAX() + 
+            tipinsertkeypad_suButton6.setTextSize(GlobalMemberValues.globalAddFontSizeForPAX() +
                     tipinsertkeypad_suButton6.getTextSize()
                             * GlobalMemberValues.getGlobalFontSize()
             );
         }
         tipinsertkeypad_suButton7 = (Button)findViewById(R.id.tipinsertkeypad_suButton7);
         if (GlobalMemberValues.IMAGEBUTTONYN == 0) {
-            tipinsertkeypad_suButton7.setTextSize(GlobalMemberValues.globalAddFontSizeForPAX() + 
+            tipinsertkeypad_suButton7.setTextSize(GlobalMemberValues.globalAddFontSizeForPAX() +
                     tipinsertkeypad_suButton7.getTextSize()
                             * GlobalMemberValues.getGlobalFontSize() * 1.3f
             );
             tipinsertkeypad_suButton7.setTextColor(Color.parseColor(GlobalMemberValues.GLOBAL_NUMBERBUTTON_COLOR));
             tipinsertkeypad_suButton7.setBackgroundResource(R.drawable.ab_imagebutton_qty_number);
         } else {
-            tipinsertkeypad_suButton7.setTextSize(GlobalMemberValues.globalAddFontSizeForPAX() + 
+            tipinsertkeypad_suButton7.setTextSize(GlobalMemberValues.globalAddFontSizeForPAX() +
                     tipinsertkeypad_suButton7.getTextSize()
                             * GlobalMemberValues.getGlobalFontSize()
             );
         }
         tipinsertkeypad_suButton8 = (Button)findViewById(R.id.tipinsertkeypad_suButton8);
         if (GlobalMemberValues.IMAGEBUTTONYN == 0) {
-            tipinsertkeypad_suButton8.setTextSize(GlobalMemberValues.globalAddFontSizeForPAX() + 
+            tipinsertkeypad_suButton8.setTextSize(GlobalMemberValues.globalAddFontSizeForPAX() +
                     tipinsertkeypad_suButton8.getTextSize()
                             * GlobalMemberValues.getGlobalFontSize() * 1.3f
             );
             tipinsertkeypad_suButton8.setTextColor(Color.parseColor(GlobalMemberValues.GLOBAL_NUMBERBUTTON_COLOR));
             tipinsertkeypad_suButton8.setBackgroundResource(R.drawable.ab_imagebutton_qty_number);
         } else {
-            tipinsertkeypad_suButton8.setTextSize(GlobalMemberValues.globalAddFontSizeForPAX() + 
+            tipinsertkeypad_suButton8.setTextSize(GlobalMemberValues.globalAddFontSizeForPAX() +
                     tipinsertkeypad_suButton8.getTextSize()
                             * GlobalMemberValues.getGlobalFontSize()
             );
         }
         tipinsertkeypad_suButton9 = (Button)findViewById(R.id.tipinsertkeypad_suButton9);
         if (GlobalMemberValues.IMAGEBUTTONYN == 0) {
-            tipinsertkeypad_suButton9.setTextSize(GlobalMemberValues.globalAddFontSizeForPAX() + 
+            tipinsertkeypad_suButton9.setTextSize(GlobalMemberValues.globalAddFontSizeForPAX() +
                     tipinsertkeypad_suButton9.getTextSize()
                             * GlobalMemberValues.getGlobalFontSize() * 1.3f
             );
             tipinsertkeypad_suButton9.setTextColor(Color.parseColor(GlobalMemberValues.GLOBAL_NUMBERBUTTON_COLOR));
             tipinsertkeypad_suButton9.setBackgroundResource(R.drawable.ab_imagebutton_qty_number);
         } else {
-            tipinsertkeypad_suButton9.setTextSize(GlobalMemberValues.globalAddFontSizeForPAX() + 
+            tipinsertkeypad_suButton9.setTextSize(GlobalMemberValues.globalAddFontSizeForPAX() +
                     tipinsertkeypad_suButton9.getTextSize()
                             * GlobalMemberValues.getGlobalFontSize()
             );
         }
         tipinsertkeypad_suButton0 = (Button)findViewById(R.id.tipinsertkeypad_suButton0);
         if (GlobalMemberValues.IMAGEBUTTONYN == 0) {
-            tipinsertkeypad_suButton0.setTextSize(GlobalMemberValues.globalAddFontSizeForPAX() + 
+            tipinsertkeypad_suButton0.setTextSize(GlobalMemberValues.globalAddFontSizeForPAX() +
                     tipinsertkeypad_suButton0.getTextSize()
                             * GlobalMemberValues.getGlobalFontSize() * 1.3f
             );
             tipinsertkeypad_suButton0.setTextColor(Color.parseColor(GlobalMemberValues.GLOBAL_NUMBERBUTTON_COLOR));
             tipinsertkeypad_suButton0.setBackgroundResource(R.drawable.ab_imagebutton_qty_number);
         } else {
-            tipinsertkeypad_suButton0.setTextSize(GlobalMemberValues.globalAddFontSizeForPAX() + 
+            tipinsertkeypad_suButton0.setTextSize(GlobalMemberValues.globalAddFontSizeForPAX() +
                     tipinsertkeypad_suButton0.getTextSize()
                             * GlobalMemberValues.getGlobalFontSize()
             );
         }
         tipinsertkeypad_suButton00 = (Button)findViewById(R.id.tipinsertkeypad_suButton00);
         if (GlobalMemberValues.IMAGEBUTTONYN == 0) {
-            tipinsertkeypad_suButton00.setTextSize(GlobalMemberValues.globalAddFontSizeForPAX() + 
+            tipinsertkeypad_suButton00.setTextSize(GlobalMemberValues.globalAddFontSizeForPAX() +
                     tipinsertkeypad_suButton00.getTextSize()
                             * GlobalMemberValues.getGlobalFontSize() * 1.3f
             );
             tipinsertkeypad_suButton00.setTextColor(Color.parseColor(GlobalMemberValues.GLOBAL_NUMBERBUTTON_COLOR));
             tipinsertkeypad_suButton00.setBackgroundResource(R.drawable.ab_imagebutton_qty_number);
         } else {
-            tipinsertkeypad_suButton00.setTextSize(GlobalMemberValues.globalAddFontSizeForPAX() + 
+            tipinsertkeypad_suButton00.setTextSize(GlobalMemberValues.globalAddFontSizeForPAX() +
                     tipinsertkeypad_suButton00.getTextSize()
                             * GlobalMemberValues.getGlobalFontSize()
             );
@@ -599,7 +606,7 @@ public class JJJ_SignPad extends Activity {
             tipinsertkeypad_suButtonBack.setText("");
             tipinsertkeypad_suButtonBack.setBackgroundResource(R.drawable.ab_imagebutton_qty_delete);
         } else {
-            tipinsertkeypad_suButtonBack.setTextSize(GlobalMemberValues.globalAddFontSizeForPAX() + 
+            tipinsertkeypad_suButtonBack.setTextSize(GlobalMemberValues.globalAddFontSizeForPAX() +
                     tipinsertkeypad_suButtonBack.getTextSize()
                             * GlobalMemberValues.getGlobalFontSize()
             );
@@ -609,7 +616,7 @@ public class JJJ_SignPad extends Activity {
             tipinsertkeypad_suButtonV.setText("");
             tipinsertkeypad_suButtonV.setBackgroundResource(R.drawable.ab_imagebutton_qty_enter);
         } else {
-            tipinsertkeypad_suButtonV.setTextSize(GlobalMemberValues.globalAddFontSizeForPAX() + 
+            tipinsertkeypad_suButtonV.setTextSize(GlobalMemberValues.globalAddFontSizeForPAX() +
                     tipinsertkeypad_suButtonV.getTextSize()
                             * GlobalMemberValues.getGlobalFontSize()
             );
@@ -1012,7 +1019,12 @@ public class JJJ_SignPad extends Activity {
 
         // Tip 이 있을 경우 팁처리 -----------------------------------------------------------------------
         if (mTipAmount > 0) {
-            if (GlobalMemberValues.CARD_TIP_PROCESSING) {
+            //07122024 add check for setting tip before payment (one payment including tip instead of
+            //1st payment of original total amount, and 2nd adjustment payment including tip)
+            //This is so there is only one transaction to the card processor not two.
+            String beforeTipYN = MainActivity.mDbInit.dbExecuteReadReturnString(" select beforetippricessingyn from salon_storestationsettings_paymentgateway ");
+            //If tip is processed before, since tip was already added to total, don't add it again.
+            if (GlobalMemberValues.CARD_TIP_PROCESSING && beforeTipYN.equals("N")) {
                 payCardTip();
             } else {
                 databaseProcessAfterCardProcess("00", Payment.mSalesCode, mGetMaxSalonSalesCardIdx, mTipAmount, mGetCardCompany);

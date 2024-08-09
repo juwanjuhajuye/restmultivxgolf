@@ -3841,7 +3841,12 @@ public class DatabaseInit {
             alterDatabaseTableColumn(altTableName, "bayyn", "nvarchar(2)", "DEFAULT 'Y'", 0);
         }
 
-
+        // salon_storestationsettings_paymentgateway 테이블 컬럼 추가
+        // 7.29.2024, beforetippricessingyn 컬럼 추가
+        altTableName = "salon_storestationsettings_paymentgateway";
+        if (checkTable(altTableName) > 0) {
+            alterDatabaseTableColumn(altTableName, "beforetippricessingyn", "nvarchar(2)", "DEFAULT 'N'", 0);
+        }
 
         // 08062024 ----------------------------------------------
         // salon_sales_customerordernumber 테이블 컬럼 추가
@@ -3859,7 +3864,6 @@ public class DatabaseInit {
         // 08062024 ----------------------------------------------
 
 
-
         // 08072024 -------------------------------------------------------------------
         // salon_storeservice_option 테이블 컬럼 추가
         // 08.07.2024, minsumval 컬럼 추가
@@ -3875,7 +3879,6 @@ public class DatabaseInit {
             alterDatabaseTableColumn(altTableName, "minsumval", "smallint", "DEFAULT 0", 0);
         }
         // 08072024 -------------------------------------------------------------------
-
 
         /****************************************************************************/
     }

@@ -2265,7 +2265,8 @@ public class MainMiddleService {
 
                                             //04182024 when menu is cancelled send POST request to TORDER
                                             if(GlobalMemberValues.isTOrderUse()){
-                                                GlobalMemberValues.sendTOrderAPITableClear(GlobalMemberValues.mSelectedTableIdx);
+                                                //07292024 no longer send 402 event when cancel button is pressed
+                                                //GlobalMemberValues.sendTOrderAPITableClear(GlobalMemberValues.mSelectedTableIdx);
                                             }
 
                                         }
@@ -2748,22 +2749,23 @@ public class MainMiddleService {
                                 "The cart is empty\nPlease add items and print the order to the kitchen before printing the bill", "Close");
                     }
                     //if item has been added, prompt user to print to kitchen first.
-                    else if (MainActivity.temp_str_salecart_cnt != MainMiddleService.mGeneralArrayList.size()) {
+                    else if (MainActivity.temp_str_salecart_cnt < MainMiddleService.mGeneralArrayList.size()) {
                         //if the item added is simply discount item, allow bill to be printed.
                         int discountCount = 0;
                         for(TemporarySaleCart tempCart : MainMiddleService.mGeneralArrayList){
                             //check if its discount by checking tempSaleCartIdx, discounts don't have this value
-                            if(tempCart.tempSaleCartIdx == null || tempCart.tempSaleCartIdx.equals("")){
+                            if(tempCart.tempSaleCartIdx == null || tempCart.tempSaleCartIdx.equals("") || tempCart.mSvcCategoryName.equals(GlobalMemberValues.mCommonGratuityName)){
                                 discountCount++;
                             }
                         }
 
                         //if the discount items and menu items don't add up to match the mGeneralArrayList size, that
                         //means other items were added, so don't let user go to payment.
-                        if(discountCount + MainActivity.temp_str_salecart_cnt !=  MainMiddleService.mGeneralArrayList.size()){
+                        if(discountCount + MainActivity.temp_str_salecart_cnt != MainMiddleService.mGeneralArrayList.size()){
                             GlobalMemberValues.displayDialog(MainActivity.mContext, "Warning",
                                     "An item has been added.\nPlease print to kitchen the changes first", "Close");
-                        } else {
+                        }
+                        else { //discount items + menu items = mGeneralArrayList size, so only discount items were added
                             LogsSave.saveLogsInDB(90);
                             TableSaleMain.openBillPrint("Y");
                             if (GlobalMemberValues.isBillPrintPopupOpen()){
@@ -2773,10 +2775,13 @@ public class MainMiddleService {
                             }
                         }
                     }
-                    else {
+                    else { //check for an edit to an item
                         StringBuilder mGeneralArrayListString = new StringBuilder();
                         for(TemporarySaleCart tempSaleCart : MainMiddleService.mGeneralArrayList){
-                            mGeneralArrayListString.append(tempSaleCart.returnTempCartString());
+                            //07312024 don't add discount items to the list of items to check
+                            if(tempSaleCart.tempSaleCartIdx != null && !tempSaleCart.tempSaleCartIdx.equals("") && !tempSaleCart.mSvcCategoryName.equals(GlobalMemberValues.mCommonGratuityName)){
+                                mGeneralArrayListString.append(tempSaleCart.returnTempCartString());
+                            }
                         }
 
                         //if the stringfied version of the current generalarraylist that contains TemporarySaleCart items

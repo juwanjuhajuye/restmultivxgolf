@@ -4228,6 +4228,12 @@ public class Payment {
                 // 07262024
                 if (GlobalMemberValues.isQSRPOSonRestaurantPOS) {
                     tempPrintYN = "N";
+                } else {                        // 08082024
+                    if (!GlobalMemberValues.isStrEmpty(temp_customerPhone)) {
+                        if (temp_customerPhone.toUpperCase().equals("WALK IN")) {
+                            tempPrintYN = "N";
+                        }
+                    }
                 }
 
                 // 11102023

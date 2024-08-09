@@ -555,6 +555,22 @@ public class TableSaleMain extends Activity {
                 MainActivity.updatePresentation();
             }
         }
+
+
+        if (GlobalMemberValues.checkServerCodeUseYN()){
+            if (GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx.equals(GlobalMemberValues.SERVER_IDX)){
+
+            } else {
+                // 072424
+                // SERVER IDX, NAME 초기화
+                GlobalMemberValues.SERVER_IDX = "";
+                GlobalMemberValues.SERVER_NAME = "";
+                GlobalMemberValues.SERVER_ID = "";
+            }
+
+        } else {
+
+        }
     }
 
 
@@ -4576,7 +4592,9 @@ public class TableSaleMain extends Activity {
 
             //06032024 send table cleared call to TOrder API if torder is in use
             if(GlobalMemberValues.isTOrderUse()){
-                GlobalMemberValues.sendTOrderAPITableClear(tempTableIdx);
+                //07292024 don't send clear call, send service instead
+                //GlobalMemberValues.sendTOrderAPITableClear(tempTableIdx);
+                GlobalMemberValues.sendDataToTOrderService(MainActivity.mContext, MainActivity.mActivity, "0");
             }
         }
         // 장바구니 비우기
@@ -5919,14 +5937,6 @@ public class TableSaleMain extends Activity {
             GlobalMemberValues.SAVEORDELETE = "del";
             GlobalMemberValues.setTableIdxInCloud(mContext, mActivity);
         }
-
-
-        // 072424
-        // SERVER IDX, NAME 초기화
-        GlobalMemberValues.SERVER_IDX = "";
-        GlobalMemberValues.SERVER_NAME = "";
-        GlobalMemberValues.SERVER_ID = "";
-
 
     }
 

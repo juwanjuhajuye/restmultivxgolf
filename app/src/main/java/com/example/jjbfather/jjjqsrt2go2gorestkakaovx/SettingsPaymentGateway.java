@@ -33,7 +33,7 @@ public class SettingsPaymentGateway extends Activity {
     DatabaseInit dbInit;
 
     private Switch cardchargesystemuseSwitch, tipuseSwitch, signaturePadSwitch, tipSelectionOnSignaturePadSwitch;
-    private Switch tiplineOnReceiptSwitch, ischeckbeforecardpaySwitch, keyinynSwitch, tipprocessingynSwitch;
+    private Switch tiplineOnReceiptSwitch, ischeckbeforecardpaySwitch, keyinynSwitch, tipprocessingynSwitch, beforetipprocessingynSwitch;
     private Spinner paymentgatewaySpinner, commtypeSpinner;
     private EditText paymentgatewayidEditText, paymentgatewaypwdEditText;
     private Button saveSettingsPaymentGatewayButton;
@@ -46,6 +46,7 @@ public class SettingsPaymentGateway extends Activity {
     private TextView settingsPaymentGatewayTitleTextView11, settingsPaymentGatewayTitleTextView12;
     private TextView settingsPaymentGatewayTitleTextView13, settingsPaymentGatewayTitleTextView14;
     private TextView settingsPaymentGatewayTitleTextView15;
+    private TextView settingsPaymentGatewayTitleTextBeforeTip;
 
     // 07182024
     // 카드결제 기기등록관련
@@ -120,6 +121,8 @@ public class SettingsPaymentGateway extends Activity {
 
         String vTipprocessingyn = "N";
 
+        String vBeforeTipprocessingyn = "N";
+
         String vNetworkip1 = "";
         String vNetworkip2 = "";
         String vNetworkip3 = "";
@@ -140,7 +143,7 @@ public class SettingsPaymentGateway extends Activity {
         String strQuery = "select cardchargesystemuse, paymentgateway, paymentgatewayid, paymentgatewaypwd, tipuse, " +
                 " networkip1, networkip2, networkip3, networkip4, networkport, signpaduseyn, tipselectonsignature, " +
                 " tipselect1, tipselect2, tipselect3, tipselect4, " +
-                " tiplineonreceipt, signatureimagedeletedaysago, ischeckbeforecardpay, commtype, keyinyn, tipprocessingyn, timeout " +
+                " tiplineonreceipt, signatureimagedeletedaysago, ischeckbeforecardpay, commtype, keyinyn, tipprocessingyn, timeout, beforetippricessingyn " +
                 " from salon_storestationsettings_paymentgateway ";
         Cursor settingsPaymentGatewayCursor = dbInit.dbExecuteRead(strQuery);
         if (settingsPaymentGatewayCursor.getCount() > 0 && settingsPaymentGatewayCursor.moveToFirst()) {
@@ -167,6 +170,8 @@ public class SettingsPaymentGateway extends Activity {
             String tempKeyinyn = GlobalMemberValues.getDBTextAfterChecked(settingsPaymentGatewayCursor.getString(20), 1);
             String tempTipprocessingyn = GlobalMemberValues.getDBTextAfterChecked(settingsPaymentGatewayCursor.getString(21), 1);
             String tempTimeout = GlobalMemberValues.getDBTextAfterChecked(settingsPaymentGatewayCursor.getString(22), 1);
+            String tempBeforeTipprocessingyn = GlobalMemberValues.getDBTextAfterChecked(settingsPaymentGatewayCursor.getString(23),1);
+
 
             vNetworkip1 = tempNetworkip1;
             vNetworkip2 = tempNetworkip2;
@@ -247,6 +252,12 @@ public class SettingsPaymentGateway extends Activity {
                 vTipprocessingyn = tempTipprocessingyn;
             } else {
                 vTipprocessingyn = "N";
+            }
+
+            if (!GlobalMemberValues.isStrEmpty(tempBeforeTipprocessingyn)){
+                vBeforeTipprocessingyn = tempBeforeTipprocessingyn;
+            } else {
+                vBeforeTipprocessingyn = "N";
             }
 
             if (!GlobalMemberValues.isStrEmpty(tempTimeout)){
@@ -403,6 +414,14 @@ public class SettingsPaymentGateway extends Activity {
             tipprocessingynSwitch.setChecked(false);
         }
 
+        // before tip
+        beforetipprocessingynSwitch = (Switch)findViewById(R.id.beforetipprocessingynSwitch);
+        if (vBeforeTipprocessingyn == "Y" || vBeforeTipprocessingyn.equals("Y")){
+            beforetipprocessingynSwitch.setChecked(true);
+        } else {
+            beforetipprocessingynSwitch.setChecked(false);
+        }
+
         saveSettingsPaymentGatewayButton = (Button)findViewById(R.id.saveSettingsPaymentGatewayButton);
         saveSettingsPaymentGatewayButton.setOnClickListener(mButtonClick);
         if (GlobalMemberValues.IMAGEBUTTONYN == 0) {
@@ -460,6 +479,8 @@ public class SettingsPaymentGateway extends Activity {
         settingsPaymentGatewayTitleTextView15 = (TextView)findViewById(R.id.settingsPaymentGatewayTitleTextView15);
         settingsPaymentGatewayTitleTextView15.setTextSize(settingsPaymentGatewayTitleTextView15.getTextSize() * GlobalMemberValues.getGlobalFontSize());
 
+        settingsPaymentGatewayTitleTextBeforeTip = (TextView)findViewById(R.id.settingsPaymentGatewayTitleTextBeforeTip);
+        settingsPaymentGatewayTitleTextBeforeTip.setTextSize( settingsPaymentGatewayTitleTextBeforeTip.getTextSize() * GlobalMemberValues.getGlobalFontSize());
 
 
         // 07182024 ----------------------------------------------------------------------------------------------
@@ -593,6 +614,8 @@ public class SettingsPaymentGateway extends Activity {
 
         String insTipprocessingyn = "N";
 
+        String insBeforeTipprocessingyn = "N";
+
         int insCommtype = 1;
 
         String insTimeout = "";
@@ -679,6 +702,12 @@ public class SettingsPaymentGateway extends Activity {
             insTipprocessingyn = "N";
         }
 
+        if (beforetipprocessingynSwitch.isChecked()) {
+            insBeforeTipprocessingyn = "Y";
+        } else {
+            insBeforeTipprocessingyn = "N";
+        }
+
         insTimeout = setting_payment_timeout_Ev.getText().toString();
         if (GlobalMemberValues.isStrEmpty(insTimeout)){
             insTimeout = "1";
@@ -714,6 +743,7 @@ public class SettingsPaymentGateway extends Activity {
                     " commtype = '" + insCommtype + "', " +
                     " keyinyn = '" + insKeyinyn + "', " +
                     " tipprocessingyn = '" + insTipprocessingyn + "', " +
+                    " beforetippricessingyn = '" + insBeforeTipprocessingyn + "', " +
                     " timeout = '" + insTimeout + "', " +
                     " mdate = datetime('now') ";
             strUpdateQueryVec.addElement(updStrQuery);

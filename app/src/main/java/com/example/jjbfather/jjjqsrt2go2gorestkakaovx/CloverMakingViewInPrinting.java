@@ -5271,6 +5271,8 @@ public class CloverMakingViewInPrinting {
                 double totalAmount = 0.00;
                 double d_discountAmount = 0.0;
 
+                // addpay total
+                double d_addpaysubtotal = 0.00;
                 //
 
                 ItemPrint itemPrint = new ItemPrint();
@@ -5288,6 +5290,52 @@ public class CloverMakingViewInPrinting {
 
 //                    str_saleitemlist;
 //
+
+                    // add pay
+                    if (GlobalMemberValues.getAddPayType().equals("A") || GlobalMemberValues.getAddPayType() == "A") {
+                    } else {
+                        LinearLayout saleitemlistLn_addpay = new LinearLayout(MainActivity.mContext);
+                        saleitemlistLn_addpay.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                        saleitemlistLn_addpay.setOrientation(LinearLayout.HORIZONTAL);
+
+                        TextView saleItemTvContents1 = new TextView(MainActivity.mContext);
+                        saleItemTvContents1.setGravity(Gravity.TOP | Gravity.LEFT);
+                        //saleItemTvContents1.setText(Payment_stringBackSpace_Exch(30, str_itemname));
+//                        saleItemTvContents1.setText(designTextForItem(str_itemname, 30));
+                        saleItemTvContents1.setText("item name");
+                        saleItemTvContents1.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
+                        GlobalMemberValues.setTextStyleOnClover(saleItemTvContents1);
+                        saleItemTvContents1.setLayoutParams(new LinearLayout.LayoutParams(0, 34, 1.0f));
+                        saleitemlistLn_addpay.addView(saleItemTvContents1);
+
+                        TextView saleItemTvContents4 = new TextView(MainActivity.mContext);
+                        saleItemTvContents4.setGravity(Gravity.CENTER_VERTICAL | Gravity.RIGHT);
+                        saleItemTvContents4.setText("price");
+                        saleItemTvContents4.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
+                        GlobalMemberValues.setTextStyleOnClover(saleItemTvContents4);
+                        saleItemTvContents4.setLayoutParams(new LinearLayout.LayoutParams(0, 34, 1.5f));
+                        saleitemlistLn_addpay.addView(saleItemTvContents4);
+
+                        printingLn.addView(saleitemlistLn_addpay);
+
+                        LinearLayout saleitemlistLn_addpay2 = new LinearLayout(MainActivity.mContext);
+                        saleitemlistLn_addpay2.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                        saleitemlistLn_addpay2.setOrientation(LinearLayout.HORIZONTAL);
+
+                        TextView saleItemTvContents10 = new TextView(MainActivity.mContext);
+                        saleItemTvContents10.setGravity(Gravity.CENTER_VERTICAL | Gravity.RIGHT);
+                        saleItemTvContents10.setText(GlobalMemberValues.getAddPayName());
+                        saleItemTvContents10.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
+                        GlobalMemberValues.setTextStyleOnClover(saleItemTvContents10);
+                        saleItemTvContents10.setLayoutParams(new LinearLayout.LayoutParams(0, 34, GlobalMemberValues.PRINTINGITMETITLE4_ONCLOVER));
+                        saleitemlistLn_addpay2.addView(saleItemTvContents10);
+
+                        printingLn.addView(saleitemlistLn_addpay2);
+
+                        printingLn.addView(GlobalMemberValues.getDotLineViewForClover(MainActivity.mContext));
+                    }
+                    // add pay
+
 
 
 
@@ -5432,12 +5480,12 @@ public class CloverMakingViewInPrinting {
                              saleItemTvContents4.setLayoutParams(new LinearLayout.LayoutParams(0, 30, GlobalMemberValues.PRINTINGITMETITLE4_ONCLOVER));
                              saleitemlistLn2.addView(saleItemTvContents4);
                              **/
-                            int tempHeight = 44;
+                            int tempHeight = 34;
 //                        if (tempItemName.length() > 30 || GlobalMemberValues.getSizeToString(tempItemName) > 30) {
 //                            tempHeight = (tempHeight * 2) + 4;
 //                        }
                             for (int z = 25; z <= GlobalMemberValues.getSizeToString(tempItemName) ; z += 24){
-                                tempHeight += 44;
+                                tempHeight += 34;
                             }
 
 
@@ -5588,6 +5636,46 @@ public class CloverMakingViewInPrinting {
 
                                 }
                             }
+                            // card ex, cash dis
+                            if (GlobalMemberValues.getAddPayType().equals("A") || GlobalMemberValues.getAddPayType() == "A"){
+
+                            } else {
+                                // discount 또는 extra 를 적용한 가격
+                                tempPriceAmount = GlobalMemberValues.getCommaStringForDouble(tempPriceAmount);
+
+                                String tempStr = GlobalMemberValues.addItemForAddPay_BillPrint(GlobalMemberValues.getAddPayData(),tempPriceAmount,tempItemIdx);
+
+                                LinearLayout saleitemlistLn2_addpay = new LinearLayout(MainActivity.mContext);
+                                saleitemlistLn2_addpay.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                                saleitemlistLn2_addpay.setOrientation(LinearLayout.HORIZONTAL);
+
+//                                TextView saleItemTvContents1 = new TextView(MainActivity.mContext);
+//                                saleItemTvContents1.setGravity(Gravity.TOP | Gravity.LEFT);
+//                                //saleItemTvContents1.setText(Payment_stringBackSpace_Exch(30, str_itemname));
+////                        saleItemTvContents1.setText(designTextForItem(str_itemname, 30));
+//                                saleItemTvContents1.setText("");
+//                                saleItemTvContents1.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
+//                                GlobalMemberValues.setTextStyleOnClover(saleItemTvContents1);
+//                                saleItemTvContents1.setLayoutParams(new LinearLayout.LayoutParams(0, tempHeight, (GlobalMemberValues.PRINTINGITMETITLE1_ONCLOVER + GlobalMemberValues.PRINTINGITMETITLE3_ONCLOVER - 0.1f)));
+//                                saleitemlistLn2_addpay.addView(saleItemTvContents1);
+
+                                TextView saleItemTvContents4 = new TextView(MainActivity.mContext);
+                                saleItemTvContents4.setGravity(Gravity.CENTER_VERTICAL | Gravity.RIGHT);
+                                saleItemTvContents4.setText(finalTempDollarStr + GlobalMemberValues.getCommaStringForDouble(tempStr));
+                                saleItemTvContents4.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
+                                GlobalMemberValues.setTextStyleOnClover(saleItemTvContents4);
+                                saleItemTvContents4.setLayoutParams(new LinearLayout.LayoutParams(0, 34, GlobalMemberValues.PRINTINGITMETITLE4_ONCLOVER));
+                                saleitemlistLn2_addpay.addView(saleItemTvContents4);
+
+
+                                printingLn.addView(saleitemlistLn2_addpay);
+
+                                d_addpaysubtotal += GlobalMemberValues.getDoubleAtString(tempStr);
+
+                                printingLn.addView(GlobalMemberValues.getSpaceZoneViewForClover(MainActivity.mContext, 10));
+                                printingLn.addView(GlobalMemberValues.getSpaceZoneViewForClover(MainActivity.mContext, 10));
+                            }
+                            // card ex, cash dis
                             // --------------------------------------------------------------------------------------------------------------------------------
                             // special request memo
                             if (!GlobalMemberValues.isStrEmpty(tempKitchenMemo) && !tempKitchenMemo.equals("nokitchenmemo")) {
@@ -5724,31 +5812,89 @@ public class CloverMakingViewInPrinting {
 
                 totalAmount += pickupDeliveryFee;
 
-                // Sub Total -----------------------------------------------------------------------------------------------------------------------
-                LinearLayout subtotalLn = new LinearLayout(MainActivity.mContext);
-                subtotalLn.setLayoutParams(matchParentParams);
-                subtotalLn.setOrientation(LinearLayout.HORIZONTAL);
 
-                TextView customerNameLeftTv = new TextView(MainActivity.mContext);
-                customerNameLeftTv.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
-                customerNameLeftTv.setText("Sub Total");
-                customerNameLeftTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
-                GlobalMemberValues.setTextStyleOnClover(customerNameLeftTv);
-                customerNameLeftTv.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.0f));
-                subtotalLn.addView(customerNameLeftTv);
+                if (GlobalMemberValues.getAddPayType().equals("A") || GlobalMemberValues.getAddPayType() == "A"){
+                    // Sub Total -----------------------------------------------------------------------------------------------------------------------
+                    LinearLayout subtotalLn = new LinearLayout(MainActivity.mContext);
+                    subtotalLn.setLayoutParams(matchParentParams);
+                    subtotalLn.setOrientation(LinearLayout.HORIZONTAL);
 
-                double d_temp_subtotal = subTotal - GlobalMemberValues.getDoubleAtString(str_commongratuity);
+                    TextView customerNameLeftTv = new TextView(MainActivity.mContext);
+                    customerNameLeftTv.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
+                    customerNameLeftTv.setText("Sub Total");
+                    customerNameLeftTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
+                    GlobalMemberValues.setTextStyleOnClover(customerNameLeftTv);
+                    customerNameLeftTv.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.0f));
+                    subtotalLn.addView(customerNameLeftTv);
 
-                TextView customerNameRightTv = new TextView(MainActivity.mContext);
-                customerNameRightTv.setGravity(Gravity.CENTER_VERTICAL | Gravity.RIGHT);
-                customerNameRightTv.setText(finalTempDollarStr + GlobalMemberValues.getCommaStringForDouble(d_temp_subtotal + ""));
-                customerNameRightTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
-                GlobalMemberValues.setTextStyleOnClover(customerNameRightTv);
-                customerNameRightTv.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.5f));
-                subtotalLn.addView(customerNameRightTv);
+                    double d_temp_subtotal = subTotal - GlobalMemberValues.getDoubleAtString(str_commongratuity);
 
-                printingLn.addView(subtotalLn);
-                // ---------------------------------------------------------------------------------------------------------------------------------
+                    TextView customerNameRightTv = new TextView(MainActivity.mContext);
+                    customerNameRightTv.setGravity(Gravity.CENTER_VERTICAL | Gravity.RIGHT);
+                    customerNameRightTv.setText(finalTempDollarStr + GlobalMemberValues.getCommaStringForDouble(d_temp_subtotal + ""));
+                    customerNameRightTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
+                    GlobalMemberValues.setTextStyleOnClover(customerNameRightTv);
+                    customerNameRightTv.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.5f));
+                    subtotalLn.addView(customerNameRightTv);
+
+                    printingLn.addView(subtotalLn);
+                    // ---------------------------------------------------------------------------------------------------------------------------------
+                } else {
+                    // Sub Total -----------------------------------------------------------------------------------------------------------------------
+                    LinearLayout subtotalLn_cash = new LinearLayout(MainActivity.mContext);
+                    subtotalLn_cash.setLayoutParams(matchParentParams);
+                    subtotalLn_cash.setOrientation(LinearLayout.HORIZONTAL);
+
+                    TextView subtotal_cash_LeftTv = new TextView(MainActivity.mContext);
+                    subtotal_cash_LeftTv.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
+                    subtotal_cash_LeftTv.setText("Sub Total");
+                    subtotal_cash_LeftTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
+                    GlobalMemberValues.setTextStyleOnClover(subtotal_cash_LeftTv);
+                    subtotal_cash_LeftTv.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.5f));
+                    subtotalLn_cash.addView(subtotal_cash_LeftTv);
+
+                    double d_temp_subtotal = subTotal - GlobalMemberValues.getDoubleAtString(str_commongratuity);
+
+                    TextView subtotal_cash_RightTv = new TextView(MainActivity.mContext);
+                    subtotal_cash_RightTv.setGravity(Gravity.CENTER_VERTICAL | Gravity.RIGHT);
+                    subtotal_cash_RightTv.setText(finalTempDollarStr + GlobalMemberValues.getCommaStringForDouble(d_temp_subtotal + ""));
+                    subtotal_cash_RightTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
+                    GlobalMemberValues.setTextStyleOnClover(subtotal_cash_RightTv);
+                    subtotal_cash_RightTv.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.0f));
+                    subtotalLn_cash.addView(subtotal_cash_RightTv);
+
+                    printingLn.addView(subtotalLn_cash);
+                    // ---------------------------------------------------------------------------------------------------------------------------------
+                    // Sub Total -----------------------------------------------------------------------------------------------------------------------
+                    LinearLayout subtotalLn_card = new LinearLayout(MainActivity.mContext);
+                    subtotalLn_card.setLayoutParams(matchParentParams);
+                    subtotalLn_card.setOrientation(LinearLayout.HORIZONTAL);
+
+                    TextView subtotal_card_LeftTv = new TextView(MainActivity.mContext);
+                    subtotal_card_LeftTv.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
+                    subtotal_card_LeftTv.setText("Sub Total("+ GlobalMemberValues.getAddPayName()+ ")");
+                    subtotal_card_LeftTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
+                    GlobalMemberValues.setTextStyleOnClover(subtotal_card_LeftTv);
+                    subtotal_card_LeftTv.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 2.0f));
+                    subtotalLn_card.addView(subtotal_card_LeftTv);
+
+                    double d_temp_subtotal2 = d_addpaysubtotal - GlobalMemberValues.getDoubleAtString(str_commongratuity);
+
+                    TextView subtotal_card_RightTv = new TextView(MainActivity.mContext);
+                    subtotal_card_RightTv.setGravity(Gravity.CENTER_VERTICAL | Gravity.RIGHT);
+                    subtotal_card_RightTv.setText(finalTempDollarStr + GlobalMemberValues.getCommaStringForDouble(d_temp_subtotal2 + ""));
+                    subtotal_card_RightTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
+                    GlobalMemberValues.setTextStyleOnClover(subtotal_card_RightTv);
+                    subtotal_card_RightTv.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.0f));
+                    subtotalLn_card.addView(subtotal_card_RightTv);
+
+                    printingLn.addView(subtotalLn_card);
+                    // ---------------------------------------------------------------------------------------------------------------------------------
+                }
+
+                if (false){
+
+                }
                 // Tax -------------------------------------------------------------------------------------------------------------------------------------
                 LinearLayout taxLn = new LinearLayout(MainActivity.mContext);
                 taxLn.setLayoutParams(matchParentParams);

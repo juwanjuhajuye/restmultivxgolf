@@ -20,13 +20,16 @@ public class TOrderDataSendService extends Service implements Runnable {
     public void onStart(Intent intent, int startId) {
         super.onStart(intent, startId);
 
-        String delayTimeStr = intent.getStringExtra("delaytime");
-        if (!GlobalMemberValues.isStrEmpty(delayTimeStr)) {
-            delayTime = GlobalMemberValues.getIntAtString(delayTimeStr);
+        if (intent != null){
+            String delayTimeStr = intent.getStringExtra("delaytime");
+            if (!GlobalMemberValues.isStrEmpty(delayTimeStr)) {
+                delayTime = GlobalMemberValues.getIntAtString(delayTimeStr);
+            }
+
+            Thread mThread = new Thread(this);
+            mThread.start();
         }
 
-        Thread mThread = new Thread(this);
-        mThread.start();
     }
 
     @Override

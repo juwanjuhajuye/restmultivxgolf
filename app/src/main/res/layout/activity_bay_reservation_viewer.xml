@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp"
+    android:background="@android:color/transparent" >
+
+    <LinearLayout
+        android:id="@+id/brvparentln"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:orientation="horizontal">
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="10dp"
+            android:layout_height="0dp"
+            android:layout_weight="15"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:orientation="horizontal">
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="20"
+                android:orientation="horizontal"
+                android:background="@drawable/roundlayout_background_cartoption">
+
+                <LinearLayout
+                    android:id="@+id/bayreservation_list_back"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#ffffff"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1.5"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1.7"
+                            android:text="Bay Reservation List"
+                            android:textSize="36dp"
+                            android:layout_marginLeft="10dp"
+                            android:textColor="@color/colorBlack"
+                            android:gravity="left|center"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="Search date:"
+                            android:textSize="28dp"
+                            android:textColor="@color/colorBlack"
+                            android:gravity="right|center"/>
+                        <LinearLayout
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:paddingRight="10dp"
+                            android:paddingLeft="10dp">
+                            <TextView
+                                android:id="@+id/bayreservation_list_StartDateEditText"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:textColor="#3e3d42"
+                                android:textStyle="bold"
+                                android:textSize="16dp"
+                                android:background="@drawable/roundlayout_cashinout_tv_bg1"/>
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="right|center_vertical"
+                            android:layout_marginRight="20dp"
+                            android:orientation="horizontal">
+                            <ImageButton
+                                android:id="@+id/bayreservation_list_close"
+                                android:src="@drawable/ab_imagebutton_close_common2"
+                                android:background="@android:color/transparent"
+                                android:layout_gravity="center"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                        </LinearLayout>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.7"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:orientation="horizontal"
+                        android:background="#5e5e5e">
+
+                        <TextView
+                            android:id="@+id/bay_reservation_table_titletv_time"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="left|center_vertical"
+                            android:textSize="18dp"
+                            android:textColor="#ffffff"
+                            android:text="Time" />
+
+                        <TextView
+                            android:id="@+id/bay_reservation_table_titletv_bay"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:textAlignment="gravity"
+                            android:gravity="left|center_vertical"
+                            android:textSize="18dp"
+                            android:textColor="#ffffff"
+                            android:text="Bay" />
+                        <TextView
+                            android:id="@+id/bay_reservation_table_titletv_serviceitem"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:textAlignment="gravity"
+                            android:gravity="left|center_vertical"
+                            android:textSize="18dp"
+                            android:textColor="#ffffff"
+                            android:text="Service Item" />
+                        <TextView
+                            android:id="@+id/bay_reservation_table_titletv_customer"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:textAlignment="gravity"
+                            android:gravity="left|center_vertical"
+                            android:textSize="18dp"
+                            android:textColor="#ffffff"
+                            android:text="Customer" />
+                        <TextView
+                            android:id="@+id/bay_reservation_table_titletv_phonenum"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:textAlignment="gravity"
+                            android:gravity="left|center_vertical"
+                            android:textSize="18dp"
+                            android:textColor="#ffffff"
+                            android:text="Phone No." />
+                        <TextView
+                            android:id="@+id/bay_reservation_table_titletv_buttons"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1.5"
+                            android:textAlignment="gravity"
+                            android:gravity="center"
+                            android:textSize="18dp"
+                            android:textColor="#ffffff"
+                            android:text="" />
+
+                    </LinearLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/bayreservation_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="10" />
+
+                    <LinearLayout
+                        android:id="@+id/bayreservation_listPageLn"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:gravity="center">
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:orientation="horizontal">
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:orientation="horizontal">
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

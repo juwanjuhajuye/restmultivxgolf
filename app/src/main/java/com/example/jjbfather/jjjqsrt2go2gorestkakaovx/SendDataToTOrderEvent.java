@@ -66,76 +66,78 @@ public class SendDataToTOrderEvent extends AsyncTask {
             prevDataExists = true;
         }
 
+        GlobalMemberValues.logWrite("API_torder_programstart", "prevDataExists is: " + prevDataExists);
+
         //After making the JSON for the information to send, send the POST request to the TOrder API
         //if the JSON do not match, meaning the data has changed.
-        if(savedTableInfoJSON != null) {
-            try {
-                if (!savedTableInfoJSON.getJSONObject("data").toString().equals(tableInfoJSON.getJSONObject("data").toString())) {
-                    int cloudSentResultTableInfo = 0;
-                    GlobalMemberValues.logWrite("API_torder_programstart", "tableinfo data sending");
+        try {
+            if (savedTableInfoJSON == null || !savedTableInfoJSON.getJSONObject("data").toString().equals(tableInfoJSON.getJSONObject("data").toString())) {
+                int cloudSentResultTableInfo = 0;
+                GlobalMemberValues.logWrite("API_torder_programstart", "tableinfo data sending");
 
-                    API_torder_programstart apiTorderProgramstartTableInfo = new API_torder_programstart(tableInfoJSON.toString());
-                    apiTorderProgramstartTableInfo.execute(null, null, null);
-                    try {
-                        Thread.sleep(GlobalMemberValues.API_UPLOAD_THREAD_TIME);
-                        if (apiTorderProgramstartTableInfo.mFlag) {
-                            GlobalMemberValues.logWrite("API_torder_programstart", "tableinfo data sent");
-                            cloudSentResultTableInfo = apiTorderProgramstartTableInfo.cloudSentResult;
-                        }
-                    } catch (InterruptedException e) {
-                        GlobalMemberValues.logWrite("TORDERAPI", "Thread Error : " + e.getMessage() + "\n");
+                API_torder_programstart apiTorderProgramstartTableInfo = new API_torder_programstart(tableInfoJSON.toString());
+                apiTorderProgramstartTableInfo.execute(null, null, null);
+                try {
+                    Thread.sleep(GlobalMemberValues.API_UPLOAD_THREAD_TIME);
+                    if (apiTorderProgramstartTableInfo.mFlag) {
+                        GlobalMemberValues.logWrite("API_torder_programstart", "tableinfo data sent");
+                        cloudSentResultTableInfo = apiTorderProgramstartTableInfo.cloudSentResult;
                     }
+                } catch (InterruptedException e) {
+                    GlobalMemberValues.logWrite("TORDERAPI", "Thread Error : " + e.getMessage() + "\n");
                 }
-            } catch (JSONException e) {
-                throw new RuntimeException(e);
             }
+        } catch (JSONException e) {
+            GlobalMemberValues.logWrite("API_torder_programstart", "tableinfo data exception");
+            throw new RuntimeException(e);
         }
 
-        if(savedMenuCategoryInfoJSON != null) {
-            try {
-                if (!savedMenuCategoryInfoJSON.getJSONObject("data").toString().equals(menuCategoryInfoJSON.getJSONObject("data").toString())) {
-                    int cloudSentResultCategoryInfo = 0;
-                    GlobalMemberValues.logWrite("API_torder_programstart", "categoryinfo data sending");
 
-                    API_torder_programstart apiTorderProgramstartCategoryInfo = new API_torder_programstart(menuCategoryInfoJSON.toString());
-                    apiTorderProgramstartCategoryInfo.execute(null, null, null);
-                    try {
-                        Thread.sleep(GlobalMemberValues.API_UPLOAD_THREAD_TIME);
-                        if (apiTorderProgramstartCategoryInfo.mFlag) {
-                            GlobalMemberValues.logWrite("API_torder_programstart", "categoryinfo data sent");
-                            cloudSentResultCategoryInfo = apiTorderProgramstartCategoryInfo.cloudSentResult;
-                        }
-                    } catch (InterruptedException e) {
-                        GlobalMemberValues.logWrite("TORDERAPI", "Thread Error : " + e.getMessage() + "\n");
+        try {
+            if (savedMenuCategoryInfoJSON == null || !savedMenuCategoryInfoJSON.getJSONObject("data").toString().equals(menuCategoryInfoJSON.getJSONObject("data").toString())) {
+                int cloudSentResultCategoryInfo = 0;
+                GlobalMemberValues.logWrite("API_torder_programstart", "categoryinfo data sending");
+
+                API_torder_programstart apiTorderProgramstartCategoryInfo = new API_torder_programstart(menuCategoryInfoJSON.toString());
+                apiTorderProgramstartCategoryInfo.execute(null, null, null);
+                try {
+                    Thread.sleep(GlobalMemberValues.API_UPLOAD_THREAD_TIME);
+                    if (apiTorderProgramstartCategoryInfo.mFlag) {
+                        GlobalMemberValues.logWrite("API_torder_programstart", "categoryinfo data sent");
+                        cloudSentResultCategoryInfo = apiTorderProgramstartCategoryInfo.cloudSentResult;
                     }
+                } catch (InterruptedException e) {
+                    GlobalMemberValues.logWrite("TORDERAPI", "Thread Error : " + e.getMessage() + "\n");
                 }
-            } catch (JSONException e) {
-                throw new RuntimeException(e);
             }
+        } catch (JSONException e) {
+            GlobalMemberValues.logWrite("API_torder_programstart", "categoryinfo data exception");
+            throw new RuntimeException(e);
         }
 
-        if(savedMenuInfoJSON != null) {
-            try {
-                if (!savedMenuInfoJSON.getJSONObject("data").toString().equals(menuInfoJSON.getJSONObject("data").toString())) {
-                    int cloudSentResultMenuInfo = 0;
-                    GlobalMemberValues.logWrite("API_torder_programstart", "menuinfo data sending");
 
-                    API_torder_programstart apiTorderProgramstartMenuInfo = new API_torder_programstart(menuInfoJSON.toString());
-                    apiTorderProgramstartMenuInfo.execute(null, null, null);
-                    try {
-                        Thread.sleep(GlobalMemberValues.API_UPLOAD_THREAD_TIME);
-                        if (apiTorderProgramstartMenuInfo.mFlag) {
-                            GlobalMemberValues.logWrite("API_torder_programstart", "menuinfo data sent");
-                            cloudSentResultMenuInfo = apiTorderProgramstartMenuInfo.cloudSentResult;
-                        }
-                    } catch (InterruptedException e) {
-                        GlobalMemberValues.logWrite("TORDERAPI", "Thread Error : " + e.getMessage() + "\n");
+        try {
+            if (savedMenuInfoJSON == null || !savedMenuInfoJSON.getJSONObject("data").toString().equals(menuInfoJSON.getJSONObject("data").toString())) {
+                int cloudSentResultMenuInfo = 0;
+                GlobalMemberValues.logWrite("API_torder_programstart", "menuinfo data sending");
+
+                API_torder_programstart apiTorderProgramstartMenuInfo = new API_torder_programstart(menuInfoJSON.toString());
+                apiTorderProgramstartMenuInfo.execute(null, null, null);
+                try {
+                    Thread.sleep(GlobalMemberValues.API_UPLOAD_THREAD_TIME);
+                    if (apiTorderProgramstartMenuInfo.mFlag) {
+                        GlobalMemberValues.logWrite("API_torder_programstart", "menuinfo data sent");
+                        cloudSentResultMenuInfo = apiTorderProgramstartMenuInfo.cloudSentResult;
                     }
+                } catch (InterruptedException e) {
+                    GlobalMemberValues.logWrite("TORDERAPI", "Thread Error : " + e.getMessage() + "\n");
                 }
-            } catch (JSONException e) {
-                throw new RuntimeException(e);
             }
+        } catch (JSONException e) {
+            GlobalMemberValues.logWrite("API_torder_programstart", "menuinfo data sending exception");
+            throw new RuntimeException(e);
         }
+
 
         String strInsQuery = "";
 

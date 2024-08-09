@@ -214,7 +214,7 @@ public class GlobalMemberValues {
     public static String mssql_ip = "0.0.0.0";
     public static String mssql_db = GlobalMemberValues.DATABASE_NAME;
     public static String mssql_id = "wanhayedb";
-//    public static String mssql_id = "sa";
+    //    public static String mssql_id = "sa";
     public static String mssql_sync = "N";
     /*************************************************************/
 
@@ -454,7 +454,7 @@ public class GlobalMemberValues {
 
     // jihun add 190913
     public static boolean b_one_run_thread = false;
-    private static final long MIN_CLICK_INTERVAL=2000;
+    private static final long MIN_CLICK_INTERVAL = 2000;
     private static long mLastClickTime;
     static boolean b_socket_connected = false;
 
@@ -1141,6 +1141,9 @@ public class GlobalMemberValues {
     // 모디파이어 메뉴 추가 여부
     public static boolean is_modifier_add = false;
 
+    //07292024
+    //temp variable for before tip
+    public static String str_before_tip_amount = "";
 
     // Common Gratuity 명
     public static String mCommonGratuityName = "Common Gratuity";
@@ -7570,7 +7573,6 @@ public class GlobalMemberValues {
         // 08062024
         // String dateSearchQuery = " strftime('%m-%d-%Y', wdate) = '" + DateMethodClass.nowMonthGet() + "-" + DateMethodClass.nowDayGet() + "-" + DateMethodClass.nowYearGet() + "' ";
         String dateSearchQuery = " cashoutNum = 0 ";
-
 
         // 오늘날짜의 최대 Customer Order Number 구하기
         strQuery = " select customerordernumber from salon_sales_customerordernumber " +
@@ -16894,12 +16896,24 @@ public class GlobalMemberValues {
                         } else {
                             // 07232024 -------------------------------------------
                             double tempPrice = 0;
-                            if (GlobalMemberValues.getCommonGratuityType().equals("AT")) {
-                                tempPrice = GlobalMemberValues.getDoubleAtString(tempSaleCart.mSTotalAmount);
-                            } else {
-                                tempPrice = GlobalMemberValues.getDoubleAtString(tempSaleCart.mSPriceAmount);
+                            String item_gratuityuseyn = "Y";
+                            if (!GlobalMemberValues.isStrEmpty(tempSaleCart.mSvcidx)) {
+                                item_gratuityuseyn = MainActivity.mDbInit.dbExecuteReadReturnString(
+                                        " select gratuityuseyn from salon_storeservice_sub where idx = '" + tempSaleCart.mSvcidx + "' "
+                                );
+                                if (GlobalMemberValues.isStrEmpty(item_gratuityuseyn)) {
+                                    item_gratuityuseyn = "Y";
+                                }
                             }
-                            notGratuityItemPrice += tempPrice;
+                            if (item_gratuityuseyn.equals("N")) {
+                                if (GlobalMemberValues.getCommonGratuityType().equals("AT")) {
+                                    tempPrice = GlobalMemberValues.getDoubleAtString(tempSaleCart.mSTotalAmount);
+                                } else {
+                                    tempPrice = GlobalMemberValues.getDoubleAtString(tempSaleCart.mSPriceAmount);
+                                }
+
+                                notGratuityItemPrice += tempPrice;
+                            }
                             // 07232024 -------------------------------------------
                         }
                     }
@@ -18314,6 +18328,7 @@ public class GlobalMemberValues {
         return returnValue;
     }
 
+    // nouse a /cash dis b / card ext c
     // 07.18.2022 - add pay for cash, card
     public static String getAddPayType() {
         String returnValue = "A";
@@ -18532,6 +18547,97 @@ public class GlobalMemberValues {
                     GlobalMemberValues.GLOBAL_LAYOUTMEMBER_PRNT_PAYMENTADDPAYTV.setText(tempMsg);
                 }
             }
+        }
+    }
+
+    public static String addItemForAddPay_BillPrint(String[] paramAddPayValue, String itemPrice, String serviceIdx) {
+        if (paramAddPayValue != null && paramAddPayValue.length == 4) {
+            String tempAddPayType = paramAddPayValue[0];
+            double tempAddPayMoney = GlobalMemberValues.getDoubleAtString(paramAddPayValue[1]);
+            if (tempAddPayMoney > 0) {
+
+                //
+                String tempSaveType = "";
+                double taxPrice = 0.0;
+                boolean is_tax_multiYN = GlobalMemberValues.isTaxTypeMulti("S", serviceIdx);
+                double tempTaxRate = 0.0;
+                switch (tempSaveType) {
+                    case "0" : {
+                        if (is_tax_multiYN){
+                            // tempTaxRate = GlobalMemberValues.getTax3InStoreGeneral() + GlobalMemberValues.getTax4InStoreGeneral() + GlobalMemberValues.getTax5InStoreGeneral();
+                            // 10212022
+                            tempTaxRate = GlobalMemberValues.getItemTaxInMultiTax("S", serviceIdx);
+                        } else {
+                            tempTaxRate = GlobalMemberValues.getTax1InStoreGeneral();
+                        }
+                        break;
+                    }
+                    case "1" : {
+                        tempTaxRate = GlobalMemberValues.getTax2InStoreGeneral();
+                        break;
+                    }
+                }
+
+                if (tempTaxRate > 0) {
+                    taxPrice = GlobalMemberValues.getDoubleAtString(itemPrice) * tempTaxRate * 0.01;
+                }
+                //
+
+                // 10182022
+                double tempAddMinusPDF = 0.0;
+
+                String tempTotalValue = "";
+                if (paramAddPayValue[3].equals("AT")) {
+                    tempTotalValue = itemPrice;
+                    GlobalMemberValues.logWrite("addpaylogjjj", "여기..1 : " + tempTotalValue + "\n");
+
+                    tempAddMinusPDF = 0.0;
+                } else {
+                    tempTotalValue = itemPrice;
+                    GlobalMemberValues.logWrite("addpaylogjjj", "여기..2 : " + tempTotalValue + "\n");
+
+                    // 10182022
+                    tempAddMinusPDF = taxPrice;
+                }
+
+                String addpay_val = "";
+                if (tempAddPayType.equals("$")) {
+                    addpay_val = tempAddPayMoney + "";
+                } else {
+                    // 10172022
+                    addpay_val = (GlobalMemberValues.getDoubleAtString(tempTotalValue) + tempAddMinusPDF) * (tempAddPayMoney * 0.01) + "";
+                }
+                addpay_val = GlobalMemberValues.getStringFormatNumber(addpay_val, "2");
+
+                double d_addprice = GlobalMemberValues.getDoubleAtString(addpay_val);
+                double d_itemprice = GlobalMemberValues.getDoubleAtString(itemPrice);
+                if (GlobalMemberValues.getAddPayType().equals("B")) {
+                    d_itemprice = d_itemprice - d_addprice;
+                } else {
+                    d_itemprice = d_itemprice + d_addprice;
+                }
+
+
+                if (GlobalMemberValues.getAddPayType().equals("B")) {
+                    addpay_val = "-" + addpay_val;
+                }
+
+
+                String tempMmm = "included";
+                if (GlobalMemberValues.getAddPayType().equals("B")) {
+                    tempMmm = "excluded";
+                }
+
+                String addpaymoney = GlobalMemberValues.getReplaceText(addpay_val, "-", "");
+//                String tempMsg = "(" + tempMmm + " " + paramAddPayValue[2] + " $" + GlobalMemberValues.getCommaStringForDouble(addpaymoney) + ")";
+                String tempMsg = "(" + tempMmm + " " + paramAddPayValue[2] + " $" + GlobalMemberValues.getStringFormatNumber(d_itemprice, "2") + ")";
+
+                return GlobalMemberValues.getStringFormatNumber(d_itemprice, "2");
+            } else {
+                return "";
+            }
+        } else {
+            return "";
         }
     }
 
@@ -20300,6 +20406,8 @@ public class GlobalMemberValues {
         String code = "P0101";
         String storeId = GlobalMemberValues.makeStoreCodeForTOrder();
         String message = "POS program started";
+        GlobalMemberValues.logWrite("API_torder_programstart", "P0101: programstart running");
+
 
         // create a clock
         ZoneId utczone = null;
@@ -20892,6 +21000,9 @@ public class GlobalMemberValues {
         String tableId = tableid;
         String message = "Table" + tableId + "cleared";
 
+        GlobalMemberValues.logWrite("API_torder_programstart", "P0402: sendTOrderAPITableClear running");
+
+
         // create a clock
         ZoneId utczone = null;
         ZonedDateTime timestamp = null;
@@ -21064,6 +21175,20 @@ public class GlobalMemberValues {
         Intent tempIntent = new Intent(paramContext.getApplicationContext(), TOrderDataSendService.class);
         tempIntent.putExtra("delaytime", paramDelayTime);
         paramActivity.startService(tempIntent);
+    }
+
+    public static boolean checkServerCodeUseYN() {
+        boolean returnValue = false;
+
+        if (GlobalMemberValues.isServerCodeUse()|| GlobalMemberValues.isServerPasswordUse()) {
+            // 하나라도 Y 일 경우
+            returnValue = true;
+        } else {
+            // 사용안함
+            returnValue = false;
+        }
+
+        return returnValue;
     }
 
 }

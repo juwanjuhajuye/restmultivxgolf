@@ -1064,12 +1064,15 @@ public class MssqlAlterTables {
         // 7.24.2024, gratuityuseyn 컬럼 추가
         altTableName = "salon_storeservice_sub";
         alterDatabaseTableColumn(altTableName, "gratuityuseyn", "nvarchar(2)", "DEFAULT 'Y'");
+
         // salon_storeservice_sub 테이블 컬럼 추가
         // 7.24.2024, bayyn 컬럼 추가
         altTableName = "salon_storeservice_sub";
         alterDatabaseTableColumn(altTableName, "bayyn", "nvarchar(2)", "DEFAULT 'Y'");
-
-
+        // salon_storeservice_sub 테이블 컬럼 추가
+        // 7.24.2024, gratuityuseyn 컬럼 추가
+        altTableName = "member2";
+        alterDatabaseTableColumn(altTableName, "email", "nvarchar(40)", "DEFAULT ''");
 
         // 08062024 ----------------------------------------------
         // salon_sales_customerordernumber 테이블 컬럼 추가
@@ -1140,4 +1143,3 @@ public class MssqlAlterTables {
         MssqlDatabase.executeTransaction(vec);
     }
 }
-

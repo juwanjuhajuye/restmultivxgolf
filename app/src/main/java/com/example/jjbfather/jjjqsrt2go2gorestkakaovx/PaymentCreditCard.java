@@ -38,11 +38,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Vector;
 
 public class PaymentCreditCard extends Activity {
     static final String TAG = "CreditCardProcessingClass";
+    private int REQUEST_CODE = 1;
 
     static Activity mActivity;
     static Context context;
@@ -669,7 +671,7 @@ public class PaymentCreditCard extends Activity {
 
         // 06162023
         if (AddPayCustomerSelectPopup.isStartCartProcessing) {
-            setStartProcessing();
+            setStartProcessing("");
             if(GlobalMemberValues.ISDUALDISPLAYPOSSIBLE){
                 MainActivity.updatePresentation();
             }
@@ -1095,7 +1097,7 @@ public class PaymentCreditCard extends Activity {
         double tempBalanceValue = GlobalMemberValues.getDoubleAtString(paymentCreditCardBalanceTextView.getText().toString());
         if (tempBalanceValue == 0 || tempBalanceValue == 0.0) {
             // 결제 완료로 판단 Log Payment 완료 처리.
-                Payment.paymentComplite_LogSave(true);
+            Payment.paymentComplite_LogSave(true);
             //
             finishCreditCardProcessing();
         }
@@ -1353,8 +1355,22 @@ public class PaymentCreditCard extends Activity {
                     break;
                 }
                 case R.id.paymentCreditCardCardProcessButton : {
-                    // 06162023
-                    setStartProcessing();
+                    //07112024 open tip menu
+                    String beforeTipYN = MainActivity.mDbInit.dbExecuteReadReturnString(" select beforetippricessingyn from salon_storestationsettings_paymentgateway ");
+                    if (beforeTipYN.equals("Y")){
+                        Intent beforeTipIntent = new Intent(MainActivity.mContext.getApplicationContext(),BeforeTipActivity.class);
+                        // Dialog 에 Extra 로 객체 및 데이터 전달하기 ------------------------------------------------
+                        //paymentReviewIntent.putExtra("ParentMainMiddleService", this.getClass());
+                        beforeTipIntent.putExtra("tempSalesCode", "");
+                        beforeTipIntent.putExtra("cardamount", paymentCreditCardProcessingAmountTextView.getText().toString());
+                        beforeTipIntent.putExtra("exetype", "");
+                        // -------------------------------------------------------------------------------------
+                        //insContext = context;       // Dialog 에서 임시로 사용할 context 에 MainActivity 의 context 를 할당한다.
+                        mActivity.startActivityForResult(beforeTipIntent, REQUEST_CODE);
+                    } else {
+                        // 06162023
+                        setStartProcessing("");
+                    }
 
                     break;
                 }
@@ -1434,12 +1450,18 @@ public class PaymentCreditCard extends Activity {
     }
 
     // 06162023
-    public void setStartProcessing() {
+    public void setStartProcessing(String totalAmount) {
         // 02132023
         // 프로세싱 버튼을 클릭하면 백그라운드에서 업로드되던 세일 데이터는 일시 정지한다.
         GlobalMemberValues.isProcessCreditCard = true;
 
-        setCreditCardProcess();
+        //if tip is chosen and paid for in one-go with the initial card payment, set card process amount to include tip
+        String beforeTipYN = MainActivity.mDbInit.dbExecuteReadReturnString(" select beforetippricessingyn from salon_storestationsettings_paymentgateway ");
+        if (beforeTipYN.equals("Y")) {
+            setCreditCardProcess(totalAmount);
+        } else {
+            setCreditCardProcess();
+        }
 
         AddPayCustomerSelectPopup.isStartCartProcessing = false;
     }
@@ -1791,7 +1813,6 @@ public class PaymentCreditCard extends Activity {
         }
     }
 
-
     public void setCreditCardProcess() {
         if (GlobalMemberValues.ISCHECK_BEFORE_CARDPAY) {
             // 가장 먼저 인터넷 체크를 한다.
@@ -1893,6 +1914,137 @@ public class PaymentCreditCard extends Activity {
                                     intent.putExtra("processtype", "SALE");
                                     intent.putExtra("amounttopay",
                                             String.valueOf(GlobalMemberValues.getIntAtString2(paymentCreditCardProcessingAmountTextView.getText().toString()))
+                                    );
+                                    intent.putExtra("refnum", "");
+                                    intent.putExtra("ecrrefnum", Payment.mSalesCode);
+                                    intent.putExtra("processtype", "SALE");
+
+                                    GlobalMemberValues.logWrite("mSelectedInsSwKiLog", "mSelectedInsSwKi : " + mSelectedInsSwKi + "\n");
+                                    // -------------------------------------------------------------------------------------
+                                    mActivity.startActivity(intent);
+                                    break;
+                                }
+                            }
+                        }
+                        /*************************************************************************************/
+                        /** 2. 작업이 끝나면 이 핸들러를 호출 **************************************************/
+                        // 테스트시에만..
+                        if (GlobalMemberValues.CARD_DEVICE_TESTVERSION_YN == "Y") {
+                            handler.sendEmptyMessage(0);
+                        }
+                        /*************************************************************************************/
+                    }
+                });
+                thread.start();
+            } else {
+                GlobalMemberValues.displayDialog(this, "Information", "Insert price to pay", "Close");
+            }
+        }
+    }
+
+    public void setCreditCardProcess(String totalAmount) {
+        if (GlobalMemberValues.ISCHECK_BEFORE_CARDPAY) {
+            // 가장 먼저 인터넷 체크를 한다.
+            if (GlobalMemberValues.GLOBALNETWORKSTATUS > 0) {
+                if (!GlobalMemberValues.isOnline2().equals("00")) {
+                    GlobalMemberValues.showDialogNoInternet(context);
+                    return;
+                }
+            } else {
+                if (!GlobalMemberValues.isOnline2().equals("00")) {
+                    GlobalMemberValues.openNetworkNotConnected();
+                    return;
+                }
+            }
+        }
+
+        double tempBalanceValue = GlobalMemberValues.getDoubleAtString(paymentCreditCardBalanceTextView.getText().toString());
+        if (tempBalanceValue == 0 || tempBalanceValue == 0.0) {
+            GlobalMemberValues.displayDialog(this, "Information", "You do not have to pay any more money", "Close");
+        } else {
+            // 결제할 금액
+            final double PRICEAMT = GlobalMemberValues.getDoubleAtString(
+                    //paymentCreditCardProcessingAmountTextView.getText().toString()
+                    totalAmount
+            );
+
+            if (PRICEAMT > 0 || PRICEAMT > 0.0) {
+
+                // 인지니코일 경우 프로그래스 바 오픈
+                if (paymentGateway == "0" || paymentGateway.equals("0")) {
+                    proDial = ProgressDialog.show(this, "NAVYZEBRA QSRt POS", "Credit Card Processing...", true, false);
+                }
+
+                Thread thread = new Thread(new Runnable() {
+                    public void run() {
+                        /** 1. 처리가 오래걸리는 부분 실행 *****************************************************/
+                        // temp_salecart 의 cardtryyn 의 값을 Y 로 변경
+                        GlobalMemberValues.setCardTryYNInTempSaleCart("Y");
+
+                        // 카드 결제처리
+                        creditCardReturnValueJson = new JSONObject();
+
+                        if (GlobalMemberValues.CARD_DEVICE_TESTVERSION_YN == "Y") {     // 카드 단말기 없는 테스트버전일 떄..
+                            // 테스트를 위한 리턴받은 JSONObject 만들기 ------------------------------------------------
+                            try {
+                                creditCardReturnValueJson.put("returncodefromdevice", "00");
+                                creditCardReturnValueJson.put("authnumber", "000123456789");
+                                creditCardReturnValueJson.put("cardcompay", "M");
+                                creditCardReturnValueJson.put("lastfourdigits", "0551");
+                                creditCardReturnValueJson.put("referencenumber", "1");
+                                creditCardReturnValueJson.put("emvaid", "");
+                                creditCardReturnValueJson.put("emvtsi", "");
+                                creditCardReturnValueJson.put("emvtvr", "");
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            // -------------------------------------------------------------------------------------
+
+                        } else {                                                        // 카드 단말기 있는 실제버전일 때..
+                            // Key in 방식일 경우
+                            if (mSelectedInsSwKi.equals("KI")) {
+                                if (GlobalMemberValues.isStrEmpty(mKeyinCardNumber) || GlobalMemberValues.isStrEmpty(mKeyinExpDate) || GlobalMemberValues.isStrEmpty(mKeyinCVVNumber)) {
+                                    GlobalMemberValues.displayDialog(context, "Warning", " Enter card information...", "Close");
+                                    return;
+                                }
+                            }
+
+                            switch (paymentGateway) {
+                                // Ingenico ICT200 인지니코
+                                case "0" : {
+                                    // 카드결제 관련 터미널 연동 프로세스 ---------------------------------------------------------
+                                    RestApiSale.SaleCallbackEvent saleCallbackEvent = new RestApiSale.SaleCallbackEvent() {
+                                        @Override
+                                        public void Salecallback(JSONObject jsonObject) {
+                                            Log.e("SaleCallBack!!!!!",jsonObject.toString());
+
+                                            creditCardReturnValueJson = returnToJsonObject(jsonObject);
+
+                                            handler.sendEmptyMessage(0);
+                                        }
+                                    };
+                                    RestApiSale sale = new RestApiSale(saleCallbackEvent);
+
+                                    RestApiConfig config = new RestApiConfig();
+                                    //byullbam 20160419 인제니코 아이피 셋팅 필요.
+
+                                    config.setIpnumber(networkIp);
+                                    config.setPortnumber(networkPort);
+                                    sale.RequestSale(GlobalMemberValues.getIntAtString2(paymentCreditCardProcessingAmountTextView.getText().toString()));
+                                    // -----------------------------------------------------------------------------------------
+                                    break;
+                                }
+                                // PAX POSLink 팍스
+                                case "1" : {
+                                    GlobalMemberValues.logWrite(TAG, "카드결제할 금액 : -" + GlobalMemberValues.getIntAtString2(paymentCreditCardProcessingAmountTextView.getText().toString()) + "\n");
+
+                                    Intent intent = new Intent(context, JJJ_PaxPay.class);
+                                    // 객체 및 데이터 전달하기 ---------------------------------------------------------------
+                                    intent.putExtra("cardtendertype", "CREDIT");
+                                    intent.putExtra("processtype", "SALE");
+                                    intent.putExtra("amounttopay",
+                                            //String.valueOf(GlobalMemberValues.getIntAtString2(paymentCreditCardProcessingAmountTextView.getText().toString()))
+                                            totalAmount
                                     );
                                     intent.putExtra("refnum", "");
                                     intent.putExtra("ecrrefnum", Payment.mSalesCode);
@@ -2174,6 +2326,29 @@ public class PaymentCreditCard extends Activity {
             PaymentCreditCard.mProgressDialog.show();
         }
     };
+
+    //07122024 add it to process data returned from tipSelection menu
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        String beforeTipYN = MainActivity.mDbInit.dbExecuteReadReturnString(" select beforetippricessingyn from salon_storestationsettings_paymentgateway ");
+        if (beforeTipYN.equals("Y")) {
+            if (resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
+                if (data.hasExtra("cardAmount")) {
+//                    Toast.makeText(this, data.getExtras().getString("cardAmount") + data.getExtras().getString("tipAmount"),
+//                            Toast.LENGTH_SHORT).show();
+                    String cardAmountString = data.getExtras().getString("cardAmount");
+                    String tipAmountString = data.getExtras().getString("tipAmount");
+
+                    BigDecimal cardAmount = new BigDecimal(cardAmountString);
+                    BigDecimal tipAmount = new BigDecimal(tipAmountString);
+                    BigDecimal totalAmount = cardAmount.add(tipAmount).multiply(new BigDecimal("100"));
+
+                    //split so decimal values don't get passed. ex) 1312 instead of 1312.00
+                    setStartProcessing(totalAmount.toString().split("\\.")[0]);
+                }
+            }
+        }
+    }
 
 
     public static void setFinish() {

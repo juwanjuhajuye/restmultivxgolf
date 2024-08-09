@@ -503,6 +503,18 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:orientation="vertical">
+                    <Button
+                        android:id="@+id/bayReservationCheckButton"
+                        android:tag="bayReservationCheckButtonTag"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/button_selector_giftcard_search"
+                        android:gravity="center_horizontal|center_vertical"
+                        android:text="BAY RESERVATION"
+                        android:textSize="15dp"
+                        android:textStyle="bold"
+                        android:layout_marginRight="10dp"
+                        android:textColor="#ffffff" />
 
 
 

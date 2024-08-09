@@ -1871,6 +1871,7 @@ public class SqlStatements {
                     "keyinyn nvarchar(2) DEFAULT 'N', " +                            // key in 가능여부
                     "tipprocessingyn nvarchar(2) DEFAULT 'N', " +                    // 결제시 Tip 프로세싱을 할 경우 (Y : 결제시 팁프로세싱,   N : Batch 시 팁프로세싱)
                     "timeout nvarchar(2) DEFAULT '1', " +                            // 결제시 pax 연결제한시간
+                    "beforetippricessingyn nvarchar(2) DEFAULT 'N', " +              // before tip variable
 
                     // 07182024
                     // 카드결제 기기등록관련
@@ -2205,7 +2206,7 @@ public class SqlStatements {
                     "stcode nvarchar(20), " +
                     "salesCode nvarchar(100), " +                         // 세일코드
                     "customerordernumber nvarchar(4) DEFAULT ''," +       // 고객용 주문번호
-                    "wdate datetime DEFAULT (datetime('now', 'localtime')),  " +
+                    "wdate datetime DEFAULT (datetime('now', 'localtime')), " +
 
                     // 08062024
                     "cashoutNum int DEFAULT 0, " +                             // cash out 여부
@@ -3445,4 +3446,3 @@ public class SqlStatements {
 
 /******************************************************************************************/
 }
-

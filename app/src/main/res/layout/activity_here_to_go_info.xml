@@ -136,7 +136,7 @@
                             android:background="@drawable/roundlayout_background_customeraddet_rq"/>
 
                         <Button
-                            android:visibility="invisible"
+                            android:visibility="visible"
                             android:id="@+id/customerWalkInButotn"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
@@ -146,7 +146,7 @@
                             android:layout_marginLeft="10dp"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
-                            android:text="TO GO"
+                            android:text="WALK IN"
                             android:textColor="#ffffff"
                             android:textStyle="bold"
                             android:gravity="center_horizontal|center_vertical"
