@@ -49,7 +49,10 @@ public class ClockInOutNavtiveWeb extends Activity {
 
     private LinearLayout parentLn;
     private Button closeBtn;
-    private WebView clockinoutWebPageWebView;
+
+    // 08162024
+    // static 으로 변경
+    static WebView clockinoutWebPageWebView;
 
     static LinearLayout inoutLn, editLn;
 
@@ -98,6 +101,12 @@ public class ClockInOutNavtiveWeb extends Activity {
     public TextView clock_in_out_top_nowdate;
 
     ScheduledExecutorService executorService;
+
+    // 08162024
+    static String mMemo = "";
+    static int mDuration = 0;
+    static String[] mDataValues;
+    static BreakTypes breakTypes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -166,6 +175,11 @@ public class ClockInOutNavtiveWeb extends Activity {
     }
 
     public void setContents() {
+        // 08162024
+        mMemo = "";
+        mDuration = 0;
+
+
         dataAtSqlite = new GetDataAtSQLite(this);
 
         clockinoutWebPageTopBarLinearLayout1 = (LinearLayout) findViewById(R.id.clockinoutWebPageTopBarLinearLayout1);
@@ -654,21 +668,70 @@ public class ClockInOutNavtiveWeb extends Activity {
             mClockinoutIdx = "";
         }
 
+        // 08162024 ----------------------------------------------------------
+        // api 처리 부분을 아래 내용으로 수정
+        String[] dataValues = {
+                paramType,
+                tempPwdEv,
+                clockinoutDateYear,
+                clockinoutDateMonth,
+                clockinoutDateDay,
+                clockinoutDateHour,
+                clockinoutDateMinute,
+                tempMemo,
+                mClockinoutIdx,
+                ""
+        };
+
+        int breatypescnt = GlobalMemberValues.getIntAtString(
+                MainActivity.mDbInit.dbExecuteReadReturnString(
+                        "Select count(*) from salon_storebreaktime " +
+                                " where useyn = 'Y' and delyn = 'N' "
+                )
+        );
+
+        if (paramType.equals("bin")) {
+            if (breatypescnt == 0) {
+                setClockInOutByApi(dataValues);
+            } else {
+                mDataValues = dataValues;
+                breakTypes = new BreakTypes(context, bt_close_listener);
+                breakTypes.show();
+            }
+        } else {
+            setClockInOutByApi(dataValues);
+        }
+
+        // 08162024 ----------------------------------------------------------
+    }
+
+    // 08162024
+    View.OnClickListener bt_close_listener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            breakTypes.cancel();
+        }
+    };
+
+
+    // 08162024
+    public static void setClockInOutByApi(String[] paramValues) {
         String tempUrl = GlobalMemberValues.CLOCKINOUT_WEB_URL2 +
                 "schScode=" + GlobalMemberValues.SALON_CODE +
                 "&schSidx=" + GlobalMemberValues.STORE_INDEX +
                 "&schStcode=" + GlobalMemberValues.STATION_CODE +
-                "&clockinout=" + paramType +
+                "&clockinout=" + paramValues[0] +
                 "&employeeIdx=" + mSelectedEmpIdx +
-                "&empClockInOutPwd=" + tempPwdEv +
+                "&empClockInOutPwd=" + paramValues[1] +
                 "&manualclockout=N" +
-                "&clockinoutDateYear=" + clockinoutDateYear +
-                "&clockinoutDateMonth=" + clockinoutDateMonth +
-                "&clockinoutDateDay=" + clockinoutDateDay +
-                "&clockinoutDateHour=" + clockinoutDateHour +
-                "&clockinoutDateMinute=" + clockinoutDateMinute +
-                "&memo=" + tempMemo +
-                "&clockinoutIdx=" + mClockinoutIdx +
+                "&clockinoutDateYear=" + paramValues[2] +
+                "&clockinoutDateMonth=" + paramValues[3] +
+                "&clockinoutDateDay=" + paramValues[4] +
+                "&clockinoutDateHour=" + paramValues[5] +
+                "&clockinoutDateMinute=" + paramValues[6] +
+                "&memo=" + paramValues[7] +
+                "&clockinoutIdx=" + paramValues[8] +
+                "&btduration=" + paramValues[9] +
                 "&posopentype=native";
 
         GlobalMemberValues.logWrite("clockinouturllog", "url : " + tempUrl + "\n");

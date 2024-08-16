@@ -714,6 +714,24 @@ public class APIDownLoad {
             /**************************************************************************************/
 
 
+            // 08162024
+            /** salon_storebreaktime 다운로드 ***************************************/
+            case "salon_storebreaktime" : {
+                APIDownLoad_salon_storebreaktime apidownloadInstance = new APIDownLoad_salon_storebreaktime();
+                apidownloadInstance.execute(null, null, null);
+                try {
+                    Thread.sleep(GlobalMemberValues.API_THREAD_TIME); //1초마다 실행
+                    if (apidownloadInstance.mFlag) {
+                        mVector = apidownloadInstance.sqlQueryVec;
+                    }
+                } catch (InterruptedException e) {
+                    GlobalMemberValues.logWrite("APIDownLoadClass", "Thread Error : " + e.getMessage());
+                }
+                break;
+            }
+            /**************************************************************************************/
+
+
         }
         return mVector;
     }

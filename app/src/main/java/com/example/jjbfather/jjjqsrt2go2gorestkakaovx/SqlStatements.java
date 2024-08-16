@@ -2726,7 +2726,10 @@ public class SqlStatements {
                     "nowtableidx nvarchar(50) DEFAULT '', " +
                     "nowtablename nvarchar(200) DEFAULT '',  " +
 
-                    "reprintyn nvarchar(2) DEFAULT 'N' " +
+                    "reprintyn nvarchar(2) DEFAULT 'N', " +
+
+                    // 08112024
+                    "billprintedyn nvarchar(2) DEFAULT 'N' " +
                     ")";
 
 
@@ -3441,6 +3444,21 @@ public class SqlStatements {
                     ")";
 
 
+    // 08162024
+    // 테이블 salon_storebreaktime 생성쿼리
+    public static final String SQL_CREATE_SALONSTOREBREAKTIME =
+            "CREATE TABLE IF NOT EXISTS salon_storebreaktime ( " +
+                    "idx INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    "scode nvarchar(50), " +
+                    "sidx int NULL," +
+                    "aid nvarchar(100) null, " +
+                    "name nvarchar(100) NULL," +
+                    "duration smallint default 0," +
+                    "useyn nvarchar(2) default 'Y'," +
+                    "delyn nvarchar(2) default 'N'," +
+                    "sortnum smallint, " +
+                    "wdate datetime DEFAULT (datetime('now', 'localtime'))" +
+                    ")";
 
 
 

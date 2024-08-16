@@ -1099,6 +1099,14 @@ public class MssqlAlterTables {
         altTableName = "salon_storeservice_commonmodifier";
         alterDatabaseTableColumn(altTableName, "minsumval", "smallint", "DEFAULT 0");
         // 08072024 ----------------------------------------------
+
+
+        // 08112024
+        // salon_sales_kitchenprintingdata_json 테이블 컬럼 추가
+        // 8.11.2024, billprintedyn 컬럼 추가
+        altTableName = "salon_sales_kitchenprintingdata_json";
+        alterDatabaseTableColumn(altTableName, "billprintedyn", "nvarchar(2)", "DEFAULT 'N'");
+
     }
 
     public static void alterTableColumnType() {

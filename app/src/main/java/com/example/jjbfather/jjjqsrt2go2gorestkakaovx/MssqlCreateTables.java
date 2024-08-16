@@ -227,6 +227,8 @@ public class MssqlCreateTables {
         // 카드결제 기기등록관련
         vec.addElement(SqlStatements_mssql.SQL_CREATE_SALONPGIP);
 
+        // 08162024
+        vec.addElement(SqlStatements_mssql.SQL_CREATE_SALONSTOREBREAKTIME);
 
         MssqlDatabase.executeTransaction(vec);
     }

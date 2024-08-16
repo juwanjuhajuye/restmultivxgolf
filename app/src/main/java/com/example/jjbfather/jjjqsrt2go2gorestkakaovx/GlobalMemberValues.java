@@ -1934,6 +1934,9 @@ public class GlobalMemberValues {
             "salon_storediscountbutton",
             "salon_storespecialrequest",
 
+            // 08162024
+            "salon_storebreaktime",
+
             // 02192024
             "salon_storememberlevel",
 
@@ -2060,6 +2063,9 @@ public class GlobalMemberValues {
             "salon_storediscountbutton",
             "salon_storespecialrequest",
 
+            // 08162024
+            "salon_storebreaktime",
+
             // 02192024
             "salon_storememberlevel",
 
@@ -2119,6 +2125,9 @@ public class GlobalMemberValues {
             "salon_storediscountbutton",
             "salon_storespecialrequest",
 
+            // 08162024
+            "salon_storebreaktime",
+
             // 02192024
             "salon_storememberlevel",
 
@@ -2148,6 +2157,9 @@ public class GlobalMemberValues {
             "salon_store_cashinoutreason", "salon_store_deliveryappcompany",
             "salon_storediscountbutton",
             "salon_storespecialrequest",
+
+            // 08162024
+            "salon_storebreaktime",
 
             // 02192024
             "salon_storememberlevel",
@@ -2189,6 +2201,9 @@ public class GlobalMemberValues {
             "salon_storeinfo_worktime", "salon_storeinfo_worktime_forPOS",
             "salon_store_cashinoutreason", "salon_store_deliveryappcompany",
             "salon_storediscountbutton", "salon_storespecialrequest",
+
+            // 08162024
+            "salon_storebreaktime",
 
             // 02192024
             "salon_storememberlevel",

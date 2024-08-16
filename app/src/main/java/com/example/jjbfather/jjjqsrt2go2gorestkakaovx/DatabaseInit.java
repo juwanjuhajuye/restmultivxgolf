@@ -278,6 +278,10 @@ public class DatabaseInit {
         // 카드결제 기기등록관련
         strCreateTableVec.addElement(SqlStatements.SQL_CREATE_SALONPGIP);
 
+        // 08162024
+        strCreateTableVec.addElement(SqlStatements.SQL_CREATE_SALONSTOREBREAKTIME);
+
+
         // 테이블 컬럼 수정, 삭제 등 처리
         // ...................................
 
@@ -3879,6 +3883,17 @@ public class DatabaseInit {
             alterDatabaseTableColumn(altTableName, "minsumval", "smallint", "DEFAULT 0", 0);
         }
         // 08072024 -------------------------------------------------------------------
+
+
+        // 08112024
+        // salon_sales_kitchenprintingdata_json 테이블 컬럼 추가
+        // 08.11.2024, billprintedyn 컬럼 추가
+        altTableName = "salon_sales_kitchenprintingdata_json";
+        if (checkTable(altTableName) > 0) {
+            alterDatabaseTableColumn(altTableName, "billprintedyn", "nvarchar(2)", "DEFAULT 'N'", 0);
+        }
+        // 08072024 -------------------------------------------------------------------
+
 
         /****************************************************************************/
     }
