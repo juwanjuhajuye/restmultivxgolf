@@ -3894,6 +3894,15 @@ public class DatabaseInit {
         }
         // 08072024 -------------------------------------------------------------------
 
+        // 08222024
+        // salon_storebreaktime 테이블 컬럼 추가
+        // 08.22.2024, payyn 컬럼 추가
+        altTableName = "salon_storebreaktime";
+        if (checkTable(altTableName) > 0) {
+            alterDatabaseTableColumn(altTableName, "payyn", "nvarchar(2)", "DEFAULT 'Y'", 0);
+        }
+        // 08222024 -------------------------------------------------------------------
+
 
         /****************************************************************************/
     }

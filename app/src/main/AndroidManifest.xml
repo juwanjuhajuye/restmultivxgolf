@@ -835,15 +835,6 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
             android:windowSoftInputMode="stateAlwaysHidden" />
 
-
-        <!-- 08162024 -->
-        <activity
-            android:name="com.example.jjbfather.jjjqsrt2go2gorestkakaovx.BreakTypes"
-            android:configChanges="keyboard|keyboardHidden|orientation|orientation|screenSize"
-            android:theme="@android:style/Theme.Dialog"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-
-
         <!-- Service 시작 -->
         <service
             android:name="com.example.jjbfather.jjjqsrt2go2gorestkakaovx.UploadSaleJsonToCloud"

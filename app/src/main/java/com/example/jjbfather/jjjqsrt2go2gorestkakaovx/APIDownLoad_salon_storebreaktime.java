@@ -25,6 +25,7 @@ public class APIDownLoad_salon_storebreaktime extends AsyncTask {
     String name = "";
     String duration = "";
     String useyn = "";
+    String payyn = "";
     String delyn = "";
     String wdate = "";
     String sortnum = "";
@@ -111,6 +112,9 @@ public class APIDownLoad_salon_storebreaktime extends AsyncTask {
                         if (tagName.equals("useyn")) {
                             useyn = xpp.getText();
                         }
+                        if (tagName.equals("payyn")) {
+                            payyn = xpp.getText();
+                        }
                         if (tagName.equals("delyn")) {
                             delyn = xpp.getText();
                         }
@@ -134,7 +138,7 @@ public class APIDownLoad_salon_storebreaktime extends AsyncTask {
                         // 등록쿼리 조합하기
                         mInsertSqlQuery = "insert into " + mDbTableName +
                                 " ( " +
-                                " idx, scode, sidx, aid, name, duration, useyn, delyn, wdate, sortnum " +
+                                " idx, scode, sidx, aid, name, duration, useyn, payyn, delyn, wdate, sortnum " +
                                 " ) " +
                                 " values (" +
                                 "'" + GlobalMemberValues.getDBTextAfterChecked(idx, 0) + "', " +
@@ -144,6 +148,7 @@ public class APIDownLoad_salon_storebreaktime extends AsyncTask {
                                 "'" + GlobalMemberValues.getDBTextAfterChecked(name, 0) + "', " +
                                 "'" + GlobalMemberValues.getDBTextAfterChecked(duration, 0) + "', " +
                                 "'" + GlobalMemberValues.getDBTextAfterChecked(useyn, 0) + "', " +
+                                "'" + GlobalMemberValues.getDBTextAfterChecked(payyn, 0) + "', " +
                                 "'" + GlobalMemberValues.getDBTextAfterChecked(delyn, 0) + "', " +
                                 "'" + GlobalMemberValues.getDBTextAfterChecked(wdate, 0) + "', " +
                                 "'" + GlobalMemberValues.getDBTextAfterChecked(sortnum, 0) + "' " +
@@ -158,6 +163,7 @@ public class APIDownLoad_salon_storebreaktime extends AsyncTask {
                                 " name = '" + GlobalMemberValues.getDBTextAfterChecked(name, 0) + "', " +
                                 " duration = '" + GlobalMemberValues.getDBTextAfterChecked(duration, 0) + "', " +
                                 " useyn = '" + GlobalMemberValues.getDBTextAfterChecked(useyn, 0) + "', " +
+                                " payyn = '" + GlobalMemberValues.getDBTextAfterChecked(payyn, 0) + "', " +
                                 " delyn = '" + GlobalMemberValues.getDBTextAfterChecked(delyn, 0) + "', " +
                                 " wdate = '" + GlobalMemberValues.getDBTextAfterChecked(wdate, 0) + "', " +
                                 " sortnum = '" + GlobalMemberValues.getDBTextAfterChecked(sortnum, 0) + "' " +
@@ -184,6 +190,7 @@ public class APIDownLoad_salon_storebreaktime extends AsyncTask {
                         name = "";
                         duration = "";
                         useyn = "";
+                        payyn = "";
                         delyn = "";
                         wdate = "";
                         sortnum = "";

@@ -1107,6 +1107,13 @@ public class MssqlAlterTables {
         altTableName = "salon_sales_kitchenprintingdata_json";
         alterDatabaseTableColumn(altTableName, "billprintedyn", "nvarchar(2)", "DEFAULT 'N'");
 
+
+        // 08222024
+        // salon_storebreaktime 테이블 컬럼 추가
+        // 8.22.2024, payyn 컬럼 추가
+        altTableName = "salon_storebreaktime";
+        alterDatabaseTableColumn(altTableName, "payyn", "nvarchar(2)", "DEFAULT 'Y'");
+
     }
 
     public static void alterTableColumnType() {

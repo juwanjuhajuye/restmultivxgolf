@@ -47,8 +47,9 @@ public class BreakTypes extends Dialog {
         this.getContext = context;
         this.mCloseClickListener = singleListener;
 
+        // 08222024
         Cursor cursor = MainActivity.mDbInit.dbExecuteRead(
-                "Select name, duration from salon_storebreaktime " +
+                "Select name, duration, payyn from salon_storebreaktime " +
                         " where useyn = 'Y' and delyn = 'N' " +
                         " order by sortnum asc"
         );
@@ -56,11 +57,22 @@ public class BreakTypes extends Dialog {
 
         String btename = "";
         String btduration = "";
+
+        // 08222024
+        String btpayyn = "";
+
         while (cursor.moveToNext()) {
             btename = GlobalMemberValues.getDBTextAfterChecked(cursor.getString(0), 1);
             btduration = GlobalMemberValues.getDBTextAfterChecked(cursor.getString(1), 1);
 
-            bt_jsonArray.put(btename + "[" + btduration + " min(s)]-jjj-" + btduration + "-jjj-END");
+            // 08222024
+            btpayyn = GlobalMemberValues.getDBTextAfterChecked(cursor.getString(2), 1);
+            if (GlobalMemberValues.isStrEmpty(btpayyn)) {
+                btpayyn = "Y";
+            }
+
+            // 08222024
+            bt_jsonArray.put(btename + "[" + btduration + " min(s)]-jjj-" + btduration + "-jjj-" + btpayyn + "-jjj-END");
         }
 
     }
@@ -119,23 +131,35 @@ public class BreakTypes extends Dialog {
 
             TextView rowtitle_txtview = convertView.findViewById(R.id.breaktype_list_row_txt);
             String temp_txt = "";
+            String intxt = "";
+
+            String getPayyn = "";
             try {
                 temp_txt = list_json.getString(position);
                 String[] temp_txt_spt = temp_txt.split("-jjj-");
-                String intxt = temp_txt_spt[0];
+                intxt = temp_txt_spt[0];
                 rowtitle_txtview.setText(intxt);
 
                 getDuration = temp_txt_spt[1];
+
+                getPayyn = temp_txt_spt[2];
+                if (GlobalMemberValues.isStrEmpty(getPayyn)) {
+                    getPayyn = "Y";
+                }
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
             String finalGetDuration = getDuration;
+            String finalIntxt = intxt;
+            String finalGetPayyn = getPayyn;
             rowtitle_txtview.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    ClockInOutNavtiveWeb.mDataValues[7] = finalIntxt;
                     ClockInOutNavtiveWeb.mDataValues[9] = finalGetDuration;
+                    ClockInOutNavtiveWeb.mDataValues[10] = finalGetPayyn;
 
                     ClockInOutNavtiveWeb.setClockInOutByApi(ClockInOutNavtiveWeb.mDataValues);
                     setInit();

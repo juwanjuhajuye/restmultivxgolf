@@ -680,7 +680,8 @@ public class ClockInOutNavtiveWeb extends Activity {
                 clockinoutDateMinute,
                 tempMemo,
                 mClockinoutIdx,
-                ""
+                "",
+                "Y"             // 08222024
         };
 
         int breatypescnt = GlobalMemberValues.getIntAtString(
@@ -732,6 +733,7 @@ public class ClockInOutNavtiveWeb extends Activity {
                 "&memo=" + paramValues[7] +
                 "&clockinoutIdx=" + paramValues[8] +
                 "&btduration=" + paramValues[9] +
+                "&payyn=" + paramValues[10] +               // 08222024
                 "&posopentype=native";
 
         GlobalMemberValues.logWrite("clockinouturllog", "url : " + tempUrl + "\n");

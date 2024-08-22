@@ -3825,6 +3825,7 @@ public class SqlStatements_mssql {
                     "name nvarchar(100) NULL," +
                     "duration smallint default 0," +
                     "useyn nvarchar(2) default 'Y'," +
+                    "payyn nvarchar(2) default 'Y'," +
                     "delyn nvarchar(2) default 'N'," +
                     "sortnum smallint, " +
                     "wdate datetime DEFAULT getdate() "+
