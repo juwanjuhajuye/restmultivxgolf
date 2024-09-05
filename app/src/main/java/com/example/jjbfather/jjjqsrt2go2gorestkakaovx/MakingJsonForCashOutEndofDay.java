@@ -374,6 +374,7 @@ public class MakingJsonForCashOutEndofDay {
 
         // 09012022
         // 멀티 스테이션일 경우 --------------------------------------------------------------------------
+        //08212024 add check for orders that were returned: salescode that start with 'C'
         if (stationCnt > 1) {
             for (int i = 0; i < stationCnt; i++) {
                 sqlQuery = "select sum(round(salesPriceAmount, 2)) from salon_sales_detail " +
@@ -381,7 +382,7 @@ public class MakingJsonForCashOutEndofDay {
                         " and stcode = '" + stcode_arr[i] + "' " +
                         " and not(saveType = '2') " +
                         " and delyn = 'N' " +
-                        " and (" + subStrString2 + " = 'K' or " + subStrString2 + " = 'V') " +
+                        " and (" + subStrString2 + " = 'K' or " + subStrString2 + " = 'V' or " + subStrString2 + " = 'C') " +
                         " and itemName = '" + GlobalMemberValues.mCommonGratuityName + "' ";
                 String getTempData = GlobalMemberValues.getCommaStringForDouble(getDataOnSql(isEndofday, sqlQuery));
                 salessummary_gratuity_arr[i] = GlobalMemberValues.getDoubleAtString(getTempData + "");
@@ -569,11 +570,12 @@ public class MakingJsonForCashOutEndofDay {
 
         // 11072023 - 위치 변경
         // Common Gratuity  -------------------------------------------------------------------------------------------------
+        //08212024 also check for salescode for return: salescode that start with 'C'
         sqlQuery = "select sum(round(salesPriceAmount, 2)) from salon_sales_detail " +
                 " where " + empSqlQuery + addSqlQuery +
                 " and not(saveType = '2') " +
                 " and delyn = 'N' " +
-                " and (substr(salesCode, 1, 1) = 'K' or substr(salesCode, 1, 1) = 'V') " +
+                " and (substr(salesCode, 1, 1) = 'K' or substr(salesCode, 1, 1) = 'V' or substr(salesCode, 1, 1) = 'C')" +
                 " and itemName = '" + GlobalMemberValues.mCommonGratuityName + "' ";
         String salessummary_gratuity = GlobalMemberValues.getCommaStringForDouble(getDataOnSql(isEndofday, sqlQuery));
         salessummary_gratuity = GlobalMemberValues.getCommaStringForDouble(salessummary_gratuity + "");
@@ -596,17 +598,39 @@ public class MakingJsonForCashOutEndofDay {
         jsonroot.put("salessummary_commongratuity_cash", salessummary_gratuity_cash);  // JSON
 
         // card gratuity
-        sqlQuery2 = "select salescode from salon_sales " +
+        //08202024 use holdcode instead of salescode to avoid error due to void salescode starting with "V" instead
+        //of "K" leading to voided/returned gratuity from not being accounted for.
+//        sqlQuery2 = "select salescode from salon_sales " +
+//                " where " + empSqlQuery + addSqlQuery +
+//                " and useTotalCardAmountAfterReturned > 0";
+        sqlQuery2 = "select holdcode from salon_sales " +
                 " where " + empSqlQuery + addSqlQuery +
                 " and useTotalCardAmountAfterReturned > 0";
-        sqlQuery = "select sum(round(salesPriceAmount, 2)) from salon_sales_detail " +
+        String sqlQuery3 = "select sum(sidx) from salon_sales_detail " +
                 " where " + empSqlQuery + addSqlQuery +
                 " and not(saveType = '2') " +
                 " and delyn = 'N' " +
                 " and (substr(salesCode, 1, 1) = 'K' or substr(salesCode, 1, 1) = 'V') " +
                 " and itemName = '" + GlobalMemberValues.mCommonGratuityName + "' " +
                 " and salescode in (" + sqlQuery2 + ") ";
+//        sqlQuery = "select sum(round(salesPriceAmount, 2)) from salon_sales_detail " +
+//                " where " + empSqlQuery + addSqlQuery +
+//                " and not(saveType = '2') " +
+//                " and delyn = 'N' " +
+//                " and (substr(salesCode, 1, 1) = 'K' or substr(salesCode, 1, 1) = 'V') " +
+//                " and itemName = '" + GlobalMemberValues.mCommonGratuityName + "' " +
+//                " and salescode in (" + sqlQuery2 + ") ";
+        sqlQuery = "select sum(salesPriceAmount) from salon_sales_detail " +
+                " where " + empSqlQuery + addSqlQuery +
+                " and not(saveType = '2') " +
+                " and delyn = 'N' " +
+                " and (substr(salesCode, 1, 1) = 'K' or substr(salesCode, 1, 1) = 'V') " +
+                " and itemName = '" + GlobalMemberValues.mCommonGratuityName + "' " +
+                " and holdcode in (" + sqlQuery2 + ") ";
+
         String salessummary_gratuity_card = GlobalMemberValues.getCommaStringForDouble(getDataOnSql(isEndofday, sqlQuery));
+        String test = GlobalMemberValues.getCommaStringForDouble(getDataOnSql(isEndofday, sqlQuery3));
+        GlobalMemberValues.logWrite("ZAPPA", test);
         salessummary_gratuity_card = GlobalMemberValues.getCommaStringForDouble(salessummary_gratuity_card + "");
         jsonroot.put("salessummary_commongratuity_card", salessummary_gratuity_card);  // JSON
 

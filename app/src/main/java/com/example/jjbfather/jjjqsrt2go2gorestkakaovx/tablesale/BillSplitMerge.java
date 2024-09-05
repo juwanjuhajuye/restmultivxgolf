@@ -194,7 +194,7 @@ public class BillSplitMerge extends Activity {
                         setPayBtnVisible();
                     }
                 }
-            }, 2500);// 0.6초 정도 딜레이를 준 후 시작
+            }, 100);// 0.6초 정도 딜레이를 준 후 시작
 
 
 //            if (itemProDial != null) {
@@ -255,6 +255,7 @@ public class BillSplitMerge extends Activity {
         } else {
             tablesale_splitmerge_pay_by_bills.setVisibility(View.VISIBLE);
         }
+
     }
 
     public void setContents() {
@@ -265,7 +266,8 @@ public class BillSplitMerge extends Activity {
 
         setInitValuesForBillPay();
 
-        if (!GlobalMemberValues.isShowQuickMenusInTableBoard) {
+        //08202024 prevent clearing selected table idx in qsr mode
+        if (!GlobalMemberValues.isShowQuickMenusInTableBoard && !GlobalMemberValues.isQSRPOSonRestaurantPOS) {
             TableSaleMain.setClearSelectedTableIdx(true);
         }
 
@@ -392,15 +394,20 @@ public class BillSplitMerge extends Activity {
         tablesale_balance_txt = findViewById(R.id.tablesale_balance_txt);
         tablesale_subtotal_txt = findViewById(R.id.tablesale_subtotal_txt);
 
+        count_of_guests = findViewById(R.id.count_of_guests);
+
+
+    }
+
+    public void setContents2() {
+
         String tempCustCnt = MssqlDatabase.getResultSetValueToString(
                 " select peoplecnt from salon_store_restaurant_table_peoplecnt " +
                         " where holdcode = '" + TableSaleMain.getHoldCodeByTableidx(mTableIdx, mSubTableNum) + "' "
         );
-        count_of_guests = findViewById(R.id.count_of_guests);
         count_of_guests.setText(tempCustCnt);
-    }
 
-    public void setContents2() {
+
         setCartListView();
 
 
@@ -421,7 +428,7 @@ public class BillSplitMerge extends Activity {
         // 230817 이전 split 테이블이 있으면 갯수 카운팅해서 표시.
         // 05172024 null object reference correction
         if (arrayList_list == null || arrayList_list.isEmpty()) {
-        //if (arrayList_list == null && arrayList_list.isEmpty()) {
+            //if (arrayList_list == null && arrayList_list.isEmpty()) {
             tablesale_split_evenly_txt2.setText("1");
         } else {
             String str_arrayList_list_count = String.valueOf(arrayList_list.size());
@@ -608,7 +615,19 @@ public class BillSplitMerge extends Activity {
         }
     };
 
-    public int getCountInBillPaid(String paramHoldCode) {
+    //082102024 getCountInBillPaid method meant to be used for when app is running in QSR mode
+    public static int getCountInBillPaidForQSRMode(String paramHoldCode) {
+        int billPaidCount = GlobalMemberValues.getIntAtString(
+                MssqlDatabase.getResultSetValueToString(
+                        " select count(*) from bill_list where holdcode = '" + paramHoldCode + "' " +
+                                "and paidyn = 'Y'"
+                )
+        );
+
+        return billPaidCount;
+    }
+
+    public static int getCountInBillPaid(String paramHoldCode) {
         int billPaidCount = GlobalMemberValues.getIntAtString(
                 MssqlDatabase.getResultSetValueToString(
                         " select count(*) from bill_list_paid where holdcode = '" + paramHoldCode + "' "
@@ -626,11 +645,23 @@ public class BillSplitMerge extends Activity {
                     if (TableSaleMain.mSelectedIdxArrListInCart == null) return;
 
                     // 해당 holdcode 로 결제된 내역이 있는지 확인한다
-                    if (getCountInBillPaid(str_holdCode) > 0) {
-                        GlobalMemberValues.displayDialog(BillSplitMerge.this, "Warning",
-                                "There is a bill that has been paid and cannot be changed - (2)", "Close");
-                        return;
+
+                    //08212024 if in qsr mode use a different check to prevent voided transactions in bill_list_paid from
+                    //from blocking the user from splitting the bill
+                    if (GlobalMemberValues.isQSRPOSonRestaurantPOS){
+                        if (getCountInBillPaidForQSRMode(str_holdCode) > 0) {
+                            GlobalMemberValues.displayDialog(BillSplitMerge.this, "Warning",
+                                    "A bill has been paid for so further edits cannot be made - (2)", "Close");
+                            return;
+                        }
+                    } else {
+                        if (getCountInBillPaid(str_holdCode) > 0) {
+                            GlobalMemberValues.displayDialog(BillSplitMerge.this, "Warning",
+                                    "There is a bill that has been paid and cannot be changed - (2)", "Close");
+                            return;
+                        }
                     }
+
                     LogsSave.saveLogsInDB(252);
                     String cartidxs = "";
                     double d_total = 0.00;
@@ -711,14 +742,16 @@ public class BillSplitMerge extends Activity {
                 }
                 case R.id.tablesale_splitmerge_close : {
                     LogsSave.saveLogsInDB(251);
-                    BillExecute.closeCheckAmount(mActivity, mContext, str_holdCode, d_TotalAmount);
-                    MainMiddleService.initList();
 
-                    // 05042023
-                    if (mChangeStatus > 0) {
-                        TableSaleMain.onRefreshAtOutside();
-                        mChangeStatus = 0;
-                    }
+                    BillExecute.closeCheckAmount(mActivity, mContext, str_holdCode, d_TotalAmount);
+
+//                    MainMiddleService.initList();
+//
+//                    // 05042023
+//                    if (mChangeStatus > 0) {
+//                        TableSaleMain.onRefreshAtOutside();
+//                        mChangeStatus = 0;
+//                    }
                     break;
                 }
 
@@ -999,6 +1032,73 @@ public class BillSplitMerge extends Activity {
             }
         }
     };
+
+    public static void setVoidOnBillAll(String holdcode) {
+        //find all bills for the holdcode that has been paid
+        ResultSet billIdxCursor = MssqlDatabase.getResultSetValue(
+                "select billidx from bill_list_paid where holdcode = '" + holdcode + "'"
+        );
+
+        //for each paid bill, void it.
+        try {
+            while (billIdxCursor.next()) {
+                String billIdx = GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.resultDB_checkNull_string(billIdxCursor, 0), 0);
+
+                GlobalMemberValues.logWrite("jjjbillvoidlogjjj", "billidx : " + billIdx + "\n");
+
+                String tempCardSalesIdx = MssqlDatabase.getResultSetValueToString(
+                        " select cardsalesidx from bill_list_paid where billidx = '" + billIdx + "' "
+                );
+
+                String tempRefNum = MssqlDatabase.getResultSetValueToString(
+                        " select cardRefNumber from salon_sales_card where idx = '" + tempCardSalesIdx + "' "
+                );
+
+                String tempPriceAmount = MssqlDatabase.getResultSetValueToString(
+                        " select priceAmount from salon_sales_card where idx = '" + tempCardSalesIdx + "' "
+                );
+
+                // 먼저 선택된 bill 의 결제완료된 수단(캐쉬/카드)을 확인한다.
+                String tmepPaytype = MssqlDatabase.getResultSetValueToString(
+                        " select paytype from bill_list_paid where billidx = '" + billIdx + "' "
+                );
+                if (GlobalMemberValues.isStrEmpty(tmepPaytype)) {
+                    tmepPaytype = "CASH";
+                }
+
+                if (tmepPaytype.equals("CASH")) {
+                    String strDeleteQuery = "";
+                    Vector<String> strUpdateQueryVec = new Vector<String>();
+
+                    strDeleteQuery = "delete from bill_list_paid where billidx = '" + billIdx + "' ";
+                    strUpdateQueryVec.addElement(strDeleteQuery);
+
+                    strDeleteQuery = "update bill_list set paidyn = 'N' where idx = '" + billIdx + "' ";
+                    strUpdateQueryVec.addElement(strDeleteQuery);
+
+                    for (String tempQuery : strUpdateQueryVec) {
+                        GlobalMemberValues.logWrite("jjjbillvoidlogjjj", "delete query : " + tempQuery + "\n");
+                    }
+                    // 트랜잭션으로 DB 처리한다.
+                    String returnResult = MainActivity.mDbInit.dbExecuteWriteForTransactionReturnResult(strUpdateQueryVec);
+                    if (returnResult == "N" || returnResult == "") {        // DB (salon_sales_card 테이블) 입력실패
+                        GlobalMemberValues.displayDialog(mContext, "Warning", "Database Error. Try Again", "Close");
+                    } else {                                                // DB (salon_sales_card 테이블) 입력성공
+                        // DB 처리도 성공...
+                        mActivity.recreate();
+                    }
+                } else {
+                    if (!GlobalMemberValues.isStrEmpty(tempCardSalesIdx) && !GlobalMemberValues.isStrEmpty(tempRefNum)
+                            && !GlobalMemberValues.isStrEmpty(tempPriceAmount)) {
+                        GlobalMemberValues.logWrite("jjjbillvoidlogjjj", "void 시작전..." + "\n");
+                        PaymentCreditCard.voidCardProcess(tempCardSalesIdx, tempRefNum, (GlobalMemberValues.getDoubleAtString(tempPriceAmount) + ""));
+                    }
+                }
+            }
+        } catch (Exception e) {
+            GlobalMemberValues.logWrite("BILLSPLITMERGE", "void on all bills error");
+        }
+    }
 
     public void setVoidOnBill() {
         GlobalMemberValues.mOnVoidForBillPay = true;
@@ -1898,4 +1998,5 @@ public class BillSplitMerge extends Activity {
     protected void onRestart() {
         super.onRestart();
     }
+
 }

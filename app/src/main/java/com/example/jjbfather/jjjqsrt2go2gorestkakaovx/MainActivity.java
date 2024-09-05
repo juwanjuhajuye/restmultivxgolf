@@ -3626,17 +3626,17 @@ MainMiddleService.setEmptyInSaleCart(false);
                     if (GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINBUTTONSAVEORDER != null)
                         GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINBUTTONSAVEORDER.setVisibility(View.INVISIBLE);
                     //if (GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINBUTTON_BILLPRINT != null)
-                        //GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINBUTTON_BILLPRINT.setVisibility(View.INVISIBLE);
+                    //GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINBUTTON_BILLPRINT.setVisibility(View.INVISIBLE);
                 } else {
                     if (GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINBUTTONSAVEORDER != null) GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINBUTTONSAVEORDER.setVisibility(View.VISIBLE);
                     //if (GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINBUTTON_BILLPRINT != null)
-                        //GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINBUTTON_BILLPRINT.setVisibility(View.VISIBLE);
+                    //GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINBUTTON_BILLPRINT.setVisibility(View.VISIBLE);
                 }
             } else {
                 if (GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINBUTTONSAVEORDER != null)
                     GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINBUTTONSAVEORDER.setVisibility(View.INVISIBLE);
                 //if (GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINBUTTON_BILLPRINT != null)
-                    //GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINBUTTON_BILLPRINT.setVisibility(View.INVISIBLE);
+                //GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINBUTTON_BILLPRINT.setVisibility(View.INVISIBLE);
             }
         }
 
@@ -5363,7 +5363,17 @@ MainMiddleService.setEmptyInSaleCart(false);
             TableSaleMain.mAllTablesArrList.add(tableidx);
 
 //             테이블이 split 되어 있는지 확인
-            int subTableCount = 0;//getTableSplitCount(tableidx);
+            int subTableCount = 0;//TableSaleMain.getTableSplitCount(tableidx);
+
+            // 0802 추가한 부분인데 // 이부분을 활성화 하면 초기 로딩이 조금 느려짐 // Quick row 에 스플릿 된 주문인지 표시해줌.
+            // bill_list 에 해당 테이블의 데이터가 있을 경우 (bill split 이 있을 경우)
+            int getBillCnt = 0;
+            if (!tableidx.isEmpty()) {
+                String tempHoldCode = TableSaleMain.getHoldCodeByTableidx(tableidx, TableSaleMain.mSubTableNum);
+                subTableCount = GlobalMemberValues.getIntAtString(MssqlDatabase.getResultSetValueToString(
+                        " select count(*) from bill_list where holdcode = '" + tempHoldCode + "' "
+                ));
+            }
 
             if (subTableCount > 0 && subTableCount > 1) {
                 String tempSubTableStr = subTableCount + "ea";

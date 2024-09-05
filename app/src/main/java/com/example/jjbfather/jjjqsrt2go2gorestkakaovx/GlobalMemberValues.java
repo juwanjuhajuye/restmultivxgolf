@@ -20629,7 +20629,7 @@ public class GlobalMemberValues {
     public static void sendTOrderAPIOrderData(String paramPrintingType) {
         GlobalMemberValues.logWrite("TORDERAPIJJJLOG", "여기실행됨...1" + "\n");
 
-        GlobalMemberValues.logWrite("API_torder_programstart", "sendTOrderAPIOrderData running");
+        GlobalMemberValues.logWrite("API_torder_programstart", "P0401: sendTOrderAPIOrderData running");
 
         String code = "P0401";
         String storeId = GlobalMemberValues.makeStoreCodeForTOrder();
@@ -21204,6 +21204,39 @@ public class GlobalMemberValues {
         }
 
         return returnValue;
+    }
+
+    //08202024 method to make buttons hidden by bill print visible again
+    public static void unhideButtonsAfterBillSplit() {
+        GlobalMemberValues.GLOBAL_LAYOUTMEMBER_BILLAMOUNTTEXTVIEW.setVisibility(View.GONE);
+        GlobalMemberValues.GLOBAL_LAYOUTMEMBER_BILLAMOUNTTEXTVIEW.setText("");
+
+        GlobalMemberValues.GLOBAL_LAYOUTMEMBER_BILLAMOUNTOFTEXTVIEW.setVisibility(View.GONE);
+
+        // bill 과 관련없는 버튼들은 보이지 않도록 처리
+        GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINBUTTONDELETE.setVisibility(View.VISIBLE);
+        GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINBUTTONCANCEL.setVisibility(View.VISIBLE);
+        GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINBUTTONQTY_PLUS.setVisibility(View.VISIBLE);
+        GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINBUTTONQTY_MINUS.setVisibility(View.VISIBLE);
+        GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINBUTTONSAVEORDER.setVisibility(View.VISIBLE);
+
+        GlobalMemberValues.GLOBAL_BUTTON_MAIN_SIDE_DISCOUNT.setVisibility(View.VISIBLE);
+        GlobalMemberValues.GLOBAL_BUTTON_MAIN_SIDE_QUICK.setVisibility(View.VISIBLE);
+        GlobalMemberValues.GLOBAL_BUTTON_MAIN_SIDE_PRODUCT.setVisibility(View.VISIBLE);
+        GlobalMemberValues.GLOBAL_BUTTON_MAIN_SIDE_GIFTCARD.setVisibility(View.VISIBLE);
+        GlobalMemberValues.GLOBAL_BUTTON_MAIN_SIDE_TIMEMENU.setVisibility(View.VISIBLE);
+        if (GlobalMemberValues.TIMEMENUUSEYN.equals("Y")){
+            GlobalMemberValues.GLOBAL_BUTTON_MAIN_SIDE_TIMEMENU.setVisibility(View.VISIBLE);
+        } else {
+            GlobalMemberValues.GLOBAL_BUTTON_MAIN_SIDE_TIMEMENU.setVisibility(View.GONE);
+        }
+
+        GlobalMemberValues.GLOBAL_BUTTON_MAIN_SIDE_MENUSEARCH.setVisibility(View.VISIBLE);
+        GlobalMemberValues.GLOBAL_BUTTON_MAIN_SIDE_LOGOUT.setVisibility(View.VISIBLE);
+
+        GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINBUTTONTOPBUTTON1.setVisibility(View.VISIBLE);
+        GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINBUTTONTOPBUTTON2.setVisibility(View.VISIBLE);
+        GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINBUTTONTOPBUTTON3.setVisibility(View.VISIBLE);
     }
 
 }

@@ -25,6 +25,18 @@
             android:layout_weight="1" />
 
         <TextView
+            android:id="@+id/bayreservation_list_register_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="left|center_vertical"
+            android:text="register time"
+            android:textSize="14dp"
+            android:textColor="#000000"
+            android:paddingLeft="10dp"
+            android:layout_weight="1" />
+
+        <TextView
             android:id="@+id/bayreservation_list_bay"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -59,6 +71,18 @@
             android:layout_weight="1" />
 
         <TextView
+            android:id="@+id/bayreservation_list_customer_count"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="left|center_vertical"
+            android:text="customer #"
+            android:textSize="14dp"
+            android:textColor="#000000"
+            android:paddingLeft="10dp"
+            android:layout_weight="1" />
+
+        <TextView
             android:id="@+id/bayreservation_list_phonenum"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -67,6 +91,18 @@
             android:layout_gravity="center"
             android:textSize="14dp"
             android:textColor="#000000"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/bayreservation_list_status"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="left|center_vertical"
+            android:text="Status"
+            android:textSize="14dp"
+            android:textColor="#000000"
+            android:paddingLeft="10dp"
             android:layout_weight="1" />
 
         <TextView
@@ -87,7 +123,24 @@
             android:layout_height="match_parent"/>
 
         <TextView
+            android:id="@+id/bayreservation_list_button_restore"
 
+            android:visibility="gone"
+            android:layout_margin="5dp"
+            android:background="@drawable/button_selector_gray"
+            android:text="Res"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            android:textColor="#ffffff"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="0.5"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+
+        <TextView
             android:id="@+id/bayreservation_list_button_get_reservation"
             android:layout_width="0dp"
             android:layout_height="match_parent"

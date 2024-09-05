@@ -112,7 +112,7 @@ public class BayReservationViewer extends AppCompatActivity implements BayReserv
         //Go through each reservation and put each reservation(String array) into reservationInfo arraylist.
         for(int i=0; i<reservationCount; i++){
             try {
-                String[] reservationInfoArray = new String [8];
+                String[] reservationInfoArray = new String [11];
                 reservationInfoArray[0] = (reservationInfoJSON.getJSONArray("reservationList").getJSONObject(i).getString("reservationdate"));
                 reservationInfoArray[1] = (reservationInfoJSON.getJSONArray("reservationList").getJSONObject(i).getString("tablename"));
                 reservationInfoArray[2] = (reservationInfoJSON.getJSONArray("reservationList").getJSONObject(i).getString("bayservicename"));
@@ -121,6 +121,10 @@ public class BayReservationViewer extends AppCompatActivity implements BayReserv
                 reservationInfoArray[5] = (reservationInfoJSON.getJSONArray("reservationList").getJSONObject(i).getString("holdcode"));
                 reservationInfoArray[6] = (reservationInfoJSON.getJSONArray("reservationList").getJSONObject(i).getString("downloadyn"));
                 reservationInfoArray[7] = (reservationInfoJSON.getJSONArray("reservationList").getJSONObject(i).getString("calledyn"));
+                reservationInfoArray[8] = (reservationInfoJSON.getJSONArray("reservationList").getJSONObject(i).getString("customersu"));
+                reservationInfoArray[9] = (reservationInfoJSON.getJSONArray("reservationList").getJSONObject(i).getString("reservationregdate"));
+                reservationInfoArray[10] = (reservationInfoJSON.getJSONArray("reservationList").getJSONObject(i).getString("delyn"));
+
 
                 reservationInfo.add(reservationInfoArray);
             } catch (JSONException e) {
@@ -382,6 +386,20 @@ public class BayReservationViewer extends AppCompatActivity implements BayReserv
                 GlobalMemberValues.checkTableOrder(MainActivity.mContext, MainActivity.mActivity);
                 GlobalMemberValues.openRestaurantTable();
                 finish();
+                break;
+            }
+            case R.id.bayreservation_list_button_restore: {
+                GlobalMemberValues.logWrite("BayReservationViewerAdapter", "Hello: " + adapter.getHoldCode(position));
+                //make POST request to delete reservation using API
+                APIDataPoster apiPostTask = new APIDataPoster();
+                apiPostTask.holdcode = adapter.getHoldCode(position);
+                apiPostTask.execute();
+
+                try {
+                    new APIDataFetcher().execute();
+                } catch (Exception e) {
+                    GlobalMemberValues.logWrite("BAYRESERVATIONVIEWER", "Error: " + e);
+                }
                 break;
             }
         }

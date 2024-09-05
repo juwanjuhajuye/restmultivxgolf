@@ -1,3 +1,4 @@
+
 package com.example.jjbfather.jjjqsrt2go2gorestkakaovx.tablesale;
 
 import android.app.Activity;
@@ -259,7 +260,7 @@ public class BillExecute {
 
     // Evenly split
     public static String doInsertByEvenly_Bill(String paramHoldCode, String paramTableIdx,
-                                             double paramTotalAmount, int paramPeopleQty) {
+                                               double paramTotalAmount, int paramPeopleQty) {
         String returnValue = "N";
 
         GlobalMemberValues.logWrite("totalamtjjjlog", "paramTotalAmount1 : " + paramTotalAmount + "\n");
@@ -594,10 +595,10 @@ public class BillExecute {
 
                     get_menuqty = "0";
                     if (paramBillSplitType.equals("0")) {
-                       if (!GlobalMemberValues.isStrEmpty(get_cartidxs)) {
-                           String[] tempSplit = get_cartidxs.split(",");
-                           get_menuqty = tempSplit.length + "";
-                       }
+                        if (!GlobalMemberValues.isStrEmpty(get_cartidxs)) {
+                            String[] tempSplit = get_cartidxs.split(",");
+                            get_menuqty = tempSplit.length + "";
+                        }
                     } else {
                         get_menuqty = MssqlDatabase.getResultSetValueToString(
                                 " select count(*) from temp_salecart where holdcode = '" + paramHoldCode + "' "
@@ -729,12 +730,26 @@ public class BillExecute {
                 )
         );
 
+        //08162024 variable to see how much of the bill was paid so far.
+        double totalPaidBillAmount = -1;
+
+
+        if (GlobalMemberValues.isQSRPOSonRestaurantPOS) {
+            totalPaidBillAmount = GlobalMemberValues.getDoubleAtString(
+                    MssqlDatabase.getResultSetValueToString(
+                            " select sum(billamount) from bill_list where holdcode = '" + paramHoldCode + "' and paidyn = 'Y'"
+                    )
+            );
+        }
+
         if (totalBillAmount == 0) {
             returnValue = "Y";
         } else {
             if (totalBillAmount < paramTotalAmount) {
                 returnValue = "N";
-            } else {
+            } else if (GlobalMemberValues.isQSRPOSonRestaurantPOS && totalPaidBillAmount < paramTotalAmount){
+                returnValue = "N";
+            }else {
                 returnValue = "Y";
             }
         }
@@ -742,12 +757,70 @@ public class BillExecute {
         if (returnValue.equals("Y")) {
             BillSplitMerge.setInitValuesForBillPay();
 
-            GlobalMemberValues.isOpenTableSaleMain = true;
+            //08152024
+            if (!GlobalMemberValues.isQSRPOSonRestaurantPOS) {
+                GlobalMemberValues.isOpenTableSaleMain = true;
+            }
 
             paramActivity.finish();
             if (GlobalMemberValues.isUseFadeInOut()) {
                 paramActivity.overridePendingTransition(R.anim.act_in_bottom, R.anim.act_out_bottom);
             }
+            //if on qsr mode, and the bill paid so far is less that total needed, void all bills if user tries to exit split payment
+        } else if (GlobalMemberValues.isQSRPOSonRestaurantPOS && totalPaidBillAmount < paramTotalAmount && totalPaidBillAmount > 0) {
+            new AlertDialog.Builder(paramContext)
+                    .setTitle("Warning")
+                    .setMessage("The amount bill paid does not match the total amount" +
+                            "\nWould you like to delete and void all bills?")
+                    //.setIcon(R.drawable.ic_launcher)
+                    .setPositiveButton("Yes",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    BillSplitMerge.setInitValuesForBillPay();
+                                    BillSplitMerge.setVoidOnBillAll(paramHoldCode);
+                                    deleteBillSplit(paramHoldCode);
+
+                                    //GlobalMemberValues.isOpenTableSaleMain = true;
+
+                                    //reopen table since a payment happened at least once, clearing the sale cart window
+                                    TableSaleMain.openSales(TableSaleMain.mSelectedTablesArrList, true);
+                                    paramActivity.finish();
+
+                                }
+                            })
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    })
+                    .show();
+            //08192024 if on qsr mode, and there has been no actual payment on any of the bills, don't void just delete the bills
+        } else if (GlobalMemberValues.isQSRPOSonRestaurantPOS && totalPaidBillAmount == 0) {
+            new AlertDialog.Builder(paramContext)
+                    .setTitle("Warning")
+                    .setMessage("The transaction is not complete," +
+                            "\nWould you like to delete all bills?")
+                    //.setIcon(R.drawable.ic_launcher)
+                    .setPositiveButton("Yes",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    BillSplitMerge.setInitValuesForBillPay();
+                                    deleteBillSplit(paramHoldCode);
+
+                                    //Make buttons that were hidden from bill split payment visible again
+                                    GlobalMemberValues.unhideButtonsAfterBillSplit();
+
+                                    paramActivity.finish();
+
+                                }
+                            })
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    })
+                    .show();
+
         } else {
             new AlertDialog.Builder(paramContext)
                     .setTitle("Warning")
@@ -759,6 +832,11 @@ public class BillExecute {
                                 public void onClick(DialogInterface dialog, int which) {
                                     BillSplitMerge.setInitValuesForBillPay();
                                     deleteBillSplit(paramHoldCode);
+
+                                    //08142024
+                                    if (GlobalMemberValues.isQSRPOSonRestaurantPOS){
+                                        paramActivity.finish();
+                                    }
                                 }
                             })
                     .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -771,6 +849,7 @@ public class BillExecute {
 //            GlobalMemberValues.displayDialog(paramContext, "Warning",
 //                    "The amount of the split check does not match the total amount", "Close");
         }
+
     }
 
     public static boolean isInBillList_byCartIdx(String paramCartIdx) {
