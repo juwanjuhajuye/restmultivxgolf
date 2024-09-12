@@ -1137,6 +1137,9 @@ public class GlobalMemberValues {
     public static boolean isQSRPOSonRestaurantPOS = true;
     // --------------------------------------------------------------------------
 
+    // 090924
+    public static boolean isReservationBtn_show = true;
+
     // 071224
     // 모디파이어 메뉴 추가 여부
     public static boolean is_modifier_add = false;

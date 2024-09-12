@@ -36,7 +36,7 @@ import java.util.Objects;
 
 public class BayReservationViewer extends AppCompatActivity implements BayReservationViewerAdapter.ItemClickListener {
 
-    private ImageButton closeBtn;
+    private ImageButton closeBtn, searchBtn;
 
     private TextView searchDateEditText;
 
@@ -91,6 +91,9 @@ public class BayReservationViewer extends AppCompatActivity implements BayReserv
     private void setContents(){
         closeBtn = findViewById(R.id.bayreservation_list_close);
         closeBtn.setOnClickListener(bayReservationListBtnClickListener);
+
+        searchBtn = findViewById(R.id.bayreservation_list_search);
+        searchBtn.setOnClickListener(bayReservationListBtnClickListener);
 
         searchDateEditText = findViewById(R.id.bayreservation_list_StartDateEditText);
         searchDateEditText.setOnClickListener(bayReservationListBtnClickListener);
@@ -415,6 +418,12 @@ public class BayReservationViewer extends AppCompatActivity implements BayReserv
                 }
                 case R.id.bayreservation_list_StartDateEditText:{
                     openDatePickerDialog(searchDate);
+                    break;
+                }
+                case R.id.bayreservation_list_search:{
+                    //Rerun API call with new date selected
+                    new APIDataFetcher().execute();
+                    break;
                 }
             }
         }
@@ -450,9 +459,6 @@ public class BayReservationViewer extends AppCompatActivity implements BayReserv
             searchDateEditText.setText(searchDate);
 
             apiURLDate = "&schdate=" + searchDate;
-
-            //Rerun API call with new date selected
-            new APIDataFetcher().execute();
 
         }
     };

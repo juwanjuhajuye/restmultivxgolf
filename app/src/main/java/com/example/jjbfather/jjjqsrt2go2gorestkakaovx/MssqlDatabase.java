@@ -1,7 +1,9 @@
+
 package com.example.jjbfather.jjjqsrt2go2gorestkakaovx;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.widget.Toast;
 
 import net.sourceforge.jtds.jdbc.CachedResultSet;
 
@@ -216,7 +218,7 @@ public class MssqlDatabase {
     }
 
     public static void showToast(String text){
-//        Toast.makeText(MainActivity.mContext.getApplicationContext(), text, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(MainActivity.mContext.getApplicationContext(), text, Toast.LENGTH_LONG).show();
     }
     public static int getCount(ResultSet paramRs) {
         try {

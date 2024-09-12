@@ -73,7 +73,7 @@ public class BayReservationViewerAdapter extends RecyclerView.Adapter<BayReserva
         if (delyn.equals("Y")){
             holder.restoreButton.setVisibility(View.VISIBLE);
             holder.deleteButton.setVisibility(View.GONE);
-            holder.getReservationButton.setVisibility(View.INVISIBLE);
+            holder.getReservationButton.setVisibility(View.GONE);
         } else {
             holder.restoreButton.setVisibility(View.GONE);
             holder.deleteButton.setVisibility(View.VISIBLE);
@@ -81,8 +81,8 @@ public class BayReservationViewerAdapter extends RecyclerView.Adapter<BayReserva
         }
 
         if (holder.calledyn.equals("Y")) {
-            holder.deleteButton.setVisibility(View.INVISIBLE);
-            holder.getReservationButton.setVisibility(View.INVISIBLE);
+            holder.deleteButton.setVisibility(View.GONE);
+            holder.getReservationButton.setVisibility(View.GONE);
         }
     }
 
@@ -136,6 +136,7 @@ public class BayReservationViewerAdapter extends RecyclerView.Adapter<BayReserva
 
             deleteButton.setOnClickListener(this);
             getReservationButton.setOnClickListener(this);
+            restoreButton.setOnClickListener(this);
         }
 
         @Override

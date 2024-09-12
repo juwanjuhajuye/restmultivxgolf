@@ -11618,8 +11618,12 @@ public class CloverMakingViewInPrinting {
 
 
                 // 10112023
+
+
+                // orign
                 int temp_totaltrans = GlobalMemberValues.getIntAtString(salesbytendertypes_totaltransaction) + thirdparty_trans_total;
                 double temp_totalamount = GlobalMemberValues.getDoubleAtString(salesbytendertypes_totalamount) + thirdparty_totalamount;
+                // orign
                 salesbytendertypes_totaltransaction = GlobalMemberValues.getCommaStringForInteger(temp_totaltrans + "");
                 salesbytendertypes_totalamount = GlobalMemberValues.getCommaStringForDouble(temp_totalamount + "");
 

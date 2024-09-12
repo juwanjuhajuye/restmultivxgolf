@@ -2275,6 +2275,14 @@ public class TableSaleMain extends Activity {
     public void tableCell_singleClick(View view, LinearLayout parentTableLn, LinearLayout table_row3,
                                       String finalTableidx, String finalTablename, String finalTableTxtColor, int tableordercnt,
                                       String paramTableBoardType) {
+        //08282024 perform a quick db transaction to see if db is connected if not, put a warning message and exit method.
+        String returnResult = MssqlDatabase.getResultSetValueToString("select top 1 sid from basic_pos_information");
+
+        if (returnResult.equals("")) {
+            GlobalMemberValues.displayDialog(mContext, "Warning", "Database Error", "Close");
+            return;
+        }
+
         mTablePeopleCnt = 0;
 
         TextView title = view.findViewById(R.id.main_table_row_title);
@@ -6681,3 +6689,4 @@ public class TableSaleMain extends Activity {
     }
 
 }
+

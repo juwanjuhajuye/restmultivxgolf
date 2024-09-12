@@ -2,6 +2,7 @@ package com.example.jjbfather.jjjqsrt2go2gorestkakaovx;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.view.View;
@@ -85,6 +86,21 @@ public class MainTopCategory {
         if (GlobalMemberValues.is_customerMain){
             LinearLayout topCategoryLn = (LinearLayout) GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINTOPCATEGORYPARENT;
             topCategoryLn.setBackgroundColor(Color.parseColor("#0e1127"));
+        }
+
+        if (GlobalMemberValues.isReservationBtn_show){
+            Button btn_reservationlist = (Button) GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINTOPCATEGORYPARENT.findViewWithTag("category_reservation_list_btn");
+            btn_reservationlist.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent bayReservationWindowIntent = new Intent(MainActivity.mContext.getApplicationContext(), BayReservationViewer.class);
+                    mActivity.startActivity(bayReservationWindowIntent);
+                    if (GlobalMemberValues.isUseFadeInOut()) {
+                        mActivity.overridePendingTransition(R.anim.act_in_bottom, R.anim.act_out_bottom);
+                    }
+                }
+            });
+
         }
 
         boolean b_temp_categorycnt = false;

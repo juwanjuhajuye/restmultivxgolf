@@ -93,6 +93,21 @@
                                 android:background="@drawable/roundlayout_cashinout_tv_bg1"/>
 
                         </LinearLayout>
+
+                        <ImageButton
+                            android:id="@+id/bayreservation_list_search"
+                            android:src="@drawable/ab_imagebutton_salehistory_search"
+                            android:background="@android:color/transparent"
+                            android:layout_gravity="left"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.03"
+                            />
+
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"

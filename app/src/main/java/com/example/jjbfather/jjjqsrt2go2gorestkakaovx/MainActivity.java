@@ -911,7 +911,7 @@ public class MainActivity extends Activity {
             };
             ///////// / Timer 생성 //////////////
             Timer timer = new Timer();
-            timer.schedule(tt_checktableorder, 0, 10000);
+            timer.schedule(tt_checktableorder, 0, 5000);
             ////////////////////////////////////
         }
 

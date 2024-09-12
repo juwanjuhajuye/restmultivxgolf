@@ -577,16 +577,21 @@ public class EndOfDay extends Activity {
 
             jsonroot.put("onlinekioskdatayn", "Y");
 
-            // 받아온 부분을 salesbytendertypes_totaltransaction, salesbytendertypes_totalamount 에 추가 적용
-            if (!GlobalMemberValues.isStrEmpty(tempSplitData[0]) && !GlobalMemberValues.isStrEmpty(tempSplitData[5])){
-                String temp_salesbytendertypes_totaltransaction = jsonroot.getString("salesbytendertypes_totaltransaction");
-                String temp_salesbytendertypes_totalamount = jsonroot.getString("salesbytendertypes_totalamount");
-                int addup_temp_salesbytendertypes_totaltransaction = Integer.parseInt(temp_salesbytendertypes_totaltransaction) + Integer.parseInt(onlineDataArr[0]) + Integer.parseInt(kioskDataArr[0]);
-                Double addup_temp_salesbytendertypes_totalamount = GlobalMemberValues.getDoubleAtString(temp_salesbytendertypes_totalamount) + GlobalMemberValues.getDoubleAtString(onlineDataArr[4]) + GlobalMemberValues.getDoubleAtString(kioskDataArr[4]);
-                String str_addup_temp_salesbytendertypes_totalamount = GlobalMemberValues.getStringFormatNumber(addup_temp_salesbytendertypes_totalamount,"2");
+            if (isEndofdayAdjusted){
+                // 재프린팅
 
-                jsonroot.put("salesbytendertypes_totaltransaction", String.valueOf(addup_temp_salesbytendertypes_totaltransaction));
-                jsonroot.put("salesbytendertypes_totalamount", str_addup_temp_salesbytendertypes_totalamount);
+            } else {
+                // 받아온 부분을 salesbytendertypes_totaltransaction, salesbytendertypes_totalamount 에 추가 적용
+                if (!GlobalMemberValues.isStrEmpty(tempSplitData[0]) && !GlobalMemberValues.isStrEmpty(tempSplitData[5])){
+                    String temp_salesbytendertypes_totaltransaction = jsonroot.getString("salesbytendertypes_totaltransaction");
+                    String temp_salesbytendertypes_totalamount = jsonroot.getString("salesbytendertypes_totalamount");
+                    int addup_temp_salesbytendertypes_totaltransaction = Integer.parseInt(temp_salesbytendertypes_totaltransaction) + Integer.parseInt(onlineDataArr[0]) + Integer.parseInt(kioskDataArr[0]);
+                    Double addup_temp_salesbytendertypes_totalamount = GlobalMemberValues.getDoubleAtString(temp_salesbytendertypes_totalamount) + GlobalMemberValues.getDoubleAtString(onlineDataArr[4]) + GlobalMemberValues.getDoubleAtString(kioskDataArr[4]);
+                    String str_addup_temp_salesbytendertypes_totalamount = GlobalMemberValues.getStringFormatNumber(addup_temp_salesbytendertypes_totalamount,"2");
+
+                    jsonroot.put("salesbytendertypes_totaltransaction", String.valueOf(addup_temp_salesbytendertypes_totaltransaction));
+                    jsonroot.put("salesbytendertypes_totalamount", str_addup_temp_salesbytendertypes_totalamount);
+                }
             }
 
         } else {

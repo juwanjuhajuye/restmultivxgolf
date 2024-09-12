@@ -105,56 +105,64 @@
             android:paddingLeft="10dp"
             android:layout_weight="1" />
 
-        <TextView
-            android:id="@+id/bayreservation_list_button_delete"
-
-            android:layout_margin="5dp"
-            android:background="@drawable/button_selector_red"
-            android:text="DEL"
-            android:textSize="14dp"
-            android:textStyle="bold"
-            android:textColor="#ffffff"
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:layout_weight="0.5"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"/>
-
-        <TextView
-            android:id="@+id/bayreservation_list_button_restore"
-
-            android:visibility="gone"
-            android:layout_margin="5dp"
-            android:background="@drawable/button_selector_gray"
-            android:text="Res"
-            android:textSize="14dp"
-            android:textStyle="bold"
-            android:textColor="#ffffff"
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:layout_weight="0.5"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"/>
-
-        <TextView
-            android:id="@+id/bayreservation_list_button_get_reservation"
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/button_selector_bluebutton"
-            android:gravity="center"
-            android:padding="5dp"
-            android:text="Get Reserv."
-            android:textColor="#ffffff"
-            android:textSize="14dp"
-            android:textStyle="bold" />
+            android:layout_weight="1.5">
+
+            <TextView
+                android:id="@+id/bayreservation_list_button_delete"
+
+                android:layout_margin="5dp"
+                android:background="@drawable/button_selector_red"
+                android:text="DEL"
+                android:textSize="14dp"
+                android:textStyle="bold"
+                android:textColor="#ffffff"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="0.5"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:id="@+id/bayreservation_list_button_restore"
+
+                android:visibility="gone"
+                android:layout_margin="5dp"
+                android:background="@drawable/button_selector_gray"
+                android:text="Restore"
+                android:textSize="14dp"
+                android:textStyle="bold"
+                android:textColor="#ffffff"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:id="@+id/bayreservation_list_button_get_reservation"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_selector_bluebutton"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="Get Reserv."
+                android:textColor="#ffffff"
+                android:textSize="14dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
     </LinearLayout>
 
 </LinearLayout>
