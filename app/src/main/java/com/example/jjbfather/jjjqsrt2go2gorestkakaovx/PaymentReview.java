@@ -87,6 +87,8 @@ public class PaymentReview extends Activity {
     public static boolean b_finishBreak = false;
     static int i_breakTime = 3000;
 
+    static boolean is_user_select_closebtn = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -183,7 +185,10 @@ public class PaymentReview extends Activity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                finishPayment();
+                if (!is_user_select_closebtn){
+                    finishPayment();
+                }
+                is_user_select_closebtn = false;
             }
         }, i_breakTime); //딜레이 타임 조절
         // ----------------------------------------------
@@ -424,6 +429,7 @@ public class PaymentReview extends Activity {
                 public void onClick(View v) {
                     handler.removeCallbacksAndMessages(null);
                     finishPayment();
+                    is_user_select_closebtn = true;
                 }
             });
 
@@ -551,7 +557,7 @@ public class PaymentReview extends Activity {
                     if (closeBtn != null) {
                         closeBtn.setEnabled(false);
                     }
-
+                    is_user_select_closebtn = true;
                     sendEmail();
                     break;
                 }
