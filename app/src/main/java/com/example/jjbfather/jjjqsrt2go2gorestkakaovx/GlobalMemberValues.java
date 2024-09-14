@@ -7082,14 +7082,15 @@ public class GlobalMemberValues {
                                     // 09132024 -----------------------------------------------------------------
                                     // 기존에 주문된 내역이 있는지 확인
                                     int holdOrderCnt = GlobalMemberValues.getIntAtString(MssqlDatabase.getResultSetValueToString(
-                                            " select (*) from temp_salecart where holdcode = '" + holdcode + "'  "
+                                            " select count(*) from temp_salecart where holdcode = '" + holdcode + "'  "
                                     ));
                                     if (holdOrderCnt > 0) {
+
                                         // 기존 json 값을 가져온다
-                                        String jsonstr_j = MssqlDatabase.getResultSetValueToString(
-                                                " select top 1 jsonstr from salon_sales_kitchenprintingdata_json where holdcode = '" + holdcode + "' " +
-                                                        " order by idx desc "
-                                        );
+                                        String sqltemp = " select top 1 jsonstr from salon_sales_kitchenprintingdata_json where salescode = '" + holdcode + "' " +
+                                                " order by idx desc ";
+
+                                        String jsonstr_j = MssqlDatabase.getResultSetValueToString(sqltemp);
                                         if (!GlobalMemberValues.isStrEmpty(jsonstr_j)) {
                                             try {
                                                 JSONObject json_j = new JSONObject(jsonstr_j);
@@ -7098,6 +7099,7 @@ public class GlobalMemberValues {
                                                     String newItemList = str_saleitemlist_j + "-WANHAYE-" + str_saleitemlist;
                                                     json.remove("saleitemlist");
                                                     json.put("saleitemlist", newItemList);
+
 
                                                     jsonstr = json.toString();
                                                 }
