@@ -11762,8 +11762,8 @@ public class GlobalMemberValues {
     }
 
     public static void openTimeMenuSelectPopup() {
-//        if (!GlobalMemberValues.isOpenedTimeMenuPopup) {
-        if (false) {
+        if (!GlobalMemberValues.isOpenedTimeMenuPopup) {
+//        if (false) {
             // 타임메뉴 선택창 오픈
             if (MainActivity.mContext != null) {
                 Intent timeMenuIntent = new Intent(MainActivity.mContext.getApplicationContext(), TimeMenuSet.class);
