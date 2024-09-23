@@ -141,7 +141,7 @@ public class SaleHistoryReturn extends Activity {
     int mIsTotalPointUse = 1;
 
     double mUseTotalCashAmount = 0.0;
-    double mUseTotalCardAmount = 0.0;
+    static double mUseTotalCardAmount = 0.0;
     double mUseTotalGiftCardAmount = 0.0;
     double mUseTotalCheckAmount = 0.0;
     double mUseTotalPointAmount = 0.0;
@@ -970,6 +970,14 @@ public class SaleHistoryReturn extends Activity {
         if (returnChangeAmount < 0.0 || returnChangeAmount < 0) {
             GlobalMemberValues.displayDialog(context, "Waraning", "Tendered amount is not enough", "Close");
             return;
+        }
+
+        if (mUseTotalCardAmount != 0.0){
+            double tempReturnCardAmount = GlobalMemberValues.getDoubleAtString(saleHistoryReturnCardEditText.getText().toString());
+            if (mUseTotalCardAmount != tempReturnCardAmount && tempReturnCardAmount != 0.0){
+                GlobalMemberValues.displayDialog(context, "Waraning", "Card amount is not enough", "Close");
+                return;
+            }
         }
 
         // ------------------------------------------------------------------------------------------------------------------------
