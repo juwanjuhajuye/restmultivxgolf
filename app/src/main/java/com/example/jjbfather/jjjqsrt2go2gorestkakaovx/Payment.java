@@ -1498,7 +1498,11 @@ public class Payment {
 
         //04192024 When order is paid for send POST request to TOrder
         if(GlobalMemberValues.isTOrderUse()){
-            GlobalMemberValues.sendTOrderAPITableClear(GlobalMemberValues.mSelectedTableIdx);
+
+            //GlobalMemberValues.sendTOrderAPITableClear(GlobalMemberValues.mSelectedTableIdx);
+
+            //092252024 use service instead
+            GlobalMemberValues.sendTableClearToTOrderService(MainActivity.mContext, MainActivity.mActivity, "0", "P0402", GlobalMemberValues.mSelectedTableIdx);
         }
 
         MainMiddleService.mHoldCode = "NOHOLDCODE";

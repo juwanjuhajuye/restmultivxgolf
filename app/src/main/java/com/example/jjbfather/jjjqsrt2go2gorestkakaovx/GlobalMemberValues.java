@@ -21230,6 +21230,17 @@ public class GlobalMemberValues {
         paramActivity.startService(tempIntent);
     }
 
+    // 09252024
+    public static void sendTableClearToTOrderService(Context paramContext, Activity paramActivity, String paramDelayTime, String eventCode, String tableid) {
+        Intent tempIntent = new Intent(paramContext.getApplicationContext(), TOrderDataSendService.class);
+        tempIntent.putExtra("delaytime", paramDelayTime);
+        tempIntent.putExtra("eventcode", eventCode);
+        tempIntent.putExtra("tableID", tableid);
+        paramActivity.startService(tempIntent);
+    }
+
+    //09252024
+
     public static boolean checkServerCodeUseYN() {
         boolean returnValue = false;
 
