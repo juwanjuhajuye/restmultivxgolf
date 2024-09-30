@@ -2924,6 +2924,15 @@ public class MainActivity extends Activity {
 
                 case R.id.saveorderButton : {
                     LogsSave.saveLogsInDB(93);
+
+                    // 09302024
+                    if (MainMiddleService.mGeneralArrayList.size() > 0) {
+                        // 09302024
+                        if (GlobalMemberValues.isStrEmpty(MainMiddleService.mHoldCode)) {
+                            MainMiddleService.mHoldCode = MainMiddleService.mGeneralArrayList.get(0).mHoldCode;
+                        }
+                    }
+
                     //SelectGetFoodType.openHereToGoInfoIntent("T");
                     GlobalMemberValues.mIsClickSendToKitchen = true;
                     Payment.openGetFoodTypeIntent("");
@@ -2941,6 +2950,12 @@ public class MainActivity extends Activity {
                     LogsSave.saveLogsInDB(100);
 
                     if (MainMiddleService.mGeneralArrayList.size() > 0) {
+                        // 09302024
+                        if (GlobalMemberValues.isStrEmpty(MainMiddleService.mHoldCode)) {
+                            MainMiddleService.mHoldCode = MainMiddleService.mGeneralArrayList.get(0).mHoldCode;
+                        }
+
+
                         // 07282024 --------------------------------------
                         //SelectGetFoodType.openHereToGoInfoIntent("T");
                         GlobalMemberValues.mIsClickSendToKitchen = true;
