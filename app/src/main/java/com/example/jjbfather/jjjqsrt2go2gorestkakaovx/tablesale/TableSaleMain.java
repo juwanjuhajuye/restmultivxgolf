@@ -83,6 +83,8 @@ public class TableSaleMain extends Activity {
 
     Button btn_table_main_close;
     Button btn_side1,btn_side2,btn_side3,btn_side4,btn_side5,btn_side6,btn_side7,btn_side8,btn_side9,btn_side10, btn_side12;
+    // side button 추가
+    Button btn_side_qr_print, btn_side_qr_on, btn_side_qr_off;
 
     // 08092023
     Button btn_side13;
@@ -446,6 +448,26 @@ public class TableSaleMain extends Activity {
             btn_side12.setVisibility(View.VISIBLE);
         }
 
+        btn_side_qr_print = (Button) findViewById(R.id.table_main_btn_side_qr_print);
+        btn_side_qr_print.setTextSize(f_globalFontSize + btn_side_qr_print.getTextSize() * f_fontsize_forPAX);
+        btn_side_qr_print.setOnClickListener(clickListener);
+        btn_side_qr_on = (Button) findViewById(R.id.table_main_btn_side_qr_on);
+        btn_side_qr_on.setTextSize(f_globalFontSize + btn_side_qr_on.getTextSize() * f_fontsize_forPAX);
+        btn_side_qr_on.setOnClickListener(clickListener);
+        btn_side_qr_off = (Button) findViewById(R.id.table_main_btn_side_qr_off);
+        btn_side_qr_off.setTextSize(f_globalFontSize + btn_side_qr_off.getTextSize() * f_fontsize_forPAX);
+        btn_side_qr_off.setOnClickListener(clickListener);
+
+        if (GlobalMemberValues.isMobileTableOrder()){
+            btn_side_qr_print.setVisibility(View.VISIBLE);
+            btn_side_qr_on.setVisibility(View.VISIBLE);
+            btn_side_qr_off.setVisibility(View.VISIBLE);
+        } else {
+            btn_side_qr_print.setVisibility(View.GONE);
+            btn_side_qr_on.setVisibility(View.GONE);
+            btn_side_qr_off.setVisibility(View.GONE);
+        }
+
         // ------------------------------------------------------------------------------------------
         table_main_btn_side_showup = findViewById(R.id.table_main_btn_side_showup);
         table_main_btn_side_showup.setOnClickListener(clickListener);
@@ -633,7 +655,7 @@ public class TableSaleMain extends Activity {
                         GlobalMemberValues.logWrite("TableSaleMainLog",
                                 "선택한 tableidx : " + GlobalMemberValues.mArrListForTSM.toString() + "\n");
 
-                        setClearTable(GlobalMemberValues.mArrListForTSM);
+                        setClearTable(GlobalMemberValues.mArrListForTSM, false);
                     }
                     break;
                 }
@@ -1060,6 +1082,73 @@ public class TableSaleMain extends Activity {
                     break;
                 }
 
+                case R.id.table_main_btn_side_qr_on:
+
+                    if (mSelectedTablesArrList.size() > 0) {
+                        if ((mActivity != null) && (!mActivity.isFinishing())) {
+
+
+                            if (mSelectedTablesArrList.size() > 1) {
+                                GlobalMemberValues.displayDialog(mContext, "Warning", "Please select only one table", "Close");
+                                setInitValues();
+                                return;
+                            }
+
+                            if (GlobalMemberValues.isChangedQRCodeOrderStatus(mSelectedTablesArrList.get(0), "Y")){
+                                GlobalMemberValues.displayDialog(mContext, "QR Code","Changed QR Code order status to On", "Close");
+                            } else {
+                                GlobalMemberValues.displayDialog(mContext, "QR Code","Failed to change QR Code order status to On", "Close");
+                            }
+                        }
+                    } else {
+                        GlobalMemberValues.displayDialog(mContext, "Warning", "Please select a table", "Close");
+                    }
+
+                    break;
+                case R.id.table_main_btn_side_qr_off:
+
+                    if (mSelectedTablesArrList.size() > 0) {
+                        if ((mActivity != null) && (!mActivity.isFinishing())) {
+
+
+                            if (mSelectedTablesArrList.size() > 1) {
+                                GlobalMemberValues.displayDialog(mContext, "Warning", "Please select only one table", "Close");
+                                setInitValues();
+                                return;
+                            }
+
+                            if (GlobalMemberValues.isChangedQRCodeOrderStatus(mSelectedTablesArrList.get(0), "N")){
+                                GlobalMemberValues.displayDialog(mContext, "QR Code","Changed QR Code order status to Off", "Close");
+                            } else {
+                                GlobalMemberValues.displayDialog(mContext, "QR Code","Failed to change QR Code order status to Off", "Close");
+                            }
+                        }
+                    } else {
+                        GlobalMemberValues.displayDialog(mContext, "Warning", "Please select a table", "Close");
+                    }
+
+                    break;
+                case R.id.table_main_btn_side_qr_print:
+                    if (mSelectedTablesArrList.size() > 0) {
+                        if ((mActivity != null) && (!mActivity.isFinishing())) {
+
+
+                            if (mSelectedTablesArrList.size() > 1) {
+                                GlobalMemberValues.displayDialog(mContext, "Warning", "Please select only one table", "Close");
+                                setInitValues();
+                                return;
+                            }
+
+                            // print!
+                            GlobalMemberValues.printQRCode(mContext,mSelectedTablesArrList.get(0));
+
+                        }
+                    } else {
+                        GlobalMemberValues.displayDialog(mContext, "Warning", "Please select a table", "Close");
+                    }
+
+                    break;
+
 
             }
         }
@@ -1233,7 +1322,7 @@ public class TableSaleMain extends Activity {
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
                                     GlobalMemberValues.logWrite("jjjclearlog", "mSelectedTablesArrList3 : " + paramArr.toString() + "\n");
-                                    setClearTable(paramArr);
+                                    setClearTable(paramArr, true);
                                 }
                             })
                     .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -2507,6 +2596,13 @@ public class TableSaleMain extends Activity {
         } else{
             ListItems.add("Table Split");
         }
+        if (GlobalMemberValues.isMobileTableOrder()){
+            ListItems.add("QR Code Order Printing");
+            ListItems.add("QR Code Order On");
+            ListItems.add("QR Code Order Off");
+        } else {
+
+        }
 //        ListItems.add("Kitchen Print");
 //        ListItems.add("Table Clear");
         ListItems.add("Close");
@@ -2572,6 +2668,24 @@ public class TableSaleMain extends Activity {
 //
 ////                                            setInitValues();
 //                        break;
+                    case "QR Code Order Printing":
+                        //Print
+                        GlobalMemberValues.printQRCode(mContext,touchup_table_idx);
+                        break;
+                    case "QR Code Order On":
+                        if (GlobalMemberValues.isChangedQRCodeOrderStatus(touchup_table_idx, "Y")){
+                            GlobalMemberValues.displayDialog(mContext, "QR Code","Changed QR Code order status to On", "Close");
+                        } else {
+                            GlobalMemberValues.displayDialog(mContext, "QR Code","Failed to change QR Code order status to On", "Close");
+                        }
+                        break;
+                    case "QR Code Order Off" :
+                        if (GlobalMemberValues.isChangedQRCodeOrderStatus(touchup_table_idx, "N")){
+                            GlobalMemberValues.displayDialog(mContext, "QR Code","Changed QR Code order status to Off", "Close");
+                        } else {
+                            GlobalMemberValues.displayDialog(mContext, "QR Code", "Failed to change QR Code order status to Off", "Close");
+                        }
+                        break;
                     case "Close" :
                         setClearSelectedTableIdx(true);
                         break;
@@ -4560,7 +4674,9 @@ public class TableSaleMain extends Activity {
         setClearSelectedTableIdx(true);
     }
 
-    public void setClearTable(ArrayList<String> paramArrList) {
+    //09112024 sendDataToTOrder parameter added to indicate whether method should send data to torder with its execution
+    //Added to prevent making api call twice.
+    public void setClearTable(ArrayList<String> paramArrList, Boolean sendDataToTOrder) {
         GlobalMemberValues.logWrite("jjjclearlog", "tables : " + paramArrList.toString() + "\n");
         if (paramArrList != null && paramArrList.size() > 0) {
             // 테이블 초기화후 주문이 있는 테이블일 경우 취소주방프린팅을 해줄 것인지 여부를 묻는다
@@ -4573,6 +4689,10 @@ public class TableSaleMain extends Activity {
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         kitchenPrintingCanceledMenus(paramArrList);
+                                        //09112024 send table cleared call to TOrder API if torder is in use
+                                        if(GlobalMemberValues.isTOrderUse() && sendDataToTOrder){
+                                            GlobalMemberValues.sendDataToTOrderService(MainActivity.mContext, MainActivity.mActivity, "0");
+                                        }
                                     }
                                 })
                         .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -4580,12 +4700,20 @@ public class TableSaleMain extends Activity {
                                 //
                                 setClearTableExe(paramArrList);
                                 //viewTableSettigns(mSelectedZoneIdx);
+                                //09112024 send table cleared call to TOrder API if torder is in use
+                                if(GlobalMemberValues.isTOrderUse() && sendDataToTOrder){
+                                    GlobalMemberValues.sendDataToTOrderService(MainActivity.mContext, MainActivity.mActivity, "0");
+                                }
                             }
                         })
                         .show();
 
             } else {
                 kitchenPrintingCanceledMenus(paramArrList);
+                //09112024 send table cleared call to TOrder API if torder is in use
+                if(GlobalMemberValues.isTOrderUse() && sendDataToTOrder){
+                    GlobalMemberValues.sendDataToTOrderService(MainActivity.mContext, MainActivity.mActivity, "0");
+                }
             }
 
         }
@@ -4597,13 +4725,6 @@ public class TableSaleMain extends Activity {
 
             // 해당 테이블의 cart 비우기
             setClearCartOfTableByTableidx(tempTableIdx);
-
-            //06032024 send table cleared call to TOrder API if torder is in use
-            if(GlobalMemberValues.isTOrderUse()){
-                //07292024 don't send clear call, send service instead
-                //GlobalMemberValues.sendTOrderAPITableClear(tempTableIdx);
-                GlobalMemberValues.sendDataToTOrderService(MainActivity.mContext, MainActivity.mActivity, "0");
-            }
         }
         // 장바구니 비우기
         MainMiddleService.clearListExe();
@@ -5945,6 +6066,8 @@ public class TableSaleMain extends Activity {
             GlobalMemberValues.SAVEORDELETE = "del";
             GlobalMemberValues.setTableIdxInCloud(mContext, mActivity);
         }
+
+
 
     }
 

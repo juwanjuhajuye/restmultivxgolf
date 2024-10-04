@@ -200,6 +200,34 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                     <Button
+                        android:id="@+id/table_main_btn_side_qr_print"
+                        android:text="QR Code\nPrinting"
+                        android:textColor="#ffffff"
+                        android:textSize="20dp"
+                        android:layout_marginTop="2dp"
+                        android:background="@drawable/table_main_imagebutton_mid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <Button
+                        android:id="@+id/table_main_btn_side_qr_on"
+                        android:text="QR Code\nOrder On"
+                        android:textColor="#ffffff"
+                        android:textSize="20dp"
+                        android:layout_marginTop="2dp"
+                        android:background="@drawable/table_main_imagebutton_mid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <Button
+                        android:id="@+id/table_main_btn_side_qr_off"
+                        android:text="QR Code\nOrder Off"
+                        android:textColor="#ffffff"
+                        android:textSize="20dp"
+                        android:layout_marginTop="2dp"
+                        android:background="@drawable/table_main_imagebutton_mid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <Button
                         android:id="@+id/table_main_btn_side12"
                         android:text="BELL\nSTOP"
                         android:textColor="#ffffff"
@@ -240,13 +268,13 @@
             </ScrollView>
 
 
-<!--            <LinearLayout-->
-<!--                android:id="@+id/table_main_side_view"-->
-<!--                android:layout_alignParentRight="true"-->
-<!--                android:orientation="vertical"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="match_parent">-->
-<!--            </LinearLayout>-->
+            <!--            <LinearLayout-->
+            <!--                android:id="@+id/table_main_side_view"-->
+            <!--                android:layout_alignParentRight="true"-->
+            <!--                android:orientation="vertical"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="match_parent">-->
+            <!--            </LinearLayout>-->
             <LinearLayout
                 android:visibility="gone"
                 android:id="@+id/table_main_btn_side_showup_quick_table_recyclerview_ln"
@@ -268,19 +296,19 @@
                     android:layout_height="match_parent"/>
             </LinearLayout>
 
-<!--            <androidx.recyclerview.widget.RecyclerView-->
-<!--                android:visibility="gone"-->
-<!--                android:layout_toRightOf="@+id/table_main_btn_side_showup_quick_table_recyclerview_ln"-->
-<!--                android:layout_toLeftOf="@+id/table_main_side_scrollview"-->
-<!--                android:id="@+id/table_main_quick_table_recyclerview"-->
-<!--                android:layout_marginBottom="10dp"-->
-<!--                android:scrollbars="horizontal"-->
-<!--                android:background="#dde1ec"-->
-<!--                android:layout_alignParentBottom="true"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content">-->
+            <!--            <androidx.recyclerview.widget.RecyclerView-->
+            <!--                android:visibility="gone"-->
+            <!--                android:layout_toRightOf="@+id/table_main_btn_side_showup_quick_table_recyclerview_ln"-->
+            <!--                android:layout_toLeftOf="@+id/table_main_side_scrollview"-->
+            <!--                android:id="@+id/table_main_quick_table_recyclerview"-->
+            <!--                android:layout_marginBottom="10dp"-->
+            <!--                android:scrollbars="horizontal"-->
+            <!--                android:background="#dde1ec"-->
+            <!--                android:layout_alignParentBottom="true"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content">-->
 
-<!--            </androidx.recyclerview.widget.RecyclerView>-->
+            <!--            </androidx.recyclerview.widget.RecyclerView>-->
 
 
             <RelativeLayout

@@ -1,3 +1,4 @@
+
 package com.example.jjbfather.jjjqsrt2go2gorestkakaovx;
 
 /**
@@ -4814,6 +4815,122 @@ public class GlobalMemberValues {
                 break;
             }
         }
+    }
+
+    public static void printQRCode(Context paramContext, String paramTableidx){
+        GlobalMemberValues.disconnectPrinter();
+
+        // 이곳에서 프린트 연동을 하면된다.
+        // 파라미터 paramJsonroot 가 세일즈 데이터를 가지고 있는 JSON 객체다
+        // paramReceiptPrintType 타입에 따라서 구현하면 된다.
+        if (paramContext == null) {
+            paramContext = MainActivity.mContext;
+        }
+
+        Context context = paramContext;
+        String paramReceiptPrintType = "QRCODE";
+        JSONObject paramJsonroot = null;
+
+        String tempPrinterName = getSavedPrinterName(MainActivity.mContext);
+
+        switch (tempPrinterName) {
+            case "STAR" : {
+                StarPrintStart starPrintStart = new StarPrintStart();
+                starPrintStart.run(paramReceiptPrintType,paramJsonroot);
+                break;
+            }
+            case "PosBank" : {
+                PosBankPrinterStart posBankPrinterStart = new PosBankPrinterStart(paramContext, paramJsonroot, paramReceiptPrintType);
+                posBankPrinterStart.setConnect();
+
+                /**
+                 switch (paramReceiptPrintType) {
+                 case "batchsummary" : {
+                 GlobalMemberValues.logWrite("inconnectmethod", "Batch & Summary 에서 클릭... : " + GlobalMemberValues.NETWORKPRINTERIP + "\n");
+
+                 PrinterReceipt printerReceipt = new PrinterReceipt();
+                 //                      printerReceipt.PrintBatchStarPrint(context,paramJsonroot);
+                 printerReceipt.printBatchPosbank(paramJsonroot);
+                 break;
+                 }
+                 case "payment" : {
+                 GlobalMemberValues.logWrite("inconnectmethod", "결제버튼 클릭... : " + GlobalMemberValues.NETWORKPRINTERIP + "\n");
+
+                 // 이곳에 결제시 프린트를 구현하면 된다....
+                 PrinterReceipt printerReceipt = new PrinterReceipt();
+                 //                      printerReceipt.PrintPaymentStarPrint(context,paramJsonroot);
+                 printerReceipt.printSalesReceiptPosbank(paramJsonroot);
+
+                 break;
+                 }
+                 }
+
+                 **/
+                break;
+            }
+            case "Elo" : {
+                EloPrinterStart.eloPrintSwitch(MainActivity.mContext, paramJsonroot, paramReceiptPrintType);
+
+                break;
+            }
+            case "Clover Station" : {
+                if (paramJsonroot != null) {
+                    GlobalMemberValues.logWrite("cloverprintinglog", "paramJsonroot : " + paramJsonroot.toString() + "\n");
+                }
+                CloverPrinterStart.cloverPrintSwitch(paramContext, paramJsonroot, "station", paramReceiptPrintType);
+                break;
+            }
+            case "Clover Mini" : {
+                CloverPrinterStart.cloverPrintSwitch(paramContext, paramJsonroot, "mini", paramReceiptPrintType);
+                break;
+            }
+            case "PAX" : {
+                // jihun park add TODO
+                if (paramJsonroot != null) {
+                    GlobalMemberValues.logWrite("cloverprintinglog", "paramJsonroot : " + paramJsonroot.toString() + "\n");
+                }
+                PaxPrinterStart.paxPrintSwitch(MainActivity.mContext,paramJsonroot,paramReceiptPrintType);
+                break;
+            }
+            case "Giant-100":{
+                Sam4GiantPrinter giantPrinter = new Sam4GiantPrinter();
+                giantPrinter.connect(MainActivity.mContext, paramJsonroot, paramReceiptPrintType);
+                break;
+            }
+            case "Epson-T88":{
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        boolean b_temp = false;
+                        do {
+                            if (    EpsonReceiptPrint.mPrinter == null &&
+                                    EpsonPrinterKitchen1.mPrinter == null &&
+                                    EpsonPrinterKitchen2.mPrinter == null &&
+                                    EpsonPrinterKitchen3.mPrinter == null &&
+                                    EpsonPrinterKitchen4.mPrinter == null &&
+                                    EpsonPrinterKitchen5.mPrinter == null) {
+                                EpsonReceiptPrint epsonReceiptPrint = new EpsonReceiptPrint(MainActivity.mContext);
+
+                                epsonReceiptPrint.runPrintReceiptSequenceQRCODE(paramTableidx);
+
+                                b_temp = true;
+                            } else {
+                            }
+                            try {
+                                Thread.sleep(2000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        } while (!b_temp);
+                    }
+                }).start();
+
+                break;
+            }
+
+
+        }
+
     }
 
     // API 를 이용해 Cloud 로 App Instance ID 전송 메소드
@@ -20924,7 +21041,7 @@ public class GlobalMemberValues {
 
                             //modifier name
                             if (modifierItem.length > 0) {
-                                modifierName = modifierItem[0];
+                                modifierName = modifierItem[0].trim();
                                 if (modifierItem.length > 1) {
                                     //05162024 check if index 1 contains quantity or price.
                                     //Index 1 is quantity
@@ -20992,29 +21109,24 @@ public class GlobalMemberValues {
 
                     //puts posOrderGoodsObject into posOrderGoodsArray
                     posOrderGoods.put(posOrderGoodObject);
-
-                    //puts posOrderGoods array into posOrderObject
-                    try {
-                        posOrderObject.put("posOrderGoods", posOrderGoods);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
-
-                }
-
-
-                //puts posOrderObject into posOrder
-                posOrders.put(posOrderObject);
-
-                try {
-                    data.put("posOrders", posOrders);
-                } catch (JSONException e) {
-                    e.printStackTrace();
                 }
             }
 
-            GlobalMemberValues.logWrite("TAG", "test");
+            //puts posOrderGoods array into posOrderObject
+            try {
+                posOrderObject.put("posOrderGoods", posOrderGoods);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            //puts posOrderObject into posOrder
+            posOrders.put(posOrderObject);
+
+            try {
+                data.put("posOrders", posOrders);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
         }
         //*****************************
@@ -21286,6 +21398,55 @@ public class GlobalMemberValues {
         GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINBUTTONTOPBUTTON1.setVisibility(View.VISIBLE);
         GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINBUTTONTOPBUTTON2.setVisibility(View.VISIBLE);
         GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINBUTTONTOPBUTTON3.setVisibility(View.VISIBLE);
+    }
+
+
+
+    // 09292024
+    // Mobile Table Order 사용여부
+    public static boolean isMobileTableOrder() {
+        boolean returnValue = false;
+        DatabaseInit dbInit = new DatabaseInit(MainActivity.mContext);   // DatabaseInit 객체 생성
+        String getData = getDBTextAfterChecked(dbInit.dbExecuteReadReturnString(
+                "select mobiletableorderyn from salon_storegeneral"), 1);
+        if (getData == "Y" || getData.equals("Y")) {
+            returnValue = true;
+        }
+        return returnValue;
+    }
+
+    // 09302024
+    // QR Code Order Status 변경
+    public static boolean isChangedQRCodeOrderStatus(String paramTableIdx, String paramStatus) {
+        boolean returnValue = false;
+
+        if (GlobalMemberValues.isStrEmpty(paramTableIdx)) {
+            returnValue = false;
+        } else {
+            String tableIdx = GlobalMemberValues.getReplaceText(paramTableIdx, "T", "");
+            if (GlobalMemberValues.isStrEmpty(paramStatus)) {
+                paramStatus = "N";
+            }
+
+            String returnApiValue = "";
+            String upCloudDatas = "tableidx=" + tableIdx + "&status=" + paramStatus;
+            API_tableqrcodesetstatus_tocloud apiIns = new API_tableqrcodesetstatus_tocloud(upCloudDatas);
+            apiIns.execute(null, null, null);
+            try {
+                Thread.sleep(2000);
+                if (apiIns.mFlag) {
+                    returnApiValue = apiIns.mApiReturnCode;
+                }
+            } catch (InterruptedException e) {
+                //GlobalMemberValues.logWrite("APIDownLoadClass", "Thread Error : " + e.getMessage());
+                returnValue = false;
+            }
+
+            if (returnApiValue.equals("00")) {
+                returnValue = true;
+            }
+        }
+        return returnValue;
     }
 
 }

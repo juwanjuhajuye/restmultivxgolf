@@ -493,6 +493,9 @@ public class SqlStatements_mssql {
                     "torderpartnerid nvarchar(200) DEFAULT '', " +
                     "torderapiurl nvarchar(1000) DEFAULT '', " +
 
+                    // 09292024
+                    "mobiletableorderyn nvarchar(2) DEFAULT 'N', " +
+
                     // 04302024
                     "qsronrestaurantyn nvarchar(2) DEFAULT 'N' " +
 
@@ -3811,6 +3814,8 @@ public class SqlStatements_mssql {
                     ")";
 
 
+
+
     // 08162024
     // 테이블 salon_storebreaktime 생성쿼리
     public static final String SQL_CREATE_SALONSTOREBREAKTIME =
@@ -3830,6 +3835,8 @@ public class SqlStatements_mssql {
                     "sortnum smallint, " +
                     "wdate datetime DEFAULT getdate() "+
                     ")";
+
+
 
 
 /******************************************************************************************/

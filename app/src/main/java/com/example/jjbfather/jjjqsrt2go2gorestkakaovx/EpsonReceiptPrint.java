@@ -16,6 +16,7 @@ import com.epson.epos2.printer.Printer;
 import com.epson.epos2.printer.PrinterStatusInfo;
 import com.epson.epos2.printer.ReceiveListener;
 import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.R;
+import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.tablesale.TableQRCodeMakingViewInPrinting;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -217,6 +218,25 @@ public class EpsonReceiptPrint implements ReceiveListener {
             }
 
         }
+
+        return true;
+    }
+
+    public boolean runPrintReceiptSequenceQRCODE(String paramTableidx) {
+        if (!initializeObject()) {
+            return false;
+        }
+
+        if (!printQRCode(paramTableidx)){
+            finalizeObject();
+            return false;
+        }
+
+        if (!printData()) {
+            finalizeObject();
+//            return false;
+        }
+
 
         return true;
     }
@@ -787,6 +807,53 @@ public class EpsonReceiptPrint implements ReceiveListener {
         return createReceiptData(data,"tablemain_checkprint","","tablemain_checkprint");
     }
 
+    public boolean printQRCode(String paramTableidx){
+        String method = "";
+        LinearLayout getPrintingLn = null;
+
+        getPrintingLn = TableQRCodeMakingViewInPrinting.makingLinearLayoutForTableQRCode(paramTableidx);
+
+        if (getPrintingLn != null) {
+            int px = 510;//(int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, GlobalMemberValues.PRINTINGPAPERSIZE_ONCLOVER, MainActivity.mContext.getResources().getDisplayMetrics());
+            View emptyView = new View(MainActivity.mContext);
+            emptyView.setLayoutParams(new LinearLayout.LayoutParams(px, LinearLayout.LayoutParams.MATCH_PARENT));
+            getPrintingLn.addView(emptyView);
+
+            //setTextView(v);
+            getPrintingLn.setDrawingCacheEnabled(true);
+            getPrintingLn.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+            getPrintingLn.layout(0, 0, getPrintingLn.getMeasuredWidth(), getPrintingLn.getMeasuredHeight());
+
+            Bitmap bitMap = Bitmap.createBitmap(px, getPrintingLn.getHeight(), Bitmap.Config.ARGB_8888);
+            Canvas canvas = new Canvas(bitMap);
+            canvas.drawColor(Color.WHITE);
+            getPrintingLn.draw(canvas);
+
+            getPrintingLn.setDrawingCacheEnabled(false);
+            if (mPrinter == null) {
+                return false;
+            }
+            try {
+                method = "addImage";
+                mPrinter.addImage(bitMap, 0, 0,
+                        bitMap.getWidth(),
+                        bitMap.getHeight(),
+                        Printer.COLOR_1,
+                        Printer.MODE_MONO,
+                        Printer.HALFTONE_DITHER,
+                        Printer.PARAM_DEFAULT,
+                        Printer.COMPRESS_AUTO);
+                mPrinter.addCut(Printer.CUT_FEED);
+            } catch (Exception e){
+                EpsonPrinterShowMsg.showException(e, method, mContext);
+                return false;
+            }
+        } else {
+            return false;
+        }
+        return true;
+
+    }
 
     public void printToKitchen(){
 //        if (GlobalMemberValues.mReReceiptprintYN == "Y" || GlobalMemberValues.mReReceiptprintYN.equals("Y")) {

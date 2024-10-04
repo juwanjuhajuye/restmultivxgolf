@@ -1114,6 +1114,13 @@ public class MssqlAlterTables {
         altTableName = "salon_storebreaktime";
         alterDatabaseTableColumn(altTableName, "payyn", "nvarchar(2)", "DEFAULT 'Y'");
 
+
+        // 09292024
+        // salon_storegeneral 테이블 컬럼 추가
+        // 9.29.2024, mobiletableorderyn 컬럼 추가
+        altTableName = "salon_storegeneral";
+        alterDatabaseTableColumn(altTableName, "mobiletableorderyn", "nvarchar(2)", "DEFAULT 'N'");
+
     }
 
     public static void alterTableColumnType() {

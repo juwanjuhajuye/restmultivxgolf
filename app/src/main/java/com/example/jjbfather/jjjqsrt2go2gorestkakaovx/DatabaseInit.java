@@ -3894,6 +3894,8 @@ public class DatabaseInit {
         }
         // 08072024 -------------------------------------------------------------------
 
+
+
         // 08222024
         // salon_storebreaktime 테이블 컬럼 추가
         // 08.22.2024, payyn 컬럼 추가
@@ -3902,6 +3904,18 @@ public class DatabaseInit {
             alterDatabaseTableColumn(altTableName, "payyn", "nvarchar(2)", "DEFAULT 'Y'", 0);
         }
         // 08222024 -------------------------------------------------------------------
+
+
+
+        // 09292024
+        // salon_storegeneral 테이블 컬럼 추가
+        // 9.29.2024, mobiletableorderyn 컬럼 추가
+        altTableName = "salon_storegeneral";
+        if (checkTable(altTableName) > 0) {
+            alterDatabaseTableColumn(altTableName, "mobiletableorderyn", "nvarchar(2)", "DEFAULT 'N'", 0);
+        }
+
+
 
 
         /****************************************************************************/
@@ -4489,3 +4503,4 @@ public class DatabaseInit {
      tvTableNames.setText(tvTableNamesTextBuilder);
      */
 }
+
