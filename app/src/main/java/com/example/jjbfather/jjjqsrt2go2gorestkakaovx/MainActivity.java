@@ -4208,7 +4208,13 @@ MainMiddleService.setEmptyInSaleCart(false);
         String tempMobileHost = "yukdaejangm";
         String tempCloudHost = "yukdaejangcloud";
 
-        tempSqlQuery = "select mssqldbip, databasename, databasepass, mobilehost, cloudhost from salon_storestationsettings_system";
+        // 10082024
+        String tempDBCodeName = "";
+
+        tempSqlQuery = "select mssqldbip, databasename, databasepass, mobilehost, cloudhost, " +
+                // 10082024
+                " dbcodename " +
+                " from salon_storestationsettings_system";
         Cursor settingsSystemCursor = MainActivity.mDbInit.dbExecuteRead(tempSqlQuery);
         if (settingsSystemCursor.getCount() > 0 && settingsSystemCursor.moveToFirst()) {
             tempIp = GlobalMemberValues.getDBTextAfterChecked(settingsSystemCursor.getString(0), 1);
@@ -4216,6 +4222,9 @@ MainMiddleService.setEmptyInSaleCart(false);
             tempDbPass = GlobalMemberValues.getDBTextAfterChecked(settingsSystemCursor.getString(2), 1);
             tempMobileHost = GlobalMemberValues.getDBTextAfterChecked(settingsSystemCursor.getString(3), 1);
             tempCloudHost = GlobalMemberValues.getDBTextAfterChecked(settingsSystemCursor.getString(4), 1);
+
+            // 10082024
+            tempDBCodeName = GlobalMemberValues.getDBTextAfterChecked(settingsSystemCursor.getString(5), 1);
 
             if (GlobalMemberValues.isStrEmpty(tempIp)) {
                 tempIp = "0.0.0.0";
@@ -4232,13 +4241,21 @@ MainMiddleService.setEmptyInSaleCart(false);
             if (GlobalMemberValues.isStrEmpty(tempCloudHost)) {
                 tempCloudHost = "yukdaejangcloud";
             }
+
+            // 10082024
+            if (GlobalMemberValues.isStrEmpty(tempDBCodeName)) {
+                tempDBCodeName = "";
+            }
         }
         GlobalMemberValues.mssql_ip = tempIp;
         GlobalMemberValues.mssql_db = tempDbName;
         GlobalMemberValues.mssql_pw = tempDbPass;
         GlobalMemberValues.MOBILE_HOST = tempMobileHost;
-
         GlobalMemberValues.CLOUD_HOST = tempCloudHost;
+
+        // 10082024
+        GlobalMemberValues.M_DBCODENAME = tempDBCodeName;
+
         GlobalMemberValues.setCloudAddr();
         // -----------------------------------------------------------------------------------------------------------------------------
 

@@ -220,9 +220,9 @@ public class SendDataToTOrderEvent extends AsyncTask {
 
                 JSONObject table = new JSONObject();
                 try {
-                    table.put("id", "nz_tb_" + idx);
+                    table.put("id", GlobalMemberValues.M_DBCODENAME + "tb_" + idx);
                     table.put("name", tablename);
-                    table.put("floorCode", "nz_tz_" + zoneidx);
+                    table.put("floorCode", GlobalMemberValues.M_DBCODENAME + "tz_" + zoneidx);
                     table.put("updatedTime", mdate);
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -307,7 +307,7 @@ public class SendDataToTOrderEvent extends AsyncTask {
 
                 JSONObject relationsGoodObject = new JSONObject();
                 try {
-                    relationsGoodObject.put("goodId", "nz_mn_" + menuidx);
+                    relationsGoodObject.put("goodId", GlobalMemberValues.M_DBCODENAME + "mn_" + menuidx);
                     relationsGoodObject.put("sort", positionNo);
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
@@ -319,7 +319,7 @@ public class SendDataToTOrderEvent extends AsyncTask {
             JSONObject goodGroup = new JSONObject();
 
             try {
-                goodGroup.put("id", "nz_ct_" + idx);
+                goodGroup.put("id", GlobalMemberValues.M_DBCODENAME + "ct_" + idx);
                 goodGroup.put("name", servicename);
 
                 //due to how menu is strctured, no category should have an 'upper' category, thus leave relationsGoodGroup should be empty
@@ -399,7 +399,7 @@ public class SendDataToTOrderEvent extends AsyncTask {
             JSONObject good = new JSONObject();
 
             try {
-                good.put("id", "nz_mn_" + idx);
+                good.put("id", GlobalMemberValues.M_DBCODENAME + "mn_" + idx);
                 good.put("type", "1");
                 good.put("name", servicename + " " + servicename2);
                 good.put("price", serviceprice);
@@ -448,7 +448,7 @@ public class SendDataToTOrderEvent extends AsyncTask {
 
             JSONObject path = new JSONObject();
             try {
-                path.put("path", "nz_mn_" + svcidx + "/" + "nz_mi_" + idx);
+                path.put("path", GlobalMemberValues.M_DBCODENAME + "mn_" + svcidx + "/" + GlobalMemberValues.M_DBCODENAME + "mi_" + idx);
             } catch (JSONException e) {
                 throw new RuntimeException(e);
             }
@@ -456,7 +456,7 @@ public class SendDataToTOrderEvent extends AsyncTask {
             relations.put(path);
 
             try {
-                good.put("id", "nz_mi_" + idx);
+                good.put("id", GlobalMemberValues.M_DBCODENAME + "mi_" + idx);
                 good.put("type", "2");
                 good.put("name", itemname);
                 good.put("price", itemprice);

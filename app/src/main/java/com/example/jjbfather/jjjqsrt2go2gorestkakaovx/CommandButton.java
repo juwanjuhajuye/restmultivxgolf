@@ -377,9 +377,9 @@ public class CommandButton {
 
         // commandButton_togo_table
         commandButton_togo_table = (Button) GlobalMemberValues.GLOBAL_LAYOUTMEMBER_FRAMELAYOUT_COMMANDBUTTON.findViewWithTag("commandButton_togo_table_Tag");
-        commandButton_togo_table.setTextSize(GlobalMemberValues.globalAddFontSize() +
-                commandButton_togo_table.getTextSize() * GlobalMemberValues.getGlobalFontSize() + GlobalMemberValues.globalAddFontSizeForPAX()
-        );
+//        commandButton_togo_table.setTextSize(GlobalMemberValues.globalAddFontSize() +
+//                commandButton_togo_table.getTextSize() * GlobalMemberValues.getGlobalFontSize() + GlobalMemberValues.globalAddFontSizeForPAX()
+//        );
 
         //cashinoutCommandButton = (Button)GlobalMemberValues.GLOBAL_LAYOUTMEMBER_FRAMELAYOUT_COMMANDBUTTON.findViewWithTag("cashinoutCommandButtonTag");
         //backOfficeMainCommandButton = (Button)GlobalMemberValues.GLOBAL_LAYOUTMEMBER_FRAMELAYOUT_COMMANDBUTTON.findViewWithTag("backOfficeMainCommandButtonTag");
