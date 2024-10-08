@@ -20557,14 +20557,14 @@ public class GlobalMemberValues {
         String tempStoreCode = GlobalMemberValues.STORE_INDEX;
 
         if (!GlobalMemberValues.isStrEmpty(tempStoreCode)) {
-            int lenStoreCode = tempStoreCode.length();
-            if (lenStoreCode < 5) {
-                String varStr = "";
-                for (int i = 0; i < (5 - lenStoreCode); i++) {
-                    varStr += "0";
-                }
-                tempStoreCode = varStr + tempStoreCode;
-            }
+//            int lenStoreCode = tempStoreCode.length();
+//            if (lenStoreCode < 5) {
+//                String varStr = "";
+//                for (int i = 0; i < (5 - lenStoreCode); i++) {
+//                    varStr += "0";
+//                }
+//                tempStoreCode = varStr + tempStoreCode;
+//            }
 
             returnValue = GlobalMemberValues.M_DBCODENAME + "st_" + tempStoreCode;
         }
