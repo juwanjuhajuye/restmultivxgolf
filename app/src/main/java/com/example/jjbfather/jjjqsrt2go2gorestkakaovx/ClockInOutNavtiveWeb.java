@@ -211,13 +211,13 @@ public class ClockInOutNavtiveWeb extends Activity {
         /***********************************************************************************************************/
 
         titleTv1 = (TextView)findViewById(R.id.titleTv1);
-        titleTv1.setTextSize(titleTv1.getTextSize() * GlobalMemberValues.getGlobalFontSize());
+//        titleTv1.setTextSize(titleTv1.getTextSize() * GlobalMemberValues.getGlobalFontSize());
 
         titleTv2 = (TextView)findViewById(R.id.titleTv2);
-        titleTv2.setTextSize(titleTv2.getTextSize() * GlobalMemberValues.getGlobalFontSize());
+//        titleTv2.setTextSize(titleTv2.getTextSize() * GlobalMemberValues.getGlobalFontSize());
 
         titleTv3 = (TextView)findViewById(R.id.titleTv3);
-        titleTv3.setTextSize(titleTv3.getTextSize() * GlobalMemberValues.getGlobalFontSize());
+//        titleTv3.setTextSize(titleTv3.getTextSize() * GlobalMemberValues.getGlobalFontSize());
 
         titleTv4 = (TextView)findViewById(R.id.titleTv4);
         titleTv4.setTextSize(titleTv4.getTextSize() * GlobalMemberValues.getGlobalFontSize());

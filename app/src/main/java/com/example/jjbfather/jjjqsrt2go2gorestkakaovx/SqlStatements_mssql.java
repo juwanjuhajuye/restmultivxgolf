@@ -1773,7 +1773,9 @@ public class SqlStatements_mssql {
 
                     // 04192024
                     // 온라인 주문 개선관련
-                    "pushpopupopenyn nvarchar(2) DEFAULT 'N'" +                   // push popup 창 오픈 여부
+                    "pushpopupopenyn nvarchar(2) DEFAULT 'N', " +                   // push popup 창 오픈 여부
+
+                    "dbcodename nvarchar(50) DEFAULT ''" +                   // dbcodename
 
                     ")";
 

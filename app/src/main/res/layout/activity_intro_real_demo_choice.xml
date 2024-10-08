@@ -75,6 +75,7 @@
                 android:orientation="vertical">
 
                 <LinearLayout
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="0.2"
@@ -409,6 +410,37 @@
                                 android:padding="7dp"
                                 android:orientation="horizontal">
                                 <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center_vertical|right"
+                                    android:paddingRight="10dp"
+                                    android:textSize="20dp"
+                                    android:textColor="#232531"
+                                    android:text="DB CODE NAME" />
+                                <TextView
+                                    android:id="@+id/introRealDemoDbCodeNameEditText"
+                                    android:tag="introRealDemoDbCodeNameEditTextTag"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2"
+                                    android:background="@drawable/roundlayout_intro_edittext2"
+                                    android:gravity="center"
+                                    android:paddingLeft="10dp"
+                                    android:paddingRight="10dp"
+                                    android:text=""
+                                    android:textSize="20dp"
+                                    android:textStyle="bold"
+                                    android:textColor="#232531"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:padding="7dp"
+                                android:orientation="horizontal">
+                                <TextView
                                     android:id="@+id/introRealDemoTitleTextView4"
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
@@ -503,23 +535,23 @@
                                         android:textColor="#ffffff"
                                         android:text="APPROVED REQUEST" />
 
-<!--                                    <TextView-->
-<!--                                        android:layout_width="0dp"-->
-<!--                                        android:layout_height="match_parent"-->
-<!--                                        android:layout_weight="0.1"/>-->
+                                    <!--                                    <TextView-->
+                                    <!--                                        android:layout_width="0dp"-->
+                                    <!--                                        android:layout_height="match_parent"-->
+                                    <!--                                        android:layout_weight="0.1"/>-->
 
-<!--                                    <Button-->
-<!--                                        android:id="@+id/introRealDemoDemoTestButton"-->
-<!--                                        android:tag="introRealDemoDemoTestButtonTag"-->
-<!--                                        android:layout_width="0dp"-->
-<!--                                        android:layout_height="match_parent"-->
-<!--                                        android:layout_weight="1"-->
-<!--                                        android:paddingLeft="10dp"-->
-<!--                                        android:paddingRight="10dp"-->
-<!--                                        android:background="@drawable/button_selector_intro_newaccount"-->
-<!--                                        android:textSize="15dp"-->
-<!--                                        android:textColor="#ffffff"-->
-<!--                                        android:text="Demo Test Version" />-->
+                                    <!--                                    <Button-->
+                                    <!--                                        android:id="@+id/introRealDemoDemoTestButton"-->
+                                    <!--                                        android:tag="introRealDemoDemoTestButtonTag"-->
+                                    <!--                                        android:layout_width="0dp"-->
+                                    <!--                                        android:layout_height="match_parent"-->
+                                    <!--                                        android:layout_weight="1"-->
+                                    <!--                                        android:paddingLeft="10dp"-->
+                                    <!--                                        android:paddingRight="10dp"-->
+                                    <!--                                        android:background="@drawable/button_selector_intro_newaccount"-->
+                                    <!--                                        android:textSize="15dp"-->
+                                    <!--                                        android:textColor="#ffffff"-->
+                                    <!--                                        android:text="Demo Test Version" />-->
 
                                 </LinearLayout>
                             </LinearLayout>
@@ -544,14 +576,14 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="0.8"
+                    android:layout_weight="0.5"
                     android:paddingLeft="20dp"
                     android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_weight="1"
+                        android:layout_weight="0"
                         android:orientation="vertical">
                     </LinearLayout>
                     <LinearLayout

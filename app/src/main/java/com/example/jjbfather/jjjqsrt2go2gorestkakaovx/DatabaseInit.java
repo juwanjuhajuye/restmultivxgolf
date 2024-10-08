@@ -3915,6 +3915,13 @@ public class DatabaseInit {
             alterDatabaseTableColumn(altTableName, "mobiletableorderyn", "nvarchar(2)", "DEFAULT 'N'", 0);
         }
 
+        // 10082024
+        // salon_storestationsettings_system 테이블 컬럼 추가
+        // 10.08.2024, dbcodename 컬럼 추가
+        altTableName = "salon_storestationsettings_system";
+        if (checkTable(altTableName) > 0) {
+            alterDatabaseTableColumn(altTableName, "dbcodename", "nvarchar(50)", "DEFAULT ''", 0);
+        }
 
 
 

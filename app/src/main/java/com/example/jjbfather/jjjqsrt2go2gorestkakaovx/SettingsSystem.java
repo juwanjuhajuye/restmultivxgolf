@@ -190,6 +190,9 @@ public class SettingsSystem extends Activity {
     private TextView settingsSystemTitleTextView85;
     private TextView settingsSystemTitleTextView89, settingsSystemTitleTextView90;
 
+    private TextView settingsSystemTitleTextView_dbcodename;
+    private EditText dbcodename_setting_edtext;
+
     // 10272023
     private TextView settingsSystemTitleTextView91;
 
@@ -444,6 +447,8 @@ public class SettingsSystem extends Activity {
 
         String vStartpagernum = "";
 
+        String vDbCodeName = "";
+
         String strQuery = "select splashuse, inreverse, cloudurl, downloaddata, databasebackup, clockinouttype, " +
                 " gmailId, gmailPwd, departmentviewyn, mileagesyncinselectcustomer, showcostafterdcextra, cardislast, pointpaysavepointyn, timemenuautoreload, pushtype, devicekind, " +
                 " picktype_here, picktype_togo, picktype_delivery, customerinfoshow, customerselectreceipt, " +
@@ -463,7 +468,9 @@ public class SettingsSystem extends Activity {
                 // 01172024
                 " tableorderuseyn, " +
 
-                " pushpopupopenyn " +
+                " pushpopupopenyn, " +
+
+                " dbcodename " +
 
                 " from salon_storestationsettings_system ";
         Cursor settingsSystemCursor = dbInit.dbExecuteRead(strQuery);
@@ -570,6 +577,8 @@ public class SettingsSystem extends Activity {
             String tempTableorderuseyn = GlobalMemberValues.getDBTextAfterChecked(settingsSystemCursor.getString(87), 1);
 
             String tempPushpopupopenyn = GlobalMemberValues.getDBTextAfterChecked(settingsSystemCursor.getString(88), 1);
+
+            String tempDbCodeName = GlobalMemberValues.getDBTextAfterChecked(settingsSystemCursor.getString(89), 1);
 
             GlobalMemberValues.logWrite("settingslog", "tempReceipttypeonnoselect : " + tempReceipttypeonnoselect + "\n");
 
@@ -1053,6 +1062,12 @@ public class SettingsSystem extends Activity {
                 vPushpopupopenyn = tempPushpopupopenyn;
             } else {
                 vPushpopupopenyn = "N";
+            }
+
+            if (!GlobalMemberValues.isStrEmpty(tempDbCodeName)){
+                vDbCodeName = tempDbCodeName;
+            } else {
+                vDbCodeName = "";
             }
 
 
@@ -1709,6 +1724,11 @@ public class SettingsSystem extends Activity {
         pagernumofdigitsEditText.setText(vPagernumofdigits);
         pagernumofdigitsEditText.setTextSize(pagernumofdigitsEditText.getTextSize() * GlobalMemberValues.getGlobalFontSize());
 
+        //
+        dbcodename_setting_edtext = (EditText)findViewById(R.id.dbcodename_setting_edtext);
+        dbcodename_setting_edtext.setText(vDbCodeName);
+        dbcodename_setting_edtext.setTextSize(dbcodename_setting_edtext.getTextSize() * GlobalMemberValues.getGlobalFontSize());
+
 
 
         // Forward / Reverse -------------------------------------------------------------------------------------------------
@@ -2187,6 +2207,8 @@ public class SettingsSystem extends Activity {
         settingsSystemTitleTextView90 = (TextView)findViewById(R.id.settingsSystemTitleTextView90);
         settingsSystemTitleTextView90.setTextSize(settingsSystemTitleTextView90.getTextSize() * GlobalMemberValues.getGlobalFontSize());
 
+        settingsSystemTitleTextView_dbcodename = (TextView)findViewById(R.id.settingsSystemTitleTextView_dbcodename);
+        settingsSystemTitleTextView_dbcodename.setTextSize(settingsSystemTitleTextView_dbcodename.getTextSize() * GlobalMemberValues.getGlobalFontSize());
 
         // 10272023
         settingsSystemTitleTextView91 = (TextView)findViewById(R.id.settingsSystemTitleTextView91);
@@ -2615,6 +2637,8 @@ public class SettingsSystem extends Activity {
         String insCustomer_info_togo = "N";
         String insCustomer_info_delivery = "N";
 
+        String insDbCodeName = "";
+
         /**
          if (inReverseSwitch.isChecked()) {
          insInReverse = 1;
@@ -2673,6 +2697,11 @@ public class SettingsSystem extends Activity {
             if (GlobalMemberValues.getIntAtString(insPagernumofdigits) > 4) {
                 insPagernumofdigits = "4";
             }
+        }
+
+        insDbCodeName = dbcodename_setting_edtext.getText().toString();
+        if (GlobalMemberValues.isStrEmpty(insDbCodeName)){
+            insDbCodeName = "";
         }
 
 
@@ -3212,6 +3241,8 @@ public class SettingsSystem extends Activity {
 
                 " pushpopupopenyn = '" + insPushpopupopenyn + "', " +
 
+                " dbcodename = '" + insDbCodeName + "', " +
+
                 " mdate = datetime('now') ";
 
         strUpdateQueryVec.addElement(updStrQuery);
@@ -3247,6 +3278,8 @@ public class SettingsSystem extends Activity {
             GlobalMemberValues.ITEMADDANIMATIONYN = insItemanimationyn;
 
             GlobalMemberValues.mPasswordYN_inMod = insPasswordyninmod;
+
+            GlobalMemberValues.M_DBCODENAME = insDbCodeName;
 
             /**
              if (insCloudUrl.toLowerCase().indexOf("http://") == -1) {

@@ -470,7 +470,7 @@ public class MainActivity extends Activity {
 
         Quick_LeftAnim = AnimationUtils.loadAnimation(this, R.anim.act_out_left);
         Quick_RightAnim = AnimationUtils.loadAnimation(this, R.anim.act_in_right);
-        MainActivity.SlidingTogoViewAnimationListener slidingTogoViewAnimationListener = new MainActivity.SlidingTogoViewAnimationListener();
+        SlidingTogoViewAnimationListener slidingTogoViewAnimationListener = new SlidingTogoViewAnimationListener();
         Quick_LeftAnim.setAnimationListener(slidingTogoViewAnimationListener);
         Quick_RightAnim.setAnimationListener(slidingTogoViewAnimationListener);
         quick_table_grid_list = (RecyclerView)findViewById(R.id.main_quick_table_gridview);
@@ -5210,7 +5210,7 @@ MainMiddleService.setEmptyInSaleCart(false);
                 GlobalMemberValues.s_str_tableinfo = tableinfo;
                 // 저장된 테이블이 있을 경우에만..
                 if (tableinfo != null && tableinfo.length > 0) {
-                    MainActivity.QuickViewHolder temp_quickTable_gridListAdapter = new MainActivity.QuickViewHolder(MainActivity.mContext, tableinfo);
+                    QuickViewHolder temp_quickTable_gridListAdapter = new QuickViewHolder(MainActivity.mContext, tableinfo);
                     quick_table_grid_list.setLayoutManager(new GridLayoutManager(MainActivity.mContext, 3));
                     RecyclerView.ItemAnimator animator = quick_table_grid_list.getItemAnimator();
                     if (animator instanceof SimpleItemAnimator) {
@@ -5308,7 +5308,7 @@ MainMiddleService.setEmptyInSaleCart(false);
         // -----------------------------------------------------------------------------------------------------
     }
 
-    public class QuickViewHolder extends RecyclerView.Adapter<MainActivity.QuickViewHolder.ViewHolder> {
+    public class QuickViewHolder extends RecyclerView.Adapter<QuickViewHolder.ViewHolder> {
 
         boolean is_last_in_order = false;
         boolean b = false;
@@ -5324,18 +5324,18 @@ MainMiddleService.setEmptyInSaleCart(false);
 
         // Inflates the cell layout from xml when needed
         @Override
-        public MainActivity.QuickViewHolder.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View view = mInflater.inflate(R.layout.quick_table_grid_row, parent, false);
             //            View view = LayoutInflater.from(context)
 //                    .inflate(R.layout.quick_table_grid_row, parent, false);
             view.setLayoutParams(new GridView.LayoutParams(GridView.AUTO_FIT, 120));
-            MainActivity.QuickViewHolder.ViewHolder viewHolder = new MainActivity.QuickViewHolder.ViewHolder(view);
+            ViewHolder viewHolder = new ViewHolder(view);
             return viewHolder;
         }
 
         // Binds the data to the textview in each cell
         @Override
-        public void onBindViewHolder(MainActivity.QuickViewHolder.ViewHolder holder, int position) {
+        public void onBindViewHolder(ViewHolder holder, int position) {
 
 
 

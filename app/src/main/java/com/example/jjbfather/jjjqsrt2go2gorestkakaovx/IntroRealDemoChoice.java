@@ -49,7 +49,7 @@ public class IntroRealDemoChoice extends Activity {
 
     LinearLayout introRealDemoQuitButtonLinearyLayout;
     TextView introRealDemoTitleTextView1, introRealDemoTitleTextView2, introRealDemoTitleTextView3, introRealDemoTitleTextView4;
-    TextView introRealDemoDatabaseNameEditText,introRealDemoDbPasswordEditText,introRealDemoMobileHostEditText,introRealDemoCloudHostEditText;
+    TextView introRealDemoDatabaseNameEditText,introRealDemoDbPasswordEditText,introRealDemoMobileHostEditText,introRealDemoCloudHostEditText, introRealDemoDbCodeNameEditText;
 
     public ProgressDialog stationCheckProDial;
 
@@ -106,7 +106,8 @@ public class IntroRealDemoChoice extends Activity {
         String tempDatabasePass = "";
         String tempMobileHost = "";
         String tempCloudHost = "";
-        String strQuery = "select mssqldbip, databasename, databasepass, mobilehost, cloudhost " +
+        String tempDbCodeName = "";
+        String strQuery = "select mssqldbip, databasename, databasepass, mobilehost, cloudhost, dbcodename " +
                 " from salon_storestationsettings_system ";
         Cursor settingsSystemCursor = dbInit.dbExecuteRead(strQuery);
         if (settingsSystemCursor.getCount() > 0 && settingsSystemCursor.moveToFirst()) {
@@ -120,6 +121,8 @@ public class IntroRealDemoChoice extends Activity {
             tempMobileHost = GlobalMemberValues.getDBTextAfterChecked(settingsSystemCursor.getString(3), 1);
 
             tempCloudHost = GlobalMemberValues.getDBTextAfterChecked(settingsSystemCursor.getString(4), 1);
+
+            tempDbCodeName = GlobalMemberValues.getDBTextAfterChecked(settingsSystemCursor.getString(5), 1);
 
         } // get ip
 
@@ -146,6 +149,16 @@ public class IntroRealDemoChoice extends Activity {
             introRealDemoCloudHostEditText.setText(GlobalMemberValues.CLOUD_HOST);
             GlobalMemberValues.setCloudAddr();
         }
+
+
+        if (!GlobalMemberValues.isStrEmpty(tempDbCodeName)) {
+            GlobalMemberValues.M_DBCODENAME = tempDbCodeName;
+            introRealDemoDbCodeNameEditText.setText(GlobalMemberValues.M_DBCODENAME);
+            GlobalMemberValues.setCloudAddr();
+        }
+
+
+
 
         popupIpInput = new PopupIpInput(this, new View.OnClickListener() {
             @Override
@@ -186,6 +199,14 @@ public class IntroRealDemoChoice extends Activity {
                     introRealDemoCloudHostEditText.setText(popupIpInput.popup_cloudhost_edtxt.getText().toString().trim());
                 }
                 GlobalMemberValues.CLOUD_HOST = introRealDemoCloudHostEditText.getText().toString();
+
+                if (popupIpInput.popup_dbcodename_edtxt.getText().toString().trim().isEmpty()){
+                    introRealDemoDbCodeNameEditText.setText(GlobalMemberValues.CLOUD_HOST);
+                } else {
+                    introRealDemoDbCodeNameEditText.setText(popupIpInput.popup_dbcodename_edtxt.getText().toString().trim());
+                }
+                GlobalMemberValues.M_DBCODENAME = introRealDemoDbCodeNameEditText.getText().toString();
+
                 GlobalMemberValues.setCloudAddr();
 
 
@@ -200,6 +221,7 @@ public class IntroRealDemoChoice extends Activity {
                         " databasepass = '" + GlobalMemberValues.mssql_pw + "', " +
                         " mobilehost = '" + GlobalMemberValues.MOBILE_HOST + "', " +
                         " cloudhost = '" + GlobalMemberValues.CLOUD_HOST + "', " +
+                        " dbcodename = '" + GlobalMemberValues.M_DBCODENAME + "', " +
                         " mdate = datetime('now') ";
                 strUpdateQueryVec.addElement(updStrQuery);
 
@@ -220,6 +242,7 @@ public class IntroRealDemoChoice extends Activity {
                         GlobalMemberValues.logWrite("dbinfolog", "dbpwd : " + GlobalMemberValues.mssql_pw + "\n");
                         GlobalMemberValues.logWrite("dbinfolog", "mobile host : " + GlobalMemberValues.MOBILE_HOST + "\n");
                         GlobalMemberValues.logWrite("dbinfolog", "cloud host : " + GlobalMemberValues.CLOUD_HOST + "\n");
+                        GlobalMemberValues.logWrite("dbinfolog", "dbcodename : " + GlobalMemberValues.M_DBCODENAME + "\n");
                     }
                 } else {
                     returnValue = 0;
@@ -388,10 +411,13 @@ public class IntroRealDemoChoice extends Activity {
         introRealDemoCloudHostEditText = (TextView)findViewById(R.id.introRealDemoCloudHostEditText);
 //        introRealDemoCloudHostEditText.setText("yukdaejangcloud");
 
+        introRealDemoDbCodeNameEditText = (TextView)findViewById(R.id.introRealDemoDbCodeNameEditText);
+
         introRealDemoDatabaseNameEditText.setOnClickListener(introRealDemoBtnClickListener);
         introRealDemoDbPasswordEditText.setOnClickListener(introRealDemoBtnClickListener);
         introRealDemoMobileHostEditText.setOnClickListener(introRealDemoBtnClickListener);
         introRealDemoCloudHostEditText.setOnClickListener(introRealDemoBtnClickListener);
+        introRealDemoDbCodeNameEditText.setOnClickListener(introRealDemoBtnClickListener);
 
     }
 
@@ -511,6 +537,7 @@ public class IntroRealDemoChoice extends Activity {
                 case R.id.introRealDemoDbPasswordEditText :
                 case R.id.introRealDemoMobileHostEditText :
                 case R.id.introRealDemoCloudHostEditText :
+                case R.id.introRealDemoDbCodeNameEditText :
                     if (popupIpInput != null)popupIpInput.show();
                     break;
 
@@ -647,6 +674,9 @@ public class IntroRealDemoChoice extends Activity {
                         GlobalMemberValues.MOBILE_HOST = tempMobileHost;
                         String tempCloudHost = introRealDemoCloudHostEditText.getText().toString();
                         GlobalMemberValues.CLOUD_HOST = tempCloudHost;
+                        String tempDbCodeName = introRealDemoDbCodeNameEditText.getText().toString();
+                        GlobalMemberValues.M_DBCODENAME = tempDbCodeName;
+
                         GlobalMemberValues.setCloudAddr();
 
                         Intent mainIntent = new Intent(context.getApplicationContext(), MainActivity.class);

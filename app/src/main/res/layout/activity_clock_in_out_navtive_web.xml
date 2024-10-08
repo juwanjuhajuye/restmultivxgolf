@@ -147,7 +147,7 @@
                         android:text="Employee"
                         android:textColor="#777777"
                         android:fontFamily="@font/poppins_bold"
-                        android:textSize="16dp" />
+                        android:textSize="14dp" />
 
                     <TextView
                         android:layout_marginTop="5dp"
@@ -186,7 +186,7 @@
                         android:paddingLeft="10dp"
                         android:text="Password"
                         android:textColor="#777777"
-                        android:textSize="16dp" />
+                        android:textSize="14dp" />
 
                     <EditText
                         android:layout_marginTop="5dp"
@@ -226,7 +226,7 @@
                         android:paddingLeft="10dp"
                         android:text="Memo"
                         android:textColor="#777777"
-                        android:textSize="16dp" />
+                        android:textSize="14dp" />
 
                     <EditText
                         android:id="@+id/memoEv"

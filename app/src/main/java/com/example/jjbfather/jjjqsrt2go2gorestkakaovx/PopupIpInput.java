@@ -20,7 +20,7 @@ public class PopupIpInput extends Dialog {
     private Button popupipinputcancel;
 
     public TextView ip1;
-    public EditText popup_dabasename_edtxt,popup_dbpassword_edtxt,popup_mobilehost_edtxt,popup_cloudhost_edtxt;
+    public EditText popup_dabasename_edtxt,popup_dbpassword_edtxt,popup_mobilehost_edtxt,popup_cloudhost_edtxt, popup_dbcodename_edtxt;
 
     private View.OnClickListener mPositiveListener;
     private View.OnClickListener mNegativeListener;
@@ -52,10 +52,13 @@ public class PopupIpInput extends Dialog {
         popup_mobilehost_edtxt = (EditText)findViewById(R.id.popup_mobilehost_edtxt);
         popup_cloudhost_edtxt = (EditText)findViewById(R.id.popup_cloudhost_edtxt);
 
+        popup_dbcodename_edtxt = (EditText)findViewById(R.id.popup_dbcodename_edtxt);
+
         popup_dabasename_edtxt.setText(GlobalMemberValues.DATABASE_NAME);
         popup_dbpassword_edtxt.setText(GlobalMemberValues.mssql_pw);
         popup_mobilehost_edtxt.setText(GlobalMemberValues.MOBILE_HOST);
         popup_cloudhost_edtxt.setText(GlobalMemberValues.CLOUD_HOST);
+        popup_dbcodename_edtxt.setText(GlobalMemberValues.M_DBCODENAME);
 
         //클릭 리스너 셋팅 (클릭버튼이 동작하도록 만들어줌.)
         popupipinputok.setOnClickListener(mPositiveListener);

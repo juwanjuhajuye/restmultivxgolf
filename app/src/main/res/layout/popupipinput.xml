@@ -2,7 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="600dp"
-    android:layout_height="400dp"
+    android:layout_height="450dp"
     android:orientation="vertical"
     android:background="@drawable/aa_images_intro_new"
     android:paddingLeft="0dp"
@@ -284,6 +284,44 @@
                 </LinearLayout>
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:padding="7dp"
+                android:orientation="horizontal">
+                <TextView
+
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical|right"
+                    android:paddingRight="10dp"
+                    android:textSize="20dp"
+                    android:textColor="#232531"
+                    android:text="DB CODE NAME" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:orientation="horizontal" >
+
+                    <EditText
+                        android:id="@+id/popup_dbcodename_edtxt"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:background="@drawable/roundlayout_intro_edittext2"
+                        android:padding="8dp"
+                        android:textSize="20dp"
+                        android:textColor="#3f3e3a"
+                        android:text=""/>
+
+                </LinearLayout>
+            </LinearLayout>
+
 
 
             <LinearLayout
@@ -342,6 +380,8 @@
 
                 </LinearLayout>
             </LinearLayout>
+
+
 
         </LinearLayout>
 
