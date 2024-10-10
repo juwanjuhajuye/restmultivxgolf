@@ -68,16 +68,16 @@ import com.clover.sdk.v3.order.DisplayLineItem;
 import com.clover.sdk.v3.order.DisplayOrder;
 import com.clover.sdk.v3.scanner.BarcodeResult;
 import com.clover.sdk.v3.scanner.BarcodeScanner;
-import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.tablesale.BillSplitMerge;
-import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.tablesale.EmployeeKeyIn;
-import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.apiadapter.ActivityMonitor;
-import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.apiadapter.ApiAdapter;
-import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.apiadapter.ApiAdapterFactory;
-import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.serial.FTDriver;
-import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.tablesale.TablePeopleCnt;
-import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.tablesale.TableSaleBillPrint;
-import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.tablesale.TableSaleMain;
-import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.tablesale.TableSplittedList;
+import com.example.jjbfather.jjjqsrt2go2gorest.tablesale.BillSplitMerge;
+import com.example.jjbfather.jjjqsrt2go2gorest.tablesale.EmployeeKeyIn;
+import com.example.jjbfather.jjjqsrt2go2gorest.apiadapter.ActivityMonitor;
+import com.example.jjbfather.jjjqsrt2go2gorest.apiadapter.ApiAdapter;
+import com.example.jjbfather.jjjqsrt2go2gorest.apiadapter.ApiAdapterFactory;
+import com.example.jjbfather.jjjqsrt2go2gorest.serial.FTDriver;
+import com.example.jjbfather.jjjqsrt2go2gorest.tablesale.TablePeopleCnt;
+import com.example.jjbfather.jjjqsrt2go2gorest.tablesale.TableSaleBillPrint;
+import com.example.jjbfather.jjjqsrt2go2gorest.tablesale.TableSaleMain;
+import com.example.jjbfather.jjjqsrt2go2gorest.tablesale.TableSplittedList;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.elo.device.DeviceManager;
 import com.elo.device.ProductInfo;
@@ -646,16 +646,17 @@ public class MainActivity extends Activity {
                 GlobalMemberValues.logWrite(TAG, "프로그래스바 종료후... \n");
                 // -------------------------------------------------------------------------------------
 
-                //06032024 Send data to TOrder after download completes
-                if(GlobalMemberValues.isTOrderUse()){
-                    try {
-                        Thread.sleep(10000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    SendDataToTOrderEvent tOrderDataSender = new SendDataToTOrderEvent();
-                    tOrderDataSender.execute();
-                }
+                GlobalMemberValues.sendDataToTOrderEventServer();
+//                //06032024 Send data to TOrder after download completes
+//                if(GlobalMemberValues.isTOrderUse()){
+//                    try {
+//                        Thread.sleep(10000);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//                    SendDataToTOrderEvent tOrderDataSender = new SendDataToTOrderEvent();
+//                    tOrderDataSender.execute();
+//                }
             }
         }
     };
@@ -2924,6 +2925,7 @@ public class MainActivity extends Activity {
 
                 case R.id.saveorderButton : {
                     LogsSave.saveLogsInDB(93);
+                    //SelectGetFoodType.openHereToGoInfoIntent("T");
 
                     // 09302024
                     if (MainMiddleService.mGeneralArrayList.size() > 0) {
@@ -2933,7 +2935,7 @@ public class MainActivity extends Activity {
                         }
                     }
 
-                    //SelectGetFoodType.openHereToGoInfoIntent("T");
+
                     GlobalMemberValues.mIsClickSendToKitchen = true;
                     Payment.openGetFoodTypeIntent("");
                     //clickSendToKitchen();
@@ -2954,7 +2956,6 @@ public class MainActivity extends Activity {
                         if (GlobalMemberValues.isStrEmpty(MainMiddleService.mHoldCode)) {
                             MainMiddleService.mHoldCode = MainMiddleService.mGeneralArrayList.get(0).mHoldCode;
                         }
-
 
                         // 07282024 --------------------------------------
                         //SelectGetFoodType.openHereToGoInfoIntent("T");
@@ -3117,7 +3118,7 @@ MainMiddleService.setEmptyInSaleCart(false);
                 }
 
                 case R.id.button_main_side_gc_balance : {
-                    Intent GiftCardBalanceCheck = new Intent(MainActivity.mContext, com.example.jjbfather.jjjqsrt2go2gorestkakaovx.GiftCardBalanceCheck.class);
+                    Intent GiftCardBalanceCheck = new Intent(MainActivity.mContext, com.example.jjbfather.jjjqsrt2go2gorest.GiftCardBalanceCheck.class);
                     // Dialog 에 Extra 로 객체 및 데이터 전달하기 ------------------------------------------------
                     //saleHistoryIntent.putExtra("ParentMainMiddleService", this.getClass());
                     // -------------------------------------------------------------------------------------
@@ -4203,7 +4204,7 @@ MainMiddleService.setEmptyInSaleCart(false);
 
         // 변수 저장 -----------------------------------------------------------------------------------------------------------------------
         String tempIp = "0.0.0.0";
-        String tempDbName = GlobalMemberValues.DATABASE_NAME;
+        String tempDbName = "JJJQSRDBMULTI";
         String tempDbPass = "DhksGkDP@02)";
         String tempMobileHost = "yukdaejangm";
         String tempCloudHost = "yukdaejangcloud";
@@ -4230,7 +4231,7 @@ MainMiddleService.setEmptyInSaleCart(false);
                 tempIp = "0.0.0.0";
             }
             if (GlobalMemberValues.isStrEmpty(tempDbName)) {
-                tempDbName = GlobalMemberValues.DATABASE_NAME;
+                tempDbName = "JJJQSRDBMULTI";
             }
             if (GlobalMemberValues.isStrEmpty(tempDbPass)) {
                 tempDbPass = "DhksGkDP@02)";
@@ -4565,6 +4566,17 @@ MainMiddleService.setEmptyInSaleCart(false);
         if (TableSaleBillPrint.mActivity != null && !TableSaleBillPrint.mActivity.isFinishing()) {
             TableSaleBillPrint.mActivity.finish();
         }
+
+//        if (GlobalMemberValues.mToGoType == "C" || GlobalMemberValues.mToGoType == "W"){
+//            if (GlobalMemberValues.getIntAtString(MssqlDatabase.getResultSetValueToString(
+//                    "select count(idx) from temp_salecart_deliveryinfo where holdcode = '" + MainMiddleService.mHoldCode + "' ")) > 0) {
+//            } else {
+//                Payment.openGetFoodTypeIntent("");
+//
+//            }
+//
+//
+//        }
 
     }
 

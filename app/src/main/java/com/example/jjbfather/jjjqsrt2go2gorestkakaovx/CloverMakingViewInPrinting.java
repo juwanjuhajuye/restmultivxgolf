@@ -24,7 +24,7 @@ import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 
-import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.tablesale.TableSaleMain;
+import com.example.jjbfather.jjjqsrt2go2gorest.tablesale.TableSaleMain;
 import com.printer.posbank.Printer;
 
 import org.json.JSONArray;
@@ -5480,12 +5480,13 @@ public class CloverMakingViewInPrinting {
                              saleItemTvContents4.setLayoutParams(new LinearLayout.LayoutParams(0, 30, GlobalMemberValues.PRINTINGITMETITLE4_ONCLOVER));
                              saleitemlistLn2.addView(saleItemTvContents4);
                              **/
-                            int tempHeight = 34;
+
+                            int tempHeight = 45;
 //                        if (tempItemName.length() > 30 || GlobalMemberValues.getSizeToString(tempItemName) > 30) {
 //                            tempHeight = (tempHeight * 2) + 4;
 //                        }
-                            for (int z = 25; z <= GlobalMemberValues.getSizeToString(tempItemName) ; z += 24){
-                                tempHeight += 34;
+                            for (int z = 23; z <= GlobalMemberValues.getSizeToString(tempItemName) ; z += 22){
+                                tempHeight += 45;
                             }
 
 
@@ -5814,31 +5815,31 @@ public class CloverMakingViewInPrinting {
 
 
                 if (GlobalMemberValues.getAddPayType().equals("A") || GlobalMemberValues.getAddPayType() == "A"){
-                    // Sub Total -----------------------------------------------------------------------------------------------------------------------
-                    LinearLayout subtotalLn = new LinearLayout(MainActivity.mContext);
-                    subtotalLn.setLayoutParams(matchParentParams);
-                    subtotalLn.setOrientation(LinearLayout.HORIZONTAL);
+                // Sub Total -----------------------------------------------------------------------------------------------------------------------
+                LinearLayout subtotalLn = new LinearLayout(MainActivity.mContext);
+                subtotalLn.setLayoutParams(matchParentParams);
+                subtotalLn.setOrientation(LinearLayout.HORIZONTAL);
 
-                    TextView customerNameLeftTv = new TextView(MainActivity.mContext);
-                    customerNameLeftTv.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
-                    customerNameLeftTv.setText("Sub Total");
-                    customerNameLeftTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
-                    GlobalMemberValues.setTextStyleOnClover(customerNameLeftTv);
-                    customerNameLeftTv.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.0f));
-                    subtotalLn.addView(customerNameLeftTv);
+                TextView customerNameLeftTv = new TextView(MainActivity.mContext);
+                customerNameLeftTv.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
+                customerNameLeftTv.setText("Sub Total");
+                customerNameLeftTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
+                GlobalMemberValues.setTextStyleOnClover(customerNameLeftTv);
+                customerNameLeftTv.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.0f));
+                subtotalLn.addView(customerNameLeftTv);
 
-                    double d_temp_subtotal = subTotal - GlobalMemberValues.getDoubleAtString(str_commongratuity);
+                double d_temp_subtotal = subTotal - GlobalMemberValues.getDoubleAtString(str_commongratuity);
 
-                    TextView customerNameRightTv = new TextView(MainActivity.mContext);
-                    customerNameRightTv.setGravity(Gravity.CENTER_VERTICAL | Gravity.RIGHT);
-                    customerNameRightTv.setText(finalTempDollarStr + GlobalMemberValues.getCommaStringForDouble(d_temp_subtotal + ""));
-                    customerNameRightTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
-                    GlobalMemberValues.setTextStyleOnClover(customerNameRightTv);
-                    customerNameRightTv.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.5f));
-                    subtotalLn.addView(customerNameRightTv);
+                TextView customerNameRightTv = new TextView(MainActivity.mContext);
+                customerNameRightTv.setGravity(Gravity.CENTER_VERTICAL | Gravity.RIGHT);
+                customerNameRightTv.setText(finalTempDollarStr + GlobalMemberValues.getCommaStringForDouble(d_temp_subtotal + ""));
+                customerNameRightTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
+                GlobalMemberValues.setTextStyleOnClover(customerNameRightTv);
+                customerNameRightTv.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.5f));
+                subtotalLn.addView(customerNameRightTv);
 
-                    printingLn.addView(subtotalLn);
-                    // ---------------------------------------------------------------------------------------------------------------------------------
+                printingLn.addView(subtotalLn);
+                // ---------------------------------------------------------------------------------------------------------------------------------
                 } else {
                     // Sub Total -----------------------------------------------------------------------------------------------------------------------
                     LinearLayout subtotalLn_cash = new LinearLayout(MainActivity.mContext);
@@ -6064,43 +6065,47 @@ public class CloverMakingViewInPrinting {
                 // ---------------------------------------------------------------------------------------------------------------------------------
 
                 // qr code -----------------------------------------------------------------------------------------
-                if (globalMemberValues.getPOSType().equals("R") && globalMemberValues.isPOSWebPay()) {
-                    LinearLayout tablepayLn = new LinearLayout(MainActivity.mContext);
-                    tablepayLn.setLayoutParams(matchParentParams);
-                    tablepayLn.setOrientation(LinearLayout.HORIZONTAL);
+                if (GlobalMemberValues.isTablePayOnQRCode()){
+                    if (globalMemberValues.getPOSType().equals("R") && globalMemberValues.isPOSWebPay()) {
+                        LinearLayout tablepayLn = new LinearLayout(MainActivity.mContext);
+                        tablepayLn.setLayoutParams(matchParentParams);
+                        tablepayLn.setOrientation(LinearLayout.HORIZONTAL);
 
-                    TextView tablepayTv = new TextView(MainActivity.mContext);
-                    tablepayTv.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
-                    tablepayTv.setText("Scan the QR code below to pay at the table");
-                    tablepayTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, (GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER - 5));
-                    GlobalMemberValues.setTextStyleOnClover(tablepayTv);
-                    tablepayTv.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.0f));
-                    tablepayLn.addView(tablepayTv);
+                        TextView tablepayTv = new TextView(MainActivity.mContext);
+                        tablepayTv.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+                        tablepayTv.setText("Scan the QR code below to pay at the table");
+                        tablepayTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, (GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER - 5));
+                        GlobalMemberValues.setTextStyleOnClover(tablepayTv);
+                        tablepayTv.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.0f));
+                        tablepayLn.addView(tablepayTv);
 
-                    printingLn.addView(tablepayLn);
+                        printingLn.addView(tablepayLn);
 
 
-                    String tempAppHost = GlobalMemberValues.MOBILE_HOST;
+                        String tempAppHost = GlobalMemberValues.MOBILE_HOST;
 
-                    String tempAppStr = GlobalMemberValues.CLOUD_SERVER_URL_BASIC;
-                    String qrcodeStr = GlobalMemberValues.getReplaceText(tempAppStr, GlobalMemberValues.CLOUD_HOST, tempAppHost);
-                    qrcodeStr += "index_sitedoor.asp?n=" + GlobalMemberValues.STORE_INDEX +
-                            "-J-" + str_restaurant_tablename +
-                            "-J-" + GlobalMemberValues.getReplaceText(str_restaurant_tableidx, "T", "") +
-                            "-J-" + "Y" +
-                            "-J-" + GlobalMemberValues.STATION_CODE +
-                            "-J-" + str_restaurant_tableholdcode +
-                            "-J-" + GlobalMemberValues.SALON_NAME +
-                            "-J-" + str_restaurant_tablename +
-                            "-J-" + "$" + GlobalMemberValues.getCommaStringForDouble(totalAmount + "");
+                        String tempAppStr = GlobalMemberValues.CLOUD_SERVER_URL_BASIC;
+                        String qrcodeStr = GlobalMemberValues.getReplaceText(tempAppStr, GlobalMemberValues.CLOUD_HOST, tempAppHost);
+                        qrcodeStr += "index_sitedoor.asp?n=" + GlobalMemberValues.STORE_INDEX +
+                                "-J-" + str_restaurant_tablename +
+                                "-J-" + GlobalMemberValues.getReplaceText(str_restaurant_tableidx, "T", "") +
+                                "-J-" + "Y" +
+                                "-J-" + GlobalMemberValues.STATION_CODE +
+                                "-J-" + str_restaurant_tableholdcode +
+                                "-J-" + GlobalMemberValues.SALON_NAME +
+                                "-J-" + str_restaurant_tablename +
+                                "-J-" + "$" + GlobalMemberValues.getCommaStringForDouble(totalAmount + "");
 
-                    GlobalMemberValues.logWrite("qrcodejjjlog", "qrcode txt : " + qrcodeStr + "\n");
+                        GlobalMemberValues.logWrite("qrcodejjjlog", "qrcode txt : " + qrcodeStr + "\n");
 
-                    ImageView qrImage = new ImageView(MainActivity.mContext);
-                    qrImage.setImageBitmap(GlobalMemberValues.generateRQCode(qrcodeStr));
-                    printingLn.addView(qrImage);
+                        ImageView qrImage = new ImageView(MainActivity.mContext);
+                        qrImage.setImageBitmap(GlobalMemberValues.generateRQCode(qrcodeStr));
+                        printingLn.addView(qrImage);
+                    }
+
                 }
                 // ------------------------------------------------------------------------------------------------
+
 
                 // receipt footer 프린터 --------------------------------------------------------------------------
                 if (!GlobalMemberValues.isStrEmpty(str_receiptfooter)) {
@@ -11619,6 +11624,21 @@ public class CloverMakingViewInPrinting {
 
                 // 10112023
 
+                // 240904
+                // reprint
+//                int temp_totaltrans = 0;
+//                double temp_totalamount = 0.0f;
+//                if (is_prev_eod) {
+//                    // 리프린팅.
+//                    temp_totaltrans = GlobalMemberValues.getIntAtString(salesbytendertypes_totaltransaction);
+//                    temp_totalamount = GlobalMemberValues.getDoubleAtString(salesbytendertypes_totalamount);
+//                } else {
+//                    // 최초 프린팅.
+//                    temp_totaltrans = GlobalMemberValues.getIntAtString(salesbytendertypes_totaltransaction) + thirdparty_trans_total;
+//                    temp_totalamount = GlobalMemberValues.getDoubleAtString(salesbytendertypes_totalamount) + thirdparty_totalamount;
+//                }
+                // 240904
+                // reprint
 
                 // orign
                 int temp_totaltrans = GlobalMemberValues.getIntAtString(salesbytendertypes_totaltransaction) + thirdparty_trans_total;
@@ -16197,44 +16217,47 @@ public class CloverMakingViewInPrinting {
 
                 // qr code -----------------------------------------------------------------------------------------
 //if (globalMemberValues.getPOSType().equals("R") && globalMemberValues.isPOSWebPay() && temp_payAmount == 0.00) {
-                if (globalMemberValues.getPOSType().equals("R") && globalMemberValues.isPOSWebPay()){
-                    LinearLayout tablepayLn = new LinearLayout(MainActivity.mContext);
-                    tablepayLn.setLayoutParams(matchParentParams);
-                    tablepayLn.setOrientation(LinearLayout.HORIZONTAL);
+                if (GlobalMemberValues.isTablePayOnQRCode()){
+                    if (globalMemberValues.getPOSType().equals("R") && globalMemberValues.isPOSWebPay()){
+                        LinearLayout tablepayLn = new LinearLayout(MainActivity.mContext);
+                        tablepayLn.setLayoutParams(matchParentParams);
+                        tablepayLn.setOrientation(LinearLayout.HORIZONTAL);
 
-                    TextView tablepayTv = new TextView(MainActivity.mContext);
-                    tablepayTv.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
-                    tablepayTv.setText("Scan the QR code below to pay at the table");
-                    tablepayTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, (GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER  - 5));
-                    GlobalMemberValues.setTextStyleOnClover(tablepayTv);
-                    tablepayTv.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.0f));
-                    tablepayLn.addView(tablepayTv);
+                        TextView tablepayTv = new TextView(MainActivity.mContext);
+                        tablepayTv.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+                        tablepayTv.setText("Scan the QR code below to pay at the table");
+                        tablepayTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, (GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER  - 5));
+                        GlobalMemberValues.setTextStyleOnClover(tablepayTv);
+                        tablepayTv.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.0f));
+                        tablepayLn.addView(tablepayTv);
 
-                    printingLn.addView(tablepayLn);
+                        printingLn.addView(tablepayLn);
 
 
-                    String tempAppHost = "m";
-                    if (GlobalMemberValues.CLOUD_HOST.indexOf("csecu") != -1) {
-                        tempAppHost = "app";
+                        String tempAppHost = "m";
+                        if (GlobalMemberValues.CLOUD_HOST.indexOf("csecu") != -1) {
+                            tempAppHost = "app";
+                        }
+                        String tempAppStr = GlobalMemberValues.CLOUD_SERVER_URL_BASIC;
+                        String qrcodeStr = GlobalMemberValues.getReplaceText(tempAppStr, GlobalMemberValues.CLOUD_HOST, tempAppHost);
+                        qrcodeStr += "index_sitedoor.asp?n=" + GlobalMemberValues.STORE_INDEX +
+                                "-J-" + str_restaurant_tablename +
+                                "-J-" + GlobalMemberValues.getReplaceText(str_restaurant_tableidx, "T", "") +
+                                "-J-" + "Y" +
+                                "-J-" + GlobalMemberValues.STATION_CODE +
+                                "-J-" + str_restaurant_tableholdcode +
+                                "-J-" + GlobalMemberValues.SALON_NAME +
+                                "-J-" + str_restaurant_tablename +
+                                "-J-" + "$" + GlobalMemberValues.getCommaStringForDouble(totalAmount + "");
+
+                        GlobalMemberValues.logWrite("qrcodejjjlog", "qrcode txt : " + qrcodeStr + "\n");
+
+                        ImageView qrImage = new ImageView(MainActivity.mContext);
+                        qrImage.setImageBitmap(GlobalMemberValues.generateRQCode(qrcodeStr));
+                        printingLn.addView(qrImage);
                     }
-                    String tempAppStr = GlobalMemberValues.CLOUD_SERVER_URL_BASIC;
-                    String qrcodeStr = GlobalMemberValues.getReplaceText(tempAppStr, GlobalMemberValues.CLOUD_HOST, tempAppHost);
-                    qrcodeStr += "index_sitedoor.asp?n=" + GlobalMemberValues.STORE_INDEX +
-                            "-J-" + str_restaurant_tablename +
-                            "-J-" + GlobalMemberValues.getReplaceText(str_restaurant_tableidx, "T", "") +
-                            "-J-" + "Y" +
-                            "-J-" + GlobalMemberValues.STATION_CODE +
-                            "-J-" + str_restaurant_tableholdcode +
-                            "-J-" + GlobalMemberValues.SALON_NAME +
-                            "-J-" + str_restaurant_tablename +
-                            "-J-" + "$" + GlobalMemberValues.getCommaStringForDouble(totalAmount + "");
-
-                    GlobalMemberValues.logWrite("qrcodejjjlog", "qrcode txt : " + qrcodeStr + "\n");
-
-                    ImageView qrImage = new ImageView(MainActivity.mContext);
-                    qrImage.setImageBitmap(GlobalMemberValues.generateRQCode(qrcodeStr));
-                    printingLn.addView(qrImage);
                 }
+
                 // ------------------------------------------------------------------------------------------------
 
                 // receipt footer 프린터 --------------------------------------------------------------------------
@@ -17537,44 +17560,47 @@ public class CloverMakingViewInPrinting {
 
                 // qr code -----------------------------------------------------------------------------------------
 //if (globalMemberValues.getPOSType().equals("R") && globalMemberValues.isPOSWebPay() && temp_payAmount == 0.00) {
-                if (globalMemberValues.getPOSType().equals("R") && globalMemberValues.isPOSWebPay()){
-                    LinearLayout tablepayLn = new LinearLayout(MainActivity.mContext);
-                    tablepayLn.setLayoutParams(matchParentParams);
-                    tablepayLn.setOrientation(LinearLayout.HORIZONTAL);
+                if (GlobalMemberValues.isTablePayOnQRCode()){
+                    if (globalMemberValues.getPOSType().equals("R") && globalMemberValues.isPOSWebPay()){
+                        LinearLayout tablepayLn = new LinearLayout(MainActivity.mContext);
+                        tablepayLn.setLayoutParams(matchParentParams);
+                        tablepayLn.setOrientation(LinearLayout.HORIZONTAL);
 
-                    TextView tablepayTv = new TextView(MainActivity.mContext);
-                    tablepayTv.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
-                    tablepayTv.setText("Scan the QR code below to pay at the table");
-                    tablepayTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, (GlobalMemberValues.PRINTINGFONTSIZE_TABLESALEVIEW - 5));
-                    GlobalMemberValues.setTextStyleOnClover(tablepayTv);
-                    tablepayTv.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.0f));
-                    tablepayLn.addView(tablepayTv);
+                        TextView tablepayTv = new TextView(MainActivity.mContext);
+                        tablepayTv.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+                        tablepayTv.setText("Scan the QR code below to pay at the table");
+                        tablepayTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, (GlobalMemberValues.PRINTINGFONTSIZE_TABLESALEVIEW - 5));
+                        GlobalMemberValues.setTextStyleOnClover(tablepayTv);
+                        tablepayTv.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.0f));
+                        tablepayLn.addView(tablepayTv);
 
-                    printingLn.addView(tablepayLn);
+                        printingLn.addView(tablepayLn);
 
 
-                    String tempAppHost = "m";
-                    if (GlobalMemberValues.CLOUD_HOST.indexOf("csecu") != -1) {
-                        tempAppHost = "app";
+                        String tempAppHost = "m";
+                        if (GlobalMemberValues.CLOUD_HOST.indexOf("csecu") != -1) {
+                            tempAppHost = "app";
+                        }
+                        String tempAppStr = GlobalMemberValues.CLOUD_SERVER_URL_BASIC;
+                        String qrcodeStr = GlobalMemberValues.getReplaceText(tempAppStr, GlobalMemberValues.CLOUD_HOST, tempAppHost);
+                        qrcodeStr += "index_sitedoor.asp?n=" + GlobalMemberValues.STORE_INDEX +
+                                "-J-" + str_restaurant_tablename +
+                                "-J-" + GlobalMemberValues.getReplaceText(str_restaurant_tableidx, "T", "") +
+                                "-J-" + "Y" +
+                                "-J-" + GlobalMemberValues.STATION_CODE +
+                                "-J-" + str_restaurant_tableholdcode +
+                                "-J-" + GlobalMemberValues.SALON_NAME +
+                                "-J-" + str_restaurant_tablename +
+                                "-J-" + "$" + GlobalMemberValues.getCommaStringForDouble(totalAmount + "");
+
+                        GlobalMemberValues.logWrite("qrcodejjjlog", "qrcode txt : " + qrcodeStr + "\n");
+
+                        ImageView qrImage = new ImageView(MainActivity.mContext);
+                        qrImage.setImageBitmap(GlobalMemberValues.generateRQCode(qrcodeStr));
+                        printingLn.addView(qrImage);
                     }
-                    String tempAppStr = GlobalMemberValues.CLOUD_SERVER_URL_BASIC;
-                    String qrcodeStr = GlobalMemberValues.getReplaceText(tempAppStr, GlobalMemberValues.CLOUD_HOST, tempAppHost);
-                    qrcodeStr += "index_sitedoor.asp?n=" + GlobalMemberValues.STORE_INDEX +
-                            "-J-" + str_restaurant_tablename +
-                            "-J-" + GlobalMemberValues.getReplaceText(str_restaurant_tableidx, "T", "") +
-                            "-J-" + "Y" +
-                            "-J-" + GlobalMemberValues.STATION_CODE +
-                            "-J-" + str_restaurant_tableholdcode +
-                            "-J-" + GlobalMemberValues.SALON_NAME +
-                            "-J-" + str_restaurant_tablename +
-                            "-J-" + "$" + GlobalMemberValues.getCommaStringForDouble(totalAmount + "");
-
-                    GlobalMemberValues.logWrite("qrcodejjjlog", "qrcode txt : " + qrcodeStr + "\n");
-
-                    ImageView qrImage = new ImageView(MainActivity.mContext);
-                    qrImage.setImageBitmap(GlobalMemberValues.generateRQCode(qrcodeStr));
-                    printingLn.addView(qrImage);
                 }
+
                 // ------------------------------------------------------------------------------------------------
 
                 // receipt footer 프린터 --------------------------------------------------------------------------

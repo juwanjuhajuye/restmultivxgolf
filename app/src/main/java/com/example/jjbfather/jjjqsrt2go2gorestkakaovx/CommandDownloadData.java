@@ -18,7 +18,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.R;
+import com.example.jjbfather.jjjqsrt2go2gorest.R;
 
 import java.util.ArrayList;
 
@@ -597,6 +597,7 @@ public class CommandDownloadData extends Activity {
 //                MainActivity.employeeLogout();
 //            }
             // -------------------------------------------------------------------------------------
+            GlobalMemberValues.is_datadownload_yn = true;
 
             MainActivity.employeeLogout();
 

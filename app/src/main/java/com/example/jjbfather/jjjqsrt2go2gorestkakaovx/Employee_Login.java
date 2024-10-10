@@ -26,9 +26,10 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.R;
-import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.magtek.MagStripDriver;
-import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.magtek.MagStripeCardParser;
+import com.example.jjbfather.jjjqsrt2go2gorest.R;
+import com.example.jjbfather.jjjqsrt2go2gorest.magtek.MagStripDriver;
+import com.example.jjbfather.jjjqsrt2go2gorest.magtek.MagStripeCardParser;
+import com.example.jjbfather.jjjqsrt2go2gorest.tablesale.EmployeeKeyIn;
 
 import java.io.File;
 import java.text.ParseException;
@@ -557,7 +558,7 @@ public class Employee_Login extends Activity {
                         //로딩창 객체 생성
                         customProgressDialog = new CustomProgressDialog(mContext);
                         //로딩창을 투명하게
-                        customProgressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+                        customProgressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                         customProgressDialog.show();
                     }
 
@@ -944,6 +945,12 @@ public class Employee_Login extends Activity {
             }
         }
         // --------------------------------------------------------------------------------------------------
+
+        if (GlobalMemberValues.is_datadownload_yn){
+            GlobalMemberValues.sendDataToTOrderEventServer();
+            GlobalMemberValues.is_datadownload_yn = false;
+        }
+
     }
 
     View.OnClickListener information_close_listener = new View.OnClickListener() {
