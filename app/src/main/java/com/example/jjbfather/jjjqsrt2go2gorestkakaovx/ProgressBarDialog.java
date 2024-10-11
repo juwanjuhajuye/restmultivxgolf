@@ -3,6 +3,7 @@ package com.example.jjbfather.jjjqsrt2go2gorestkakaovx;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
 import android.view.Window;
@@ -94,6 +95,12 @@ public class ProgressBarDialog extends AlertDialog {
         txt_persen.setText(a + "%");
 
         if (a == 100){
+
+            if(GlobalMemberValues.isTOrderUse()) {
+                Intent intent = new Intent(getContext(), SplashActivity.class);
+                getContext().startActivity(intent);
+            }
+
             MainActivity.handler_loading_popup.post(new Runnable() {
                 @Override
                 public void run() {

@@ -3429,7 +3429,8 @@ public class SqlStatements {
                     "idx INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     "tableinfojson ntext," +
                     "menucategoryinfojson ntext, " +
-                    "menuinfojson ntext " +
+                    "menuinfojson ntext, " +
+                    "wdate datetime DEFAULT (datetime('now', 'localtime'))" +
                     ")";
 
 

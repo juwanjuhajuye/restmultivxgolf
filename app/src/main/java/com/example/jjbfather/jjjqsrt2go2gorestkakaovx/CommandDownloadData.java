@@ -18,7 +18,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-import com.example.jjbfather.jjjqsrt2go2gorest.R;
+import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.R;
 
 import java.util.ArrayList;
 

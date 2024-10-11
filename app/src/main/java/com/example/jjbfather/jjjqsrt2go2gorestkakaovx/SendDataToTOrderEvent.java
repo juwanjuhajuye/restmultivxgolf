@@ -141,24 +141,28 @@ public class SendDataToTOrderEvent extends AsyncTask {
 
         String strInsQuery = "";
 
+        strInsQuery = "insert into torder_json_data " +
+                "(tableinfojson, menucategoryinfojson, menuinfojson) values " +
+                "('" + GlobalMemberValues.getDBTextAfterChecked(tableInfoJSON.toString(), 0) + "', '" + GlobalMemberValues.getDBTextAfterChecked(menuCategoryInfoJSON.toString(), 0) + "', '" + GlobalMemberValues.getDBTextAfterChecked(menuInfoJSON.toString(), 0) + "')";
         //Save the new json data
-        if(prevDataExists){
-            strInsQuery = " update torder_json_data " +
-                    "set tableinfojson= '" + GlobalMemberValues.getDBTextAfterChecked(tableInfoJSON.toString(), 0) + "', " +
-                    "menucategoryinfojson= '" + GlobalMemberValues.getDBTextAfterChecked(menuCategoryInfoJSON.toString(), 0) + "', " +
-                    "menuinfojson= '" + GlobalMemberValues.getDBTextAfterChecked(menuInfoJSON.toString(), 0) + "'" +
-                    "where idx=1";
-        } else {
-            strInsQuery = "insert into torder_json_data " +
-                    "(tableinfojson, menucategoryinfojson, menuinfojson) values " +
-                    "('" + GlobalMemberValues.getDBTextAfterChecked(tableInfoJSON.toString(), 0) + "', '" + GlobalMemberValues.getDBTextAfterChecked(menuCategoryInfoJSON.toString(), 0) + "', '" + GlobalMemberValues.getDBTextAfterChecked(menuInfoJSON.toString(), 0) + "')";
+//        if(prevDataExists){
+//            strInsQuery = " update torder_json_data " +
+//                    "set tableinfojson= '" + GlobalMemberValues.getDBTextAfterChecked(tableInfoJSON.toString(), 0) + "', " +
+//                    "menucategoryinfojson= '" + GlobalMemberValues.getDBTextAfterChecked(menuCategoryInfoJSON.toString(), 0) + "', " +
+//                    "menuinfojson= '" + GlobalMemberValues.getDBTextAfterChecked(menuInfoJSON.toString(), 0) + "'" +
+//                    "where idx=1";
+//        } else {
 //            strInsQuery = "insert into torder_json_data " +
 //                    "(tableinfojson, menucategoryinfojson, menuinfojson) values " +
-//                    "('" + tableInfoJSON + "', '" + menuCategoryInfoJSON + "', '" + menuInfoJSON + "')";
-        }
+//                    "('" + GlobalMemberValues.getDBTextAfterChecked(tableInfoJSON.toString(), 0) + "', '" + GlobalMemberValues.getDBTextAfterChecked(menuCategoryInfoJSON.toString(), 0) + "', '" + GlobalMemberValues.getDBTextAfterChecked(menuInfoJSON.toString(), 0) + "')";
+////            strInsQuery = "insert into torder_json_data " +
+////                    "(tableinfojson, menucategoryinfojson, menuinfojson) values " +
+////                    "('" + tableInfoJSON + "', '" + menuCategoryInfoJSON + "', '" + menuInfoJSON + "')";
+//        }
 
 
-        MainActivity.mDbInit.dbExecuteWrite(strInsQuery);
+//        MainActivity.mDbInit.dbExecuteWrite(strInsQuery);
+        MainActivity.mDbInit.dbExecuteWriteReturnValue(strInsQuery);
 
         return null;
     }

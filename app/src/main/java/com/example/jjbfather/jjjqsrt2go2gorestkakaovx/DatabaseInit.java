@@ -3924,6 +3924,14 @@ public class DatabaseInit {
         }
 
 
+        // 10112024
+        // torder_json_data 테이블 컬럼 추가
+        // 10.10.2024, wdate 컬럼 추가
+        altTableName = "torder_json_data";
+        if (checkTable(altTableName) > 0) {
+            alterDatabaseTableColumn(altTableName, "wdate", "datetime", "NULL", 0);
+        }
+
 
         /****************************************************************************/
     }

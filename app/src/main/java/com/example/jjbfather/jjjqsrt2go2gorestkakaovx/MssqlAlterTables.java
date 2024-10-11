@@ -1128,6 +1128,13 @@ public class MssqlAlterTables {
         altTableName = "salon_storestationsettings_system";
         alterDatabaseTableColumn(altTableName, "dbcodename", "nvarchar(50)", "DEFAULT ''");
 
+
+        // 10102024
+        // torder_json_data 테이블 컬럼 추가
+        // 10.10.2024 wdate 컬럼 추가
+        altTableName = "torder_json_data";
+        alterDatabaseTableColumn(altTableName, "wdate", "datetime", "NULL");
+
     }
 
     public static void alterTableColumnType() {

@@ -28,6 +28,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.os.SystemClock;
 import android.text.Spannable;
 import android.text.TextUtils;
@@ -70,9 +71,9 @@ import com.clover.sdk.v3.scanner.BarcodeScanner;
 import com.elo.device.ProductInfo;
 import com.elo.device.enums.EloPlatform;
 import com.epson.epos2.Epos2Exception;
-import com.example.jjbfather.jjjqsrt2go2gorest.apiadapter.ApiAdapter;
-import com.example.jjbfather.jjjqsrt2go2gorest.star.StarPrintStart;
-import com.example.jjbfather.jjjqsrt2go2gorest.tablesale.TableSaleMain;
+import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.apiadapter.ApiAdapter;
+import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.star.StarPrintStart;
+import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.tablesale.TableSaleMain;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
@@ -130,7 +131,7 @@ import java.util.regex.Pattern;
 
 import static android.content.Context.ALARM_SERVICE;
 import static android.content.Context.MODE_PRIVATE;
-import static com.example.jjbfather.jjjqsrt2go2gorest.SettingsSystemReset.initSalesDataByOut;
+import static com.example.jjbfather.jjjqsrt2go2gorestkakaovx.SettingsSystemReset.initSalesDataByOut;
 
 // 구글 플레이 서비스 구글플레이서비스 (Google Play Service)
 //import com.google.firebase.iid.FirebaseInstanceId;
@@ -159,17 +160,41 @@ public class GlobalMemberValues {
     // Cloud Server URL - Basic (클라우드 URL 기본값)
 
     /** 2go2go 관련 *************************************************************************************/
-//    // Store Server ---------------------------------------------------------------------------
-//    // real
-//    public static String DATABASE_NAME = "JJJQSRDBMULTI";           // DATABASE 명
-//    public static String mssql_pw = "DhksGkDP@02)";                       // DATABASE 비번
+    // Store Server ---------------------------------------------------------------------------
+    // real
+    public static String DATABASE_NAME = "JJJQSRDBMULTI_VX";           // DATABASE 명
+    public static String mssql_pw = "DhksGkDP@02)";                       // DATABASE 비번
+
+    // 모바일 host
+    public static String MOBILE_HOST = "vxgolfm";
+
+    // Domain 정보
+    public static String CLOUD_HOST = "kakaovx";
+
+    public static String CLOUD_FTP_IP = "110.234.18.134";
+    public static String CLOUD_SERVER_URL_BASIC = "https://" + CLOUD_HOST + ".2go2go.com/";
+    public static String CLOUD_SERVER_URL = "https://" + CLOUD_HOST + ".2go2go.com/";
+    public static String CLOUD_SERVER_URL_FORHTTPS = "https://" + CLOUD_HOST + ".2go2go.com/";
+
+    // FTP 설정값
+    public static String M_FTPIP = CLOUD_FTP_IP;
+    public static int M_FTPPORT = 5253;
+    public static String M_FTPID = "nzsalondbftp";
+    public static String M_FTPPWD = "wndhkswngkwndP@01^";
+    public static String M_FTPENCODING = "UTF-8";
+    public static String M_FTPBASCIDIR = "";       // FTP 기본 디렉토리
+    //------------------------------------------------------------------------------------------------
+
+//    // Test Server ---------------------------------------------------------------------------
+//    // test
+//    public static String DATABASE_NAME = "JJJQSRDBMULTI_VX";             // DATABASE 명
+//    public static String mssql_pw = "DhksGkDP@02)";                           // DATABASE 비번
 //
 //    // 모바일 host
-//    public static String MOBILE_HOST = "yukdaejangm";
+//    public static String MOBILE_HOST = "restaurantm";
 //
 //    // Domain 정보
-//    public static String CLOUD_HOST = "yukdaejangcloud";
-//
+//    public static String CLOUD_HOST = "rcloud";
 //    public static String CLOUD_FTP_IP = "110.234.18.134";
 //    public static String CLOUD_SERVER_URL_BASIC = "https://" + CLOUD_HOST + ".2go2go.com/";
 //    public static String CLOUD_SERVER_URL = "https://" + CLOUD_HOST + ".2go2go.com/";
@@ -183,31 +208,6 @@ public class GlobalMemberValues {
 //    public static String M_FTPENCODING = "UTF-8";
 //    public static String M_FTPBASCIDIR = "";       // FTP 기본 디렉토리
 //    //------------------------------------------------------------------------------------------------
-
-    // Test Server ---------------------------------------------------------------------------
-    // test
-    public static String DATABASE_NAME = "jjjqsrdbmulti";             // DATABASE 명
-    public static String mssql_pw = "DhksGkDP@02)";                           // DATABASE 비번
-
-    // 모바일 host
-    public static String MOBILE_HOST = "restaurantm";
-
-
-    // Domain 정보
-    public static String CLOUD_HOST = "rcloud";
-    public static String CLOUD_FTP_IP = "110.234.18.134";
-    public static String CLOUD_SERVER_URL_BASIC = "https://" + CLOUD_HOST + ".2go2go.com/";
-    public static String CLOUD_SERVER_URL = "https://" + CLOUD_HOST + ".2go2go.com/";
-    public static String CLOUD_SERVER_URL_FORHTTPS = "https://" + CLOUD_HOST + ".2go2go.com/";
-
-    // FTP 설정값
-    public static String M_FTPIP = CLOUD_FTP_IP;
-    public static int M_FTPPORT = 5252;
-    public static String M_FTPID = "nzsalondbftp";
-    public static String M_FTPPWD = "wndhkswngkwndP@01^";
-    public static String M_FTPENCODING = "UTF-8";
-    public static String M_FTPBASCIDIR = "";       // FTP 기본 디렉토리
-    //------------------------------------------------------------------------------------------------
     /**************************************************************************************************/
 
     /** mssql 관련 변수 ********************************************/
@@ -216,7 +216,7 @@ public class GlobalMemberValues {
     public static String mssql_ip = "0.0.0.0";
     public static String mssql_db = GlobalMemberValues.DATABASE_NAME;
     public static String mssql_id = "wanhayedb";
-    //            public static String mssql_id = "sa";
+    //    public static String mssql_id = "sa";
     public static String mssql_sync = "N";
     /*************************************************************/
 
@@ -1142,6 +1142,9 @@ public class GlobalMemberValues {
     public static boolean isQSRPOSonRestaurantPOS = true;
     // --------------------------------------------------------------------------
 
+    // 090924
+    public static boolean isReservationBtn_show = true;
+
     // 071224
     // 모디파이어 메뉴 추가 여부
     public static boolean is_modifier_add = false;
@@ -1945,6 +1948,10 @@ public class GlobalMemberValues {
             // 08162024
             "salon_storebreaktime",
 
+            // 02192024
+            "salon_storememberlevel",
+
+
             // 11012023
             "salon_storeitemdeletereason",
 
@@ -2070,6 +2077,10 @@ public class GlobalMemberValues {
             // 08162024
             "salon_storebreaktime",
 
+            // 02192024
+            "salon_storememberlevel",
+
+
             // 11012023
             "salon_storeitemdeletereason",
 
@@ -2128,6 +2139,10 @@ public class GlobalMemberValues {
             // 08162024
             "salon_storebreaktime",
 
+            // 02192024
+            "salon_storememberlevel",
+
+
             // 11012023
             "salon_storeitemdeletereason",
 
@@ -2156,6 +2171,10 @@ public class GlobalMemberValues {
 
             // 08162024
             "salon_storebreaktime",
+
+            // 02192024
+            "salon_storememberlevel",
+
 
             // 11012023
             "salon_storeitemdeletereason",
@@ -2196,6 +2215,10 @@ public class GlobalMemberValues {
 
             // 08162024
             "salon_storebreaktime",
+
+            // 02192024
+            "salon_storememberlevel",
+
 
             // 11012023
             "salon_storeitemdeletereason",
@@ -7214,7 +7237,6 @@ public class GlobalMemberValues {
 
 
 
-
                                     strQuery = " insert into salon_sales_kitchenprintingdata_json_torder (" +
                                             " salesCode, scode, sidx, jsonstr, tableidx, tablename, orderfrom, clouddbidx " +
                                             " ) values ( " +
@@ -8486,9 +8508,11 @@ public class GlobalMemberValues {
 
     //04232024 tOrderOrderJson
     public static JSONObject tOrderOrderJson(String paramSalesCode, String paramPrintingType, String paramTableInfos) throws JSONException {
-        GlobalMemberValues.logWrite("tOrderOrderJsonlog", "paramSalesCode : " + paramSalesCode + "\n");
+        GlobalMemberValues.logWrite("jjjptlog", "여기jjj123" + "\n");
 
-        GlobalMemberValues.logWrite("tOrderOrderJsonlog", "tableInfos : " + paramTableInfos + "\n");
+        GlobalMemberValues.logWrite("phoneorderPrintKitchenlog", "paramSalesCode : " + paramSalesCode + "\n");
+
+        GlobalMemberValues.logWrite("phoneorderjsonlog", "tableInfos : " + paramTableInfos + "\n");
 
         JSONObject jsonroot_kitchen = null;
         jsonroot_kitchen = new JSONObject();
@@ -8568,14 +8592,14 @@ public class GlobalMemberValues {
         }
 
         String addSql2 = "";
-//        if (!GlobalMemberValues.isStrEmpty(GlobalMemberValues.mDeletedSaleCartIdx)) {
-////            addSql2 = " and idx = '" + GlobalMemberValues.mDeletedSaleCartIdx + "' ";
-//            addSql2 = " and idx = '" + GlobalMemberValues.mDeletedSaleCartIdx + "' and kitchenprintedyn = 'Y'";
-//        }
-//
-//        if (GlobalMemberValues.mCancelBtnClickYN == "Y" || GlobalMemberValues.mCancelBtnClickYN.equals("Y")) {
-//            addSql2 = " and idx = '999999999' ";
-//        }
+        if (!GlobalMemberValues.isStrEmpty(GlobalMemberValues.mDeletedSaleCartIdx)) {
+//            addSql2 = " and idx = '" + GlobalMemberValues.mDeletedSaleCartIdx + "' ";
+            addSql2 = " and idx = '" + GlobalMemberValues.mDeletedSaleCartIdx + "' and kitchenprintedyn = 'Y'";
+        }
+
+        if (GlobalMemberValues.mCancelBtnClickYN == "Y" || GlobalMemberValues.mCancelBtnClickYN.equals("Y")) {
+            addSql2 = " and idx = '999999999' ";
+        }
 
         // 최초로 키친 프린팅 하는 것인지 확인
         int tempKitchenPrintedItemCnt = GlobalMemberValues.getIntAtString(MssqlDatabase.getResultSetValueToString(
@@ -11048,9 +11072,9 @@ public class GlobalMemberValues {
             String[] paramTxtArr = paramTxt.split(", ");
 
             String printingTxt = "";
-
             for (int jjj = 0; jjj < paramTxtArr.length; jjj++) {
                 String tempTxt = paramTxtArr[jjj];
+                tempTxt = tempTxt.replace("(1ea)", "");
                 String splitArr[] = {"", ""};
                 if (tempTxt.indexOf("(+") > -1 || tempTxt.indexOf("(-") > -1) {
                     GlobalMemberValues.logWrite("printingtestlogjjj", "tempTxt : " + tempTxt + "\n");
@@ -14154,6 +14178,7 @@ public class GlobalMemberValues {
                 saleitemlistLn2.setOrientation(LinearLayout.HORIZONTAL);
 
                 String tempTxt = paramTxtArr[jjj];
+                tempTxt = tempTxt.replace("(1ea)", "");
                 String splitArr[] = {"", ""};
                 if (tempTxt.indexOf("(+") > -1 || tempTxt.indexOf("(-") > -1) {
                     GlobalMemberValues.logWrite("printingtestlogjjj", "tempTxt : " + tempTxt + "\n");
@@ -14321,6 +14346,7 @@ public class GlobalMemberValues {
                 saleitemlistLn2.setOrientation(LinearLayout.HORIZONTAL);
 
                 String tempTxt = paramTxtArr[jjj];
+                tempTxt = tempTxt.replace("(1ea)", "");
                 String splitArr[] = {"", ""};
                 if (tempTxt.indexOf("(+") > -1 || tempTxt.indexOf("(-") > -1) {
                     GlobalMemberValues.logWrite("printingtestlogjjj", "tempTxt : " + tempTxt + "\n");
@@ -14425,6 +14451,7 @@ public class GlobalMemberValues {
 
 
                 String tempTxt = paramTxtArr[jjj];
+                tempTxt = tempTxt.replace("(1ea)", "");
                 String splitArr[] = {"", ""};
                 if (tempTxt.indexOf("(+") > -1 || tempTxt.indexOf("(-") > -1) {
                     GlobalMemberValues.logWrite("printingtestlogjjj", "tempTxt : " + tempTxt + "\n");
@@ -15942,9 +15969,7 @@ public class GlobalMemberValues {
                 }
                 if (MainMiddleService.mGeneralArrayList != null
                         && GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINLISTVIEW != null) {
-                    // 080524
                     MainMiddleService.initList();
-
                 }
 
                 GlobalMemberValues.logWrite("endtimechecklog", "인텐트 만들어서 테이블창 띄웠음" + "\n");
@@ -21116,6 +21141,7 @@ public class GlobalMemberValues {
         }
         //*****************************
 
+
         try {
             requestBody.put("data", data);
         } catch (JSONException e) {
@@ -21437,11 +21463,22 @@ public class GlobalMemberValues {
         //06032024 Send data to TOrder after download completes
 
         if(GlobalMemberValues.isTOrderUse()) {
-            try {
-                Thread.sleep(20000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+
+//            try {
+//                Thread.sleep(20000);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+
+            // BActivity의 화면 구성이 끝난 후 SplashActivity 종료
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    // 1초 후에 SplashActivity 종료
+                    SplashActivity.dismiss(); // SplashActivity 종료
+                }
+            }, 20000); // BActivity 화면 구성이 끝난 후 1초 후 SplashActivity 종료
+
             SendDataToTOrderEvent tOrderDataSender = new SendDataToTOrderEvent();
             tOrderDataSender.execute();
         }

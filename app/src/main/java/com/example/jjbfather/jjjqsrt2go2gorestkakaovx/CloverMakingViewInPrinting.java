@@ -24,7 +24,7 @@ import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 
-import com.example.jjbfather.jjjqsrt2go2gorest.tablesale.TableSaleMain;
+import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.tablesale.TableSaleMain;
 import com.printer.posbank.Printer;
 
 import org.json.JSONArray;
@@ -5480,7 +5480,6 @@ public class CloverMakingViewInPrinting {
                              saleItemTvContents4.setLayoutParams(new LinearLayout.LayoutParams(0, 30, GlobalMemberValues.PRINTINGITMETITLE4_ONCLOVER));
                              saleitemlistLn2.addView(saleItemTvContents4);
                              **/
-
                             int tempHeight = 45;
 //                        if (tempItemName.length() > 30 || GlobalMemberValues.getSizeToString(tempItemName) > 30) {
 //                            tempHeight = (tempHeight * 2) + 4;
@@ -5815,31 +5814,31 @@ public class CloverMakingViewInPrinting {
 
 
                 if (GlobalMemberValues.getAddPayType().equals("A") || GlobalMemberValues.getAddPayType() == "A"){
-                // Sub Total -----------------------------------------------------------------------------------------------------------------------
-                LinearLayout subtotalLn = new LinearLayout(MainActivity.mContext);
-                subtotalLn.setLayoutParams(matchParentParams);
-                subtotalLn.setOrientation(LinearLayout.HORIZONTAL);
+                    // Sub Total -----------------------------------------------------------------------------------------------------------------------
+                    LinearLayout subtotalLn = new LinearLayout(MainActivity.mContext);
+                    subtotalLn.setLayoutParams(matchParentParams);
+                    subtotalLn.setOrientation(LinearLayout.HORIZONTAL);
 
-                TextView customerNameLeftTv = new TextView(MainActivity.mContext);
-                customerNameLeftTv.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
-                customerNameLeftTv.setText("Sub Total");
-                customerNameLeftTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
-                GlobalMemberValues.setTextStyleOnClover(customerNameLeftTv);
-                customerNameLeftTv.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.0f));
-                subtotalLn.addView(customerNameLeftTv);
+                    TextView customerNameLeftTv = new TextView(MainActivity.mContext);
+                    customerNameLeftTv.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
+                    customerNameLeftTv.setText("Sub Total");
+                    customerNameLeftTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
+                    GlobalMemberValues.setTextStyleOnClover(customerNameLeftTv);
+                    customerNameLeftTv.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.0f));
+                    subtotalLn.addView(customerNameLeftTv);
 
-                double d_temp_subtotal = subTotal - GlobalMemberValues.getDoubleAtString(str_commongratuity);
+                    double d_temp_subtotal = subTotal - GlobalMemberValues.getDoubleAtString(str_commongratuity);
 
-                TextView customerNameRightTv = new TextView(MainActivity.mContext);
-                customerNameRightTv.setGravity(Gravity.CENTER_VERTICAL | Gravity.RIGHT);
-                customerNameRightTv.setText(finalTempDollarStr + GlobalMemberValues.getCommaStringForDouble(d_temp_subtotal + ""));
-                customerNameRightTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
-                GlobalMemberValues.setTextStyleOnClover(customerNameRightTv);
-                customerNameRightTv.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.5f));
-                subtotalLn.addView(customerNameRightTv);
+                    TextView customerNameRightTv = new TextView(MainActivity.mContext);
+                    customerNameRightTv.setGravity(Gravity.CENTER_VERTICAL | Gravity.RIGHT);
+                    customerNameRightTv.setText(finalTempDollarStr + GlobalMemberValues.getCommaStringForDouble(d_temp_subtotal + ""));
+                    customerNameRightTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER);
+                    GlobalMemberValues.setTextStyleOnClover(customerNameRightTv);
+                    customerNameRightTv.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.5f));
+                    subtotalLn.addView(customerNameRightTv);
 
-                printingLn.addView(subtotalLn);
-                // ---------------------------------------------------------------------------------------------------------------------------------
+                    printingLn.addView(subtotalLn);
+                    // ---------------------------------------------------------------------------------------------------------------------------------
                 } else {
                     // Sub Total -----------------------------------------------------------------------------------------------------------------------
                     LinearLayout subtotalLn_cash = new LinearLayout(MainActivity.mContext);
@@ -11624,21 +11623,6 @@ public class CloverMakingViewInPrinting {
 
                 // 10112023
 
-                // 240904
-                // reprint
-//                int temp_totaltrans = 0;
-//                double temp_totalamount = 0.0f;
-//                if (is_prev_eod) {
-//                    // 리프린팅.
-//                    temp_totaltrans = GlobalMemberValues.getIntAtString(salesbytendertypes_totaltransaction);
-//                    temp_totalamount = GlobalMemberValues.getDoubleAtString(salesbytendertypes_totalamount);
-//                } else {
-//                    // 최초 프린팅.
-//                    temp_totaltrans = GlobalMemberValues.getIntAtString(salesbytendertypes_totaltransaction) + thirdparty_trans_total;
-//                    temp_totalamount = GlobalMemberValues.getDoubleAtString(salesbytendertypes_totalamount) + thirdparty_totalamount;
-//                }
-                // 240904
-                // reprint
 
                 // orign
                 int temp_totaltrans = GlobalMemberValues.getIntAtString(salesbytendertypes_totaltransaction) + thirdparty_trans_total;

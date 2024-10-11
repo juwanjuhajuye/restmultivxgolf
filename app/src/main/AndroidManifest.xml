@@ -181,6 +181,11 @@
             android:name="com.example.jjbfather.jjjqsrt2go2gorestkakaovx.Splash"
             android:configChanges="keyboard|keyboardHidden|orientation|orientation|screenSize"
             android:label="@string/title_activity_splash" />
+
+        <activity
+            android:name="com.example.jjbfather.jjjqsrt2go2gorestkakaovx.SplashActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|orientation|screenSize"
+            android:label="SplashActivity" />
         <activity
             android:name="com.example.jjbfather.jjjqsrt2go2gorestkakaovx.CloudWebPageAtNotConnection"
             android:configChanges="keyboard|keyboardHidden|orientation|orientation|screenSize"

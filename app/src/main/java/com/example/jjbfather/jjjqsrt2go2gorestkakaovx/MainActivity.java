@@ -68,16 +68,16 @@ import com.clover.sdk.v3.order.DisplayLineItem;
 import com.clover.sdk.v3.order.DisplayOrder;
 import com.clover.sdk.v3.scanner.BarcodeResult;
 import com.clover.sdk.v3.scanner.BarcodeScanner;
-import com.example.jjbfather.jjjqsrt2go2gorest.tablesale.BillSplitMerge;
-import com.example.jjbfather.jjjqsrt2go2gorest.tablesale.EmployeeKeyIn;
-import com.example.jjbfather.jjjqsrt2go2gorest.apiadapter.ActivityMonitor;
-import com.example.jjbfather.jjjqsrt2go2gorest.apiadapter.ApiAdapter;
-import com.example.jjbfather.jjjqsrt2go2gorest.apiadapter.ApiAdapterFactory;
-import com.example.jjbfather.jjjqsrt2go2gorest.serial.FTDriver;
-import com.example.jjbfather.jjjqsrt2go2gorest.tablesale.TablePeopleCnt;
-import com.example.jjbfather.jjjqsrt2go2gorest.tablesale.TableSaleBillPrint;
-import com.example.jjbfather.jjjqsrt2go2gorest.tablesale.TableSaleMain;
-import com.example.jjbfather.jjjqsrt2go2gorest.tablesale.TableSplittedList;
+import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.tablesale.BillSplitMerge;
+import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.tablesale.EmployeeKeyIn;
+import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.apiadapter.ActivityMonitor;
+import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.apiadapter.ApiAdapter;
+import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.apiadapter.ApiAdapterFactory;
+import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.serial.FTDriver;
+import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.tablesale.TablePeopleCnt;
+import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.tablesale.TableSaleBillPrint;
+import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.tablesale.TableSaleMain;
+import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.tablesale.TableSplittedList;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.elo.device.DeviceManager;
 import com.elo.device.ProductInfo;
@@ -470,7 +470,7 @@ public class MainActivity extends Activity {
 
         Quick_LeftAnim = AnimationUtils.loadAnimation(this, R.anim.act_out_left);
         Quick_RightAnim = AnimationUtils.loadAnimation(this, R.anim.act_in_right);
-        SlidingTogoViewAnimationListener slidingTogoViewAnimationListener = new SlidingTogoViewAnimationListener();
+        MainActivity.SlidingTogoViewAnimationListener slidingTogoViewAnimationListener = new MainActivity.SlidingTogoViewAnimationListener();
         Quick_LeftAnim.setAnimationListener(slidingTogoViewAnimationListener);
         Quick_RightAnim.setAnimationListener(slidingTogoViewAnimationListener);
         quick_table_grid_list = (RecyclerView)findViewById(R.id.main_quick_table_gridview);
@@ -2925,7 +2925,6 @@ public class MainActivity extends Activity {
 
                 case R.id.saveorderButton : {
                     LogsSave.saveLogsInDB(93);
-                    //SelectGetFoodType.openHereToGoInfoIntent("T");
 
                     // 09302024
                     if (MainMiddleService.mGeneralArrayList.size() > 0) {
@@ -2935,7 +2934,7 @@ public class MainActivity extends Activity {
                         }
                     }
 
-
+                    //SelectGetFoodType.openHereToGoInfoIntent("T");
                     GlobalMemberValues.mIsClickSendToKitchen = true;
                     Payment.openGetFoodTypeIntent("");
                     //clickSendToKitchen();
@@ -2956,6 +2955,7 @@ public class MainActivity extends Activity {
                         if (GlobalMemberValues.isStrEmpty(MainMiddleService.mHoldCode)) {
                             MainMiddleService.mHoldCode = MainMiddleService.mGeneralArrayList.get(0).mHoldCode;
                         }
+
 
                         // 07282024 --------------------------------------
                         //SelectGetFoodType.openHereToGoInfoIntent("T");
@@ -3118,7 +3118,7 @@ MainMiddleService.setEmptyInSaleCart(false);
                 }
 
                 case R.id.button_main_side_gc_balance : {
-                    Intent GiftCardBalanceCheck = new Intent(MainActivity.mContext, com.example.jjbfather.jjjqsrt2go2gorest.GiftCardBalanceCheck.class);
+                    Intent GiftCardBalanceCheck = new Intent(MainActivity.mContext, com.example.jjbfather.jjjqsrt2go2gorestkakaovx.GiftCardBalanceCheck.class);
                     // Dialog 에 Extra 로 객체 및 데이터 전달하기 ------------------------------------------------
                     //saleHistoryIntent.putExtra("ParentMainMiddleService", this.getClass());
                     // -------------------------------------------------------------------------------------
@@ -4204,7 +4204,7 @@ MainMiddleService.setEmptyInSaleCart(false);
 
         // 변수 저장 -----------------------------------------------------------------------------------------------------------------------
         String tempIp = "0.0.0.0";
-        String tempDbName = "JJJQSRDBMULTI";
+        String tempDbName = GlobalMemberValues.DATABASE_NAME;
         String tempDbPass = "DhksGkDP@02)";
         String tempMobileHost = "yukdaejangm";
         String tempCloudHost = "yukdaejangcloud";
@@ -4231,7 +4231,7 @@ MainMiddleService.setEmptyInSaleCart(false);
                 tempIp = "0.0.0.0";
             }
             if (GlobalMemberValues.isStrEmpty(tempDbName)) {
-                tempDbName = "JJJQSRDBMULTI";
+                tempDbName = GlobalMemberValues.DATABASE_NAME;
             }
             if (GlobalMemberValues.isStrEmpty(tempDbPass)) {
                 tempDbPass = "DhksGkDP@02)";
@@ -4566,17 +4566,6 @@ MainMiddleService.setEmptyInSaleCart(false);
         if (TableSaleBillPrint.mActivity != null && !TableSaleBillPrint.mActivity.isFinishing()) {
             TableSaleBillPrint.mActivity.finish();
         }
-
-//        if (GlobalMemberValues.mToGoType == "C" || GlobalMemberValues.mToGoType == "W"){
-//            if (GlobalMemberValues.getIntAtString(MssqlDatabase.getResultSetValueToString(
-//                    "select count(idx) from temp_salecart_deliveryinfo where holdcode = '" + MainMiddleService.mHoldCode + "' ")) > 0) {
-//            } else {
-//                Payment.openGetFoodTypeIntent("");
-//
-//            }
-//
-//
-//        }
 
     }
 
@@ -5222,7 +5211,7 @@ MainMiddleService.setEmptyInSaleCart(false);
                 GlobalMemberValues.s_str_tableinfo = tableinfo;
                 // 저장된 테이블이 있을 경우에만..
                 if (tableinfo != null && tableinfo.length > 0) {
-                    QuickViewHolder temp_quickTable_gridListAdapter = new QuickViewHolder(MainActivity.mContext, tableinfo);
+                    MainActivity.QuickViewHolder temp_quickTable_gridListAdapter = new MainActivity.QuickViewHolder(MainActivity.mContext, tableinfo);
                     quick_table_grid_list.setLayoutManager(new GridLayoutManager(MainActivity.mContext, 3));
                     RecyclerView.ItemAnimator animator = quick_table_grid_list.getItemAnimator();
                     if (animator instanceof SimpleItemAnimator) {
@@ -5320,7 +5309,7 @@ MainMiddleService.setEmptyInSaleCart(false);
         // -----------------------------------------------------------------------------------------------------
     }
 
-    public class QuickViewHolder extends RecyclerView.Adapter<QuickViewHolder.ViewHolder> {
+    public class QuickViewHolder extends RecyclerView.Adapter<MainActivity.QuickViewHolder.ViewHolder> {
 
         boolean is_last_in_order = false;
         boolean b = false;
@@ -5336,18 +5325,18 @@ MainMiddleService.setEmptyInSaleCart(false);
 
         // Inflates the cell layout from xml when needed
         @Override
-        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        public MainActivity.QuickViewHolder.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View view = mInflater.inflate(R.layout.quick_table_grid_row, parent, false);
             //            View view = LayoutInflater.from(context)
 //                    .inflate(R.layout.quick_table_grid_row, parent, false);
             view.setLayoutParams(new GridView.LayoutParams(GridView.AUTO_FIT, 120));
-            ViewHolder viewHolder = new ViewHolder(view);
+            MainActivity.QuickViewHolder.ViewHolder viewHolder = new MainActivity.QuickViewHolder.ViewHolder(view);
             return viewHolder;
         }
 
         // Binds the data to the textview in each cell
         @Override
-        public void onBindViewHolder(ViewHolder holder, int position) {
+        public void onBindViewHolder(MainActivity.QuickViewHolder.ViewHolder holder, int position) {
 
 
 

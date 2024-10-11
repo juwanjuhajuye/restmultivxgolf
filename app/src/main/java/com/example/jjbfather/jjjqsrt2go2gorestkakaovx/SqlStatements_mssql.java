@@ -3793,7 +3793,8 @@ public class SqlStatements_mssql {
                     "idx INTEGER PRIMARY KEY identity, " +
                     "tableinfojson ntext," +
                     "menucategoryinfojson ntext, " +
-                    "menuinfojson ntext " +
+                    "menuinfojson ntext, " +
+                    "wdate datetime DEFAULT getdate() "+
                     ")";
 
 
