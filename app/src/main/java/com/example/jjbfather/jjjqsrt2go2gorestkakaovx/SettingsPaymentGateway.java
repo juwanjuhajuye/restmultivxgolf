@@ -663,19 +663,19 @@ public class SettingsPaymentGateway extends Activity {
 
         insTipSelect1 = tipselect1.getText().toString();
         if (GlobalMemberValues.isStrEmpty(insTipSelect1)) {
-            insTipSelect1 = "5.0";
+            insTipSelect1 = "0.0";
         }
         insTipSelect2 = tipselect2.getText().toString();
         if (GlobalMemberValues.isStrEmpty(insTipSelect2)) {
-            insTipSelect2 = "5.0";
+            insTipSelect2 = "0.0";
         }
         insTipSelect3 = tipselect3.getText().toString();
         if (GlobalMemberValues.isStrEmpty(insTipSelect3)) {
-            insTipSelect3 = "5.0";
+            insTipSelect3 = "0.0";
         }
         insTipSelect4 = tipselect4.getText().toString();
         if (GlobalMemberValues.isStrEmpty(insTipSelect4)) {
-            insTipSelect4 = "5.0";
+            insTipSelect4 = "0.0";
         }
 
         if (tiplineOnReceiptSwitch.isChecked()) {
