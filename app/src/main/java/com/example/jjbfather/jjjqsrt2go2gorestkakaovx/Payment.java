@@ -1129,9 +1129,13 @@ public class Payment {
                             //if the discount items and menu items don't add up to match the mGeneralArrayList size, that
                             //means other items were added, so don't let user go to payment.
                             if(discountCount + MainActivity.temp_str_salecart_cnt !=  MainMiddleService.mGeneralArrayList.size()){
-                                GlobalMemberValues.displayDialog(MainActivity.mContext, "Warning",
-                                        "There are changes to your order history.\nPlease print to kitchen the changes first", "Close");
-                                return;
+
+                                if (MainActivity.temp_str_salecard_discount_cnt != discountCount) {  // if 문 추가. 101524  원래 있던 discount 갯수와 지금 장바구니에 있는 discount 갯수 비교.
+                                    GlobalMemberValues.displayDialog(MainActivity.mContext, "Warning",
+                                            "There are changes to your order history.\nPlease print to kitchen the changes first", "Close");
+                                    return;
+                                }
+
                             }
                         }
 
