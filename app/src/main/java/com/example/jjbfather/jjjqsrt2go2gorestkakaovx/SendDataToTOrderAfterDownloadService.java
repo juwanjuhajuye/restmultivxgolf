@@ -1,39 +1,41 @@
 package com.example.jjbfather.jjjqsrt2go2gorestkakaovx;
 
+import android.app.Service;
+import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
-import android.os.AsyncTask;
 import android.os.Build;
+import android.os.IBinder;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.math.BigDecimal;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 
-public class SendDataToTOrderEvent extends AsyncTask {
-    final String TAG = "SendDataToTOrderEvent";
-
-    //storeinfo
-    //menuinfo
-    //tableinfo
-
-    public SendDataToTOrderEvent() {
-
+public class SendDataToTOrderAfterDownloadService extends Service implements Runnable {
+    public SendDataToTOrderAfterDownloadService() {
     }
 
     @Override
-    protected Object doInBackground(Object[] params) {
-        GlobalMemberValues.logWrite(TAG, "doing in background!");
+    public void onCreate() {
+        super.onCreate();
+    }
+
+    @Override
+    public void onStart(Intent intent, int startId) {
+        super.onStart(intent, startId);
+
+        Thread mThread = new Thread(this);
+        mThread.start();
+    }
+
+    @Override
+    public void run() {
+        GlobalMemberValues.logWrite("API_torder_programstart", "SendDataToTOrderAfterDownloadService Running!");
         JSONObject tableInfoJSON = makeTableInfoJSON();
         JSONObject menuCategoryInfoJSON = makeMenuCategoryJSON();
         JSONObject menuInfoJSON = makeMenuJSON();
@@ -141,13 +143,13 @@ public class SendDataToTOrderEvent extends AsyncTask {
 
         String strInsQuery = "";
 
+        //Save the new json data
         strInsQuery = "insert into torder_json_data " +
                 "(tableinfojson, menucategoryinfojson, menuinfojson) values " +
                 "('" + GlobalMemberValues.getDBTextAfterChecked(tableInfoJSON.toString(), 0) + "', '" + GlobalMemberValues.getDBTextAfterChecked(menuCategoryInfoJSON.toString(), 0) + "', '" + GlobalMemberValues.getDBTextAfterChecked(menuInfoJSON.toString(), 0) + "')";
 
         MainActivity.mDbInit.dbExecuteWriteReturnValue(strInsQuery);
 
-        return null;
     }
 
     //06032024 API call to make when table info has changed to TOrder API.
@@ -477,5 +479,11 @@ public class SendDataToTOrderEvent extends AsyncTask {
 
         return requestBody;
 
+    }
+
+    @Override
+    public IBinder onBind(Intent intent) {
+        // TODO: Return the communication channel to the service.
+        throw new UnsupportedOperationException("Not yet implemented");
     }
 }

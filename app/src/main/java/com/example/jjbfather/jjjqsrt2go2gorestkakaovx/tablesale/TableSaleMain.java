@@ -42,6 +42,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SimpleItemAnimator;
 
 import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.AdminPassword;
+import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.BayReservationViewer;
 import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.CommandButton;
 import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.CustomProgressDialog;
 import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.DateMethodClass;
@@ -156,7 +157,7 @@ public class TableSaleMain extends Activity {
     Animation RightAnim;
 
     public VerticalTextView table_main_btn_side_showup_quick_table_recyclerview;
-    public Button quick_table_order_btn, quick_table_order_callin_btn, quick_table_popup_btn;
+//    public Button quick_table_order_btn, quick_table_order_callin_btn, quick_table_popup_btn;
     Animation Quick_LeftAnim;
     Animation Quick_RightAnim;
 
@@ -194,6 +195,9 @@ public class TableSaleMain extends Activity {
 
     // 09262023
     public static boolean isAfterMerge = false;
+
+    // 10162024 VX Golf 버튼 추가
+    public Button table_main_reservation_btn, table_main_logout_btn;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -486,20 +490,26 @@ public class TableSaleMain extends Activity {
         table_main_btn_side_showup_quick_table_recyclerview = findViewById(R.id.table_main_btn_side_showup_quick_table_recyclerview);
         table_main_btn_side_showup_quick_table_recyclerview.setOnClickListener(clickListener);
 
-        quick_table_order_btn = findViewById(R.id.quick_table_order_btn);
-        quick_table_order_btn.setTextSize(f_globalFontSize
-                + quick_table_order_btn.getTextSize() * f_fontsize_forPAX);
-        quick_table_order_btn.setOnClickListener(clickListener);
+//        quick_table_order_btn = findViewById(R.id.quick_table_order_btn);
+//        quick_table_order_btn.setTextSize(f_globalFontSize
+//                + quick_table_order_btn.getTextSize() * f_fontsize_forPAX);
+//        quick_table_order_btn.setOnClickListener(clickListener);
 
-        quick_table_order_callin_btn = findViewById(R.id.quick_table_order_callin_btn);
-        quick_table_order_callin_btn.setTextSize(f_globalFontSize
-                + quick_table_order_callin_btn.getTextSize() * f_fontsize_forPAX);
-        quick_table_order_callin_btn.setOnClickListener(clickListener);
+//        quick_table_order_callin_btn = findViewById(R.id.quick_table_order_callin_btn);
+//        quick_table_order_callin_btn.setTextSize(f_globalFontSize
+//                + quick_table_order_callin_btn.getTextSize() * f_fontsize_forPAX);
+//        quick_table_order_callin_btn.setOnClickListener(clickListener);
 
-        quick_table_popup_btn = findViewById(R.id.quick_table_popup_btn);
-        quick_table_popup_btn.setTextSize(f_globalFontSize
-                + quick_table_popup_btn.getTextSize() * f_fontsize_forPAX);
-        quick_table_popup_btn.setOnClickListener(clickListener);
+//        quick_table_popup_btn = findViewById(R.id.quick_table_popup_btn);
+//        quick_table_popup_btn.setTextSize(f_globalFontSize
+//                + quick_table_popup_btn.getTextSize() * f_fontsize_forPAX);
+//        quick_table_popup_btn.setOnClickListener(clickListener);
+
+        // 10162024
+        table_main_reservation_btn = findViewById(R.id.table_main_reservation_btn);
+        table_main_reservation_btn.setOnClickListener(clickListener);
+        table_main_logout_btn = findViewById(R.id.table_main_logout_btn);
+        table_main_logout_btn.setOnClickListener(clickListener);
 
         Quick_LeftAnim = AnimationUtils.loadAnimation(this, R.anim.act_out_left);
         Quick_RightAnim = AnimationUtils.loadAnimation(this, R.anim.act_in_right);
@@ -1025,62 +1035,62 @@ public class TableSaleMain extends Activity {
                     break;
                 }
 
-                case R.id.quick_table_order_callin_btn : {
-                    if (!GlobalMemberValues.checkEmployeePermission(GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx, GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName, "<17>")){
-                        GlobalMemberValues.displayDialog(TableSaleMain.mContext, "Warning", "You do not have permission", "Close");
-                        return;
-                    }
-                    GlobalMemberValues.mToGoType = "C";
-                    goSaleMainForToGo();
-                    if (GlobalMemberValues.ISDUALDISPLAYPOSSIBLE) {
-                        //jihun park sub display
-                        PaxPresentation.unSetLogo();
-                        MainActivity.updatePresentation();
-                    }
-                    break;
-                }
-
-                case R.id.quick_table_order_btn : {
-                    if (!GlobalMemberValues.checkEmployeePermission(GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx, GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName, "<17>")){
-                        GlobalMemberValues.displayDialog(TableSaleMain.mContext, "Warning", "You do not have permission", "Close");
-                        return;
-                    }
-                    GlobalMemberValues.mToGoType = "W";
-                    goSaleMainForToGo();
-                    if (GlobalMemberValues.ISDUALDISPLAYPOSSIBLE) {
-                        //jihun park sub display
-                        PaxPresentation.unSetLogo();
-                        MainActivity.updatePresentation();
-                    }
-                    break;
-                }
-
-
-                case R.id.quick_table_popup_btn : {
-                    LogsSave.saveLogsInDB(235);
-                    if (!GlobalMemberValues.checkEmployeePermission(GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx, GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName, "<17>")){
-                        GlobalMemberValues.displayDialog(TableSaleMain.mContext, "Warning", "You do not have permission", "Close");
-                        return;
-                    }
+//                case R.id.quick_table_order_callin_btn : {
+//                    if (!GlobalMemberValues.checkEmployeePermission(GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx, GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName, "<17>")){
+//                        GlobalMemberValues.displayDialog(TableSaleMain.mContext, "Warning", "You do not have permission", "Close");
+//                        return;
+//                    }
+//                    GlobalMemberValues.mToGoType = "C";
+//                    goSaleMainForToGo();
+//                    if (GlobalMemberValues.ISDUALDISPLAYPOSSIBLE) {
+//                        //jihun park sub display
+//                        PaxPresentation.unSetLogo();
+//                        MainActivity.updatePresentation();
+//                    }
 //                    break;
-                }
+//                }
 
-                case R.id.table_main_btn_side_showup_quick_table_recyclerview : {
-                    i_anim_kind = 1;
+//                case R.id.quick_table_order_btn : {
+//                    if (!GlobalMemberValues.checkEmployeePermission(GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx, GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName, "<17>")){
+//                        GlobalMemberValues.displayDialog(TableSaleMain.mContext, "Warning", "You do not have permission", "Close");
+//                        return;
+//                    }
+//                    GlobalMemberValues.mToGoType = "W";
+//                    goSaleMainForToGo();
+//                    if (GlobalMemberValues.ISDUALDISPLAYPOSSIBLE) {
+//                        //jihun park sub display
+//                        PaxPresentation.unSetLogo();
+//                        MainActivity.updatePresentation();
+//                    }
+//                    break;
+//                }
 
-                    if (table_main_grid_relative_view.getVisibility() == View.VISIBLE){
-                        quick_table_popup_btn.setSelected(false);
-                        table_main_grid_relative_view.setVisibility(View.INVISIBLE);
-                        table_main_grid_relative_view_loading.setVisibility(View.VISIBLE);
-                        table_main_grid_relative_view.startAnimation(Quick_LeftAnim);
-                    } else {
-                        quick_table_popup_btn.setSelected(true);
-                        table_main_grid_relative_view.startAnimation(Quick_RightAnim);
-                        table_main_grid_relative_view.setVisibility(View.VISIBLE);
-                    }
 
-                    break;
-                }
+//                case R.id.quick_table_popup_btn : {
+//                    LogsSave.saveLogsInDB(235);
+//                    if (!GlobalMemberValues.checkEmployeePermission(GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx, GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName, "<17>")){
+//                        GlobalMemberValues.displayDialog(TableSaleMain.mContext, "Warning", "You do not have permission", "Close");
+//                        return;
+//                    }
+////                    break;
+//                }
+
+//                case R.id.table_main_btn_side_showup_quick_table_recyclerview : {
+//                    i_anim_kind = 1;
+//
+//                    if (table_main_grid_relative_view.getVisibility() == View.VISIBLE){
+//                        quick_table_popup_btn.setSelected(false);
+//                        table_main_grid_relative_view.setVisibility(View.INVISIBLE);
+//                        table_main_grid_relative_view_loading.setVisibility(View.VISIBLE);
+//                        table_main_grid_relative_view.startAnimation(Quick_LeftAnim);
+//                    } else {
+//                        quick_table_popup_btn.setSelected(true);
+//                        table_main_grid_relative_view.startAnimation(Quick_RightAnim);
+//                        table_main_grid_relative_view.setVisibility(View.VISIBLE);
+//                    }
+//
+//                    break;
+//                }
 
                 case R.id.table_main_btn_side_qr_on:
 
@@ -1147,6 +1157,26 @@ public class TableSaleMain extends Activity {
                         GlobalMemberValues.displayDialog(mContext, "Warning", "Please select a table", "Close");
                     }
 
+                    break;
+
+                case R.id.table_main_reservation_btn:
+                    Intent bayReservationWindowIntent = new Intent(MainActivity.mContext.getApplicationContext(), BayReservationViewer.class);
+                    mActivity.startActivity(bayReservationWindowIntent);
+                    if (GlobalMemberValues.isUseFadeInOut()) {
+                        mActivity.overridePendingTransition(R.anim.act_in_bottom, R.anim.act_out_bottom);
+                    }
+                    break;
+                case R.id.table_main_logout_btn:
+                    new AlertDialog.Builder(mActivity)
+                            .setTitle("Employee Logout")
+                            .setMessage("Do you want to logout?")
+                            .setNegativeButton("No", null)
+                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    MainActivity.employeeLogout();
+                                }
+                            }).show();
                     break;
 
 
@@ -6668,7 +6698,7 @@ public class TableSaleMain extends Activity {
             float y = ev.getRawY() + table_main_grid_relative_view.getTop() - scrcoords[1];
             if (x < table_main_grid_relative_view.getLeft() || x > table_main_grid_relative_view.getRight() || y < table_main_grid_relative_view.getTop() || y > table_main_grid_relative_view.getBottom()){
                 if (table_main_grid_relative_view.getVisibility() == View.VISIBLE){
-                    quick_table_popup_btn.setSelected(false);
+//                    quick_table_popup_btn.setSelected(false);
                     table_main_grid_relative_view.setVisibility(View.GONE);
                     table_main_grid_relative_view.startAnimation(Quick_LeftAnim);
                 }

@@ -36,7 +36,7 @@ public class ProgressBarDialog extends AlertDialog {
         c = context;
         str_title = title;
     }
-//    @Override
+    //    @Override
 //    protected void onCreate(Bundle savedInstanceState) {
 //        super.onCreate(savedInstanceState);
 //
@@ -96,11 +96,10 @@ public class ProgressBarDialog extends AlertDialog {
 
         if (a == 100){
 
-            if(GlobalMemberValues.isTOrderUse()) {
-                Intent intent = new Intent(getContext(), SplashActivity.class);
-                getContext().startActivity(intent);
-            }
-
+//            if(GlobalMemberValues.isTOrderUse()) {
+            Intent intent = new Intent(getContext(), SplashActivity.class);
+            getContext().startActivity(intent);
+//            }
             MainActivity.handler_loading_popup.post(new Runnable() {
                 @Override
                 public void run() {

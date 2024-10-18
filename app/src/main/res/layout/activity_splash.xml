@@ -17,10 +17,9 @@
         android:layout_marginRight="100dp"
         android:layout_marginLeft="100dp"
         android:layout_alignParentBottom="true"
-        android:textSize="20dp"
+        android:textSize="25dp"
         android:textColor="@color/colorWhite"
-        android:text="After downloading data from the cloud server, \nit is applied to the POS system and applied to the TOrder event server.
-"
+        android:text="System is loading. Please wait a moment."
         android:layout_centerInParent="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>

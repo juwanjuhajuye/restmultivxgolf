@@ -601,6 +601,8 @@ public class CommandDownloadData extends Activity {
 
             MainActivity.employeeLogout();
 
+            GlobalMemberValues.logWrite("downloaddatalogjjj", "Sleeping for 5 seconds!");
+
             try {
                 Thread.sleep(5000);
             } catch (InterruptedException e) {

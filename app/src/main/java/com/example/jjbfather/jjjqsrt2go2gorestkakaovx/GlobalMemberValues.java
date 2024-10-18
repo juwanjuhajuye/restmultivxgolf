@@ -21484,6 +21484,24 @@ public class GlobalMemberValues {
         }
     }
 
+    public static void sendDataToTOrderEventServerService(Context paramContext, Activity paramActivity) {
+        //06032024 Send data to TOrder after download completes
+
+        if(GlobalMemberValues.isTOrderUse()) {
+            // BActivity의 화면 구성이 끝난 후 SplashActivity 종료
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    // 1초 후에 SplashActivity 종료
+                    SplashActivity.dismiss(); // SplashActivity 종료
+                }
+            }, 20000); // BActivity 화면 구성이 끝난 후 1초 후 SplashActivity 종료
+
+            Intent tempIntent = new Intent(paramContext.getApplicationContext(), SendDataToTOrderAfterDownloadService.class);
+            paramActivity.startService(tempIntent);
+        }
+    }
+
     public static boolean isTablePayOnQRCode() {
         boolean returnValue = false;
         String returnData = getDBTextAfterChecked(MainActivity.mDbInit.dbExecuteReadReturnString(

@@ -185,6 +185,7 @@
         <activity
             android:name="com.example.jjbfather.jjjqsrt2go2gorestkakaovx.SplashActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|orientation|screenSize"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:label="SplashActivity" />
         <activity
             android:name="com.example.jjbfather.jjjqsrt2go2gorestkakaovx.CloudWebPageAtNotConnection"
@@ -968,6 +969,11 @@
             android:enabled="true"
             android:exported="true" />
 
+        <!-- 10142024 -->
+        <service
+            android:name="com.example.jjbfather.jjjqsrt2go2gorestkakaovx.SendDataToTOrderAfterDownloadService"
+            android:enabled="true"
+            android:exported="true" />
 
         <!-- Service 끝 -->
         <!-- 구글 플레이 서비스 구글플레이서비스 (Google Play Service) -->

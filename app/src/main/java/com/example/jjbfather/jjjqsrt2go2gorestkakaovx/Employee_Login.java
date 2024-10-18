@@ -585,8 +585,9 @@ public class Employee_Login extends Activity {
         sb.delete(0, sb.toString().length());
         if (mServerNum.length() < 8) {
             sb.append(mServerNum).append(btn.getText().toString());
-            int tempNumber = Integer.parseInt(sb.toString());
-            mServerNum = String.valueOf(tempNumber);
+            mServerNum = sb.toString();
+//            int tempNumber = Integer.parseInt(sb.toString());
+//            mServerNum = String.valueOf(tempNumber);
 //            employeeLoginEmpSelectTextView.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
             employeeLoginEmpSelectTextView.setText(mServerNum);
         }
@@ -946,7 +947,10 @@ public class Employee_Login extends Activity {
         // --------------------------------------------------------------------------------------------------
 
         if (GlobalMemberValues.is_datadownload_yn){
-            GlobalMemberValues.sendDataToTOrderEventServer();
+
+            //10142024 use service instead
+            //GlobalMemberValues.sendDataToTOrderEventServer();
+            GlobalMemberValues.sendDataToTOrderEventServerService(MainActivity.mContext, MainActivity.mActivity);
             GlobalMemberValues.is_datadownload_yn = false;
         }
 

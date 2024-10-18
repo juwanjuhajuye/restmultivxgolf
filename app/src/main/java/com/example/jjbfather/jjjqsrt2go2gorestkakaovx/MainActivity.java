@@ -387,7 +387,9 @@ public class MainActivity extends Activity {
         //스플래쉬 액티비티를 띄운다.
         if (GlobalMemberValues.SPLASHCOUNT == 0) {
             if (GlobalMemberValues.GLOBAL_SPLASHUSE == 0) {
-                startActivity(new Intent(this, Splash.class));
+//                startActivity(new Intent(this, Splash.class));
+                Intent loadingIntent = new Intent(MainActivity.mContext.getApplicationContext(), SplashActivity.class);
+                mActivity.startActivity(loadingIntent);
             }
 
             GlobalMemberValues.SPLASHCOUNT++;
@@ -471,7 +473,7 @@ public class MainActivity extends Activity {
 
         Quick_LeftAnim = AnimationUtils.loadAnimation(this, R.anim.act_out_left);
         Quick_RightAnim = AnimationUtils.loadAnimation(this, R.anim.act_in_right);
-        SlidingTogoViewAnimationListener slidingTogoViewAnimationListener = new SlidingTogoViewAnimationListener();
+        MainActivity.SlidingTogoViewAnimationListener slidingTogoViewAnimationListener = new MainActivity.SlidingTogoViewAnimationListener();
         Quick_LeftAnim.setAnimationListener(slidingTogoViewAnimationListener);
         Quick_RightAnim.setAnimationListener(slidingTogoViewAnimationListener);
         quick_table_grid_list = (RecyclerView)findViewById(R.id.main_quick_table_gridview);
@@ -647,7 +649,10 @@ public class MainActivity extends Activity {
                 GlobalMemberValues.logWrite(TAG, "프로그래스바 종료후... \n");
                 // -------------------------------------------------------------------------------------
 
-                GlobalMemberValues.sendDataToTOrderEventServer();
+
+                //10142024 use service instead
+                //GlobalMemberValues.sendDataToTOrderEventServer();
+                GlobalMemberValues.sendDataToTOrderEventServerService(MainActivity.mContext, MainActivity.mActivity);
 //                //06032024 Send data to TOrder after download completes
 //                if(GlobalMemberValues.isTOrderUse()){
 //                    try {
@@ -4549,6 +4554,7 @@ MainMiddleService.setEmptyInSaleCart(false);
             } else {
                 temp_str_salecart = "";
                 temp_str_salecart_cnt = 0;
+                temp_str_salecard_discount_cnt = 0;
             }
         }
 
@@ -5222,7 +5228,7 @@ MainMiddleService.setEmptyInSaleCart(false);
                 GlobalMemberValues.s_str_tableinfo = tableinfo;
                 // 저장된 테이블이 있을 경우에만..
                 if (tableinfo != null && tableinfo.length > 0) {
-                    QuickViewHolder temp_quickTable_gridListAdapter = new QuickViewHolder(MainActivity.mContext, tableinfo);
+                    MainActivity.QuickViewHolder temp_quickTable_gridListAdapter = new MainActivity.QuickViewHolder(MainActivity.mContext, tableinfo);
                     quick_table_grid_list.setLayoutManager(new GridLayoutManager(MainActivity.mContext, 3));
                     RecyclerView.ItemAnimator animator = quick_table_grid_list.getItemAnimator();
                     if (animator instanceof SimpleItemAnimator) {
@@ -5320,7 +5326,7 @@ MainMiddleService.setEmptyInSaleCart(false);
         // -----------------------------------------------------------------------------------------------------
     }
 
-    public class QuickViewHolder extends RecyclerView.Adapter<QuickViewHolder.ViewHolder> {
+    public class QuickViewHolder extends RecyclerView.Adapter<MainActivity.QuickViewHolder.ViewHolder> {
 
         boolean is_last_in_order = false;
         boolean b = false;
@@ -5336,18 +5342,18 @@ MainMiddleService.setEmptyInSaleCart(false);
 
         // Inflates the cell layout from xml when needed
         @Override
-        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        public MainActivity.QuickViewHolder.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View view = mInflater.inflate(R.layout.quick_table_grid_row, parent, false);
             //            View view = LayoutInflater.from(context)
 //                    .inflate(R.layout.quick_table_grid_row, parent, false);
             view.setLayoutParams(new GridView.LayoutParams(GridView.AUTO_FIT, 120));
-            ViewHolder viewHolder = new ViewHolder(view);
+            MainActivity.QuickViewHolder.ViewHolder viewHolder = new MainActivity.QuickViewHolder.ViewHolder(view);
             return viewHolder;
         }
 
         // Binds the data to the textview in each cell
         @Override
-        public void onBindViewHolder(ViewHolder holder, int position) {
+        public void onBindViewHolder(MainActivity.QuickViewHolder.ViewHolder holder, int position) {
 
 
 

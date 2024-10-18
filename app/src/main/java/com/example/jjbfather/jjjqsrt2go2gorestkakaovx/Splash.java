@@ -32,7 +32,7 @@ public class Splash extends Activity {
 
         //splashImg.setLayoutParams(params);
 
-
+        finish();
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override

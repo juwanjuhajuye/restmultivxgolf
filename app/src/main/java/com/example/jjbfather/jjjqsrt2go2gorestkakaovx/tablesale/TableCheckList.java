@@ -645,6 +645,9 @@ public class TableCheckList extends Activity {
 
             String date1 = ordereddateValue;
 
+            //10152024 split fractional seconds away
+            date1 = date1.split("\\.")[0];
+
             // while 문 제거하고 주문 들어온 시간으로 변경표시.
             TV_tabletime.setText(date1);
 

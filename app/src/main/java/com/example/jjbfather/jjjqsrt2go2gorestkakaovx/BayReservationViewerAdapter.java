@@ -8,14 +8,11 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class BayReservationViewerAdapter extends RecyclerView.Adapter<BayReservationViewerAdapter.ViewHolder>{
     private List<String[]> mData;
@@ -38,7 +35,7 @@ public class BayReservationViewerAdapter extends RecyclerView.Adapter<BayReserva
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        String time = mData.get(position)[0];
+        String resTime = mData.get(position)[0];
         String bay = mData.get(position)[1];
         String serviceitem = mData.get(position)[2];
         String customer = mData.get(position)[3];
@@ -47,11 +44,23 @@ public class BayReservationViewerAdapter extends RecyclerView.Adapter<BayReserva
         String downloadYN = mData.get(position)[6];
         String calledyn = mData.get(position)[7];
         String customercount = mData.get(position)[8];
-        String reservationRegisterDate = mData.get(position)[9];
+        String time = mData.get(position)[9];
         String delyn = mData.get(position)[10];
 
+        //convert reservation time date format
+        String dtStart = resTime;
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss",  Locale.US);
+        try {
+            Date date = format.parse(dtStart);
+            SimpleDateFormat spf= new SimpleDateFormat("M/d/yyyy h:mm:ss a",  Locale.US);
+            resTime = spf.format(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            //resTime = "Oops an error!";
+        }
+
         holder.timeTextView.setText(time);
-        holder.regTimeTextView.setText(reservationRegisterDate);
+        holder.resTimeTextView.setText(resTime);
         holder.bayTextView.setText(bay);
         holder.serviceItemTextView.setText(serviceitem);
         holder.customerTextView.setText(customer);
@@ -99,7 +108,7 @@ public class BayReservationViewerAdapter extends RecyclerView.Adapter<BayReserva
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView timeTextView;
-        TextView regTimeTextView;
+        TextView resTimeTextView;
         TextView bayTextView;
         TextView serviceItemTextView;
         TextView customerTextView;
@@ -122,7 +131,7 @@ public class BayReservationViewerAdapter extends RecyclerView.Adapter<BayReserva
         ViewHolder(View itemView) {
             super(itemView);
             timeTextView = itemView.findViewById(R.id.bayreservation_list_time);
-            regTimeTextView = itemView.findViewById(R.id.bayreservation_list_register_time);
+            resTimeTextView = itemView.findViewById(R.id.bayreservation_list_reservation_time);
             bayTextView = itemView.findViewById(R.id.bayreservation_list_bay);
             serviceItemTextView = itemView.findViewById(R.id.bayreservation_list_serviceitem);
             customerTextView = itemView.findViewById(R.id.bayreservation_list_customer);
