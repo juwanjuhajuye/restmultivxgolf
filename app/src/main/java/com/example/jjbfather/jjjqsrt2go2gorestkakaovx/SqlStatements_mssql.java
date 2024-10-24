@@ -3841,6 +3841,63 @@ public class SqlStatements_mssql {
 
 
 
+    // 10202024 -----------------------------------
+    // 테이블 salon_sales_kitchenprintingdata_json_torder_origin 생성쿼리
+    public static final String SQL_CREATE_SALONSALESKITCHENPRINTINGDATAJSONTORDERORIGIN =
+            " IF NOT EXISTS " +
+                    " (SELECT * FROM INFORMATION_SCHEMA.tables WITH(NOLOCK) WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'salon_sales_kitchenprintingdata_json_torder_origin') " +
+
+                    "CREATE TABLE salon_sales_kitchenprintingdata_json_torder_origin ( " +
+                    "idx INTEGER PRIMARY KEY identity, " +
+                    "salesCode nvarchar(100) null, " +
+                    "scode nvarchar(50) null, " +
+                    "sidx int null, " +
+
+                    "jsonstr ntext null, " +
+
+                    "downloadyn nvarchar(2) DEFAULT 'N', " +
+
+                    "uploaddate datetime DEFAULT getdate(), " +
+                    "downloaddate datetime DEFAULT getdate(), " +
+
+                    "tableidx nvarchar(50) DEFAULT '', " +
+                    "tablename nvarchar(200) DEFAULT '', " +
+                    "orderfrom nvarchar(200) DEFAULT '',  " +
+
+                    "clouddbidx int NULL " +                         // 클라우드 db idx
+
+                    ")";
+
+    // 테이블 salon_sales_kitchenprintingdata_json_torder_query 생성쿼리
+    public static final String SQL_CREATE_SALONSALESKITCHENPRINTINGDATAJSONTORDERQUERY =
+            " IF NOT EXISTS " +
+                    " (SELECT * FROM INFORMATION_SCHEMA.tables WITH(NOLOCK) WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'salon_sales_kitchenprintingdata_json_torder_query') " +
+
+                    "CREATE TABLE salon_sales_kitchenprintingdata_json_torder_query ( " +
+                    "idx INTEGER PRIMARY KEY identity, " +
+                    "salesCode nvarchar(100) null, " +
+                    "scode nvarchar(50) null, " +
+                    "sidx int null, " +
+
+                    "jsonstr ntext null, " +
+
+                    "downloadyn nvarchar(2) DEFAULT 'N', " +
+
+                    "uploaddate datetime DEFAULT getdate(), " +
+                    "downloaddate datetime DEFAULT getdate(), " +
+
+                    "tableidx nvarchar(50) DEFAULT '', " +
+                    "tablename nvarchar(200) DEFAULT '', " +
+                    "orderfrom nvarchar(200) DEFAULT '',  " +
+
+                    "clouddbidx int NULL " +                         // 클라우드 db idx
+
+                    ")";
+    // 10202024 -----------------------------------
+
+
+
+
 
 /******************************************************************************************/
 }

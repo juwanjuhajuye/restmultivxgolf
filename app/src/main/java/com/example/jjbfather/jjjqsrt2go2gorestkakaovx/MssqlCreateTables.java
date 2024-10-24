@@ -215,6 +215,11 @@ public class MssqlCreateTables {
         // 02192024
         vec.addElement(SqlStatements_mssql.SQL_CREATE_SALONSTOREMEMBERLEVEL);
 
+        // 10202024 -----------------------------------
+        vec.addElement(SqlStatements_mssql.SQL_CREATE_SALONSALESKITCHENPRINTINGDATAJSONTORDERORIGIN);
+        vec.addElement(SqlStatements_mssql.SQL_CREATE_SALONSALESKITCHENPRINTINGDATAJSONTORDERQUERY);
+        // 10202024 -----------------------------------
+
 
         // 05302024
         vec.addElement(SqlStatements_mssql.SQL_CREATE_SALONSALESTOGODELIVERYFEE);
@@ -233,3 +238,4 @@ public class MssqlCreateTables {
         MssqlDatabase.executeTransaction(vec);
     }
 }
+

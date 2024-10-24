@@ -1,6 +1,7 @@
 package com.example.jjbfather.jjjqsrt2go2gorestkakaovx;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -49,6 +50,9 @@ public class BayReservationViewer extends AppCompatActivity implements BayReserv
     //Current JSON containing reservation data
     private JSONObject jsonData = null;
 
+    Intent mIntent;
+    private Boolean openedFromTable = false;
+
 
     // 08092024
     public static String mHoldcode = "";
@@ -76,6 +80,14 @@ public class BayReservationViewer extends AppCompatActivity implements BayReserv
 
         //fetch the data from api and update the json
         new APIDataFetcher().execute();
+
+
+        //10172024 set intent value
+        mIntent = getIntent();
+
+        if (mIntent != null) {
+            openedFromTable = mIntent.getBooleanExtra("OpenedFromTable", false);
+        }
 
 
         // set up the RecyclerView
@@ -387,7 +399,12 @@ public class BayReservationViewer extends AppCompatActivity implements BayReserv
                 GlobalMemberValues.logWrite("BayReservationViewerAdapter", "Bye: " + adapter.getHoldCode(position));
                 mHoldcode = adapter.getHoldCode(position);
                 GlobalMemberValues.checkTableOrder(MainActivity.mContext, MainActivity.mActivity);
-                GlobalMemberValues.openRestaurantTable();
+
+                //10172024 only open table if the bay reservation viewer was not started from a table screen
+                //this stops a table scren opening on top of another, preventing interaction.
+                if (!openedFromTable){
+                    GlobalMemberValues.openRestaurantTable();
+                }
                 finish();
                 break;
             }

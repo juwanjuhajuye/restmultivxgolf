@@ -1,4 +1,5 @@
 
+
 package com.example.jjbfather.jjjqsrt2go2gorestkakaovx;
 
 /**
@@ -1168,6 +1169,11 @@ public class GlobalMemberValues {
     // Data Download 실행 후 Emp Login 에서 확인하는 변수
     public static boolean is_datadownload_yn = false;
 
+    // 10202024 -----------------------------------
+    // 테이블 메인인지 여부
+    public static boolean is_nowsalemain = false;
+    // 10202024 -----------------------------------
+
     /** Final 변수 ***********************************************/
     // 마스터 비밀번호
     public static final String MASTER_PWD = "111305";
@@ -1966,6 +1972,11 @@ public class GlobalMemberValues {
 
             // 01172024
             "salon_sales_kitchenprintingdata_json_torder",
+
+            // 10202024 ----------------------------------------
+            "salon_sales_kitchenprintingdata_json_torder_origin",
+            "salon_sales_kitchenprintingdata_json_torder_query",
+            // 10202024 ----------------------------------------
 
             "salon_sales_return_byemplyee",
             "salon_newcartcheck_bystation",
@@ -6939,6 +6950,24 @@ public class GlobalMemberValues {
                                 int tempItemCount = 0;
                                 if (!GlobalMemberValues.isStrEmpty(str_saleitemlist)) {
 
+                                    // 10202024 ------------------------------------------------------------------
+                                    strQuery = " insert into salon_sales_kitchenprintingdata_json_torder_origin (" +
+                                            " salesCode, scode, sidx, jsonstr, tableidx, tablename, orderfrom, clouddbidx " +
+                                            " ) values ( " +
+                                            " '" + GlobalMemberValues.getDBTextAfterChecked(holdcode, 0) + "', " +
+                                            " '" + GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.SALON_CODE, 0) + "', " +
+                                            " '" + GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.STORE_INDEX, 0) + "', " +
+                                            " '" + GlobalMemberValues.getDBTextAfterChecked(jsonstr, 0) + "', " +
+                                            " '" + GlobalMemberValues.getDBTextAfterChecked(restaurant_tableidx, 0) + "', " +
+                                            " '" + GlobalMemberValues.getDBTextAfterChecked(restaurant_tablename, 0) + "', " +
+                                            " '" + GlobalMemberValues.getDBTextAfterChecked(ordertype, 0) + "', " +
+                                            " '" + GlobalMemberValues.getDBTextAfterChecked(clouddbIdx, 0) + "' " +
+                                            " ) ";
+                                    MssqlDatabase.executeTransactionByQuery(strQuery);
+                                    // 10202024 ------------------------------------------------------------------
+
+
+
                                     GlobalMemberValues.logWrite("openNewSideMenuStr3", "saleitemlist : " + str_saleitemlist + "\n");
 
                                     String[] strOrderItemsList = str_saleitemlist.split(GlobalMemberValues.STRSPLITTER_ORDERITEM1);
@@ -7237,6 +7266,7 @@ public class GlobalMemberValues {
 
 
 
+
                                     strQuery = " insert into salon_sales_kitchenprintingdata_json_torder (" +
                                             " salesCode, scode, sidx, jsonstr, tableidx, tablename, orderfrom, clouddbidx " +
                                             " ) values ( " +
@@ -7264,10 +7294,38 @@ public class GlobalMemberValues {
                                     dbVec.addElement(strQuery);
                                 }
 
+                                // 10202024 -------------------
+                                String queryString = "";
+                                // 10202024 -------------------
+
                                 // 데이터베이스 처리
                                 for (String tempQuery : dbVec) {
                                     GlobalMemberValues.logWrite("torderquerydblogjjj", "query : " + tempQuery + "\n");
+
+                                    // 10202024 -------------------
+                                    queryString += "-NEXTQUERY-" + tempQuery;
+                                    // 10202024 -------------------
                                 }
+
+
+                                // 10202024 ------------------------------------------------------------------
+                                strQuery = " insert into salon_sales_kitchenprintingdata_json_torder_query (" +
+                                        " salesCode, scode, sidx, jsonstr, tableidx, tablename, orderfrom, clouddbidx " +
+                                        " ) values ( " +
+                                        " '" + GlobalMemberValues.getDBTextAfterChecked(holdcode, 0) + "', " +
+                                        " '" + GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.SALON_CODE, 0) + "', " +
+                                        " '" + GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.STORE_INDEX, 0) + "', " +
+                                        " '" + GlobalMemberValues.getDBTextAfterChecked(queryString, 0) + "', " +
+                                        " '" + GlobalMemberValues.getDBTextAfterChecked(restaurant_tableidx, 0) + "', " +
+                                        " '" + GlobalMemberValues.getDBTextAfterChecked(restaurant_tablename, 0) + "', " +
+                                        " '" + GlobalMemberValues.getDBTextAfterChecked(ordertype, 0) + "', " +
+                                        " '" + GlobalMemberValues.getDBTextAfterChecked(clouddbIdx, 0) + "' " +
+                                        " ) ";
+                                MssqlDatabase.executeTransactionByQuery(strQuery);
+                                // 10202024 ------------------------------------------------------------------
+
+
+
                                 // 트랜잭션으로 DB 처리한다.
                                 String returnResult = MainActivity.mDbInit.dbExecuteWriteForTransactionReturnResult(dbVec);
                                 if (returnResult == "N" || returnResult == "") {

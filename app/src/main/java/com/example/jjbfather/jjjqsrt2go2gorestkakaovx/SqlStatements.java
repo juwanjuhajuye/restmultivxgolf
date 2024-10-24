@@ -3470,6 +3470,51 @@ public class SqlStatements {
 
 
 
+    // 10202024 -----------------------------------
+    // 테이블 salon_sales_kitchenprintingdata_json_torder_origin 생성쿼리
+    public static final String SQL_CREATE_SALONSALESKITCHENPRINTINGDATAJSONTORDERORIGIN =
+            "CREATE TABLE IF NOT EXISTS salon_sales_kitchenprintingdata_json_torder_origin ( " +
+                    "idx INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "salesCode nvarchar(100) NULL, " +
+                    "scode nvarchar(50) NULL, " +
+                    "sidx int NULL, " +
+
+                    "jsonstr ntext NULL, " +
+
+                    "downloaddate datetime DEFAULT (datetime('now', 'localtime')), " +
+
+                    "tableidx nvarchar(50) DEFAULT '', " +
+                    "tablename nvarchar(200) DEFAULT '', " +
+                    "orderfrom nvarchar(200) DEFAULT '',  " +
+
+                    "clouddbidx int NULL " +                         // 클라우드 db idx
+
+                    ")";
+
+
+    // 테이블 salon_sales_kitchenprintingdata_json_torder_query 생성쿼리
+    public static final String SQL_CREATE_SALONSALESKITCHENPRINTINGDATAJSONTORDERQUERY =
+            "CREATE TABLE IF NOT EXISTS salon_sales_kitchenprintingdata_json_torder_query ( " +
+                    "idx INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "salesCode nvarchar(100) NULL, " +
+                    "scode nvarchar(50) NULL, " +
+                    "sidx int NULL, " +
+
+                    "jsonstr ntext NULL, " +
+
+                    "downloaddate datetime DEFAULT (datetime('now', 'localtime')), " +
+
+                    "tableidx nvarchar(50) DEFAULT '', " +
+                    "tablename nvarchar(200) DEFAULT '', " +
+                    "orderfrom nvarchar(200) DEFAULT '',  " +
+
+                    "clouddbidx int NULL " +                         // 클라우드 db idx
+
+                    ")";
+    // 10202024 -----------------------------------
+
+
+
 
 
 /******************************************************************************************/

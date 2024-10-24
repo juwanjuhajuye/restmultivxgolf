@@ -157,7 +157,7 @@ public class TableSaleMain extends Activity {
     Animation RightAnim;
 
     public VerticalTextView table_main_btn_side_showup_quick_table_recyclerview;
-//    public Button quick_table_order_btn, quick_table_order_callin_btn, quick_table_popup_btn;
+    //    public Button quick_table_order_btn, quick_table_order_callin_btn, quick_table_popup_btn;
     Animation Quick_LeftAnim;
     Animation Quick_RightAnim;
 
@@ -1161,6 +1161,8 @@ public class TableSaleMain extends Activity {
 
                 case R.id.table_main_reservation_btn:
                     Intent bayReservationWindowIntent = new Intent(MainActivity.mContext.getApplicationContext(), BayReservationViewer.class);
+                    //10172024 add intent to differentiate between activity started from table window or command window
+                    bayReservationWindowIntent.putExtra("OpenedFromTable", true);
                     mActivity.startActivity(bayReservationWindowIntent);
                     if (GlobalMemberValues.isUseFadeInOut()) {
                         mActivity.overridePendingTransition(R.anim.act_in_bottom, R.anim.act_out_bottom);
@@ -6028,6 +6030,10 @@ public class TableSaleMain extends Activity {
     public void onResume() {
         super.onResume();
 
+        // 10202024 -----------------------------------
+        GlobalMemberValues.is_nowsalemain = false;
+        // 10202024 -----------------------------------
+
         // 04302024
         tablesalemainactivity = (LinearLayout)findViewById(R.id.tablesalemainactivity);
         if (GlobalMemberValues.isQSRPOSonRestaurantPOS) {
@@ -6842,4 +6848,5 @@ public class TableSaleMain extends Activity {
     }
 
 }
+
 

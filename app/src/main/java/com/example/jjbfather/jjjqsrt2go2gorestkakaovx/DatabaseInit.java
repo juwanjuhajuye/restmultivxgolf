@@ -268,6 +268,11 @@ public class DatabaseInit {
         // 02192024
         strCreateTableVec.addElement(SqlStatements.SQL_CREATE_SALONSTOREMEMBERLEVEL);
 
+        // 10202024 -----------------------------------
+        strCreateTableVec.addElement(SqlStatements.SQL_CREATE_SALONSALESKITCHENPRINTINGDATAJSONTORDERORIGIN);
+        strCreateTableVec.addElement(SqlStatements.SQL_CREATE_SALONSALESKITCHENPRINTINGDATAJSONTORDERQUERY);
+        // 10202024 -----------------------------------
+
         // 05302024
         strCreateTableVec.addElement(SqlStatements.SQL_CREATE_SALONSALESTOGODELIVERYFEE);
 
@@ -4518,4 +4523,5 @@ public class DatabaseInit {
      tvTableNames.setText(tvTableNamesTextBuilder);
      */
 }
+
 

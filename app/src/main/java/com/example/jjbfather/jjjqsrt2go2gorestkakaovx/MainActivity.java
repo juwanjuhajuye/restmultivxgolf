@@ -2940,7 +2940,46 @@ public class MainActivity extends Activity {
                         }
                     }
 
-                    //SelectGetFoodType.openHereToGoInfoIntent("T");
+
+                    // 10202024 -----------------------------------
+                    int yesHoldCodeOrders = GlobalMemberValues.getIntAtString(
+                            MssqlDatabase.getResultSetValueToString(
+                                    " select count(*) from temp_salecart " +
+                                            " where tableidx = '" + TableSaleMain.mTableIdxArrList.get(0).toString() + "' " +
+                                            " and not(holdcode = '' or holdcode is null) "
+                            )
+                    );
+                    int noHoldCodeOrders = GlobalMemberValues.getIntAtString(
+                            MssqlDatabase.getResultSetValueToString(
+                                    " select count(*) from temp_salecart " +
+                                            " where tableidx = '" + TableSaleMain.mTableIdxArrList.get(0).toString() + "' " +
+                                            " and (holdcode = '' or holdcode is null) "
+                            )
+                    );
+
+                    String tempDbHoldcode = "";
+
+                    if (yesHoldCodeOrders == 0 && noHoldCodeOrders > 0) {
+                        tempDbHoldcode = GlobalMemberValues.makeHoldCode();
+                    }
+                    if (yesHoldCodeOrders > 0 && noHoldCodeOrders > 0) {
+                        tempDbHoldcode = MssqlDatabase.getResultSetValueToString(
+                                " select holdcode from temp_salecart " +
+                                        " where tableidx = '" + TableSaleMain.mTableIdxArrList.get(0).toString() + "'" +
+                                        " and not(holdcode = '' or holdcode is null) "
+                        );
+                    }
+
+                    if (!GlobalMemberValues.isStrEmpty(tempDbHoldcode)) {
+                        MainMiddleService.mHoldCode = tempDbHoldcode;
+
+                        String strInsSqlQuery = " update temp_salecart set holdcode = '" + tempDbHoldcode + "' " +
+                                " where tableidx = '" + TableSaleMain.mTableIdxArrList.get(0).toString() + "' ";
+                        MssqlDatabase.executeTransactionByQuery(strInsSqlQuery);
+                    }
+                    // 10202024 -----------------------------------
+
+
                     GlobalMemberValues.mIsClickSendToKitchen = true;
                     Payment.openGetFoodTypeIntent("");
                     //clickSendToKitchen();
@@ -2961,6 +3000,45 @@ public class MainActivity extends Activity {
                         if (GlobalMemberValues.isStrEmpty(MainMiddleService.mHoldCode)) {
                             MainMiddleService.mHoldCode = MainMiddleService.mGeneralArrayList.get(0).mHoldCode;
                         }
+
+
+                        // 10202024 -----------------------------------
+                        int yesHoldCodeOrders = GlobalMemberValues.getIntAtString(
+                                MssqlDatabase.getResultSetValueToString(
+                                        " select count(*) from temp_salecart " +
+                                                " where tableidx = '" + TableSaleMain.mTableIdxArrList.get(0).toString() + "' " +
+                                                " and not(holdcode = '' or holdcode is null) "
+                                )
+                        );
+                        int noHoldCodeOrders = GlobalMemberValues.getIntAtString(
+                                MssqlDatabase.getResultSetValueToString(
+                                        " select count(*) from temp_salecart " +
+                                                " where tableidx = '" + TableSaleMain.mTableIdxArrList.get(0).toString() + "' " +
+                                                " and (holdcode = '' or holdcode is null) "
+                                )
+                        );
+
+                        String tempDbHoldcode = "";
+
+                        if (yesHoldCodeOrders == 0 && noHoldCodeOrders > 0) {
+                            tempDbHoldcode = GlobalMemberValues.makeHoldCode();
+                        }
+                        if (yesHoldCodeOrders > 0 && noHoldCodeOrders > 0) {
+                            tempDbHoldcode = MssqlDatabase.getResultSetValueToString(
+                                    " select holdcode from temp_salecart " +
+                                            " where tableidx = '" + TableSaleMain.mTableIdxArrList.get(0).toString() + "'" +
+                                            " and not(holdcode = '' or holdcode is null) "
+                            );
+                        }
+
+                        if (!GlobalMemberValues.isStrEmpty(tempDbHoldcode)) {
+                            MainMiddleService.mHoldCode = tempDbHoldcode;
+
+                            String strInsSqlQuery = " update temp_salecart set holdcode = '" + tempDbHoldcode + "' " +
+                                    " where tableidx = '" + TableSaleMain.mTableIdxArrList.get(0).toString() + "' ";
+                            MssqlDatabase.executeTransactionByQuery(strInsSqlQuery);
+                        }
+                        // 10202024 -----------------------------------
 
 
                         // 07282024 --------------------------------------
@@ -3589,6 +3667,11 @@ MainMiddleService.setEmptyInSaleCart(false);
 //        String tempjjjstr = "t07212022j";
 //        GlobalMemberValues.logWrite("jjjstrtestjjjlog", "getValue1 : " + GlobalMemberValues.getJJJSubString(tempjjjstr, 1, 8) + "\n");
 //        GlobalMemberValues.logWrite("jjjstrtestjjjlog", "getValue1 : " + GlobalMemberValues.getJJJSubString(tempjjjstr, 9, 1) + "\n");
+
+
+        // 10202024 -----------------------------------
+        GlobalMemberValues.is_nowsalemain = true;
+        // 10202024 -----------------------------------
 
 
         mActivity = this;

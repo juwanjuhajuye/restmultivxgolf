@@ -55,7 +55,14 @@ public class CheckNewTableOrderInCloudService extends Service implements Runnabl
         try {
             //sendSalesDataToCloud(receivedSalesCode);
             GlobalMemberValues.logWrite("newtableorderstr", "신규 웹오더 체크서비스 시작" + "\n");
-            checkNewTableOrder();
+
+            // 10202024 -----------------------------------
+            // 세일 메인일 경우에는 실행 안함
+            if (!GlobalMemberValues.is_nowsalemain) {
+                checkNewTableOrder();
+            }
+            // 10202024 -----------------------------------
+
         } catch (Exception e) {
             GlobalMemberValues.logWrite("newtableorderstr", "Thread Error1 : " + e.getMessage().toString() + "\n");
         }
