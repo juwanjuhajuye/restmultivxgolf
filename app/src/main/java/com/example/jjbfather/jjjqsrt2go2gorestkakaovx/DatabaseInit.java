@@ -3938,6 +3938,22 @@ public class DatabaseInit {
         }
 
 
+
+        // 10252024
+        // salon_storestationsettings_system 테이블 컬럼 추가
+        // 10.25.2024, mainreadytimeuse_yn 컬럼 추가
+        altTableName = "salon_storestationsettings_system";
+        if (checkTable(altTableName) > 0) {
+            alterDatabaseTableColumn(altTableName, "mainreadytimeuse_yn", "nvarchar(2)", "DEFAULT 'N'", 0);
+        }
+        // 10112024
+        // salon_storestationsettings_system 테이블 컬럼 추가
+        // 10.25.2024, mainreadytime_cnt 컬럼 추가
+        altTableName = "salon_storestationsettings_system";
+        if (checkTable(altTableName) > 0) {
+            alterDatabaseTableColumn(altTableName, "mainreadytime_cnt", "int", "DEFAULT 30", 0);
+        }
+
         /****************************************************************************/
     }
 

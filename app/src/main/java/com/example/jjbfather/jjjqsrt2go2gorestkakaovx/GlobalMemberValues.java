@@ -21545,7 +21545,8 @@ public class GlobalMemberValues {
     public static void sendDataToTOrderEventServerService(Context paramContext, Activity paramActivity) {
         //06032024 Send data to TOrder after download completes
 
-        if(GlobalMemberValues.isTOrderUse()) {
+        //10242024 prevent infinite loading screen when user doesn't use TOrder
+        //if(GlobalMemberValues.isTOrderUse()) {
             // BActivity의 화면 구성이 끝난 후 SplashActivity 종료
             new Handler().postDelayed(new Runnable() {
                 @Override
@@ -21557,7 +21558,7 @@ public class GlobalMemberValues {
 
             Intent tempIntent = new Intent(paramContext.getApplicationContext(), SendDataToTOrderAfterDownloadService.class);
             paramActivity.startService(tempIntent);
-        }
+        //}
     }
 
     public static boolean isTablePayOnQRCode() {
@@ -21571,6 +21572,46 @@ public class GlobalMemberValues {
         if (returnData == "Y" || returnData.equals("Y")) {
             returnValue = true;
         }
+
+        return returnValue;
+    }
+
+    public static boolean isWatingTimeYN(){
+        boolean returnValue = false;
+        String returnData = getDBTextAfterChecked(MainActivity.mDbInit.dbExecuteReadReturnString(
+                " select mainreadytimeuse_yn from salon_storestationsettings_system "), 1);
+        if (GlobalMemberValues.isStrEmpty(returnData)) {
+            returnData = "N";
+        }
+
+        if (returnData == "Y" || returnData.equals("Y")) {
+            returnValue = true;
+        }
+
+        return returnValue;
+    }
+    public static String getWatingTime(){
+        String returnValue = "0";
+        String returnData = getDBTextAfterChecked(MainActivity.mDbInit.dbExecuteReadReturnString(
+                " select mainreadytime_cnt from salon_storestationsettings_system "), 1);
+        if (GlobalMemberValues.isStrEmpty(returnData)) {
+            returnValue = "0";
+        } else {
+            returnValue = returnData.replaceAll("[^0-9]", "");
+        }
+        return returnValue;
+    }
+
+    // 10252024
+    // 마지막 cash in 일시 가져오기
+    public static String getLastCashInDate() {
+        String returnValue = "";
+
+        returnValue = MainActivity.mDbInit.dbExecuteReadReturnString(
+                " select strftime('%Y-%m-%d %H:%M:%S', wdate) from salon_sales_cashintout_history" +
+                        " where inoutreason like '%Starting cash%' " +
+                        " order by idx desc limit 1 "
+        );
 
         return returnValue;
     }

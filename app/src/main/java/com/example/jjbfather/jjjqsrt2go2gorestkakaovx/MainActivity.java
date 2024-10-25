@@ -231,6 +231,10 @@ public class MainActivity extends Activity {
     Animation Quick_RightAnim;
     public RecyclerView quick_table_grid_list;
 
+    //10232024 track user inactivity
+    Boolean userActive = true;
+    private Timer userActivityTimer;
+
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -4667,6 +4671,108 @@ MainMiddleService.setEmptyInSaleCart(false);
             TableSaleBillPrint.mActivity.finish();
         }
 
+        if (GlobalMemberValues.isWatingTimeYN()){
+            resumeUserInputTracker();
+        }
+
+    }
+
+    //10232024 keeps track of user input every 30 seconds
+    void pauseUserInputTracker(){
+        if (userActivityTimer != null) { // cancel existing timer if any
+            userActivityTimer.cancel();
+            userActivityTimer = null;
+            userActive = true;
+        }
+    }
+
+    void resumeUserInputTracker(){
+
+        String str_watingTime = GlobalMemberValues.getWatingTime();
+        int i_watingTime = GlobalMemberValues.getIntAtString(str_watingTime) * 1000;
+
+        pauseUserInputTracker(); // To avoid multiple occurrences,
+
+        userActivityTimer = new Timer();
+        userActivityTimer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                GlobalMemberValues.logWrite("MainActivityIdleTimer", "User is active:" + userActive);
+
+                if(!userActive) {
+                    LogsSave.saveLogsInDB(100);
+                    if (MainMiddleService.mGeneralArrayList == null) return;
+                    if (MainMiddleService.mGeneralArrayList.size() > 0) {
+                        // 09302024
+                        if (GlobalMemberValues.isStrEmpty(MainMiddleService.mHoldCode)) {
+                            MainMiddleService.mHoldCode = MainMiddleService.mGeneralArrayList.get(0).mHoldCode;
+                        }
+
+
+                        // 10202024 -----------------------------------
+                        int yesHoldCodeOrders = GlobalMemberValues.getIntAtString(
+                                MssqlDatabase.getResultSetValueToString(
+                                        " select count(*) from temp_salecart " +
+                                                " where tableidx = '" + TableSaleMain.mTableIdxArrList.get(0).toString() + "' " +
+                                                " and not(holdcode = '' or holdcode is null) "
+                                )
+                        );
+                        int noHoldCodeOrders = GlobalMemberValues.getIntAtString(
+                                MssqlDatabase.getResultSetValueToString(
+                                        " select count(*) from temp_salecart " +
+                                                " where tableidx = '" + TableSaleMain.mTableIdxArrList.get(0).toString() + "' " +
+                                                " and (holdcode = '' or holdcode is null) "
+                                )
+                        );
+
+                        String tempDbHoldcode = "";
+
+                        if (yesHoldCodeOrders == 0 && noHoldCodeOrders > 0) {
+                            tempDbHoldcode = GlobalMemberValues.makeHoldCode();
+                        }
+                        if (yesHoldCodeOrders > 0 && noHoldCodeOrders > 0) {
+                            tempDbHoldcode = MssqlDatabase.getResultSetValueToString(
+                                    " select holdcode from temp_salecart " +
+                                            " where tableidx = '" + TableSaleMain.mTableIdxArrList.get(0).toString() + "'" +
+                                            " and not(holdcode = '' or holdcode is null) "
+                            );
+                        }
+
+                        if (!GlobalMemberValues.isStrEmpty(tempDbHoldcode)) {
+                            MainMiddleService.mHoldCode = tempDbHoldcode;
+
+                            String strInsSqlQuery = " update temp_salecart set holdcode = '" + tempDbHoldcode + "' " +
+                                    " where tableidx = '" + TableSaleMain.mTableIdxArrList.get(0).toString() + "' ";
+                            MssqlDatabase.executeTransactionByQuery(strInsSqlQuery);
+                        }
+                        // 10202024 -----------------------------------
+
+
+                        // 07282024 --------------------------------------
+                        //SelectGetFoodType.openHereToGoInfoIntent("T");
+                        GlobalMemberValues.mIsClickSendToKitchen = true;
+                        Payment.openGetFoodTypeIntent("");
+                        //clickSendToKitchen();
+                        TableSaleMain.mSelectedTablesArrList.clear();
+                        // 07282024 --------------------------------------
+                    } else {
+                        // 메인 뷰에서 테이블 Close 후 다른 새 테이블로 들어왔을때 Cart List 가 초기화되지 않는 현상이 있어 추가함.
+                        MainMiddleService.initList();
+                        GlobalMemberValues.openRestaurantTable();
+
+                    }
+                    TableSaleMain.isClickCommandOnTable = false;
+                }
+
+                userActive = false;
+            }
+        }, 1000, i_watingTime);
+    }
+
+    //10232024 callback for tracking user activity
+    @Override
+    public void onUserInteraction(){
+        userActive = true;
     }
 
     //BroadcastReceiver 함수입니다.

@@ -189,6 +189,7 @@ public class SettingsSystem extends Activity {
     private TextView settingsSystemTitleTextView77, settingsSystemTitleTextView78;
     private TextView settingsSystemTitleTextView85;
     private TextView settingsSystemTitleTextView89, settingsSystemTitleTextView90;
+    private TextView settingsSystemTitleTextView94;
 
     private TextView settingsSystemTitleTextView_dbcodename;
     private EditText dbcodename_setting_edtext;
@@ -261,6 +262,10 @@ public class SettingsSystem extends Activity {
     CheckBox customerinfoviewSwitch_type_here, customerinfoviewSwitch_type_togo, customerinfoviewSwitch_type_delivery;
 
     Button btn_transdata;
+
+    // ready time add
+    Switch main_ready_time_use_yn_switch;
+    EditText main_ready_time_cnt_edtxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -449,6 +454,9 @@ public class SettingsSystem extends Activity {
 
         String vDbCodeName = "";
 
+        String vMainreadytimeuse_yn = "";
+        String vMainreadytimeuse_cnt = "";
+
         String strQuery = "select splashuse, inreverse, cloudurl, downloaddata, databasebackup, clockinouttype, " +
                 " gmailId, gmailPwd, departmentviewyn, mileagesyncinselectcustomer, showcostafterdcextra, cardislast, pointpaysavepointyn, timemenuautoreload, pushtype, devicekind, " +
                 " picktype_here, picktype_togo, picktype_delivery, customerinfoshow, customerselectreceipt, " +
@@ -470,7 +478,9 @@ public class SettingsSystem extends Activity {
 
                 " pushpopupopenyn, " +
 
-                " dbcodename " +
+                " dbcodename,  " +
+                " mainreadytimeuse_yn, " +
+                " mainreadytime_cnt " +
 
                 " from salon_storestationsettings_system ";
         Cursor settingsSystemCursor = dbInit.dbExecuteRead(strQuery);
@@ -579,6 +589,10 @@ public class SettingsSystem extends Activity {
             String tempPushpopupopenyn = GlobalMemberValues.getDBTextAfterChecked(settingsSystemCursor.getString(88), 1);
 
             String tempDbCodeName = GlobalMemberValues.getDBTextAfterChecked(settingsSystemCursor.getString(89), 1);
+
+            // 10252024
+            String tempMainreadytimeuse_yn = GlobalMemberValues.getDBTextAfterChecked(settingsSystemCursor.getString(90), 1);
+            String tempMainreadytimeuse_cnt = GlobalMemberValues.getDBTextAfterChecked(settingsSystemCursor.getString(91), 1);
 
             GlobalMemberValues.logWrite("settingslog", "tempReceipttypeonnoselect : " + tempReceipttypeonnoselect + "\n");
 
@@ -1070,6 +1084,16 @@ public class SettingsSystem extends Activity {
                 vDbCodeName = "";
             }
 
+            if (!GlobalMemberValues.isStrEmpty(tempMainreadytimeuse_yn)){
+                vMainreadytimeuse_yn = tempMainreadytimeuse_yn;
+            } else {
+                vMainreadytimeuse_yn = "N";
+            }
+            if (!GlobalMemberValues.isStrEmpty(tempMainreadytimeuse_cnt)){
+                vMainreadytimeuse_cnt = tempMainreadytimeuse_cnt;
+            } else {
+                vMainreadytimeuse_cnt = "0";
+            }
 
             orgin_timeMenuAutoReload = vTimemenuautoreload;
             orgin_onlineorderuseyn = vOnlineOrderUseYN;
@@ -1654,6 +1678,19 @@ public class SettingsSystem extends Activity {
             }
         });
 
+        main_ready_time_use_yn_switch = (Switch)findViewById(R.id.main_ready_time_use_yn_switch);
+        if (vMainreadytimeuse_yn == "Y" || vMainreadytimeuse_yn.equals("Y")){
+            main_ready_time_use_yn_switch.setChecked(true);
+        } else {
+            main_ready_time_use_yn_switch.setChecked(false);
+        }
+
+        main_ready_time_cnt_edtxt = (EditText)findViewById(R.id.main_ready_time_cnt_edtxt);
+        if (vMainreadytimeuse_cnt.isEmpty()){
+            main_ready_time_cnt_edtxt.setText("0");
+        } else {
+            main_ready_time_cnt_edtxt.setText(vMainreadytimeuse_cnt);
+        }
 
         btn_setting_receipt_setting = (Button)findViewById(R.id.btn_setting_receipt_setting);
         btn_setting_receipt_setting.setOnClickListener(mButtonClick);
@@ -2222,6 +2259,9 @@ public class SettingsSystem extends Activity {
         settingsSystemTitleTextView93 = (TextView)findViewById(R.id.settingsSystemTitleTextView93);
         settingsSystemTitleTextView93.setTextSize(settingsSystemTitleTextView93.getTextSize() * GlobalMemberValues.getGlobalFontSize());
 
+        settingsSystemTitleTextView94 = (TextView)findViewById(R.id.settingsSystemTitleTextView94);
+        settingsSystemTitleTextView94.setTextSize(settingsSystemTitleTextView94.getTextSize() * GlobalMemberValues.getGlobalFontSize());
+
 
 
         infoTextView1 = (TextView)findViewById(R.id.infoTextView1);
@@ -2638,6 +2678,9 @@ public class SettingsSystem extends Activity {
         String insCustomer_info_delivery = "N";
 
         String insDbCodeName = "";
+
+        String insMainreadytime_yn = "";
+        String insMainreadytime_cnt = "";
 
         /**
          if (inReverseSwitch.isChecked()) {
@@ -3131,6 +3174,21 @@ public class SettingsSystem extends Activity {
             insCustomer_info_delivery = "Y";
         }
 
+        if (main_ready_time_use_yn_switch.isChecked()){
+            insMainreadytime_yn = "Y";
+        } else {
+            insMainreadytime_yn = "N";
+        }
+        if (main_ready_time_cnt_edtxt.getText().toString().isEmpty()){
+            insMainreadytime_cnt = "0";
+        } else {
+            int temp = GlobalMemberValues.getIntAtString(main_ready_time_cnt_edtxt.getText().toString());
+            if (temp < 30){
+                insMainreadytime_cnt = "30";
+            } else {
+                insMainreadytime_cnt = main_ready_time_cnt_edtxt.getText().toString();
+            }
+        }
 
 
         int returnValue = 0;
@@ -3242,6 +3300,10 @@ public class SettingsSystem extends Activity {
                 " pushpopupopenyn = '" + insPushpopupopenyn + "', " +
 
                 " dbcodename = '" + insDbCodeName + "', " +
+
+                // 10252024
+                " mainreadytimeuse_yn = '" + insMainreadytime_yn + "', " +
+                " mainreadytime_cnt = '" + insMainreadytime_cnt + "', " +
 
                 " mdate = datetime('now') ";
 

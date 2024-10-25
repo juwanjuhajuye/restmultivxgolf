@@ -1639,7 +1639,11 @@ public class SqlStatements {
                     // 온라인 주문 개선관련
                     "pushpopupopenyn nvarchar(2) DEFAULT 'N', " +                   // push popup 창 오픈 여부
 
-                    "dbcodename nvarchar(50) DEFAULT ''" +                   // dbcodename
+                    "dbcodename nvarchar(50) DEFAULT '', " +                   // dbcodename
+
+                    // 10252024 // main 대기시간
+                    "mainreadytimeuse_yn nvarchar(2) DEFAULT 'N', " +
+                    "mainreadytime_cnt int DEFAULT 30 " +
 
                     ")";
 
