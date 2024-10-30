@@ -2599,7 +2599,13 @@ public class TableSaleMain extends Activity {
 
         // 우측 퀵메뉴가 보여지지 않는 상태일때는 세일 화면으로 바로 이동한다.
         if (!GlobalMemberValues.isShowQuickMenusInTableBoard) {
+            //10292024 show dual display for dine in also
+            if (GlobalMemberValues.ISDUALDISPLAYPOSSIBLE) {
+                PaxPresentation.unSetLogo();
+                MainActivity.updatePresentation();
+            }
             goSalesMain();
+
         }
     }
 
@@ -3245,8 +3251,9 @@ public class TableSaleMain extends Activity {
 
                             if (GlobalMemberValues.ISDUALDISPLAYPOSSIBLE) {
                                 //jihun park sub display
-                                PaxPresentation.setLogo();
-                                MainActivity.updatePresentation();
+                                //10292024 don't hide dual display when going into dine in main middle service
+                                //PaxPresentation.setLogo();
+                                //MainActivity.updatePresentation();
                             }
 
                         }
@@ -3742,8 +3749,9 @@ public class TableSaleMain extends Activity {
                                     finalTablename, finalTableTxtColor, finalTableordercnt_int, "B");
                             if (GlobalMemberValues.ISDUALDISPLAYPOSSIBLE) {
                                 //jihun park sub display
-                                PaxPresentation.setLogo();
-                                MainActivity.updatePresentation();
+                                //10292024 don't hide dual display when going into dine in main middle service
+                                //PaxPresentation.setLogo();
+                                //MainActivity.updatePresentation();
                             }
                         }
                     });

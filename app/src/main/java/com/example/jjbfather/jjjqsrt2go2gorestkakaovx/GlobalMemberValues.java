@@ -702,6 +702,16 @@ public class GlobalMemberValues {
     // Service 를 실행시킨 Activity - 장바구니데이터 전송
     public static Activity CURRENTACTIVITYOPENEDSERVICE_CARTDEL = null;
 
+
+    // 10202024 ----------------------------------------------------
+    // TORDER 다운로드 한 데이터를 처리한 clouddbidx 값을 전송관련 인텐트
+    public static Intent CURRENTSERVICEINTENT_CLOUDDBIDX = null;
+    // Service 를 실행시킨 Activity - 장바구니데이터 전송
+    public static Activity CURRENTACTIVITYOPENEDSERVICE_CLOUDDBIDX = null;
+    // 10202024 ----------------------------------------------------
+
+
+
     // 세일데이터 전송관련 인텐트
     public static Intent CURRENTSERVICEINTENT_SALE = null;
     // Service 를 실행시킨 Activity - 세일데이터 전송
@@ -3429,6 +3439,25 @@ public class GlobalMemberValues {
         paramActivity.startService(tempIntent);
         GlobalMemberValues.logWrite("uploadcartdatalog", "cart 여기실행됨-1." + "\n");
     }
+
+
+    // 10202024
+    // ★★★★★★★★★★★★★ manifest 에 등록할 것 ★★★★★★★★★★★★★
+    public static void setSendCloudDBIdxsToCloud(Context paramContext, Activity paramActivity, String paramCloudDBIdxs) {
+        if (!GlobalMemberValues.isStrEmpty(paramCloudDBIdxs)) {
+            GlobalMemberValues.logWrite("uploadapplieddownloaddatalog", "paramCloudDBIdxs : " + paramCloudDBIdxs + "\n");
+
+            Intent tempIntent = new Intent(paramContext.getApplicationContext(), UploadCloudDBIdxsToCloud.class);
+            CURRENTSERVICEINTENT_CLOUDDBIDX = tempIntent;           // 실행되는 서비스 인텐트를 저장해둔다.
+            CURRENTACTIVITYOPENEDSERVICE_CLOUDDBIDX = paramActivity;           // 서비스를 실행시킨 액티비티를 저장해 둔다.
+
+            tempIntent.putExtra("cloudDBIdxs", paramCloudDBIdxs);
+
+            paramActivity.startService(tempIntent);
+            GlobalMemberValues.logWrite("uploadapplieddownloaddatalog", "여기실행됨-1." + "\n");
+        }
+    }
+
 
     public static void setSendSalesDataToCloud(Context paramContext, Activity paramActivity) {
         Intent uploadSalesDataToCloudIntent = new Intent(paramContext.getApplicationContext(), UploadSalesDataToCloud.class);
@@ -6820,9 +6849,12 @@ public class GlobalMemberValues {
 
 
     // 01172024
+    // 10202024 - openNewTableOrderStr 메소드 수정
     public static void openNewTableOrderStr(String paramOrdersStr) {
         GlobalMemberValues.logWrite("openNewSideMenuStr", "전체문자열 : " + paramOrdersStr + "\n");
         if (!GlobalMemberValues.isStrEmpty(paramOrdersStr)) {
+            String clouddbIdx_group = "";
+
             String[] ordersArr = paramOrdersStr.split("-JJJFAM-");
             for (int k = 0; k < ordersArr.length; k++) {
                 GlobalMemberValues.logWrite("openNewSideMenuStr", "주문하나 문자열 : " + ordersArr[k] + "\n");
@@ -7315,7 +7347,7 @@ public class GlobalMemberValues {
                                         " '" + GlobalMemberValues.getDBTextAfterChecked(holdcode, 0) + "', " +
                                         " '" + GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.SALON_CODE, 0) + "', " +
                                         " '" + GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.STORE_INDEX, 0) + "', " +
-                                        " '" + GlobalMemberValues.getDBTextAfterChecked(queryString, 0) + "', " +
+                                        " '" + queryString + "', " +
                                         " '" + GlobalMemberValues.getDBTextAfterChecked(restaurant_tableidx, 0) + "', " +
                                         " '" + GlobalMemberValues.getDBTextAfterChecked(restaurant_tablename, 0) + "', " +
                                         " '" + GlobalMemberValues.getDBTextAfterChecked(ordertype, 0) + "', " +
@@ -7340,15 +7372,17 @@ public class GlobalMemberValues {
 
 
                                     // 02242024 - 추가작업 ---------------------------------------------------------------------
-                                    TableSaleMain.isAfterMerge = true;
-                                    MainMiddleService.mHoldCode = holdcode;
+                                    // 10202024 아래 라인 주석처리
+//                                    TableSaleMain.isAfterMerge = true;
+//                                    MainMiddleService.mHoldCode = holdcode;
+//
+//                                    // common gratuity 관련
+//                                    GlobalMemberValues.deleteCartLastItemForCommonGratuityUse();
+//                                    // common gratuity 관련
+//                                    GlobalMemberValues.addCartLastItemForCommonGratuityUse();
+//                                    MainMiddleService.mHoldCode = "";
+//                                    TableSaleMain.isAfterMerge = false;
 
-                                    // common gratuity 관련
-                                    GlobalMemberValues.deleteCartLastItemForCommonGratuityUse();
-                                    // common gratuity 관련
-                                    GlobalMemberValues.addCartLastItemForCommonGratuityUse();
-                                    MainMiddleService.mHoldCode = "";
-                                    TableSaleMain.isAfterMerge = false;
 
                                     GlobalMemberValues gm = new GlobalMemberValues();
                                     if (gm.isPOSWebPay() && (gm.getPOSType().toUpperCase() == "R" || gm.getPOSType().toUpperCase().equals("R"))) {
@@ -7357,16 +7391,30 @@ public class GlobalMemberValues {
                                     }
                                     // 02242024 - 추가작업 ---------------------------------------------------------------------
 
-                                    // 07212024 - TOrder Send Data
-                                    GlobalMemberValues.sendDataToTOrderService(MainActivity.mContext, MainActivity.mActivity, "500");
+
+                                    // 10202024
+                                    // 정상 처리된 다운로드 데이터의 clouddbIdx 값을 저장
+                                    clouddbIdx_group += "," + clouddbIdx;
+
 
                                     GlobalMemberValues.logWrite("torderquerydblogjjj", "query executed correctly");
                                 }
                             }
                         }
+                    } else {
+                        clouddbIdx_group += "," + clouddbIdx;
                     }
                 }
             }
+
+            // 10202024
+            if (!GlobalMemberValues.isStrEmpty(clouddbIdx_group)) {
+                GlobalMemberValues.setSendCloudDBIdxsToCloud(MainActivity.mContext, MainActivity.mActivity, clouddbIdx_group);
+            }
+
+            // 07212024 - TOrder Send Data
+            GlobalMemberValues.sendDataToTOrderService(MainActivity.mContext, MainActivity.mActivity, "500");
+
         }
     }
 
@@ -16020,6 +16068,12 @@ public class GlobalMemberValues {
             GlobalMemberValues.isOpenTableSaleMain = false;
 
             if (isopen) {
+                //10292024 hide dual display screen when returning to table sale main
+                if (GlobalMemberValues.ISDUALDISPLAYPOSSIBLE && PaxPresentation.presentation_full_image_ln != null) {
+                    PaxPresentation.setLogo();
+                    MainActivity.updatePresentation();
+                }
+
                 Intent intent = new Intent(MainActivity.mContext.getApplicationContext(), TableSaleMain.class);
                 MainActivity.mActivity.startActivity(intent);
                 if (GlobalMemberValues.isUseFadeInOut()) {
@@ -21520,7 +21574,7 @@ public class GlobalMemberValues {
     public static void sendDataToTOrderEventServer() {
         //06032024 Send data to TOrder after download completes
 
-        if(GlobalMemberValues.isTOrderUse()) {
+//        if(GlobalMemberValues.isTOrderUse()) {
 
 //            try {
 //                Thread.sleep(20000);
@@ -21539,7 +21593,7 @@ public class GlobalMemberValues {
 
             SendDataToTOrderEvent tOrderDataSender = new SendDataToTOrderEvent();
             tOrderDataSender.execute();
-        }
+//        }
     }
 
     public static void sendDataToTOrderEventServerService(Context paramContext, Activity paramActivity) {

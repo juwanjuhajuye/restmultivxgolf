@@ -862,6 +862,15 @@
             android:name="com.example.jjbfather.jjjqsrt2go2gorestkakaovx.UploadCartDataDeleteToCloud"
             android:enabled="true"
             android:exported="false" />
+
+
+        <!-- 10202024 -->
+        <service
+            android:name="com.example.jjbfather.jjjqsrt2go2gorestkakaovx.UploadCloudDBIdxsToCloud"
+            android:enabled="true"
+            android:exported="false" />
+
+
         <service
             android:name="com.example.jjbfather.jjjqsrt2go2gorestkakaovx.UploadSalesDataToCloud"
             android:enabled="true"

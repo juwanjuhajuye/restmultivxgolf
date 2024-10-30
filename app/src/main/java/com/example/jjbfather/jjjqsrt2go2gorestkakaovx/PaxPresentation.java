@@ -125,7 +125,8 @@ public class PaxPresentation extends Presentation {
         GlobalMemberValues.logWrite("adimagelogjjj", "adType : " + adType + "\n");
         GlobalMemberValues.logWrite("adimagelogjjj", "adImage : " + adImage + "\n");
         if (!GlobalMemberValues.isStrEmpty(adImage)) {
-            GlobalMemberValues.GLOBAL_LAYOUTMEMBER_PRESENTATION_ADLN.setVisibility(View.VISIBLE);
+            //10292024 hide ad image
+            //GlobalMemberValues.GLOBAL_LAYOUTMEMBER_PRESENTATION_ADLN.setVisibility(View.VISIBLE);
 
             if (adType == "0" || adType.equals("0")) {
                 GlobalMemberValues.GLOBAL_LAYOUTMEMBER_PRESENTATION_IMAGEVIEW.setVisibility(View.VISIBLE);
