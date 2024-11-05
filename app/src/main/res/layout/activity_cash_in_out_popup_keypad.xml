@@ -247,7 +247,7 @@
                                             android:layout_width="0dp"
                                             android:layout_height="match_parent"
                                             android:layout_weight="1"
-                                            android:background="@drawable/button_selector_numberbutton_qty"
+                                            android:background="@drawable/button_selector_numberbutton_back_red"
                                             android:layout_margin="3dp"
                                             android:text="←"
                                             android:textSize="20dp"
@@ -258,11 +258,11 @@
                                             android:layout_width="0dp"
                                             android:layout_height="match_parent"
                                             android:layout_weight="1"
-                                            android:background="@drawable/button_selector_numberbutton_cashinout"
+                                            android:background="@drawable/button_selector_numberbutton_payment"
                                             android:layout_margin="3dp"
-                                            android:text="NEXT"
+                                            android:text="V"
                                             android:textSize="16dp"
-                                            android:textColor="#3e3d42" />
+                                            android:textColor="#000000" />
 
                                     </TableRow>
 

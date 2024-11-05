@@ -6866,11 +6866,19 @@ public class GlobalMemberValues {
                     String clouddbIdx = ordersArr2[0];
 
                     // 먼저 해당 데이터가 이미 저장처리된 데이터인지 확인한다.
-                    int clouddbidx_cnt = GlobalMemberValues.getIntAtString(
-                            MssqlDatabase.getResultSetValueToString(
-                                    " select count(*) from salon_sales_kitchenprintingdata_json_torder where clouddbIdx = '" + clouddbIdx + "' "
-                            )
-                    );
+                    int clouddbidx_cnt = 0;
+                    if (!GlobalMemberValues.isStrEmpty(clouddbIdx)) {
+                        String getCountOrder = MssqlDatabase.getResultSetValueToString(
+                                " select count(*) from salon_sales_kitchenprintingdata_json_torder where clouddbIdx = '" + clouddbIdx + "' "
+                        );
+                        if (GlobalMemberValues.isStrEmpty(getCountOrder)) {
+                            clouddbidx_cnt = 1;
+                        } else {
+                            clouddbidx_cnt = GlobalMemberValues.getIntAtString(getCountOrder);
+                        }
+                    } else {
+                        clouddbidx_cnt = 1;
+                    }
 
                     GlobalMemberValues.logWrite("openNewSideMenuStr2", "clouddbidx_cnt : " + clouddbidx_cnt + "\n");
 

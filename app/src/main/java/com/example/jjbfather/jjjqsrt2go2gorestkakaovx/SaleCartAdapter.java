@@ -681,11 +681,13 @@ public class SaleCartAdapter extends BaseAdapter {
         TextView tv_kitchenPrintedyn = convertView.findViewById(R.id.mainSaleCartListPrintedYN_Tv);
 
         if (GlobalMemberValues.getSaleCartKitchenPrintedYN(mArSrc.get(position).tempSaleCartIdx).equals("Y")) {
-            tempKitchenPrinted = "Printed on kitchen";
+//            tempKitchenPrinted = "Printed on kitchen";
+            tempKitchenPrinted = "Confirmed";
             tempTextColor = "#36bdff";
             tv_kitchenPrintedyn.setBackgroundResource(R.drawable.ab_roundlayout_kitchen_printer);
         } else {
-            tempKitchenPrinted = "Not printed on kitchen";
+//            tempKitchenPrinted = "Not printed on kitchen";
+            tempKitchenPrinted = "Not Confirmed";
             tempTextColor = "#00ff7f";
             tv_kitchenPrintedyn.setBackgroundResource(R.drawable.ab_roundlayout_not_kitchen_printer);
         }

@@ -860,6 +860,20 @@ public class BillSplitMerge extends Activity {
                         GlobalMemberValues.displayDialog(mContext, "Warning", "Please select only one bill to pay", "Close");
                         return;
                     }
+
+                    // 11042024 custom amount 일때 금액 스플릿 완료 안하고 payment 진행 막음.
+                    if (str_Billsplit_Type == "2" || str_Billsplit_Type.equals("2")){
+                        String temp = tablesale_balance_txt.getText().toString();
+                        temp = temp.replace("$", "");
+                        temp = GlobalMemberValues.getCommaStringForDouble(temp);
+                        if (temp.equals("0.00") || temp.equals("0")){
+                        } else {
+                            GlobalMemberValues.displayDialog(mContext, "Warning", "There is a payment amount that has not been completed yet. To complete the payment, please pay the remaining amount.", "Close");
+                            return;
+                        }
+
+                    }
+
                     if (mSelectedBillBoxValue.size() == 1) {
 
                         // 07182023
