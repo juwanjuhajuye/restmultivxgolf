@@ -731,7 +731,7 @@ public class BillSplitMerge extends Activity {
                     double insValue = GlobalMemberValues.getDoubleAtString(tablesale_split_byamount.getText().toString());
 
                     if (insValue > nowBalance) {
-                        GlobalMemberValues.displayDialog(BillSplitMerge.this, "By Custom Amount", "You entered an amount more than balance", "Close");
+                        GlobalMemberValues.displayDialog(BillSplitMerge.this, "Custom Amount Split", "You entered an amount greater than the total balance", "Close");
                     } else {
                         if (BillExecute.doInsertByAmount_Bill(str_holdCode, mTableIdx, insValue).equals("Y")){
                             setBalanceSubtotal_byCustomAmount();
@@ -868,7 +868,7 @@ public class BillSplitMerge extends Activity {
                         temp = GlobalMemberValues.getCommaStringForDouble(temp);
                         if (temp.equals("0.00") || temp.equals("0")){
                         } else {
-                            GlobalMemberValues.displayDialog(mContext, "Warning", "There is a payment amount that has not been completed yet. To complete the payment, please pay the remaining amount.", "Close");
+                            GlobalMemberValues.displayDialog(mContext, "Warning", "The bills do not add up to the total balance. To continue with payment, please make sure the bills add up to the total balance.", "Close");
                             return;
                         }
 

@@ -21678,4 +21678,95 @@ public class GlobalMemberValues {
         return returnValue;
     }
 
+    static JSONObject billprintTOJSON = new JSONObject();
+    public static void setBillPrintJson(JSONObject data){
+        billprintTOJSON = new JSONObject();
+        billprintTOJSON = data;
+    }
+
+    public static JSONObject makeBillPrintJson (JSONObject data) {
+        JSONObject jsonObject = new JSONObject();
+
+        // jsonObject 를 데이터베이스에 저장
+
+        String str_saleitemlist = "";
+        str_saleitemlist = GlobalMemberValues.getDataInJsonData(data, "saleitemlist");
+
+
+        String[] strOrderItemsList = str_saleitemlist.split(GlobalMemberValues.STRSPLITTER_ORDERITEM1);
+        String[] strOrderItems = new String[]{""};
+
+        JSONArray item_array = new JSONArray();
+        for (int i = 0; i < strOrderItemsList.length; i++) {
+            strOrderItems = strOrderItemsList[i].split(GlobalMemberValues.STRSPLITTER_ORDERITEM2);
+            String[] temp_string = strOrderItems[0].split("-ANNIETTASU-");
+            JSONObject item_json = new JSONObject();
+            try{
+                item_json.put("item_name_en", temp_string[0]);
+
+                item_json.put("itemPrice",strOrderItems[5]);
+                item_json.put("tax",strOrderItems[8]);
+
+                item_json.put("each_or_all", temp_string[10]);
+                item_json.put("extra_or_dc", temp_string[11]);
+                item_json.put("percent_or_dollar", temp_string[12]);
+                item_json.put("applicable_amount", temp_string[13]);
+
+                item_json.put("item_name_ko", temp_string[19]);
+            } catch (JSONException e) {
+                throw new RuntimeException(e);
+            }
+            item_array.put(item_json);
+
+        }
+
+        try{
+            jsonObject.put("saleitemlist",item_array);
+
+            jsonObject.putOpt("storestate",GlobalMemberValues.getDataInJsonData(data, "storestate"));
+            jsonObject.putOpt("storename",GlobalMemberValues.getDataInJsonData(data, "storename"));
+            jsonObject.putOpt("storecity",GlobalMemberValues.getDataInJsonData(data, "storecity"));
+            jsonObject.putOpt("storezip",GlobalMemberValues.getDataInJsonData(data, "storezip"));
+            jsonObject.putOpt("storeaddress2",GlobalMemberValues.getDataInJsonData(data, "storeaddress2"));
+            jsonObject.putOpt("storeaddress1",GlobalMemberValues.getDataInJsonData(data, "storeaddress1"));
+            jsonObject.putOpt("storephone",GlobalMemberValues.getDataInJsonData(data, "storephone"));
+            jsonObject.putOpt("saledate",GlobalMemberValues.getDataInJsonData(data, "saledate"));
+            jsonObject.putOpt("saletime",GlobalMemberValues.getDataInJsonData(data, "saletime"));
+            jsonObject.putOpt("receiptno",GlobalMemberValues.getDataInJsonData(data, "receiptno"));
+
+            jsonObject.putOpt("customername",GlobalMemberValues.getDataInJsonData(data, "customername"));
+            jsonObject.putOpt("customerphonenum",GlobalMemberValues.getDataInJsonData(data, "customerphonenum"));
+            jsonObject.putOpt("customeraddress",GlobalMemberValues.getDataInJsonData(data, "customeraddress"));
+            jsonObject.putOpt("deliverytakeaway",GlobalMemberValues.getDataInJsonData(data, "deliverytakeaway"));
+            jsonObject.putOpt("deliverydate",GlobalMemberValues.getDataInJsonData(data, "deliverydate"));
+            jsonObject.putOpt("ordertype",GlobalMemberValues.getDataInJsonData(data, "ordertype"));
+            jsonObject.putOpt("customermemo",GlobalMemberValues.getDataInJsonData(data, "customermemo"));
+            jsonObject.putOpt("receiptfooter",GlobalMemberValues.getDataInJsonData(data, "receiptfooter"));
+            jsonObject.putOpt("customerordernumber",GlobalMemberValues.getDataInJsonData(data, "customerordernumber"));
+            jsonObject.putOpt("customerpagernumber",GlobalMemberValues.getDataInJsonData(data, "customerpagernumber"));
+            jsonObject.putOpt("phoneorder",GlobalMemberValues.getDataInJsonData(data, "phoneorder"));
+            jsonObject.putOpt("phoneordernumber",GlobalMemberValues.getDataInJsonData(data, "phoneordernumber"));
+
+            // Restaurant 관련
+            jsonObject.putOpt("restaurant_tableidx",GlobalMemberValues.getDataInJsonData(data, "restaurant_tableidx"));
+            jsonObject.putOpt("restaurant_tablename",GlobalMemberValues.getDataInJsonData(data, "restaurant_tablename"));
+            jsonObject.putOpt("restaurant_tablepeoplecnt",GlobalMemberValues.getDataInJsonData(data, "restaurant_tablepeoplecnt"));
+            jsonObject.putOpt("restaurant_tableholdcode",GlobalMemberValues.getDataInJsonData(data, "restaurant_tableholdcode"));
+
+
+
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+
+
+
+
+        GlobalMemberValues.logWrite("cloverprintinglog", "받은 데이터 : " + strOrderItemsList.toString() + "\n");
+        GlobalMemberValues.logWrite("cloverprintinglog", "받은 데이터 : " + strOrderItems.toString() + "\n");
+
+        return jsonObject;
+
+    }
+
 }

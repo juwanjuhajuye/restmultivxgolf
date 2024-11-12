@@ -3,6 +3,10 @@ package com.example.jjbfather.jjjqsrt2go2gorestkakaovx;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkCapabilities;
+import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.IBinder;
 
 import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.R;
@@ -49,6 +53,7 @@ public class CheckOnlineStatus extends Service implements Runnable {
             //sendSalesDataToCloud(receivedSalesCode);
             GlobalMemberValues.logWrite("newreservationcheckstr", "신규 온라인 체크서비스 시작" + "\n");
             checkOnline();
+            stopSelf();
         } catch (Exception e) {
         }
     }
@@ -57,28 +62,37 @@ public class CheckOnlineStatus extends Service implements Runnable {
         String tempStatus = null;
         int tempStatusImageId = 0;
 
-        int conn = NetworkUtil.getConnectivityStatus(context);
-        GlobalMemberValues.logWrite("newreservationcheckstr", "conn : " + conn + "\n");
-        if (conn > 0) {
-            if(conn == TYPE_WIFI) {
-                tempStatus = "WIFI";
-                tempStatusImageId = R.drawable.aa_images_main_wifi;
-            } else if (conn == TYPE_MOBILE) {
-                tempStatus = "3G/LTE";
-                tempStatusImageId = R.drawable.aa_images_main_lte;
-            } else {
-                if (GlobalMemberValues.isOnlineInternet("http://clients3.google.com/generate_204")) {
-                    tempStatus = "ONLINE";
-                    tempStatusImageId = R.drawable.aa_images_main_online;
-                } else {
-                    tempStatus = "NOT CONNECTED";
-                    tempStatusImageId = R.drawable.aa_images_main_disconnect;
+
+        //Returns connection type. 0: TYPE_NOT_CONNECTED; 1: TYPE_WIFI; 2: TYPE_MOBILE; 3: TYPE_ETHERNET
+        int conn = 0;
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (cm != null) {
+                NetworkCapabilities capabilities = cm.getNetworkCapabilities(cm.getActiveNetwork());
+                if (capabilities != null) {
+                    if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
+                        conn = 1;
+                    } else if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) {
+                        conn = 2;
+                    } else if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET)) {
+                        conn = 3;
+                    }
                 }
             }
         } else {
-            // 인터넷 연결 안됨...
-            tempStatus = "NOT CONNECTED";
-            tempStatusImageId = R.drawable.aa_images_main_disconnect;
+            if (cm != null) {
+                NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+                if (activeNetwork != null) {
+                    // connected to the internet
+                    if (activeNetwork.getType() == ConnectivityManager.TYPE_WIFI) {
+                        conn = 1;
+                    } else if (activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE) {
+                        conn = 2;
+                    } else if (activeNetwork.getType() == ConnectivityManager.TYPE_ETHERNET) {
+                        conn = 3;
+                    }
+                }
+            }
         }
 
         GlobalMemberValues.GLOBALNETWORKSTATUS = conn;

@@ -683,18 +683,18 @@ public class MainMiddleServiceModifer extends Activity {
                         " holdcode, sidx, stcode, svcIdx, modifiername, optionaddname, modifieroptionaddfullname, " +
                         " modifierprice, optionaddprice, optioncategoryidx, optionitemidx, optioncategoryname, modifiercode, qty " +
                         " ) values ( " +
-                        " '" + strSaleCartModifier[0] + "', " +
-                        " '" + strSaleCartModifier[1] + "', " +
-                        " '" + strSaleCartModifier[2] + "', " +
-                        " '" + strSaleCartModifier[3] + "', " +
-                        " '" + strSaleCartModifier[4] + "', " +
-                        " '" + strSaleCartModifier[5] + "', " +
-                        " '" + strSaleCartModifier[6] + "', " +
-                        " '" + strSaleCartModifier[7] + "', " +
-                        " '" + strSaleCartModifier[8] + "', " +
-                        " '" + strSaleCartModifier[9] + "', " +
-                        " '" + strSaleCartModifier[10] + "', " +
-                        " '" + strSaleCartModifier[11] + "', " +
+                        " '" + strSaleCartModifier[0] + "', " +     // holdcode
+                        " '" + strSaleCartModifier[1] + "', " +     // sidx
+                        " '" + strSaleCartModifier[2] + "', " +     // stcode
+                        " '" + strSaleCartModifier[3] + "', " +     // svcidx
+                        " '" + GlobalMemberValues.getDBTextAfterChecked(strSaleCartModifier[4],0) + "', " +     // modifiername
+                        " '" + GlobalMemberValues.getDBTextAfterChecked(strSaleCartModifier[5],0) + "', " +     // option add name
+                        " '" + GlobalMemberValues.getDBTextAfterChecked(strSaleCartModifier[6],0) + "', " +     // modifier option add full name
+                        " '" + strSaleCartModifier[7] + "', " +     // modifier price
+                        " '" + strSaleCartModifier[8] + "', " +     // option add price
+                        " '" + strSaleCartModifier[9] + "', " +     // option category idx
+                        " '" + strSaleCartModifier[10] + "', " +    // option item idx
+                        " '" + GlobalMemberValues.getDBTextAfterChecked(strSaleCartModifier[11],0) + "', " +    // option category name
                         " '" + strSaleCartModifier[12] + "', " +
                         " '" + strSaleCartModifier[13] + "' " +
                         " ) ";
@@ -1805,15 +1805,15 @@ public class MainMiddleServiceModifer extends Activity {
                     " '" + GlobalMemberValues.STATION_CODE + "', " +
                     " '" + mServiceIdx + "', " +
 
-                    " '" + selectedModifierButtonName + "', " +
-                    " '" + selectedOptionAddButtonName + "', " +
-                    " '" + tempSelectedModOptionAddName + "', " +
+                    " '" + GlobalMemberValues.getDBTextAfterChecked(selectedModifierButtonName,0) + "', " +
+                    " '" + GlobalMemberValues.getDBTextAfterChecked(selectedOptionAddButtonName,0) + "', " +
+                    " '" + GlobalMemberValues.getDBTextAfterChecked(tempSelectedModOptionAddName,0) + "', " +
                     " '" + GlobalMemberValues.getDoubleAtString(selectedModifierButtonPrice) + "', " +
                     " '" + GlobalMemberValues.getDoubleAtString(selectedOptionAddButtonPrice) + "', " +
 
                     " '" + mSelectedOptionCategoryIdxValue + "', " +
                     " '" + mSelectedOptionItemIdxValue + "', " +
-                    " '" + mSelectedOptionCategoryNameValue + "', " +
+                    " '" + GlobalMemberValues.getDBTextAfterChecked(mSelectedOptionCategoryNameValue,0) + "', " +
 
                     " '" + mModifierCode + "' " +
 

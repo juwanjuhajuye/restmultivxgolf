@@ -1846,17 +1846,17 @@ public class MainMiddleService {
                         " '" + insSpriceAmount + "', " +
                         " '" + insCategoryColor + "', " +
                         " '" + insRcode + "', " +
-                        " '" + mOptionTxt + "', " +
+                        " '" + GlobalMemberValues.getDBTextAfterChecked(mOptionTxt,0) + "', " +
                         " '" + mOptionPrice + "', " +
 
-                        " '" + mAdditionalTxt1 + "', " +
+                        " '" + GlobalMemberValues.getDBTextAfterChecked(mAdditionalTxt1,0) + "', " +
                         " '" + mAdditionalprice1 + "', " +
-                        " '" + mAdditionalTxt2 + "', " +
+                        " '" + GlobalMemberValues.getDBTextAfterChecked(mAdditionalTxt2,0) + "', " +
                         " '" + mAdditionalprice2 + "', " +
                         " '" + mModifierIdx + "', " +
 
                         " '" + mModifierCode + "', " +
-                        " '" + mMemoToKitchen + "', " +
+                        " '" + GlobalMemberValues.getDBTextAfterChecked(mMemoToKitchen,0) + "', " +
 
                         " '" + sPriceBalAmount_org + "', " +
                         " '" + sTaxAmount_org + "', " +
