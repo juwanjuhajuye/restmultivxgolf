@@ -316,20 +316,27 @@ public class EmployeeKeyIn extends Activity {
 
         // 직원코드 사용여부. Pass in employee id automatically if only password is used for verification
         // There can be no password repeats so each password is unique to an employee
-        if (!GlobalMemberValues.isServerCodeUse()) {
+        if (!GlobalMemberValues.isServerCodeUse() && GlobalMemberValues.isServerPasswordUse()) {
             GlobalMemberValues.logWrite("eidlogjjj222222", "GlobalMemberValues.SERVER_ID : " + GlobalMemberValues.SERVER_ID + "\n");
-            servernumtv.setText(GlobalMemberValues.SERVER_ID);
+            //servernumtv.setText(GlobalMemberValues.SERVER_ID);
 
             // 07202023
             msgtv.setText("ENTER YOUR PASSWORD");
 
-            temp_eid = GlobalMemberValues.SERVER_ID;
+            //temp_eid = GlobalMemberValues.SERVER_ID;
+
+            //11112024 if server code isn't being checked, next check is the password
+            is_input_pass = true;
 
             goNextStep();
+        } else if(!GlobalMemberValues.isServerCodeUse() && !GlobalMemberValues.isServerPasswordUse()) {
+            GlobalMemberValues.logWrite("eidlogjjj222222", "GlobalMemberValues.SERVER_ID : " + GlobalMemberValues.SERVER_ID + "\n");
+            GetDataAtSQLite dataAtSqlite = new GetDataAtSQLite(mContext);
+            String getEmpInfo = "";
 
-            //authenticateServerCode();
-
-
+            getEmpInfo = dataAtSqlite.getEmployeeInfoByServerAccessPassword(GlobalMemberValues.SERVER_ID);
+            String[] strEmployeeInfoArr = getEmpInfo.split(GlobalMemberValues.STRSPLITTER1);
+            empPassSuccess(strEmployeeInfoArr);
         }
     }
 
@@ -492,13 +499,13 @@ public class EmployeeKeyIn extends Activity {
         //if input is empty, and -> button (next step button) is pressed
         else {
             if (is_input_pass){
-                msgtv.setTextColor(Color.RED);
+                //msgtv.setTextColor(Color.RED);
                 msgtv.setText("ENTER YOUR PASSWORD");
                 servernumtv.setText("");
                 mServerNum = "";
             }
             else {
-                msgtv.setTextColor(Color.RED);
+                //msgtv.setTextColor(Color.RED);
                 msgtv.setText("ENTER YOUR ACCESS CODE");
                 servernumtv.setText("");
                 mServerNum = "";
@@ -715,18 +722,18 @@ public class EmployeeKeyIn extends Activity {
     }
 
     private static void empPassSuccess(String[] strEmployeeInfoArr){
-
-//                GlobalMemberValues.GLOBAL_EMPLOYEEINFO
-//                        = new TemporaryEmployeeInfo(strEmployeeInfoArr[0], strEmployeeInfoArr[1], strEmployeeInfoArr[2], strEmployeeInfoArr[3],
-//                        strEmployeeInfoArr[4], strEmployeeInfoArr[5], strEmployeeInfoArr[6], strEmployeeInfoArr[7], strEmployeeInfoArr[8],
-//                        strEmployeeInfoArr[9], strEmployeeInfoArr[10], strEmployeeInfoArr[12]);
-
         GlobalMemberValues.GLOBAL_LAYOUTMEMBER_MAINBUTTONTOPEMPLOYEEINFO.setText(strEmployeeInfoArr[1]);
 
         // 0719 server 정보 추가.
         GlobalMemberValues.SERVER_IDX = strEmployeeInfoArr[0];
         GlobalMemberValues.SERVER_ID = strEmployeeInfoArr[8];
         GlobalMemberValues.SERVER_NAME = strEmployeeInfoArr[1];
+
+        //11112024 change global member variable to match the new logged in employee
+        GlobalMemberValues.GLOBAL_EMPLOYEEINFO
+                = new TemporaryEmployeeInfo(strEmployeeInfoArr[0], strEmployeeInfoArr[1], strEmployeeInfoArr[2], strEmployeeInfoArr[3],
+                strEmployeeInfoArr[4], strEmployeeInfoArr[5], strEmployeeInfoArr[6], strEmployeeInfoArr[7], strEmployeeInfoArr[8],
+                strEmployeeInfoArr[9], strEmployeeInfoArr[10], strEmployeeInfoArr[12]);
 
         GlobalMemberValues.logWrite("jjjserverloginlog", "GlobalMemberValues.SERVER_IDX : " + GlobalMemberValues.SERVER_IDX + "\n");
         GlobalMemberValues.logWrite("jjjserverloginlog", "GlobalMemberValues.SERVER_NAME : " + GlobalMemberValues.SERVER_NAME + "\n");

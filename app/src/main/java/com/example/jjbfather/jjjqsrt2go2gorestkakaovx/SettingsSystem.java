@@ -190,9 +190,12 @@ public class SettingsSystem extends Activity {
     private TextView settingsSystemTitleTextView85;
     private TextView settingsSystemTitleTextView89, settingsSystemTitleTextView90;
     private TextView settingsSystemTitleTextView94;
+    private TextView settingsSystemTitleTextView95, settingsSystemTitleTextView96;
 
     private TextView settingsSystemTitleTextView_dbcodename;
+    private TextView settingsSystemTitleTextView_mobilehostname;
     private EditText dbcodename_setting_edtext;
+    private EditText mobilehostname_setting_edtext;
 
     // 10272023
     private TextView settingsSystemTitleTextView91;
@@ -204,7 +207,7 @@ public class SettingsSystem extends Activity {
 
     private TextView infoTextView1, infoTextView2;
     // 01172024
-    private TextView infoTextView3;
+    private TextView infoTextView3, infoTextView4;
 
     private TextView settingsSystemHttpTitleTextView, settingsSystemSlashTextView;
     private TextView timemenuminsTextView1, timemenuminsTextView2, daystouploaddataTextView;
@@ -217,6 +220,7 @@ public class SettingsSystem extends Activity {
 
     // 01172024
     private String orgin_tableorderuseyn = "";
+    private String orgin_tableorderdownloadyn = "";
 
     public int mInReverseValue = 2;
     public int mDatabaseBackUpValue = 0;
@@ -266,6 +270,10 @@ public class SettingsSystem extends Activity {
     // ready time add
     Switch main_ready_time_use_yn_switch;
     EditText main_ready_time_cnt_edtxt;
+
+    Switch setting_bill_windowprint_sw;
+    Switch setting_table_order_download_sw;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -454,8 +462,13 @@ public class SettingsSystem extends Activity {
 
         String vDbCodeName = "";
 
+        String vMobileHostName = "";
+
         String vMainreadytimeuse_yn = "";
         String vMainreadytimeuse_cnt = "";
+
+        String vBillWindowPrint_yn = "";
+        String vTableOrderDownload_yn = "";
 
         String strQuery = "select splashuse, inreverse, cloudurl, downloaddata, databasebackup, clockinouttype, " +
                 " gmailId, gmailPwd, departmentviewyn, mileagesyncinselectcustomer, showcostafterdcextra, cardislast, pointpaysavepointyn, timemenuautoreload, pushtype, devicekind, " +
@@ -480,7 +493,10 @@ public class SettingsSystem extends Activity {
 
                 " dbcodename,  " +
                 " mainreadytimeuse_yn, " +
-                " mainreadytime_cnt " +
+                " mainreadytime_cnt,  " +
+                " mobilehost,  " +
+                " billprintwindow_yn, " +
+                " tableorderdownload_yn " +
 
                 " from salon_storestationsettings_system ";
         Cursor settingsSystemCursor = dbInit.dbExecuteRead(strQuery);
@@ -593,6 +609,12 @@ public class SettingsSystem extends Activity {
             // 10252024
             String tempMainreadytimeuse_yn = GlobalMemberValues.getDBTextAfterChecked(settingsSystemCursor.getString(90), 1);
             String tempMainreadytimeuse_cnt = GlobalMemberValues.getDBTextAfterChecked(settingsSystemCursor.getString(91), 1);
+
+            String tempMobileHost = GlobalMemberValues.getDBTextAfterChecked(settingsSystemCursor.getString(92), 1);
+
+            String tempBillprintwindow_yn = GlobalMemberValues.getDBTextAfterChecked(settingsSystemCursor.getString(93), 1);
+
+            String tempTableorderdownload_yn = GlobalMemberValues.getDBTextAfterChecked(settingsSystemCursor.getString(94), 1);
 
             GlobalMemberValues.logWrite("settingslog", "tempReceipttypeonnoselect : " + tempReceipttypeonnoselect + "\n");
 
@@ -1095,11 +1117,32 @@ public class SettingsSystem extends Activity {
                 vMainreadytimeuse_cnt = "0";
             }
 
+            if (!GlobalMemberValues.isStrEmpty(tempMobileHost)){
+                vMobileHostName = tempMobileHost;
+            } else {
+                vMobileHostName = "";
+            }
+
+            if (!GlobalMemberValues.isStrEmpty(tempBillprintwindow_yn)){
+                vBillWindowPrint_yn = tempBillprintwindow_yn;
+            } else {
+                vBillWindowPrint_yn = "N";
+            }
+
+            if (!GlobalMemberValues.isStrEmpty(tempTableorderdownload_yn)){
+                vTableOrderDownload_yn = tempTableorderdownload_yn;
+            } else {
+                vTableOrderDownload_yn = "N";
+            }
+
+
             orgin_timeMenuAutoReload = vTimemenuautoreload;
             orgin_onlineorderuseyn = vOnlineOrderUseYN;
             orgin_timemenuchecktime = vTimemenuchecktime;
 
             orgin_tableorderuseyn = vTableorderuseyn;
+
+            orgin_tableorderdownloadyn = vTableOrderDownload_yn;
         }
 
         dualdpadtypeLn = (LinearLayout)findViewById(R.id.dualdpadtypeLn);
@@ -1685,12 +1728,27 @@ public class SettingsSystem extends Activity {
             main_ready_time_use_yn_switch.setChecked(false);
         }
 
+        setting_bill_windowprint_sw = (Switch)findViewById(R.id.setting_bill_windowprint_sw);
+        if (vBillWindowPrint_yn == "Y" || vBillWindowPrint_yn.equals("Y")){
+            setting_bill_windowprint_sw.setChecked(true);
+        } else {
+            setting_bill_windowprint_sw.setChecked(false);
+        }
+
+        setting_table_order_download_sw = (Switch)findViewById(R.id.tableorderdownloadynSwitch);
+        if (vTableOrderDownload_yn == "Y" || vTableOrderDownload_yn.equals("Y")){
+            setting_table_order_download_sw.setChecked(true);
+        } else {
+            setting_table_order_download_sw.setChecked(false);
+        }
+
         main_ready_time_cnt_edtxt = (EditText)findViewById(R.id.main_ready_time_cnt_edtxt);
         if (vMainreadytimeuse_cnt.isEmpty()){
             main_ready_time_cnt_edtxt.setText("0");
         } else {
             main_ready_time_cnt_edtxt.setText(vMainreadytimeuse_cnt);
         }
+
 
         btn_setting_receipt_setting = (Button)findViewById(R.id.btn_setting_receipt_setting);
         btn_setting_receipt_setting.setOnClickListener(mButtonClick);
@@ -1766,6 +1824,9 @@ public class SettingsSystem extends Activity {
         dbcodename_setting_edtext.setText(vDbCodeName);
         dbcodename_setting_edtext.setTextSize(dbcodename_setting_edtext.getTextSize() * GlobalMemberValues.getGlobalFontSize());
 
+        mobilehostname_setting_edtext = (EditText)findViewById(R.id.mobilehostname_setting_edtext);
+        mobilehostname_setting_edtext.setText(vMobileHostName);
+        mobilehostname_setting_edtext.setTextSize(mobilehostname_setting_edtext.getTextSize() * GlobalMemberValues.getGlobalFontSize());
 
 
         // Forward / Reverse -------------------------------------------------------------------------------------------------
@@ -2247,6 +2308,9 @@ public class SettingsSystem extends Activity {
         settingsSystemTitleTextView_dbcodename = (TextView)findViewById(R.id.settingsSystemTitleTextView_dbcodename);
         settingsSystemTitleTextView_dbcodename.setTextSize(settingsSystemTitleTextView_dbcodename.getTextSize() * GlobalMemberValues.getGlobalFontSize());
 
+        settingsSystemTitleTextView_mobilehostname = (TextView)findViewById(R.id.settingsSystemTitleTextView_mobilehostname);
+        settingsSystemTitleTextView_mobilehostname.setTextSize(settingsSystemTitleTextView_mobilehostname.getTextSize() * GlobalMemberValues.getGlobalFontSize());
+
         // 10272023
         settingsSystemTitleTextView91 = (TextView)findViewById(R.id.settingsSystemTitleTextView91);
         settingsSystemTitleTextView91.setTextSize(settingsSystemTitleTextView91.getTextSize() * GlobalMemberValues.getGlobalFontSize());
@@ -2262,6 +2326,13 @@ public class SettingsSystem extends Activity {
         settingsSystemTitleTextView94 = (TextView)findViewById(R.id.settingsSystemTitleTextView94);
         settingsSystemTitleTextView94.setTextSize(settingsSystemTitleTextView94.getTextSize() * GlobalMemberValues.getGlobalFontSize());
 
+        settingsSystemTitleTextView95 = (TextView)findViewById(R.id.settingsSystemTitleTextView95);
+        settingsSystemTitleTextView95.setTextSize(settingsSystemTitleTextView95.getTextSize() * GlobalMemberValues.getGlobalFontSize());
+
+        settingsSystemTitleTextView96 = (TextView)findViewById(R.id.settingsSystemTitleTextView96);
+        settingsSystemTitleTextView96.setTextSize(settingsSystemTitleTextView96.getTextSize() * GlobalMemberValues.getGlobalFontSize());
+
+
 
 
         infoTextView1 = (TextView)findViewById(R.id.infoTextView1);
@@ -2273,6 +2344,9 @@ public class SettingsSystem extends Activity {
         // 01172024
         infoTextView3 = (TextView)findViewById(R.id.infoTextView3);
         infoTextView3.setTextSize(infoTextView3.getTextSize() * GlobalMemberValues.getGlobalFontSize());
+
+        infoTextView4 = (TextView)findViewById(R.id.infoTextView4);
+        infoTextView4.setTextSize(infoTextView4.getTextSize() * GlobalMemberValues.getGlobalFontSize());
 
         settingsSystemHttpTitleTextView = (TextView)findViewById(R.id.settingsSystemHttpTitleTextView);
         settingsSystemHttpTitleTextView.setTextSize(settingsSystemHttpTitleTextView.getTextSize() * GlobalMemberValues.getGlobalFontSize());
@@ -2667,6 +2741,9 @@ public class SettingsSystem extends Activity {
 
         String insPushpopupopenyn = "N";
 
+        String insBillprintWindow_yn = "N";
+        String insTableOrderDownload_yn = "N";
+
         if (splashUseSwitch.isChecked()) {
             insSplashUse = 0;
         } else {
@@ -2681,6 +2758,8 @@ public class SettingsSystem extends Activity {
 
         String insMainreadytime_yn = "";
         String insMainreadytime_cnt = "";
+
+        String insMobilehostname = "";
 
         /**
          if (inReverseSwitch.isChecked()) {
@@ -3081,6 +3160,18 @@ public class SettingsSystem extends Activity {
             insPushpopupopenyn = "N";
         }
 
+        if (setting_bill_windowprint_sw.isChecked()){
+            insBillprintWindow_yn = "Y";
+        } else {
+            insBillprintWindow_yn = "N";
+        }
+
+        if (setting_table_order_download_sw.isChecked()){
+            insTableOrderDownload_yn = "Y";
+        } else {
+            insTableOrderDownload_yn = "N";
+        }
+
         if (!receipttypeonnoselectCb1.isChecked() && !receipttypeonnoselectCb2.isChecked()) {
             insReceipttypeonnoselect = "E";
         } else {
@@ -3189,6 +3280,12 @@ public class SettingsSystem extends Activity {
                 insMainreadytime_cnt = main_ready_time_cnt_edtxt.getText().toString();
             }
         }
+
+        insMobilehostname = mobilehostname_setting_edtext.getText().toString();
+        if (GlobalMemberValues.isStrEmpty(insMobilehostname)) {
+            insEmployeeCardStartNumber = "";
+        }
+
 
 
         int returnValue = 0;
@@ -3305,6 +3402,11 @@ public class SettingsSystem extends Activity {
                 " mainreadytimeuse_yn = '" + insMainreadytime_yn + "', " +
                 " mainreadytime_cnt = '" + insMainreadytime_cnt + "', " +
 
+                " mobilehost = '" + insMobilehostname + "', " +
+                " billprintwindow_yn = '" + insBillprintWindow_yn + "', " +
+                " tableorderdownload_yn = '" + insTableOrderDownload_yn + "', " +
+
+
                 " mdate = datetime('now') ";
 
         strUpdateQueryVec.addElement(updStrQuery);
@@ -3410,11 +3512,14 @@ public class SettingsSystem extends Activity {
             GlobalMemberValues.mssql_sync = mMssqlSyncYN;
             GlobalMemberValues.mssql_ip = insMssqldbip;
 
+            GlobalMemberValues.MOBILE_HOST = insMobilehostname;
+
             reloadPresentation();
 
             // 01172024
             if (!orgin_timeMenuAutoReload.equals(insTimemenuautoreload) || !orgin_onlineorderuseyn.equals(insOnlineOrderUseYN)
-                    || !orgin_timemenuchecktime.equals(insTimemenuchecktime) || !orgin_tableorderuseyn.equals(insTableorderuseyn)) {
+                    || !orgin_timemenuchecktime.equals(insTimemenuchecktime) || !orgin_tableorderuseyn.equals(insTableorderuseyn)
+                    || !orgin_tableorderdownloadyn.equals(insTableOrderDownload_yn)) {
                 new AlertDialog.Builder(mActivity)
                         .setTitle("Information")
                         .setMessage("You must restart the POS system for the changes to take effect.\nWould you close the POS system now?")

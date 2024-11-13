@@ -3954,6 +3954,22 @@ public class DatabaseInit {
             alterDatabaseTableColumn(altTableName, "mainreadytime_cnt", "int", "DEFAULT 30", 0);
         }
 
+        // 11132024
+        // salon_storestationsettings_system 컬럼 추가
+        // 11.13.2024 billprintwindow_yn 컬럼 추가
+        altTableName = "salon_storestationsettings_system";
+        if (checkTable(altTableName) > 0){
+            alterDatabaseTableColumn(altTableName, "billprintwindow_yn", "nvarchar(2)", "DEFAULT 'N'", 0);
+        }
+
+        // 11132024
+        // salon_storestationsettings_system 컬럼 추가
+        // 11.13.2024 tableorderdownload_yn 컬럼 추가
+        altTableName = "salon_storestationsettings_system";
+        if (checkTable(altTableName) > 0){
+            alterDatabaseTableColumn(altTableName, "tableorderdownload_yn", "nvarchar(2)", "DEFAULT 'N'", 0);
+        }
+
         /****************************************************************************/
     }
 

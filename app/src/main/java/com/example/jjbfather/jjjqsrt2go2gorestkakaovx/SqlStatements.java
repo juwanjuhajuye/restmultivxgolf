@@ -1643,7 +1643,9 @@ public class SqlStatements {
 
                     // 10252024 // main 대기시간
                     "mainreadytimeuse_yn nvarchar(2) DEFAULT 'N', " +
-                    "mainreadytime_cnt int DEFAULT 30 " +
+                    "mainreadytime_cnt int DEFAULT 30, " +
+                    "billprintwindow_yn nvarchar(2) DEFAULT 'N', " +
+                    "tableorderdownload_yn nvarchar(2) DEFAULT 'N' " +
 
                     ")";
 

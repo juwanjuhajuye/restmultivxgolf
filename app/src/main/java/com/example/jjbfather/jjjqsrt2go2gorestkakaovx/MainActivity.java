@@ -714,7 +714,7 @@ public class MainActivity extends Activity {
 
         // 01172024
         // 신규 테이블오더 체크
-        if (GlobalMemberValues.isTableOrderUseYN()) {
+        if (GlobalMemberValues.isTableOrderUseYN() && GlobalMemberValues.isTableOrderDownloadYN()) {
             runTimer_newTableOrder();
         }
 

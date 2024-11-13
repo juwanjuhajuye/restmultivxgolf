@@ -450,6 +450,71 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
+                            android:layout_weight="1.3"
+                            android:orientation="horizontal"
+                            android:paddingBottom="8dp"
+                            android:paddingTop="8dp" >
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+                                <TextView
+                                    android:id="@+id/settingsSystemTitleTextView_mobilehostname"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:textSize="20dp"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="bold"
+                                    android:text="MOBILE HOST"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1">
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2"
+                                android:orientation="horizontal" >
+
+                                <EditText
+                                    android:id="@+id/mobilehostname_setting_edtext"
+                                    android:tag="dbcodename_setting_edtextTag"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:background="@drawable/roundlayout_background_settings_textview"
+                                    android:padding="4dp"
+                                    android:textSize="20dp"
+                                    android:textColor="#3f3e3a"
+                                    android:text=""/>
+
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"/>
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.1"
+                            android:orientation="horizontal">
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
                             android:layout_weight="1"
                             android:orientation="horizontal"
                             android:visibility="gone">
@@ -2272,6 +2337,73 @@
 
                                 <TextView
                                     android:id="@+id/infoTextView3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:gravity="left|center_vertical"
+                                    android:paddingLeft="10dp"
+                                    android:textSize="16dp"
+                                    android:textColor="#fff0f2"
+                                    android:text="(Required to restart the POS)"/>
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.1"
+                            android:orientation="horizontal">
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal"
+                            android:paddingBottom="8dp"
+                            android:paddingTop="8dp"
+                            android:visibility="visible">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+                                <TextView
+                                    android:id="@+id/settingsSystemTitleTextView96"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:textSize="20dp"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="bold"
+                                    android:text="Table Order Download"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1">
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2">
+                                <Switch
+                                    android:id="@+id/tableorderdownloadynSwitch"
+                                    android:tag="tableorderdownloadynSwitchTag"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="left|center_vertical"
+                                    style="@style/SwitchCustom100"
+                                    android:switchTextAppearance="@style/SwitchTextAppearance"
+                                    android:textOn="Yes"
+                                    android:textOff="No"
+                                    android:checked="true"/>
+
+                                <TextView
+                                    android:id="@+id/infoTextView4"
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
                                     android:gravity="left|center_vertical"
@@ -5384,7 +5516,61 @@
 
                         </LinearLayout>
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.1"
+                            android:orientation="horizontal">
+                        </LinearLayout>
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1.3"
+                            android:orientation="horizontal"
+                            android:paddingBottom="8dp"
+                            android:paddingTop="8dp" >
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+                                <TextView
+                                    android:id="@+id/settingsSystemTitleTextView95"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left|center_vertical"
+                                    android:textSize="20dp"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="bold"
+                                    android:text="Bill Window print"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1">
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2">
+                                <Switch
+                                    android:id="@+id/setting_bill_windowprint_sw"
+                                    android:tag="setting_bill_windowprint_swTag"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="left|center_vertical"
+                                    style="@style/SwitchCustom80"
+                                    android:switchTextAppearance="@style/SwitchTextAppearance"
+                                    android:textOn="On"
+                                    android:textOff="Off"
+                                    android:checked="true"/>
+                            </LinearLayout>
+
+                        </LinearLayout>
 
 
 

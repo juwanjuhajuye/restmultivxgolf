@@ -21769,4 +21769,37 @@ public class GlobalMemberValues {
 
     }
 
+
+
+    // 11132024
+    public static boolean isBillPrintingByWindows() {
+        boolean returnValue = false;
+        DatabaseInit dbInit = new DatabaseInit(MainActivity.mContext);   // DatabaseInit 객체 생성
+        String tempGetValue = getDBTextAfterChecked(dbInit.dbExecuteReadReturnString(
+                "select billprintwindow_yn from salon_storestationsettings_system"), 1);
+        if (GlobalMemberValues.isStrEmpty(tempGetValue)) {
+            tempGetValue = "N";
+        }
+        if (tempGetValue == "Y" || tempGetValue.equals("Y")) {
+            returnValue = true;
+        }
+        return returnValue;
+    }
+
+
+    // 11132024
+    public static boolean isTableOrderDownloadYN() {
+        boolean returnValue = false;
+        DatabaseInit dbInit = new DatabaseInit(MainActivity.mContext);   // DatabaseInit 객체 생성
+        String tempGetValue = getDBTextAfterChecked(dbInit.dbExecuteReadReturnString(
+                "select tableorderdownload_yn from salon_storestationsettings_system"), 1);
+        if (GlobalMemberValues.isStrEmpty(tempGetValue)) {
+            tempGetValue = "N";
+        }
+        if (tempGetValue == "Y" || tempGetValue.equals("Y")) {
+            returnValue = true;
+        }
+        return returnValue;
+    }
+
 }
