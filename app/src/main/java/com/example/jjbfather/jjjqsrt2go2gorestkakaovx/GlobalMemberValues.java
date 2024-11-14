@@ -1,5 +1,6 @@
 
 
+
 package com.example.jjbfather.jjjqsrt2go2gorestkakaovx;
 
 /**
@@ -10646,11 +10647,14 @@ public class GlobalMemberValues {
         // salon_sales_kitchenprintingdata_json 테이블에 동일한 salescode 로 된 printedyn 의 값이 N 인 데이터가 있는지 체크하고,
         // 있으면 기존것은 지우고, 아래 쿼리 실행한다.
         Vector<String> strInsertQueryVec = new Vector<String>();
-        String tempIdxOfKitchenPrintingData = GlobalMemberValues.getIdxOfSameDataOnKitchenPrintingData(paramSalesCode);
-        if (!GlobalMemberValues.isStrEmpty(tempIdxOfKitchenPrintingData)) {
-            strQuery = " delete from salon_sales_kitchenprintingdata_json where idx = '" + tempIdxOfKitchenPrintingData + "' ";
-            strInsertQueryVec.addElement(strQuery);
-        }
+
+        // 11142024
+        // 빌프린팅시 salon_sales_kitchenprintingdata_json 에서 데이터 삭제하는 부분 주석처리
+//        String tempIdxOfKitchenPrintingData = GlobalMemberValues.getIdxOfSameDataOnKitchenPrintingData(paramSalesCode);
+//        if (!GlobalMemberValues.isStrEmpty(tempIdxOfKitchenPrintingData)) {
+//            strQuery = " delete from salon_sales_kitchenprintingdata_json where idx = '" + tempIdxOfKitchenPrintingData + "' ";
+//            strInsertQueryVec.addElement(strQuery);
+//        }
 
         // 01132023
         jsonObject.put("holdcode", paramSalesCode);
@@ -21590,17 +21594,17 @@ public class GlobalMemberValues {
 //                e.printStackTrace();
 //            }
 
-            // BActivity의 화면 구성이 끝난 후 SplashActivity 종료
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    // 1초 후에 SplashActivity 종료
-                    SplashActivity.dismiss(); // SplashActivity 종료
-                }
-            }, 20000); // BActivity 화면 구성이 끝난 후 1초 후 SplashActivity 종료
+        // BActivity의 화면 구성이 끝난 후 SplashActivity 종료
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // 1초 후에 SplashActivity 종료
+                SplashActivity.dismiss(); // SplashActivity 종료
+            }
+        }, 20000); // BActivity 화면 구성이 끝난 후 1초 후 SplashActivity 종료
 
-            SendDataToTOrderEvent tOrderDataSender = new SendDataToTOrderEvent();
-            tOrderDataSender.execute();
+        SendDataToTOrderEvent tOrderDataSender = new SendDataToTOrderEvent();
+        tOrderDataSender.execute();
 //        }
     }
 
@@ -21609,17 +21613,17 @@ public class GlobalMemberValues {
 
         //10242024 prevent infinite loading screen when user doesn't use TOrder
         //if(GlobalMemberValues.isTOrderUse()) {
-            // BActivity의 화면 구성이 끝난 후 SplashActivity 종료
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    // 1초 후에 SplashActivity 종료
-                    SplashActivity.dismiss(); // SplashActivity 종료
-                }
-            }, 20000); // BActivity 화면 구성이 끝난 후 1초 후 SplashActivity 종료
+        // BActivity의 화면 구성이 끝난 후 SplashActivity 종료
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // 1초 후에 SplashActivity 종료
+                SplashActivity.dismiss(); // SplashActivity 종료
+            }
+        }, 20000); // BActivity 화면 구성이 끝난 후 1초 후 SplashActivity 종료
 
-            Intent tempIntent = new Intent(paramContext.getApplicationContext(), SendDataToTOrderAfterDownloadService.class);
-            paramActivity.startService(tempIntent);
+        Intent tempIntent = new Intent(paramContext.getApplicationContext(), SendDataToTOrderAfterDownloadService.class);
+        paramActivity.startService(tempIntent);
         //}
     }
 
@@ -21682,6 +21686,8 @@ public class GlobalMemberValues {
     public static void setBillPrintJson(JSONObject data){
         billprintTOJSON = new JSONObject();
         billprintTOJSON = data;
+
+        GlobalMemberValues.logWrite("cloverprintinglog", "받은 데이터 : " + billprintTOJSON.toString() + "\n");
     }
 
     public static JSONObject makeBillPrintJson (JSONObject data) {
@@ -21712,7 +21718,13 @@ public class GlobalMemberValues {
                 item_json.put("percent_or_dollar", temp_string[12]);
                 item_json.put("applicable_amount", temp_string[13]);
 
-                item_json.put("item_name_ko", temp_string[19]);
+                if (temp_string.length >= 20){
+                    item_json.put("item_name_ko", temp_string[19]);
+                } else {
+                    // 한글 이름이 없을시 영어 이름으로 대체.
+                    item_json.put("item_name_ko", temp_string[0]);
+                }
+
             } catch (JSONException e) {
                 throw new RuntimeException(e);
             }

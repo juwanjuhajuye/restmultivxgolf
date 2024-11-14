@@ -6132,18 +6132,18 @@ public class CloverMakingViewInPrinting {
 
                 JSONObject jsonObject = GlobalMemberValues.makeBillPrintJson(data);
                 try {
-                    jsonObject.putOpt("totalAmount",GlobalMemberValues.getCommaStringForDouble(totalAmount + ""));
-                    jsonObject.putOpt("printTime","Printed Time " + getDate() + " " + getTime());
                     if (str_deliverytakeaway.equals("D")) {
                         jsonObject.putOpt("deliveryFee",GlobalMemberValues.getCommaStringForDouble(pickupDeliveryFee + ""));
                     } else {
                         jsonObject.putOpt("toGoFee",GlobalMemberValues.getCommaStringForDouble(pickupDeliveryFee + ""));
                     }
-                    jsonObject.putOpt("dc_or_ex",str_discountYN);
                     jsonObject.putOpt("commongratuity",GlobalMemberValues.setDoubleToString(GlobalMemberValues.getDoubleAtString(str_commongratuity), 2));
                     jsonObject.putOpt("tax",GlobalMemberValues.getCommaStringForDouble(subTax + ""));
+                    jsonObject.putOpt("dc_or_ex",str_discountYN);
+                    jsonObject.putOpt("dc_or_ex_amount",GlobalMemberValues.getCommaStringForDouble(str_discountextra_total + ""));
                     jsonObject.putOpt("subtotal",GlobalMemberValues.getCommaStringForDouble(subTotal - GlobalMemberValues.getDoubleAtString(str_commongratuity) + ""));
-
+                    jsonObject.putOpt("totalAmount",GlobalMemberValues.getCommaStringForDouble(totalAmount + ""));
+                    jsonObject.putOpt("printTime","Printed Time " + getDate() + " " + getTime());
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
                 }

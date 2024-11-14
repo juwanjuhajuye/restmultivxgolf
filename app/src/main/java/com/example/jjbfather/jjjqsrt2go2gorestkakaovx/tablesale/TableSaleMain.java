@@ -5048,111 +5048,122 @@ public class TableSaleMain extends Activity {
     public void setTransferTable(String paramPrevTableIdx, String paramNextTableIdx) {
         if (!GlobalMemberValues.isStrEmpty(paramPrevTableIdx) && !GlobalMemberValues.isStrEmpty(paramNextTableIdx)) {
             String strQuery = "";
-            Vector<String> updateVector = new Vector<String>();
 
             String preSalesCode = TableSaleMain.getHoldCodeByTableidx(paramPrevTableIdx,"1");
 
-            String newHoldCode = GlobalMemberValues.makeHoldCode();
+            strQuery = " select count(*) from salon_sales_kitchenprintingdata_json where salescode = '" + preSalesCode + "' " +
+                    " and not(presalescode = '' or presalescode is null) ";
+            GlobalMemberValues.logWrite("movetablelogjjj", "sql : " + strQuery + "\n");
+            int presalesCount = GlobalMemberValues.getIntAtString(MssqlDatabase.getResultSetValueToString(strQuery));
 
-            String tableName = MainActivity.mDbInit.dbExecuteReadReturnString(
-                    " select tablename from salon_store_restaurant_table where idx = '" + GlobalMemberValues.getReplaceText(paramNextTableIdx, "T", "") + "' ");
+            if (presalesCount > 0) {
+                GlobalMemberValues.displayDialog(mContext, "Warning", "The move table operation you previously requested is still in progress", "Close");
+            } else {
+                Vector<String> updateVector = new Vector<String>();
 
-            strQuery = " insert into temp_salecart ( " +
-                    " holdcode, sidx, stcode, midx, svcIdx,  " +
-                    " svcName, svcFileName, svcFilePath, svcPositionNo, svcOrgPrice," +
-                    " svcSetMenuYN, sPrice, sTax, sQty, sPriceAmount," +
-                    " sTaxAmount, sTotalAmount, sCommission, sPoint, sCommissionAmount, " +
-                    " sPointAmount, sSaleYN, customerId, customerName, customerPhoneNo, " +
-                    " saveType, empIdx, empName, quickSaleYN, svcCategoryName, " +
-                    " giftcardNumber, giftcardSavePrice, sCommissionRatioType, sCommissionRatio, sPointRatio,  " +
-                    " sPriceBalAmount, svcCategoryColor, reservationCode, optionTxt, optionprice, " +
-                    " additionalTxt1, additionalprice1, additionalTxt2, additionalprice2, modifieridx, " +
-                    " modifiercode, memoToKitchen, " +
-                    " sPriceBalAmount_org, sTaxAmount_org, sTotalAmount_org, sCommissionAmount_org, sPointAmount_org, " +
-                    " tableidx, subtablenum, billnum, kitchenprintedyn, togotype, wdate, " +
-                    // 05312024
-                    " tordercode, iscloudupload " +
-                    " ) " +
-                    " select " +
-                    " '" + newHoldCode + "', " +
-                    " sidx, stcode, midx, svcIdx,  " +
-                    " svcName, svcFileName, svcFilePath, svcPositionNo, svcOrgPrice," +
-                    " svcSetMenuYN, sPrice, sTax, sQty, sPriceAmount," +
-                    " sTaxAmount, sTotalAmount, sCommission, sPoint, sCommissionAmount, " +
-                    " sPointAmount, sSaleYN, customerId, customerName, customerPhoneNo, " +
-                    " saveType, empIdx, empName, quickSaleYN, svcCategoryName, " +
-                    " giftcardNumber, giftcardSavePrice, sCommissionRatioType, sCommissionRatio, sPointRatio,  " +
-                    " sPriceBalAmount, svcCategoryColor, reservationCode, optionTxt, optionprice, " +
-                    " additionalTxt1, additionalprice1, additionalTxt2, additionalprice2, modifieridx, " +
-                    " modifiercode, memoToKitchen, " +
-                    " sPriceBalAmount_org, sTaxAmount_org, sTotalAmount_org, sCommissionAmount_org, sPointAmount_org, " +
-                    " '" + paramNextTableIdx + "', " +
-                    " subtablenum, billnum, kitchenprintedyn, togotype, wdate, " +
-                    // 05312024
-                    " tordercode, 0 " +
-                    " from temp_salecart " +
-                    " where tableIdx like '%" + paramPrevTableIdx + "%' ";
-            updateVector.addElement(strQuery);
 
-            strQuery = " delete from temp_salecart where tableIdx like '%" + paramPrevTableIdx + "%' ";
-            updateVector.addElement(strQuery);
+                String newHoldCode = GlobalMemberValues.makeHoldCode();
 
-            strQuery = " update salon_store_restaurant_table_peoplecnt " +
-                    " set holdcode = '" + newHoldCode + "', tableIdx = '" + paramNextTableIdx + "' " +
-                    " where tableIdx like '%" + paramPrevTableIdx + "%' ";
-            updateVector.addElement(strQuery);
+                String tableName = MainActivity.mDbInit.dbExecuteReadReturnString(
+                        " select tablename from salon_store_restaurant_table where idx = '" + GlobalMemberValues.getReplaceText(paramNextTableIdx, "T", "") + "' ");
+
+                strQuery = " insert into temp_salecart ( " +
+                        " holdcode, sidx, stcode, midx, svcIdx,  " +
+                        " svcName, svcFileName, svcFilePath, svcPositionNo, svcOrgPrice," +
+                        " svcSetMenuYN, sPrice, sTax, sQty, sPriceAmount," +
+                        " sTaxAmount, sTotalAmount, sCommission, sPoint, sCommissionAmount, " +
+                        " sPointAmount, sSaleYN, customerId, customerName, customerPhoneNo, " +
+                        " saveType, empIdx, empName, quickSaleYN, svcCategoryName, " +
+                        " giftcardNumber, giftcardSavePrice, sCommissionRatioType, sCommissionRatio, sPointRatio,  " +
+                        " sPriceBalAmount, svcCategoryColor, reservationCode, optionTxt, optionprice, " +
+                        " additionalTxt1, additionalprice1, additionalTxt2, additionalprice2, modifieridx, " +
+                        " modifiercode, memoToKitchen, " +
+                        " sPriceBalAmount_org, sTaxAmount_org, sTotalAmount_org, sCommissionAmount_org, sPointAmount_org, " +
+                        " tableidx, subtablenum, billnum, kitchenprintedyn, togotype, wdate, " +
+                        // 05312024
+                        " tordercode, iscloudupload " +
+                        " ) " +
+                        " select " +
+                        " '" + newHoldCode + "', " +
+                        " sidx, stcode, midx, svcIdx,  " +
+                        " svcName, svcFileName, svcFilePath, svcPositionNo, svcOrgPrice," +
+                        " svcSetMenuYN, sPrice, sTax, sQty, sPriceAmount," +
+                        " sTaxAmount, sTotalAmount, sCommission, sPoint, sCommissionAmount, " +
+                        " sPointAmount, sSaleYN, customerId, customerName, customerPhoneNo, " +
+                        " saveType, empIdx, empName, quickSaleYN, svcCategoryName, " +
+                        " giftcardNumber, giftcardSavePrice, sCommissionRatioType, sCommissionRatio, sPointRatio,  " +
+                        " sPriceBalAmount, svcCategoryColor, reservationCode, optionTxt, optionprice, " +
+                        " additionalTxt1, additionalprice1, additionalTxt2, additionalprice2, modifieridx, " +
+                        " modifiercode, memoToKitchen, " +
+                        " sPriceBalAmount_org, sTaxAmount_org, sTotalAmount_org, sCommissionAmount_org, sPointAmount_org, " +
+                        " '" + paramNextTableIdx + "', " +
+                        " subtablenum, billnum, kitchenprintedyn, togotype, wdate, " +
+                        // 05312024
+                        " tordercode, 0 " +
+                        " from temp_salecart " +
+                        " where tableIdx like '%" + paramPrevTableIdx + "%' ";
+                updateVector.addElement(strQuery);
+
+                strQuery = " delete from temp_salecart where tableIdx like '%" + paramPrevTableIdx + "%' ";
+                updateVector.addElement(strQuery);
+
+                strQuery = " update salon_store_restaurant_table_peoplecnt " +
+                        " set holdcode = '" + newHoldCode + "', tableIdx = '" + paramNextTableIdx + "' " +
+                        " where tableIdx like '%" + paramPrevTableIdx + "%' ";
+                updateVector.addElement(strQuery);
 
 //            strQuery = " update temp_salecart set tableIdx = '" + paramNextTableIdx + "', " +
 //                    " holdcode = '" + newHoldCode + "', isCloudUpload = 0 " +
 //                    " where tableIdx like '%" + paramPrevTableIdx + "%' ";
 //            updateVector.addElement(strQuery);
 
-            strQuery = " update salon_store_restaurant_table_split set tableIdx = '" + paramNextTableIdx + "', " +
-                    " holdcode = '" + newHoldCode + "' " +
-                    " where tableIdx like '%" + paramPrevTableIdx + "%' ";
-            updateVector.addElement(strQuery);
+                strQuery = " update salon_store_restaurant_table_split set tableIdx = '" + paramNextTableIdx + "', " +
+                        " holdcode = '" + newHoldCode + "' " +
+                        " where tableIdx like '%" + paramPrevTableIdx + "%' ";
+                updateVector.addElement(strQuery);
 
-            strQuery = " update salon_sales_kitchenprintingdata_json set salescode = '" + newHoldCode + "', " +
-                    " presalescode = '" + preSalesCode + "', nowtableidx = '" + paramNextTableIdx + "', " +
-                    " nowtablename = '" + tableName + "' " +
-                    " where salescode = '" + preSalesCode + "' ";
-            updateVector.addElement(strQuery);
-
-
-            // 04252023
-            // 테이블 이동 관련정보를 새로고침을 위한 테이블에 저장
-            strQuery = " insert into salon_table_statuschange (holdcode, stcode, tableidx, delyn, ctype) values ( " +
-                    " '" + newHoldCode + "', " +
-                    " '" + GlobalMemberValues.STATION_CODE + "', " +
-                    " '" + paramNextTableIdx + "', " +
-                    " '" + "N" + "', " +
-                    " '" + "move" + "' " +
-                    " ) ";
-            updateVector.addElement(strQuery);
+                strQuery = " update salon_sales_kitchenprintingdata_json set salescode = '" + newHoldCode + "', " +
+                        " presalescode = '" + preSalesCode + "', nowtableidx = '" + paramNextTableIdx + "', " +
+                        " nowtablename = '" + tableName + "' " +
+                        " where salescode = '" + preSalesCode + "' ";
+                updateVector.addElement(strQuery);
 
 
-            for (String tempQuery : updateVector) {
-                GlobalMemberValues.logWrite("transferlog2", "query : " + tempQuery + "\n");
-            }
+                // 04252023
+                // 테이블 이동 관련정보를 새로고침을 위한 테이블에 저장
+                strQuery = " insert into salon_table_statuschange (holdcode, stcode, tableidx, delyn, ctype) values ( " +
+                        " '" + newHoldCode + "', " +
+                        " '" + GlobalMemberValues.STATION_CODE + "', " +
+                        " '" + paramNextTableIdx + "', " +
+                        " '" + "N" + "', " +
+                        " '" + "move" + "' " +
+                        " ) ";
+                updateVector.addElement(strQuery);
 
-            // 트랜잭션으로 DB 처리한다.
-            String returnResult = MssqlDatabase.executeTransaction(updateVector);
-            if (returnResult == "N" || returnResult == "") {
-                //GlobalMemberValues.displayDialog(mContext, "Warning", "Database Error", "Close");
-                //return;
-            } else {
-                // 클라우드 업로드
-                viewTableSettigns(mSelectedZoneIdx);
-                uploadTableDataCloudExe();
-            }
 
-            //06032024 if using torder send data to torder API
-            // 07172024
-            // 아래 주석처리
+                for (String tempQuery : updateVector) {
+                    GlobalMemberValues.logWrite("transferlog2", "query : " + tempQuery + "\n");
+                }
+
+                // 트랜잭션으로 DB 처리한다.
+                String returnResult = MssqlDatabase.executeTransaction(updateVector);
+                if (returnResult == "N" || returnResult == "") {
+                    //GlobalMemberValues.displayDialog(mContext, "Warning", "Database Error", "Close");
+                    //return;
+                } else {
+                    // 클라우드 업로드
+                    viewTableSettigns(mSelectedZoneIdx);
+                    uploadTableDataCloudExe();
+                }
+
+                //06032024 if using torder send data to torder API
+                // 07172024
+                // 아래 주석처리
 //            if (GlobalMemberValues.isTOrderUse()){
 //                GlobalMemberValues.sendTOrderAPIOrderData("K");
 //            }
 
+            }
         }
     }
 
