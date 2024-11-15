@@ -4713,6 +4713,12 @@ public class Payment {
             GlobalMemberValues.logWrite("paymentdbexelogjjj", "query : " + tempQuery + "\n");
         }
 
+        // 11152024
+        // 결제완료 후
+        if (GlobalMemberValues.isMobileTableOrder()) {
+            GlobalMemberValues.isChangedQRCodeOrderStatus(tempTableIdx, "N");
+        }
+
         // 고객정보 초기화 ---------------------------------------------------------------------
         // 고객정보 초기화전에 고객아이디(이메일)를 저장해둔다
         if (GlobalMemberValues.GLOBAL_CUSTOMERINFO != null

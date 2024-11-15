@@ -220,6 +220,8 @@ public class MssqlCreateTables {
         vec.addElement(SqlStatements_mssql.SQL_CREATE_SALONSALESKITCHENPRINTINGDATAJSONTORDERQUERY);
         // 10202024 -----------------------------------
 
+        // 11152024
+        vec.addElement(SqlStatements_mssql.SQL_CREATE_SALONSALESTABLEORDERQRCODEINFO);
 
         // 05302024
         vec.addElement(SqlStatements_mssql.SQL_CREATE_SALONSALESTOGODELIVERYFEE);

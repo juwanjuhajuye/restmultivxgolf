@@ -138,7 +138,6 @@ import static com.example.jjbfather.jjjqsrt2go2gorestkakaovx.SettingsSystemReset
 // 구글 플레이 서비스 구글플레이서비스 (Google Play Service)
 //import com.google.firebase.iid.FirebaseInstanceId;
 
-
 public class GlobalMemberValues {
     // 데이터 자동 백업 초기화 기준 용량 mb
     public static int init_capacity_db = 50;
@@ -1988,6 +1987,9 @@ public class GlobalMemberValues {
             "salon_sales_kitchenprintingdata_json_torder_origin",
             "salon_sales_kitchenprintingdata_json_torder_query",
             // 10202024 ----------------------------------------
+
+            // 11152024
+            "salon_sales_tableorder_qrcodeinfo",
 
             "salon_sales_return_byemplyee",
             "salon_newcartcheck_bystation",
@@ -4959,7 +4961,11 @@ public class GlobalMemberValues {
                                     EpsonPrinterKitchen5.mPrinter == null) {
                                 EpsonReceiptPrint epsonReceiptPrint = new EpsonReceiptPrint(MainActivity.mContext);
 
-                                epsonReceiptPrint.runPrintReceiptSequenceQRCODE(paramTableidx);
+                                boolean tempresult = epsonReceiptPrint.runPrintReceiptSequenceQRCODE(paramTableidx);
+
+                                if (tempresult){
+                                    GlobalMemberValues.saveTableOrderQRCodeInfo(paramTableidx, "Y");
+                                }
 
                                 b_temp = true;
                             } else {
@@ -21536,19 +21542,6 @@ public class GlobalMemberValues {
 
 
 
-    // 09292024
-    // Mobile Table Order 사용여부
-    public static boolean isMobileTableOrder() {
-        boolean returnValue = false;
-        DatabaseInit dbInit = new DatabaseInit(MainActivity.mContext);   // DatabaseInit 객체 생성
-        String getData = getDBTextAfterChecked(dbInit.dbExecuteReadReturnString(
-                "select mobiletableorderyn from salon_storegeneral"), 1);
-        if (getData == "Y" || getData.equals("Y")) {
-            returnValue = true;
-        }
-        return returnValue;
-    }
-
     // 09302024
     // QR Code Order Status 변경
     public static boolean isChangedQRCodeOrderStatus(String paramTableIdx, String paramStatus) {
@@ -21813,5 +21806,104 @@ public class GlobalMemberValues {
         }
         return returnValue;
     }
+
+
+    // 09292024
+    // ONT
+    // Mobile Table Order 사용여부
+    public static boolean isMobileTableOrder() {
+        boolean returnValue = false;
+        DatabaseInit dbInit = new DatabaseInit(MainActivity.mContext);   // DatabaseInit 객체 생성
+        String getData = getDBTextAfterChecked(dbInit.dbExecuteReadReturnString(
+                "select mobiletableorderyn from salon_storegeneral"), 1);
+        if (getData == "Y" || getData.equals("Y")) {
+            returnValue = true;
+        }
+        return returnValue;
+    }
+
+
+    // 11152024
+    // ONT
+    // 모바일 테이블 주문 QR Code 타입
+    public static String getMobileTableOrderType() {
+        String returnValue = "A";
+        DatabaseInit dbInit = new DatabaseInit(MainActivity.mContext);   // DatabaseInit 객체 생성
+        String tempGetValue = getDBTextAfterChecked(dbInit.dbExecuteReadReturnString(
+                "select mobiletableordertype from salon_storegeneral"), 1);
+        if (GlobalMemberValues.isStrEmpty(tempGetValue)) {
+            tempGetValue = "A";
+        }
+        return returnValue;
+    }
+
+
+    // 11152024
+    // Table Order QR Code 정보 저장
+    public static void saveTableOrderQRCodeInfo(String paramTableIdx, String paramStatus) {
+        DatabaseInit dbInit = new DatabaseInit(MainActivity.mContext);
+        String returnResult = "";
+
+        Vector<String> strInsertQueryVec = new Vector<String>();
+
+        String strQuery = "";
+
+        if (GlobalMemberValues.isStrEmpty(paramStatus)) {
+            paramStatus = "N";
+        }
+
+        String onoffvalue = "off";
+        if (paramStatus.equals("Y")) {
+            onoffvalue = "on";
+        }
+
+        // 먼저 해당 테이블의 idx 로 저장된 code 가 있는지 체크해서 지운다
+        strQuery = " delete from salon_sales_tableorder_qrcodeinfo where tableidx = '" + paramTableIdx + "' ";
+        strInsertQueryVec.addElement(strQuery);
+
+        strQuery = " insert into salon_sales_tableorder_qrcodeinfo ( " +
+                " scode, sidx, stcode, tableidx, onoffvalue " +
+                " ) values ( " +
+                " '" + GlobalMemberValues.SALON_CODE + "', " +
+                " '" + GlobalMemberValues.STORE_INDEX + "', " +
+                " '" + GlobalMemberValues.STATION_CODE.toUpperCase() + "', " +
+                " '" + paramTableIdx + "', " +
+                " '" + onoffvalue + "' " +
+                " ) ";
+        strInsertQueryVec.addElement(strQuery);
+        for (String tempQuery : strInsertQueryVec) {
+            GlobalMemberValues.logWrite("qrcodeonoffinsertlog", "query : " + tempQuery + "\n");
+        }
+        // 트랜잭션으로 DB 처리한다.
+        returnResult = dbInit.dbExecuteWriteForTransactionReturnResult(strInsertQueryVec);
+        if (returnResult == "N" || returnResult == "") {
+            GlobalMemberValues.displayDialog(MainActivity.mContext, "Warning", "Database Error", "Close");
+        } else {
+        }
+    }
+
+    // 11152024
+    // ONT
+    // 해당 테이블의 QR Code on off 여부
+    public static boolean isTableOrderQRCodeOn(String paramTableIdx) {
+        boolean returnValue = false;
+
+        DatabaseInit dbInit = new DatabaseInit(MainActivity.mContext);   // DatabaseInit 객체 생성
+
+        String getData = MssqlDatabase.getResultSetValueToString(
+                " select top 1 onoffvalue from salon_sales_tableorder_qrcodeinfo " +
+                        " where tableidx = '" + paramTableIdx + "' " +
+                        " order by idx desc "
+        );
+
+        if (GlobalMemberValues.isStrEmpty(getData)) {
+            getData = "off";
+        }
+        if (getData.equals("on")) {
+            returnValue = true;
+        }
+        return returnValue;
+    }
+
 
 }

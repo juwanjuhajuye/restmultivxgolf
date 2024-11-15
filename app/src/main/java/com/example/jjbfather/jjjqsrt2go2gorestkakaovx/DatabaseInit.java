@@ -273,6 +273,8 @@ public class DatabaseInit {
         strCreateTableVec.addElement(SqlStatements.SQL_CREATE_SALONSALESKITCHENPRINTINGDATAJSONTORDERQUERY);
         // 10202024 -----------------------------------
 
+
+
         // 05302024
         strCreateTableVec.addElement(SqlStatements.SQL_CREATE_SALONSALESTOGODELIVERYFEE);
 
@@ -285,6 +287,9 @@ public class DatabaseInit {
 
         // 08162024
         strCreateTableVec.addElement(SqlStatements.SQL_CREATE_SALONSTOREBREAKTIME);
+
+        // 11152024
+        strCreateTableVec.addElement(SqlStatements.SQL_CREATE_SALONSALESTABLEORDERQRCODEINFO);
 
 
         // 테이블 컬럼 수정, 삭제 등 처리
@@ -3968,6 +3973,15 @@ public class DatabaseInit {
         altTableName = "salon_storestationsettings_system";
         if (checkTable(altTableName) > 0){
             alterDatabaseTableColumn(altTableName, "tableorderdownload_yn", "nvarchar(2)", "DEFAULT 'N'", 0);
+        }
+
+
+        // 11152024
+        // salon_storegeneral 컬럼 추가
+        // 11.15.2024 mobiletableordertype 컬럼 추가
+        altTableName = "salon_storegeneral";
+        if (checkTable(altTableName) > 0){
+            alterDatabaseTableColumn(altTableName, "mobiletableordertype", "nvarchar(2)", "DEFAULT 'A'", 0);
         }
 
         /****************************************************************************/

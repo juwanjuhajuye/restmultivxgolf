@@ -2635,7 +2635,11 @@ public class TableSaleMain extends Activity {
             ListItems.add("Table Split");
         }
         if (GlobalMemberValues.isMobileTableOrder()){
-            ListItems.add("QR Code Order Printing");
+            if (GlobalMemberValues.getMobileTableOrderType().equals("B")){
+                ListItems.add("QR Code Order Printing (Fixed)");
+            } else {
+                ListItems.add("QR Code Order Printing");
+            }
             ListItems.add("QR Code Order On");
             ListItems.add("QR Code Order Off");
         } else {
@@ -2644,10 +2648,23 @@ public class TableSaleMain extends Activity {
 //        ListItems.add("Kitchen Print");
 //        ListItems.add("Table Clear");
         ListItems.add("Close");
+
+
+
+
+
         final CharSequence[] items =  ListItems.toArray(new String[ ListItems.size()]);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(TableSaleMain.this);
         builder.setTitle(touchup_table_idx);
+
+        // 커스텀 어댑터 사용
+        Table_list_popup_adapter adapter = new Table_list_popup_adapter(TableSaleMain.this, ListItems, touchup_table_idx);
+        builder.setAdapter(adapter, (dialog, which) -> {
+            // 항목 클릭 시 동작
+
+        });
+
         builder.setCancelable(false);
 
         builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
@@ -2706,6 +2723,7 @@ public class TableSaleMain extends Activity {
 //
 ////                                            setInitValues();
 //                        break;
+                    case "QR Code Order Printing (Fixed)":
                     case "QR Code Order Printing":
                         //Print
                         GlobalMemberValues.printQRCode(mContext,touchup_table_idx);

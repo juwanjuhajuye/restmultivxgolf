@@ -497,7 +497,10 @@ public class SqlStatements_mssql {
                     "mobiletableorderyn nvarchar(2) DEFAULT 'N', " +
 
                     // 04302024
-                    "qsronrestaurantyn nvarchar(2) DEFAULT 'N' " +
+                    "qsronrestaurantyn nvarchar(2) DEFAULT 'N', " +
+
+                    // 11152024
+                    "mobiletableordertype nvarchar(2) DEFAULT 'A' " +
 
                     ")";
 
@@ -3896,6 +3899,26 @@ public class SqlStatements_mssql {
     // 10202024 -----------------------------------
 
 
+
+    // 11152024
+    // 테이블 salon_sales_tableorder_qrcodeinfo 생성쿼리
+    public static final String SQL_CREATE_SALONSALESTABLEORDERQRCODEINFO =
+            " IF NOT EXISTS " +
+                    " (SELECT * FROM INFORMATION_SCHEMA.tables WITH(NOLOCK) WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'salon_sales_tableorder_qrcodeinfo') " +
+
+                    "CREATE TABLE salon_sales_tableorder_qrcodeinfo ( " +
+                    "idx INTEGER PRIMARY KEY identity, " +
+
+                    "scode nvarchar(50) NULL, " +
+                    "sidx int NULL, " +
+                    "stcode nvarchar(50)," +
+
+                    "tableidx nvarchar(50) DEFAULT '', " +
+                    "onoffvalue nvarchar(10) DEFAULT 'off',  " +
+
+                    "wdate datetime DEFAULT getdate() "+
+
+                    ")";
 
 
 

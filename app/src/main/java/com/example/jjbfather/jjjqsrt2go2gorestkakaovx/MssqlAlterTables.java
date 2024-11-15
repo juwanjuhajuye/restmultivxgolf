@@ -1135,6 +1135,12 @@ public class MssqlAlterTables {
         altTableName = "torder_json_data";
         alterDatabaseTableColumn(altTableName, "wdate", "datetime", "NULL");
 
+
+        // 11152024
+        // salon_storegeneral 테이블 컬럼 추가
+        // mobiletableordertype 컬럼 추가
+        altTableName = "salon_storegeneral";
+        alterDatabaseTableColumn(altTableName, "mobiletableordertype", "nvarchar(2)", "DEFAULT 'A'");
     }
 
     public static void alterTableColumnType() {

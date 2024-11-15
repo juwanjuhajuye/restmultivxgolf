@@ -236,7 +236,7 @@ public class CashInOutPopupKeypad extends Activity {
         }
         cashEnter_suButtonBack = (Button)findViewById(R.id.cashEnter_suButtonBack);
         if (GlobalMemberValues.IMAGEBUTTONYN == 0) {
-            cashEnter_suButtonBack.setText("");
+//            cashEnter_suButtonBack.setText("");
 //            cashEnter_suButtonBack.setBackgroundResource(R.drawable.ab_imagebutton_qty_delete);
         } else {
             cashEnter_suButtonBack.setTextSize(GlobalMemberValues.globalAddFontSize() + 

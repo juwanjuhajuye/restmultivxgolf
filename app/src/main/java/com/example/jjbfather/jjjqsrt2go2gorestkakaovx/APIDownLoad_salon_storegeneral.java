@@ -156,6 +156,9 @@ public class APIDownLoad_salon_storegeneral extends AsyncTask {
     // 09292024
     String mobiletableorderyn = "";
 
+    // 11152024
+    String mobiletableordertype = "";
+
     String totaloptionitem = "";
     /**********************************************************/
 
@@ -527,6 +530,11 @@ public class APIDownLoad_salon_storegeneral extends AsyncTask {
                             mobiletableorderyn = xpp.getText();
                         }
 
+                        // 11152024
+                        if (tagName.equals("mobiletableordertype")) {
+                            mobiletableordertype = xpp.getText();
+                        }
+
 
                         if (tagName.equals("totaloptionitem")) {
                             totaloptionitem = xpp.getText();
@@ -568,7 +576,9 @@ public class APIDownLoad_salon_storegeneral extends AsyncTask {
                                 // 05302024
                                 " torderapikey, torderpartnerid, torderapiurl, " +
                                 // 09292024
-                                " mobiletableorderyn " +
+                                " mobiletableorderyn," +
+                                // 11152024
+                                " mobiletableordertype " +
 
                                 " ) " +
                                 " values (" +
@@ -690,7 +700,10 @@ public class APIDownLoad_salon_storegeneral extends AsyncTask {
                                 "'" + GlobalMemberValues.getDBTextAfterChecked(torderapiurl, 0) + "', " +
 
                                 // 09292024
-                                "'" + GlobalMemberValues.getDBTextAfterChecked(mobiletableorderyn, 0) + "' " +
+                                "'" + GlobalMemberValues.getDBTextAfterChecked(mobiletableorderyn, 0) + "', " +
+
+                                // 11152024
+                                "'" + GlobalMemberValues.getDBTextAfterChecked(mobiletableordertype, 0) + "' " +
 
                                 ")";
                         sqlQueryVecIns.add(mInsertSqlQuery);
@@ -832,7 +845,10 @@ public class APIDownLoad_salon_storegeneral extends AsyncTask {
                                 " torderapiurl = '" + GlobalMemberValues.getDBTextAfterChecked(torderapiurl, 0) + "', " +
 
                                 // 09292024
-                                " mobiletableorderyn = '" + GlobalMemberValues.getDBTextAfterChecked(mobiletableorderyn, 0) + "' " +
+                                " mobiletableorderyn = '" + GlobalMemberValues.getDBTextAfterChecked(mobiletableorderyn, 0) + "', " +
+
+                                // 11152024
+                                " mobiletableordertype = '" + GlobalMemberValues.getDBTextAfterChecked(mobiletableordertype, 0) + "' " +
 
                                 " where idx = " + idx;
 
@@ -988,6 +1004,9 @@ public class APIDownLoad_salon_storegeneral extends AsyncTask {
 
                         // 0922024
                         mobiletableorderyn = "";
+
+                        // 11152024
+                        mobiletableordertype = "";
 
                         totaloptionitem = "";
                         /***********************************************/

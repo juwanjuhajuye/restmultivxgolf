@@ -236,8 +236,13 @@ public class MainTopCategory {
                 LogsSave.saveLogsInDB(98);
                 /** 전에 클릭한 카테고리 버튼 배경색 & 텍스트칼라 설정관련 *****************************************/
                 //preClickButton.setBackgroundColor(Color.parseColor(GlobalMemberValues.CATEGORY_NOCLICKBACKGROUNDCOLOR1));
-                preClickButton.setBackgroundResource(R.drawable.button_selector_newcategory);
-                preClickButton.setTextColor(Color.parseColor(GlobalMemberValues.CATEGORY_NOCLICKTEXTCOLOR1));
+                if (preClickButton == null){
+
+                } else {
+                    preClickButton.setBackgroundResource(R.drawable.button_selector_newcategory);
+                    preClickButton.setTextColor(Color.parseColor(GlobalMemberValues.CATEGORY_NOCLICKTEXTCOLOR1));
+                }
+
                 /*****************************************************************************************/
 
                 // 현재 클릭한 카테고리버튼에 Tag 저장되어 있는 TemporaryCategory 객체를 가져온다.
