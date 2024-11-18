@@ -1648,7 +1648,8 @@ public class SqlStatements {
                     "mainreadytimeuse_yn nvarchar(2) DEFAULT 'N', " +
                     "mainreadytime_cnt int DEFAULT 30, " +
                     "billprintwindow_yn nvarchar(2) DEFAULT 'N', " +
-                    "tableorderdownload_yn nvarchar(2) DEFAULT 'N' " +
+                    "tableorderdownload_yn nvarchar(2) DEFAULT 'N', " +
+                    "signaturecancelshow_yn nvarchar(2) DEFAULT 'N' " +     // signature calcel button show yn
 
                     ")";
 

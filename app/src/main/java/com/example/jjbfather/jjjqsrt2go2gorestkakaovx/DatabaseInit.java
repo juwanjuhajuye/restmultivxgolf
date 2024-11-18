@@ -3984,6 +3984,14 @@ public class DatabaseInit {
             alterDatabaseTableColumn(altTableName, "mobiletableordertype", "nvarchar(2)", "DEFAULT 'A'", 0);
         }
 
+        // 11182024
+        // salon_storestationsettings_system 컬럼 추가
+        // 11.18.2024 signaturecancelshow_yn 컬럼 추가
+        altTableName = "salon_storestationsettings_system";
+        if (checkTable(altTableName) > 0){
+            alterDatabaseTableColumn(altTableName, "signaturecancelshow_yn", "nvarchar(2)", "DEFAULT 'N'", 0);
+        }
+
         /****************************************************************************/
     }
 

@@ -260,6 +260,12 @@ public class JJJ_SignPad extends Activity {
         signPadPaperSignBtn = (Button)findViewById(R.id.signPadPaperSignBtn);
         signPadCancelBtn = (Button)findViewById(R.id.signPadCancelBtn);
 
+        if (GlobalMemberValues.isSignatureCancelShowYN()){
+            signPadCancelBtn.setVisibility(View.VISIBLE);
+        } else {
+            signPadCancelBtn.setVisibility(View.INVISIBLE);
+        }
+
         signPadOKBtn.setOnClickListener(JJJ_SignPadBtnClick);
         signPadEraseBtn.setOnClickListener(JJJ_SignPadBtnClick);
         signPadPaperSignBtn.setOnClickListener(JJJ_SignPadBtnClick);

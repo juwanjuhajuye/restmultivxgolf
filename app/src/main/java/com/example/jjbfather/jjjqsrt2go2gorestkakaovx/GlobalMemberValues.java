@@ -21905,5 +21905,23 @@ public class GlobalMemberValues {
         return returnValue;
     }
 
+    public static boolean isSignatureCancelShowYN(){
+        boolean returnValue = false;
 
+        String getData = MainActivity.mDbInit.dbExecuteReadReturnString(
+                " select signaturecancelshow_yn from salon_storestationsettings_system"
+        );
+
+        if (GlobalMemberValues.isStrEmpty(getData)){
+            getData = "N";
+        }
+
+        if (getData.equals("Y") || getData == "Y"){
+            returnValue = true;
+        } else {
+            returnValue = false;
+        }
+
+        return returnValue;
+    }
 }

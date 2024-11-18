@@ -80,7 +80,7 @@ public class SaleHistory extends Activity {
 
     ImageButton saleHistoryMMSButton;
     // 05.31.2022
-    ImageButton repayButton;
+    static ImageButton repayButton;
 
     static LinearLayout salehistory_button_ln1, salehistory_button_ln2, salehistory_button_ln3;
 
@@ -867,6 +867,9 @@ public class SaleHistory extends Activity {
                 // 05.31.2022
                 case R.id.repayButton : {
                     if ((mActivity != null) && (!mActivity.isFinishing())) {
+                        //11152024 if station code doesn't match the payment station code, don't void
+
+
                         new AlertDialog.Builder(context)
                                 .setTitle("REPAY")
                                 .setMessage("Are you sure you want to repay this order?\n[Sale Group# : " + mSelectedSalesCode + "]")
@@ -1501,11 +1504,11 @@ public class SaleHistory extends Activity {
                     if (salonSalesKitchenPrintedYN.equals("Y")) {
                         kitchenPrintedStr = "Printed in kitchen. <font color=\"#f20e02\">Touch Here</font> to reprint in kitchen again";
 //              	        kitchenPrintedColorStr = "#a4a2a9";
-             	       kitchenPrintedColorStr = "#000000";
+                        kitchenPrintedColorStr = "#000000";
                     } else {
                         kitchenPrintedStr = "Not printed in kitchen. <font color=\"#f20e02\">Touch Here</font> to print in kitchen";
 //	                      kitchenPrintedColorStr = "#0054d5";
-    	                kitchenPrintedColorStr = "#000000";
+                        kitchenPrintedColorStr = "#000000";
                     }
 
                     double salonSalesDeliveryPickupFee = GlobalMemberValues.getDoubleAtString(
@@ -1779,6 +1782,8 @@ public class SaleHistory extends Activity {
                         saleHistoryVoidButton.setVisibility(View.INVISIBLE);
                         salehistory_button_ln1.setVisibility(View.GONE);
                         salehistory_button_ln2.setVisibility(View.GONE);
+                        //11152024 don't show repay button when the sales was made in a different station.
+                        repayButton.setVisibility(View.GONE);
                     }
 
                     /** Payment 요약 *******************************************************************************************/
@@ -4183,7 +4188,7 @@ public class SaleHistory extends Activity {
             // 클라우드 프린팅 일 경우에만 아래 사항이 저장되도록 했었음 (01132023 수정)
 //            if (GlobalMemberValues.isCloudKitchenPrinter()) {
 //            }
-            
+
             String tempJson = MssqlDatabase.getResultSetValueToString(
                     "select jsonstr from salon_sales_kitchenprintingdata_json where salesCode = '" + selectedSalesCode + "' ");
             JSONObject mJson;
@@ -4252,7 +4257,7 @@ public class SaleHistory extends Activity {
                 }
 
             }
-            
+
             // --------------------------------------------------------------------------------------------------------------------
 
             // sqllite 트렌젝션.

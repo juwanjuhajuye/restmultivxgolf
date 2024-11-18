@@ -190,7 +190,7 @@ public class SettingsSystem extends Activity {
     private TextView settingsSystemTitleTextView85;
     private TextView settingsSystemTitleTextView89, settingsSystemTitleTextView90;
     private TextView settingsSystemTitleTextView94;
-    private TextView settingsSystemTitleTextView95, settingsSystemTitleTextView96;
+    private TextView settingsSystemTitleTextView95, settingsSystemTitleTextView96, settingsSystemTitleTextView97;
 
     private TextView settingsSystemTitleTextView_dbcodename;
     private TextView settingsSystemTitleTextView_mobilehostname;
@@ -273,6 +273,8 @@ public class SettingsSystem extends Activity {
 
     Switch setting_bill_windowprint_sw;
     Switch setting_table_order_download_sw;
+
+    Switch setting_signature_cancel_show_sw;
 
 
     @Override
@@ -470,6 +472,8 @@ public class SettingsSystem extends Activity {
         String vBillWindowPrint_yn = "";
         String vTableOrderDownload_yn = "";
 
+        String vSignatureCancelShow_yn = "";
+
         String strQuery = "select splashuse, inreverse, cloudurl, downloaddata, databasebackup, clockinouttype, " +
                 " gmailId, gmailPwd, departmentviewyn, mileagesyncinselectcustomer, showcostafterdcextra, cardislast, pointpaysavepointyn, timemenuautoreload, pushtype, devicekind, " +
                 " picktype_here, picktype_togo, picktype_delivery, customerinfoshow, customerselectreceipt, " +
@@ -496,7 +500,8 @@ public class SettingsSystem extends Activity {
                 " mainreadytime_cnt,  " +
                 " mobilehost,  " +
                 " billprintwindow_yn, " +
-                " tableorderdownload_yn " +
+                " tableorderdownload_yn, " +
+                " signaturecancelshow_yn " +
 
                 " from salon_storestationsettings_system ";
         Cursor settingsSystemCursor = dbInit.dbExecuteRead(strQuery);
@@ -615,6 +620,8 @@ public class SettingsSystem extends Activity {
             String tempBillprintwindow_yn = GlobalMemberValues.getDBTextAfterChecked(settingsSystemCursor.getString(93), 1);
 
             String tempTableorderdownload_yn = GlobalMemberValues.getDBTextAfterChecked(settingsSystemCursor.getString(94), 1);
+
+            String temp_Signature_cancel_show_yn = GlobalMemberValues.getDBTextAfterChecked(settingsSystemCursor.getString(95), 1);
 
             GlobalMemberValues.logWrite("settingslog", "tempReceipttypeonnoselect : " + tempReceipttypeonnoselect + "\n");
 
@@ -1133,6 +1140,12 @@ public class SettingsSystem extends Activity {
                 vTableOrderDownload_yn = tempTableorderdownload_yn;
             } else {
                 vTableOrderDownload_yn = "N";
+            }
+
+            if (!GlobalMemberValues.isStrEmpty(temp_Signature_cancel_show_yn)){
+                vSignatureCancelShow_yn = temp_Signature_cancel_show_yn;
+            } else {
+                vSignatureCancelShow_yn = "N";
             }
 
 
@@ -1749,6 +1762,13 @@ public class SettingsSystem extends Activity {
             main_ready_time_cnt_edtxt.setText(vMainreadytimeuse_cnt);
         }
 
+        setting_signature_cancel_show_sw = (Switch)findViewById(R.id.setting_signature_cancel_show_sw);
+        if (vSignatureCancelShow_yn == "Y"  || vSignatureCancelShow_yn.equals("Y")){
+            setting_signature_cancel_show_sw.setChecked(true);
+        } else {
+            setting_signature_cancel_show_sw.setChecked(false);
+        }
+
 
         btn_setting_receipt_setting = (Button)findViewById(R.id.btn_setting_receipt_setting);
         btn_setting_receipt_setting.setOnClickListener(mButtonClick);
@@ -2332,6 +2352,8 @@ public class SettingsSystem extends Activity {
         settingsSystemTitleTextView96 = (TextView)findViewById(R.id.settingsSystemTitleTextView96);
         settingsSystemTitleTextView96.setTextSize(settingsSystemTitleTextView96.getTextSize() * GlobalMemberValues.getGlobalFontSize());
 
+        settingsSystemTitleTextView97 = (TextView)findViewById(R.id.settingsSystemTitleTextView97);
+        settingsSystemTitleTextView97.setTextSize(settingsSystemTitleTextView97.getTextSize() * GlobalMemberValues.getGlobalFontSize());
 
 
 
@@ -2743,6 +2765,8 @@ public class SettingsSystem extends Activity {
 
         String insBillprintWindow_yn = "N";
         String insTableOrderDownload_yn = "N";
+
+        String insSignatureCancelShow_yn = "N";
 
         if (splashUseSwitch.isChecked()) {
             insSplashUse = 0;
@@ -3172,6 +3196,12 @@ public class SettingsSystem extends Activity {
             insTableOrderDownload_yn = "N";
         }
 
+        if (setting_signature_cancel_show_sw.isChecked()){
+            insSignatureCancelShow_yn = "Y";
+        } else {
+            insSignatureCancelShow_yn = "N";
+        }
+
         if (!receipttypeonnoselectCb1.isChecked() && !receipttypeonnoselectCb2.isChecked()) {
             insReceipttypeonnoselect = "E";
         } else {
@@ -3405,6 +3435,8 @@ public class SettingsSystem extends Activity {
                 " mobilehost = '" + insMobilehostname + "', " +
                 " billprintwindow_yn = '" + insBillprintWindow_yn + "', " +
                 " tableorderdownload_yn = '" + insTableOrderDownload_yn + "', " +
+
+                " signaturecancelshow_yn = '" + insSignatureCancelShow_yn + "', " +
 
 
                 " mdate = datetime('now') ";
