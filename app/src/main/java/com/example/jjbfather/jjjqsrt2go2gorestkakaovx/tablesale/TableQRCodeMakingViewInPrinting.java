@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.API_tableqrcodeset_tocloud;
+import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.CloverMakingViewInPrinting;
 import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.GlobalMemberValues;
 import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.MainActivity;
 
@@ -105,6 +106,20 @@ public class TableQRCodeMakingViewInPrinting {
                     ImageView qrImage = new ImageView(MainActivity.mContext);
                     qrImage.setImageBitmap(GlobalMemberValues.generateRQCode(qrcodeStr));
                     printingLn.addView(qrImage);
+
+                    LinearLayout printedtimeLn = new LinearLayout(MainActivity.mContext);
+                    printedtimeLn.setLayoutParams(matchParentParams);
+                    printedtimeLn.setOrientation(LinearLayout.HORIZONTAL);
+
+                    TextView printedTimeTV = new TextView(MainActivity.mContext);
+                    printedTimeTV.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+                    printedTimeTV.setText("printed : " + CloverMakingViewInPrinting.getDate() + " " + CloverMakingViewInPrinting.getTime());
+                    printedTimeTV.setTextSize(TypedValue.COMPLEX_UNIT_PX, (GlobalMemberValues.PRINTINGFONTSIZE_ONCLOVER - 5));
+                    GlobalMemberValues.setTextStyleOnClover(printedTimeTV);
+                    printedTimeTV.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1.0f));
+                    printedtimeLn.addView(printedTimeTV);
+
+                    printingLn.addView(printedtimeLn);
                     // ------------------------------------------------------------------------------------------------
 
 

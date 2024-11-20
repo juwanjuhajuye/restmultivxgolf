@@ -391,6 +391,9 @@ public class TableSaleBillPrint extends Activity {
 //                    temp_itemlist = temp_itemlist + GlobalMemberValues.addCartLastItemForCommonGratuityUse_intable(holdcode, str_table_menu_total);
                     jsonObject.put("saleitemlist",temp_itemlist);
                     GlobalMemberValues.TableBillPrinting(holdcode, "R", tableInfos, jsonObject);
+
+                    // Json 생성용.
+                    LinearLayout getJsonLn = CloverMakingViewInPrinting.makingLinearLayoutForPhoneOrder(jsonObject);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

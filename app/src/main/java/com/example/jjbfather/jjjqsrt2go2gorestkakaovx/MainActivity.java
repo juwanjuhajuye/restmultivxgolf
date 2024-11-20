@@ -4341,7 +4341,15 @@ MainMiddleService.setEmptyInSaleCart(false);
                 tempDBCodeName = "";
             }
         }
-        GlobalMemberValues.mssql_ip = tempIp;
+
+        if (GlobalMemberValues.mssql_ip != null){
+            if (GlobalMemberValues.mssql_ip.equals("") || !tempIp.equals("0.0.0.0")){
+                GlobalMemberValues.mssql_ip = tempIp;
+            }
+        } else {
+            GlobalMemberValues.mssql_ip = tempIp;
+        }
+
         GlobalMemberValues.mssql_db = tempDbName;
         GlobalMemberValues.mssql_pw = tempDbPass;
         GlobalMemberValues.MOBILE_HOST = tempMobileHost;

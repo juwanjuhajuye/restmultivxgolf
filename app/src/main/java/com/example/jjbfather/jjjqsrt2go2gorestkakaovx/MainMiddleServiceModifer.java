@@ -36,6 +36,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 import java.util.Vector;
 
 public class MainMiddleServiceModifer extends Activity {
@@ -91,6 +92,12 @@ public class MainMiddleServiceModifer extends Activity {
     // jihun add
     private static ListView optionAddCartListLinearLayout_list;
     public OptionAddCartListLinearLayout_list_adapter optionAddCartListLinearLayout_list_adapter;
+
+    //10232024 Modifier button array
+    private ArrayList<Button> modifierButtonArray = new ArrayList<Button>();
+    private Button currSelectedModifierButton = null;
+    private View currSelectedOptionCategory = null;
+    private Boolean changedSelectedModifierButton = false;
 
 
     Intent mIntent;
@@ -515,6 +522,14 @@ public class MainMiddleServiceModifer extends Activity {
 
             mNowPrice = GlobalMemberValues.getDoubleAtString(tempServicePrice);
 
+            //11192024 if editing a dynamic price item, item price in db is zero, but item price in shopping
+            //cart is not
+            if (GlobalMemberValues.getDoubleAtString(tempServicePrice) == 0.0){
+                if(Double.parseDouble(MainMiddleService.mTouchedArr[9]) != 0.0){
+                    mNowPrice = GlobalMemberValues.getDoubleAtString(MainMiddleService.mTouchedArr[9]);
+                }
+            }
+
             String tempServiceNameFull = tempServiceName;
             if (!GlobalMemberValues.isStrEmpty(tempServiceName2)) {
                 tempServiceNameFull += " " + tempServiceName2;
@@ -578,6 +593,13 @@ public class MainMiddleServiceModifer extends Activity {
             } else {
                 tempPriceTxt = "" + GlobalMemberValues.getCommaStringForDouble(tempServicePrice);
                 tempPriceTxt2 = tempServicePrice;
+            }
+
+            //11192024
+            //If the item had a dynamically entered price
+            String dynamicprice = mIntent.getStringExtra("dynamicprice");
+            if(dynamicprice != null && !dynamicprice.equals("")){
+                mNowPrice = GlobalMemberValues.getDoubleAtString(mIntent.getStringExtra("dynamicprice"));
             }
 
             setPrice(mNowPrice, 0);
@@ -889,8 +911,9 @@ public class MainMiddleServiceModifer extends Activity {
             modifierButtonLayout1.setVisibility(View.VISIBLE);
             modifierButtonLayout2.setVisibility(View.VISIBLE);
 
-            combineLn1.setVisibility(View.VISIBLE);
-            combineLn2.setVisibility(View.VISIBLE);
+            //11192024 view no longer needed, so no need to turn it visible
+            //combineLn1.setVisibility(View.VISIBLE);
+            //combineLn2.setVisibility(View.VISIBLE);
 
             int btnHeight = 100;
             if (GlobalMemberValues.thisTabletRealHeight < GlobalMemberValues.thisTabletRealWidth) {
@@ -989,15 +1012,71 @@ public class MainMiddleServiceModifer extends Activity {
                 subNewBtn.setBackgroundResource(btnBackground);
                 subNewBtn.setTag(tagStr);
 
+                final String buttonColor = tempColorcode;
+
                 subNewBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         //GlobalMemberValues.displayDialog(mContext, "Info", "Tag Value : " + v.getTag().toString(), "Close");
-                        mSelectedModifierButtonTagValue = v.getTag().toString();
-                        setAddModifier();
+                        Button thisButton = (Button) v;
+
+                        //10232024
+                        if (currSelectedModifierButton == v){
+                            currSelectedModifierButton = null;
+                            setSelectedValueInit();
+
+                            switch (buttonColor) {
+                                case "R": {
+                                    v.setBackgroundResource(R.drawable.button_selector_modifierbutton_red);
+                                    break;
+                                }
+                                case "B": {
+                                    v.setBackgroundResource(R.drawable.button_selector_modifierbutton_blue);
+                                    break;
+                                }
+                                case "G": {
+                                    v.setBackgroundResource(R.drawable.button_selector_modifierbutton_gray);
+                                    break;
+                                }
+                            }
+                            thisButton.setTextColor(Color.BLACK);
+                        } else {
+                            changedSelectedModifierButton = true;
+                            currSelectedModifierButton = (Button) v;
+                            mSelectedModifierButtonTagValue = v.getTag().toString();
+                            //10232024
+                            switch (buttonColor) {
+                                case "R" : {
+                                    v.setBackgroundResource(R.drawable.button_selector_modifierbutton_red_highlighted);
+                                    break;
+                                }
+                                case "B" : {
+                                    v.setBackgroundResource(R.drawable.button_selector_modifierbutton_blue_highlighted);
+                                    break;
+                                }
+                                case "G" : {
+                                    v.setBackgroundResource(R.drawable.button_selector_modifierbutton_gray_highlighted);
+                                    break;
+                                }
+                            }
+
+                            thisButton.setTextColor(Color.WHITE);
+
+                            //deselect all other buttons
+                            for(int i=0; i < modifierButtonArray.size(); i++){
+                                if(modifierButtonArray.get(i) != v){
+                                    modifierButtonArray.get(i).setBackgroundResource(R.drawable.button_selector_modifierbutton_gray);
+                                    modifierButtonArray.get(i).setTextColor(Color.BLACK);
+                                }
+                            }
+                        }
+
+                        //11152024 update selected option button if modifier is changed
+                        mExpandableListAdapter.notifyDataSetChanged();
                     }
                 });
 
+                modifierButtonArray.add(subNewBtn);
                 optionBtnListLinearLayout.addView(subNewBtn);
             }
 
@@ -1311,12 +1390,29 @@ public class MainMiddleServiceModifer extends Activity {
     private void setAddModifier() {
         // min, max, maxsum 체크 ============================================================
         // 먼저 선택한 option item 이 이미 선택된 아이템인지 확인한다.
-        int tempOptionItemCnt = GlobalMemberValues.getIntAtString(MainActivity.mDbInit.dbExecuteReadReturnString(
-                " select count(*) from temp_salecart_optionadd_imsi " +
-                        " where modifiercode = '" + mModifierCode + "' " +
-                        " and optioncategoryidx = '" + mSelectedOptionCategoryIdxValue + "' " +
-                        " and optionitemidx = '" + mSelectedOptionItemIdxValue + "' "
-        ));
+
+        //11152024 if mCombineType == A (modifier + option), search by currently selected modifier too.
+        //ie. if option limit is 4 max, modifierA + option can go up to 4, AND modifierB + option can go up to 4.
+        int tempOptionItemCnt = 0;
+        if (Objects.equals(mCombineType, "A")){
+            //11152024 mSelectedModifierButtonTagValue is in format of "Premium-JJJ-1-JJJ-B-JJJ-N"
+            String modifierName = mSelectedModifierButtonTagValue.split("-JJJ-")[0];
+
+            tempOptionItemCnt = GlobalMemberValues.getIntAtString(MainActivity.mDbInit.dbExecuteReadReturnString(
+                    " select count(*) from temp_salecart_optionadd_imsi " +
+                            " where modifiercode = '" + mModifierCode + "' " +
+                            " and optioncategoryidx = '" + mSelectedOptionCategoryIdxValue + "' " +
+                            " and modifiername = '" + modifierName + "' "
+            ));
+        } else {
+            tempOptionItemCnt = GlobalMemberValues.getIntAtString(MainActivity.mDbInit.dbExecuteReadReturnString(
+                    " select count(*) from temp_salecart_optionadd_imsi " +
+                            " where modifiercode = '" + mModifierCode + "' " +
+                            " and optioncategoryidx = '" + mSelectedOptionCategoryIdxValue + "' " +
+                            " and optionitemidx = '" + mSelectedOptionItemIdxValue + "' "
+            ));
+        }
+
 
         String msgContents = "";
 
@@ -1333,30 +1429,29 @@ public class MainMiddleServiceModifer extends Activity {
         int getMaxval = getOptionValues[1];
         int getMaxsumval = getOptionValues[2];
 
-//        GlobalMemberValues.logWrite("jjjmodlog2", "tempSumQty  : " + tempSumQty + "\n");
-//        GlobalMemberValues.logWrite("jjjmodlog2", "tempQty  : " + tempQty + "\n");
-//        GlobalMemberValues.logWrite("jjjmodlog2", "getMinval  : " + getMinval + "\n");
-//        GlobalMemberValues.logWrite("jjjmodlog2", "getMaxval  : " + getMaxval + "\n");
-//        GlobalMemberValues.logWrite("jjjmodlog2", "getMaxsumval  : " + getMaxsumval + "\n");
-
-//        GlobalMemberValues.logWrite("jjjmodlog3", "tempOptionItemCnt  : " + tempOptionItemCnt + "\n");
-
-//                                GlobalMemberValues.logWrite("jjjmodlog", "tempSumQty  : " + tempSumQty + "\n");
-
-
-        if (tempOptionItemCnt == 0 && tempSumQty > getMaxsumval) {
-            msgContents = " in <" + getOptionName + ">, You can select up to " + getMaxsumval + " in total";
-            GlobalMemberValues.displayDialog(mContext, "Warning",
-                    msgContents, "Close");
-            return;
-        }
+        //11152024 if modifier + option format use different comparison to check a options max limit
+        if (Objects.equals(mCombineType, "A")){
+            if (tempOptionItemCnt > getMaxsumval) {
+                msgContents = " in <" + getOptionName + ">, You can select up to " + getMaxsumval + " in total";
+                GlobalMemberValues.displayDialog(mContext, "Warning",
+                        msgContents, "Close");
+                return;
+            }
+        } else {
+            if (tempOptionItemCnt == 0 && tempSumQty > getMaxsumval) {
+                msgContents = " in <" + getOptionName + ">, You can select up to " + getMaxsumval + " in total";
+                GlobalMemberValues.displayDialog(mContext, "Warning",
+                        msgContents, "Close");
+                return;
+            }
 
 //                                GlobalMemberValues.logWrite("jjjmodlog", "tempQty  : " + tempQty + "\n");
-        if (tempOptionItemCnt == 0 && tempQty > getMaxval) {
-            msgContents = "You can select up to " + getMaxval + " in <" + getOptionName + ">";
-            GlobalMemberValues.displayDialog(mContext, "Warning",
-                    msgContents, "Close");
-            return;
+            if (tempOptionItemCnt == 0 && tempQty > getMaxval) {
+                msgContents = "You can select up to " + getMaxval + " in <" + getOptionName + ">";
+                GlobalMemberValues.displayDialog(mContext, "Warning",
+                        msgContents, "Close");
+                return;
+            }
         }
 
         // modi 재선택시 아이템 선택취소하기위해서 주석처리
@@ -1456,7 +1551,7 @@ public class MainMiddleServiceModifer extends Activity {
 
         if (!GlobalMemberValues.isStrEmpty(selectedModifierButtonName)
                 && !GlobalMemberValues.isStrEmpty(selectedOptionAddButtonName)) {
-            tempSelectedModOptionAddName = selectedModifierButtonNamePrice + " + " + selectedOptionAddButtonNamePrice;
+            tempSelectedModOptionAddName = selectedOptionAddButtonNamePrice + " + " + selectedModifierButtonNamePrice;
         } else {
             if (!GlobalMemberValues.isStrEmpty(selectedModifierButtonName)
                     && GlobalMemberValues.isStrEmpty(selectedOptionAddButtonName)) {
@@ -1470,10 +1565,9 @@ public class MainMiddleServiceModifer extends Activity {
 
         modifierValueTv.setText(tempSelectedModOptionAddName);
 
-        // 버튼이 없고, 옵션 버튼만 선택하는 구조일 경우...
-        if (mCombineType == "B" || mCombineType.equals("B")) {
-            saveOptionAdd();
-        }
+
+        saveOptionAdd();
+
 
     }
 
@@ -1493,13 +1587,22 @@ public class MainMiddleServiceModifer extends Activity {
         }
 
         Cursor cartCursor;
+
+        String sortQuery = "";
+        //11152024 if modifer + option setting, sort alphabetically
+        if(mCombineType == "A"){
+            sortQuery = " order by A.modifiername asc, B.sortnum";
+        } else {
+            sortQuery = " order by B.sortnum asc";
+        }
+
         String strQuery = " select A.idx, A.modifiername, A.optionaddname, A.modifieroptionaddfullname, A.modifierprice, A.optionaddprice, A.optioncategoryidx, A.optioncategoryname, A.qty " +
                 " from temp_salecart_optionadd_imsi A " +
                 " left join salon_storeservice_option B on A.optioncategoryidx = B.idx " +
                 " left join salon_storeservice_option_item C on A.optionitemidx = C.idx " +
                 //" where  holdcode = '" + paramHoldCode + "' and svcIdx = '" + paramSvcIdx + "' " +
                 " where  A.modifiercode = '" + mModifierCode + "' " +
-                " order by B.sortnum asc, C.sortnum asc, A.optioncategoryidx asc, A.optionaddname asc, A.idx asc";
+                sortQuery;
         cartCursor = dbInit.dbExecuteRead(strQuery);
 
         String tempPrevOptCateIdx = "";
@@ -1638,7 +1741,11 @@ public class MainMiddleServiceModifer extends Activity {
         //Get the name of the extra modifier for the option that is about to be added.
         String[] selectedModifierButtonValueArr = null;
         selectedModifierButtonValueArr = mSelectedModifierButtonTagValue.split("-JJJ-");
-        String selectedModifierName = selectedModifierButtonValueArr[0];
+        String selectedModifierName = "";
+        if (selectedModifierButtonValueArr != null){
+            selectedModifierName = selectedModifierButtonValueArr[0];
+        }
+
 
         // 한 옵션에서 중복되어 선택된 것이 있는지 확인
         // 있으면 삭제
@@ -1662,9 +1769,26 @@ public class MainMiddleServiceModifer extends Activity {
 
         } else {
             //01102024  Check how many OPTIONS ITEMS are currently selected for the OPTION
-            String checkOptionItemCountQuery = " select COUNT(idx) from temp_salecart_optionadd_imsi " +
-                    " where modifiercode = '" + mModifierCode + "' " +
-                    " and optioncategoryidx = '" + mSelectedOptionCategoryIdxValue + "'";
+            //11152024 if mCombineType == "A", modifier + option setting also check for modifier selected.
+            String checkOptionItemCountQuery = "";
+            if (Objects.equals(mCombineType, "A")){
+                String modifierName = "";
+                if(!mSelectedModifierButtonTagValue.equals("")){
+                    modifierName = mSelectedModifierButtonTagValue.split("-JJJ-")[0];
+                }
+
+                checkOptionItemCountQuery =
+                        " select count(*) from temp_salecart_optionadd_imsi " +
+                                " where modifiercode = '" + mModifierCode + "' " +
+                                " and optioncategoryidx = '" + mSelectedOptionCategoryIdxValue + "' " +
+                                " and modifiername = '" + modifierName + "' ";
+            } else {
+                checkOptionItemCountQuery = " select COUNT(idx) from temp_salecart_optionadd_imsi " +
+                        " where modifiercode = '" + mModifierCode + "' " +
+                        " and optioncategoryidx = '" + mSelectedOptionCategoryIdxValue + "'";
+
+            }
+
             String tempOptionItemCount = dbInit.dbExecuteReadReturnString(checkOptionItemCountQuery);
 
             String checkOptionItemLimitQuery = " select maxval from salon_storeservice_option " +
@@ -1774,8 +1898,7 @@ public class MainMiddleServiceModifer extends Activity {
 
             if (!GlobalMemberValues.isStrEmpty(selectedModifierButtonName)
                     && !GlobalMemberValues.isStrEmpty(selectedOptionAddButtonName)) {
-                //01102024 swap order of option and modifier, so OPTION comes first
-                tempSelectedModOptionAddName = selectedOptionAddButtonNamePrice + " + " + selectedModifierButtonNamePrice;
+                tempSelectedModOptionAddName = selectedModifierButtonNamePrice + " + " + selectedOptionAddButtonNamePrice;
             } else {
                 if (!GlobalMemberValues.isStrEmpty(selectedModifierButtonName)
                         && GlobalMemberValues.isStrEmpty(selectedOptionAddButtonName)) {
@@ -1842,7 +1965,8 @@ public class MainMiddleServiceModifer extends Activity {
                     }
                 }
 
-                setSelectedValueInit();
+                //11192024 keep selected modifier selected even after adding modifier + option item.
+                //setSelectedValueInit();
                 setSelectedModifierOptionAdd();
             }
         }
@@ -2164,6 +2288,17 @@ public class MainMiddleServiceModifer extends Activity {
             // 직원정보 구하기
             String sEmpIdx = MainMiddleService.insEmpIdx;
             String sEmpName = MainMiddleService.insEmpName;
+
+            //11192024 if dynamic price is being used
+            String dynamicprice = mIntent.getStringExtra("dynamicprice");
+            if(dynamicprice != null && !dynamicprice.equals("")){
+                tempSvcServicePrice = dynamicprice;
+            }
+
+            //11192024 if editing dynamic price item
+            if (GlobalMemberValues.getDoubleAtString(tempSvcServicePrice) == 0.0 && mNowPrice != 0.0){
+                tempSvcServicePrice = Double.toString(mNowPrice);
+            }
 
             String paramsString[] = {
                     sQty, sHoldCode, GlobalMemberValues.STORE_INDEX, GlobalMemberValues.STATION_CODE, tempSvcMdx, tempSvcIdx,
@@ -2514,13 +2649,29 @@ public class MainMiddleServiceModifer extends Activity {
                 tempRadioButtonValueForRB += "\n($" + GlobalMemberValues.getCommaStringForDouble(getOptionItemPriceStrForRB) + ")";
             }
 
+            int tempThisButtonCount = 0;
 
-            int tempThisButtonCount = GlobalMemberValues.getIntAtString(
-                    MainActivity.mDbInit.dbExecuteReadReturnString(
-                            " select count(idx) from temp_salecart_optionadd_imsi " +
-                                    " where  modifiercode = '" + mModifierCode + "' " +
-                                    " and optioncategoryidx = '" + mGroupArr[0] + "' and optionitemidx = '" + getOptionItemIdx + "' ")
-            );
+            //11192024 if using modifier + option setting, take modifier into consideration when updating selected/unselected option buttons.
+            if (Objects.equals(mCombineType, "A")) {
+                String currModifierName = mSelectedModifierButtonTagValue.split("-JJJ-")[0];
+
+                tempThisButtonCount = GlobalMemberValues.getIntAtString(
+                        MainActivity.mDbInit.dbExecuteReadReturnString(
+                                " select count(idx) from temp_salecart_optionadd_imsi " +
+                                        " where  modifiercode = '" + mModifierCode + "' " +
+                                        " and optioncategoryidx = '" + mGroupArr[0] + "' and optionitemidx = '" + getOptionItemIdx + "' " +
+                                        " and modifiername = '" + currModifierName + "'")
+                );
+            } else {
+                tempThisButtonCount = GlobalMemberValues.getIntAtString(
+                        MainActivity.mDbInit.dbExecuteReadReturnString(
+                                " select count(idx) from temp_salecart_optionadd_imsi " +
+                                        " where  modifiercode = '" + mModifierCode + "' " +
+                                        " and optioncategoryidx = '" + mGroupArr[0] + "' and optionitemidx = '" + getOptionItemIdx + "' ")
+                );
+            }
+
+
 
             if (GlobalMemberValues.is_customerMain){
                 if (tempThisButtonCount == 0) {

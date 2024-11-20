@@ -3785,6 +3785,17 @@ public class GlobalMemberValues {
 
         String tempPrinterName = getSavedPrinterName(MainActivity.mContext);
 
+        // 11202024
+        if (GlobalMemberValues.isBillPrintingByWindows()){
+            if (paramReceiptPrintType.equals("phoneordercheckprint")){
+                // GlobalMemberValues.isBillPrintingByWindows() true의 경우
+                // 프린트 세팅이 POS 에 되어있어도 출력하지 않음
+                tempPrinterName = "No Printer";
+                // bill print 의 값을 따로 JSON 으로 저장
+
+            }
+        }
+
         switch (tempPrinterName) {
             case "STAR" : {
                 StarPrintStart starPrintStart = new StarPrintStart();
@@ -21676,11 +21687,51 @@ public class GlobalMemberValues {
     }
 
     static JSONObject billprintTOJSON = new JSONObject();
-    public static void setBillPrintJson(JSONObject data){
+    public static void setBillPrintJson(JSONObject data) {
         billprintTOJSON = new JSONObject();
         billprintTOJSON = data;
 
-        GlobalMemberValues.logWrite("cloverprintinglog", "받은 데이터 : " + billprintTOJSON.toString() + "\n");
+        GlobalMemberValues.logWrite("printinglogbilllogjjj", "billprintTOJSON : " + billprintTOJSON.toString() + "\n");
+
+        // 11202024
+        // salon_sales_kitchenprintingdata_json 에 데이터 저장
+        if (GlobalMemberValues.isBillPrintingByWindows()) {
+            if (!GlobalMemberValues.isStrEmpty(billprintTOJSON.toString())) {
+                Vector<String> strInsertQueryVec = new Vector<String>();
+
+                String tempHoldCode = "";
+                try {
+                    JSONObject json = new JSONObject(billprintTOJSON.toString());
+                    tempHoldCode = GlobalMemberValues.getDataInJsonData(json, "restaurant_tableholdcode");
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                String strQuery = " insert into salon_sales_kitchenprintingdata_json " +
+                        " (salesCode, scode, sidx, stcode, jsonstr, printedyn, billprintedyn) values ( " +
+                        " '" + GlobalMemberValues.getDBTextAfterChecked(tempHoldCode,0) + "', " +
+                        " '" + GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.SALON_CODE,0) + "', " +
+                        "  " + GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.STORE_INDEX,0) + ", " +
+                        " '" + GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.STATION_CODE,0) + "', " +
+                        " '" + GlobalMemberValues.getDBTextAfterChecked(billprintTOJSON.toString(), 0) + "', " +
+                        " 'Y', " +
+                        " 'J' " +
+                        " ) ";
+                strInsertQueryVec.addElement(strQuery);
+
+                for (String tempQuery : strInsertQueryVec) {
+                    GlobalMemberValues.logWrite("billwindowsprintlog", "query : " + tempQuery + "\n");
+                }
+                // 트랜잭션으로 DB 처리한다.
+                String returnResult = MainActivity.mDbInit.dbExecuteWriteForTransactionReturnResult(strInsertQueryVec);
+                if (returnResult == "N" || returnResult == "") {
+                    GlobalMemberValues.displayDialog(MainActivity.mContext, "Warning", "Database Error", "Close");
+                } else {
+                }
+            }
+        }
+
     }
 
     public static JSONObject makeBillPrintJson (JSONObject data) {
