@@ -62,6 +62,29 @@ public class CheckOnlineStatus extends Service implements Runnable {
         String tempStatus = null;
         int tempStatusImageId = 0;
 
+//        int conn = NetworkUtil.getConnectivityStatus(context);
+//        GlobalMemberValues.logWrite("newreservationcheckstr", "conn : " + conn + "\n");
+//        if (conn > 0) {
+//            if(conn == TYPE_WIFI) {
+//                tempStatus = "WIFI";
+//                tempStatusImageId = R.drawable.aa_images_main_wifi;
+//            } else if (conn == TYPE_MOBILE) {
+//                tempStatus = "3G/LTE";
+//                tempStatusImageId = R.drawable.aa_images_main_lte;
+//            } else {
+//                if (GlobalMemberValues.isOnlineInternet("https://clients3.google.com/generate_204")) {
+//                    tempStatus = "ONLINE";
+//                    tempStatusImageId = R.drawable.aa_images_main_online;
+//                } else {
+//                    tempStatus = "NOT CONNECTED";
+//                    tempStatusImageId = R.drawable.aa_images_main_disconnect;
+//                }
+//            }
+//        } else {
+//            // 인터넷 연결 안됨...
+//            tempStatus = "NOT CONNECTED";
+//            tempStatusImageId = R.drawable.aa_images_main_disconnect;
+//        }
 
         //Returns connection type. 0: TYPE_NOT_CONNECTED; 1: TYPE_WIFI; 2: TYPE_MOBILE; 3: TYPE_ETHERNET
         int conn = 0;
@@ -95,6 +118,7 @@ public class CheckOnlineStatus extends Service implements Runnable {
             }
         }
 
+        GlobalMemberValues.logWrite("CONNECTIONCHECK", "Connection type is: " + conn);
         GlobalMemberValues.GLOBALNETWORKSTATUS = conn;
 
         if (GlobalMemberValues.CURRENTACTIVITYOPENEDSERVICE_ONLINECHECK != null && GlobalMemberValues.CURRENTSERVICEINTENT_ONLINECHECK != null) {

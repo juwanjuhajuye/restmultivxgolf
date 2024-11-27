@@ -261,15 +261,20 @@ public class JJJ_SignPad extends Activity {
         signPadCancelBtn = (Button)findViewById(R.id.signPadCancelBtn);
 
         if (GlobalMemberValues.isSignatureCancelShowYN()){
-            signPadCancelBtn.setVisibility(View.VISIBLE);
+//            signPadCancelBtn.setVisibility(View.VISIBLE);
+            signPadCancelBtn.setBackgroundResource(R.drawable.button_selector_jjjsignpad_cancel_void);
+            signPadCancelBtn.setOnClickListener(JJJ_SignPadBtnClick);
         } else {
-            signPadCancelBtn.setVisibility(View.INVISIBLE);
+//            signPadCancelBtn.setVisibility(View.INVISIBLE);
+            signPadCancelBtn.setBackgroundResource(R.drawable.rectangle_white);
+//            signPadCancelBtn.setOnLongClickListener(cancelListener);
+            signPadCancelBtn.setOnTouchListener(cancelTouchListener);
         }
 
         signPadOKBtn.setOnClickListener(JJJ_SignPadBtnClick);
         signPadEraseBtn.setOnClickListener(JJJ_SignPadBtnClick);
         signPadPaperSignBtn.setOnClickListener(JJJ_SignPadBtnClick);
-        signPadCancelBtn.setOnClickListener(JJJ_SignPadBtnClick);
+//        signPadCancelBtn.setOnClickListener(JJJ_SignPadBtnClick);
 
         int cardCompanyImage = 0;
         String cardCompanyName = "";
@@ -890,6 +895,51 @@ public class JJJ_SignPad extends Activity {
         setSignatureResult(false);
     }
 
+    View.OnTouchListener cancelTouchListener = new View.OnTouchListener(){
+        private Handler handler = new Handler();
+        private Runnable longPressRunnable = new Runnable() {
+            @Override
+            public void run() {
+                // 커스텀 길게 누르기 동작
+                new AlertDialog.Builder(mContext)
+                        .setTitle("Signature")
+                        .setMessage("Check the card is inserted\n(If the card is inserted, it may not be void)\n\nTouch 'Yes' and this item will be void")
+                        //.setIcon(R.drawable.ic_launcher)
+                        .setPositiveButton("Yes",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        setVoidOnPaymentCreditCardClass();
+                                    }
+                                })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                //
+                            }
+                        })
+                        .show();
+            }
+        };
+        private static final int CUSTOM_LONG_PRESS_TIME = 5000; // 1초
+
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    // 누른 상태일 때 일정 시간 후 실행
+                    handler.postDelayed(longPressRunnable, CUSTOM_LONG_PRESS_TIME);
+                    break;
+
+                case MotionEvent.ACTION_UP:
+                case MotionEvent.ACTION_CANCEL:
+                    // 손을 뗄 경우 핸들러 작업 취소
+                    handler.removeCallbacks(longPressRunnable);
+                    break;
+            }
+            return true; // 터치 이벤트 소비
+        }
+
+    };
+
     JJJ_OnSingleClickListener JJJ_SignPadBtnClick = new JJJ_OnSingleClickListener() {
         @Override
         public void onSingleClick(View v) {
@@ -1043,11 +1093,18 @@ public class JJJ_SignPad extends Activity {
 
     private void setVoidOnPaymentCreditCardClass() {
         String strRefNum = "";
-        strRefNum = PaymentCreditCard.dbInit.dbExecuteReadReturnString("select cardRefNumber from salon_sales_card where idx = '"
+//        strRefNum = PaymentCreditCard.dbInit.dbExecuteReadReturnString("select cardRefNumber from salon_sales_card where idx = '"
+//                + mGetMaxSalonSalesCardIdx + "' ");
+        strRefNum =   MssqlDatabase.getResultSetValueToString("select cardRefNumber from salon_sales_card where idx = '"
                 + mGetMaxSalonSalesCardIdx + "' ");
+
         String strPriceAmount = "";
-        strPriceAmount = PaymentCreditCard.dbInit.dbExecuteReadReturnString("select priceAmount from salon_sales_card where idx = '"
+
+//        strPriceAmount = PaymentCreditCard.dbInit.dbExecuteReadReturnString("select priceAmount from salon_sales_card where idx = '"
+//                + mGetMaxSalonSalesCardIdx + "' ");
+        strPriceAmount = MssqlDatabase.getResultSetValueToString("select priceAmount from salon_sales_card where idx = '"
                 + mGetMaxSalonSalesCardIdx + "' ");
+
         GlobalMemberValues.logWrite(TAG, "mSelectedSalonSalesCardIdx : " + mGetMaxSalonSalesCardIdx + "\n");
         GlobalMemberValues.logWrite(TAG, "mGetAuthNum : " + mGetAuthNum + "\n");
         if (!GlobalMemberValues.isStrEmpty(mGetAuthNum)) {

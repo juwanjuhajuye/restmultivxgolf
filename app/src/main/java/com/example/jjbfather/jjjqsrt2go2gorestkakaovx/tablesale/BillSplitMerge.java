@@ -868,7 +868,7 @@ public class BillSplitMerge extends Activity {
                         temp = GlobalMemberValues.getCommaStringForDouble(temp);
                         if (temp.equals("0.00") || temp.equals("0")){
                         } else {
-                            GlobalMemberValues.displayDialog(mContext, "Warning", "The bills do not add up to the total balance. To continue with payment, please make sure the bills add up to the total balance.", "Close");
+                            GlobalMemberValues.displayDialog(mContext, "Warning", "The bills do not add up to the total balance.", "Close");
                             return;
                         }
 
