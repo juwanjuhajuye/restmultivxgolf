@@ -730,10 +730,23 @@ public class EmployeeKeyIn extends Activity {
         GlobalMemberValues.SERVER_NAME = strEmployeeInfoArr[1];
 
         //11112024 change global member variable to match the new logged in employee
-        GlobalMemberValues.GLOBAL_EMPLOYEEINFO
-                = new TemporaryEmployeeInfo(strEmployeeInfoArr[0], strEmployeeInfoArr[1], strEmployeeInfoArr[2], strEmployeeInfoArr[3],
-                strEmployeeInfoArr[4], strEmployeeInfoArr[5], strEmployeeInfoArr[6], strEmployeeInfoArr[7], strEmployeeInfoArr[8],
-                strEmployeeInfoArr[9], strEmployeeInfoArr[10], strEmployeeInfoArr[12]);
+//        GlobalMemberValues.GLOBAL_EMPLOYEEINFO
+//                = new TemporaryEmployeeInfo(strEmployeeInfoArr[0], strEmployeeInfoArr[1], strEmployeeInfoArr[2], strEmployeeInfoArr[3],
+//                strEmployeeInfoArr[4], strEmployeeInfoArr[5], strEmployeeInfoArr[6], strEmployeeInfoArr[7], strEmployeeInfoArr[8],
+//                strEmployeeInfoArr[9], strEmployeeInfoArr[10], strEmployeeInfoArr[12]);
+
+        if (GlobalMemberValues.checkServerCodeUseYN()) {
+            if (GlobalMemberValues.isStrEmpty(GlobalMemberValues.SERVER_IDX)) {
+                TableSaleMain.ID_forPermission = GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx;
+                TableSaleMain.NAME_forPermission = GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName;
+            } else {
+                TableSaleMain.ID_forPermission = GlobalMemberValues.SERVER_IDX;
+                TableSaleMain.NAME_forPermission = GlobalMemberValues.SERVER_NAME;
+            }
+        } else {
+            TableSaleMain.ID_forPermission = GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx;
+            TableSaleMain.NAME_forPermission = GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName;
+        }
 
         GlobalMemberValues.logWrite("jjjserverloginlog", "GlobalMemberValues.SERVER_IDX : " + GlobalMemberValues.SERVER_IDX + "\n");
         GlobalMemberValues.logWrite("jjjserverloginlog", "GlobalMemberValues.SERVER_NAME : " + GlobalMemberValues.SERVER_NAME + "\n");

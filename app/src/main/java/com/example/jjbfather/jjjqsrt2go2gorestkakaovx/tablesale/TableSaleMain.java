@@ -199,6 +199,10 @@ public class TableSaleMain extends Activity {
     // 10162024 VX Golf 버튼 추가
     public Button table_main_reservation_btn, table_main_logout_btn;
 
+    // 11282024
+    public static String ID_forPermission = "";
+    public static String NAME_forPermission = "";
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -595,13 +599,27 @@ public class TableSaleMain extends Activity {
             } else {
                 // 072424
                 // SERVER IDX, NAME 초기화
-                GlobalMemberValues.SERVER_IDX = "";
-                GlobalMemberValues.SERVER_NAME = "";
-                GlobalMemberValues.SERVER_ID = "";
+//                GlobalMemberValues.SERVER_IDX = "";
+//                GlobalMemberValues.SERVER_NAME = "";
+//                GlobalMemberValues.SERVER_ID = "";
             }
 
         } else {
 
+        }
+
+        // 11282024
+        if (GlobalMemberValues.checkServerCodeUseYN()) {
+            if (GlobalMemberValues.isStrEmpty(GlobalMemberValues.SERVER_IDX)) {
+                ID_forPermission = GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx;
+                NAME_forPermission = GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName;
+            } else {
+                ID_forPermission = GlobalMemberValues.SERVER_IDX;
+                NAME_forPermission = GlobalMemberValues.SERVER_NAME;
+            }
+        } else {
+            ID_forPermission = GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx;
+            NAME_forPermission = GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName;
         }
     }
 
@@ -752,7 +770,7 @@ public class TableSaleMain extends Activity {
                     break;
                 }
                 case R.id.table_main_btn_side2: {
-                    if (!GlobalMemberValues.checkEmployeePermission(GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx, GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName, "<18>")){
+                    if (!GlobalMemberValues.checkEmployeePermission(ID_forPermission,NAME_forPermission, "<18>")){
                         GlobalMemberValues.displayDialog(TableSaleMain.mContext, "Warning", "You do not have permission", "Close");
                         return;
                     }
@@ -829,7 +847,7 @@ public class TableSaleMain extends Activity {
                 }
 
                 case R.id.table_main_btn_side8: {
-                    if (!GlobalMemberValues.checkEmployeePermission(GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx, GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName, "<19>")){
+                    if (!GlobalMemberValues.checkEmployeePermission(ID_forPermission,NAME_forPermission, "<19>")){
                         GlobalMemberValues.displayDialog(TableSaleMain.mContext, "Warning", "You do not have permission", "Close");
                         return;
                     }
@@ -893,7 +911,7 @@ public class TableSaleMain extends Activity {
 
                 // 08092023
                 case R.id.table_main_btn_side13: {
-                    if (!GlobalMemberValues.checkEmployeePermission(GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx, GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName, "<19>")){
+                    if (!GlobalMemberValues.checkEmployeePermission(ID_forPermission,NAME_forPermission, "<19>")){
                         GlobalMemberValues.displayDialog(TableSaleMain.mContext, "Warning", "You do not have permission", "Close");
                         return;
                     }
@@ -965,7 +983,7 @@ public class TableSaleMain extends Activity {
                 }
 
                 case R.id.table_main_btn_side_showup : {
-                    if (!GlobalMemberValues.checkEmployeePermission(GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx, GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName, "<15>")){
+                    if (!GlobalMemberValues.checkEmployeePermission(ID_forPermission,NAME_forPermission, "<15>")){
                         GlobalMemberValues.displayDialog(TableSaleMain.mContext, "Warning", "You do not have permission", "Close");
                         return;
                     }
@@ -2687,7 +2705,7 @@ public class TableSaleMain extends Activity {
                         doBillPrint();
                         break;
                     case "Bill Split/Merge/Print" :
-                        if (!GlobalMemberValues.checkEmployeePermission(GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx, GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName, "<18>")){
+                        if (!GlobalMemberValues.checkEmployeePermission(ID_forPermission,NAME_forPermission, "<18>")){
                             GlobalMemberValues.displayDialog(TableSaleMain.mContext, "Warning", "You do not have permission", "Close");
                             return;
                         }
@@ -3756,7 +3774,7 @@ public class TableSaleMain extends Activity {
                                 mLastClickTime = SystemClock.elapsedRealtime();
                             }
 
-                            if (!GlobalMemberValues.checkEmployeePermission(GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx, GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName, "<16>")){
+                            if (!GlobalMemberValues.checkEmployeePermission(ID_forPermission,NAME_forPermission, "<16>")){
                                 GlobalMemberValues.displayDialog(TableSaleMain.mContext, "Warning", "You do not have permission", "Close");
                                 return;
                             }
@@ -3781,7 +3799,7 @@ public class TableSaleMain extends Activity {
                     table_row3.setOnLongClickListener(new View.OnLongClickListener() {
                         @Override
                         public boolean onLongClick(View v) {
-                            if (!GlobalMemberValues.checkEmployeePermission(GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx, GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName, "<16>")){
+                            if (!GlobalMemberValues.checkEmployeePermission(ID_forPermission,NAME_forPermission, "<16>")){
                                 GlobalMemberValues.displayDialog(TableSaleMain.mContext, "Warning", "You do not have permission", "Close");
                                 return false;
                             }

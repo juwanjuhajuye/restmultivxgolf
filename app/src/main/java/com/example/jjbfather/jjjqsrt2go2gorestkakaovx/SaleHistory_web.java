@@ -45,6 +45,7 @@ import androidx.core.content.res.ResourcesCompat;
 import androidx.core.widget.TextViewCompat;
 
 import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.R;
+import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.tablesale.TableSaleMain;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -717,7 +718,7 @@ public class SaleHistory_web extends Activity {
                 case R.id.saleHistoryReturnButton: {
                     // 권한체크
                     if (!GlobalMemberValues.checkEmployeePermission(
-                            GlobalMemberValues.SERVER_IDX, GlobalMemberValues.SERVER_NAME, "<2>")) {
+                            TableSaleMain.ID_forPermission, TableSaleMain.NAME_forPermission, "<2>")) {
                         Intent adminPasswordIntent = new Intent(MainActivity.mContext.getApplicationContext(), AdminPassword.class);
                         // Dialog 에 Extra 로 객체 및 데이터 전달하기 ------------------------------------------------
                         adminPasswordIntent.putExtra("no_permission", true);

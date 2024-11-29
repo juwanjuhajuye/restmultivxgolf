@@ -919,7 +919,7 @@ public class JJJ_SignPad extends Activity {
                         .show();
             }
         };
-        private static final int CUSTOM_LONG_PRESS_TIME = 5000; // 1초
+        private static final int CUSTOM_LONG_PRESS_TIME = 3000; // 1초
 
         @Override
         public boolean onTouch(View v, MotionEvent event) {

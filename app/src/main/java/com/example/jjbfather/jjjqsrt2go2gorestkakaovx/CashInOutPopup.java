@@ -29,6 +29,7 @@ import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.R;
+import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.tablesale.TableSaleMain;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -2408,7 +2409,7 @@ public class CashInOutPopup extends Activity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 if (!GlobalMemberValues.checkEmployeePermission(
-                                        GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx, GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName, "<11>")) {
+                                        TableSaleMain.ID_forPermission, TableSaleMain.NAME_forPermission, "<11>")) {
                                     GlobalMemberValues.displayDialog(getApplicationContext(), "Warning", "You do not have permission", "Close");
                                     return;
                                 }

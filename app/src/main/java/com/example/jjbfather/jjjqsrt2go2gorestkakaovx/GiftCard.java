@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.magtek.MagStripDriver;
 import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.magtek.MagStripeCardParser;
+import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.tablesale.TableSaleMain;
 
 /**
  * Created by BCS_RTBS_JJFATHER on 2015-10-22.
@@ -542,7 +543,7 @@ public class GiftCard {
             switch (v.getId()) {
                 case R.id.button_main_side_giftcard :
                 case R.id.mainRightBottom_GiftCard : {
-                    if (!GlobalMemberValues.checkEmployeePermission(GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx, GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName, "<21>")){
+                    if (!GlobalMemberValues.checkEmployeePermission( TableSaleMain.ID_forPermission, TableSaleMain.NAME_forPermission, "<21>")){
                         GlobalMemberValues.displayDialog(mActivity, "Warning", "You do not have permission", "Close");
                         return;
                     }

@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.R;
+import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.tablesale.TableSaleMain;
 
 /**
  * Created by BCS_RTBS_JJFATHER on 2015-10-22.
@@ -258,7 +259,7 @@ public class AppTopBar {
             public void onSingleClick(View v) {
                 // 권한체크
                 if (!GlobalMemberValues.checkEmployeePermission(
-                        GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx, GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName, "<8>")) {
+                        TableSaleMain.ID_forPermission, TableSaleMain.NAME_forPermission,"<8>")) {
                     GlobalMemberValues.displayDialog(context, "Warning", "You do not have permission", "Close");
                     return;
                 }

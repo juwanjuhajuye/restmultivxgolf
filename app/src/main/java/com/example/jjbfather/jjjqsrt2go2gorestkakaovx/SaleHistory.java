@@ -581,7 +581,7 @@ public class SaleHistory extends Activity {
                 case R.id.saleHistoryReturnButton : {
                     // 권한체크
                     if (!GlobalMemberValues.checkEmployeePermission(
-                            GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx, GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName, "<2>")) {
+                            TableSaleMain.ID_forPermission, TableSaleMain.NAME_forPermission, "<2>")) {
                         GlobalMemberValues.displayDialog(context, "Warning", "You do not have permission", "Close");
                         return;
                     }
@@ -634,7 +634,7 @@ public class SaleHistory extends Activity {
                 case R.id.saleHistoryTipAdjustmentButton : {
                     // 권한체크
                     if (!GlobalMemberValues.checkEmployeePermission(
-                            GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx, GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName, "<3>")) {
+                            TableSaleMain.ID_forPermission, TableSaleMain.NAME_forPermission, "<3>")) {
                         GlobalMemberValues.displayDialog(context, "Warning", "You do not have permission", "Close");
                         return;
                     }
@@ -5259,7 +5259,7 @@ public class SaleHistory extends Activity {
 
     public void startVoidProcess() {
         if (!GlobalMemberValues.checkEmployeePermission(
-                GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx, GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName, "<1>")) {
+                TableSaleMain.ID_forPermission, TableSaleMain.NAME_forPermission, "<1>")) {
 //                        GlobalMemberValues.displayDialog(context, "Warning", "You do not have permission", "Close");
 
             Intent intent = new Intent(context.getApplicationContext(), EmployeeKeyIn.class);

@@ -651,7 +651,7 @@ public class CommandButton {
 
                     // 권한체크
                     if (!GlobalMemberValues.checkEmployeePermission(
-                            GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx, GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName, "<4>")) {
+                            TableSaleMain.ID_forPermission, TableSaleMain.NAME_forPermission, "<4>")) {
                         GlobalMemberValues.displayDialog(context, "Warning", "You do not have permission", "Close");
                         return;
                     }
@@ -676,7 +676,7 @@ public class CommandButton {
 
                     // 권한체크
                     if (!GlobalMemberValues.checkEmployeePermission(
-                            GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx, GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName, "<4>")) {
+                            TableSaleMain.ID_forPermission, TableSaleMain.NAME_forPermission, "<4>")) {
                         GlobalMemberValues.displayDialog(context, "Warning", "You do not have permission", "Close");
                         return;
                     }
@@ -697,7 +697,7 @@ public class CommandButton {
                 case R.id.batchsummaryCommandButton : {
                     // 권한체크
                     if (!GlobalMemberValues.checkEmployeePermission(
-                            GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx, GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName, "<5>")) {
+                            TableSaleMain.ID_forPermission, TableSaleMain.NAME_forPermission, "<5>")) {
                         GlobalMemberValues.displayDialog(context, "Warning", "You do not have permission", "Close");
                         return;
                     }
@@ -754,7 +754,7 @@ public class CommandButton {
                 case R.id.backupDBCommandButton : {
                     // 권한체크
                     if (!GlobalMemberValues.checkEmployeePermission(
-                            GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx, GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName, "<7>")) {
+                            TableSaleMain.ID_forPermission, TableSaleMain.NAME_forPermission, "<7>")) {
                         GlobalMemberValues.displayDialog(context, "Warning", "You do not have permission", "Close");
                         return;
                     }
@@ -773,7 +773,7 @@ public class CommandButton {
                 case R.id.restoreDBCommandButton : {
                     // 권한체크
                     if (!GlobalMemberValues.checkEmployeePermission(
-                            GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx, GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName, "<7>")) {
+                            TableSaleMain.ID_forPermission, TableSaleMain.NAME_forPermission, "<7>")) {
                         GlobalMemberValues.displayDialog(context, "Warning", "You do not have permission", "Close");
                         return;
                     }
@@ -868,7 +868,7 @@ public class CommandButton {
                 case R.id.settingsCommandButton : {
                     // 권한체크
                     if (!GlobalMemberValues.checkEmployeePermission(
-                            GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx, GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName, "<8>")) {
+                            TableSaleMain.ID_forPermission, TableSaleMain.NAME_forPermission, "<8>")) {
                         GlobalMemberValues.displayDialog(context, "Warning", "You do not have permission", "Close");
                         return;
                     }
@@ -1061,7 +1061,7 @@ public class CommandButton {
                 case R.id.downloadCommandButton : {
                     // 권한체크
                     if (!GlobalMemberValues.checkEmployeePermission(
-                            GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx, GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName, "<6>")) {
+                            TableSaleMain.ID_forPermission, TableSaleMain.NAME_forPermission, "<6>")) {
                         GlobalMemberValues.displayDialog(context, "Warning", "You do not have permission", "Close");
                         return;
                     }

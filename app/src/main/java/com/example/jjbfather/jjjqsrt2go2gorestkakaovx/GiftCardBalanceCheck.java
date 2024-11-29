@@ -34,6 +34,7 @@ import android.widget.Toast;
 import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.R;
 import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.magtek.MagStripDriver;
 import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.magtek.MagStripeCardParser;
+import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.tablesale.TableSaleMain;
 
 import java.util.ArrayList;
 import java.util.Vector;
@@ -700,7 +701,7 @@ public class GiftCardBalanceCheck extends Activity {
         if (paramValue) {
             // 권한체크
             if (GlobalMemberValues.checkEmployeePermission(
-                    GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx, GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName, "<9>")) {
+                    TableSaleMain.ID_forPermission, TableSaleMain.NAME_forPermission, "<9>")) {
                 giftcardeditLn.setVisibility(View.VISIBLE);
             }
         } else {

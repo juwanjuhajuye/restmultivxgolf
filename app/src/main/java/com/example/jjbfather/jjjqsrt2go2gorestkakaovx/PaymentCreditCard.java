@@ -32,6 +32,7 @@ import android.widget.TextView;
 import com.byullbam.restapi.RestApiConfig;
 import com.byullbam.restapi.RestApiSale;
 import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.R;
+import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.tablesale.TableSaleMain;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -1375,7 +1376,7 @@ public class PaymentCreditCard extends Activity {
                     break;
                 }
                 case R.id.paymentCreditCardVoidButton : {
-                    if (!GlobalMemberValues.checkEmployeePermission(GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx, GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName, "<22>")){
+                    if (!GlobalMemberValues.checkEmployeePermission( TableSaleMain.ID_forPermission, TableSaleMain.NAME_forPermission, "<22>")){
                         GlobalMemberValues.displayDialog(PaymentCreditCard.this, "Warning", "You do not have permission", "Close");
                         return;
                     }

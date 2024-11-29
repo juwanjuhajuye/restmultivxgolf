@@ -13,6 +13,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.R;
+import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.tablesale.TableSaleMain;
 
 /**
  * Created by BCS_RTBS_JJFATHER on 2015-10-22.
@@ -458,7 +459,7 @@ public class QuickSale {
             switch (v.getId()) {
                 case R.id.button_main_side_quick :
                 case R.id.mainRightBottom_QuickSale : {
-                    if (!GlobalMemberValues.checkEmployeePermission(GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx, GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName, "<20>")){
+                    if (!GlobalMemberValues.checkEmployeePermission( TableSaleMain.ID_forPermission, TableSaleMain.NAME_forPermission, "<20>")){
                         GlobalMemberValues.displayDialog(mActivity, "Warning", "You do not have permission", "Close");
                         return;
                     }

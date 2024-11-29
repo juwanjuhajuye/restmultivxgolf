@@ -20,6 +20,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.R;
+import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.tablesale.TableSaleMain;
 
 import org.json.JSONException;
 
@@ -278,7 +279,7 @@ public class Recall extends Activity {
                                         public void onClick(DialogInterface dialog, int which) {
 //                                            setDeleteHoldList();
 
-                                            if (!GlobalMemberValues.checkEmployeePermission(GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx, GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName, "<20>")){
+                                            if (!GlobalMemberValues.checkEmployeePermission( TableSaleMain.ID_forPermission, TableSaleMain.NAME_forPermission, "<20>")){
 //                                                GlobalMemberValues.displayDialog(context, "Warning", "You do not have permission", "Close");
                                                 // adminpassword.
                                                 Intent adminPasswordIntent = new Intent(MainActivity.mContext.getApplicationContext(), AdminPassword.class);

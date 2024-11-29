@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.R;
+import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.tablesale.TableSaleMain;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -171,7 +172,7 @@ public class BackOfficeCommand extends Activity {
             switch (view.getId()){
                 case R.id.back_office_download_upload :
                     if (!GlobalMemberValues.checkEmployeePermission(
-                            GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx, GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName, "<6>")) {
+                            TableSaleMain.ID_forPermission, TableSaleMain.NAME_forPermission, "<6>")) {
                         GlobalMemberValues.displayDialog(getApplicationContext(), "Warning", "You do not have permission", "Close");
                         return;
                     }
@@ -213,7 +214,7 @@ public class BackOfficeCommand extends Activity {
                 case R.id.back_office_backup_database :
                     // 권한체크
                     if (!GlobalMemberValues.checkEmployeePermission(
-                            GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx, GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName, "<7>")) {
+                            TableSaleMain.ID_forPermission, TableSaleMain.NAME_forPermission, "<7>")) {
                         GlobalMemberValues.displayDialog(getApplicationContext(), "Warning", "You do not have permission", "Close");
                         return;
                     }
@@ -232,7 +233,7 @@ public class BackOfficeCommand extends Activity {
                 case R.id.back_office_restore_database :
                     // 권한체크
                     if (!GlobalMemberValues.checkEmployeePermission(
-                            GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx, GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName, "<7>")) {
+                            TableSaleMain.ID_forPermission, TableSaleMain.NAME_forPermission, "<7>")) {
                         GlobalMemberValues.displayDialog(getApplicationContext(), "Warning", "You do not have permission", "Close");
                         return;
                     }
@@ -376,7 +377,7 @@ public class BackOfficeCommand extends Activity {
                 case R.id.back_office_end_of_day :
                     // 권한체크
                     if (!GlobalMemberValues.checkEmployeePermission(
-                            GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx, GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName, "<11>")) {
+                            TableSaleMain.ID_forPermission, TableSaleMain.NAME_forPermission, "<11>")) {
                         GlobalMemberValues.displayDialog(getApplicationContext(), "Warning", "You do not have permission", "Close");
                         return;
                     }
@@ -394,7 +395,7 @@ public class BackOfficeCommand extends Activity {
                 case R.id.back_office_batch_summary :
                     // 권한체크
                     if (!GlobalMemberValues.checkEmployeePermission(
-                            GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx, GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName, "<5>")) {
+                            TableSaleMain.ID_forPermission, TableSaleMain.NAME_forPermission, "<5>")) {
                         GlobalMemberValues.displayDialog(getApplicationContext(), "Warning", "You do not have permission", "Close");
                         return;
                     }

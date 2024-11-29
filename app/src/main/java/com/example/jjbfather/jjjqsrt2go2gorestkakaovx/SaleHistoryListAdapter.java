@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.R;
+import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.tablesale.TableSaleMain;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -103,7 +104,7 @@ public class SaleHistoryListAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 if (!GlobalMemberValues.checkEmployeePermission(
-                        GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx, GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName, "<3>")) {
+                        TableSaleMain.ID_forPermission, TableSaleMain.NAME_forPermission, "<3>")) {
                     GlobalMemberValues.displayDialog(context, "Warning", "You do not have permission", "Close");
                     return;
                 }

@@ -26,6 +26,7 @@ import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.R;
+import com.example.jjbfather.jjjqsrt2go2gorestkakaovx.tablesale.TableSaleMain;
 
 import java.util.Vector;
 
@@ -845,7 +846,7 @@ public class Discount {
                 case R.id.mainRightBottom_Discount : {
                     // 권한체크
                     if (!GlobalMemberValues.checkEmployeePermission(
-                            GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx, GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName, "<10>")) {
+                            TableSaleMain.ID_forPermission, TableSaleMain.NAME_forPermission, "<10>")) {
                         GlobalMemberValues.displayDialog(context, "Warning", "You do not have permission", "Close");
                         return;
                     }
