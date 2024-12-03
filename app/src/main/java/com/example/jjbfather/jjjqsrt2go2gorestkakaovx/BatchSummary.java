@@ -396,6 +396,14 @@ public class BatchSummary extends Activity {
         }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (MainActivity.proCustomDial != null) {
+            MainActivity.proCustomDial.dismiss();
+        }
+    }
+
     public void setSummaryOld(String paramSearchDate) throws JSONException {
         // 최상단 json객체
         jsonroot = new JSONObject();

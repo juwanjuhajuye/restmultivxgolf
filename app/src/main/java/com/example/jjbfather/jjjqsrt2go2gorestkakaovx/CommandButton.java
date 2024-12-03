@@ -1168,6 +1168,10 @@ public class CommandButton {
     };
 
     public static void openBatchSummary(String paramAutoCloseYN) {
+
+        MainActivity.proCustomDial = ProgressDialog.show(MainActivity.mContext, GlobalMemberValues.ANDROIDPOSNAME, "Loading Card Sale", true, false);
+        MainActivity.proCustomDial.show();
+
         try {
             GlobalMemberValues.logWrite("batchsummaryjjj", "여기실행...1" + "\n");
             //GlobalMemberValues.displayDialog(context, "NAVYZEBRA MSALON ANDROID", "Under Construction", "Close");
