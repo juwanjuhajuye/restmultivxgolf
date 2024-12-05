@@ -3261,8 +3261,8 @@ public class Payment {
                         " '" + GlobalMemberValues.getDBTextAfterChecked(sales_customerPhone, 0) + "', " +
                         " '" + GlobalMemberValues.getDBTextAfterChecked(sales_customerPosCode, 0) + "', " +
 
-                        " '" + GlobalMemberValues.getDBTextAfterChecked(item_employeeIdx, 0) + "', " +
-                        " '" + GlobalMemberValues.getDBTextAfterChecked(item_employeeName, 0) + "', " +
+                        " '" + GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx, 0) + "', " +
+                        " '" + GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName, 0) + "', " +
 
                         " '" + GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.SERVER_IDX, 0) + "', " +
                         " '" + GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.SERVER_NAME, 0) + "', " +
@@ -3406,8 +3406,8 @@ public class Payment {
                             " '" + sales_sidx + "', " +
                             " '" + GlobalMemberValues.getDBTextAfterChecked(item_giftcardNumberToSave, 0) + "', " +
                             " '" + GlobalMemberValues.getDBTextAfterChecked(item_itemIdx, 0) + "', " +
-                            " '" + GlobalMemberValues.getDBTextAfterChecked(item_employeeIdx, 0) + "', " +
-                            " '" + GlobalMemberValues.getDBTextAfterChecked(item_employeeName, 0) + "', " +
+                            " '" + GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empIdx , 0) + "', " +
+                            " '" + GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.GLOBAL_EMPLOYEEINFO.empName , 0) + "', " +
                             " '" + GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.SERVER_IDX, 0) + "', " +
                             " '" + GlobalMemberValues.getDBTextAfterChecked(GlobalMemberValues.SERVER_NAME, 0) + "', " +
                             " '" + GlobalMemberValues.getDBTextAfterChecked(sales_customerId, 0) + "', " +
