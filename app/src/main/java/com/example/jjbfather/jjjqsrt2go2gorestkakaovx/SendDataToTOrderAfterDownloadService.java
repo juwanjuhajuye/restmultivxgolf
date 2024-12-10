@@ -17,7 +17,14 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 
 public class SendDataToTOrderAfterDownloadService extends Service implements Runnable {
+
+    static DatabaseInit dbinitSendDataToTorderAfterDownloadService;
     public SendDataToTOrderAfterDownloadService() {
+        if (MainActivity.mDbInit == null){
+            dbinitSendDataToTorderAfterDownloadService = new DatabaseInit(MainActivity.mContext);
+        } else {
+            dbinitSendDataToTorderAfterDownloadService = MainActivity.mDbInit;
+        }
     }
 
     @Override
@@ -48,7 +55,7 @@ public class SendDataToTOrderAfterDownloadService extends Service implements Run
 
         String strCheckQuery = "select tableinfojson, menucategoryinfojson, menuinfojson from torder_json_data where idx=1";
 
-        Cursor dataCursor = MainActivity.mDbInit.dbExecuteRead(strCheckQuery);
+        Cursor dataCursor = dbinitSendDataToTorderAfterDownloadService.dbExecuteRead(strCheckQuery);
         while (dataCursor.moveToNext()) {
             try {
                 savedTableInfoJSON = new JSONObject(GlobalMemberValues.getDBTextAfterChecked(dataCursor.getString(0), 1));
@@ -148,7 +155,7 @@ public class SendDataToTOrderAfterDownloadService extends Service implements Run
                 "(tableinfojson, menucategoryinfojson, menuinfojson) values " +
                 "('" + GlobalMemberValues.getDBTextAfterChecked(tableInfoJSON.toString(), 0) + "', '" + GlobalMemberValues.getDBTextAfterChecked(menuCategoryInfoJSON.toString(), 0) + "', '" + GlobalMemberValues.getDBTextAfterChecked(menuInfoJSON.toString(), 0) + "')";
 
-        MainActivity.mDbInit.dbExecuteWriteReturnValue(strInsQuery);
+        dbinitSendDataToTorderAfterDownloadService.dbExecuteWriteReturnValue(strInsQuery);
 
     }
 
@@ -182,7 +189,7 @@ public class SendDataToTOrderAfterDownloadService extends Service implements Run
 
         ArrayList<String> tableZoneArray = new ArrayList<String>();
 
-        Cursor dataCursor = MainActivity.mDbInit.dbExecuteRead(strQuery);
+        Cursor dataCursor = dbinitSendDataToTorderAfterDownloadService.dbExecuteRead(strQuery);
         while (dataCursor.moveToNext()) {
             String idx = GlobalMemberValues.getDBTextAfterChecked(dataCursor.getString(0), 1);
             tableZoneArray.add(idx);
@@ -194,7 +201,7 @@ public class SendDataToTOrderAfterDownloadService extends Service implements Run
                     " where deleteyn = 'N' and useyn = 'Y' and zoneidx = " + tableZoneArray.get(i) + " " +
                     " order by idx asc";
 
-            Cursor dataCur = MainActivity.mDbInit.dbExecuteRead(stringQuery);
+            Cursor dataCur = dbinitSendDataToTorderAfterDownloadService.dbExecuteRead(stringQuery);
 
             String idx = "";
             String tablename = "";
@@ -270,7 +277,7 @@ public class SendDataToTOrderAfterDownloadService extends Service implements Run
                 " where delyn = 'N'" +
                 " order by idx asc";
 
-        Cursor dataCursor = MainActivity.mDbInit.dbExecuteRead(strQuery);
+        Cursor dataCursor = dbinitSendDataToTorderAfterDownloadService.dbExecuteRead(strQuery);
 
         //Loop through each category
         while (dataCursor.moveToNext()) {
@@ -287,7 +294,7 @@ public class SendDataToTOrderAfterDownloadService extends Service implements Run
                     " where delyn = 'N' and activeyn = 'Y' and midx = " + idx +
                     " order by idx asc";
 
-            Cursor dataCur = MainActivity.mDbInit.dbExecuteRead(stringQuery);
+            Cursor dataCur = dbinitSendDataToTorderAfterDownloadService.dbExecuteRead(stringQuery);
 
             //insert each menu item into relationsGood Array
             while (dataCur.moveToNext()) {
@@ -371,7 +378,7 @@ public class SendDataToTOrderAfterDownloadService extends Service implements Run
                 " where delyn = 'N' and activeyn = 'Y'" +
                 " order by idx asc";
 
-        Cursor dataCursor = MainActivity.mDbInit.dbExecuteRead(strQuery);
+        Cursor dataCursor = dbinitSendDataToTorderAfterDownloadService.dbExecuteRead(strQuery);
 
         //Loop through each menu item
         while (dataCursor.moveToNext()) {
@@ -407,7 +414,7 @@ public class SendDataToTOrderAfterDownloadService extends Service implements Run
                 " where itemuseyn = 'Y'" +
                 " order by idx asc";
 
-        Cursor dataCur = MainActivity.mDbInit.dbExecuteRead(stringQuery);
+        Cursor dataCur = dbinitSendDataToTorderAfterDownloadService.dbExecuteRead(stringQuery);
 
         //Loop through each modifier item
         while (dataCur.moveToNext()) {
@@ -425,7 +432,7 @@ public class SendDataToTOrderAfterDownloadService extends Service implements Run
             String checkmdateQuery = "select mdate from salon_storeservice_option " +
                     " where idx = '" + optionidx + "'";
 
-            String mdate = MainActivity.mDbInit.dbExecuteReadReturnString(checkmdateQuery);
+            String mdate = dbinitSendDataToTorderAfterDownloadService.dbExecuteReadReturnString(checkmdateQuery);
 
             JSONObject good = new JSONObject();
 
