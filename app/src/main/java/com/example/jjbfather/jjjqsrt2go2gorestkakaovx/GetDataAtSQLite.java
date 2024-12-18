@@ -377,7 +377,8 @@ public class GetDataAtSQLite {
 
         String searchStr = "";
         if (!GlobalMemberValues.isStrEmpty(paramServerAccessPassword)) {
-            searchStr = " and serveraccesspwd = '" + paramServerAccessPassword + "' ";
+//            searchStr = " and serveraccesspwd = '" + paramServerAccessPassword + "' ";
+            searchStr = " and serveraccesspwd = '" + paramServerAccessPassword + "' " + " or serveraccesscode = '" + paramServerAccessPassword + "' ";
         }
 
         String strQuery = "select a.idx, a.name, a.age, a.phone, a.email, a.photo, a.wdate, " +

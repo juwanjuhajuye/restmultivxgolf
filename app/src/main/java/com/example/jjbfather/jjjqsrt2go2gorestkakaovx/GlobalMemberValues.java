@@ -18877,6 +18877,7 @@ public class GlobalMemberValues {
             double tempAddPayMoney = GlobalMemberValues.getDoubleAtString(paramAddPayValue[1]);
             if (tempAddPayMoney > 0) {
 
+
                 //
                 String tempSaveType = "";
                 double taxPrice = 0.0;
