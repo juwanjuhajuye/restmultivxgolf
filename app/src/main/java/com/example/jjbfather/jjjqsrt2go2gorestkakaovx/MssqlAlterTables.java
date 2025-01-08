@@ -1141,6 +1141,13 @@ public class MssqlAlterTables {
         // mobiletableordertype 컬럼 추가
         altTableName = "salon_storegeneral";
         alterDatabaseTableColumn(altTableName, "mobiletableordertype", "nvarchar(2)", "DEFAULT 'A'");
+
+        // 01082025
+        // salon_storeemployee 컬럼 추가
+        // 01.08.2025 posloginbarcode 컬럼 추가
+        altTableName = "salon_storeemployee";
+        alterDatabaseTableColumn(altTableName, "posloginbarcode", "nvarchar(100)", "DEFAULT ''");
+
     }
 
     public static void alterTableColumnType() {

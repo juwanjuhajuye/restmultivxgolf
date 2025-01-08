@@ -3992,6 +3992,14 @@ public class DatabaseInit {
             alterDatabaseTableColumn(altTableName, "signaturecancelshow_yn", "nvarchar(2)", "DEFAULT 'N'", 0);
         }
 
+        // 01082025
+        // salon_storeemployee 컬럼 추가
+        // 01.08.2025 posloginbarcode 컬럼 추가
+        altTableName = "salon_storeemployee";
+        if (checkTable(altTableName) > 0){
+            alterDatabaseTableColumn(altTableName, "posloginbarcode", "nvarchar(100)", "DEFAULT ''", 0);
+        }
+
         /****************************************************************************/
     }
 

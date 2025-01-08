@@ -21976,4 +21976,23 @@ public class GlobalMemberValues {
 
         return returnValue;
     }
+
+    // 01082025
+    // barcode 스캔으로 직원정보 가져오기
+    public static String getEmployeeInfoByBarcode(String paramBarcode){
+        String returnValue = "";
+
+        if (!GlobalMemberValues.isStrEmpty(paramBarcode)) {
+            String getData = MainActivity.mDbInit.dbExecuteReadReturnString(
+                    " select eid from salon_storeemployee where posloginbarcode = '" + paramBarcode + "' "
+            );
+
+            if (GlobalMemberValues.isStrEmpty(getData)){
+                getData = "";
+            }
+            returnValue = getData;
+        }
+
+        return returnValue;
+    }
 }

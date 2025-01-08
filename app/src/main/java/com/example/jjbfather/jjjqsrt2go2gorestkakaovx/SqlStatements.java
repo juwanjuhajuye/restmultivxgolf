@@ -539,7 +539,8 @@ public class SqlStatements {
                     "empcardnum nvarchar(200) DEFAULT '', " +
                     "emptype nvarchar(2) DEFAULT '0', " +
                     "serveraccesscode nvarchar(100) DEFAULT '', " +
-                    "serveraccesspwd nvarchar(100) DEFAULT '' " +
+                    "serveraccesspwd nvarchar(100) DEFAULT '', " +
+                    "posloginbarcode nvarchar(100) DEFAULT '' " +
                     ")";
 
 

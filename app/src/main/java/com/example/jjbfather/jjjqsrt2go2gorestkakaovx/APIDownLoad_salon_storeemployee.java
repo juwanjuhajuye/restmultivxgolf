@@ -56,6 +56,8 @@ public class APIDownLoad_salon_storeemployee extends AsyncTask {
 
     String serveraccesscode = "";
     String serveraccesspwd = "";
+
+    String posloginbarcode = "";
     /**********************************************************/
 
     String mInsertSqlQuery = "";
@@ -227,6 +229,9 @@ public class APIDownLoad_salon_storeemployee extends AsyncTask {
                         if (tagName.equals("serveraccesspwd")) {
                             serveraccesspwd = xpp.getText();
                         }
+                        if (tagName.equals("posloginbarcode")) {
+                            posloginbarcode = xpp.getText();
+                        }
                     }
 
 
@@ -245,7 +250,7 @@ public class APIDownLoad_salon_storeemployee extends AsyncTask {
                                 " mdate, aid, pos_emp_code, SUN_OPN, SUN_CLS, MON_OPN, MON_CLS, TUE_OPN, " +
                                 " TUE_CLS, WED_OPN, WED_CLS, THU_OPN, THU_CLS, FRI_OPN, FRI_CLS, SAT_OPN, " +
                                 " SAT_CLS, delyn, eid, pwd, eLevel, commissionratio, clockinoutpwd, poslistviewyn, " +
-                                " permission, empcardnum, emptype, serveraccesscode, serveraccesspwd " +
+                                " permission, empcardnum, emptype, serveraccesscode, serveraccesspwd, posloginbarcode " +
                                 " ) " +
                                 " values (" +
                                 "'" + GlobalMemberValues.getDBTextAfterChecked(idx, 0) + "', " +
@@ -284,7 +289,8 @@ public class APIDownLoad_salon_storeemployee extends AsyncTask {
                                 "'" + GlobalMemberValues.getDBTextAfterChecked(empcardnum, 0) + "', " +
                                 "'" + GlobalMemberValues.getDBTextAfterChecked(emptype, 0) + "', " +
                                 "'" + GlobalMemberValues.getDBTextAfterChecked(serveraccesscode, 0) + "', " +
-                                "'" + GlobalMemberValues.getDBTextAfterChecked(serveraccesspwd, 0) + "' " +
+                                "'" + GlobalMemberValues.getDBTextAfterChecked(serveraccesspwd, 0) + "', " +
+                                "'" + GlobalMemberValues.getDBTextAfterChecked(posloginbarcode, 0) + "' " +
                                 ")";
                         sqlQueryVecIns.add(mInsertSqlQuery);
 
@@ -325,7 +331,8 @@ public class APIDownLoad_salon_storeemployee extends AsyncTask {
                                 " empcardnum = '" + GlobalMemberValues.getDBTextAfterChecked(empcardnum, 0) + "', " +
                                 " emptype = '" + GlobalMemberValues.getDBTextAfterChecked(emptype, 0) + "', " +
                                 " serveraccesscode = '" + GlobalMemberValues.getDBTextAfterChecked(serveraccesscode, 0) + "', " +
-                                " serveraccesspwd = '" + GlobalMemberValues.getDBTextAfterChecked(serveraccesspwd, 0) + "' " +
+                                " serveraccesspwd = '" + GlobalMemberValues.getDBTextAfterChecked(serveraccesspwd, 0) + "', " +
+                                " posloginbarcode = '" + GlobalMemberValues.getDBTextAfterChecked(posloginbarcode, 0) + "' " +
                                 " where idx = " + idx;
 
                         // Vector 에 담을 값 조합하기 (인덱스 | 등록쿼리 | 수정쿼리)
@@ -379,6 +386,7 @@ public class APIDownLoad_salon_storeemployee extends AsyncTask {
                         emptype = "";
                         serveraccesscode = "";
                         serveraccesspwd = "";
+                        posloginbarcode = "";
                         /***********************************************/
                     }
                 }
